@@ -2,7 +2,7 @@ import requests, json, config
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
-maxLevels = 3
+maxLevels = 4
 
 # members
 channels = {}
@@ -10,12 +10,15 @@ channels = {}
 # READ STATISTICS
 def readStatistics(channelId):
 
-	r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + channelId + "&key=" + config.apiKey())
-	stats = r.json()
+	try:
+		r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + channelId + "&key=" + config.apiKey())
+		stats = r.json()
 
-	if len(stats["items"]) > 0:
-		return stats["items"][0]["statistics"]
-	else:
+		if len(stats["items"]) > 0:
+			return stats["items"][0]["statistics"]
+		else:
+			return None
+	except:
 		return None
 
 # READ SUBSCRIPTIONS PAGE
@@ -85,6 +88,8 @@ def readSubscriptions(channelId, level = 1):
 
 # WRITE SUBSCRIPTIONS
 def writeSubscriptions():
+
+	print len(channels.keys()), " channels found"
 
 	with open("data.json", "w") as dataFile:
 		dataFile.write(json.dumps(channels.values(), indent=4, sort_keys=True))
