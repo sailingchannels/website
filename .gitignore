@@ -58,3 +58,6 @@ target/
 
 *.sublime-*
 config.py
+
+node_modules
+bower_components

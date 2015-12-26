@@ -3,3 +3,14 @@
 body {
 	background-color: white;
 }
+
+h1, h2, h3 {
+	margin:0px;
+	padding:0px;
+}
+
+.channel-row {
+	border-bottom:1px solid #eee;
+	margin-bottom: 20px;
+	padding-bottom:20px;
+}

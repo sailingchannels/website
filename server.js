@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
+var jsonfile = require("jsonfile");
 var bodyParser = require("body-parser");
 var swig = require("swig");
 var React = require("react");
@@ -21,6 +22,17 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// API / CHANNELS / GET
+app.get("/api/channels/get", function(req, res) {
+
+	// sort channels by subscribers
+	global.data.sort(function(a, b) {
+		return b.subscribers - a.subscribers;
+	});
+
+	return res.send(global.data.slice(0, 100));
+});
+
 // REACT MIDDLEWARE
 app.use(function(req, res) {
 
@@ -28,12 +40,12 @@ app.use(function(req, res) {
 
 		// error
 		if(err) {
-			return res.status(500).send(err.message)
+			return res.status(500).send(err.message);
 		}
 
 		// redirect
 		else if(redirectLocation) {
-			return res.status(302).redirect(redirectLocation.pathname + redirectLocation.search)
+			return res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
 		}
 
 		// render
@@ -45,11 +57,18 @@ app.use(function(req, res) {
 
 		// not found
 		else {
-			return res.status(404).send("Page Not Found")
+			return res.status(404).send("Page Not Found");
 		}
 	});
 });
 
-app.listen(app.get("port"), function() {
-	console.log("Express server listening on port " + app.get("port"));
+// read data json
+jsonfile.readFile("data.json", function(err, obj) {
+
+	global.data = obj;
+
+	// start server
+	app.listen(app.get("port"), function() {
+		console.log("Express server listening on port " + app.get("port"));
+	});
 });

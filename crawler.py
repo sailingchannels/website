@@ -2,7 +2,7 @@ import requests, json, config
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
-maxLevels = 4
+maxLevels = 2
 
 # members
 channels = {}
@@ -43,6 +43,9 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
 	# loop channel items in result set
 	for i in subs["items"]:
+
+		if i["snippet"]["resourceId"]["kind"] != "youtube#channel":
+			continue
 
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
 

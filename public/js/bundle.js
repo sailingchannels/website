@@ -15,204 +15,41 @@ var _alt = require("../alt");
 
 var _alt2 = _interopRequireDefault(_alt);
 
-// CHANNEL LIST ACTIONS
+// CHANNEL ACTIONS
 
-var ArticleActions = (function () {
-    function ArticleActions() {
-        _classCallCheck(this, ArticleActions);
-    }
-
-    // VISIT
-
-    _createClass(ArticleActions, [{
-        key: "visit",
-        value: function visit(articleId, callback) {
-
-            $.ajax({
-                url: "/articles/visit",
-                type: "POST",
-                dataType: "json",
-                headers: {
-                    "auth-type": localStorage.getItem("auth.type"),
-                    "auth-token": localStorage.getItem("auth.token")
-                },
-                data: {
-                    "id": articleId
-                }
-            }).done(function (data) {
-                if (callback) return callback(null, data);
-            }).fail(function (jqXhr) {
-                if (callback) return callback(jqXhr, null);
-            });
-        }
-    }]);
-
-    return ArticleActions;
-})();
-
-exports["default"] = _alt2["default"].createActions(ArticleActions);
-module.exports = exports["default"];
-
-},{"../alt":4}],2:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _alt = require("../alt");
-
-var _alt2 = _interopRequireDefault(_alt);
-
-// CHANNEL LIST ACTIONS
-
-var ArticleListActions = (function () {
-    function ArticleListActions() {
-        _classCallCheck(this, ArticleListActions);
-
-        this.generateActions("getArticlesSuccess", "getArticlesFail");
-    }
-
-    // GET ARTCILES
-
-    _createClass(ArticleListActions, [{
-        key: "getArticles",
-        value: function getArticles(channelId) {
-            var _this = this;
-
-            $.ajax({
-                url: "/articles?channel=" + channelId + "&skip=0&take=10"
-            }).done(function (data) {
-                window.scrollTo(0, 0);
-                console.log(data.length);
-                _this.actions.getArticlesSuccess(data);
-            }).fail(function (jqXhr) {
-                _this.actions.getArticlesFail(jqXhr);
-            });
-        }
-    }]);
-
-    return ArticleListActions;
-})();
-
-exports["default"] = _alt2["default"].createActions(ArticleListActions);
-module.exports = exports["default"];
-
-},{"../alt":4}],3:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _alt = require("../alt");
-
-var _alt2 = _interopRequireDefault(_alt);
-
-// CHANNEL LIST ACTIONS
-
-var ChannelListActions = (function () {
-    function ChannelListActions() {
-        _classCallCheck(this, ChannelListActions);
+var ChannelActions = (function () {
+    function ChannelActions() {
+        _classCallCheck(this, ChannelActions);
 
         this.generateActions("getChannelsSuccess", "getChannelsFail");
     }
 
-    // GET CHANNELS
+    // GET CHANNEL
 
-    _createClass(ChannelListActions, [{
+    _createClass(ChannelActions, [{
         key: "getChannels",
         value: function getChannels() {
             var _this = this;
 
             $.ajax({
-                url: "/channels/getByUser",
-                headers: {
-                    "auth-type": window.Cookie.get("auth-type"),
-                    "auth-token": window.Cookie.get("auth-token")
-                }
+                "url": "/api/channels/get",
+                "type": "GET",
+                "dataType": "json"
             }).done(function (data) {
                 _this.actions.getChannelsSuccess(data);
             }).fail(function (jqXhr) {
                 _this.actions.getChannelsFail(jqXhr);
             });
         }
-
-        // UNSUBSCRIBE CHANNEL
-    }, {
-        key: "unsubscribeChannel",
-        value: function unsubscribeChannel(channelId, callback) {
-
-            $.ajax({
-                url: "/channels/unsubscribe",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    "id": channelId
-                },
-                headers: {
-                    "auth-type": window.Cookie.get("auth-type"),
-                    "auth-token": window.Cookie.get("auth-token")
-                },
-                statusCode: {
-                    401: function _() {
-                        // TODO: logout user, he is not allowed to do this!
-                        if (callback) return callback(401, false);
-                    }
-                },
-                success: function success() {
-                    if (callback) return callback(null, true);
-                }
-            });
-        }
-
-        // VISIT
-    }, {
-        key: "visit",
-        value: function visit() {
-            /*$.ajax({
-                url: "/channels/visit", 
-                type: "POST",
-                dataType: "json",
-                headers: {
-                    "auth-type": auth.type,
-                    "auth-token": auth.token,
-                    "tld": tld()["tld"]
-                },
-                data: {
-                    "id": that.channel
-                },
-                success: function(d) {
-                    if(d["success"] == true) {
-                        var $badge = $("[data-badge='" + that.channel + "']");
-                        $badge.html("0");
-                        $badge.hide();
-                         subscriptionView.subscriptionVisits[that.channel] = moment.utc();
-                    }
-                }
-            });*/
-        }
     }]);
 
-    return ChannelListActions;
+    return ChannelActions;
 })();
 
-exports["default"] = _alt2["default"].createActions(ChannelListActions);
+exports["default"] = _alt2["default"].createActions(ChannelActions);
 module.exports = exports["default"];
 
-},{"../alt":4}],4:[function(require,module,exports){
+},{"../alt":2}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -228,85 +65,7 @@ var _alt2 = _interopRequireDefault(_alt);
 exports["default"] = new _alt2["default"]();
 module.exports = exports["default"];
 
-},{"alt":"alt"}],5:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ChannelList = require("./ChannelList");
-
-var _ChannelList2 = _interopRequireDefault(_ChannelList);
-
-var _NoChannelHead = require("./NoChannelHead");
-
-var _NoChannelHead2 = _interopRequireDefault(_NoChannelHead);
-
-var Account = (function (_React$Component) {
-	_inherits(Account, _React$Component);
-
-	function Account() {
-		_classCallCheck(this, Account);
-
-		_get(Object.getPrototypeOf(Account.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(Account, [{
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "row" },
-				_react2["default"].createElement(_ChannelList2["default"], null),
-				_react2["default"].createElement(
-					"div",
-					{ className: "col-md-9" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "row channelhead clearfix" },
-						_react2["default"].createElement(
-							"div",
-							{ className: "channelNameArea pull-left" },
-							_react2["default"].createElement(
-								"h1",
-								null,
-								"Account"
-							)
-						),
-						_react2["default"].createElement(_NoChannelHead2["default"], null)
-					),
-					_react2["default"].createElement(
-						"div",
-						{ className: "row" },
-						"Account"
-					)
-				)
-			);
-		}
-	}]);
-
-	return Account;
-})(_react2["default"].Component);
-
-exports["default"] = Account;
-module.exports = exports["default"];
-
-},{"./ChannelList":12,"./NoChannelHead":19,"react":"react"}],6:[function(require,module,exports){
+},{"alt":"alt"}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -353,921 +112,11 @@ var App = (function (_React$Component) {
 exports["default"] = App;
 module.exports = exports["default"];
 
-},{"react":"react"}],7:[function(require,module,exports){
+},{"react":"react"}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _actionsArticleActions = require("../actions/ArticleActions");
-
-var _actionsArticleActions2 = _interopRequireDefault(_actionsArticleActions);
-
-var _ArticleImage = require("./ArticleImage");
-
-var _ArticleImage2 = _interopRequireDefault(_ArticleImage);
-
-var Article = (function (_React$Component) {
-	_inherits(Article, _React$Component);
-
-	function Article() {
-		_classCallCheck(this, Article);
-
-		_get(Object.getPrototypeOf(Article.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(Article, [{
-		key: "componentDidMount",
-
-		// COMPONENT DID MOUNT
-		value: function componentDidMount() {
-			localStorage.setItem("seen." + this.props.article.id, true);
-		}
-
-		// ON SHARE FACEBOOK
-	}, {
-		key: "onShareFacebook",
-		value: function onShareFacebook() {
-			var _this = this;
-
-			this.getShortId(this.props.article.id, function (data) {
-
-				// open facebook popup
-				var url = "http://facebook.com/sharer/sharer.php?u=https://informme.de/a/" + data.sid;
-				_this.openPopup(url, 600);
-			});
-		}
-
-		// ON SHARE GOOGLE
-	}, {
-		key: "onShareGoogle",
-		value: function onShareGoogle() {
-			var _this2 = this;
-
-			this.getShortId(this.props.article.id, function (data) {
-
-				// open facebook popup
-				var url = "https://plus.google.com/share?url=https://informme.de/a/" + data.sid;
-				_this2.openPopup(url, 500);
-			});
-		}
-
-		// ON SHARE TWITTER
-	}, {
-		key: "onShareTwitter",
-		value: function onShareTwitter() {
-			var _this3 = this;
-
-			this.getShortId(this.props.article.id, function (data) {
-
-				// erase annoying "+++" content
-				var t = _this3.props.article.title;
-				if (t.indexOf("+++") > 0) {
-					t = data["t"].replace(/\+\+\+.*\+\+\+/, "");
-				}
-
-				var title;
-				var splitted = t.split(":");
-				var count = splitted.length - 1;
-
-				// use title directly
-				if (count == 0) {
-					title = t;
-				}
-
-				// if title is longer than 80 characters,
-				// take the seconds split
-				else if (count == 1) {
-						if (t.length <= 80) {
-							title = t;
-						} else {
-							title = splitted[1];
-						}
-					}
-
-					// if there are a multitude of colons
-					// available, take the last two splits
-					else {
-							title = splitted[count - 1] + ": " + splitted[count];
-						}
-
-				title = title.replace(/(^\s+|\s+$)/g, "").replace(/^[-=\s]*/mg, "");
-				var url = "http://twitter.com/?status=\"" + title + "\": " + "https://informme.de/a/" + data.sid + " @informme_de";
-
-				_this3.openPopup(url, 500);
-			});
-		}
-
-		// ON HEADLINK CLICK
-	}, {
-		key: "onHeadlinkClick",
-		value: function onHeadlinkClick() {
-
-			// store the visit to this article
-			_actionsArticleActions2["default"].visit(this.props.article.id, function (err, success) {
-				if (err) console.error(err);
-			});
-		}
-
-		// OPEN POPUP
-	}, {
-		key: "openPopup",
-		value: function openPopup(url) {
-			var h = arguments.length <= 1 || arguments[1] === undefined ? 300 : arguments[1];
-
-			var w = 500;
-			var left = screen.width / 2 - w / 2;
-			var top = screen.height / 2 - h / 2 - 100;
-			if (top < 0) top = 50;
-
-			var p = window.open(url, "InformMe", "width=" + w + ",height=" + h + ",status=yes,scrollbars=yes,resizable=yes,top=" + top + ",left=" + left);
-			p.focus();
-		}
-
-		// GET SHORT ID
-	}, {
-		key: "getShortId",
-		value: function getShortId(id, callback) {
-
-			$.ajax({
-				url: "/api/shorten?id=" + id + "&type=article",
-				dataType: "json",
-				type: "GET",
-				headers: {
-					"tld": "de"
-				},
-				success: function success(data) {
-					return callback(data);
-				}
-			});
-		}
-
-		// RENDER
-	}, {
-		key: "render",
-		value: function render() {
-
-			var image;
-
-			// display image?
-			if (this.props.article.image) {
-				image = _react2["default"].createElement(_ArticleImage2["default"], { articleId: this.props.article.id });
-			}
-
-			// new or old row?
-			var rowClass = "row article ";
-			if (localStorage.getItem("seen." + this.props.article.id)) {
-				rowClass += "old";
-			} else {
-				rowClass += "new";
-			}
-
-			return _react2["default"].createElement(
-				"div",
-				{ className: rowClass },
-				_react2["default"].createElement(
-					"div",
-					{ className: "col-md-9" },
-					_react2["default"].createElement(
-						"small",
-						null,
-						window.moment.utc(this.props.article.published).fromNow()
-					),
-					_react2["default"].createElement(
-						"a",
-						{ className: "headlink", href: this.props.article.url, target: "_blank", onClick: this.onHeadlinkClick.bind(this) },
-						_react2["default"].createElement(
-							"h3",
-							null,
-							this.props.article.title
-						)
-					),
-					_react2["default"].createElement(
-						"span",
-						{ className: "label label-default" },
-						this.props.article.feed
-					),
-					" ",
-					_react2["default"].createElement(
-						"span",
-						{ className: "article_content" },
-						this.props.article.content
-					),
-					_react2["default"].createElement(
-						"ul",
-						{ className: "list-inline social-signal" },
-						_react2["default"].createElement(
-							"li",
-							{ title: this.props.article.fb + " Likes & Shares", className: "facebook-signal", onClick: this.onShareFacebook.bind(this) },
-							_react2["default"].createElement("i", { className: "fa fa-facebook-square" }),
-							" ",
-							this.props.article.fb
-						),
-						_react2["default"].createElement(
-							"li",
-							{ title: this.props.article.tw + " Tweets", className: "twitter-signal", onClick: this.onShareTwitter.bind(this) },
-							_react2["default"].createElement("i", { className: "fa fa-twitter-square" }),
-							" ",
-							this.props.article.tw
-						),
-						_react2["default"].createElement(
-							"li",
-							{ title: this.props.article.gg + " Google +1", className: "google-signal", onClick: this.onShareGoogle.bind(this) },
-							_react2["default"].createElement("i", { className: "fa fa-google-plus-square" }),
-							" ",
-							this.props.article.gg
-						)
-					)
-				),
-				_react2["default"].createElement(
-					"div",
-					{ className: "col-md-3 hidden-phone" },
-					image
-				)
-			);
-		}
-	}]);
-
-	return Article;
-})(_react2["default"].Component);
-
-exports["default"] = Article;
-module.exports = exports["default"];
-
-},{"../actions/ArticleActions":1,"./ArticleImage":8,"react":"react"}],8:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var ArticleImage = (function (_React$Component) {
-	_inherits(ArticleImage, _React$Component);
-
-	function ArticleImage() {
-		_classCallCheck(this, ArticleImage);
-
-		_get(Object.getPrototypeOf(ArticleImage.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(ArticleImage, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			$("img[data-imgid='" + this.props.articleId + "']").unveil();
-		}
-	}, {
-		key: "render",
-		value: function render() {
-
-			return _react2["default"].createElement("img", { width: "100%", src: "https://informme.s3.amazonaws.com/img/s.gif", "data-imgid": this.props.articleId, "data-src": "https://informme.de/image?id=" + this.props.articleId + "&width=197" });
-		}
-	}]);
-
-	return ArticleImage;
-})(_react2["default"].Component);
-
-exports["default"] = ArticleImage;
-module.exports = exports["default"];
-
-},{"react":"react"}],9:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _storesArticleListStore = require("../stores/ArticleListStore");
-
-var _storesArticleListStore2 = _interopRequireDefault(_storesArticleListStore);
-
-var _actionsArticleListActions = require("../actions/ArticleListActions");
-
-var _actionsArticleListActions2 = _interopRequireDefault(_actionsArticleListActions);
-
-var _Article = require("./Article");
-
-var _Article2 = _interopRequireDefault(_Article);
-
-var ArticleList = (function (_React$Component) {
-	_inherits(ArticleList, _React$Component);
-
-	function ArticleList(props) {
-		_classCallCheck(this, ArticleList);
-
-		_get(Object.getPrototypeOf(ArticleList.prototype), "constructor", this).call(this, props);
-		this.state = _storesArticleListStore2["default"].getState();
-		this.onChange = this.onChange.bind(this);
-	}
-
-	_createClass(ArticleList, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			_storesArticleListStore2["default"].listen(this.onChange);
-			_actionsArticleListActions2["default"].getArticles(this.props.channelId);
-		}
-	}, {
-		key: "componentWillUnmount",
-		value: function componentWillUnmount() {
-			_storesArticleListStore2["default"].unlisten(this.onChange);
-		}
-	}, {
-		key: "componentWillReceiveProps",
-		value: function componentWillReceiveProps(nextProps) {
-			this.setState({ "articles": null });
-			_actionsArticleListActions2["default"].getArticles(nextProps.channelId);
-		}
-	}, {
-		key: "onChange",
-		value: function onChange(state) {
-			this.setState(state);
-		}
-	}, {
-		key: "render",
-		value: function render() {
-
-			// loading spinner
-			if (!this.state.articles) {
-
-				// display loading indicator
-				return _react2["default"].createElement(
-					"div",
-					{ className: "row", id: "content" },
-					_react2["default"].createElement("div", { className: "spinner" })
-				);
-			} else {
-
-				// no articles found?
-				if (this.state.articles.length === 0) {
-
-					return _react2["default"].createElement(
-						"div",
-						{ className: "row text-center no-articles" },
-						_react2["default"].createElement(
-							"div",
-							{ className: "alert alert-warning" },
-							_react2["default"].createElement("i", { className: "fa fa-clock-o" }),
-							_react2["default"].createElement(
-								"p",
-								null,
-								" "
-							),
-							_react2["default"].createElement(
-								"p",
-								null,
-								_react2["default"].createElement(
-									"span",
-									null,
-									"Wir haben hier noch keine Artikel gefunden.",
-									_react2["default"].createElement("br", null),
-									_react2["default"].createElement(
-										"b",
-										null,
-										"Sobald es einen passenden Artikel gibt wird er dir natürlich hier angezeigt."
-									)
-								)
-							)
-						)
-					);
-				} else {
-
-					var articles = [];
-					this.state.articles.map(function (article) {
-						articles.push(_react2["default"].createElement(_Article2["default"], { key: article.id, article: article }));
-					});
-
-					// display article list
-					return _react2["default"].createElement(
-						"div",
-						{ className: "row", id: "content" },
-						articles
-					);
-				}
-			}
-		}
-	}]);
-
-	return ArticleList;
-})(_react2["default"].Component);
-
-exports["default"] = ArticleList;
-module.exports = exports["default"];
-
-},{"../actions/ArticleListActions":2,"../stores/ArticleListStore":22,"./Article":7,"react":"react"}],10:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ChannelHead = require("./ChannelHead");
-
-var _ChannelHead2 = _interopRequireDefault(_ChannelHead);
-
-var _NewArticlesInfo = require("./NewArticlesInfo");
-
-var _NewArticlesInfo2 = _interopRequireDefault(_NewArticlesInfo);
-
-var _ArticleList = require("./ArticleList");
-
-var _ArticleList2 = _interopRequireDefault(_ArticleList);
-
-var Channel = (function (_React$Component) {
-	_inherits(Channel, _React$Component);
-
-	function Channel() {
-		_classCallCheck(this, Channel);
-
-		_get(Object.getPrototypeOf(Channel.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(Channel, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			document.title = this.props.channelName + " - " + "InformMe";
-		}
-	}, {
-		key: "componentDidUpdate",
-		value: function componentDidUpdate() {
-			document.title = this.props.channelName + " - " + "InformMe";
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "col-md-9" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "row channelhead clearfix" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "channelNameArea pull-left" },
-						_react2["default"].createElement(
-							"h1",
-							null,
-							this.props.channelName
-						)
-					),
-					_react2["default"].createElement(_ChannelHead2["default"], null)
-				),
-				_react2["default"].createElement(_NewArticlesInfo2["default"], null),
-				_react2["default"].createElement(_ArticleList2["default"], { channelId: this.props.channelId })
-			);
-		}
-	}]);
-
-	return Channel;
-})(_react2["default"].Component);
-
-exports["default"] = Channel;
-module.exports = exports["default"];
-
-},{"./ArticleList":9,"./ChannelHead":11,"./NewArticlesInfo":18,"react":"react"}],11:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var ChannelHead = (function (_React$Component) {
-	_inherits(ChannelHead, _React$Component);
-
-	function ChannelHead() {
-		_classCallCheck(this, ChannelHead);
-
-		_get(Object.getPrototypeOf(ChannelHead.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(ChannelHead, [{
-		key: "onChannelShareClick",
-
-		// ON CHANNEL SHARE CLICK
-		value: function onChannelShareClick() {}
-
-		// RENDER
-	}, {
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "pull-right" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "userArea" },
-					"Hi, ",
-					_react2["default"].createElement(
-						"a",
-						{ href: "/profile" },
-						_react2["default"].createElement("i", { className: "fa fa-user" }),
-						" ",
-						_react2["default"].createElement("span", null)
-					)
-				),
-				_react2["default"].createElement(
-					"div",
-					{ className: "actionArea" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "btn-group" },
-						_react2["default"].createElement(
-							"button",
-							{ className: "options btn btn-danger" },
-							"Entfolgen"
-						),
-						_react2["default"].createElement(
-							"button",
-							{ className: "options btn btn-default", id: "channelShareBtn", onClick: this.onChannelShareClick.bind(this) },
-							_react2["default"].createElement("i", { className: "fa fa-send" })
-						),
-						_react2["default"].createElement(
-							"button",
-							{ className: "options btn btn-default" },
-							_react2["default"].createElement("i", { className: "fa fa-trophy" })
-						),
-						_react2["default"].createElement(
-							"button",
-							{ className: "options btn btn-default" },
-							_react2["default"].createElement("i", { className: "fa fa-power-off" })
-						)
-					)
-				)
-			);
-		}
-	}]);
-
-	return ChannelHead;
-})(_react2["default"].Component);
-
-exports["default"] = ChannelHead;
-module.exports = exports["default"];
-
-},{"react":"react"}],12:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require("react-router");
-
-var _storesChannelListStore = require("../stores/ChannelListStore");
-
-var _storesChannelListStore2 = _interopRequireDefault(_storesChannelListStore);
-
-var _actionsChannelListActions = require("../actions/ChannelListActions");
-
-var _actionsChannelListActions2 = _interopRequireDefault(_actionsChannelListActions);
-
-var _ChannelListSection = require("./ChannelListSection");
-
-var _ChannelListSection2 = _interopRequireDefault(_ChannelListSection);
-
-// CHANNEL LIST
-
-var ChannelList = (function (_React$Component) {
-    _inherits(ChannelList, _React$Component);
-
-    function ChannelList(props) {
-        _classCallCheck(this, ChannelList);
-
-        _get(Object.getPrototypeOf(ChannelList.prototype), "constructor", this).call(this, props);
-        this.state = _storesChannelListStore2["default"].getState();
-        this.onChange = this.onChange.bind(this);
-    }
-
-    _createClass(ChannelList, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            _storesChannelListStore2["default"].listen(this.onChange);
-            _actionsChannelListActions2["default"].getChannels();
-        }
-    }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-            _storesChannelListStore2["default"].unlisten(this.onChange);
-        }
-    }, {
-        key: "onChange",
-        value: function onChange(state) {
-            this.setState(state);
-        }
-
-        // ON REMOVE CHANNEL
-    }, {
-        key: "onRemoveChannel",
-        value: function onRemoveChannel(type, channelId) {
-
-            // filter out deletion channel
-            var newChannels = this.state.channels;
-            newChannels[type] = this.state.channels[type].filter(function (channel) {
-                return channel._id != channelId;
-            });
-
-            // set new channel without the currently deleted one
-            this.setState({
-                "channels": newChannels
-            });
-
-            // populate deletion to server
-            _actionsChannelListActions2["default"].unsubscribeChannel(channelId);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-
-            // render channel list
-            return _react2["default"].createElement(
-                "div",
-                { className: "col-md-3" },
-                _react2["default"].createElement(
-                    "div",
-                    { className: "bs-sidebar affix", id: "sidebar" },
-                    _react2["default"].createElement("img", { className: "logo", alt: "InformMe", src: "/img/logo.png" }),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "button",
-                            { id: "addChannelBtn", type: "button", className: "btn btn-success btn-sm btn-block" },
-                            _react2["default"].createElement("i", { className: "fa fa-plus" }),
-                            " Channel hinzufügen"
-                        )
-                    ),
-                    _react2["default"].createElement(_ChannelListSection2["default"], { title: "Suchbegriffe", type: "query", channels: this.state.channels["query"], activeId: this.props.activeId, onRemoveChannel: this.onRemoveChannel.bind(this) }),
-                    _react2["default"].createElement(_ChannelListSection2["default"], { title: "Resorts", type: "resort", channels: this.state.channels["resort"], activeId: this.props.activeId, onRemoveChannel: this.onRemoveChannel }),
-                    _react2["default"].createElement(_ChannelListSection2["default"], { title: "Stories", type: "story", channels: this.state.channels["story"], activeId: this.props.activeId, onRemoveChannel: this.onRemoveChannel }),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "info text-center visible-desktop" },
-                        _react2["default"].createElement(
-                            "p",
-                            { className: "itunes" },
-                            _react2["default"].createElement(
-                                "a",
-                                { href: "https://itunes.apple.com/de/app/informme/id592086995", target: "_blank" },
-                                _react2["default"].createElement("img", { className: "itunes-available", alt: "iTunes AppStore", src: "/img/appstore.png" })
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            _react2["default"].createElement(
-                                "small",
-                                null,
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "https://twitter.com/informme_de", target: "_blank" },
-                                    "Twitter"
-                                ),
-                                " | ",
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "https://facebook.com/informme.de", target: "_blank" },
-                                    "Facebook"
-                                ),
-                                _react2["default"].createElement("br", null),
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "http://status.informme.de/", target: "_blank" },
-                                    "Status"
-                                ),
-                                " | ",
-                                _react2["default"].createElement(
-                                    _reactRouter.Link,
-                                    { to: "/imprint" },
-                                    "Impressum"
-                                ),
-                                " | ",
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "mailto:support@informme.de" },
-                                    "Kontakt"
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return ChannelList;
-})(_react2["default"].Component);
-
-exports["default"] = ChannelList;
-module.exports = exports["default"];
-
-},{"../actions/ChannelListActions":3,"../stores/ChannelListStore":23,"./ChannelListSection":14,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require("react-router");
-
-// CHANNEL LIST
-
-var ChannelListItem = (function (_React$Component) {
-    _inherits(ChannelListItem, _React$Component);
-
-    function ChannelListItem(props) {
-        _classCallCheck(this, ChannelListItem);
-
-        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).call(this, props);
-        this.state = { isHovered: false };
-    }
-
-    // ON MOUSE OVER ITEM
-
-    _createClass(ChannelListItem, [{
-        key: "onMouseOverItem",
-        value: function onMouseOverItem() {
-            this.setState({ isHovered: true });
-        }
-
-        // ON MOUSE OUT ITEM
-    }, {
-        key: "onMouseOutItem",
-        value: function onMouseOutItem() {
-            this.setState({ isHovered: false });
-        }
-
-        // ON DELETE CLICK
-    }, {
-        key: "onDeleteClick",
-        value: function onDeleteClick(e) {
-            e.preventDefault();
-            var self = this;
-
-            swal({
-                title: "Channel wirklich löschen?",
-                type: "error",
-                showCancelButton: true,
-                confirmButtonColor: "#dd6b55",
-                confirmButtonText: "Ja",
-                cancelButtonText: "Nein",
-                closeOnConfirm: true
-            }, function (result) {
-
-                // call removing handler from parent element
-                if (result === true) {
-                    self.props.onRemoveChannel(self.props.type, self.props.channel._id);
-                }
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-
-            // close button
-            var buttonClassName = "close pull-right close-channel";
-            if (this.state.isHovered === false) {
-                buttonClassName += " hidden";
-            }
-
-            var spanClassName = "badge pull-right";
-            if (this.state.isHovered === true || this.props.channel.f === 0) {
-                spanClassName += " hidden";
-            }
-
-            var listClassName = "channelitem";
-            if (this.props.activeId === this.props.channel._id) {
-                listClassName += " active";
-            }
-
-            return _react2["default"].createElement(
-                "li",
-                { className: listClassName, "data-sorting": "0", draggable: "true", "data-channel": this.props.channel.n, "data-channelid": this.props.channel._id },
-                _react2["default"].createElement(
-                    _reactRouter.Link,
-                    { to: "/" + this.props.channel._id + "/" + this.props.channel.n, onMouseOver: this.onMouseOverItem.bind(this), onMouseOut: this.onMouseOutItem.bind(this) },
-                    _react2["default"].createElement(
-                        "span",
-                        { className: spanClassName },
-                        this.props.channel.f
-                    ),
-                    _react2["default"].createElement(
-                        "button",
-                        { type: "button", className: buttonClassName, title: "Entfolgen", onClick: this.onDeleteClick.bind(this) },
-                        "×"
-                    ),
-                    this.props.channel.n
-                )
-            );
-        }
-    }]);
-
-    return ChannelListItem;
-})(_react2["default"].Component);
-
-exports["default"] = ChannelListItem;
-module.exports = exports["default"];
-
-},{"react":"react","react-router":"react-router"}],14:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1288,52 +137,177 @@ var _ChannelListItem = require("./ChannelListItem");
 
 var _ChannelListItem2 = _interopRequireDefault(_ChannelListItem);
 
-// CHANNEL LIST
+var _actionsChannelActions = require("../actions/ChannelActions");
 
-var ChannelListSection = (function (_React$Component) {
-    _inherits(ChannelListSection, _React$Component);
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
 
-    function ChannelListSection() {
-        _classCallCheck(this, ChannelListSection);
+var _storesChannelStore = require("../stores/ChannelStore");
 
-        _get(Object.getPrototypeOf(ChannelListSection.prototype), "constructor", this).apply(this, arguments);
+var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
+
+var ChannelList = (function (_React$Component) {
+	_inherits(ChannelList, _React$Component);
+
+	// CONSTRUCTOR
+
+	function ChannelList(props) {
+		_classCallCheck(this, ChannelList);
+
+		_get(Object.getPrototypeOf(ChannelList.prototype), "constructor", this).call(this, props);
+		this.state = _storesChannelStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(ChannelList, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesChannelStore2["default"].listen(this.onChange);
+
+			// load the channels
+			_actionsChannelActions2["default"].getChannels();
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
+
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row" },
+				_react2["default"].createElement("div", { className: "col-md-3" }),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-6" },
+					this.state.channels.map(function (c) {
+						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.channelId, channel: c });
+					})
+				),
+				_react2["default"].createElement("div", { className: "col-md-3" })
+			);
+		}
+	}]);
+
+	return ChannelList;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelList;
+module.exports = exports["default"];
+
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":9,"./ChannelListItem":5,"react":"react"}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var ChannelListItem = (function (_React$Component) {
+    _inherits(ChannelListItem, _React$Component);
+
+    function ChannelListItem() {
+        _classCallCheck(this, ChannelListItem);
+
+        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
     }
 
-    _createClass(ChannelListSection, [{
+    _createClass(ChannelListItem, [{
         key: "render",
+
+        // RENDER
         value: function render() {
-            var _this = this;
-
-            if (this.props.channels) {
-
-                var data = [];
-                this.props.channels.map(function (channel) {
-                    data.push(_react2["default"].createElement(_ChannelListItem2["default"], { key: channel._id, channel: channel, type: _this.props.type, activeId: _this.props.activeId, onRemoveChannel: _this.props.onRemoveChannel }));
-                });
-
-                return _react2["default"].createElement(
-                    "ul",
-                    { className: "nav nav-pills nav-stacked channel-list" },
+            return _react2["default"].createElement(
+                "div",
+                { className: "row channel-row" },
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-md-3" },
+                    _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "80" })
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-md-7" },
                     _react2["default"].createElement(
-                        "li",
-                        { className: "header", draggable: "true" },
-                        this.props.title
+                        "h3",
+                        null,
+                        this.props.channel.title
                     ),
-                    data
-                );
-            } else {
-                return _react2["default"].createElement("ul", null);
-            }
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        this.props.channel.description
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        _react2["default"].createElement(
+                            "b",
+                            null,
+                            "Subscribers:"
+                        ),
+                        " ",
+                        this.props.channel.subscribers
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        _react2["default"].createElement(
+                            "b",
+                            null,
+                            "Videos:"
+                        ),
+                        " ",
+                        this.props.channel.videos
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-md-2" },
+                    _react2["default"].createElement(
+                        "button",
+                        { className: "btn" },
+                        "Subscribe"
+                    )
+                )
+            );
         }
     }]);
 
-    return ChannelListSection;
+    return ChannelListItem;
 })(_react2["default"].Component);
 
-exports["default"] = ChannelListSection;
+exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./ChannelListItem":13,"react":"react"}],15:[function(require,module,exports){
+},{"react":"react"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1357,10 +331,6 @@ var _react2 = _interopRequireDefault(_react);
 var _ChannelList = require("./ChannelList");
 
 var _ChannelList2 = _interopRequireDefault(_ChannelList);
-
-var _Channel = require("./Channel");
-
-var _Channel2 = _interopRequireDefault(_Channel);
 
 var Home = (function (_React$Component) {
 	_inherits(Home, _React$Component);
@@ -1376,9 +346,9 @@ var Home = (function (_React$Component) {
 		value: function render() {
 			return _react2["default"].createElement(
 				"div",
-				{ className: "row" },
-				_react2["default"].createElement(_ChannelList2["default"], { activeId: this.props.params.channelid }),
-				_react2["default"].createElement(_Channel2["default"], { channelName: this.props.params.channelname, channelId: this.props.params.channelid })
+				{ className: "container" },
+				_react2["default"].createElement("input", { type: "text", className: "form-control", placeholder: "Search ..." }),
+				_react2["default"].createElement(_ChannelList2["default"], null)
 			);
 		}
 	}]);
@@ -1389,421 +359,7 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./Channel":10,"./ChannelList":12,"react":"react"}],16:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ChannelList = require("./ChannelList");
-
-var _ChannelList2 = _interopRequireDefault(_ChannelList);
-
-var _NoChannelHead = require("./NoChannelHead");
-
-var _NoChannelHead2 = _interopRequireDefault(_NoChannelHead);
-
-var Imprint = (function (_React$Component) {
-	_inherits(Imprint, _React$Component);
-
-	function Imprint() {
-		_classCallCheck(this, Imprint);
-
-		_get(Object.getPrototypeOf(Imprint.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(Imprint, [{
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "row" },
-				_react2["default"].createElement(_ChannelList2["default"], null),
-				_react2["default"].createElement(
-					"div",
-					{ className: "col-md-9" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "row channelhead clearfix" },
-						_react2["default"].createElement(
-							"div",
-							{ className: "channelNameArea pull-left" },
-							_react2["default"].createElement(
-								"h1",
-								null,
-								"Impressum"
-							)
-						),
-						_react2["default"].createElement(_NoChannelHead2["default"], null)
-					),
-					_react2["default"].createElement(
-						"div",
-						{ className: "row" },
-						_react2["default"].createElement(
-							"p",
-							null,
-							"informme.de ist ein Projekt von ",
-							_react2["default"].createElement(
-								"a",
-								{ target: "_blank", href: "http://phildiegmann.com" },
-								"Phil Diegmann"
-							),
-							" und ",
-							_react2["default"].createElement(
-								"a",
-								{ target: "_blank", href: "http://thomasbrueggemann.com" },
-								"Thomas Brüggemann"
-							),
-							". Alle Rechte an den Inhalten verbleiben bei den verlinkten Urhebern."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keinerlei Haftung für die Inhalte externer Links. Für den Inhalt verlinkter Seiten sind ausschließlich deren Betreiber verantwortlich."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Alle auf der Seite www.informme.de erscheinenden Texte sind nicht von den oben genannten Personen verfasst worden, sondern Zitate und Ausschnitte der verlinkten Nachrichtenseiten. Die Rechte der angezeigten Texte und Zitate verbleiben ausschließlich bei den, am jeweilgen Text/Zitat genannten und auf den verlinkten Zielseiten ausgewiesenen, Urhebern. Die oben genannten Personen sind nicht im Besitz der Rechte der zitierten Inhalte, sondern geben Sie nur zu Zwecken der schnellen Übersichtsbeschaffung der aktuellen und vergangenen Nachrichtenlage wieder."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Sollten wir Urheberrechte verletzen, bitten wir um sofortige E-Mail an support@informme.de"
-						),
-						_react2["default"].createElement(
-							"h2",
-							{ style: { "paddingTop": "35px" } },
-							"Leistungsschutzrecht"
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Unter ",
-							_react2["default"].createElement(
-								"a",
-								{ href: "http://www.leistungsschutzrecht.info", target: "_blank" },
-								"www.leistungsschutzrecht.info"
-							),
-							" gibt es eine neue Plattform, die über das von den Presseverlagen geforderte Leistungsschutzrecht für Presseverlage informiert. Sie wird von der „Initiative gegen ein Leistungsschutzrecht” (IGEL) betrieben. Die Webseite informiert umfassend über das Thema, sammelt Materialien und Artikel und gibt einen Überblick über die wichtigsten Argumente pro und contra Leistungsschutzrecht. Die Initiative wird unterstützt von einer Vielzahl von Blogs, Informationsportalen, Initiativen und Unternehmen. Jeder kann seine Meinung sagen und weitere Unterstützer werden gesucht. IGEL, die Initiative gegen ein Leistungsschutzrecht, lädt Euch herzlich ein, mitzumachen!"
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							_react2["default"].createElement(
-								"a",
-								{ "class": "banner-igel", target: "_blank", href: "http://leistungsschutzrecht.info" },
-								_react2["default"].createElement("img", { src: "https://informme.s3.amazonaws.com/img/banner-igel-160x160px.png", alt: "IGEL Banner" })
-							)
-						),
-						_react2["default"].createElement(
-							"h2",
-							{ style: { "paddingTop": "35px" } },
-							"Datenschutzerklärung"
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse, welche allerdings anonymisiert wird) wird an einen Server von Google in den USA übertragen und dort gespeichert. Google wird diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten für die Websitebetreiber zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen zu erbringen. Auch wird Google diese Informationen gegebenenfalls an Dritte übertragen, sofern dies gesetzlich vorgeschrieben oder soweit Dritte diese Daten im Auftrag von Google verarbeiten. Google wird in keinem Fall Ihre IP-Adresse mit anderen Daten von Google in Verbindung bringen. Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern;wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich nutzen können. Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"Sie können der zuvor beschriebenen Datenerhebung mit Wirkung für die Zukunft widersprechen, indem Sie das Browser-Add-on zur Deaktivierung von Google Analytics installieren. Das ",
-							_react2["default"].createElement(
-								"a",
-								{ href: "http://tools.google.com/dlpage/gaoptout?hl=", target: "_blank" },
-								"Browser-Add-on zur Deaktivierung von Google Analytics"
-							),
-							" gibt Ihnen mehr Kontrolle darüber, welche Daten zu aufgerufenen Websites von Google Analytics erfasst werden. Das Add-on teilt dem JavaScript (ga.js) von Google Analytics mit, dass keine Informationen über den Website-Besuch an Google Analytics übermittelt werden sollen. Falls Sie diese Funktion nutzen möchten, laden Sie das Add-on herunter und installieren Sie es für Ihren aktuellen Webbrowser. Das Browser-Add-on zur Deaktivierung von Google Analytics ist für Internet Explorer (7 und 8), Google Chrome (4.x und höher) und Mozilla Firefox (3.5 und höher) verfügbar."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							_react2["default"].createElement(
-								"a",
-								{ href: "http://www.google.com/intl/de/analytics/privacyoverview.html", target: "_blank" },
-								"Weitere Informationen zum Datenschutz von Google Analytics »"
-							)
-						)
-					)
-				)
-			);
-		}
-	}]);
-
-	return Imprint;
-})(_react2["default"].Component);
-
-exports["default"] = Imprint;
-module.exports = exports["default"];
-
-},{"./ChannelList":12,"./NoChannelHead":19,"react":"react"}],17:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var Login = (function (_React$Component) {
-	_inherits(Login, _React$Component);
-
-	function Login() {
-		_classCallCheck(this, Login);
-
-		_get(Object.getPrototypeOf(Login.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(Login, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			$("body").addClass("login");
-
-			$("[data-toggle='tooltip']").tooltip();
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "row" },
-				_react2["default"].createElement("div", { className: "login-bg" }),
-				_react2["default"].createElement("div", { className: "col-md-4" }),
-				_react2["default"].createElement(
-					"div",
-					{ className: "col-md-4 text-center" },
-					_react2["default"].createElement(
-						"p",
-						null,
-						_react2["default"].createElement("img", { className: "login-logo", src: "https://s3-eu-west-1.amazonaws.com/informme/img/m_informme.png" })
-					),
-					_react2["default"].createElement(
-						"p",
-						{ className: "login-spacer" },
-						"Log dich ein um ",
-						_react2["default"].createElement(
-							"b",
-							null,
-							"News-Channels"
-						),
-						" hinzufügen und von überall darauf zugreifen zu können."
-					),
-					_react2["default"].createElement(
-						"a",
-						{ href: "/auth/twitter", className: "btn btn-block btn-social btn-twitter login-spacer" },
-						_react2["default"].createElement("i", { className: "fa fa-twitter" }),
-						" Mit Twitter einloggen"
-					),
-					_react2["default"].createElement(
-						"a",
-						{ href: "/auth/facebook", className: "btn btn-block btn-social btn-facebook" },
-						_react2["default"].createElement("i", { className: "fa fa-facebook" }),
-						" Mit Facebook einloggen"
-					),
-					_react2["default"].createElement(
-						"small",
-						{ className: "text-muted login-spacer-s" },
-						"InformMe wird niemals in deinem Namen posten!"
-					),
-					_react2["default"].createElement(
-						"p",
-						{ className: "itunes login-spacer" },
-						_react2["default"].createElement(
-							"a",
-							{ href: "https://itunes.apple.com/de/app/informme/id592086995", target: "_blank" },
-							_react2["default"].createElement("img", { className: "itunes-available", alt: "iTunes AppStore", src: "/img/appstore.png" })
-						)
-					),
-					_react2["default"].createElement(
-						"div",
-						{ className: "login-spacer login-seperator" },
-						" "
-					),
-					_react2["default"].createElement(
-						"p",
-						{ className: "login-spacer" },
-						"Du kannst InformMe in diesem Browser auch ohne Login benutzen! ",
-						_react2["default"].createElement("i", { className: "fa text-muted fa-question-circle", "data-toggle": "tooltip", "data-placement": "bottom", title: "Du kannst dich von keinem anderen Gerät anmelden & deine abbonierten News-Channels werden nur mit diesem Browser synchronisiert!" })
-					),
-					_react2["default"].createElement(
-						"a",
-						{ href: "/auth/nope", className: "btn btn-block btn-social btn-default" },
-						_react2["default"].createElement("i", { className: "fa fa-cloud-upload" }),
-						" Los geht's!"
-					)
-				),
-				_react2["default"].createElement("div", { className: "col-md-4" })
-			);
-		}
-	}]);
-
-	return Login;
-})(_react2["default"].Component);
-
-exports["default"] = Login;
-module.exports = exports["default"];
-
-},{"react":"react"}],18:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var NewArticlesInfo = (function (_React$Component) {
-	_inherits(NewArticlesInfo, _React$Component);
-
-	function NewArticlesInfo(props) {
-		_classCallCheck(this, NewArticlesInfo);
-
-		_get(Object.getPrototypeOf(NewArticlesInfo.prototype), "constructor", this).call(this, props);
-		this.state = { hasNewArticles: false };
-	}
-
-	_createClass(NewArticlesInfo, [{
-		key: "render",
-		value: function render() {
-
-			var classes = "row text-center newArticles";
-			if (this.state.hasNewArticles === false) classes += " hidden";
-
-			return _react2["default"].createElement(
-				"div",
-				{ className: classes },
-				_react2["default"].createElement(
-					"div",
-					{ className: "alert alert-info" },
-					_react2["default"].createElement(
-						"a",
-						null,
-						"3"
-					)
-				)
-			);
-		}
-	}]);
-
-	return NewArticlesInfo;
-})(_react2["default"].Component);
-
-exports["default"] = NewArticlesInfo;
-module.exports = exports["default"];
-
-},{"react":"react"}],19:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var NoChannelHead = (function (_React$Component) {
-	_inherits(NoChannelHead, _React$Component);
-
-	function NoChannelHead() {
-		_classCallCheck(this, NoChannelHead);
-
-		_get(Object.getPrototypeOf(NoChannelHead.prototype), "constructor", this).apply(this, arguments);
-	}
-
-	_createClass(NoChannelHead, [{
-		key: "render",
-		value: function render() {
-			return _react2["default"].createElement(
-				"div",
-				{ className: "pull-right" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "userArea" },
-					"Hi, ",
-					_react2["default"].createElement(
-						"a",
-						{ href: "/profile" },
-						_react2["default"].createElement("i", { className: "fa fa-user" }),
-						" ",
-						_react2["default"].createElement("span", null)
-					)
-				),
-				_react2["default"].createElement(
-					"div",
-					{ className: "actionArea" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "btn-group" },
-						_react2["default"].createElement(
-							"button",
-							{ className: "options btn btn-default" },
-							_react2["default"].createElement("i", { className: "fa fa-power-off" })
-						)
-					)
-				)
-			);
-		}
-	}]);
-
-	return NoChannelHead;
-})(_react2["default"].Component);
-
-exports["default"] = NoChannelHead;
-module.exports = exports["default"];
-
-},{"react":"react"}],20:[function(require,module,exports){
+},{"./ChannelList":4,"react":"react"}],7:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -1837,7 +393,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":21,"history/lib/createBrowserHistory":30,"react":"react","react-dom":"react-dom","react-router":"react-router"}],21:[function(require,module,exports){
+},{"./routes":8,"history/lib/createBrowserHistory":16,"react":"react","react-dom":"react-dom","react-router":"react-router"}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1860,30 +416,14 @@ var _componentsHome = require("./components/Home");
 
 var _componentsHome2 = _interopRequireDefault(_componentsHome);
 
-var _componentsLogin = require("./components/Login");
-
-var _componentsLogin2 = _interopRequireDefault(_componentsLogin);
-
-var _componentsImprint = require("./components/Imprint");
-
-var _componentsImprint2 = _interopRequireDefault(_componentsImprint);
-
-var _componentsAccount = require("./components/Account");
-
-var _componentsAccount2 = _interopRequireDefault(_componentsAccount);
-
 exports["default"] = _react2["default"].createElement(
 	_reactRouter.Route,
 	{ component: _componentsApp2["default"] },
-	_react2["default"].createElement(_reactRouter.Route, { path: "/:channelid/:channelname", component: _componentsHome2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "/", component: _componentsHome2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "/login", component: _componentsLogin2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "/imprint", component: _componentsImprint2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "/account", component: _componentsAccount2["default"] })
+	_react2["default"].createElement(_reactRouter.Route, { path: "/", component: _componentsHome2["default"] })
 );
 module.exports = exports["default"];
 
-},{"./components/Account":5,"./components/App":6,"./components/Home":15,"./components/Imprint":16,"./components/Login":17,"react":"react","react-router":"react-router"}],22:[function(require,module,exports){
+},{"./components/App":3,"./components/Home":6,"react":"react","react-router":"react-router"}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1900,86 +440,42 @@ var _alt = require("../alt");
 
 var _alt2 = _interopRequireDefault(_alt);
 
-var _actionsArticleListActions = require("../actions/ArticleListActions");
+var _actionsChannelActions = require("../actions/ChannelActions");
 
-var _actionsArticleListActions2 = _interopRequireDefault(_actionsArticleListActions);
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
 
-var ArticleListStore = (function () {
-  function ArticleListStore() {
-    _classCallCheck(this, ArticleListStore);
+var ChannelStore = (function () {
+  function ChannelStore() {
+    _classCallCheck(this, ChannelStore);
 
-    this.bindActions(_actionsArticleListActions2["default"]);
-    this.articles = null;
-  }
-
-  _createClass(ArticleListStore, [{
-    key: "onGetArticlesSuccess",
-    value: function onGetArticlesSuccess(data) {
-      this.articles = data;
-    }
-  }, {
-    key: "onGetArticlesFail",
-    value: function onGetArticlesFail(jqXhr) {
-      // Handle multiple response formats, fallback to HTTP status code number.
-      console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
-    }
-  }]);
-
-  return ArticleListStore;
-})();
-
-exports["default"] = _alt2["default"].createStore(ArticleListStore);
-module.exports = exports["default"];
-
-},{"../actions/ArticleListActions":2,"../alt":4}],23:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _alt = require("../alt");
-
-var _alt2 = _interopRequireDefault(_alt);
-
-var _actionsChannelListActions = require("../actions/ChannelListActions");
-
-var _actionsChannelListActions2 = _interopRequireDefault(_actionsChannelListActions);
-
-var ChannelListStore = (function () {
-  function ChannelListStore() {
-    _classCallCheck(this, ChannelListStore);
-
-    this.bindActions(_actionsChannelListActions2["default"]);
+    this.bindActions(_actionsChannelActions2["default"]);
     this.channels = [];
   }
 
-  _createClass(ChannelListStore, [{
-    key: "onGetChannelsSuccess",
-    value: function onGetChannelsSuccess(data) {
+  // GET CHANNELS SUCCESS
+
+  _createClass(ChannelStore, [{
+    key: "getChannelsSuccess",
+    value: function getChannelsSuccess(data) {
       this.channels = data;
     }
+
+    // GET CHANNELS FAIL
   }, {
-    key: "onGetChannelsFail",
-    value: function onGetChannelsFail(jqXhr) {
+    key: "getChannelsFail",
+    value: function getChannelsFail(jqXhr) {
       // Handle multiple response formats, fallback to HTTP status code number.
       console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
     }
   }]);
 
-  return ChannelListStore;
+  return ChannelStore;
 })();
 
-exports["default"] = _alt2["default"].createStore(ChannelListStore);
+exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelListActions":3,"../alt":4}],24:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":2}],10:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2072,7 +568,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],25:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -2104,7 +600,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],26:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -2131,7 +627,8 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],27:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
+(function (process){
 /*eslint-disable no-empty */
 'use strict';
 
@@ -2147,6 +644,7 @@ var _warning2 = _interopRequireDefault(_warning);
 
 var KeyPrefix = '@@History/';
 var QuotaExceededError = 'QuotaExceededError';
+var SecurityError = 'SecurityError';
 
 function createKey(key) {
   return KeyPrefix + key;
@@ -2156,9 +654,17 @@ function saveState(key, state) {
   try {
     window.sessionStorage.setItem(createKey(key), JSON.stringify(state));
   } catch (error) {
-    if (error.name === QuotaExceededError || window.sessionStorage.length === 0) {
-      // Probably in Safari "private mode" where sessionStorage quota is 0. #42
-      _warning2['default'](false, '[history] Unable to save state; sessionStorage is not available in Safari private mode');
+    if (error.name === SecurityError) {
+      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+      // attempt to access window.sessionStorage.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to save state; sessionStorage is not available due to security settings') : undefined;
+
+      return;
+    }
+
+    if (error.name === QuotaExceededError && window.sessionStorage.length === 0) {
+      // Safari "private mode" throws QuotaExceededError.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to save state; sessionStorage is not available in Safari private mode') : undefined;
 
       return;
     }
@@ -2168,7 +674,18 @@ function saveState(key, state) {
 }
 
 function readState(key) {
-  var json = window.sessionStorage.getItem(createKey(key));
+  var json = undefined;
+  try {
+    json = window.sessionStorage.getItem(createKey(key));
+  } catch (error) {
+    if (error.name === SecurityError) {
+      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+      // attempt to access window.sessionStorage.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to read state; sessionStorage is not available due to security settings') : undefined;
+
+      return null;
+    }
+  }
 
   if (json) {
     try {
@@ -2180,7 +697,8 @@ function readState(key) {
 
   return null;
 }
-},{"warning":41}],28:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":10,"warning":28}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -2233,7 +751,7 @@ function getUserConfirmation(message, callback) {
 }
 
 /**
- * Returns true if the HTML5 history API is supported. Taken from modernizr.
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
  *
  * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
  * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
@@ -2243,6 +761,11 @@ function getUserConfirmation(message, callback) {
 function supportsHistory() {
   var ua = navigator.userAgent;
   if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) {
+    return false;
+  }
+  // FIXME: Work around our browser history not working correctly on Chrome
+  // iOS: https://github.com/rackt/react-router/issues/2565
+  if (ua.indexOf('CriOS') !== -1) {
     return false;
   }
   return window.history && 'pushState' in window.history;
@@ -2256,13 +779,14 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],29:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],30:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
+(function (process){
 'use strict';
 
 exports.__esModule = true;
@@ -2287,6 +811,10 @@ var _createDOMHistory = require('./createDOMHistory');
 
 var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 
+var _parsePath = require('./parsePath');
+
+var _parsePath2 = _interopRequireDefault(_parsePath);
+
 /**
  * Creates and returns a history object that uses HTML5's history API
  * (pushState, replaceState, and the popstate event) to manage history.
@@ -2299,7 +827,7 @@ var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 function createBrowserHistory() {
   var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-  _invariant2['default'](_ExecutionEnvironment.canUseDOM, 'Browser history needs a DOM');
+  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'Browser history needs a DOM') : _invariant2['default'](false) : undefined;
 
   var forceRefresh = options.forceRefresh;
 
@@ -2323,7 +851,9 @@ function createBrowserHistory() {
       if (isSupported) window.history.replaceState(_extends({}, historyState, { key: key }), null, path);
     }
 
-    return history.createLocation(path, state, undefined, key);
+    var location = _parsePath2['default'](path);
+
+    return history.createLocation(_extends({}, location, { state: state }), undefined, key);
   }
 
   function startPopStateListener(_ref) {
@@ -2435,7 +965,9 @@ function createBrowserHistory() {
 
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
-},{"./Actions":25,"./DOMStateStorage":27,"./DOMUtils":28,"./ExecutionEnvironment":29,"./createDOMHistory":31,"invariant":40}],31:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./Actions":11,"./DOMStateStorage":13,"./DOMUtils":14,"./ExecutionEnvironment":15,"./createDOMHistory":17,"./parsePath":22,"_process":10,"invariant":27}],17:[function(require,module,exports){
+(function (process){
 'use strict';
 
 exports.__esModule = true;
@@ -2464,7 +996,7 @@ function createDOMHistory(options) {
   }));
 
   function listen(listener) {
-    _invariant2['default'](_ExecutionEnvironment.canUseDOM, 'DOM history needs a DOM');
+    !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'DOM history needs a DOM') : _invariant2['default'](false) : undefined;
 
     return history.listen(listener);
   }
@@ -2476,7 +1008,9 @@ function createDOMHistory(options) {
 
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
-},{"./DOMUtils":28,"./ExecutionEnvironment":29,"./createHistory":32,"invariant":40}],32:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./DOMUtils":14,"./ExecutionEnvironment":15,"./createHistory":18,"_process":10,"invariant":27}],18:[function(require,module,exports){
+//import warning from 'warning'
 'use strict';
 
 exports.__esModule = true;
@@ -2500,6 +1034,10 @@ var _createLocation3 = _interopRequireDefault(_createLocation2);
 var _runTransitionHook = require('./runTransitionHook');
 
 var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+var _parsePath = require('./parsePath');
+
+var _parsePath2 = _interopRequireDefault(_parsePath);
 
 var _deprecate = require('./deprecate');
 
@@ -2619,6 +1157,14 @@ function createHistory() {
       if (pendingLocation !== nextLocation) return; // Transition was interrupted.
 
       if (ok) {
+        // treat PUSH to current path like REPLACE to be consistent with browsers
+        if (nextLocation.action === _Actions.PUSH) {
+          var prevPath = createPath(location);
+          var nextPath = createPath(nextLocation);
+
+          if (nextPath === prevPath) nextLocation.action = _Actions.REPLACE;
+        }
+
         if (finishTransition(nextLocation) !== false) updateLocation(nextLocation);
       } else if (location && nextLocation.action === _Actions.POP) {
         var prevIndex = allKeys.indexOf(location.key);
@@ -2629,12 +1175,12 @@ function createHistory() {
     });
   }
 
-  function pushState(state, path) {
-    transitionTo(createLocation(path, state, _Actions.PUSH, createKey()));
+  function push(location) {
+    transitionTo(createLocation(location, _Actions.PUSH, createKey()));
   }
 
-  function replaceState(state, path) {
-    transitionTo(createLocation(path, state, _Actions.REPLACE, createKey()));
+  function replace(location) {
+    transitionTo(createLocation(location, _Actions.REPLACE, createKey()));
   }
 
   function goBack() {
@@ -2649,12 +1195,12 @@ function createHistory() {
     return createRandomKey(keyLength);
   }
 
-  function createPath(path) {
-    if (path == null || typeof path === 'string') return path;
+  function createPath(location) {
+    if (location == null || typeof location === 'string') return location;
 
-    var pathname = path.pathname;
-    var search = path.search;
-    var hash = path.hash;
+    var pathname = location.pathname;
+    var search = location.search;
+    var hash = location.hash;
 
     var result = pathname;
 
@@ -2665,14 +1211,29 @@ function createHistory() {
     return result;
   }
 
-  function createHref(path) {
-    return createPath(path);
+  function createHref(location) {
+    return createPath(location);
   }
 
-  function createLocation(path, state, action) {
-    var key = arguments.length <= 3 || arguments[3] === undefined ? createKey() : arguments[3];
+  function createLocation(location, action) {
+    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
 
-    return _createLocation3['default'](path, state, action, key);
+    if (typeof action === 'object') {
+      //warning(
+      //  false,
+      //  'The state (2nd) argument to history.createLocation is deprecated; use a ' +
+      //  'location descriptor instead'
+      //)
+
+      if (typeof location === 'string') location = _parsePath2['default'](location);
+
+      location = _extends({}, location, { state: action });
+
+      action = key;
+      key = arguments[3] || createKey();
+    }
+
+    return _createLocation3['default'](location, action, key);
   }
 
   // deprecated
@@ -2702,12 +1263,26 @@ function createHistory() {
     });
   }
 
+  // deprecated
+  function pushState(state, path) {
+    if (typeof path === 'string') path = _parsePath2['default'](path);
+
+    push(_extends({ state: state }, path));
+  }
+
+  // deprecated
+  function replaceState(state, path) {
+    if (typeof path === 'string') path = _parsePath2['default'](path);
+
+    replace(_extends({ state: state }, path));
+  }
+
   return {
     listenBefore: listenBefore,
     listen: listen,
     transitionTo: transitionTo,
-    pushState: pushState,
-    replaceState: replaceState,
+    push: push,
+    replace: replace,
     go: go,
     goBack: goBack,
     goForward: goForward,
@@ -2718,16 +1293,21 @@ function createHistory() {
 
     setState: _deprecate2['default'](setState, 'setState is deprecated; use location.key to save state instead'),
     registerTransitionHook: _deprecate2['default'](registerTransitionHook, 'registerTransitionHook is deprecated; use listenBefore instead'),
-    unregisterTransitionHook: _deprecate2['default'](unregisterTransitionHook, 'unregisterTransitionHook is deprecated; use the callback returned from listenBefore instead')
+    unregisterTransitionHook: _deprecate2['default'](unregisterTransitionHook, 'unregisterTransitionHook is deprecated; use the callback returned from listenBefore instead'),
+    pushState: _deprecate2['default'](pushState, 'pushState is deprecated; use push instead'),
+    replaceState: _deprecate2['default'](replaceState, 'replaceState is deprecated; use replace instead')
   };
 }
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":25,"./AsyncUtils":26,"./createLocation":33,"./deprecate":34,"./runTransitionHook":36,"deep-equal":37}],33:[function(require,module,exports){
+},{"./Actions":11,"./AsyncUtils":12,"./createLocation":19,"./deprecate":20,"./parsePath":22,"./runTransitionHook":23,"deep-equal":24}],19:[function(require,module,exports){
+//import warning from 'warning'
 'use strict';
 
 exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -2738,16 +1318,31 @@ var _parsePath = require('./parsePath');
 var _parsePath2 = _interopRequireDefault(_parsePath);
 
 function createLocation() {
-  var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-  var state = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-  var action = arguments.length <= 2 || arguments[2] === undefined ? _Actions.POP : arguments[2];
-  var key = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+  var location = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
+  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
 
-  if (typeof path === 'string') path = _parsePath2['default'](path);
+  var _fourthArg = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
 
-  var pathname = path.pathname || '/';
-  var search = path.search || '';
-  var hash = path.hash || '';
+  if (typeof location === 'string') location = _parsePath2['default'](location);
+
+  if (typeof action === 'object') {
+    //warning(
+    //  false,
+    //  'The state (2nd) argument to createLocation is deprecated; use a ' +
+    //  'location descriptor instead'
+    //)
+
+    location = _extends({}, location, { state: action });
+
+    action = key || _Actions.POP;
+    key = _fourthArg;
+  }
+
+  var pathname = location.pathname || '/';
+  var search = location.search || '';
+  var hash = location.hash || '';
+  var state = location.state || null;
 
   return {
     pathname: pathname,
@@ -2761,51 +1356,58 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":25,"./parsePath":35}],34:[function(require,module,exports){
-'use strict';
+},{"./Actions":11,"./parsePath":22}],20:[function(require,module,exports){
+//import warning from 'warning'
+
+"use strict";
 
 exports.__esModule = true;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _warning = require('warning');
-
-var _warning2 = _interopRequireDefault(_warning);
-
-function deprecate(fn, message) {
-  return function () {
-    _warning2['default'](false, '[history] ' + message);
-    return fn.apply(this, arguments);
-  };
+function deprecate(fn) {
+  return fn;
+  //return function () {
+  //  warning(false, '[history] ' + message)
+  //  return fn.apply(this, arguments)
+  //}
 }
 
-exports['default'] = deprecate;
-module.exports = exports['default'];
-},{"warning":41}],35:[function(require,module,exports){
-'use strict';
+exports["default"] = deprecate;
+module.exports = exports["default"];
+},{}],21:[function(require,module,exports){
+"use strict";
 
 exports.__esModule = true;
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _warning = require('warning');
-
-var _warning2 = _interopRequireDefault(_warning);
-
 function extractPath(string) {
   var match = string.match(/^https?:\/\/[^\/]*/);
 
   if (match == null) return string;
 
-  _warning2['default'](false, 'A path must be pathname + search + hash only, not a fully qualified URL like "%s"', string);
-
   return string.substring(match[0].length);
 }
 
+exports["default"] = extractPath;
+module.exports = exports["default"];
+},{}],22:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _extractPath = require('./extractPath');
+
+var _extractPath2 = _interopRequireDefault(_extractPath);
+
 function parsePath(path) {
-  var pathname = extractPath(path);
+  var pathname = _extractPath2['default'](path);
   var search = '';
   var hash = '';
+
+  process.env.NODE_ENV !== 'production' ? _warning2['default'](path === pathname, 'A path must be pathname + search + hash only, not a fully qualified URL like "%s"', path) : undefined;
 
   var hashIndex = pathname.indexOf('#');
   if (hashIndex !== -1) {
@@ -2830,7 +1432,9 @@ function parsePath(path) {
 
 exports['default'] = parsePath;
 module.exports = exports['default'];
-},{"warning":41}],36:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./extractPath":21,"_process":10,"warning":28}],23:[function(require,module,exports){
+(function (process){
 'use strict';
 
 exports.__esModule = true;
@@ -2849,13 +1453,14 @@ function runTransitionHook(hook, location, callback) {
     // call the callback with the return value.
     callback(result);
   } else {
-    _warning2['default'](result === undefined, 'You should not "return" in a transition hook with a callback argument; call the callback instead');
+    process.env.NODE_ENV !== 'production' ? _warning2['default'](result === undefined, 'You should not "return" in a transition hook with a callback argument; call the callback instead') : undefined;
   }
 }
 
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
-},{"warning":41}],37:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":10,"warning":28}],24:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -2951,7 +1556,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":38,"./lib/keys.js":39}],38:[function(require,module,exports){
+},{"./lib/is_arguments.js":25,"./lib/keys.js":26}],25:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -2973,7 +1578,7 @@ function unsupported(object){
     false;
 };
 
-},{}],39:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -2984,7 +1589,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],40:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -2993,8 +1598,6 @@ function shim (obj) {
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
  */
 
 'use strict';
@@ -3028,9 +1631,9 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
       var args = [a, b, c, d, e, f];
       var argIndex = 0;
       error = new Error(
-        'Invariant Violation: ' +
         format.replace(/%s/g, function() { return args[argIndex++]; })
       );
+      error.name = 'Invariant Violation';
     }
 
     error.framesToPop = 1; // we don't care about invariant's own frame
@@ -3041,7 +1644,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":24}],41:[function(require,module,exports){
+},{"_process":10}],28:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3105,4 +1708,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":24}]},{},[20]);
+},{"_process":10}]},{},[7]);
