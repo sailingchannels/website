@@ -1,0 +1,9 @@
+{
+	"name": "informme-web",
+	"dependencies": {
+		"jquery": "2.1.4",
+		"bootstrap": "3.3.5",
+		"moment": "2.10.6",
+		"sweetalert2": "0.2.3"
+	}
+}
