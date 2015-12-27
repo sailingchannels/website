@@ -2,7 +2,7 @@ import requests, json, config
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
-maxLevels = 2
+maxLevels = 3
 
 # members
 channels = {}
@@ -24,14 +24,10 @@ def readStatistics(channelId):
 # READ SUBSCRIPTIONS PAGE
 def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
-	# we reached the maximum level of recursion
-	if level >= maxLevels:
-		return None
-
 	url = "https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&maxResults=50&channelId=" + channelId + "&key=" + config.apiKey()
 
 	if pageToken != None:
-		url += "&pageToken" + pageToken
+		url += "&pageToken=" + pageToken
 
 	# fetch subscriptions of channel
 	r = requests.get(url)
@@ -39,12 +35,16 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
 	# error? ignore!
 	if r.status_code != 200:
+		print "error", channelId, level
 		return None
+
+	print len(subs["items"]), "items"
 
 	# loop channel items in result set
 	for i in subs["items"]:
 
 		if i["snippet"]["resourceId"]["kind"] != "youtube#channel":
+			print i["snippet"]["resourceId"]["kind"]
 			continue
 
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
@@ -52,22 +52,27 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		# store this channel
 		if not channels.has_key(subChannelId):
 
-			stats = readStatistics(subChannelId)
+			try:
 
-			channels[subChannelId] = {
-				"id": subChannelId,
-				"title": i["snippet"]["title"],
-				"description": i["snippet"]["description"],
-				"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
-				"subscribers": int(stats["subscriberCount"]),
-				"views": int(stats["viewCount"]),
-				"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-				"videos": int(stats["videoCount"])
-			}
+				stats = readStatistics(subChannelId)
 
-			# read sub level subscriptions
-			subLevel = level + 1
-			readSubscriptions(subChannelId, subLevel)
+				channels[subChannelId] = {
+					"id": subChannelId,
+					"title": i["snippet"]["title"],
+					"description": i["snippet"]["description"],
+					"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
+					"subscribers": int(stats["subscriberCount"]),
+					"views": int(stats["viewCount"]),
+					"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
+					"videos": int(stats["videoCount"])
+				}
+
+				# read sub level subscriptions
+				subLevel = level + 1
+				readSubscriptions(subChannelId, subLevel)
+				
+			except:
+				pass
 
 	# is there a next page?
 	if subs.has_key("nextPageToken"):
@@ -78,13 +83,19 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 # READ SUBSCRIPTIONS
 def readSubscriptions(channelId, level = 1):
 
+	# we reached the maximum level of recursion
+	if level >= maxLevels:
+		return None
+
 	print channelId, level
 
 	nextPage = None
+	nextPageNew = None
+
 	while True:
 		nextPageNew = readSubscriptionsPage(channelId, nextPage, level)
 
-		if nextPageNew == None or nextPageNew == nextPage:
+		if nextPageNew == None:
 			break
 
 		nextPage = nextPageNew

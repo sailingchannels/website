@@ -30,7 +30,10 @@ app.get("/api/channels/get", function(req, res) {
 		return b.subscribers - a.subscribers;
 	});
 
-	return res.send(global.data.slice(0, 100));
+	// only show channels with one or more videos
+	return res.send(global.data.filter(function(item) {
+		return item.videos > 0;
+	}));
 });
 
 // REACT MIDDLEWARE

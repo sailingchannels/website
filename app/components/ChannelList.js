@@ -34,13 +34,11 @@ class ChannelList extends React.Component {
 	render() {
 		return (
             <div className="row">
-				<div className="col-md-3"></div>
-                <div className="col-md-6">
+                <div className="col-md-12">
                     {this.state.channels.map(c => (
-        				<ChannelListItem key={c.channelId} channel={c} />
+        				<ChannelListItem key={c.id} channel={c} />
         			))}
                 </div>
-                <div className="col-md-3"></div>
             </div>
 		);
 	}

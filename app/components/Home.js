@@ -5,7 +5,11 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<input type="text" className="form-control" placeholder="Search ..." />
+				<div className="row">
+					<div className="col-md-12">
+						<input type="text" className="form-control" placeholder="Search ..." />
+					</div>
+				</div>
 				<ChannelList />
 			</div>
 		);

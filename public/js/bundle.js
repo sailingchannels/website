@@ -190,15 +190,13 @@ var ChannelList = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "row" },
-				_react2["default"].createElement("div", { className: "col-md-3" }),
 				_react2["default"].createElement(
 					"div",
-					{ className: "col-md-6" },
+					{ className: "col-md-12" },
 					this.state.channels.map(function (c) {
-						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.channelId, channel: c });
+						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c });
 					})
-				),
-				_react2["default"].createElement("div", { className: "col-md-3" })
+				)
 			);
 		}
 	}]);
@@ -240,17 +238,30 @@ var ChannelListItem = (function (_React$Component) {
     }
 
     _createClass(ChannelListItem, [{
-        key: "render",
+        key: "textCutter",
+        value: function textCutter(i, text) {
+
+            if (text.length < i) return text;
+
+            var short = text.substr(0, i);
+            if (/^\S/.test(text.substr(i))) {
+                return short.replace(/\s+\S*$/, "") + " [..]";
+            }
+
+            return short + " [..]";
+        }
 
         // RENDER
+    }, {
+        key: "render",
         value: function render() {
             return _react2["default"].createElement(
                 "div",
                 { className: "row channel-row" },
                 _react2["default"].createElement(
                     "div",
-                    { className: "col-md-3" },
-                    _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "80" })
+                    { className: "col-md-2" },
+                    _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "100%" })
                 ),
                 _react2["default"].createElement(
                     "div",
@@ -258,13 +269,21 @@ var ChannelListItem = (function (_React$Component) {
                     _react2["default"].createElement(
                         "h3",
                         null,
-                        this.props.channel.title
+                        _react2["default"].createElement(
+                            "a",
+                            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id },
+                            this.props.channel.title
+                        )
                     ),
                     _react2["default"].createElement(
                         "p",
                         null,
-                        this.props.channel.description
-                    ),
+                        this.textCutter(400, this.props.channel.description)
+                    )
+                ),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-md-3" },
                     _react2["default"].createElement(
                         "p",
                         null,
@@ -274,7 +293,7 @@ var ChannelListItem = (function (_React$Component) {
                             "Subscribers:"
                         ),
                         " ",
-                        this.props.channel.subscribers
+                        this.props.channel.subscribers.toLocaleString()
                     ),
                     _react2["default"].createElement(
                         "p",
@@ -286,14 +305,21 @@ var ChannelListItem = (function (_React$Component) {
                         ),
                         " ",
                         this.props.channel.videos
-                    )
-                ),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-2" },
+                    ),
+                    _react2["default"].createElement(
+                        "p",
+                        null,
+                        _react2["default"].createElement(
+                            "b",
+                            null,
+                            "Views:"
+                        ),
+                        " ",
+                        this.props.channel.views.toLocaleString()
+                    ),
                     _react2["default"].createElement(
                         "button",
-                        { className: "btn" },
+                        { className: "btn btn-danger btn-raised" },
                         "Subscribe"
                     )
                 )
@@ -347,7 +373,15 @@ var Home = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
-				_react2["default"].createElement("input", { type: "text", className: "form-control", placeholder: "Search ..." }),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-12" },
+						_react2["default"].createElement("input", { type: "text", className: "form-control", placeholder: "Search ..." })
+					)
+				),
 				_react2["default"].createElement(_ChannelList2["default"], null)
 			);
 		}
