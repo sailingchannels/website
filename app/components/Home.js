@@ -1,15 +1,20 @@
 import React from "react";
 import ChannelList from "./ChannelList";
+import SearchBar from "./SearchBar";
 
 class Home extends React.Component {
+
+	// COMPONENT DID MOUNT
+	componentDidMount() {
+		$.material.init();
+	}
+
+	// RENDER
 	render() {
 		return (
 			<div className="container">
-				<div className="row">
-					<div className="col-md-12">
-						<input type="text" className="form-control" placeholder="Search ..." />
-					</div>
-				</div>
+				<img src="/public/img/logo.svg" className="logo" />
+				<SearchBar />
 				<ChannelList />
 			</div>
 		);

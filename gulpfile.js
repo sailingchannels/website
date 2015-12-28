@@ -32,10 +32,7 @@ gulp.task("vendor", function() {
 	return gulp.src([
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
-			"bower_components/moment/min/moment-with-locales.js",
-			"bower_components/jquery-unveil/jquery.unveil.js",
 			"bower_components/sweetalert2/dist/sweetalert2.min.js",
-			"bower_components/js-cookie/src/js.cookie.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -43,6 +40,28 @@ gulp.task("vendor", function() {
 		})))
 		.pipe(gulp.dest("public/js"));
 });
+
+/*
+ |--------------------------------------------------------------------------
+ | Combine all CSS libraries into a single file for fewer HTTP requests.
+ |--------------------------------------------------------------------------
+ */
+gulp.task("vendor", function() {
+	return gulp.src([
+			"bower_components/jquery/dist/jquery.js",
+			"bower_components/bootstrap/dist/js/bootstrap.js",
+			"bower_components/moment/min/moment-with-locales.js",
+			"bower_components/jquery-unveil/jquery.unveil.js",
+			"bower_components/sweetalert2/dist/sweetalert2.min.js",
+			"bower_components/js-cookie/src/js.cookie.js"
+		])
+		.pipe(concat("vendor.css"))
+		.pipe(gulpif(production, uglify({
+			mangle: false
+		})))
+		.pipe(gulp.dest("public/css"));
+});
+
 
 /*
  |--------------------------------------------------------------------------

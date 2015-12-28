@@ -50,7 +50,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
 
 		# store this channel
-		if not channels.has_key(subChannelId):
+		if not channels.has_key(subChannelId) and int(stats["videoCount"]) > 0 and ("sail" in i["snippet"]["title"].lower() or "sail" in i["snippet"]["description"].lower()):
 
 			try:
 
@@ -70,7 +70,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 				# read sub level subscriptions
 				subLevel = level + 1
 				readSubscriptions(subChannelId, subLevel)
-				
+
 			except:
 				pass
 
@@ -104,6 +104,8 @@ def readSubscriptions(channelId, level = 1):
 def writeSubscriptions():
 
 	print len(channels.keys()), " channels found"
+
+	# order them by subscribers
 
 	with open("data.json", "w") as dataFile:
 		dataFile.write(json.dumps(channels.values(), indent=4, sort_keys=True))

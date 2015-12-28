@@ -32,7 +32,7 @@ var ChannelActions = (function () {
             var _this = this;
 
             $.ajax({
-                "url": "/api/channels/get",
+                "url": "data.json",
                 "type": "GET",
                 "dataType": "json"
             }).done(function (data) {
@@ -165,6 +165,9 @@ var ChannelList = (function (_React$Component) {
 		value: function componentDidMount() {
 			_storesChannelStore2["default"].listen(this.onChange);
 
+			// handle event bus page changes
+			$(window).on("typeSearchterm", this.typeSearchterm.bind(this));
+
 			// load the channels
 			_actionsChannelActions2["default"].getChannels();
 		}
@@ -173,6 +176,7 @@ var ChannelList = (function (_React$Component) {
 	}, {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
+			$(window).off("typeSearchterm");
 			_storesChannelStore2["default"].unlisten(this.onChange);
 		}
 
@@ -183,20 +187,77 @@ var ChannelList = (function (_React$Component) {
 			this.setState(state);
 		}
 
+		// TYPE SEARCHTERM
+	}, {
+		key: "typeSearchterm",
+		value: function typeSearchterm(e, data) {
+
+			// filter channels by the searchterm
+			var redefined = this.state.all.filter(function (item) {
+				return item.title.toLowerCase().indexOf(data.term) >= 0 || item.description.toLowerCase().indexOf(data.term) >= 0;
+			});
+
+			this.setState({
+				"channels": redefined
+			});
+		}
+
 		// RENDER
 	}, {
 		key: "render",
 		value: function render() {
+
+			// is this the first time loading data?
+			if (this.state.firstLoad === true) {
+				return _react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-10" },
+						_react2["default"].createElement(
+							"center",
+							null,
+							"Loading channels ..."
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				);
+			}
+
+			// no channels found
+			if (this.state.channels.length === 0) {
+				return _react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-10" },
+						_react2["default"].createElement(
+							"center",
+							null,
+							"No channels match the criteria!"
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				);
+			}
+
+			// channels where found
 			return _react2["default"].createElement(
 				"div",
 				{ className: "row" },
+				_react2["default"].createElement("div", { className: "col-md-1" }),
 				_react2["default"].createElement(
 					"div",
-					{ className: "col-md-12" },
+					{ className: "col-md-10" },
 					this.state.channels.map(function (c) {
 						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c });
 					})
-				)
+				),
+				_react2["default"].createElement("div", { className: "col-md-1" })
 			);
 		}
 	}]);
@@ -207,7 +268,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":9,"./ChannelListItem":5,"react":"react"}],5:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":11,"./ChannelListItem":5,"react":"react"}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -228,6 +289,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
 var ChannelListItem = (function (_React$Component) {
     _inherits(ChannelListItem, _React$Component);
 
@@ -238,34 +303,25 @@ var ChannelListItem = (function (_React$Component) {
     }
 
     _createClass(ChannelListItem, [{
-        key: "textCutter",
-        value: function textCutter(i, text) {
-
-            if (text.length < i) return text;
-
-            var short = text.substr(0, i);
-            if (/^\S/.test(text.substr(i))) {
-                return short.replace(/\s+\S*$/, "") + " [..]";
-            }
-
-            return short + " [..]";
-        }
+        key: "render",
 
         // RENDER
-    }, {
-        key: "render",
         value: function render() {
             return _react2["default"].createElement(
                 "div",
                 { className: "row channel-row" },
                 _react2["default"].createElement(
                     "div",
-                    { className: "col-md-2" },
-                    _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "100%" })
+                    { className: "col-md-2 col-xs-2" },
+                    _react2["default"].createElement(
+                        "center",
+                        null,
+                        _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "100%" })
+                    )
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "col-md-7" },
+                    { className: "col-md-7 col-xs-10" },
                     _react2["default"].createElement(
                         "h3",
                         null,
@@ -275,15 +331,11 @@ var ChannelListItem = (function (_React$Component) {
                             this.props.channel.title
                         )
                     ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        this.textCutter(400, this.props.channel.description)
-                    )
+                    _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
                 ),
                 _react2["default"].createElement(
                     "div",
-                    { className: "col-md-3" },
+                    { className: "col-md-3 col-xs-10" },
                     _react2["default"].createElement(
                         "p",
                         null,
@@ -318,8 +370,8 @@ var ChannelListItem = (function (_React$Component) {
                         this.props.channel.views.toLocaleString()
                     ),
                     _react2["default"].createElement(
-                        "button",
-                        { className: "btn btn-danger btn-raised" },
+                        "a",
+                        { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id, className: "btn btn-danger btn-raised" },
                         "Subscribe"
                     )
                 )
@@ -333,7 +385,108 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"react":"react"}],6:[function(require,module,exports){
+},{"./Description":6,"react":"react"}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var ChannelListItem = (function (_React$Component) {
+    _inherits(ChannelListItem, _React$Component);
+
+    // CONSTRUCTOR
+
+    function ChannelListItem(props) {
+        _classCallCheck(this, ChannelListItem);
+
+        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).call(this, props);
+        this.state = {
+            "more": false
+        };
+    }
+
+    // TEXT CUTTER
+
+    _createClass(ChannelListItem, [{
+        key: "textCutter",
+        value: function textCutter(i, text) {
+
+            if (text.length < i || this.state.more === true) return text;
+
+            var shorter = text.substr(0, i);
+            if (/^\S/.test(text.substr(i))) {
+                return shorter.replace(/\s+\S*$/, "");
+            }
+
+            return shorter;
+        }
+
+        // TOGGLE MORE
+    }, {
+        key: "toggleMore",
+        value: function toggleMore() {
+            this.setState({
+                "more": !this.state.more
+            });
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            // more is active, show "less" button
+            var moreOrLessTxt = this.state.more === true ? "less" : "more";
+            var descriptionTxt = this.textCutter(200, this.props.text);
+
+            // show a more or less button
+            var moreOrLess;
+            if (descriptionTxt.length !== this.props.text.length || this.state.more === true) {
+                moreOrLess = _react2["default"].createElement(
+                    "a",
+                    { href: "javascript:void(0);", onClick: this.toggleMore.bind(this) },
+                    "[",
+                    moreOrLessTxt,
+                    "]"
+                );
+            }
+
+            return _react2["default"].createElement(
+                "p",
+                { className: "channel-description" },
+                descriptionTxt,
+                " ",
+                moreOrLess
+            );
+        }
+    }]);
+
+    return ChannelListItem;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelListItem;
+module.exports = exports["default"];
+
+},{"./Description":6,"react":"react"}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -358,6 +511,10 @@ var _ChannelList = require("./ChannelList");
 
 var _ChannelList2 = _interopRequireDefault(_ChannelList);
 
+var _SearchBar = require("./SearchBar");
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
 var Home = (function (_React$Component) {
 	_inherits(Home, _React$Component);
 
@@ -368,20 +525,22 @@ var Home = (function (_React$Component) {
 	}
 
 	_createClass(Home, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			$.material.init();
+		}
+
+		// RENDER
+	}, {
 		key: "render",
 		value: function render() {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "row" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "col-md-12" },
-						_react2["default"].createElement("input", { type: "text", className: "form-control", placeholder: "Search ..." })
-					)
-				),
+				_react2["default"].createElement("img", { src: "/public/img/logo.svg", className: "logo" }),
+				_react2["default"].createElement(_SearchBar2["default"], null),
 				_react2["default"].createElement(_ChannelList2["default"], null)
 			);
 		}
@@ -393,7 +552,87 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./ChannelList":4,"react":"react"}],7:[function(require,module,exports){
+},{"./ChannelList":4,"./SearchBar":8,"react":"react"}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var SearchBar = (function (_React$Component) {
+    _inherits(SearchBar, _React$Component);
+
+    function SearchBar() {
+        _classCallCheck(this, SearchBar);
+
+        _get(Object.getPrototypeOf(SearchBar.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(SearchBar, [{
+        key: "keyUp",
+
+        // KEY UP
+        value: function keyUp(e) {
+
+            // ESC clears selection
+            if (e.keyCode === 27) {
+
+                e.target.value = "";
+            }
+
+            var v = e.target.value;
+            $(window).trigger("typeSearchterm", { "term": v });
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2["default"].createElement(
+                "div",
+                { className: "row search-row" },
+                _react2["default"].createElement("div", { className: "col-md-4" }),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-md-4" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "form-group label-floating is-empty" },
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "control-label" },
+                            "Search for ..."
+                        ),
+                        _react2["default"].createElement("input", { className: "form-control", type: "text", onKeyUp: this.keyUp.bind(this) }),
+                        _react2["default"].createElement("span", { className: "material-input" })
+                    )
+                ),
+                _react2["default"].createElement("div", { className: "col-md-4" })
+            );
+        }
+    }]);
+
+    return SearchBar;
+})(_react2["default"].Component);
+
+exports["default"] = SearchBar;
+module.exports = exports["default"];
+
+},{"react":"react"}],9:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -427,7 +666,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":8,"history/lib/createBrowserHistory":16,"react":"react","react-dom":"react-dom","react-router":"react-router"}],8:[function(require,module,exports){
+},{"./routes":10,"history/lib/createBrowserHistory":18,"react":"react","react-dom":"react-dom","react-router":"react-router"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -457,11 +696,11 @@ exports["default"] = _react2["default"].createElement(
 );
 module.exports = exports["default"];
 
-},{"./components/App":3,"./components/Home":6,"react":"react","react-router":"react-router"}],9:[function(require,module,exports){
+},{"./components/App":3,"./components/Home":7,"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -479,37 +718,53 @@ var _actionsChannelActions = require("../actions/ChannelActions");
 var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
 
 var ChannelStore = (function () {
-  function ChannelStore() {
-    _classCallCheck(this, ChannelStore);
+	function ChannelStore() {
+		_classCallCheck(this, ChannelStore);
 
-    this.bindActions(_actionsChannelActions2["default"]);
-    this.channels = [];
-  }
+		this.bindActions(_actionsChannelActions2["default"]);
+		this.channels = [];
+		this.all = [];
+		this.firstLoad = true;
+	}
 
-  // GET CHANNELS SUCCESS
+	// GET CHANNELS SUCCESS
 
-  _createClass(ChannelStore, [{
-    key: "getChannelsSuccess",
-    value: function getChannelsSuccess(data) {
-      this.channels = data;
-    }
+	_createClass(ChannelStore, [{
+		key: "getChannelsSuccess",
+		value: function getChannelsSuccess(data) {
 
-    // GET CHANNELS FAIL
-  }, {
-    key: "getChannelsFail",
-    value: function getChannelsFail(jqXhr) {
-      // Handle multiple response formats, fallback to HTTP status code number.
-      console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
-    }
-  }]);
+			// filter out channels that have nothing to do
+			// with sailing or no videos listed yet
+			var filtered = data.filter(function (item) {
+				return item.videos > 0 && (item.description.toLowerCase().indexOf("sail") >= 0 || item.title.toLowerCase().indexOf("sail") >= 0);
+			});
 
-  return ChannelStore;
+			// sort channels by subscribers
+			filtered.sort(function (a, b) {
+				return b.subscribers - a.subscribers;
+			});
+
+			this.channels = filtered;
+			this.all = filtered;
+			this.firstLoad = false;
+		}
+
+		// GET CHANNELS FAIL
+	}, {
+		key: "getChannelsFail",
+		value: function getChannelsFail(jqXhr) {
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+	}]);
+
+	return ChannelStore;
 })();
 
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":2}],10:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":2}],12:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -602,7 +857,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -634,7 +889,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -661,7 +916,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -732,7 +987,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":10,"warning":28}],14:[function(require,module,exports){
+},{"_process":12,"warning":30}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -813,13 +1068,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1000,7 +1255,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":11,"./DOMStateStorage":13,"./DOMUtils":14,"./ExecutionEnvironment":15,"./createDOMHistory":17,"./parsePath":22,"_process":10,"invariant":27}],17:[function(require,module,exports){
+},{"./Actions":13,"./DOMStateStorage":15,"./DOMUtils":16,"./ExecutionEnvironment":17,"./createDOMHistory":19,"./parsePath":24,"_process":12,"invariant":29}],19:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1043,7 +1298,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":14,"./ExecutionEnvironment":15,"./createHistory":18,"_process":10,"invariant":27}],18:[function(require,module,exports){
+},{"./DOMUtils":16,"./ExecutionEnvironment":17,"./createHistory":20,"_process":12,"invariant":29}],20:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1335,7 +1590,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":11,"./AsyncUtils":12,"./createLocation":19,"./deprecate":20,"./parsePath":22,"./runTransitionHook":23,"deep-equal":24}],19:[function(require,module,exports){
+},{"./Actions":13,"./AsyncUtils":14,"./createLocation":21,"./deprecate":22,"./parsePath":24,"./runTransitionHook":25,"deep-equal":26}],21:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -1390,7 +1645,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":11,"./parsePath":22}],20:[function(require,module,exports){
+},{"./Actions":13,"./parsePath":24}],22:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -1406,7 +1661,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1420,7 +1675,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1467,7 +1722,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":21,"_process":10,"warning":28}],23:[function(require,module,exports){
+},{"./extractPath":23,"_process":12,"warning":30}],25:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1494,7 +1749,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":10,"warning":28}],24:[function(require,module,exports){
+},{"_process":12,"warning":30}],26:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -1590,7 +1845,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":25,"./lib/keys.js":26}],25:[function(require,module,exports){
+},{"./lib/is_arguments.js":27,"./lib/keys.js":28}],27:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -1612,7 +1867,7 @@ function unsupported(object){
     false;
 };
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -1623,7 +1878,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -1678,7 +1933,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":10}],28:[function(require,module,exports){
+},{"_process":12}],30:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -1742,4 +1997,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":10}]},{},[7]);
+},{"_process":12}]},{},[9]);
