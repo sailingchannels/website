@@ -599,9 +599,33 @@ var SearchBar = (function (_React$Component) {
     }
 
     _createClass(SearchBar, [{
-        key: "keyUp",
+        key: "componentDidMount",
+
+        // COMPONENT DID MOUNT
+        value: function componentDidMount() {
+            $(window).on("keydown", function (e) {
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 70) {
+                    e.preventDefault();
+
+                    $("#search-bar").focus();
+
+                    window.setTimeout(function () {
+                        window.scrollTo(0, 0);
+                    }, 50);
+                }
+            });
+        }
+
+        // COMPONENT WILL UNMOUNT
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            $(window).off("keydown");
+        }
 
         // KEY UP
+    }, {
+        key: "keyUp",
         value: function keyUp(e) {
 
             // ESC clears selection
@@ -633,7 +657,7 @@ var SearchBar = (function (_React$Component) {
                             { className: "control-label" },
                             "Search for ..."
                         ),
-                        _react2["default"].createElement("input", { className: "form-control", type: "text", onKeyUp: this.keyUp.bind(this) }),
+                        _react2["default"].createElement("input", { className: "form-control", type: "text", id: "search-bar", onKeyUp: this.keyUp.bind(this) }),
                         _react2["default"].createElement("span", { className: "material-input" })
                     )
                 ),

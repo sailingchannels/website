@@ -3,23 +3,29 @@ import requests, json, config
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 3
+sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
 # members
 channels = {}
 
+# READ VIDEOS PAGE
+def readVideosPage(channelId, pageToken = None):
+
+	url = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + channelId + "&maxResults=50&regionCode=us&key=" + config.apiKey()
+
+	if pageToken != None:
+		url += "&pageToken=" + pageToken
+
+	# fetch videos of channel
+	r = requests.get(url)
+	vids = r.json()
+
 # READ STATISTICS
 def readStatistics(channelId):
 
-	try:
-		r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + channelId + "&key=" + config.apiKey())
-		stats = r.json()
-
-		if len(stats["items"]) > 0:
-			return stats["items"][0]["statistics"]
-		else:
-			return None
-	except:
-		return None
+	r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + channelId + "&key=" + config.apiKey())
+	stats = r.json()
+	return stats["items"][0]["statistics"]
 
 # READ SUBSCRIPTIONS PAGE
 def readSubscriptionsPage(channelId, pageToken = None, level = 1):
@@ -35,7 +41,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
 	# error? ignore!
 	if r.status_code != 200:
-		print "error", channelId, level
+		print "error", r.status_code, channelId, level
 		return None
 
 	print len(subs["items"]), "items"
@@ -52,29 +58,31 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		# store this channel
 		if not channels.has_key(subChannelId):
 
-			try:
+			stats = readStatistics(subChannelId)
+			hasSailingTerm = False
 
-				stats = readStatistics(subChannelId)
+			# check if one of the sailing terms is available
+			for term in sailingTerms:
+				if (term in i["snippet"]["title"].lower() or term in i["snippet"]["description"].lower()):
+					hasSailingTerm = True
+					break
 
-				if int(stats["videoCount"]) > 0 and ("sail" in i["snippet"]["title"].lower() or "sail" in i["snippet"]["description"].lower()):
+			if int(stats["videoCount"]) > 0 and hasSailingTerm:
 
-					channels[subChannelId] = {
-						"id": subChannelId,
-						"title": i["snippet"]["title"],
-						"description": i["snippet"]["description"],
-						"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
-						"subscribers": int(stats["subscriberCount"]),
-						"views": int(stats["viewCount"]),
-						"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-						"videos": int(stats["videoCount"])
-					}
+				channels[subChannelId] = {
+					"id": subChannelId,
+					"title": i["snippet"]["title"],
+					"description": i["snippet"]["description"],
+					"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
+					"subscribers": int(stats["subscriberCount"]),
+					"views": int(stats["viewCount"]),
+					"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
+					"videos": int(stats["videoCount"])
+				}
 
-					# read sub level subscriptions
-					subLevel = level + 1
-					readSubscriptions(subChannelId, subLevel)
-
-			except:
-				pass
+				# read sub level subscriptions
+				subLevel = level + 1
+				readSubscriptions(subChannelId, subLevel)
 
 	# is there a next page?
 	if subs.has_key("nextPageToken"):
