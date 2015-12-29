@@ -3,13 +3,18 @@ import Description from "./Description";
 
 class ChannelListItem extends React.Component {
 
+	// COMPONENT DID MOUNT
+	componentDidMount() {
+		$("img").unveil();
+	}
+
     // RENDER
 	render() {
 		return (
 			<div className="row channel-row">
                 <div className="col-md-2 col-xs-2">
 					<center>
-                    	<img src={this.props.channel.thumbnail} height="100%" />
+                    	<img src="/public/img/dummy.png" data-src={this.props.channel.thumbnail} className="channel-thumb" />
 					</center>
                 </div>
                 <div className="col-md-7 col-xs-10">

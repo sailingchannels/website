@@ -25,7 +25,50 @@ h1, h2, h3 {
 }
 
 .logo {
-	max-width:150px;
+	width:150px;
+	height:150px;
 	margin:20px auto;
 	display:block;
+	perspective: 1500; /* Hier wird die Perspektive der gesamten Szene festgelegt. Der Wert hat Auswirkung auf die Verzerrung */
+}
+
+.logo:hover .turnaround {
+   transform: rotateY(180deg); /* Beim Mouse-Over wird die Szene umgedreht */
+}
+
+.logo .front {
+  background: url("/public/img/logo.svg") 0 0 no-repeat;
+	background-size: contain;
+}
+
+.logo .back {
+  background: url("/public/img/logo2.svg") 0 0 no-repeat;
+	background-size: contain;
+}
+
+.turnaround {
+   transition: .5s /* Die Drehung soll 0,5 Sekunden dauern */;
+   transform-style: preserve-3d; /* Kind-Elemente  (.front + .back) sollen ihre 3D-Eigenschaften behalten*/
+   position: relative;
+   height: 100%;
+}
+
+.front,
+.back {
+   backface-visibility: hidden /* Die Rückseite von Elementen soll unsichtbar sein */;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+}
+
+.front { z-index: 2; }
+
+.back {
+   transform: rotateY(180deg) /* Die Rückseite des Logos wird umgedreht, um dann bei der Drehung der gesamten Szene vorne zu sein :) */;
+   z-index: 1;
+}
+
+.channel-thumb {
+	width:100%;
+	max-width: 120px;
 }

@@ -13,7 +13,12 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<img src="/public/img/logo.svg" className="logo" />
+				<div className="logo">
+				  <div className="turnaround">
+				    <div className="front"></div>
+				    <div className="back"></div>
+				  </div>
+				</div>
 				<SearchBar />
 				<ChannelList />
 			</div>

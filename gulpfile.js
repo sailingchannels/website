@@ -28,11 +28,12 @@ var dependencies = [
  | Combine all JS libraries into a single file for fewer HTTP requests.
  |--------------------------------------------------------------------------
  */
-gulp.task("vendor", function() {
+gulp.task("vendor-js", function() {
 	return gulp.src([
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
-			"bower_components/sweetalert2/dist/sweetalert2.min.js",
+			"bower_components/bootstrap-material-design/dist/js/material.min.js",
+			"bower_components/jquery-unveil/jquery.unveil.min.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -46,14 +47,12 @@ gulp.task("vendor", function() {
  | Combine all CSS libraries into a single file for fewer HTTP requests.
  |--------------------------------------------------------------------------
  */
-gulp.task("vendor", function() {
+gulp.task("vendor-css", function() {
 	return gulp.src([
-			"bower_components/jquery/dist/jquery.js",
-			"bower_components/bootstrap/dist/js/bootstrap.js",
-			"bower_components/moment/min/moment-with-locales.js",
-			"bower_components/jquery-unveil/jquery.unveil.js",
-			"bower_components/sweetalert2/dist/sweetalert2.min.js",
-			"bower_components/js-cookie/src/js.cookie.js"
+			"bower_components/bootstrap/dist/css/bootstrap.min.css",
+			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
+			"bower_components/font-awesome/css/font-awesome.min.css",
+			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))
 		.pipe(gulpif(production, uglify({
@@ -122,5 +121,5 @@ gulp.task("browserify-watch", ["browserify-vendor"], function() {
 	}
 });
 
-gulp.task("default", ["vendor", "browserify-watch"]);
-gulp.task("build", ["vendor", "browserify"]);
+gulp.task("default", ["vendor-js", "vendor-css", "browserify-watch"]);
+gulp.task("build", ["vendor-js", "vendor-css", "browserify"]);

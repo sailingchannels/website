@@ -272,7 +272,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -294,92 +294,99 @@ var _Description = require("./Description");
 var _Description2 = _interopRequireDefault(_Description);
 
 var ChannelListItem = (function (_React$Component) {
-    _inherits(ChannelListItem, _React$Component);
+  _inherits(ChannelListItem, _React$Component);
 
-    function ChannelListItem() {
-        _classCallCheck(this, ChannelListItem);
+  function ChannelListItem() {
+    _classCallCheck(this, ChannelListItem);
 
-        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+    _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(ChannelListItem, [{
+    key: "componentDidMount",
+
+    // COMPONENT DID MOUNT
+    value: function componentDidMount() {
+      $("img").unveil();
     }
 
-    _createClass(ChannelListItem, [{
-        key: "render",
+    // RENDER
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement(
+        "div",
+        { className: "row channel-row" },
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-2 col-xs-2" },
+          _react2["default"].createElement(
+            "center",
+            null,
+            _react2["default"].createElement("img", { src: "/public/img/dummy.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
+          )
+        ),
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-7 col-xs-10" },
+          _react2["default"].createElement(
+            "h3",
+            null,
+            _react2["default"].createElement(
+              "a",
+              { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id },
+              this.props.channel.title
+            )
+          ),
+          _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
+        ),
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-3 col-xs-10" },
+          _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Subscribers:"
+            ),
+            " ",
+            this.props.channel.subscribers.toLocaleString()
+          ),
+          _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Videos:"
+            ),
+            " ",
+            this.props.channel.videos
+          ),
+          _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Views:"
+            ),
+            " ",
+            this.props.channel.views.toLocaleString()
+          ),
+          _react2["default"].createElement(
+            "a",
+            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id, className: "btn btn-danger btn-raised" },
+            "Subscribe"
+          )
+        )
+      );
+    }
+  }]);
 
-        // RENDER
-        value: function render() {
-            return _react2["default"].createElement(
-                "div",
-                { className: "row channel-row" },
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-2 col-xs-2" },
-                    _react2["default"].createElement(
-                        "center",
-                        null,
-                        _react2["default"].createElement("img", { src: this.props.channel.thumbnail, height: "100%" })
-                    )
-                ),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-7 col-xs-10" },
-                    _react2["default"].createElement(
-                        "h3",
-                        null,
-                        _react2["default"].createElement(
-                            "a",
-                            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id },
-                            this.props.channel.title
-                        )
-                    ),
-                    _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
-                ),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-3 col-xs-10" },
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Subscribers:"
-                        ),
-                        " ",
-                        this.props.channel.subscribers.toLocaleString()
-                    ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Videos:"
-                        ),
-                        " ",
-                        this.props.channel.videos
-                    ),
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Views:"
-                        ),
-                        " ",
-                        this.props.channel.views.toLocaleString()
-                    ),
-                    _react2["default"].createElement(
-                        "a",
-                        { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id, className: "btn btn-danger btn-raised" },
-                        "Subscribe"
-                    )
-                )
-            );
-        }
-    }]);
-
-    return ChannelListItem;
+  return ChannelListItem;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelListItem;
@@ -539,7 +546,16 @@ var Home = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
-				_react2["default"].createElement("img", { src: "/public/img/logo.svg", className: "logo" }),
+				_react2["default"].createElement(
+					"div",
+					{ className: "logo" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "turnaround" },
+						_react2["default"].createElement("div", { className: "front" }),
+						_react2["default"].createElement("div", { className: "back" })
+					)
+				),
 				_react2["default"].createElement(_SearchBar2["default"], null),
 				_react2["default"].createElement(_ChannelList2["default"], null)
 			);
@@ -657,9 +673,8 @@ var _routes = require("./routes");
 
 var _routes2 = _interopRequireDefault(_routes);
 
-window.moment.locale("de");
+//window.moment.locale("de");
 var history = (0, _historyLibCreateBrowserHistory2["default"])();
-
 _reactDom2["default"].render(_react2["default"].createElement(
   _reactRouter2["default"],
   { history: history },

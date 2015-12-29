@@ -50,26 +50,28 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
 
 		# store this channel
-		if not channels.has_key(subChannelId) and int(stats["videoCount"]) > 0 and ("sail" in i["snippet"]["title"].lower() or "sail" in i["snippet"]["description"].lower()):
+		if not channels.has_key(subChannelId):
 
 			try:
 
 				stats = readStatistics(subChannelId)
 
-				channels[subChannelId] = {
-					"id": subChannelId,
-					"title": i["snippet"]["title"],
-					"description": i["snippet"]["description"],
-					"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
-					"subscribers": int(stats["subscriberCount"]),
-					"views": int(stats["viewCount"]),
-					"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-					"videos": int(stats["videoCount"])
-				}
+				if int(stats["videoCount"]) > 0 and ("sail" in i["snippet"]["title"].lower() or "sail" in i["snippet"]["description"].lower()):
 
-				# read sub level subscriptions
-				subLevel = level + 1
-				readSubscriptions(subChannelId, subLevel)
+					channels[subChannelId] = {
+						"id": subChannelId,
+						"title": i["snippet"]["title"],
+						"description": i["snippet"]["description"],
+						"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
+						"subscribers": int(stats["subscriberCount"]),
+						"views": int(stats["viewCount"]),
+						"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
+						"videos": int(stats["videoCount"])
+					}
+
+					# read sub level subscriptions
+					subLevel = level + 1
+					readSubscriptions(subChannelId, subLevel)
 
 			except:
 				pass
