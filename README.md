@@ -1,32 +1,6 @@
-# Node / ReactJS Template
-A template for a ReactJS webapp that is being served by a node.js express server.
+# Sailing Channels
+Discovering YouTube sailing channels by using a network analysis on recursive channel subscriptions.
 
-Also includes:
+### YouTube Video Thumbnails
 
-* Bootstrap
-* jQuery
-* Sweetalert
-* MomentJS
-
-## Install
-
-In home directory of project:
-
-```
-npm install
-bower install
-````
-
-## Develop
-
-Compile and watch changes in files with
-
-```
-gulp
-```
-
-from home directory. Simultaneously open another shell and serve the nodejs express application with
-
-```
-npm run watch
-```
+https://i.ytimg.com/vi/SdP_b8y0QYY/default.jpg

@@ -2,6 +2,7 @@ import React from "react";
 import ChannelListItem from "./ChannelListItem";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
+import InfiniteScroll from "react-infinite-scroll";
 
 class ChannelList extends React.Component {
 

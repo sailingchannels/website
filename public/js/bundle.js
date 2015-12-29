@@ -32,7 +32,7 @@ var ChannelActions = (function () {
             var _this = this;
 
             $.ajax({
-                "url": "data.json",
+                "url": "/api/channels/get",
                 "type": "GET",
                 "dataType": "json"
             }).done(function (data) {
@@ -144,6 +144,10 @@ var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
 var _storesChannelStore = require("../stores/ChannelStore");
 
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
+
+var _reactInfiniteScroll = require("react-infinite-scroll");
+
+var _reactInfiniteScroll2 = _interopRequireDefault(_reactInfiniteScroll);
 
 var ChannelList = (function (_React$Component) {
 	_inherits(ChannelList, _React$Component);
@@ -268,7 +272,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":11,"./ChannelListItem":5,"react":"react"}],5:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":11,"./ChannelListItem":5,"react":"react","react-infinite-scroll":31}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -323,7 +327,7 @@ var ChannelListItem = (function (_React$Component) {
           _react2["default"].createElement(
             "center",
             null,
-            _react2["default"].createElement("img", { src: "/public/img/dummy.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
+            _react2["default"].createElement("img", { src: "/img/dummy.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
           )
         ),
         _react2["default"].createElement(
@@ -378,8 +382,9 @@ var ChannelListItem = (function (_React$Component) {
           ),
           _react2["default"].createElement(
             "a",
-            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id, className: "btn btn-danger btn-raised" },
-            "Subscribe"
+            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+            _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+            " Subscribe"
           )
         )
       );
@@ -2036,4 +2041,68 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":12}]},{},[9]);
+},{"_process":12}],31:[function(require,module,exports){
+function topPosition(domElt) {
+  if (!domElt) {
+    return 0;
+  }
+  return domElt.offsetTop + topPosition(domElt.offsetParent);
+}
+
+module.exports = function (React) {
+  if (React.addons && React.addons.InfiniteScroll) {
+    return React.addons.InfiniteScroll;
+  }
+  React.addons = React.addons || {};
+  var InfiniteScroll = React.addons.InfiniteScroll = React.createClass({
+    getDefaultProps: function () {
+      return {
+        pageStart: 0,
+        hasMore: false,
+        loadMore: function () {},
+        threshold: 250
+      };
+    },
+    componentDidMount: function () {
+      this.pageLoaded = this.props.pageStart;
+      this.attachScrollListener();
+    },
+    componentDidUpdate: function () {
+      this.attachScrollListener();
+    },
+    render: function () {
+      var props = this.props;
+      return React.DOM.div(null, props.children, props.hasMore && (props.loader || InfiniteScroll._defaultLoader));
+    },
+    scrollListener: function () {
+      var el = this.getDOMNode();
+      var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      if (topPosition(el) + el.offsetHeight - scrollTop - window.innerHeight < Number(this.props.threshold)) {
+        this.detachScrollListener();
+        // call loadMore after detachScrollListener to allow
+        // for non-async loadMore functions
+        this.props.loadMore(this.pageLoaded += 1);
+      }
+    },
+    attachScrollListener: function () {
+      if (!this.props.hasMore) {
+        return;
+      }
+      window.addEventListener('scroll', this.scrollListener);
+      window.addEventListener('resize', this.scrollListener);
+      this.scrollListener();
+    },
+    detachScrollListener: function () {
+      window.removeEventListener('scroll', this.scrollListener);
+      window.removeEventListener('resize', this.scrollListener);
+    },
+    componentWillUnmount: function () {
+      this.detachScrollListener();
+    }
+  });
+  InfiniteScroll.setDefaultLoader = function (loader) {
+    InfiniteScroll._defaultLoader = loader;
+  };
+  return InfiniteScroll;
+};
+},{}]},{},[9]);

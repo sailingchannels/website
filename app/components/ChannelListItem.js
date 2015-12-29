@@ -14,7 +14,7 @@ class ChannelListItem extends React.Component {
 			<div className="row channel-row">
                 <div className="col-md-2 col-xs-2">
 					<center>
-                    	<img src="/public/img/dummy.png" data-src={this.props.channel.thumbnail} className="channel-thumb" />
+                    	<img src="/img/dummy.png" data-src={this.props.channel.thumbnail} className="channel-thumb" />
 					</center>
                 </div>
                 <div className="col-md-7 col-xs-10">
@@ -30,7 +30,9 @@ class ChannelListItem extends React.Component {
                     <p><b>Videos:</b> {this.props.channel.videos}</p>
                     <p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
 
-	                <a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id} className="btn btn-danger btn-raised">Subscribe</a>
+	                <a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
+						<i className="fa fa-youtube-play"></i> Subscribe
+					</a>
                 </div>
 			</div>
 		);

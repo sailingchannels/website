@@ -37,12 +37,12 @@ h1, h2, h3 {
 }
 
 .logo .front {
-  background: url("/public/img/logo.svg") 0 0 no-repeat;
+  background: url("/img/logo.svg") 0 0 no-repeat;
 	background-size: contain;
 }
 
 .logo .back {
-  background: url("/public/img/logo2.svg") 0 0 no-repeat;
+  background: url("/img/logo2.svg") 0 0 no-repeat;
 	background-size: contain;
 }
 

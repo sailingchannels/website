@@ -6,7 +6,10 @@
     "type": "git",
     "url": "https://github.com/thomasbrueggemann/sailing-channels.git"
   },
+  "main": "server.js",
   "scripts": {
+    "start": "babel-node server.js",
+    "watch": "nodemon --exec babel-node -- server.js",
     "postinstall": "bower install && gulp build"
   },
   "dependencies": {
@@ -16,7 +19,10 @@
     "body-parser": "^1.14.1",
     "colors": "^1.1.2",
     "compression": "^1.6.0",
+    "cookie-parser": "1.4.0",
+    "express": "^4.13.3",
     "history": "^1.12.5",
+    "jsonfile": "^2.2.3",
     "morgan": "^1.6.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
@@ -37,6 +43,7 @@
     "gulp-streamify": "1.0.2",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
+    "react-infinite-scroll": "^0.1.5", 
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0"
   },

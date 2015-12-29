@@ -20,6 +20,46 @@ def readVideosPage(channelId, pageToken = None):
 	r = requests.get(url)
 	vids = r.json()
 
+	videos = []
+	for v in vids["items"]:
+
+		# ignore playlists
+		if v["id"]["kind"] != "youtube#video":
+			continue
+
+		videos.append({
+			"id": v["id"]["videoId"],
+			"title": v["snippet"]["title"],
+			"description": v["snippet"]["description"],
+			"publishedAt": v["snippet"]["publishedAt"]
+		})
+
+	# is there a next page?
+	if vids.has_key("nextPageToken"):
+		return vids["nextPageToken"], videos
+	else:
+		return None, videos
+
+# READ VIDEOS
+def readVideos(channelId):
+
+	nextPage = None
+	nextPageNew = None
+	videos = []
+
+	while True:
+		nextPageNew, vids = readVideosPage(channelId, nextPage)
+
+		# extend video list with new page ones
+		videos.extend(vids);
+
+		if nextPageNew == None:
+			break
+
+		nextPage = nextPageNew
+
+	return videos
+
 # READ STATISTICS
 def readStatistics(channelId):
 
@@ -77,7 +117,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 					"subscribers": int(stats["subscriberCount"]),
 					"views": int(stats["viewCount"]),
 					"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-					"videos": int(stats["videoCount"])
+					"videos": readVideos(subChannelId)
 				}
 
 				# read sub level subscriptions

@@ -14,7 +14,7 @@ class ChannelActions {
     getChannels() {
 
         $.ajax({
-            "url": "data.json",
+            "url": "/api/channels/get",
             "type": "GET",
             "dataType": "json"
         })
