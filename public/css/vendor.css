@@ -85,3 +85,15 @@ h1, h2, h3 {
 	width:100%;
 	max-width: 120px;
 }
+
+.loadMore {
+	margin-bottom:25px;
+}
+
+.sort-option {
+	margin-left:10px!important;
+}
+
+.sort-group {
+	margin-top:10px!important;
+}

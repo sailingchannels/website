@@ -1,4 +1,5 @@
-import requests, json, config
+import requests, json, config, calendar
+from datetime import datetime
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
@@ -27,11 +28,13 @@ def readVideosPage(channelId, pageToken = None):
 		if v["id"]["kind"] != "youtube#video":
 			continue
 
+		d = datetime.strptime(v["snippet"]["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
+
 		videos.append({
 			"id": v["id"]["videoId"],
 			"title": v["snippet"]["title"],
 			"description": v["snippet"]["description"],
-			"publishedAt": v["snippet"]["publishedAt"]
+			"publishedAt": calendar.timegm(d.utctimetuple())
 		})
 
 	# is there a next page?

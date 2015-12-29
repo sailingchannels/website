@@ -26,8 +26,10 @@ class ChannelListItem extends React.Component {
 					<Description text={this.props.channel.description} />
                 </div>
                 <div className="col-md-3 col-xs-10">
-                    <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p>
-                    <p><b>Videos:</b> {this.props.channel.videos}</p>
+
+					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
+                    {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
+                    {(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videos}</p> : null}
                     <p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
 
 	                <a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">

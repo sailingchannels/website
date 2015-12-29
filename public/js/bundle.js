@@ -21,24 +21,39 @@ var ChannelActions = (function () {
     function ChannelActions() {
         _classCallCheck(this, ChannelActions);
 
-        this.generateActions("getChannelsSuccess", "getChannelsFail");
+        this.generateActions("getChannelsSuccess", "getChannelsFail", "searchChannelsSuccess", "searchChannelsFail");
     }
 
     // GET CHANNEL
 
     _createClass(ChannelActions, [{
         key: "getChannels",
-        value: function getChannels() {
+        value: function getChannels(sortBy, skip, take) {
             var _this = this;
 
             $.ajax({
-                "url": "/api/channels/get",
+                "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
                 "type": "GET",
                 "dataType": "json"
             }).done(function (data) {
                 _this.actions.getChannelsSuccess(data);
             }).fail(function (jqXhr) {
                 _this.actions.getChannelsFail(jqXhr);
+            });
+        }
+    }, {
+        key: "searchChannels",
+        value: function searchChannels(q, sortBy) {
+            var _this2 = this;
+
+            $.ajax({
+                "url": "/api/channels/search?q=" + encodeURIComponent(q) + "&sort=" + sortBy,
+                "type": "GET",
+                "dataType": "json"
+            }).done(function (data) {
+                _this2.actions.searchChannelsSuccess(data);
+            }).fail(function (jqXhr) {
+                _this2.actions.searchChannelsFail(jqXhr);
             });
         }
     }]);
@@ -145,10 +160,6 @@ var _storesChannelStore = require("../stores/ChannelStore");
 
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
 
-var _reactInfiniteScroll = require("react-infinite-scroll");
-
-var _reactInfiniteScroll2 = _interopRequireDefault(_reactInfiniteScroll);
-
 var ChannelList = (function (_React$Component) {
 	_inherits(ChannelList, _React$Component);
 
@@ -171,9 +182,11 @@ var ChannelList = (function (_React$Component) {
 
 			// handle event bus page changes
 			$(window).on("typeSearchterm", this.typeSearchterm.bind(this));
+			$(window).on("changeSort", this.changeSort.bind(this));
+			$(window).on("scroll", this.scrollWindow.bind(this));
 
 			// load the channels
-			_actionsChannelActions2["default"].getChannels();
+			_actionsChannelActions2["default"].getChannels(this.state.sortBy, 0, 25);
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -181,6 +194,9 @@ var ChannelList = (function (_React$Component) {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
 			$(window).off("typeSearchterm");
+			$(window).off("scroll");
+			$(window).off("changeSort");
+
 			_storesChannelStore2["default"].unlisten(this.onChange);
 		}
 
@@ -196,14 +212,62 @@ var ChannelList = (function (_React$Component) {
 		key: "typeSearchterm",
 		value: function typeSearchterm(e, data) {
 
-			// filter channels by the searchterm
-			var redefined = this.state.all.filter(function (item) {
-				return item.title.toLowerCase().indexOf(data.term) >= 0 || item.description.toLowerCase().indexOf(data.term) >= 0;
-			});
+			// start search
+			if (data.term.length >= 2) {
+
+				this.setState({
+					searching: true
+				});
+
+				_actionsChannelActions2["default"].searchChannels(data.term, this.state.sortBy);
+			}
+
+			// reset search
+			else if (data.term.length === 0) {
+
+					this.setState({
+						channels: [],
+						skip: 0,
+						take: 25,
+						loading: false,
+						searching: false
+					});
+
+					_actionsChannelActions2["default"].getChannels(this.state.sortBy, 0, 25);
+				}
+		}
+
+		// SCROLL WINDOW
+	}, {
+		key: "scrollWindow",
+		value: function scrollWindow() {
+
+			var scrollBottomThreshold = 250;
+			if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold && this.state.loading === false && this.state.searching === false) {
+				this.setState({
+					"loading": true
+				});
+
+				// load more data
+				_actionsChannelActions2["default"].getChannels(this.state.sortBy, this.state.skip + this.state.take, 25);
+			}
+		}
+
+		// CHANGE SORT
+	}, {
+		key: "changeSort",
+		value: function changeSort(e, data) {
 
 			this.setState({
-				"channels": redefined
+				sortBy: data.sortBy
 			});
+
+			// load the channels
+			if (this.state.searching === true) {
+				_actionsChannelActions2["default"].searchChannels($("#search-bar").val(), data.sortBy);
+			} else {
+				_actionsChannelActions2["default"].getChannels(data.sortBy, 0, 25);
+			}
 		}
 
 		// RENDER
@@ -259,7 +323,12 @@ var ChannelList = (function (_React$Component) {
 					{ className: "col-md-10" },
 					this.state.channels.map(function (c) {
 						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c });
-					})
+					}),
+					this.state.loading === true ? _react2["default"].createElement(
+						"center",
+						{ className: "loadMore" },
+						"Loading more channels ..."
+					) : null
 				),
 				_react2["default"].createElement("div", { className: "col-md-1" })
 			);
@@ -272,11 +341,11 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":11,"./ChannelListItem":5,"react":"react","react-infinite-scroll":31}],5:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":11,"./ChannelListItem":5,"react":"react"}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -298,100 +367,110 @@ var _Description = require("./Description");
 var _Description2 = _interopRequireDefault(_Description);
 
 var ChannelListItem = (function (_React$Component) {
-  _inherits(ChannelListItem, _React$Component);
+	_inherits(ChannelListItem, _React$Component);
 
-  function ChannelListItem() {
-    _classCallCheck(this, ChannelListItem);
+	function ChannelListItem() {
+		_classCallCheck(this, ChannelListItem);
 
-    _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
-  }
+		_get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+	}
 
-  _createClass(ChannelListItem, [{
-    key: "componentDidMount",
+	_createClass(ChannelListItem, [{
+		key: "componentDidMount",
 
-    // COMPONENT DID MOUNT
-    value: function componentDidMount() {
-      $("img").unveil();
-    }
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			$("img").unveil();
+		}
 
-    // RENDER
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2["default"].createElement(
-        "div",
-        { className: "row channel-row" },
-        _react2["default"].createElement(
-          "div",
-          { className: "col-md-2 col-xs-2" },
-          _react2["default"].createElement(
-            "center",
-            null,
-            _react2["default"].createElement("img", { src: "/img/dummy.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
-          )
-        ),
-        _react2["default"].createElement(
-          "div",
-          { className: "col-md-7 col-xs-10" },
-          _react2["default"].createElement(
-            "h3",
-            null,
-            _react2["default"].createElement(
-              "a",
-              { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id },
-              this.props.channel.title
-            )
-          ),
-          _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
-        ),
-        _react2["default"].createElement(
-          "div",
-          { className: "col-md-3 col-xs-10" },
-          _react2["default"].createElement(
-            "p",
-            null,
-            _react2["default"].createElement(
-              "b",
-              null,
-              "Subscribers:"
-            ),
-            " ",
-            this.props.channel.subscribers.toLocaleString()
-          ),
-          _react2["default"].createElement(
-            "p",
-            null,
-            _react2["default"].createElement(
-              "b",
-              null,
-              "Videos:"
-            ),
-            " ",
-            this.props.channel.videos
-          ),
-          _react2["default"].createElement(
-            "p",
-            null,
-            _react2["default"].createElement(
-              "b",
-              null,
-              "Views:"
-            ),
-            " ",
-            this.props.channel.views.toLocaleString()
-          ),
-          _react2["default"].createElement(
-            "a",
-            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
-            _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-            " Subscribe"
-          )
-        )
-      );
-    }
-  }]);
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row channel-row" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-2 col-xs-2" },
+					_react2["default"].createElement(
+						"center",
+						null,
+						_react2["default"].createElement("img", { src: "/img/dummy.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-7 col-xs-10" },
+					_react2["default"].createElement(
+						"h3",
+						null,
+						_react2["default"].createElement(
+							"a",
+							{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id },
+							this.props.channel.title
+						)
+					),
+					_react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-3 col-xs-10" },
+					this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
+						"p",
+						{ className: "text-warning" },
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Subscriber info hidden by channel ",
+							_react2["default"].createElement("i", { className: "fa fa-frown-o" })
+						)
+					) : null,
+					this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Subscribers:"
+						),
+						" ",
+						this.props.channel.subscribers.toLocaleString()
+					) : null,
+					this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Videos:"
+						),
+						" ",
+						this.props.channel.videos
+					) : null,
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Views:"
+						),
+						" ",
+						this.props.channel.views.toLocaleString()
+					),
+					_react2["default"].createElement(
+						"a",
+						{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+						" Subscribe"
+					)
+				)
+			);
+		}
+	}]);
 
-  return ChannelListItem;
+	return ChannelListItem;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelListItem;
@@ -608,15 +687,20 @@ var SearchBar = (function (_React$Component) {
 
         // COMPONENT DID MOUNT
         value: function componentDidMount() {
+
             $(window).on("keydown", function (e) {
                 if ((e.ctrlKey || e.metaKey) && e.keyCode === 70) {
+
+                    // don't open browser search
                     e.preventDefault();
 
+                    // focus search bar
                     $("#search-bar").focus();
 
+                    // scroll up
                     window.setTimeout(function () {
                         window.scrollTo(0, 0);
-                    }, 50);
+                    }, 1);
                 }
             });
         }
@@ -643,6 +727,13 @@ var SearchBar = (function (_React$Component) {
             $(window).trigger("typeSearchterm", { "term": v });
         }
 
+        // CHANGE SORT
+    }, {
+        key: "changeSort",
+        value: function changeSort(e) {
+            $(window).trigger("changeSort", { "sortBy": e.target.value });
+        }
+
         // RENDER
     }, {
         key: "render",
@@ -664,6 +755,21 @@ var SearchBar = (function (_React$Component) {
                         ),
                         _react2["default"].createElement("input", { className: "form-control", type: "text", id: "search-bar", onKeyUp: this.keyUp.bind(this) }),
                         _react2["default"].createElement("span", { className: "material-input" })
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "form-group sort-group" },
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "sort-label control-label" },
+                            "Sort by:"
+                        ),
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "subscribers" }),
+                        " Subscribers",
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "views" }),
+                        " Views",
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "upload" }),
+                        " Last upload"
                     )
                 ),
                 _react2["default"].createElement("div", { className: "col-md-4" })
@@ -767,29 +873,30 @@ var ChannelStore = (function () {
 
 		this.bindActions(_actionsChannelActions2["default"]);
 		this.channels = [];
-		this.all = [];
 		this.firstLoad = true;
+		this.loading = false;
+		this.skip = 0;
+		this.take = 25;
+		this.searching = false;
+		this.sortBy = "subscribers";
 	}
 
 	// GET CHANNELS SUCCESS
 
 	_createClass(ChannelStore, [{
 		key: "getChannelsSuccess",
-		value: function getChannelsSuccess(data) {
+		value: function getChannelsSuccess(result) {
 
-			// filter out channels that have nothing to do
-			// with sailing or no videos listed yet
-			var filtered = data.filter(function (item) {
-				return item.videos > 0 && (item.description.toLowerCase().indexOf("sail") >= 0 || item.title.toLowerCase().indexOf("sail") >= 0);
-			});
+			// add new data
+			if (result.skip > 0) {
+				this.channels = this.channels.concat(result.data);
+			} else {
+				this.channels = result.data;
+			}
 
-			// sort channels by subscribers
-			filtered.sort(function (a, b) {
-				return b.subscribers - a.subscribers;
-			});
-
-			this.channels = filtered;
-			this.all = filtered;
+			this.skip = result.skip;
+			this.take = result.take;
+			this.loading = false;
 			this.firstLoad = false;
 		}
 
@@ -797,6 +904,31 @@ var ChannelStore = (function () {
 	}, {
 		key: "getChannelsFail",
 		value: function getChannelsFail(jqXhr) {
+
+			this.loading = false;
+
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+
+		// SEARCH CHANNELS SUCCESS
+	}, {
+		key: "searchChannelsSuccess",
+		value: function searchChannelsSuccess(result) {
+
+			this.channels = result.data;
+
+			this.loading = false;
+			this.firstLoad = false;
+		}
+
+		// SEARCH CHANNELS FAIL
+	}, {
+		key: "searchChannelsFail",
+		value: function searchChannelsFail(jqXhr) {
+
+			this.loading = false;
+
 			// Handle multiple response formats, fallback to HTTP status code number.
 			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
 		}
@@ -2041,68 +2173,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":12}],31:[function(require,module,exports){
-function topPosition(domElt) {
-  if (!domElt) {
-    return 0;
-  }
-  return domElt.offsetTop + topPosition(domElt.offsetParent);
-}
-
-module.exports = function (React) {
-  if (React.addons && React.addons.InfiniteScroll) {
-    return React.addons.InfiniteScroll;
-  }
-  React.addons = React.addons || {};
-  var InfiniteScroll = React.addons.InfiniteScroll = React.createClass({
-    getDefaultProps: function () {
-      return {
-        pageStart: 0,
-        hasMore: false,
-        loadMore: function () {},
-        threshold: 250
-      };
-    },
-    componentDidMount: function () {
-      this.pageLoaded = this.props.pageStart;
-      this.attachScrollListener();
-    },
-    componentDidUpdate: function () {
-      this.attachScrollListener();
-    },
-    render: function () {
-      var props = this.props;
-      return React.DOM.div(null, props.children, props.hasMore && (props.loader || InfiniteScroll._defaultLoader));
-    },
-    scrollListener: function () {
-      var el = this.getDOMNode();
-      var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-      if (topPosition(el) + el.offsetHeight - scrollTop - window.innerHeight < Number(this.props.threshold)) {
-        this.detachScrollListener();
-        // call loadMore after detachScrollListener to allow
-        // for non-async loadMore functions
-        this.props.loadMore(this.pageLoaded += 1);
-      }
-    },
-    attachScrollListener: function () {
-      if (!this.props.hasMore) {
-        return;
-      }
-      window.addEventListener('scroll', this.scrollListener);
-      window.addEventListener('resize', this.scrollListener);
-      this.scrollListener();
-    },
-    detachScrollListener: function () {
-      window.removeEventListener('scroll', this.scrollListener);
-      window.removeEventListener('resize', this.scrollListener);
-    },
-    componentWillUnmount: function () {
-      this.detachScrollListener();
-    }
-  });
-  InfiniteScroll.setDefaultLoader = function (loader) {
-    InfiniteScroll._defaultLoader = loader;
-  };
-  return InfiniteScroll;
-};
-},{}]},{},[9]);
+},{"_process":12}]},{},[9]);

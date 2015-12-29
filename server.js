@@ -26,8 +26,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/api/channels/get", function(req, res) {
 
 	var sortBy = req.query.sort || "subscribers";
-	var take = parseInt(req.query.take) || 10;
+	var take = parseInt(req.query.take) || 25;
 	var skip = parseInt(req.query.skip) || 0;
+
+	var ownData = JSON.parse(JSON.stringify(global.data));
 
 	// apply sorting
 	switch(sortBy) {
@@ -36,21 +38,106 @@ app.get("/api/channels/get", function(req, res) {
 		case "subscribers":
 
 			// sort channels by subscribers
-			global.data.sort(function(a, b) {
+			ownData.sort(function(a, b) {
 				return b.subscribers - a.subscribers;
+			});
+			break;
+
+		// VIEWS
+		case "views":
+
+			// sort channels by subscribers
+			ownData.sort(function(a, b) {
+				return b.views - a.views;
+			});
+			break;
+
+		// UPLOAD
+		case "upload":
+
+			// who has the last video upload
+			ownData.sort(function(a, b) {
+				if(!b.videos || !a.videos) return 0;
+
+				a.videos.sort(function(av, bv) {
+					return av.publishedAt - bv.publishedAt;
+				});
+
+				b.videos.sort(function(av, bv) {
+					return av.publishedAt - bv.publishedAt;
+				});
+
+				return b.videos[0].publishedAt - a.videos[0].publishedAt;
+			});
+			break;
+	}
+
+	console.log(ownData[0].videos.sort(function(av, bv) {
+		return bv.publishedAt - av.publishedAt;
+	}));
+
+	// remove unneeded properties
+	var filtered = ownData.map(function(item) {
+		item.videos = (item.videos) ? item.videos.length : 0;
+		return item;
+	});
+
+	// send data out
+	return res.send({
+		"data": filtered.slice(skip, skip + take),
+		"skip": skip,
+		"take": take
+	});
+});
+
+// API / CHANNELS / SEARCH
+app.get("/api/channels/search", function(req, res) {
+
+	var sortBy = req.query.sort || "subscribers";
+	var q = req.query.q || null;
+
+	if(!q) return res.send({ "data": [] });
+
+	var ownData = JSON.parse(JSON.stringify(global.data));
+
+	// apply sorting
+	switch(sortBy) {
+
+		// SUBSCRIBERS
+		case "subscribers":
+
+			// sort channels by subscribers
+			ownData.sort(function(a, b) {
+				return b.subscribers - a.subscribers;
+			});
+
+			break;
+
+		case "views":
+
+			// sort channels by subscribers
+			ownData.sort(function(a, b) {
+				return b.views - a.views;
 			});
 
 			break;
 	}
 
+	// filter channels by query
+	var filtered = ownData.filter(function(item) {
+		return item.title.toLowerCase().indexOf(q) >= 0 || item.description.toLowerCase().indexOf(q) >= 0;
+	});
+
 	// remove unneeded properties
-	var data = global.data.map(function(item) {
-		item.videos = item.videos.length;
+	filtered = filtered.map(function(item) {
+		item.videos = (item.videos) ? item.videos.length : 0;
 		return item;
 	});
 
 	// send data out
-	return res.send(data.slice(skip, skip + take));
+	return res.send({
+		"data": filtered
+	});
 });
 
 // REACT MIDDLEWARE

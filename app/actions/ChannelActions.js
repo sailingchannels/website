@@ -6,15 +6,17 @@ class ChannelActions {
     constructor() {
         this.generateActions(
             "getChannelsSuccess",
-            "getChannelsFail"
+            "getChannelsFail",
+            "searchChannelsSuccess",
+            "searchChannelsFail"
         );
     }
 
     // GET CHANNEL
-    getChannels() {
+    getChannels(sortBy, skip, take) {
 
         $.ajax({
-            "url": "/api/channels/get",
+            "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
             "type": "GET",
             "dataType": "json"
         })
@@ -23,6 +25,21 @@ class ChannelActions {
         })
         .fail((jqXhr) => {
             this.actions.getChannelsFail(jqXhr);
+        });
+    }
+
+    searchChannels(q, sortBy) {
+
+        $.ajax({
+            "url": "/api/channels/search?q=" + encodeURIComponent(q) + "&sort=" + sortBy,
+            "type": "GET",
+            "dataType": "json"
+        })
+        .done((data) => {
+            this.actions.searchChannelsSuccess(data);
+        })
+        .fail((jqXhr) => {
+            this.actions.searchChannelsFail(jqXhr);
         });
     }
 }

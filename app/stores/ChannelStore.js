@@ -6,33 +6,54 @@ class ChannelStore {
 	constructor() {
 		this.bindActions(ChannelActions);
 		this.channels = [];
-		this.all = [];
 		this.firstLoad = true;
+		this.loading = false;
+		this.skip = 0;
+		this.take = 25;
+		this.searching = false;
+		this.sortBy = "subscribers";
 	}
 
 	// GET CHANNELS SUCCESS
-  	getChannelsSuccess(data) {
+  	getChannelsSuccess(result) {
 
-		// filter out channels that have nothing to do
-		// with sailing or no videos listed yet
-		var filtered = data.filter(item => {
-			return item.videos > 0 &&
-				   (item.description.toLowerCase().indexOf("sail") >= 0 ||
-					item.title.toLowerCase().indexOf("sail") >= 0);
-		});
+		// add new data
+		if(result.skip > 0) {
+	    	this.channels = this.channels.concat(result.data);
+		}
+		else {
+			this.channels = result.data;
+		}
 
-		// sort channels by subscribers
-		filtered.sort(function(a, b) {
-			return b.subscribers - a.subscribers;
-		});
-
-    	this.channels = filtered;
-		this.all = filtered;
+		this.skip = result.skip;
+		this.take = result.take;
+		this.loading = false;
 		this.firstLoad = false;
   	}
 
 	// GET CHANNELS FAIL
   	getChannelsFail(jqXhr) {
+
+		this.loading = false;
+
+    	// Handle multiple response formats, fallback to HTTP status code number.
+    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+  	}
+
+	// SEARCH CHANNELS SUCCESS
+  	searchChannelsSuccess(result) {
+
+	    this.channels = result.data;
+
+		this.loading = false;
+		this.firstLoad = false;
+  	}
+
+	// SEARCH CHANNELS FAIL
+  	searchChannelsFail(jqXhr) {
+
+		this.loading = false;
+
     	// Handle multiple response formats, fallback to HTTP status code number.
     	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
   	}
