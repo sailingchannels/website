@@ -1,6 +1,8 @@
 import React from "react";
 import ChannelList from "./ChannelList";
 import SearchBar from "./SearchBar";
+import OffsetMenu from "./OffsetMenu";
+import Logo from "./Logo";
 
 class Home extends React.Component {
 
@@ -16,12 +18,8 @@ class Home extends React.Component {
 
 		return (
 			<div className="container">
-				<div className="logo">
-				  <div className="turnaround">
-				    <div className="front"></div>
-				    <div className="back"></div>
-				  </div>
-				</div>
+				<Logo />
+				<OffsetMenu />
 				<SearchBar sortBy={sortBy} history={this.props.history} />
 				<ChannelList sortBy={sortBy} history={this.props.history} query={this.props.params.query} />
 				{this.props.children}

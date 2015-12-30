@@ -99,3 +99,35 @@ h1, h2, h3 {
 .sort-group {
 	margin-top:10px!important;
 }
+
+.offset-menu {
+	position:absolute;
+	top:50px;
+	right:50px;
+	text-align: right;
+}
+
+.offset-menu ul {
+	list-style-type: none;
+}
+
+.offset-menu li {
+	line-height: 30px;
+}
+
+.offset-menu a {
+	color:#ccc;
+	text-transform: uppercase;
+}
+
+.offset-menu a:hover {
+	font-size:1.1em;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+}
+
+.content-row {
+	text-align: center;
+}

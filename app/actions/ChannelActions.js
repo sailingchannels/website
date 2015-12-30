@@ -20,7 +20,8 @@ class ChannelActions {
         $.ajax({
             "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
             "type": "GET",
-            "dataType": "json"
+            "dataType": "json",
+            "cache": true
         })
         .done((data) => {
             this.actions.getChannelsSuccess(data);

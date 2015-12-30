@@ -59,7 +59,7 @@ class ChannelList extends React.Component {
 
 			// start search
 			if(nextProps.query.length > 2) {
-				ChannelActions.searchChannels(nextProps.query, this.state.sortBy);
+				ChannelActions.searchChannels(nextProps.query, nextProps.sortBy);
 			}
 
 			// reset search
@@ -75,6 +75,8 @@ class ChannelList extends React.Component {
 				ChannelActions.getChannels(nextProps.sortBy, 0, 25);
 			}
 		}
+
+		// no query available
 		else {
 			this.setState({
 				channels: [],
@@ -117,11 +119,9 @@ class ChannelList extends React.Component {
 
 		// load the channels
 		if(this.state.searching ===  true) {
-			ChannelActions.searchChannels($("#search-bar").val(), data.sortBy);
 			this.props.history.replaceState(null, "/by-" + data.sortBy + "/search/" + $("#search-bar").val());
 		}
 		else {
-			ChannelActions.getChannels(data.sortBy, 0, 25);
 			this.props.history.replaceState(null, "/by-" + data.sortBy);
 		}
 	}

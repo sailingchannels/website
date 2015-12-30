@@ -34,7 +34,8 @@ var ChannelActions = (function () {
             $.ajax({
                 "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
                 "type": "GET",
-                "dataType": "json"
+                "dataType": "json",
+                "cache": true
             }).done(function (data) {
                 _this.actions.getChannelsSuccess(data);
             }).fail(function (jqXhr) {
@@ -390,7 +391,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":12,"react":"react"}],5:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":16,"react":"react"}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -495,7 +496,7 @@ var ChannelList = (function (_React$Component) {
 
 				// start search
 				if (nextProps.query.length > 2) {
-					_actionsChannelActions2["default"].searchChannels(nextProps.query, this.state.sortBy);
+					_actionsChannelActions2["default"].searchChannels(nextProps.query, nextProps.sortBy);
 				}
 
 				// reset search
@@ -510,16 +511,19 @@ var ChannelList = (function (_React$Component) {
 
 						_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
 					}
-			} else {
-				this.setState({
-					channels: [],
-					skip: 0,
-					take: 25,
-					loading: false
-				});
-
-				_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
 			}
+
+			// no query available
+			else {
+					this.setState({
+						channels: [],
+						skip: 0,
+						take: 25,
+						loading: false
+					});
+
+					_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
+				}
 		}
 
 		// ON CHANGE
@@ -556,10 +560,8 @@ var ChannelList = (function (_React$Component) {
 
 			// load the channels
 			if (this.state.searching === true) {
-				_actionsChannelActions2["default"].searchChannels($("#search-bar").val(), data.sortBy);
 				this.props.history.replaceState(null, "/by-" + data.sortBy + "/search/" + $("#search-bar").val());
 			} else {
-				_actionsChannelActions2["default"].getChannels(data.sortBy, 0, 25);
 				this.props.history.replaceState(null, "/by-" + data.sortBy);
 			}
 		}
@@ -617,7 +619,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":12,"./ChannelListItem":6,"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":16,"./ChannelListItem":6,"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -758,7 +760,139 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":7,"react":"react","react-router":"react-router"}],7:[function(require,module,exports){
+},{"./Description":9,"react":"react","react-router":"react-router"}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var ChannelMissing = (function (_React$Component) {
+  _inherits(ChannelMissing, _React$Component);
+
+  function ChannelMissing() {
+    _classCallCheck(this, ChannelMissing);
+
+    _get(Object.getPrototypeOf(ChannelMissing.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(ChannelMissing, [{
+    key: "render",
+    value: function render() {
+
+      return _react2["default"].createElement(
+        "div",
+        { className: "container" },
+        _react2["default"].createElement(_Logo2["default"], null),
+        _react2["default"].createElement(_OffsetMenu2["default"], null),
+        _react2["default"].createElement(
+          "div",
+          { className: "row content-row" },
+          _react2["default"].createElement(
+            "h1",
+            null,
+            "My channel is missing?"
+          )
+        )
+      );
+    }
+  }]);
+
+  return ChannelMissing;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelMissing;
+module.exports = exports["default"];
+
+},{"./Logo":11,"./OffsetMenu":12,"react":"react"}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var DataCollection = (function (_React$Component) {
+	_inherits(DataCollection, _React$Component);
+
+	function DataCollection() {
+		_classCallCheck(this, DataCollection);
+
+		_get(Object.getPrototypeOf(DataCollection.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(DataCollection, [{
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement(
+						"h1",
+						null,
+						"How does this work?"
+					)
+				)
+			);
+		}
+	}]);
+
+	return DataCollection;
+})(_react2["default"].Component);
+
+exports["default"] = DataCollection;
+module.exports = exports["default"];
+
+},{"./Logo":11,"./OffsetMenu":12,"react":"react"}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -859,7 +993,7 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":7,"react":"react"}],8:[function(require,module,exports){
+},{"./Description":9,"react":"react"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -888,6 +1022,14 @@ var _SearchBar = require("./SearchBar");
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
 var Home = (function (_React$Component) {
 	_inherits(Home, _React$Component);
 
@@ -915,16 +1057,8 @@ var Home = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
-				_react2["default"].createElement(
-					"div",
-					{ className: "logo" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "turnaround" },
-						_react2["default"].createElement("div", { className: "front" }),
-						_react2["default"].createElement("div", { className: "back" })
-					)
-				),
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
 				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy, history: this.props.history }),
 				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history, query: this.props.params.query }),
 				this.props.children
@@ -938,7 +1072,155 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./ChannelList":5,"./SearchBar":9,"react":"react"}],9:[function(require,module,exports){
+},{"./ChannelList":5,"./Logo":11,"./OffsetMenu":12,"./SearchBar":13,"react":"react"}],11:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var Logo = (function (_React$Component) {
+	_inherits(Logo, _React$Component);
+
+	function Logo() {
+		_classCallCheck(this, Logo);
+
+		_get(Object.getPrototypeOf(Logo.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(Logo, [{
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "logo" },
+				_react2["default"].createElement(
+					_reactRouter.Link,
+					{ to: "/" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "turnaround" },
+						_react2["default"].createElement("div", { className: "front" }),
+						_react2["default"].createElement("div", { className: "back" })
+					)
+				)
+			);
+		}
+	}]);
+
+	return Logo;
+})(_react2["default"].Component);
+
+exports["default"] = Logo;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var OffsetMenu = (function (_React$Component) {
+  _inherits(OffsetMenu, _React$Component);
+
+  function OffsetMenu() {
+    _classCallCheck(this, OffsetMenu);
+
+    _get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(OffsetMenu, [{
+    key: "render",
+    value: function render() {
+
+      return _react2["default"].createElement(
+        "div",
+        { className: "offset-menu" },
+        _react2["default"].createElement(
+          "ul",
+          null,
+          _react2["default"].createElement(
+            "li",
+            null,
+            _react2["default"].createElement(
+              _reactRouter.Link,
+              { to: "/" },
+              "Home"
+            )
+          ),
+          _react2["default"].createElement(
+            "li",
+            null,
+            _react2["default"].createElement(
+              _reactRouter.Link,
+              { to: "/data-collection" },
+              "How does this work?"
+            )
+          ),
+          _react2["default"].createElement(
+            "li",
+            null,
+            _react2["default"].createElement(
+              _reactRouter.Link,
+              { to: "/channel-missing" },
+              "My channel is missing!"
+            )
+          ),
+          _react2["default"].createElement(
+            "li",
+            null,
+            _react2["default"].createElement(
+              "a",
+              { href: "mailto:ahoy@sailing-channels.com" },
+              "Contact"
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return OffsetMenu;
+})(_react2["default"].Component);
+
+exports["default"] = OffsetMenu;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1071,7 +1353,7 @@ var SearchBar = (function (_React$Component) {
 exports["default"] = SearchBar;
 module.exports = exports["default"];
 
-},{"react":"react"}],10:[function(require,module,exports){
+},{"react":"react"}],14:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -1104,7 +1386,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":11,"history/lib/createBrowserHistory":19,"react":"react","react-dom":"react-dom","react-router":"react-router"}],11:[function(require,module,exports){
+},{"./routes":15,"history/lib/createBrowserHistory":23,"react":"react","react-dom":"react-dom","react-router":"react-router"}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1131,6 +1413,14 @@ var _componentsChannelDetail = require("./components/ChannelDetail");
 
 var _componentsChannelDetail2 = _interopRequireDefault(_componentsChannelDetail);
 
+var _componentsDataCollection = require("./components/DataCollection");
+
+var _componentsDataCollection2 = _interopRequireDefault(_componentsDataCollection);
+
+var _componentsChannelMissing = require("./components/ChannelMissing");
+
+var _componentsChannelMissing2 = _interopRequireDefault(_componentsChannelMissing);
+
 exports["default"] = _react2["default"].createElement(
 	_reactRouter.Route,
 	{ path: "/", component: _componentsApp2["default"] },
@@ -1141,11 +1431,13 @@ exports["default"] = _react2["default"].createElement(
 		{ path: "channel", component: _componentsHome2["default"] },
 		_react2["default"].createElement(_reactRouter.Route, { path: ":id", component: _componentsChannelDetail2["default"] })
 	),
-	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy/search/:query", component: _componentsHome2["default"] })
+	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy/search/:query", component: _componentsHome2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "data-collection", component: _componentsDataCollection2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "channel-missing", component: _componentsChannelMissing2["default"] })
 );
 module.exports = exports["default"];
 
-},{"./components/App":3,"./components/ChannelDetail":4,"./components/Home":8,"react":"react","react-router":"react-router"}],12:[function(require,module,exports){
+},{"./components/App":3,"./components/ChannelDetail":4,"./components/ChannelMissing":7,"./components/DataCollection":8,"./components/Home":10,"react":"react","react-router":"react-router"}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1259,7 +1551,7 @@ var ChannelStore = (function () {
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":2}],13:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":2}],17:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1352,7 +1644,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],14:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -1384,7 +1676,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],15:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1411,7 +1703,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],16:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -1482,7 +1774,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":13,"warning":31}],17:[function(require,module,exports){
+},{"_process":17,"warning":35}],21:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1563,13 +1855,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],18:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],19:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1750,7 +2042,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":14,"./DOMStateStorage":16,"./DOMUtils":17,"./ExecutionEnvironment":18,"./createDOMHistory":20,"./parsePath":25,"_process":13,"invariant":30}],20:[function(require,module,exports){
+},{"./Actions":18,"./DOMStateStorage":20,"./DOMUtils":21,"./ExecutionEnvironment":22,"./createDOMHistory":24,"./parsePath":29,"_process":17,"invariant":34}],24:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1793,7 +2085,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":17,"./ExecutionEnvironment":18,"./createHistory":21,"_process":13,"invariant":30}],21:[function(require,module,exports){
+},{"./DOMUtils":21,"./ExecutionEnvironment":22,"./createHistory":25,"_process":17,"invariant":34}],25:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -2085,7 +2377,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":14,"./AsyncUtils":15,"./createLocation":22,"./deprecate":23,"./parsePath":25,"./runTransitionHook":26,"deep-equal":27}],22:[function(require,module,exports){
+},{"./Actions":18,"./AsyncUtils":19,"./createLocation":26,"./deprecate":27,"./parsePath":29,"./runTransitionHook":30,"deep-equal":31}],26:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -2140,7 +2432,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":14,"./parsePath":25}],23:[function(require,module,exports){
+},{"./Actions":18,"./parsePath":29}],27:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -2156,7 +2448,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],24:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -2170,7 +2462,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],25:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2217,7 +2509,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":24,"_process":13,"warning":31}],26:[function(require,module,exports){
+},{"./extractPath":28,"_process":17,"warning":35}],30:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2244,7 +2536,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":13,"warning":31}],27:[function(require,module,exports){
+},{"_process":17,"warning":35}],31:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -2340,7 +2632,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":28,"./lib/keys.js":29}],28:[function(require,module,exports){
+},{"./lib/is_arguments.js":32,"./lib/keys.js":33}],32:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -2362,7 +2654,7 @@ function unsupported(object){
     false;
 };
 
-},{}],29:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -2373,7 +2665,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],30:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -2428,7 +2720,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":13}],31:[function(require,module,exports){
+},{"_process":17}],35:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -2492,4 +2784,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":13}]},{},[10]);
+},{"_process":17}]},{},[14]);
