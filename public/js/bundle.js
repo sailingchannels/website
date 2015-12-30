@@ -195,10 +195,6 @@ var ChannelDetail = (function (_React$Component) {
 		value: function componentDidMount() {
 			_storesChannelStore2["default"].listen(this.onChange);
 			_actionsChannelActions2["default"].getChannel(this.props.params.id);
-
-			$(document).on("hidden.bs.modal", "#channel-dialog", function () {
-				console.log("closed");
-			});
 		}
 
 		// COMPONENT WILL RECEIVE PROPS
@@ -216,7 +212,20 @@ var ChannelDetail = (function (_React$Component) {
 		key: "componentDidUpdate",
 		value: function componentDidUpdate() {
 			if (this.state.channel) {
-				$("#channel-dialog").modal("show");
+
+				var that = this;
+
+				// check if dialog is open
+				if (!($("#channel-dialog").data("bs.modal") || {}).isShown) {
+
+					// open the dialog
+					$("#channel-dialog").modal("show");
+					$("#channel-dialog").on("hidden.bs.modal", function () {
+
+						that.props.history.goBack();
+					});
+				}
+
 				document.title = this.state.channel.title + " - Sailing Channels";
 			}
 		}
@@ -225,7 +234,6 @@ var ChannelDetail = (function (_React$Component) {
 	}, {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
-			$(document).off("hidden.bs.modal", "#channel-dialog");
 			_storesChannelStore2["default"].unlisten(this.onChange);
 		}
 
@@ -600,7 +608,7 @@ var ChannelList = (function (_React$Component) {
 					"div",
 					{ className: "col-md-10" },
 					this.state.channels.map(function (c) {
-						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c, sortBy: _this.state.sortBy });
+						return _react2["default"].createElement(_ChannelListItem2["default"], { key: "cli-" + c.id, channel: c, sortBy: _this.state.sortBy });
 					}),
 					this.state.loading === true ? _react2["default"].createElement(
 						"center",

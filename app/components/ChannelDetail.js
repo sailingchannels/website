@@ -15,10 +15,6 @@ class ChannelDetail extends React.Component {
 	componentDidMount() {
         ChannelStore.listen(this.onChange);
         ChannelActions.getChannel(this.props.params.id);
-
-		$(document).on("hidden.bs.modal", "#channel-dialog",  function () {
-		    console.log("closed");
-		});
 	}
 
     // COMPONENT WILL RECEIVE PROPS
@@ -32,14 +28,26 @@ class ChannelDetail extends React.Component {
     // COMPONENT DID UPDATE
     componentDidUpdate() {
         if(this.state.channel) {
-            $("#channel-dialog").modal("show");
+
+			var that = this;
+
+			// check if dialog is open
+			if(!($("#channel-dialog").data("bs.modal") || {}).isShown) {
+
+				// open the dialog
+				$("#channel-dialog").modal("show");
+				$("#channel-dialog").on("hidden.bs.modal", function () {
+
+					that.props.history.goBack();
+				});
+			}
+
             document.title = this.state.channel.title + " - Sailing Channels";
         }
     }
 
     // COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
-		$(document).off("hidden.bs.modal", "#channel-dialog");
 		ChannelStore.unlisten(this.onChange);
 	}
 
