@@ -6,7 +6,6 @@ class ChannelStore {
 	constructor() {
 		this.bindActions(ChannelActions);
 		this.channels = [];
-		this.firstLoad = true;
 		this.loading = false;
 		this.skip = 0;
 		this.take = 25;
@@ -30,16 +29,19 @@ class ChannelStore {
 		this.skip = result.skip;
 		this.take = result.take;
 		this.loading = false;
-		this.firstLoad = false;
+		this.searching = false;
   	}
 
 	// GET CHANNEL SUCCESS
 	getChannelSuccess(result) {
 		this.channel = result;
+		this.searching = false;
 	}
 
 	// GET CHANNEL FAIL
   	getChannelFail(jqXhr) {
+
+		this.searching = false;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
     	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
@@ -58,15 +60,15 @@ class ChannelStore {
   	searchChannelsSuccess(result) {
 
 	    this.channels = result.data;
-
+		this.searching = true;
 		this.loading = false;
-		this.firstLoad = false;
   	}
 
 	// SEARCH CHANNELS FAIL
   	searchChannelsFail(jqXhr) {
 
 		this.loading = false;
+		this.searching = true;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
     	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);

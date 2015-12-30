@@ -451,7 +451,7 @@ var ChannelList = (function (_React$Component) {
 			});
 
 			// load the channels
-			_actionsChannelActions2["default"].getChannels(sortBy, 0, 25);
+			this.loadData(this.props);
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -469,18 +469,20 @@ var ChannelList = (function (_React$Component) {
 	}, {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
-			console.log(nextProps);
+
+			this.loadData(nextProps);
+		}
+
+		// LOAD
+	}, {
+		key: "loadData",
+		value: function loadData(nextProps) {
 
 			// does a search query exists?
 			if (nextProps.query) {
 
 				// start search
 				if (nextProps.query.length >= 2) {
-
-					this.setState({
-						searching: true
-					});
-
 					_actionsChannelActions2["default"].searchChannels(nextProps.query, this.state.sortBy);
 				}
 
@@ -491,8 +493,7 @@ var ChannelList = (function (_React$Component) {
 							channels: [],
 							skip: 0,
 							take: 25,
-							loading: false,
-							searching: false
+							loading: false
 						});
 
 						_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
@@ -502,8 +503,7 @@ var ChannelList = (function (_React$Component) {
 					channels: [],
 					skip: 0,
 					take: 25,
-					loading: false,
-					searching: false
+					loading: false
 				});
 
 				_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
@@ -542,14 +542,15 @@ var ChannelList = (function (_React$Component) {
 				sortBy: data.sortBy
 			});
 
-			// replace url state
-			this.props.history.replaceState(null, "/by-" + data.sortBy);
+			console.log(this.state.searching);
 
 			// load the channels
 			if (this.state.searching === true) {
 				_actionsChannelActions2["default"].searchChannels($("#search-bar").val(), data.sortBy);
+				this.props.history.replaceState(null, "/by-" + data.sortBy + "/search/" + $("#search-bar").val());
 			} else {
 				_actionsChannelActions2["default"].getChannels(data.sortBy, 0, 25);
+				this.props.history.replaceState(null, "/by-" + data.sortBy);
 			}
 		}
 
@@ -1162,7 +1163,6 @@ var ChannelStore = (function () {
 
 		this.bindActions(_actionsChannelActions2["default"]);
 		this.channels = [];
-		this.firstLoad = true;
 		this.loading = false;
 		this.skip = 0;
 		this.take = 25;
@@ -1188,7 +1188,7 @@ var ChannelStore = (function () {
 			this.skip = result.skip;
 			this.take = result.take;
 			this.loading = false;
-			this.firstLoad = false;
+			this.searching = false;
 		}
 
 		// GET CHANNEL SUCCESS
@@ -1196,12 +1196,15 @@ var ChannelStore = (function () {
 		key: "getChannelSuccess",
 		value: function getChannelSuccess(result) {
 			this.channel = result;
+			this.searching = false;
 		}
 
 		// GET CHANNEL FAIL
 	}, {
 		key: "getChannelFail",
 		value: function getChannelFail(jqXhr) {
+
+			this.searching = false;
 
 			// Handle multiple response formats, fallback to HTTP status code number.
 			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
@@ -1224,9 +1227,8 @@ var ChannelStore = (function () {
 		value: function searchChannelsSuccess(result) {
 
 			this.channels = result.data;
-
+			this.searching = true;
 			this.loading = false;
-			this.firstLoad = false;
 		}
 
 		// SEARCH CHANNELS FAIL
@@ -1235,6 +1237,7 @@ var ChannelStore = (function () {
 		value: function searchChannelsFail(jqXhr) {
 
 			this.loading = false;
+			this.searching = true;
 
 			// Handle multiple response formats, fallback to HTTP status code number.
 			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);

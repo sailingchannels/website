@@ -27,7 +27,7 @@ class ChannelList extends React.Component {
 		});
 
 		// load the channels
-		ChannelActions.getChannels(sortBy, 0, 25);
+		this.loadData(this.props);
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -41,18 +41,18 @@ class ChannelList extends React.Component {
 
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
+
+		this.loadData(nextProps);
+	}
+
+	// LOAD
+	loadData(nextProps) {
 
 		// does a search query exists?
 		if(nextProps.query) {
 
 			// start search
 			if(nextProps.query.length >= 2) {
-
-				this.setState({
-					searching: true
-				});
-
 				ChannelActions.searchChannels(nextProps.query, this.state.sortBy);
 			}
 
@@ -63,8 +63,7 @@ class ChannelList extends React.Component {
 					channels: [],
 					skip: 0,
 					take: 25,
-					loading: false,
-					searching: false
+					loading: false
 				});
 
 				ChannelActions.getChannels(nextProps.sortBy, 0, 25);
@@ -75,8 +74,7 @@ class ChannelList extends React.Component {
 				channels: [],
 				skip: 0,
 				take: 25,
-				loading: false,
-				searching: false
+				loading: false
 			});
 
 			ChannelActions.getChannels(nextProps.sortBy, 0, 25);
@@ -111,15 +109,16 @@ class ChannelList extends React.Component {
 			sortBy: data.sortBy
 		});
 
-		// replace url state
-		this.props.history.replaceState(null, "/by-" + data.sortBy);
+		console.log(this.state.searching);
 
 		// load the channels
 		if(this.state.searching ===  true) {
 			ChannelActions.searchChannels($("#search-bar").val(), data.sortBy);
+			this.props.history.replaceState(null, "/by-" + data.sortBy + "/search/" + $("#search-bar").val());
 		}
 		else {
 			ChannelActions.getChannels(data.sortBy, 0, 25);
+			this.props.history.replaceState(null, "/by-" + data.sortBy);
 		}
 	}
 
