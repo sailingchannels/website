@@ -270,8 +270,8 @@ var ChannelDetail = (function (_React$Component) {
                             _react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" }),
                             _react2["default"].createElement(
                                 "p",
-                                null,
-                                this.state.channel.description
+                                { className: "channel-description" },
+                                linkifyHtml(this.state.channel.description.replace("\n", "<br />"))
                             )
                         ),
                         _react2["default"].createElement(

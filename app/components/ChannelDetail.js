@@ -62,7 +62,7 @@ class ChannelDetail extends React.Component {
                   </div>
                   <div className="modal-body">
                     <img src={this.state.channel.thumbnail} className="channel-thumb" />
-                    <p>{this.state.channel.description}</p>
+                    <p className="channel-description">{linkifyHtml(this.state.channel.description.replace("\n", "<br />"))}</p>
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
