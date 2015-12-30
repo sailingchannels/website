@@ -7,6 +7,7 @@ import ChannelDetail from "./components/ChannelDetail";
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Home} />
+		<Route path="by-:sortBy" component={Home} />
 		<Route path="channel" component={Home}>
 			<Route path=":id" component={ChannelDetail} />
 		</Route>

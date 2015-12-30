@@ -2,6 +2,7 @@ import React from "react";
 import ChannelListItem from "./ChannelListItem";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
+import {Navigation} from "react-router";
 
 class ChannelList extends React.Component {
 
@@ -21,8 +22,13 @@ class ChannelList extends React.Component {
 		$(window).on("changeSort", this.changeSort.bind(this));
 		$(window).on("scroll", this.scrollWindow.bind(this));
 
+		var sortBy = this.props.sortBy;
+		this.setState({
+			"sortBy": sortBy || "subscribers"
+		});
+
 		// load the channels
-		ChannelActions.getChannels(this.state.sortBy, 0, 25);
+		ChannelActions.getChannels(sortBy, 0, 25);
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -89,6 +95,9 @@ class ChannelList extends React.Component {
 		this.setState({
 			sortBy: data.sortBy
 		});
+
+		// replace url state
+		this.props.history.replaceState(null, "/by-" + data.sortBy);
 
 		// load the channels
 		if(this.state.searching ===  true) {

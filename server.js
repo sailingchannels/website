@@ -26,7 +26,22 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/api/channel/get/:id", function(req, res) {
 
 	var id = req.params.id;
-	return res.send(global.dataIndexed[id]);
+	var data = JSON.parse(JSON.stringify(global.dataIndexed[id]));
+
+	// sort videos by date
+	data.videos.sort(function(av, bv) {
+		return bv.publishedAt - av.publishedAt;
+	});
+
+	data.videos = data.videos.slice(0, 1);
+
+	// remove description from videos
+	data.videos = data.videos.map(function(item) {
+		delete item.description;
+		return item;
+	});
+
+	return res.send(data);
 });
 
 // API / CHANNELS / GET

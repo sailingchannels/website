@@ -46,7 +46,7 @@ class ChannelListItem extends React.Component {
 
 		return (
             <p className="channel-description">
-                {descriptionTxt}
+                <span dangerouslySetInnerHTML={{__html: anchorme.js(descriptionTxt, {target: "_blank"})}}></span>
                 &nbsp;{moreOrLess}
             </p>
 		);

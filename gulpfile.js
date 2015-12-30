@@ -35,7 +35,7 @@ gulp.task("vendor-js", function() {
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
 			"bower_components/bootstrap-material-design/dist/js/ripples.min.js",
 			"bower_components/moment/min/moment.min.js",
-			"bower_components/linkifyjs/dist/jquery.linkify.min.js"
+			"public/js/anchorme.min.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({

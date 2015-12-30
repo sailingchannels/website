@@ -149,7 +149,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -175,121 +175,212 @@ var _storesChannelStore = require("../stores/ChannelStore");
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
 
 var ChannelDetail = (function (_React$Component) {
-    _inherits(ChannelDetail, _React$Component);
+  _inherits(ChannelDetail, _React$Component);
 
-    // CONSTRUCTOR
+  // CONSTRUCTOR
 
-    function ChannelDetail(props) {
-        _classCallCheck(this, ChannelDetail);
+  function ChannelDetail(props) {
+    _classCallCheck(this, ChannelDetail);
 
-        _get(Object.getPrototypeOf(ChannelDetail.prototype), "constructor", this).call(this, props);
-        this.state = _storesChannelStore2["default"].getState();
-        this.onChange = this.onChange.bind(this);
+    _get(Object.getPrototypeOf(ChannelDetail.prototype), "constructor", this).call(this, props);
+    this.state = _storesChannelStore2["default"].getState();
+    this.onChange = this.onChange.bind(this);
+  }
+
+  // COMPONENT DID MOUNT
+
+  _createClass(ChannelDetail, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      _storesChannelStore2["default"].listen(this.onChange);
+      _actionsChannelActions2["default"].getChannel(this.props.params.id);
     }
 
-    // COMPONENT DID MOUNT
+    // COMPONENT WILL RECEIVE PROPS
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
 
-    _createClass(ChannelDetail, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            _storesChannelStore2["default"].listen(this.onChange);
-            _actionsChannelActions2["default"].getChannel(this.props.params.id);
-        }
+      console.log(nextProps.params.id, this.props.params.id);
+      if (nextProps.params.id !== this.props.params.id) {
+        _actionsChannelActions2["default"].getChannel(nextProps.params.id);
+      }
+    }
 
-        // COMPONENT WILL RECEIVE PROPS
-    }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
+    // COMPONENT DID UPDATE
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.state.channel) {
+        $("#channel-dialog").modal("show");
+        document.title = this.state.channel.title + " - Sailing Channels";
+      }
+    }
 
-            console.log(nextProps.params.id, this.props.params.id);
-            if (nextProps.params.id !== this.props.params.id) {
-                _actionsChannelActions2["default"].getChannel(nextProps.params.id);
-            }
-        }
+    // COMPONENT WILL UNMOUNT
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      _storesChannelStore2["default"].unlisten(this.onChange);
+    }
 
-        // COMPONENT DID UPDATE
-    }, {
-        key: "componentDidUpdate",
-        value: function componentDidUpdate() {
-            if (this.state.channel) {
-                $("#channel-dialog").modal("show");
-                document.title = this.state.channel.title + " - Sailing Channels";
-            }
-        }
+    // ON CHANGE
+  }, {
+    key: "onChange",
+    value: function onChange(state) {
+      this.setState(state);
+    }
 
-        // COMPONENT WILL UNMOUNT
-    }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-            _storesChannelStore2["default"].unlisten(this.onChange);
-        }
+    // RENDER
+  }, {
+    key: "render",
+    value: function render() {
 
-        // ON CHANGE
-    }, {
-        key: "onChange",
-        value: function onChange(state) {
-            this.setState(state);
-        }
+      // no channel yet
+      if (!this.state.channel) {
+        return null;
+      }
 
-        // RENDER
-    }, {
-        key: "render",
-        value: function render() {
-
-            // no channel yet
-            if (!this.state.channel) {
-                return null;
-            }
-
-            return _react2["default"].createElement(
+      return _react2["default"].createElement(
+        "div",
+        { id: "channel-dialog", className: "modal fade" },
+        _react2["default"].createElement(
+          "div",
+          { className: "modal-dialog modal-lg" },
+          _react2["default"].createElement(
+            "div",
+            { className: "modal-content" },
+            _react2["default"].createElement(
+              "div",
+              { className: "modal-header" },
+              _react2["default"].createElement(
+                "button",
+                { type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+                "×"
+              ),
+              _react2["default"].createElement(
+                "h3",
+                { className: "modal-title" },
+                this.state.channel.title
+              )
+            ),
+            _react2["default"].createElement(
+              "div",
+              { className: "modal-body" },
+              _react2["default"].createElement(
                 "div",
-                { id: "channel-dialog", className: "modal fade" },
+                { className: "row" },
                 _react2["default"].createElement(
-                    "div",
-                    { className: "modal-dialog modal-lg" },
+                  "div",
+                  { className: "col-md-2" },
+                  _react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
+                ),
+                _react2["default"].createElement(
+                  "div",
+                  { className: "col-md-7" },
+                  _react2["default"].createElement("p", { dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
+                ),
+                _react2["default"].createElement(
+                  "div",
+                  { className: "col-md-3" },
+                  this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
+                    "p",
+                    { className: "text-warning" },
                     _react2["default"].createElement(
-                        "div",
-                        { className: "modal-content" },
-                        _react2["default"].createElement(
-                            "div",
-                            { className: "modal-header" },
-                            _react2["default"].createElement(
-                                "button",
-                                { type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
-                                "×"
-                            ),
-                            _react2["default"].createElement(
-                                "h4",
-                                { className: "modal-title" },
-                                this.state.channel.title
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "div",
-                            { className: "modal-body" },
-                            _react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" }),
-                            _react2["default"].createElement(
-                                "p",
-                                { className: "channel-description" },
-                                linkifyHtml(this.state.channel.description.replace("\n", "<br />"))
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "div",
-                            { className: "modal-footer" },
-                            _react2["default"].createElement(
-                                "button",
-                                { type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-                                "Close"
-                            )
-                        )
+                      "b",
+                      null,
+                      "Subscriber info hidden by channel ",
+                      _react2["default"].createElement("i", { className: "fa fa-frown-o" })
                     )
+                  ) : null,
+                  this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                      "b",
+                      null,
+                      "Subscribers:"
+                    ),
+                    " ",
+                    this.state.channel.subscribers.toLocaleString()
+                  ) : null,
+                  this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                      "b",
+                      null,
+                      "Videos:"
+                    ),
+                    " ",
+                    this.state.channel.videos.length
+                  ) : null,
+                  _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                      "b",
+                      null,
+                      "Views:"
+                    ),
+                    " ",
+                    this.state.channel.views.toLocaleString()
+                  ),
+                  this.state.channel.lastUploadAt ? _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                      "b",
+                      null,
+                      "Last upload:"
+                    ),
+                    " ",
+                    moment.unix(this.state.channel.lastUploadAt).fromNow()
+                  ) : "",
+                  _react2["default"].createElement(
+                    "a",
+                    { target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+                    _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+                    " Subscribe"
+                  )
                 )
-            );
-        }
-    }]);
+              ),
+              _react2["default"].createElement(
+                "div",
+                { className: "row" },
+                _react2["default"].createElement("div", { className: "col-md-2" }),
+                _react2["default"].createElement(
+                  "div",
+                  { className: "col-md-10" },
+                  _react2["default"].createElement(
+                    "p",
+                    null,
+                    _react2["default"].createElement(
+                      "b",
+                      null,
+                      "Latest video:"
+                    )
+                  ),
+                  _react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowfullscreen: true })
+                )
+              )
+            ),
+            _react2["default"].createElement(
+              "div",
+              { className: "modal-footer" },
+              _react2["default"].createElement(
+                "button",
+                { type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
+                "Close"
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
 
-    return ChannelDetail;
+  return ChannelDetail;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelDetail;
@@ -328,6 +419,8 @@ var _storesChannelStore = require("../stores/ChannelStore");
 
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
 
+var _reactRouter = require("react-router");
+
 var ChannelList = (function (_React$Component) {
 	_inherits(ChannelList, _React$Component);
 
@@ -353,8 +446,13 @@ var ChannelList = (function (_React$Component) {
 			$(window).on("changeSort", this.changeSort.bind(this));
 			$(window).on("scroll", this.scrollWindow.bind(this));
 
+			var sortBy = this.props.sortBy;
+			this.setState({
+				"sortBy": sortBy || "subscribers"
+			});
+
 			// load the channels
-			_actionsChannelActions2["default"].getChannels(this.state.sortBy, 0, 25);
+			_actionsChannelActions2["default"].getChannels(sortBy, 0, 25);
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -429,6 +527,9 @@ var ChannelList = (function (_React$Component) {
 			this.setState({
 				sortBy: data.sortBy
 			});
+
+			// replace url state
+			this.props.history.replaceState(null, "/by-" + data.sortBy);
 
 			// load the channels
 			if (this.state.searching === true) {
@@ -510,7 +611,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":12,"./ChannelListItem":6,"react":"react"}],6:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":12,"./ChannelListItem":6,"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -739,7 +840,7 @@ var ChannelListItem = (function (_React$Component) {
             return _react2["default"].createElement(
                 "p",
                 { className: "channel-description" },
-                descriptionTxt,
+                _react2["default"].createElement("span", { dangerouslySetInnerHTML: { __html: anchorme.js(descriptionTxt, { target: "_blank" }) } }),
                 " ",
                 moreOrLess
             );
@@ -802,6 +903,9 @@ var Home = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
+
+			var sortBy = this.props.params.sortBy || "subscribers";
+
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
@@ -815,8 +919,8 @@ var Home = (function (_React$Component) {
 						_react2["default"].createElement("div", { className: "back" })
 					)
 				),
-				_react2["default"].createElement(_SearchBar2["default"], null),
-				_react2["default"].createElement(_ChannelList2["default"], null),
+				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy }),
+				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history }),
 				this.props.children
 			);
 		}
@@ -940,11 +1044,11 @@ var SearchBar = (function (_React$Component) {
                             { className: "sort-label control-label" },
                             "Sort by:"
                         ),
-                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "subscribers" }),
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "subscribers", defaultChecked: this.props.sortBy === "subscribers" }),
                         " Subscribers",
-                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "views" }),
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "views", defaultChecked: this.props.sortBy === "views" }),
                         " Views",
-                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "upload" }),
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "upload", defaultChecked: this.props.sortBy === "upload" }),
                         " Last upload"
                     )
                 ),
@@ -1023,6 +1127,7 @@ exports["default"] = _react2["default"].createElement(
 	_reactRouter.Route,
 	{ path: "/", component: _componentsApp2["default"] },
 	_react2["default"].createElement(_reactRouter.IndexRoute, { component: _componentsHome2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy", component: _componentsHome2["default"] }),
 	_react2["default"].createElement(
 		_reactRouter.Route,
 		{ path: "channel", component: _componentsHome2["default"] },

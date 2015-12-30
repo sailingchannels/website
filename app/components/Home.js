@@ -11,6 +11,9 @@ class Home extends React.Component {
 
 	// RENDER
 	render() {
+
+		var sortBy = this.props.params.sortBy || "subscribers";
+
 		return (
 			<div className="container">
 				<div className="logo">
@@ -19,8 +22,8 @@ class Home extends React.Component {
 				    <div className="back"></div>
 				  </div>
 				</div>
-				<SearchBar />
-				<ChannelList />
+				<SearchBar sortBy={sortBy} />
+				<ChannelList sortBy={sortBy} history={this.props.history} />
 				{this.props.children}
 			</div>
 		);

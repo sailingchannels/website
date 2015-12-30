@@ -59,10 +59,9 @@ class SearchBar extends React.Component {
 
                     <div className="form-group sort-group">
                         <label className="sort-label control-label">Sort by:</label>
-
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="subscribers" /> Subscribers
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="views" /> Views
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" /> Last upload
+                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="subscribers" defaultChecked={this.props.sortBy === "subscribers"} /> Subscribers
+                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="views" defaultChecked={this.props.sortBy === "views"} /> Views
+                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" defaultChecked={this.props.sortBy === "upload"} /> Last upload
                     </div>
                 </div>
 				<div className="col-md-4"></div>
