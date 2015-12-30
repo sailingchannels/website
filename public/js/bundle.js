@@ -361,7 +361,7 @@ var ChannelDetail = (function (_React$Component) {
                       "Latest video:"
                     )
                   ),
-                  _react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowfullscreen: true })
+                  _react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowFullScreen: true })
                 )
               )
             ),
@@ -442,7 +442,6 @@ var ChannelList = (function (_React$Component) {
 			_storesChannelStore2["default"].listen(this.onChange);
 
 			// handle event bus page changes
-			$(window).on("typeSearchterm", this.typeSearchterm.bind(this));
 			$(window).on("changeSort", this.changeSort.bind(this));
 			$(window).on("scroll", this.scrollWindow.bind(this));
 
@@ -459,11 +458,56 @@ var ChannelList = (function (_React$Component) {
 	}, {
 		key: "componentWillUnmount",
 		value: function componentWillUnmount() {
-			$(window).off("typeSearchterm");
+			//$(window).off("typeSearchterm");
 			$(window).off("scroll");
 			$(window).off("changeSort");
 
 			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
+
+		// COMPOENTNT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+			console.log(nextProps);
+
+			// does a search query exists?
+			if (nextProps.query) {
+
+				// start search
+				if (nextProps.query.length >= 2) {
+
+					this.setState({
+						searching: true
+					});
+
+					_actionsChannelActions2["default"].searchChannels(nextProps.query, this.state.sortBy);
+				}
+
+				// reset search
+				else if (nextProps.query.length === 0) {
+
+						this.setState({
+							channels: [],
+							skip: 0,
+							take: 25,
+							loading: false,
+							searching: false
+						});
+
+						_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
+					}
+			} else {
+				this.setState({
+					channels: [],
+					skip: 0,
+					take: 25,
+					loading: false,
+					searching: false
+				});
+
+				_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 25);
+			}
 		}
 
 		// ON CHANGE
@@ -471,36 +515,6 @@ var ChannelList = (function (_React$Component) {
 		key: "onChange",
 		value: function onChange(state) {
 			this.setState(state);
-		}
-
-		// TYPE SEARCHTERM
-	}, {
-		key: "typeSearchterm",
-		value: function typeSearchterm(e, data) {
-
-			// start search
-			if (data.term.length >= 2) {
-
-				this.setState({
-					searching: true
-				});
-
-				_actionsChannelActions2["default"].searchChannels(data.term, this.state.sortBy);
-			}
-
-			// reset search
-			else if (data.term.length === 0) {
-
-					this.setState({
-						channels: [],
-						skip: 0,
-						take: 25,
-						loading: false,
-						searching: false
-					});
-
-					_actionsChannelActions2["default"].getChannels(this.state.sortBy, 0, 25);
-				}
 		}
 
 		// SCROLL WINDOW
@@ -545,25 +559,6 @@ var ChannelList = (function (_React$Component) {
 		value: function render() {
 			var _this = this;
 
-			// is this the first time loading data?
-			if (this.state.firstLoad === true) {
-				return _react2["default"].createElement(
-					"div",
-					{ className: "row" },
-					_react2["default"].createElement("div", { className: "col-md-1" }),
-					_react2["default"].createElement(
-						"div",
-						{ className: "col-md-10" },
-						_react2["default"].createElement(
-							"center",
-							null,
-							"Loading channels ..."
-						)
-					),
-					_react2["default"].createElement("div", { className: "col-md-1" })
-				);
-			}
-
 			// no channels found
 			if (this.state.channels.length === 0) {
 				return _react2["default"].createElement(
@@ -576,7 +571,7 @@ var ChannelList = (function (_React$Component) {
 						_react2["default"].createElement(
 							"center",
 							null,
-							"No channels match the criteria!"
+							"Loading channels ..."
 						)
 					),
 					_react2["default"].createElement("div", { className: "col-md-1" })
@@ -919,8 +914,8 @@ var Home = (function (_React$Component) {
 						_react2["default"].createElement("div", { className: "back" })
 					)
 				),
-				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy }),
-				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history }),
+				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy, history: this.props.history }),
+				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history, query: this.props.params.query }),
 				this.props.children
 			);
 		}
@@ -998,13 +993,16 @@ var SearchBar = (function (_React$Component) {
         value: function keyUp(e) {
 
             // ESC clears selection
-            if (e.keyCode === 27) {
+            if (e.keyCode === 27 || e.target.value.length === 0) {
 
                 e.target.value = "";
+                this.props.history.pushState(null, "/by-" + this.props.sortBy);
+                return;
             }
 
             var v = e.target.value;
-            $(window).trigger("typeSearchterm", { "term": v });
+            //$(window).trigger("typeSearchterm", {"term": v});
+            this.props.history.replaceState(null, "/by-" + this.props.sortBy + "/search/" + encodeURIComponent(v));
         }
 
         // CHANGE SORT
@@ -1132,7 +1130,8 @@ exports["default"] = _react2["default"].createElement(
 		_reactRouter.Route,
 		{ path: "channel", component: _componentsHome2["default"] },
 		_react2["default"].createElement(_reactRouter.Route, { path: ":id", component: _componentsChannelDetail2["default"] })
-	)
+	),
+	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy/search/:query", component: _componentsHome2["default"] })
 );
 module.exports = exports["default"];
 

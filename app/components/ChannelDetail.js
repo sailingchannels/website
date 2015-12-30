@@ -84,7 +84,7 @@ class ChannelDetail extends React.Component {
 						<div className="col-md-2"></div>
 						<div className="col-md-10">
 							<p><b>Latest video:</b></p>
-							<iframe width="560" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0].id} frameBorder="0" allowfullscreen></iframe>
+							<iframe width="560" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0].id} frameBorder="0" allowFullScreen></iframe>
 						</div>
 					</div>
                   </div>

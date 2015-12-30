@@ -11,5 +11,6 @@ export default (
 		<Route path="channel" component={Home}>
 			<Route path=":id" component={ChannelDetail} />
 		</Route>
+		<Route path="by-:sortBy/search/:query" component={Home} />
 	</Route>
 );

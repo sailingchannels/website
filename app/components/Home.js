@@ -22,8 +22,8 @@ class Home extends React.Component {
 				    <div className="back"></div>
 				  </div>
 				</div>
-				<SearchBar sortBy={sortBy} />
-				<ChannelList sortBy={sortBy} history={this.props.history} />
+				<SearchBar sortBy={sortBy} history={this.props.history} />
+				<ChannelList sortBy={sortBy} history={this.props.history} query={this.props.params.query} />
 				{this.props.children}
 			</div>
 		);

@@ -31,13 +31,16 @@ class SearchBar extends React.Component {
     keyUp(e) {
 
         // ESC clears selection
-        if(e.keyCode === 27) {
+        if(e.keyCode === 27 || e.target.value.length === 0) {
 
             e.target.value = "";
+            this.props.history.pushState(null, "/by-" + this.props.sortBy);
+            return;
         }
 
         var v = e.target.value;
-        $(window).trigger("typeSearchterm", {"term": v});
+        //$(window).trigger("typeSearchterm", {"term": v});
+        this.props.history.replaceState(null, "/by-" + this.props.sortBy + "/search/" + encodeURIComponent(v));
     }
 
     // CHANGE SORT

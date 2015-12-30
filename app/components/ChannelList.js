@@ -18,7 +18,6 @@ class ChannelList extends React.Component {
 		ChannelStore.listen(this.onChange);
 
 		// handle event bus page changes
-		$(window).on("typeSearchterm", this.typeSearchterm.bind(this));
 		$(window).on("changeSort", this.changeSort.bind(this));
 		$(window).on("scroll", this.scrollWindow.bind(this));
 
@@ -33,34 +32,45 @@ class ChannelList extends React.Component {
 
 	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
-		$(window).off("typeSearchterm");
+		//$(window).off("typeSearchterm");
 		$(window).off("scroll");
 		$(window).off("changeSort");
 
 		ChannelStore.unlisten(this.onChange);
 	}
 
-    // ON CHANGE
-	onChange(state) {
-		this.setState(state);
-	}
+	// COMPOENTNT WILL RECEIVE PROPS
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 
-	// TYPE SEARCHTERM
-	typeSearchterm(e, data) {
+		// does a search query exists?
+		if(nextProps.query) {
 
-		// start search
-		if(data.term.length >= 2) {
+			// start search
+			if(nextProps.query.length >= 2) {
 
-			this.setState({
-				searching: true
-			});
+				this.setState({
+					searching: true
+				});
 
-			ChannelActions.searchChannels(data.term, this.state.sortBy);
+				ChannelActions.searchChannels(nextProps.query, this.state.sortBy);
+			}
+
+			// reset search
+			else if(nextProps.query.length === 0) {
+
+				this.setState({
+					channels: [],
+					skip: 0,
+					take: 25,
+					loading: false,
+					searching: false
+				});
+
+				ChannelActions.getChannels(nextProps.sortBy, 0, 25);
+			}
 		}
-
-		// reset search
-		else if(data.term.length === 0) {
-
+		else {
 			this.setState({
 				channels: [],
 				skip: 0,
@@ -69,8 +79,13 @@ class ChannelList extends React.Component {
 				searching: false
 			});
 
-			ChannelActions.getChannels(this.state.sortBy, 0, 25);
+			ChannelActions.getChannels(nextProps.sortBy, 0, 25);
 		}
+	}
+
+    // ON CHANGE
+	onChange(state) {
+		this.setState(state);
 	}
 
 	// SCROLL WINDOW
@@ -111,21 +126,6 @@ class ChannelList extends React.Component {
     // RENDER
 	render() {
 
-		// is this the first time loading data?
-		if(this.state.firstLoad === true) {
-			return (
-				<div className="row">
-					<div className="col-md-1"></div>
-					<div className="col-md-10">
-						<center>
-							Loading channels ...
-						</center>
-					</div>
-					<div className="col-md-1"></div>
-				</div>
-			);
-		}
-
 		// no channels found
 		if(this.state.channels.length === 0) {
 			return (
@@ -133,7 +133,7 @@ class ChannelList extends React.Component {
 					<div className="col-md-1"></div>
 					<div className="col-md-10">
 						<center>
-							No channels match the criteria!
+							Loading channels ...
 						</center>
 					</div>
 					<div className="col-md-1"></div>
