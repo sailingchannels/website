@@ -274,6 +274,7 @@ var ChannelList = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
+			var _this = this;
 
 			// is this the first time loading data?
 			if (this.state.firstLoad === true) {
@@ -322,7 +323,7 @@ var ChannelList = (function (_React$Component) {
 					"div",
 					{ className: "col-md-10" },
 					this.state.channels.map(function (c) {
-						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c });
+						return _react2["default"].createElement(_ChannelListItem2["default"], { key: c.id, channel: c, sortBy: _this.state.sortBy });
 					}),
 					this.state.loading === true ? _react2["default"].createElement(
 						"center",
@@ -459,6 +460,17 @@ var ChannelListItem = (function (_React$Component) {
 						" ",
 						this.props.channel.views.toLocaleString()
 					),
+					this.props.channel.lastUploadAt ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Last upload:"
+						),
+						" ",
+						moment.unix(this.props.channel.lastUploadAt).fromNow()
+					) : "",
 					_react2["default"].createElement(
 						"a",
 						{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
@@ -547,7 +559,7 @@ var ChannelListItem = (function (_React$Component) {
 
             // more is active, show "less" button
             var moreOrLessTxt = this.state.more === true ? "less" : "more";
-            var descriptionTxt = this.textCutter(200, this.props.text);
+            var descriptionTxt = this.textCutter(250, this.props.text);
 
             // show a more or less button
             var moreOrLess;

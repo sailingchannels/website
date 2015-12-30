@@ -33,6 +33,7 @@ gulp.task("vendor-js", function() {
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
+			"bower_components/moment/min/moment.min.js",
 			"bower_components/jquery-unveil/jquery.unveil.min.js"
 		])
 		.pipe(concat("vendor.js"))

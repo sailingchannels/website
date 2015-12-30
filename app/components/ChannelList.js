@@ -138,7 +138,7 @@ class ChannelList extends React.Component {
 				<div className="col-md-1"></div>
                 <div className="col-md-10">
                     {this.state.channels.map(c => (
-        				<ChannelListItem key={c.id} channel={c} />
+        				<ChannelListItem key={c.id} channel={c} sortBy={this.state.sortBy} />
         			))}
 					{(this.state.loading === true) ? <center className="loadMore">Loading more channels ...</center> : null}
                 </div>

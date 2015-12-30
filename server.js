@@ -60,11 +60,11 @@ app.get("/api/channels/get", function(req, res) {
 				if(!b.videos || !a.videos) return 0;
 
 				a.videos.sort(function(av, bv) {
-					return av.publishedAt - bv.publishedAt;
+					return bv.publishedAt - av.publishedAt;
 				});
 
 				b.videos.sort(function(av, bv) {
-					return av.publishedAt - bv.publishedAt;
+					return bv.publishedAt - av.publishedAt;
 				});
 
 				return b.videos[0].publishedAt - a.videos[0].publishedAt;
@@ -72,12 +72,16 @@ app.get("/api/channels/get", function(req, res) {
 			break;
 	}
 
-	console.log(ownData[0].videos.sort(function(av, bv) {
-		return bv.publishedAt - av.publishedAt;
-	}));
-
 	// remove unneeded properties
 	var filtered = ownData.map(function(item) {
+
+		// get the last timestamp a video was uploaded
+		if(item.videos) {
+			item.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
+				return vid.publishedAt;
+			}));
+		}
+
 		item.videos = (item.videos) ? item.videos.length : 0;
 		return item;
 	});
@@ -121,6 +125,25 @@ app.get("/api/channels/search", function(req, res) {
 			});
 
 			break;
+
+		// UPLOAD
+		case "upload":
+
+			// who has the last video upload
+			ownData.sort(function(a, b) {
+				if(!b.videos || !a.videos) return 0;
+
+				a.videos.sort(function(av, bv) {
+					return bv.publishedAt - av.publishedAt;
+				});
+
+				b.videos.sort(function(av, bv) {
+					return bv.publishedAt - av.publishedAt;
+				});
+
+				return b.videos[0].publishedAt - a.videos[0].publishedAt;
+			});
+			break;
 	}
 
 	// filter channels by query
@@ -130,6 +153,14 @@ app.get("/api/channels/search", function(req, res) {
 
 	// remove unneeded properties
 	filtered = filtered.map(function(item) {
+
+		// get the last timestamp a video was uploaded
+		if(item.videos) {
+			item.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
+				return vid.publishedAt;
+			}));
+		}
+
 		item.videos = (item.videos) ? item.videos.length : 0;
 		return item;
 	});
