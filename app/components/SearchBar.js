@@ -39,7 +39,6 @@ class SearchBar extends React.Component {
         }
 
         var v = e.target.value;
-        //$(window).trigger("typeSearchterm", {"term": v});
         this.props.history.replaceState(null, "/by-" + this.props.sortBy + "/search/" + encodeURIComponent(v));
     }
 

@@ -149,7 +149,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -175,212 +175,216 @@ var _storesChannelStore = require("../stores/ChannelStore");
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
 
 var ChannelDetail = (function (_React$Component) {
-  _inherits(ChannelDetail, _React$Component);
+	_inherits(ChannelDetail, _React$Component);
 
-  // CONSTRUCTOR
+	// CONSTRUCTOR
 
-  function ChannelDetail(props) {
-    _classCallCheck(this, ChannelDetail);
+	function ChannelDetail(props) {
+		_classCallCheck(this, ChannelDetail);
 
-    _get(Object.getPrototypeOf(ChannelDetail.prototype), "constructor", this).call(this, props);
-    this.state = _storesChannelStore2["default"].getState();
-    this.onChange = this.onChange.bind(this);
-  }
+		_get(Object.getPrototypeOf(ChannelDetail.prototype), "constructor", this).call(this, props);
+		this.state = _storesChannelStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
 
-  // COMPONENT DID MOUNT
+	// COMPONENT DID MOUNT
 
-  _createClass(ChannelDetail, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      _storesChannelStore2["default"].listen(this.onChange);
-      _actionsChannelActions2["default"].getChannel(this.props.params.id);
-    }
+	_createClass(ChannelDetail, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesChannelStore2["default"].listen(this.onChange);
+			_actionsChannelActions2["default"].getChannel(this.props.params.id);
 
-    // COMPONENT WILL RECEIVE PROPS
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
+			$(document).on("hidden.bs.modal", "#channel-dialog", function () {
+				console.log("closed");
+			});
+		}
 
-      console.log(nextProps.params.id, this.props.params.id);
-      if (nextProps.params.id !== this.props.params.id) {
-        _actionsChannelActions2["default"].getChannel(nextProps.params.id);
-      }
-    }
+		// COMPONENT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
 
-    // COMPONENT DID UPDATE
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (this.state.channel) {
-        $("#channel-dialog").modal("show");
-        document.title = this.state.channel.title + " - Sailing Channels";
-      }
-    }
+			if (nextProps.params.id !== this.props.params.id) {
+				_actionsChannelActions2["default"].getChannel(nextProps.params.id);
+			}
+		}
 
-    // COMPONENT WILL UNMOUNT
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      _storesChannelStore2["default"].unlisten(this.onChange);
-    }
+		// COMPONENT DID UPDATE
+	}, {
+		key: "componentDidUpdate",
+		value: function componentDidUpdate() {
+			if (this.state.channel) {
+				$("#channel-dialog").modal("show");
+				document.title = this.state.channel.title + " - Sailing Channels";
+			}
+		}
 
-    // ON CHANGE
-  }, {
-    key: "onChange",
-    value: function onChange(state) {
-      this.setState(state);
-    }
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			$(document).off("hidden.bs.modal", "#channel-dialog");
+			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
 
-    // RENDER
-  }, {
-    key: "render",
-    value: function render() {
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
 
-      // no channel yet
-      if (!this.state.channel) {
-        return null;
-      }
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
 
-      return _react2["default"].createElement(
-        "div",
-        { id: "channel-dialog", className: "modal fade" },
-        _react2["default"].createElement(
-          "div",
-          { className: "modal-dialog modal-lg" },
-          _react2["default"].createElement(
-            "div",
-            { className: "modal-content" },
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-header" },
-              _react2["default"].createElement(
-                "button",
-                { type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
-                "×"
-              ),
-              _react2["default"].createElement(
-                "h3",
-                { className: "modal-title" },
-                this.state.channel.title
-              )
-            ),
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-body" },
-              _react2["default"].createElement(
-                "div",
-                { className: "row" },
-                _react2["default"].createElement(
-                  "div",
-                  { className: "col-md-2" },
-                  _react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
-                ),
-                _react2["default"].createElement(
-                  "div",
-                  { className: "col-md-7" },
-                  _react2["default"].createElement("p", { dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
-                ),
-                _react2["default"].createElement(
-                  "div",
-                  { className: "col-md-3" },
-                  this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
-                    "p",
-                    { className: "text-warning" },
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Subscriber info hidden by channel ",
-                      _react2["default"].createElement("i", { className: "fa fa-frown-o" })
-                    )
-                  ) : null,
-                  this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
-                    "p",
-                    null,
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Subscribers:"
-                    ),
-                    " ",
-                    this.state.channel.subscribers.toLocaleString()
-                  ) : null,
-                  this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
-                    "p",
-                    null,
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Videos:"
-                    ),
-                    " ",
-                    this.state.channel.videos.length
-                  ) : null,
-                  _react2["default"].createElement(
-                    "p",
-                    null,
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Views:"
-                    ),
-                    " ",
-                    this.state.channel.views.toLocaleString()
-                  ),
-                  this.state.channel.lastUploadAt ? _react2["default"].createElement(
-                    "p",
-                    null,
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Last upload:"
-                    ),
-                    " ",
-                    moment.unix(this.state.channel.lastUploadAt).fromNow()
-                  ) : "",
-                  _react2["default"].createElement(
-                    "a",
-                    { target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
-                    _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-                    " Subscribe"
-                  )
-                )
-              ),
-              _react2["default"].createElement(
-                "div",
-                { className: "row" },
-                _react2["default"].createElement("div", { className: "col-md-2" }),
-                _react2["default"].createElement(
-                  "div",
-                  { className: "col-md-10" },
-                  _react2["default"].createElement(
-                    "p",
-                    null,
-                    _react2["default"].createElement(
-                      "b",
-                      null,
-                      "Latest video:"
-                    )
-                  ),
-                  _react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowFullScreen: true })
-                )
-              )
-            ),
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-footer" },
-              _react2["default"].createElement(
-                "button",
-                { type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-                "Close"
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
+			// no channel yet
+			if (!this.state.channel) {
+				return null;
+			}
 
-  return ChannelDetail;
+			return _react2["default"].createElement(
+				"div",
+				{ id: "channel-dialog", className: "modal fade" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "modal-dialog modal-lg" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "modal-content" },
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-header" },
+							_react2["default"].createElement(
+								"button",
+								{ type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+								"×"
+							),
+							_react2["default"].createElement(
+								"h3",
+								{ className: "modal-title" },
+								this.state.channel.title
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-body" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "row" },
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-md-2" },
+									_react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
+								),
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-md-7" },
+									_react2["default"].createElement("p", { dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
+								),
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-md-3" },
+									this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
+										"p",
+										{ className: "text-warning" },
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Subscriber info hidden by channel ",
+											_react2["default"].createElement("i", { className: "fa fa-frown-o" })
+										)
+									) : null,
+									this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Subscribers:"
+										),
+										" ",
+										this.state.channel.subscribers.toLocaleString()
+									) : null,
+									this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Videos:"
+										),
+										" ",
+										this.state.channel.videos.length
+									) : null,
+									_react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Views:"
+										),
+										" ",
+										this.state.channel.views.toLocaleString()
+									),
+									this.state.channel.lastUploadAt ? _react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Last upload:"
+										),
+										" ",
+										moment.unix(this.state.channel.lastUploadAt).fromNow()
+									) : "",
+									_react2["default"].createElement(
+										"a",
+										{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+										_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+										" Subscribe"
+									)
+								)
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "row" },
+								_react2["default"].createElement("div", { className: "col-md-2" }),
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-md-10" },
+									_react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Latest video:"
+										)
+									),
+									_react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowFullScreen: true })
+								)
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-footer" },
+							_react2["default"].createElement(
+								"button",
+								{ type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
+								"Close"
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return ChannelDetail;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelDetail;
@@ -452,6 +456,13 @@ var ChannelList = (function (_React$Component) {
 
 			// load the channels
 			this.loadData(this.props);
+
+			if (this.props.query) {
+				$("#search-bar").val(this.props.query);
+				window.setTimeout(function () {
+					$("#search-bar").focus();
+				}, 1);
+			}
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -470,6 +481,7 @@ var ChannelList = (function (_React$Component) {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
 
+			console.log(nextProps);
 			this.loadData(nextProps);
 		}
 
@@ -482,7 +494,7 @@ var ChannelList = (function (_React$Component) {
 			if (nextProps.query) {
 
 				// start search
-				if (nextProps.query.length >= 2) {
+				if (nextProps.query.length > 2) {
 					_actionsChannelActions2["default"].searchChannels(nextProps.query, this.state.sortBy);
 				}
 
@@ -542,8 +554,6 @@ var ChannelList = (function (_React$Component) {
 				sortBy: data.sortBy
 			});
 
-			console.log(this.state.searching);
-
 			// load the channels
 			if (this.state.searching === true) {
 				_actionsChannelActions2["default"].searchChannels($("#search-bar").val(), data.sortBy);
@@ -572,7 +582,7 @@ var ChannelList = (function (_React$Component) {
 						_react2["default"].createElement(
 							"center",
 							null,
-							"Loading channels ..."
+							this.state.searching === true ? "No channels match the search query!" : "Loading channels..."
 						)
 					),
 					_react2["default"].createElement("div", { className: "col-md-1" })
@@ -1002,7 +1012,6 @@ var SearchBar = (function (_React$Component) {
             }
 
             var v = e.target.value;
-            //$(window).trigger("typeSearchterm", {"term": v});
             this.props.history.replaceState(null, "/by-" + this.props.sortBy + "/search/" + encodeURIComponent(v));
         }
 

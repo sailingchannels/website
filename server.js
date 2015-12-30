@@ -4,6 +4,7 @@ var logger = require("morgan");
 var jsonfile = require("jsonfile");
 var bodyParser = require("body-parser");
 var swig = require("swig");
+var fs = require("fs");
 var React = require("react");
 var ReactDOM = require("react-dom/server");
 var Router = require("react-router");
@@ -121,6 +122,8 @@ app.get("/api/channels/search", function(req, res) {
 
 	var sortBy = req.query.sort || "subscribers";
 	var q = req.query.q || null;
+
+	fs.appendFile("searches.log", q + "\n");
 
 	if(!q) return res.send({ "data": [] });
 

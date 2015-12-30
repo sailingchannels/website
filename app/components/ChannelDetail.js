@@ -15,12 +15,15 @@ class ChannelDetail extends React.Component {
 	componentDidMount() {
         ChannelStore.listen(this.onChange);
         ChannelActions.getChannel(this.props.params.id);
+
+		$(document).on("hidden.bs.modal", "#channel-dialog",  function () {
+		    console.log("closed");
+		});
 	}
 
     // COMPONENT WILL RECEIVE PROPS
     componentWillReceiveProps(nextProps) {
 
-        console.log(nextProps.params.id, this.props.params.id);
         if(nextProps.params.id !== this.props.params.id) {
             ChannelActions.getChannel(nextProps.params.id);
         }
@@ -36,6 +39,7 @@ class ChannelDetail extends React.Component {
 
     // COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
+		$(document).off("hidden.bs.modal", "#channel-dialog");
 		ChannelStore.unlisten(this.onChange);
 	}
 

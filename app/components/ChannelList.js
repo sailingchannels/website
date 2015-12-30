@@ -28,6 +28,11 @@ class ChannelList extends React.Component {
 
 		// load the channels
 		this.loadData(this.props);
+
+		if(this.props.query) {
+			$("#search-bar").val(this.props.query);
+			window.setTimeout(function() { $("#search-bar").focus(); }, 1);
+		}
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -42,6 +47,7 @@ class ChannelList extends React.Component {
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
 
+		console.log(nextProps);
 		this.loadData(nextProps);
 	}
 
@@ -52,7 +58,7 @@ class ChannelList extends React.Component {
 		if(nextProps.query) {
 
 			// start search
-			if(nextProps.query.length >= 2) {
+			if(nextProps.query.length > 2) {
 				ChannelActions.searchChannels(nextProps.query, this.state.sortBy);
 			}
 
@@ -109,8 +115,6 @@ class ChannelList extends React.Component {
 			sortBy: data.sortBy
 		});
 
-		console.log(this.state.searching);
-
 		// load the channels
 		if(this.state.searching ===  true) {
 			ChannelActions.searchChannels($("#search-bar").val(), data.sortBy);
@@ -132,7 +136,7 @@ class ChannelList extends React.Component {
 					<div className="col-md-1"></div>
 					<div className="col-md-10">
 						<center>
-							Loading channels ...
+							{(this.state.searching === true) ? "No channels match the search query!" : "Loading channels..."}
 						</center>
 					</div>
 					<div className="col-md-1"></div>
