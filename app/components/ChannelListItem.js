@@ -1,12 +1,8 @@
 import React from "react";
 import Description from "./Description";
+import {Link} from "react-router"
 
 class ChannelListItem extends React.Component {
-
-	// COMPONENT DID MOUNT
-	componentDidMount() {
-		$("img").unveil();
-	}
 
     // RENDER
 	render() {
@@ -14,14 +10,14 @@ class ChannelListItem extends React.Component {
 			<div className="row channel-row">
                 <div className="col-md-2 col-xs-2">
 					<center>
-                    	<img src="/img/dummy.png" data-src={this.props.channel.thumbnail} className="channel-thumb" />
+                    	<img src={this.props.channel.thumbnail} className="channel-thumb" />
 					</center>
                 </div>
                 <div className="col-md-7 col-xs-10">
                     <h3>
-                        <a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id}>
+                        <Link to={"/channel/" + this.props.channel.id}>
                             {this.props.channel.title}
-                        </a>
+                        </Link>
                     </h3>
 					<Description text={this.props.channel.description} />
                 </div>

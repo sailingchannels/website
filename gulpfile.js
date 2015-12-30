@@ -33,8 +33,8 @@ gulp.task("vendor-js", function() {
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
-			"bower_components/moment/min/moment.min.js",
-			"bower_components/jquery-unveil/jquery.unveil.min.js"
+			"bower_components/bootstrap-material-design/dist/js/ripples.min.js",
+			"bower_components/moment/min/moment.min.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -52,6 +52,7 @@ gulp.task("vendor-css", function() {
 	return gulp.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
+			"bower_components/bootstrap-material-design/dist/css/ripples.min.css",
 			"bower_components/font-awesome/css/font-awesome.min.css",
 			"public/css/main.css"
 		])

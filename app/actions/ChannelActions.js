@@ -7,6 +7,8 @@ class ChannelActions {
         this.generateActions(
             "getChannelsSuccess",
             "getChannelsFail",
+            "getChannelSuccess",
+            "getChannelFail",
             "searchChannelsSuccess",
             "searchChannelsFail"
         );
@@ -25,6 +27,22 @@ class ChannelActions {
         })
         .fail((jqXhr) => {
             this.actions.getChannelsFail(jqXhr);
+        });
+    }
+
+    // GET CHANNEL
+    getChannel(id) {
+
+        $.ajax({
+            "url": "/api/channel/get/" + id,
+            "type": "GET",
+            "dataType": "json"
+        })
+        .done((data) => {
+            this.actions.getChannelSuccess(data);
+        })
+        .fail((jqXhr) => {
+            this.actions.getChannelFail(jqXhr);
         });
     }
 

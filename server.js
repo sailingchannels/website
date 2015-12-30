@@ -22,6 +22,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// API / CHANNEL / GET / :ID
+app.get("/api/channel/get/:id", function(req, res) {
+
+	var id = req.params.id;
+	return res.send(global.dataIndexed[id]);
+});
+
 // API / CHANNELS / GET
 app.get("/api/channels/get", function(req, res) {
 

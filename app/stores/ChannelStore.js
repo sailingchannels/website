@@ -12,6 +12,8 @@ class ChannelStore {
 		this.take = 25;
 		this.searching = false;
 		this.sortBy = "subscribers";
+
+		this.channel = null;
 	}
 
 	// GET CHANNELS SUCCESS
@@ -29,6 +31,18 @@ class ChannelStore {
 		this.take = result.take;
 		this.loading = false;
 		this.firstLoad = false;
+  	}
+
+	// GET CHANNEL SUCCESS
+	getChannelSuccess(result) {
+		this.channel = result;
+	}
+
+	// GET CHANNEL FAIL
+  	getChannelFail(jqXhr) {
+
+    	// Handle multiple response formats, fallback to HTTP status code number.
+    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
   	}
 
 	// GET CHANNELS FAIL

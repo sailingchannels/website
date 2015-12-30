@@ -21,6 +21,7 @@ class Home extends React.Component {
 				</div>
 				<SearchBar />
 				<ChannelList />
+				{this.props.children}
 			</div>
 		);
 	}
