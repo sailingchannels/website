@@ -116,3 +116,7 @@ h1, h2, h3 {
 .content-row {
 	text-align: center;
 }
+
+.content-h1 {
+	margin-bottom:25px;
+}

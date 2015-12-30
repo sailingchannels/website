@@ -11,7 +11,21 @@ class ChannelMissing extends React.Component {
                 <Logo />
 				<OffsetMenu />
                 <div className="row content-row">
-                    <h1>My channel is missing?</h1>
+					<div className="col-md-4"></div>
+					<div className="col-md-4">
+	                    <h1 className="content-h1">Your channel is missing?</h1>
+						<p>
+							You were expecting to see your channel here?<br />
+							Well, that's easy.
+						</p>
+						<p>
+							Just get in touch with us and we'll make sure you get listed!
+						</p>
+						<p>
+							Send an email to <a href="mailto:ahoy@sailing-channels.com?subject=My channel is missing">ahoy@sailing-channels.com</a>
+						</p>
+					</div>
+					<div className="col-md-4"></div>
                 </div>
             </div>
 		);

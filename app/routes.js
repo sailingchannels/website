@@ -14,7 +14,7 @@ export default (
 			<Route path=":id" component={ChannelDetail} />
 		</Route>
 		<Route path="by-:sortBy/search/:query" component={Home} />
-		<Route path="data-collection" component={DataCollection} />
+		<Route path="how-it-works" component={DataCollection} />
 		<Route path="channel-missing" component={ChannelMissing} />
 	</Route>
 );

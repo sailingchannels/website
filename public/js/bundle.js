@@ -764,7 +764,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -790,37 +790,65 @@ var _Logo = require("./Logo");
 var _Logo2 = _interopRequireDefault(_Logo);
 
 var ChannelMissing = (function (_React$Component) {
-  _inherits(ChannelMissing, _React$Component);
+	_inherits(ChannelMissing, _React$Component);
 
-  function ChannelMissing() {
-    _classCallCheck(this, ChannelMissing);
+	function ChannelMissing() {
+		_classCallCheck(this, ChannelMissing);
 
-    _get(Object.getPrototypeOf(ChannelMissing.prototype), "constructor", this).apply(this, arguments);
-  }
+		_get(Object.getPrototypeOf(ChannelMissing.prototype), "constructor", this).apply(this, arguments);
+	}
 
-  _createClass(ChannelMissing, [{
-    key: "render",
-    value: function render() {
+	_createClass(ChannelMissing, [{
+		key: "render",
+		value: function render() {
 
-      return _react2["default"].createElement(
-        "div",
-        { className: "container" },
-        _react2["default"].createElement(_Logo2["default"], null),
-        _react2["default"].createElement(_OffsetMenu2["default"], null),
-        _react2["default"].createElement(
-          "div",
-          { className: "row content-row" },
-          _react2["default"].createElement(
-            "h1",
-            null,
-            "My channel is missing?"
-          )
-        )
-      );
-    }
-  }]);
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-4" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-4" },
+						_react2["default"].createElement(
+							"h1",
+							{ className: "content-h1" },
+							"Your channel is missing?"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"You were expecting to see your channel here?",
+							_react2["default"].createElement("br", null),
+							"Well, that's easy."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"Just get in touch with us and we'll make sure you get listed!"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"Send an email to ",
+							_react2["default"].createElement(
+								"a",
+								{ href: "mailto:ahoy@sailing-channels.com?subject=My channel is missing" },
+								"ahoy@sailing-channels.com"
+							)
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-4" })
+				)
+			);
+		}
+	}]);
 
-  return ChannelMissing;
+	return ChannelMissing;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelMissing;
@@ -876,11 +904,32 @@ var DataCollection = (function (_React$Component) {
 				_react2["default"].createElement(
 					"div",
 					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-4" }),
 					_react2["default"].createElement(
-						"h1",
-						null,
-						"How does this work?"
-					)
+						"div",
+						{ className: "col-md-4" },
+						_react2["default"].createElement(
+							"h1",
+							{ className: "content-h1" },
+							"We'll tell you how it works!"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on."
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-4" })
 				)
 			);
 		}
@@ -1187,7 +1236,7 @@ var OffsetMenu = (function (_React$Component) {
             null,
             _react2["default"].createElement(
               _reactRouter.Link,
-              { to: "/data-collection" },
+              { to: "/how-it-works" },
               "How does this work?"
             )
           ),
@@ -1205,7 +1254,7 @@ var OffsetMenu = (function (_React$Component) {
             null,
             _react2["default"].createElement(
               "a",
-              { href: "mailto:ahoy@sailing-channels.com" },
+              { href: "mailto:ahoy@sailing-channels.com?subject=Ahoy sailor!" },
               "Contact"
             )
           )
@@ -1432,7 +1481,7 @@ exports["default"] = _react2["default"].createElement(
 		_react2["default"].createElement(_reactRouter.Route, { path: ":id", component: _componentsChannelDetail2["default"] })
 	),
 	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy/search/:query", component: _componentsHome2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "data-collection", component: _componentsDataCollection2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "how-it-works", component: _componentsDataCollection2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "channel-missing", component: _componentsChannelMissing2["default"] })
 );
 module.exports = exports["default"];
