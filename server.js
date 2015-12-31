@@ -225,20 +225,27 @@ app.use(function(req, res) {
 	});
 });
 
-// read data json
-jsonfile.readFile("data.json", function(err, obj) {
+// LOAD DATA
+function loadData() {
 
-	// complete data
-	global.data = obj;
-	global.dataIndexed = {};
+	// read data json
+	jsonfile.readFile("data.json", function(err, obj) {
 
-	// build index
-	for(var i in obj) {
-		global.dataIndexed[obj[i].id] = obj[i];
-	}
+		// complete data
+		global.data = obj;
+		global.dataIndexed = {};
 
-	// start server
-	app.listen(app.get("port"), function() {
-		console.log("Express server listening on port " + app.get("port"));
+		// build index
+		for(var i in obj) {
+			global.dataIndexed[obj[i].id] = obj[i];
+		}
 	});
+}
+
+loadData();
+setInterval(loadData, 1000*60*5);
+
+// start server
+app.listen(app.get("port"), function() {
+	console.log("Express server listening on port " + app.get("port"));
 });
