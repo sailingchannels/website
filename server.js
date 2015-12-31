@@ -228,6 +228,8 @@ app.use(function(req, res) {
 // LOAD DATA
 function loadData() {
 
+	console.log("loadData");
+
 	// read data json
 	jsonfile.readFile("data.json", function(err, obj) {
 
