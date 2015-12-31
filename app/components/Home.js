@@ -12,10 +12,11 @@ class Home extends React.Component {
 		$.material.init();
 
 		window.setTimeout(function() {
-			if(!($("#banner-dialog").data("bs.modal") || {}).isShown) {
+			if(!($("#banner-dialog").data("bs.modal") || {}).isShown && !Cookies.get("banner-dialog")) {
 
 				// open the dialog
 				$("#banner-dialog").modal("show");
+				Cookies.set("banner-dialog", "shown", { expires: 3 });
 			}
 		}, 5000);
 	}
@@ -24,13 +25,14 @@ class Home extends React.Component {
 	render() {
 
 		var sortBy = this.props.params.sortBy || "subscribers";
+		var query = this.props.params.query;
 
 		return (
 			<div className="container">
 				<Logo />
 				<OffsetMenu />
 				<SearchBar sortBy={sortBy} history={this.props.history} />
-				<ChannelList sortBy={sortBy} history={this.props.history} query={this.props.params.query} />
+				<ChannelList sortBy={sortBy} history={this.props.history} query={query} />
 				{this.props.children}
 				<Banner />
 			</div>

@@ -219,12 +219,12 @@ var Banner = (function (_React$Component) {
                   null,
                   "Two aboard Tuuli crew"
                 ),
-                " created this website in their sparetime, for you."
+                " created this website in their sparetime for you."
               ),
               _react2["default"].createElement(
                 "p",
                 null,
-                "If you like it, we would be very pleased if you in return subscribe to our YouTube channel!"
+                "If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!"
               ),
               _react2["default"].createElement(
                 "center",
@@ -552,6 +552,8 @@ var ChannelList = (function (_React$Component) {
 		value: function componentDidMount() {
 			_storesChannelStore2["default"].listen(this.onChange);
 
+			console.log("componentDidMount", this.props);
+
 			// handle event bus page changes
 			$(window).on("changeSort", this.changeSort.bind(this));
 			$(window).on("scroll", this.scrollWindow.bind(this));
@@ -588,8 +590,10 @@ var ChannelList = (function (_React$Component) {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
 
-			console.log(nextProps);
-			this.loadData(nextProps);
+			console.log("componentWillReceiveProps", this.props, nextProps);
+			if (this.props.sortBy !== nextProps.sortBy || this.props.query !== nextProps.query) {
+				this.loadData(nextProps);
+			}
 		}
 
 		// LOAD
@@ -729,7 +733,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -753,109 +757,114 @@ var _Description2 = _interopRequireDefault(_Description);
 var _reactRouter = require("react-router");
 
 var ChannelListItem = (function (_React$Component) {
-    _inherits(ChannelListItem, _React$Component);
+  _inherits(ChannelListItem, _React$Component);
 
-    function ChannelListItem() {
-        _classCallCheck(this, ChannelListItem);
+  function ChannelListItem() {
+    _classCallCheck(this, ChannelListItem);
 
-        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+    _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(ChannelListItem, [{
+    key: "render",
+
+    // RENDER
+    value: function render() {
+      return _react2["default"].createElement(
+        "div",
+        { className: "row channel-row" },
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-2 col-xs-2" },
+          _react2["default"].createElement(
+            "center",
+            null,
+            _react2["default"].createElement("img", { src: this.props.channel.thumbnail, className: "channel-thumb" })
+          )
+        ),
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-7 col-xs-10" },
+          _react2["default"].createElement(
+            "h3",
+            null,
+            _react2["default"].createElement(
+              _reactRouter.Link,
+              { to: "/channel/" + this.props.channel.id },
+              this.props.channel.title
+            )
+          ),
+          _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
+        ),
+        _react2["default"].createElement(
+          "div",
+          { className: "col-md-3 col-xs-10" },
+          this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
+            "p",
+            { className: "text-warning" },
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Subscriber info hidden ",
+              _react2["default"].createElement("i", { className: "fa fa-frown-o" })
+            )
+          ) : null,
+          this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Subscribers:"
+            ),
+            " ",
+            this.props.channel.subscribers.toLocaleString()
+          ) : null,
+          this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Videos:"
+            ),
+            " ",
+            this.props.channel.videos
+          ) : null,
+          _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Views:"
+            ),
+            " ",
+            this.props.channel.views.toLocaleString()
+          ),
+          this.props.channel.lastUploadAt ? _react2["default"].createElement(
+            "p",
+            null,
+            _react2["default"].createElement(
+              "b",
+              null,
+              "Last upload:"
+            ),
+            " ",
+            moment.unix(this.props.channel.lastUploadAt).fromNow()
+          ) : "",
+          _react2["default"].createElement(
+            "a",
+            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+            _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+            " Subscribe"
+          )
+        )
+      );
     }
+  }]);
 
-    _createClass(ChannelListItem, [{
-        key: "render",
-
-        // RENDER
-        value: function render() {
-            return _react2["default"].createElement(
-                "div",
-                { className: "row channel-row" },
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-2 col-xs-2" },
-                    _react2["default"].createElement(
-                        "center",
-                        null,
-                        _react2["default"].createElement("img", { src: this.props.channel.thumbnail, className: "channel-thumb" })
-                    )
-                ),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-7 col-xs-10" },
-                    _react2["default"].createElement(
-                        "h3",
-                        null,
-                        _react2["default"].createElement(
-                            _reactRouter.Link,
-                            { to: "/channel/" + this.props.channel.id },
-                            this.props.channel.title
-                        )
-                    ),
-                    _react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
-                ),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "col-md-3 col-xs-10" },
-                    this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
-                        "p",
-                        { className: "text-warning" },
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Subscriber info hidden by channel ",
-                            _react2["default"].createElement("i", { className: "fa fa-frown-o" })
-                        )
-                    ) : null,
-                    this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Subscribers:"
-                        ),
-                        " ",
-                        this.props.channel.subscribers.toLocaleString()
-                    ) : null,
-                    this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Videos:"
-                        ),
-                        " ",
-                        this.props.channel.videos
-                    ) : null,
-                    _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Views:"
-                        ),
-                        " ",
-                        this.props.channel.views.toLocaleString()
-                    ),
-                    this.props.channel.lastUploadAt ? _react2["default"].createElement(
-                        "p",
-                        null,
-                        _react2["default"].createElement(
-                            "b",
-                            null,
-                            "Last upload:"
-                        ),
-                        " ",
-                        moment.unix(this.props.channel.lastUploadAt).fromNow()
-                    ) : "",
-                    _react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": this.props.channel.id, "data-layout": "default", "data-count": "default" })
-                )
-            );
-        }
-    }]);
-
-    return ChannelListItem;
+  return ChannelListItem;
 })(_react2["default"].Component);
 
 exports["default"] = ChannelListItem;
@@ -1201,10 +1210,11 @@ var Home = (function (_React$Component) {
 			$.material.init();
 
 			window.setTimeout(function () {
-				if (!($("#banner-dialog").data("bs.modal") || {}).isShown) {
+				if (!($("#banner-dialog").data("bs.modal") || {}).isShown && !Cookies.get("banner-dialog")) {
 
 					// open the dialog
 					$("#banner-dialog").modal("show");
+					Cookies.set("banner-dialog", "shown", { expires: 3 });
 				}
 			}, 5000);
 		}
@@ -1215,6 +1225,7 @@ var Home = (function (_React$Component) {
 		value: function render() {
 
 			var sortBy = this.props.params.sortBy || "subscribers";
+			var query = this.props.params.query;
 
 			return _react2["default"].createElement(
 				"div",
@@ -1222,7 +1233,7 @@ var Home = (function (_React$Component) {
 				_react2["default"].createElement(_Logo2["default"], null),
 				_react2["default"].createElement(_OffsetMenu2["default"], null),
 				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy, history: this.props.history }),
-				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history, query: this.props.params.query }),
+				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history, query: query }),
 				this.props.children,
 				_react2["default"].createElement(_Banner2["default"], null)
 			);

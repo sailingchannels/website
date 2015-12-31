@@ -5,6 +5,7 @@
 		"bootstrap": "3.3.5",
 		"moment": "2.10.6",
 		"bootstrap-material-design": "0.5.6",
-		"font-awesome": "4.5.0"
+		"font-awesome": "4.5.0",
+		"js-cookie": "2.1.0"
 	}
 }

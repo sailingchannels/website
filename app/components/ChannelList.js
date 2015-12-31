@@ -17,6 +17,8 @@ class ChannelList extends React.Component {
 	componentDidMount() {
 		ChannelStore.listen(this.onChange);
 
+		console.log("componentDidMount", this.props);
+
 		// handle event bus page changes
 		$(window).on("changeSort", this.changeSort.bind(this));
 		$(window).on("scroll", this.scrollWindow.bind(this));
@@ -47,8 +49,10 @@ class ChannelList extends React.Component {
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
 
-		console.log(nextProps);
-		this.loadData(nextProps);
+		console.log("componentWillReceiveProps", this.props, nextProps);
+		if(this.props.sortBy !== nextProps.sortBy || this.props.query !== nextProps.query) {
+			this.loadData(nextProps);
+		}
 	}
 
 	// LOAD

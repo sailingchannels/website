@@ -23,14 +23,15 @@ class ChannelListItem extends React.Component {
                 </div>
                 <div className="col-md-3 col-xs-10">
 
-					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
+					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden <i className="fa fa-frown-o"></i></b></p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videos}</p> : null}
                     <p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.props.channel.lastUploadAt).fromNow()}</p> : ""}
 
-	                
-					<div className="g-ytsubscribe" data-channelid={this.props.channel.id} data-layout="default" data-count="default"></div>
+					<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
+						<i className="fa fa-youtube-play"></i> Subscribe
+					</a>
                 </div>
 			</div>
 		);
