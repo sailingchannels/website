@@ -227,7 +227,7 @@ var Banner = (function (_React$Component) {
               _react2["default"].createElement(
                 "button",
                 { type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-                "Maybe later"
+                "Close"
               )
             )
           )

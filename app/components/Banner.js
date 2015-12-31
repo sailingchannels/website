@@ -23,7 +23,7 @@ class Banner extends React.Component {
                     </p>
                   </div>
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" data-dismiss="modal">Maybe later</button>
+                    <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
