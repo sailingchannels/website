@@ -213,21 +213,23 @@ var Banner = (function (_React$Component) {
               _react2["default"].createElement(
                 "p",
                 null,
-                "The Two aboard Tuuli crew created this website in their sparetime."
+                "The ",
+                _react2["default"].createElement(
+                  "b",
+                  null,
+                  "Two aboard Tuuli crew"
+                ),
+                " created this website in their sparetime, for you."
               ),
               _react2["default"].createElement(
                 "p",
                 null,
-                "If you like this site, please give back some appreciation by subscribing to our YouTube channel!"
-              )
-            ),
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-footer" },
+                "If you like it, we would be very pleased if you in return subscribe to our YouTube channel!"
+              ),
               _react2["default"].createElement(
-                "button",
-                { type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-                "Close"
+                "center",
+                { className: "banner-channel" },
+                _react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": "UCZbZeC2OfdVMwm9AR_zu0_g", "data-layout": "full", "data-count": "default" })
               )
             )
           )
@@ -847,12 +849,7 @@ var ChannelListItem = (function (_React$Component) {
                         " ",
                         moment.unix(this.props.channel.lastUploadAt).fromNow()
                     ) : "",
-                    _react2["default"].createElement(
-                        "a",
-                        { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
-                        _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-                        " Subscribe"
-                    )
+                    _react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": this.props.channel.id, "data-layout": "default", "data-count": "default" })
                 )
             );
         }

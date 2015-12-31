@@ -16,14 +16,14 @@ class Banner extends React.Component {
                   </div>
                   <div className="modal-body">
                     <p>
-                        The Two aboard Tuuli crew created this website in their sparetime.
+                        The <b>Two aboard Tuuli crew</b> created this website in their sparetime, for you.
                     </p>
                     <p>
-                        If you like this site, please give back some appreciation by subscribing to our YouTube channel!
+                        If you like it, we would be very pleased if you in return subscribe to our YouTube channel!
                     </p>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
+					<center className="banner-channel">
+						<div className="g-ytsubscribe" data-channelid="UCZbZeC2OfdVMwm9AR_zu0_g" data-layout="full" data-count="default"></div>
+					</center>
                   </div>
                 </div>
               </div>

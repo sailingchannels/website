@@ -29,9 +29,8 @@ class ChannelListItem extends React.Component {
                     <p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.props.channel.lastUploadAt).fromNow()}</p> : ""}
 
-	                <a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
-						<i className="fa fa-youtube-play"></i> Subscribe
-					</a>
+	                
+					<div className="g-ytsubscribe" data-channelid={this.props.channel.id} data-layout="default" data-count="default"></div>
                 </div>
 			</div>
 		);
