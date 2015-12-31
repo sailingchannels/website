@@ -6,12 +6,6 @@ startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 3
 sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
-global dataFile = "data.json"
-if len(sys.argv) == 2:
-	dataFile = sys.argv[1]
-
-print "data file path", dataFile
-
 # members
 channels = {}
 
@@ -163,6 +157,10 @@ def readSubscriptions(channelId, level = 1):
 def writeSubscriptions():
 
 	print len(channels.keys()), " channels found"
+
+	dataFile = "data.json"
+	if len(sys.argv) == 2:
+		dataFile = sys.argv[1]
 
 	# order them by subscribers
 	with open(dataFile, "w") as dataFile:
