@@ -6,7 +6,7 @@ startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 3
 sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
-dataFile = "data.json"
+global dataFile = "data.json"
 if len(sys.argv) == 2:
 	dataFile = sys.argv[1]
 
