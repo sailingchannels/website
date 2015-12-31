@@ -6,10 +6,11 @@ startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 3
 sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
+dataFile = "data.json"
 if len(sys.argv) == 2:
 	dataFile = sys.argv[1]
-else:
-	dataFile = "data.json"
+
+print "data file path", dataFile
 
 # members
 channels = {}
@@ -164,7 +165,6 @@ def writeSubscriptions():
 	print len(channels.keys()), " channels found"
 
 	# order them by subscribers
-
 	with open(dataFile, "w") as dataFile:
 		dataFile.write(json.dumps(channels.values(), indent=4, sort_keys=True))
 
