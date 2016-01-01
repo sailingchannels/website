@@ -167,7 +167,7 @@ def writeSubscriptions():
 
 	# order them by subscribers
 	with open(dataFile, "w") as dataFile:
-		dataFile.write(json.dumps(channels.values(), indent=4, sort_keys=True))
+		dataFile.write(json.dumps(channels.values(), sort_keys=True))
 
 readSubscriptions(startChannelId, 1)
 writeSubscriptions()
