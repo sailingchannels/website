@@ -38,8 +38,16 @@ app.get("/api/channel/get/:id", function(req, res) {
 		return bv.publishedAt - av.publishedAt;
 	});
 
-	data.videoCount = data.videos.length;
-	data.videos = data.videos.slice(0, 1);
+	data.videoCount = 0;
+
+	if(data.videos && data.videos.length > 0) {
+
+		data.videoCount = data.videos.length;
+		data.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
+			return vid.publishedAt;
+		}));
+		data.videos = data.videos.slice(0, 1);
+	}
 
 	// remove description from videos
 	data.videos = data.videos.map(function(item) {
