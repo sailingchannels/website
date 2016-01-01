@@ -43,7 +43,7 @@ app.get("/api/channel/get/:id", function(req, res) {
 	if(data.videos && data.videos.length > 0) {
 
 		data.videoCount = data.videos.length;
-		data.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
+		data.lastUploadAt = Math.max.apply(null, data.videos.map(function(vid) {
 			return vid.publishedAt;
 		}));
 		data.videos = data.videos.slice(0, 1);
