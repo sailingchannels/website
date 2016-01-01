@@ -30,20 +30,6 @@ class ChannelDetail extends React.Component {
     // COMPONENT DID UPDATE
     componentDidUpdate() {
         if(this.state.channel) {
-
-			var that = this;
-
-			// check if dialog is open
-			if(!($("#channel-dialog").data("bs.modal") || {}).isShown) {
-
-				// open the dialog
-				$("#channel-dialog").modal("show");
-				$("#channel-dialog").on("hidden.bs.modal", function () {
-
-					that.props.history.goBack();
-				});
-			}
-
             document.title = this.state.channel.title + " - Sailing Channels";
         }
     }
@@ -81,22 +67,26 @@ class ChannelDetail extends React.Component {
 							</div>
 						</div>
 						<div className="row">
-							<div className="col-md-2">
+							<div className="col-md-2 col-sm-2">
 								<img src={this.state.channel.thumbnail} className="channel-thumb" />
 							</div>
-							<div className="col-md-7">
+							<div className="col-md-7 col-sm-7">
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
 							</div>
-							<div className="col-md-3">
+							<div className="col-md-3 col-sm-3">
 								{(this.state.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.state.channel.subscribers.toLocaleString()}</p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
 								<p><b>Views:</b> {this.state.channel.views.toLocaleString()}</p>
+								<p><b>Created:</b> {moment.unix(this.state.channel.publishedAt).format("ll")}</p>
 								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.state.channel.lastUploadAt).fromNow()}</p> : ""}
+
+								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
 									<i className="fa fa-youtube-play"></i> Subscribe
 								</a>
+
 							</div>
 						</div>
 						<div className="row">

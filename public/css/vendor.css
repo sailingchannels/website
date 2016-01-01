@@ -103,13 +103,26 @@ h1 {
 
 .sort-group {
 	margin-top:10px!important;
+	font-size:0.9em;
 }
 
 .offset-menu {
 	position:absolute;
+	background-color:white;
 	top:50px;
 	right:50px;
 	text-align: right;
+}
+
+.offset-bars {
+	position:absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.offset-bars i {
+	font-size:2em;
+	color:grey;
 }
 
 .offset-menu ul {

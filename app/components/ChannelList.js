@@ -58,6 +58,8 @@ class ChannelList extends React.Component {
 	// LOAD
 	loadData(nextProps) {
 
+		document.title = "Sailing Channels";
+
 		// does a search query exists?
 		if(nextProps.query) {
 

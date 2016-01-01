@@ -318,20 +318,6 @@ var ChannelDetail = (function (_React$Component) {
 		key: "componentDidUpdate",
 		value: function componentDidUpdate() {
 			if (this.state.channel) {
-
-				var that = this;
-
-				// check if dialog is open
-				if (!($("#channel-dialog").data("bs.modal") || {}).isShown) {
-
-					// open the dialog
-					$("#channel-dialog").modal("show");
-					$("#channel-dialog").on("hidden.bs.modal", function () {
-
-						that.props.history.goBack();
-					});
-				}
-
 				document.title = this.state.channel.title + " - Sailing Channels";
 			}
 		}
@@ -394,17 +380,17 @@ var ChannelDetail = (function (_React$Component) {
 							{ className: "row" },
 							_react2["default"].createElement(
 								"div",
-								{ className: "col-md-2" },
+								{ className: "col-md-2 col-sm-2" },
 								_react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
 							),
 							_react2["default"].createElement(
 								"div",
-								{ className: "col-md-7" },
+								{ className: "col-md-7 col-sm-7" },
 								_react2["default"].createElement("p", { className: "channel-description", dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
 							),
 							_react2["default"].createElement(
 								"div",
-								{ className: "col-md-3" },
+								{ className: "col-md-3 col-sm-3" },
 								this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
 									"p",
 									{ className: "text-warning" },
@@ -448,6 +434,17 @@ var ChannelDetail = (function (_React$Component) {
 									" ",
 									this.state.channel.views.toLocaleString()
 								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Created:"
+									),
+									" ",
+									moment.unix(this.state.channel.publishedAt).format("ll")
+								),
 								this.state.channel.lastUploadAt ? _react2["default"].createElement(
 									"p",
 									null,
@@ -459,6 +456,12 @@ var ChannelDetail = (function (_React$Component) {
 									" ",
 									moment.unix(this.state.channel.lastUploadAt).fromNow()
 								) : "",
+								_react2["default"].createElement(
+									"a",
+									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id },
+									_react2["default"].createElement("i", { className: "fa fa-external-link" }),
+									" Open YouTube channel"
+								),
 								_react2["default"].createElement(
 									"a",
 									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
@@ -608,6 +611,8 @@ var ChannelList = (function (_React$Component) {
 	}, {
 		key: "loadData",
 		value: function loadData(nextProps) {
+
+			document.title = "Sailing Channels";
 
 			// does a search query exists?
 			if (nextProps.query) {
@@ -806,7 +811,7 @@ var ChannelListItem = (function (_React$Component) {
         ),
         _react2["default"].createElement(
           "div",
-          { className: "col-md-3 col-xs-10" },
+          { className: "col-md-3 col-xs-10 col-xs-offset-2" },
           this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
             "p",
             { className: "text-warning" },
@@ -845,10 +850,10 @@ var ChannelListItem = (function (_React$Component) {
             _react2["default"].createElement(
               "b",
               null,
-              "Views:"
+              "Created:"
             ),
             " ",
-            this.props.channel.views.toLocaleString()
+            moment.unix(this.props.channel.publishedAt).format("ll")
           ),
           this.props.channel.lastUploadAt ? _react2["default"].createElement(
             "p",
@@ -928,10 +933,10 @@ var ChannelMissing = (function (_React$Component) {
 				_react2["default"].createElement(
 					"div",
 					{ className: "row content-row" },
-					_react2["default"].createElement("div", { className: "col-md-4" }),
+					_react2["default"].createElement("div", { className: "col-md-3" }),
 					_react2["default"].createElement(
 						"div",
-						{ className: "col-md-4" },
+						{ className: "col-md-6" },
 						_react2["default"].createElement(
 							"h1",
 							{ className: "content-h1" },
@@ -960,7 +965,7 @@ var ChannelMissing = (function (_React$Component) {
 							)
 						)
 					),
-					_react2["default"].createElement("div", { className: "col-md-4" })
+					_react2["default"].createElement("div", { className: "col-md-3" })
 				)
 			);
 		}
@@ -1022,10 +1027,10 @@ var DataCollection = (function (_React$Component) {
 				_react2["default"].createElement(
 					"div",
 					{ className: "row content-row" },
-					_react2["default"].createElement("div", { className: "col-md-4" }),
+					_react2["default"].createElement("div", { className: "col-md-3" }),
 					_react2["default"].createElement(
 						"div",
-						{ className: "col-md-4" },
+						{ className: "col-md-6" },
 						_react2["default"].createElement(
 							"h1",
 							{ className: "content-h1" },
@@ -1047,7 +1052,7 @@ var DataCollection = (function (_React$Component) {
 							"The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on."
 						)
 					),
-					_react2["default"].createElement("div", { className: "col-md-4" })
+					_react2["default"].createElement("div", { className: "col-md-3" })
 				)
 			);
 		}
@@ -1317,7 +1322,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1337,66 +1342,95 @@ var _react2 = _interopRequireDefault(_react);
 var _reactRouter = require("react-router");
 
 var OffsetMenu = (function (_React$Component) {
-  _inherits(OffsetMenu, _React$Component);
+	_inherits(OffsetMenu, _React$Component);
 
-  function OffsetMenu() {
-    _classCallCheck(this, OffsetMenu);
+	function OffsetMenu() {
+		_classCallCheck(this, OffsetMenu);
 
-    _get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).apply(this, arguments);
-  }
+		_get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).apply(this, arguments);
+	}
 
-  _createClass(OffsetMenu, [{
-    key: "render",
-    value: function render() {
+	_createClass(OffsetMenu, [{
+		key: "toggleMenu",
 
-      return _react2["default"].createElement(
-        "div",
-        { className: "offset-menu" },
-        _react2["default"].createElement(
-          "ul",
-          null,
-          _react2["default"].createElement(
-            "li",
-            null,
-            _react2["default"].createElement(
-              _reactRouter.Link,
-              { to: "/" },
-              "Home"
-            )
-          ),
-          _react2["default"].createElement(
-            "li",
-            null,
-            _react2["default"].createElement(
-              _reactRouter.Link,
-              { to: "/how-it-works" },
-              "How does this work?"
-            )
-          ),
-          _react2["default"].createElement(
-            "li",
-            null,
-            _react2["default"].createElement(
-              _reactRouter.Link,
-              { to: "/channel-missing" },
-              "My channel is missing!"
-            )
-          ),
-          _react2["default"].createElement(
-            "li",
-            null,
-            _react2["default"].createElement(
-              "a",
-              { href: "mailto:ahoy@sailing-channels.com?subject=Ahoy sailor!" },
-              "Contact"
-            )
-          )
-        )
-      );
-    }
-  }]);
+		// TOGGLE MENU
+		value: function toggleMenu() {
 
-  return OffsetMenu;
+			if ($(".offset-menu").find("ul").hasClass("hidden-xs")) {
+				$(".offset-menu").find("ul").removeClass("hidden-xs");
+				$(".logo").css("opacity", 0);
+			} else {
+				$(".offset-menu").find("ul").addClass("hidden-xs");
+				$(".logo").css("opacity", 1);
+			}
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "offset-bars hidden-md hidden-lg hidden-sm" },
+					_react2["default"].createElement(
+						"div",
+						{ onClick: this.toggleMenu.bind(this) },
+						_react2["default"].createElement("i", { className: "fa fa-bars" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "offset-menu" },
+					_react2["default"].createElement(
+						"ul",
+						{ className: "hidden-xs" },
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/" },
+								"Home"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/how-it-works" },
+								"How does this work?"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/channel-missing" },
+								"My channel is missing!"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								"a",
+								{ href: "mailto:ahoy@sailing-channels.com?subject=Ahoy sailor!" },
+								"Contact"
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return OffsetMenu;
 })(_react2["default"].Component);
 
 exports["default"] = OffsetMenu;
@@ -1518,10 +1552,10 @@ var SearchBar = (function (_React$Component) {
                         ),
                         _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "subscribers", defaultChecked: this.props.sortBy === "subscribers" }),
                         " Subscribers",
-                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "views", defaultChecked: this.props.sortBy === "views" }),
-                        " Views",
                         _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "upload", defaultChecked: this.props.sortBy === "upload" }),
-                        " Last upload"
+                        " Last upload",
+                        _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "newest", defaultChecked: this.props.sortBy === "newest" }),
+                        " Newest"
                     )
                 ),
                 _react2["default"].createElement("div", { className: "col-md-4" })

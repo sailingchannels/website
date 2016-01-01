@@ -66,9 +66,9 @@ def readVideos(channelId):
 # READ STATISTICS
 def readStatistics(channelId):
 
-	r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" + channelId + "&key=" + config.apiKey())
+	r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&id=" + channelId + "&key=" + config.apiKey())
 	stats = r.json()
-	return stats["items"][0]["statistics"]
+	return stats["items"][0]["statistics"], stats["items"][0]["snippet"]
 
 # READ SUBSCRIPTIONS PAGE
 def readSubscriptionsPage(channelId, pageToken = None, level = 1):
@@ -101,7 +101,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		# store this channel
 		if not channels.has_key(subChannelId):
 
-			stats = readStatistics(subChannelId)
+			stats, channel_detail = readStatistics(subChannelId)
 			hasSailingTerm = False
 
 			# check if one of the sailing terms is available
@@ -112,10 +112,13 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
 			if int(stats["videoCount"]) > 0 and hasSailingTerm:
 
+				pd = datetime.strptime(channel_detail["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
+
 				channels[subChannelId] = {
 					"id": subChannelId,
 					"title": i["snippet"]["title"],
 					"description": i["snippet"]["description"],
+					"publishedAt": calendar.timegm(pd.utctimetuple()),
 					"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
 					"subscribers": int(stats["subscriberCount"]),
 					"views": int(stats["viewCount"]),

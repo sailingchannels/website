@@ -67,12 +67,12 @@ app.get("/api/channels/get", function(req, res) {
 			});
 			break;
 
-		// VIEWS
-		case "views":
+		// NEWEST
+		case "newest":
 
-			// sort channels by subscribers
+			// sort channels by age
 			ownData.sort(function(a, b) {
-				return b.views - a.views;
+				return b.publishedAt - a.publishedAt;
 			});
 			break;
 
@@ -143,13 +143,13 @@ app.get("/api/channels/search", function(req, res) {
 
 			break;
 
-		case "views":
+		// NEWEST
+		case "newest":
 
-			// sort channels by subscribers
+			// sort channels by age
 			ownData.sort(function(a, b) {
-				return b.views - a.views;
+				return b.publishedAt - a.publishedAt;
 			});
-
 			break;
 
 		// UPLOAD
