@@ -811,7 +811,7 @@ var ChannelListItem = (function (_React$Component) {
         ),
         _react2["default"].createElement(
           "div",
-          { className: "col-md-3 col-xs-10 col-xs-offset-2" },
+          { className: "col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0" },
           this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
             "p",
             { className: "text-warning" },

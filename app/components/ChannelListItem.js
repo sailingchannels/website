@@ -21,7 +21,7 @@ class ChannelListItem extends React.Component {
                     </h3>
 					<Description text={this.props.channel.description} />
                 </div>
-                <div className="col-md-3 col-xs-10 col-xs-offset-2">
+                <div className="col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0">
 
 					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden <i className="fa fa-frown-o"></i></b></p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
