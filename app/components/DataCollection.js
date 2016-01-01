@@ -4,6 +4,12 @@ import Logo from "./Logo";
 
 class DataCollection extends React.Component {
 
+	// COMPONENT DID MOUNT
+	componentDidMount() {
+		document.title = "How does this work? | Sailing Channels";
+	}
+
+	// RENDER
 	render() {
 
 		return (
@@ -13,7 +19,7 @@ class DataCollection extends React.Component {
                 <div className="row content-row">
 					<div className="col-md-3"></div>
 					<div className="col-md-6">
-	                    <h1 className="content-h1">We'll tell you how it works!</h1>
+	                    <h1 className="content-h1">How does this work?</h1>
 						<p>
 							Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats.
 						</p>

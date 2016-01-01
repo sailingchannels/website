@@ -4,6 +4,17 @@ import Logo from "./Logo";
 
 class ChannelMissing extends React.Component {
 
+	// COMPONENT DID MOUNT
+    componentDidMount() {
+        document.title = "My channel is missing! | Sailing Channels";
+    }
+
+    // REPLACE X
+    replaceX(e) {
+        e.target.href = e.target.href.replace(/x/g, "");
+    }
+
+    // RENDER
 	render() {
 
 		return (
@@ -13,16 +24,13 @@ class ChannelMissing extends React.Component {
                 <div className="row content-row">
 					<div className="col-md-3"></div>
 					<div className="col-md-6">
-	                    <h1 className="content-h1">Your channel is missing?</h1>
+	                    <h1 className="content-h1">My channel is missing!</h1>
 						<p>
-							You were expecting to see your channel here?<br />
-							Well, that's easy.
-						</p>
-						<p>
+							You were expecting to see your channel here? Well, that's easy.
 							Just get in touch with us and we'll make sure you get listed!
 						</p>
 						<p>
-							Send an email to <a href="mailto:ahoy@sailing-channels.com?subject=My channel is missing">ahoy@sailing-channels.com</a>
+							Send an email to <a href="mailto:ahoyx@sailingx-channels.com" onMouseOver={this.replaceX.bind(this)} className="reverse">moc.slennahc-gnilias@yoha</a>
 						</p>
 					</div>
 					<div className="col-md-3"></div>

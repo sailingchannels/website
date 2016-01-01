@@ -79,8 +79,8 @@ app.get("/api/channels/get", function(req, res) {
 			});
 			break;
 
-		// NEWEST
-		case "newest":
+		// FOUNDED
+		case "founded":
 
 			// sort channels by age
 			ownData.sort(function(a, b) {
@@ -155,8 +155,8 @@ app.get("/api/channels/search", function(req, res) {
 
 			break;
 
-		// NEWEST
-		case "newest":
+		// FOUNDED
+		case "founded":
 
 			// sort channels by age
 			ownData.sort(function(a, b) {

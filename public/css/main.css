@@ -130,14 +130,31 @@ h1 {
 }
 
 .content-row {
-	text-align: center;
+	text-align: justify;
+}
+
+.reverse {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
 }
 
 .content-h1 {
 	margin-bottom:25px;
+	text-align: center!important;
 }
 
 .banner-channel {
 	margin-top:20px;
 	margin-bottom:20px;
+}
+
+.footer {
+	margin:20px 0;
+	color:#ccc!important;
+	font-size: 0.9em!important;
+}
+
+.footer a {
+	color:#ccc!important;
 }

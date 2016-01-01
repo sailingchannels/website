@@ -72,15 +72,18 @@ class ChannelDetail extends React.Component {
 							</div>
 							<div className="col-md-7 col-sm-7">
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
+								<p>&nbsp;</p>
+								<p><b>Latest video:</b></p>
+								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0].id} frameBorder="0" allowFullScreen></iframe>
 							</div>
 							<div className="col-md-3 col-sm-3">
 								{(this.state.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.state.channel.subscribers.toLocaleString()}</p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
 								<p><b>Views:</b> {this.state.channel.views.toLocaleString()}</p>
-								<p><b>Created:</b> {moment.unix(this.state.channel.publishedAt).format("ll")}</p>
 								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.state.channel.lastUploadAt).fromNow()}</p> : ""}
-
+								<p><b>Founded:</b> {moment.unix(this.state.channel.publishedAt).format("ll")}</p>
+								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
@@ -88,14 +91,6 @@ class ChannelDetail extends React.Component {
 								</a>
 
 							</div>
-						</div>
-						<div className="row">
-							<div className="col-md-2"></div>
-							<div className="col-md-7">
-								<p><b>Latest video:</b></p>
-								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0].id} frameBorder="0" allowFullScreen></iframe>
-							</div>
-							<div className="col-md-3"></div>
 						</div>
 					</div>
 					<div className="col-md-1"></div>

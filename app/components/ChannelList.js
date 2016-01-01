@@ -17,7 +17,7 @@ class ChannelList extends React.Component {
 	componentDidMount() {
 		ChannelStore.listen(this.onChange);
 
-		console.log("componentDidMount", this.props);
+		//console.log("componentDidMount", this.props);
 
 		// handle event bus page changes
 		$(window).on("changeSort", this.changeSort.bind(this));
@@ -25,7 +25,7 @@ class ChannelList extends React.Component {
 
 		var sortBy = this.props.sortBy;
 		this.setState({
-			"sortBy": sortBy || "subscribers"
+			"sortBy": sortBy
 		});
 
 		// load the channels
@@ -49,7 +49,7 @@ class ChannelList extends React.Component {
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
 
-		console.log("componentWillReceiveProps", this.props, nextProps);
+		//console.log("componentWillReceiveProps", this.props, nextProps);
 		if(this.props.sortBy !== nextProps.sortBy || this.props.query !== nextProps.query) {
 			this.loadData(nextProps);
 		}
@@ -103,7 +103,7 @@ class ChannelList extends React.Component {
 	// SCROLL WINDOW
 	scrollWindow() {
 
-		var scrollBottomThreshold = 250;
+		var scrollBottomThreshold = 150;
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold &&
 			this.state.loading === false && this.state.searching === false)
 		{
@@ -112,7 +112,7 @@ class ChannelList extends React.Component {
 		   });
 
 		   // load more data
-		   ChannelActions.getChannels(this.state.sortBy, this.state.skip + this.state.take, 25);
+		   ChannelActions.getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
 	   	}
 	}
 
