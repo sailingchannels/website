@@ -34,6 +34,7 @@ app.get("/api/channel/get/:id", function(req, res) {
 		return bv.publishedAt - av.publishedAt;
 	});
 
+	data.videoCount = data.videos.length;
 	data.videos = data.videos.slice(0, 1);
 
 	// remove description from videos

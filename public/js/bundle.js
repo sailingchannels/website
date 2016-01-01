@@ -273,6 +273,14 @@ var _storesChannelStore = require("../stores/ChannelStore");
 
 var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
 
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
 var ChannelDetail = (function (_React$Component) {
 	_inherits(ChannelDetail, _React$Component);
 
@@ -354,138 +362,138 @@ var ChannelDetail = (function (_React$Component) {
 
 			return _react2["default"].createElement(
 				"div",
-				{ id: "channel-dialog", className: "modal fade" },
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
 				_react2["default"].createElement(
 					"div",
-					{ className: "modal-dialog modal-lg" },
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
 					_react2["default"].createElement(
 						"div",
-						{ className: "modal-content" },
+						{ className: "col-md-10" },
 						_react2["default"].createElement(
 							"div",
-							{ className: "modal-header" },
-							_react2["default"].createElement(
-								"button",
-								{ type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
-								"×"
-							),
-							_react2["default"].createElement(
-								"h3",
-								{ className: "modal-title" },
-								this.state.channel.title
-							)
-						),
-						_react2["default"].createElement(
-							"div",
-							{ className: "modal-body" },
+							{ className: "row" },
 							_react2["default"].createElement(
 								"div",
-								{ className: "row" },
+								{ className: "col-md-12" },
 								_react2["default"].createElement(
-									"div",
-									{ className: "col-md-2" },
-									_react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
-								),
-								_react2["default"].createElement(
-									"div",
-									{ className: "col-md-7" },
-									_react2["default"].createElement("p", { dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
-								),
-								_react2["default"].createElement(
-									"div",
-									{ className: "col-md-3" },
-									this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
-										"p",
-										{ className: "text-warning" },
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Subscriber info hidden by channel ",
-											_react2["default"].createElement("i", { className: "fa fa-frown-o" })
-										)
-									) : null,
-									this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
-										"p",
-										null,
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Subscribers:"
-										),
-										" ",
-										this.state.channel.subscribers.toLocaleString()
-									) : null,
-									this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
-										"p",
-										null,
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Videos:"
-										),
-										" ",
-										this.state.channel.videos.length
-									) : null,
+									"center",
+									null,
 									_react2["default"].createElement(
-										"p",
+										"h1",
 										null,
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Views:"
-										),
-										" ",
-										this.state.channel.views.toLocaleString()
-									),
-									this.state.channel.lastUploadAt ? _react2["default"].createElement(
-										"p",
-										null,
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Last upload:"
-										),
-										" ",
-										moment.unix(this.state.channel.lastUploadAt).fromNow()
-									) : "",
-									_react2["default"].createElement(
-										"a",
-										{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
-										_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-										" Subscribe"
+										this.state.channel.title
 									)
 								)
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-2" },
+								_react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
 							),
 							_react2["default"].createElement(
 								"div",
-								{ className: "row" },
-								_react2["default"].createElement("div", { className: "col-md-2" }),
-								_react2["default"].createElement(
-									"div",
-									{ className: "col-md-10" },
+								{ className: "col-md-7" },
+								_react2["default"].createElement("p", { className: "channel-description", dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } })
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-3" },
+								this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
+									"p",
+									{ className: "text-warning" },
 									_react2["default"].createElement(
-										"p",
+										"b",
 										null,
-										_react2["default"].createElement(
-											"b",
-											null,
-											"Latest video:"
-										)
+										"Subscriber info hidden by channel ",
+										_react2["default"].createElement("i", { className: "fa fa-frown-o" })
+									)
+								) : null,
+								this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Subscribers:"
 									),
-									_react2["default"].createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowFullScreen: true })
+									" ",
+									this.state.channel.subscribers.toLocaleString()
+								) : null,
+								this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Videos:"
+									),
+									" ",
+									this.state.channel.videoCount
+								) : null,
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Views:"
+									),
+									" ",
+									this.state.channel.views.toLocaleString()
+								),
+								this.state.channel.lastUploadAt ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Last upload:"
+									),
+									" ",
+									moment.unix(this.state.channel.lastUploadAt).fromNow()
+								) : "",
+								_react2["default"].createElement(
+									"a",
+									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+									_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+									" Subscribe"
 								)
 							)
 						),
 						_react2["default"].createElement(
 							"div",
-							{ className: "modal-footer" },
+							{ className: "row" },
+							_react2["default"].createElement("div", { className: "col-md-2" }),
 							_react2["default"].createElement(
-								"button",
-								{ type: "button", className: "btn btn-primary", "data-dismiss": "modal" },
-								"Close"
-							)
+								"div",
+								{ className: "col-md-7" },
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Latest video:"
+									)
+								),
+								_react2["default"].createElement("iframe", { width: "100%", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0].id, frameBorder: "0", allowFullScreen: true })
+							),
+							_react2["default"].createElement("div", { className: "col-md-3" })
 						)
-					)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				),
+				_react2["default"].createElement(
+					"p",
+					null,
+					" "
 				)
 			);
 		}
@@ -497,7 +505,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":17,"react":"react"}],6:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":17,"./Logo":12,"./OffsetMenu":13,"react":"react"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1600,11 +1608,7 @@ exports["default"] = _react2["default"].createElement(
 	{ path: "/", component: _componentsApp2["default"] },
 	_react2["default"].createElement(_reactRouter.IndexRoute, { component: _componentsHome2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy", component: _componentsHome2["default"] }),
-	_react2["default"].createElement(
-		_reactRouter.Route,
-		{ path: "channel", component: _componentsHome2["default"] },
-		_react2["default"].createElement(_reactRouter.Route, { path: ":id", component: _componentsChannelDetail2["default"] })
-	),
+	_react2["default"].createElement(_reactRouter.Route, { path: "channel/:id", component: _componentsChannelDetail2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy/search/:query", component: _componentsHome2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "how-it-works", component: _componentsDataCollection2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "channel-missing", component: _componentsChannelMissing2["default"] })
