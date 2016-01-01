@@ -12,6 +12,7 @@ var Router = require("react-router");
 var RoutingContext = Router.RoutingContext;
 var routes = require("./app/routes");
 var cookieParser = require("cookie-parser");
+var minify = require("html-minifier").minify;
 
 var app = express();
 
@@ -218,7 +219,12 @@ app.use(function(req, res) {
 		else if(renderProps) {
 			var html = ReactDOM.renderToString(<RoutingContext {...renderProps} />);
 			var page = swig.renderFile("views/index.html", { html: html });
-			return res.status(200).send(page);
+
+			return res.status(200).send(minify(page, {
+				removeComments: true,
+				collapseWhitespace: true,
+				minifyJS: true
+			}));
 		}
 
 		// not found

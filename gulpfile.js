@@ -12,8 +12,10 @@ var babelify = require("babelify");
 var browserify = require("browserify");
 var watchify = require("watchify");
 var uglify = require("gulp-uglify");
+var minifyCss = require("gulp-minify-css");
 
 var production = process.env.NODE_ENV === "production";
+console.log("production", production);
 
 var dependencies = [
 	"alt",
@@ -59,9 +61,7 @@ gulp.task("vendor-css", function() {
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))
-		.pipe(gulpif(production, uglify({
-			mangle: false
-		})))
+		.pipe(minifyCss({compatibility: "ie8"}))
 		.pipe(gulp.dest("public/css"));
 });
 
