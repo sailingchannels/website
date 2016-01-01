@@ -1,4 +1,5 @@
 var express = require("express");
+var compress = require("compression");
 var path = require("path");
 var logger = require("morgan");
 var jsonfile = require("jsonfile");
@@ -18,6 +19,7 @@ app.set("port", process.env.PORT || 3000);
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(compress());
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
