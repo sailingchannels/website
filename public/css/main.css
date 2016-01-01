@@ -1,5 +1,3 @@
-@import url("sweetalert2.css");
-
 body {
 	background-color: white;
 }
@@ -42,12 +40,12 @@ h1 {
 }
 
 .logo .front {
-  background: url("/img/logo.svg") 0 0 no-repeat;
+  background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo.svg") 0 0 no-repeat;
 	background-size: contain;
 }
 
 .logo .back {
-  background: url("/img/logo2.svg") 0 0 no-repeat;
+  background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo2.svg") 0 0 no-repeat;
 	background-size: contain;
 }
 

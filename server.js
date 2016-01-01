@@ -15,6 +15,7 @@ var cookieParser = require("cookie-parser");
 var minify = require("html-minifier").minify;
 
 var app = express();
+var tag = process.env.TAG || "dev";
 
 app.set("port", process.env.PORT || 3000);
 app.use(logger("dev"));
@@ -217,8 +218,17 @@ app.use(function(req, res) {
 
 		// render
 		else if(renderProps) {
+
+			var staticPath = "";
+			if(tag !== "dev") {
+				staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
+			}
+
 			var html = ReactDOM.renderToString(<RoutingContext {...renderProps} />);
-			var page = swig.renderFile("views/index.html", { html: html });
+			var page = swig.renderFile("views/index.html", {
+				html: html,
+				staticPath: staticPath
+			});
 
 			return res.status(200).send(minify(page, {
 				removeComments: true,
