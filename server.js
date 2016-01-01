@@ -240,7 +240,6 @@ app.use(function(req, res) {
 
 			return res.status(200).send(minify(page, {
 				removeComments: true,
-				collapseWhitespace: true,
 				minifyJS: true
 			}));
 		}
