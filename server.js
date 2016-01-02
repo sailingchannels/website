@@ -136,9 +136,9 @@ app.get("/api/channels/search", function(req, res) {
 	var sortBy = req.query.sort || "subscribers";
 	var q = req.query.q || null;
 
-	fs.appendFile("searches.log", q + "\n");
-
 	if(!q) return res.send({ "data": [] });
+	q = q.toLowerCase();
+	fs.appendFile("searches.log", q + "\n");
 
 	var ownData = JSON.parse(JSON.stringify(global.data));
 
