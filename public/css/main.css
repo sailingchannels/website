@@ -149,6 +149,10 @@ h1 {
 	margin-bottom:20px;
 }
 
+.banner-channel iframe {
+	height:50px!important;
+}
+
 .footer {
 	margin:20px 0;
 	color:#ccc!important;

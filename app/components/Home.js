@@ -18,7 +18,7 @@ class Home extends React.Component {
 				$("#banner-dialog").modal("show");
 				Cookies.set("banner-dialog", "shown", { expires: 3 });
 			}
-		}, 5000);
+		}, 15000);
 	}
 
 	// RENDER
