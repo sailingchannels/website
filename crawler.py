@@ -1,10 +1,20 @@
 import requests, json, config, calendar, sys
+from pymongo import MongoClient
 from datetime import datetime
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
 sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
+
+# open mongodb connection
+client = MongoClient(config.mongoDB())
+db_name = "sailing-channels"
+
+if len(sys.argv) != 2:
+	db_name += "-dev"
+
+db = client[db_name]
 
 # members
 channels = {}
@@ -97,7 +107,7 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 			pd = datetime.strptime(channel_detail["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
 
 			channels[subChannelId] = {
-				"id": subChannelId,
+				"id": subChannelId, # TODO: can go if switched to mongodb
 				"title": i["snippet"]["title"],
 				"description": i["snippet"]["description"],
 				"publishedAt": calendar.timegm(pd.utctimetuple()),
@@ -107,6 +117,17 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
 				"videos": readVideos(subChannelId)
 			}
+
+			# add country info if available
+			if channel_detail.has_key("country"):
+				channels[subChannelId]["country"] = channel_detail["country"].lower()
+
+			# upsert data in mongodb
+			db.channels.update_one({
+				"_id": subChannelId
+			}, {
+				"$set": channels[subChannelId]
+			}, True)
 
 			# read sub level subscriptions
 			subLevel = level + 1

@@ -13,6 +13,8 @@ var RoutingContext = Router.RoutingContext;
 var routes = require("./app/routes");
 var cookieParser = require("cookie-parser");
 var minify = require("html-minifier").minify;
+var mongodb = require("mongodb");
+var moment = require("moment");
 
 var app = express();
 var tag = process.env.TAG || "dev";
@@ -140,6 +142,12 @@ app.get("/api/channels/search", function(req, res) {
 	if(!q) return res.send({ "data": [] });
 	q = q.toLowerCase();
 	fs.appendFile("searches.log", q + "\n");
+
+	// write query to mongodb
+	global.searches.insertOne({
+		"q": q,
+		"time": moment.utc().toDate()
+	});
 
 	var ownData = JSON.parse(JSON.stringify(global.data));
 
@@ -274,7 +282,22 @@ function loadData() {
 loadData();
 setInterval(loadData, 1000*60*5);
 
-// start server
-app.listen(app.get("port"), function() {
-	console.log("Express server listening on port " + app.get("port"));
+var mongodbURL = "sailing-channels";
+if(tag === "dev") {
+	mongodbURL += "-dev";
+}
+
+// mongodb connect
+mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
+
+	if (err) throw err;
+
+	// collections
+	global.channels = db.collection("channels");
+	global.searches = db.collection("searches");
+
+	// start server
+	app.listen(app.get("port"), function() {
+		console.log("Express server listening on port " + app.get("port"));
+	});
 });
