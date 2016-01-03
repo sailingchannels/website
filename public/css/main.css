@@ -162,3 +162,7 @@ h1 {
 .footer a {
 	color:#ccc!important;
 }
+
+.intro-video {
+	max-width: 560px;
+}

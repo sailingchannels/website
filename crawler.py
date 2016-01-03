@@ -3,11 +3,12 @@ from datetime import datetime
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
-maxLevels = 3
-sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
+maxLevels = 4
+sailingTerms = ["sail", "skipper", "circumnavigate", "yacht", " boat "]
 
 # members
 channels = {}
+channel_logs = {}
 
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
@@ -70,6 +71,44 @@ def readStatistics(channelId):
 	stats = r.json()
 	return stats["items"][0]["statistics"], stats["items"][0]["snippet"]
 
+# ADD SINGLE CHANNEL
+def addSingleChannel(subChannelId, readSubs = True):
+
+	# store this channel
+	if not channels.has_key(subChannelId):
+
+		stats, channel_detail = readStatistics(subChannelId)
+		hasSailingTerm = False
+
+		# check if one of the sailing terms is available
+		for term in sailingTerms:
+			if (term in i["snippet"]["title"].lower() or term in i["snippet"]["description"].lower()):
+				hasSailingTerm = True
+				break
+
+		# log what happened to the channel
+		print subChannelId, hasSailingTerm, int(stats["videoCount"])
+
+		if int(stats["videoCount"]) > 0 and hasSailingTerm:
+
+			pd = datetime.strptime(channel_detail["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
+
+			channels[subChannelId] = {
+				"id": subChannelId,
+				"title": i["snippet"]["title"],
+				"description": i["snippet"]["description"],
+				"publishedAt": calendar.timegm(pd.utctimetuple()),
+				"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
+				"subscribers": int(stats["subscriberCount"]),
+				"views": int(stats["viewCount"]),
+				"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
+				"videos": readVideos(subChannelId)
+			}
+
+			# read sub level subscriptions
+			subLevel = level + 1
+			readSubscriptions(subChannelId, subLevel)
+
 # READ SUBSCRIPTIONS PAGE
 def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 
@@ -87,48 +126,17 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		print "error", r.status_code, channelId, level
 		return None
 
-	print len(subs["items"]), "items"
-
 	# loop channel items in result set
 	for i in subs["items"]:
 
 		if i["snippet"]["resourceId"]["kind"] != "youtube#channel":
-			print i["snippet"]["resourceId"]["kind"]
+			#print i["snippet"]["resourceId"]["kind"]
 			continue
 
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
 
 		# store this channel
-		if not channels.has_key(subChannelId):
-
-			stats, channel_detail = readStatistics(subChannelId)
-			hasSailingTerm = False
-
-			# check if one of the sailing terms is available
-			for term in sailingTerms:
-				if (term in i["snippet"]["title"].lower() or term in i["snippet"]["description"].lower()):
-					hasSailingTerm = True
-					break
-
-			if int(stats["videoCount"]) > 0 and hasSailingTerm:
-
-				pd = datetime.strptime(channel_detail["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
-
-				channels[subChannelId] = {
-					"id": subChannelId,
-					"title": i["snippet"]["title"],
-					"description": i["snippet"]["description"],
-					"publishedAt": calendar.timegm(pd.utctimetuple()),
-					"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
-					"subscribers": int(stats["subscriberCount"]),
-					"views": int(stats["viewCount"]),
-					"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-					"videos": readVideos(subChannelId)
-				}
-
-				# read sub level subscriptions
-				subLevel = level + 1
-				readSubscriptions(subChannelId, subLevel)
+		addSingleChannel(subChannelId, True)
 
 	# is there a next page?
 	if subs.has_key("nextPageToken"):
@@ -142,8 +150,6 @@ def readSubscriptions(channelId, level = 1):
 	# we reached the maximum level of recursion
 	if level >= maxLevels:
 		return None
-
-	print channelId, level
 
 	nextPage = None
 	nextPageNew = None
@@ -162,12 +168,32 @@ def writeSubscriptions():
 	print len(channels.keys()), " channels found"
 
 	dataFile = "data.json"
+	dataPath = ""
 	if len(sys.argv) == 2:
-		dataFile = sys.argv[1]
+		dataPath = sys.argv[1]
+
+	dataFile = dataPath + dataFile
 
 	# order them by subscribers
 	with open(dataFile, "w") as dataFile:
 		dataFile.write(json.dumps(channels.values(), sort_keys=True))
 
+# ADDITIONAL SUBSCRIPTIONS
+def addAdditionalSubscriptions():
+
+	dataFile = "additional-channels.txt"
+	dataPath = ""
+
+	if len(sys.argv) == 2:
+		dataPath = sys.argv[1]
+
+	dataFile = dataPath + dataFile
+
+	# read the file line by line
+	with open(dataFile) as f:
+		for line in f.readlines():
+			addSingleChannel(line, False)
+
 readSubscriptions(startChannelId, 1)
+addAdditionalSubscriptions()
 writeSubscriptions()
