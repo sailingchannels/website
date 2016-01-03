@@ -8,7 +8,9 @@ sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
 # members
 channels = {}
-channel_logs = {}
+blacklist = []
+
+
 
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
@@ -172,8 +174,11 @@ def writeSubscriptions():
 	print len(channels.keys()), " channels found"
 
 	dataFile = "data.json"
+	dataPath = ""
 	if len(sys.argv) == 2:
-		dataFile = sys.argv[1]
+		dataPath = sys.argv[1]
+
+	dataFile = dataPath + dataFile
 
 	# order them by subscribers
 	with open(dataFile, "w") as dataFile:
