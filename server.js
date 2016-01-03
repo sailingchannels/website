@@ -5,7 +5,6 @@ var logger = require("morgan");
 var jsonfile = require("jsonfile");
 var bodyParser = require("body-parser");
 var swig = require("swig");
-var fs = require("fs");
 var React = require("react");
 var ReactDOM = require("react-dom/server");
 var Router = require("react-router");
@@ -33,31 +32,26 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/api/channel/get/:id", function(req, res) {
 
 	var id = req.params.id;
-	var data = JSON.parse(JSON.stringify(global.dataIndexed[id]));
 
-	// sort videos by date
-	data.videos.sort(function(av, bv) {
-		return bv.publishedAt - av.publishedAt;
+	// find one video
+	global.channels.find({"_id": id}).limit(1).project({
+		"videos.description": false
+	}).next(function(err, video) {
+
+		// oh no!
+		if(err) {
+			return res.status(500).send(err);
+		}
+
+		// sort videos by published
+		video.videos.sort(function(av, bv) {
+			return bv.publishedAt - av.publishedAt;
+		});
+
+		video.videos = video.videos.slice(0, 1);
+
+		return res.send(video);
 	});
-
-	data.videoCount = 0;
-
-	if(data.videos && data.videos.length > 0) {
-
-		data.videoCount = data.videos.length;
-		data.lastUploadAt = Math.max.apply(null, data.videos.map(function(vid) {
-			return vid.publishedAt;
-		}));
-		data.videos = data.videos.slice(0, 1);
-	}
-
-	// remove description from videos
-	data.videos = data.videos.map(function(item) {
-		delete item.description;
-		return item;
-	});
-
-	return res.send(data);
 });
 
 // API / CHANNELS / GET
@@ -67,69 +61,38 @@ app.get("/api/channels/get", function(req, res) {
 	var take = parseInt(req.query.take) || 25;
 	var skip = parseInt(req.query.skip) || 0;
 
-	var ownData = JSON.parse(JSON.stringify(global.data));
-
-	// apply sorting
+	var sortKey = "subscribers";
 	switch(sortBy) {
-
-		// SUBSCRIBERS
-		case "subscribers":
-
-			// sort channels by subscribers
-			ownData.sort(function(a, b) {
-				return b.subscribers - a.subscribers;
-			});
-			break;
-
-		// FOUNDED
-		case "founded":
-
-			// sort channels by age
-			ownData.sort(function(a, b) {
-				return b.publishedAt - a.publishedAt;
-			});
-			break;
-
-		// UPLOAD
-		case "upload":
-
-			// who has the last video upload
-			ownData.sort(function(a, b) {
-				if(!b.videos || !a.videos) return 0;
-				if(b.videos.length === 0 || a.videos.length === 0) return 0;
-
-				a.videos.sort(function(av, bv) {
-					return bv.publishedAt - av.publishedAt;
-				});
-
-				b.videos.sort(function(av, bv) {
-					return bv.publishedAt - av.publishedAt;
-				});
-
-				return b.videos[0].publishedAt - a.videos[0].publishedAt;
-			});
-			break;
+		case "subscribers": sortKey = "subscribers"; break;
+		case "founded": sortKey = "publishedAt"; break;
+		case "upload": sortKey = "lastUploadAt"; break;
 	}
 
-	// remove unneeded properties
-	var filtered = ownData.map(function(item) {
+	var sorting = {};
+	sorting[sortKey] = -1;
 
-		// get the last timestamp a video was uploaded
-		if(item.videos) {
-			item.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
-				return vid.publishedAt;
-			}));
+	// fetch channels from mongodb
+	global.channels.find({}).skip(skip).limit(take).sort(sorting).project({
+		"videos": false,
+		"country": false
+	}).toArray(function(err, channels) {
+
+		// oh no!
+		if(err) {
+			return res.status(500).send({
+				"data": [],
+				"skip": skip,
+				"take": take,
+				"error": err
+			});
 		}
 
-		item.videos = (item.videos) ? item.videos.length : 0;
-		return item;
-	});
-
-	// send data out
-	return res.send({
-		"data": filtered.slice(skip, skip + take),
-		"skip": skip,
-		"take": take
+		// send data out
+		return res.send({
+			"data": channels,
+			"skip": skip,
+			"take": take
+		});
 	});
 });
 
@@ -141,7 +104,6 @@ app.get("/api/channels/search", function(req, res) {
 
 	if(!q) return res.send({ "data": [] });
 	q = q.toLowerCase();
-	fs.appendFile("searches.log", q + "\n");
 
 	// write query to mongodb
 	global.searches.insertOne({
@@ -149,72 +111,34 @@ app.get("/api/channels/search", function(req, res) {
 		"time": moment.utc().toDate()
 	});
 
-	var ownData = JSON.parse(JSON.stringify(global.data));
-
-	// apply sorting
+	var sortKey = "subscribers";
 	switch(sortBy) {
-
-		// SUBSCRIBERS
-		case "subscribers":
-
-			// sort channels by subscribers
-			ownData.sort(function(a, b) {
-				return b.subscribers - a.subscribers;
-			});
-
-			break;
-
-		// FOUNDED
-		case "founded":
-
-			// sort channels by age
-			ownData.sort(function(a, b) {
-				return b.publishedAt - a.publishedAt;
-			});
-			break;
-
-		// UPLOAD
-		case "upload":
-
-			// who has the last video upload
-			ownData.sort(function(a, b) {
-				if(!b.videos || !a.videos) return 0;
-
-				a.videos.sort(function(av, bv) {
-					return bv.publishedAt - av.publishedAt;
-				});
-
-				b.videos.sort(function(av, bv) {
-					return bv.publishedAt - av.publishedAt;
-				});
-
-				return b.videos[0].publishedAt - a.videos[0].publishedAt;
-			});
-			break;
+		case "subscribers": sortKey = "subscribers"; break;
+		case "founded": sortKey = "publishedAt"; break;
+		case "upload": sortKey = "lastUploadAt"; break;
 	}
 
-	// filter channels by query
-	var filtered = ownData.filter(function(item) {
-		return item.title.toLowerCase().indexOf(q) >= 0 || item.description.toLowerCase().indexOf(q) >= 0;
-	});
+	var sorting = {};
+	sorting[sortKey] = -1;
 
-	// remove unneeded properties
-	filtered = filtered.map(function(item) {
+	// fetch channels from mongodb
+	global.channels.find({"$text": {"$search": q}}).sort(sorting).project({
+		"videos": false,
+		"country": false
+	}).toArray(function(err, channels) {
 
-		// get the last timestamp a video was uploaded
-		if(item.videos) {
-			item.lastUploadAt = Math.max.apply(null, item.videos.map(function(vid) {
-				return vid.publishedAt;
-			}));
+		// oh no!
+		if(err) {
+			return res.status(500).send({
+				"data": [],
+				"error": err
+			});
 		}
 
-		item.videos = (item.videos) ? item.videos.length : 0;
-		return item;
-	});
-
-	// send data out
-	return res.send({
-		"data": filtered
+		// send data out
+		return res.send({
+			"data": channels
+		});
 	});
 });
 
@@ -259,28 +183,6 @@ app.use(function(req, res) {
 		}
 	});
 });
-
-// LOAD DATA
-function loadData() {
-
-	console.log("loadData");
-
-	// read data json
-	jsonfile.readFile("data.json", function(err, obj) {
-
-		// complete data
-		global.data = obj;
-		global.dataIndexed = {};
-
-		// build index
-		for(var i in obj) {
-			global.dataIndexed[obj[i].id] = obj[i];
-		}
-	});
-}
-
-loadData();
-setInterval(loadData, 1000*60*5);
 
 var mongodbURL = "sailing-channels";
 if(tag === "dev") {

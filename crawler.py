@@ -18,7 +18,6 @@ db = client[db_name]
 
 # members
 channels = {}
-channel_logs = {}
 
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
@@ -118,6 +117,17 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				"videos": readVideos(subChannelId)
 			}
 
+			# video count
+			channels[subChannelId]["videoCount"] = len(channels[subChannelId]["videos"])
+
+			# last upload at
+			maxVideoAge = 0
+			for vid in channels[subChannelId]["videos"]:
+				if vid["publishedAt"] > maxVideoAge:
+					maxVideoAge = vid["publishedAt"]
+
+			channels[subChannelId]["lastUploadAt"] = maxVideoAge
+
 			# add country info if available
 			if channel_detail.has_key("country"):
 				channels[subChannelId]["country"] = channel_detail["country"].lower()
@@ -187,19 +197,6 @@ def readSubscriptions(channelId, level = 1):
 
 		nextPage = nextPageNew
 
-# WRITE SUBSCRIPTIONS
-def writeSubscriptions():
-
-	print len(channels.keys()), " channels found"
-
-	dataFile = "data.json"
-	if len(sys.argv) == 2:
-		dataFile = sys.argv[1]
-
-	# order them by subscribers
-	with open(dataFile, "w") as dataFile:
-		dataFile.write(json.dumps(channels.values(), sort_keys=True))
-
 # ADDITIONAL SUBSCRIPTIONS
 def addAdditionalSubscriptions():
 
@@ -228,4 +225,3 @@ def addAdditionalSubscriptions():
 
 readSubscriptions(startChannelId, 1)
 addAdditionalSubscriptions()
-writeSubscriptions()

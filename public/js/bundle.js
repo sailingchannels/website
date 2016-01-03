@@ -847,7 +847,7 @@ var ChannelListItem = (function (_React$Component) {
               "Videos:"
             ),
             " ",
-            this.props.channel.videos
+            this.props.channel.videoCount
           ) : null,
           this.props.channel.lastUploadAt ? _react2["default"].createElement(
             "p",
