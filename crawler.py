@@ -72,7 +72,7 @@ def readStatistics(channelId):
 	return stats["items"][0]["statistics"], stats["items"][0]["snippet"]
 
 # ADD SINGLE CHANNEL
-def addSingleChannel(subChannelId, readSubs = True):
+def addSingleChannel(subChannelId, i, level, readSubs = True):
 
 	# store this channel
 	if not channels.has_key(subChannelId):
@@ -136,7 +136,7 @@ def readSubscriptionsPage(channelId, pageToken = None, level = 1):
 		subChannelId = i["snippet"]["resourceId"]["channelId"]
 
 		# store this channel
-		addSingleChannel(subChannelId, True)
+		addSingleChannel(subChannelId, i, level, True)
 
 	# is there a next page?
 	if subs.has_key("nextPageToken"):
@@ -191,8 +191,18 @@ def addAdditionalSubscriptions():
 
 	# read the file line by line
 	with open(dataFile) as f:
-		for line in f.readlines():
-			addSingleChannel(line, False)
+		for channelId in f.readlines():
+
+			if len(channelId) > 1:
+
+				# get info of additional channel
+				r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + channelId + "&key=" + config.apiKey())
+				result = r.json()
+
+				print "additional ", channelId
+
+				# add this channel
+				addSingleChannel(channelId, result["items"][0], 0, False)
 
 readSubscriptions(startChannelId, 1)
 addAdditionalSubscriptions()

@@ -94,6 +94,7 @@ app.get("/api/channels/get", function(req, res) {
 			// who has the last video upload
 			ownData.sort(function(a, b) {
 				if(!b.videos || !a.videos) return 0;
+				if(b.videos.length === 0 || a.videos.length === 0) return 0;
 
 				a.videos.sort(function(av, bv) {
 					return bv.publishedAt - av.publishedAt;
