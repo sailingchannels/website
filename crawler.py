@@ -4,7 +4,7 @@ from datetime import datetime
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
-sailingTerms = ["sail", "skipper", "circumnavigate", "yacht", " boat "]
+sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 
 # members
 channels = {}
@@ -72,7 +72,7 @@ def readStatistics(channelId):
 	return stats["items"][0]["statistics"], stats["items"][0]["snippet"]
 
 # ADD SINGLE CHANNEL
-def addSingleChannel(subChannelId, i, level, readSubs = True):
+def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm = False):
 
 	# store this channel
 	if not channels.has_key(subChannelId):
@@ -88,6 +88,9 @@ def addSingleChannel(subChannelId, i, level, readSubs = True):
 
 		# log what happened to the channel
 		print subChannelId, hasSailingTerm, int(stats["videoCount"])
+
+		if ignoreSailingTerm == True:
+			hasSailingTerm = True
 
 		if int(stats["videoCount"]) > 0 and hasSailingTerm:
 
@@ -107,7 +110,8 @@ def addSingleChannel(subChannelId, i, level, readSubs = True):
 
 			# read sub level subscriptions
 			subLevel = level + 1
-			readSubscriptions(subChannelId, subLevel)
+			if readSubs == True:
+				readSubscriptions(subChannelId, subLevel)
 
 # READ SUBSCRIPTIONS PAGE
 def readSubscriptionsPage(channelId, pageToken = None, level = 1):
@@ -168,11 +172,8 @@ def writeSubscriptions():
 	print len(channels.keys()), " channels found"
 
 	dataFile = "data.json"
-	dataPath = ""
 	if len(sys.argv) == 2:
-		dataPath = sys.argv[1]
-
-	dataFile = dataPath + dataFile
+		dataFile = sys.argv[1]
 
 	# order them by subscribers
 	with open(dataFile, "w") as dataFile:
@@ -202,7 +203,7 @@ def addAdditionalSubscriptions():
 				print "additional ", channelId
 
 				# add this channel
-				addSingleChannel(channelId, result["items"][0], 0, False)
+				addSingleChannel(channelId, result["items"][0], 0, False, True)
 
 readSubscriptions(startChannelId, 1)
 addAdditionalSubscriptions()
