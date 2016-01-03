@@ -10,8 +10,6 @@ sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
 channels = {}
 blacklist = []
 
-
-
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
 
