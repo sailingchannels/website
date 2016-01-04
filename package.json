@@ -12,10 +12,6 @@
     "watch": "nodemon --exec babel-node -- server.js",
     "postinstall": "bower install && gulp build"
   },
-  "engines": {
-   "node": "0.12.x",
-   "npm": "3.5.2"
-  },
   "dependencies": {
     "alt": "^0.17.4",
     "async": "^1.4.2",

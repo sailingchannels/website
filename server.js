@@ -122,7 +122,7 @@ app.get("/api/channels/search", function(req, res) {
 	sorting[sortKey] = -1;
 
 	// fetch channels from mongodb
-	global.channels.find({"$text": {"$search": q}}).sort(sorting).project({
+	global.channels.find({"$text": {"$search": "\"" + q + "\"" }}).sort(sorting).project({
 		"videos": false,
 		"country": false
 	}).toArray(function(err, channels) {
