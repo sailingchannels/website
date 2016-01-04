@@ -30,9 +30,7 @@
     "react-router": "^1.0.0-rc3",
     "request": "^2.65.0",
     "swig": "^1.4.2",
-    "underscore": "^1.8.3"
-  },
-  "devDependencies": {
+    "underscore": "^1.8.3",
     "babelify": "^6.3.0",
     "bower": "^1.6.3",
     "browserify": "^11.2.0",
@@ -49,6 +47,8 @@
     "gulp-util": "^3.0.6",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0"
+  },
+  "devDependencies": {
   },
   "license": "MIT"
 }
