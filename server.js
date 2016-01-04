@@ -39,16 +39,23 @@ app.get("/api/channel/get/:id", function(req, res) {
 	}).next(function(err, video) {
 
 		// oh no!
-		if(err) {
+		if(err || !video) {
 			return res.status(500).send(err);
 		}
 
-		// sort videos by published
-		video.videos.sort(function(av, bv) {
-			return bv.publishedAt - av.publishedAt;
-		});
+		if(video.videos) {
 
-		video.videos = video.videos.slice(0, 1);
+			// sort videos by published
+			video.videos.sort(function(av, bv) {
+				return bv.publishedAt - av.publishedAt;
+			});
+
+			video.videos = video.videos.slice(0, 1);
+		}
+		else {
+			video.videos = [];
+		}
+
 
 		return res.send(video);
 	});
