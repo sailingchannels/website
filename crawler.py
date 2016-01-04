@@ -197,7 +197,7 @@ def addAdditionalSubscriptions():
 	with open(dataFile) as f:
 		for channelId in f.readlines():
 
-			if len(channelId) > 1:
+			if len(channelId) > 1 and not channels.has_key(channelId):
 
 				# get info of additional channel
 				r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + channelId + "&key=" + config.apiKey())
