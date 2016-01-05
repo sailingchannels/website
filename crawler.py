@@ -202,7 +202,7 @@ def addAdditionalSubscriptions():
 
 	for cc in db.additional.find({}):
 
-		if channels.has_key(cc["_id"]):
+		if not channels.has_key(cc["_id"]):
 
 			# get info of additional channel
 			r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + cc["_id"] + "&key=" + config.apiKey())
