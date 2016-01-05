@@ -5,7 +5,7 @@ from datetime import datetime
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
-sailingTerms = ["sail", "skipper", "circumnavigate", "yacht"]
+sailingTerms = ["sail", "skipper", "circumnavigate", "yacht", " s/y ", " s/v "]
 
 # open mongodb connection
 client = MongoClient(config.mongoDB())
