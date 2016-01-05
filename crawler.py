@@ -200,28 +200,18 @@ def readSubscriptions(channelId, level = 1):
 # ADDITIONAL SUBSCRIPTIONS
 def addAdditionalSubscriptions():
 
-	dataFile = "additional-channels.txt"
-	dataPath = ""
+	for cc in db.additional.find({}):
 
-	if len(sys.argv) == 2:
-		dataPath = sys.argv[1]
+		if channels.has_key(cc["_id"]):
 
-	dataFile = dataPath + dataFile
+			# get info of additional channel
+			r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + cc["_id"] + "&key=" + config.apiKey())
+			result = r.json()
 
-	# read the file line by line
-	with open(dataFile) as f:
-		for channelId in f.readlines():
+			print "additional ", cc["_id"]
 
-			if len(channelId) > 1 and not channels.has_key(channelId):
-
-				# get info of additional channel
-				r = requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + channelId + "&key=" + config.apiKey())
-				result = r.json()
-
-				print "additional ", channelId
-
-				# add this channel
-				addSingleChannel(channelId, result["items"][0], 0, False, True)
+			# add this channel
+			addSingleChannel(cc["_id"], result["items"][0], 0, False, True)
 
 readSubscriptions(startChannelId, 1)
 addAdditionalSubscriptions()
