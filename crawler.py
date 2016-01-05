@@ -5,7 +5,7 @@ from datetime import datetime
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
-sailingTerms = ["sail", "skipper", "circumnavigate", "yacht", "s/y ", "s/v "]
+sailingTerms = []
 
 # open mongodb connection
 client = MongoClient(config.mongoDB())
@@ -137,6 +137,16 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 			# add country info if available
 			if channel_detail.has_key("country"):
 				channels[subChannelId]["country"] = channel_detail["country"].lower()
+
+				# read language information
+				try:
+					r = requests.get("https://restcountries.eu/rest/v1/alpha/" + channels[subChannelId]["country"])
+					country_result = r.json()
+					channels[subChannelId]["languages"] = country_result["languages"]
+				except:
+					channels[subChannelId]["languages"] = "en"
+			else:
+				channels[subChannelId]["languages"] = "en"
 
 			# upsert data in mongodb
 			db.channels.update_one({

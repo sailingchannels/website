@@ -28,6 +28,16 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// API / LANGUAGES
+app.get("/api/languages", function(req, res) {
+
+	// fetch distinct countries
+	global.channels.distinct("languages", function(err, languages) {
+
+		return res.send(languages);
+	});
+});
+
 // API / CHANNEL / GET / :ID
 app.get("/api/channel/get/:id", function(req, res) {
 
