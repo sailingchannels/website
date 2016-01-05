@@ -17,7 +17,7 @@ if len(sys.argv) != 2:
 db = client[db_name]
 
 # add sailing terms
-for tt in db.sailingterms:
+for tt in db.sailingterms.find({}):
 	sailingTerms.append(tt["_id"])
 
 print sailingTerms
