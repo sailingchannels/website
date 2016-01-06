@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router";
-import "LanguagePicker" from "./LanguagePicker";
+import LanguagePicker from "./LanguagePicker";
 
 class OffsetMenu extends React.Component {
 
@@ -38,7 +38,10 @@ class OffsetMenu extends React.Component {
 	                    <li><Link to="/how-it-works">How does this work?</Link></li>
 	                    <li><Link to="/channel-missing">My channel is missing!</Link></li>
 	                    <li><a href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)}>Contact</a></li>
-						<LanguagePicker />
+						<li>
+							<div div className="little-space">Channel language</div>
+							<LanguagePicker />
+						</li>
 	                </ul>
 	            </div>
 			</div>

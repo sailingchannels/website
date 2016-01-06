@@ -14,6 +14,7 @@ var cookieParser = require("cookie-parser");
 var minify = require("html-minifier").minify;
 var mongodb = require("mongodb");
 var moment = require("moment");
+var ISO6391 = require("iso-639-1");
 
 var app = express();
 var tag = process.env.TAG || "dev";
@@ -34,7 +35,8 @@ app.get("/api/languages", function(req, res) {
 	// fetch distinct countries
 	global.channels.distinct("languages", function(err, languages) {
 
-		return res.send(languages);
+		// return some iso information
+		return res.send(ISO6391.getLanguages(languages));
 	});
 });
 

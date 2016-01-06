@@ -114,6 +114,8 @@ h1 {
 
 .offset-menu li {
 	line-height: 30px;
+	color:#ccc;
+	text-transform: uppercase;
 }
 
 .offset-menu a {
@@ -127,6 +129,14 @@ h1 {
 	-moz-transition: all 0.3s ease;
 	-o-transition: all 0.3s ease;
 	-ms-transition: all 0.3s ease;
+}
+
+.offset-menu .form-group {
+	margin-top:0px;
+}
+
+.offset-menu .little-space {
+	margin-top:20px;
 }
 
 .content-row {
@@ -165,4 +175,9 @@ h1 {
 
 .intro-video {
 	max-width: 560px;
+}
+
+.language-picker {
+	max-width:110px;
+	float:right !important;
 }

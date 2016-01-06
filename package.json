@@ -23,16 +23,17 @@
     "express": "^4.13.3",
     "history": "^1.12.5",
     "html-minifier": "^1.0.1",
+    "iso-639-1": "^1.0.0",
     "jsonfile": "^2.2.3",
+    "moment": "2.10.6",
+    "mongodb": "2.0.48",
     "morgan": "^1.6.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
     "request": "^2.65.0",
     "swig": "^1.4.2",
-    "underscore": "^1.8.3",
-    "mongodb": "2.0.48",
-    "moment": "2.10.6"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
