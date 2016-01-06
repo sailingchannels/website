@@ -31,6 +31,7 @@ class ChannelDetail extends React.Component {
     componentDidUpdate() {
         if(this.state.channel) {
             document.title = this.state.channel.title + " - Sailing Channels";
+			$("meta[name='description']").attr("content", this.state.channel.description);
         }
     }
 

@@ -61,6 +61,7 @@ class ChannelList extends React.Component {
 	loadData(nextProps) {
 
 		document.title = "Sailing Channels";
+		$("meta[name='description']").attr("content", "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.");
 
 		// does a search query exists?
 		if(nextProps.query) {
