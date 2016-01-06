@@ -157,12 +157,18 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 
 				channels[subChannelId]["language"] = "en"
 
-				try:
-					detectedLang = detectlanguage.detect(lotsOfText)
-				except:
-					useDetectLangKey = useDetectLangKey + 1
-					detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
-					detectedLang = detectlanguage.detect(lotsOfText)
+				runLoop = True
+				while runLoop:
+					try:
+						detectedLang = detectlanguage.detect(lotsOfText)
+						runLoop = False
+					except:
+						useDetectLangKey = useDetectLangKey + 1
+
+						if useDetectLangKey > len(config.detectedLanguage()):
+							 runLoop = False
+						else:
+							detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
 
 				# did we find a language in the text body?
 				if len(detectedLang) > 0:
