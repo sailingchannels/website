@@ -21,7 +21,7 @@ class Contributions extends React.Component {
 					<div className="col-md-6">
 	                    <h1 className="content-h1">Contributions</h1>
 						<p>
-							At this place we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented:
+							This is the place we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented:
 						</p>
                         <table className="table">
                             <thead>
