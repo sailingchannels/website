@@ -165,7 +165,7 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 					except:
 						useDetectLangKey = useDetectLangKey + 1
 
-						if useDetectLangKey > len(config.detectedLanguage()):
+						if useDetectLangKey > len(config.detectLanguage()):
 							 runLoop = False
 						else:
 							detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
