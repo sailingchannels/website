@@ -15,22 +15,6 @@ class LanguagePicker extends React.Component {
 	componentDidMount() {
 		LanguageStore.listen(this.onChange);
 
-        var defaultLanguage = "en";
-
-        // if no cookie exists yet, set the language to default english
-        if(!Cookies.get("channel-language")) {
-
-            Cookies.set("channel-language", defaultLanguage);
-            this.setState({
-                "selectedLanguage": defaultLanguage
-            });
-        }
-        else {
-            this.setState({
-                "selectedLanguage": Cookies.get("channel-language")
-            });
-        }
-
         LanguageActions.getLanguages();
     }
 
@@ -41,6 +25,7 @@ class LanguagePicker extends React.Component {
 
     // ON CHANGE
 	onChange(state) {
+		console.log(state);
 		this.setState(state);
 	}
 
@@ -50,32 +35,19 @@ class LanguagePicker extends React.Component {
         this.setState({
             "selectedLanguage": e.target.value
         });
+
+		// make channel list rerender
+		$(window).trigger("rerenderList");
     }
 
     // RENDER
 	render() {
 
-        console.log(this.state.selectedLanguage);
-
-        var langOptions = [];
-        for(var l in this.state.languages) {
-            var ll = this.state.languages[l];
-
-            if(ll.code === this.state.selectedLanguage) {
-                langOptions.push(
-                    <option key={ll.code} value={ll.code} selected>{ll.name}</option>
-                );
-            }
-            else {
-                langOptions.push(
-                    <option key={ll.code} value={ll.code}>{ll.name}</option>
-                );
-            }
-        }
-
 		return (
-            <select className="form-control language-picker" data-dropdownjs="true" onChange={this.setLanguage.bind(this)}>
-              {langOptions}
+            <select className="form-control language-picker" data-dropdownjs="true" value={this.state.selectedLanguage} onChange={this.setLanguage.bind(this)}>
+              {this.state.languages.map(l => (
+				  <option key={l.code} value={l.code}>{l.name}</option>
+			  ))}
             </select>
 		);
 	}

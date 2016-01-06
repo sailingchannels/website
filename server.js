@@ -33,10 +33,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/api/languages", function(req, res) {
 
 	// fetch distinct countries
-	global.channels.distinct("languages", function(err, languages) {
+	global.channels.distinct("language", function(err, languages) {
 
 		// return some iso information
-		return res.send(ISO6391.getLanguages(languages));
+		return res.send({
+			"languages": ISO6391.getLanguages(languages).sort(function(a, b) {
+				return a.name.charCodeAt(0) - b.name.charCodeAt(0);
+			}),
+			"selected": req.cookies["channel-language"] || "en"
+		});
 	});
 });
 
@@ -91,7 +96,9 @@ app.get("/api/channels/get", function(req, res) {
 	sorting[sortKey] = -1;
 
 	// fetch channels from mongodb
-	global.channels.find({}).skip(skip).limit(take).sort(sorting).project({
+	global.channels.find({
+		"language": req.cookies["channel-language"] || "en"
+	}).skip(skip).limit(take).sort(sorting).project({
 		"videos": false,
 		"country": false
 	}).toArray(function(err, channels) {
@@ -141,7 +148,10 @@ app.get("/api/channels/search", function(req, res) {
 	sorting[sortKey] = -1;
 
 	// fetch channels from mongodb
-	global.channels.find({"$text": {"$search": "\"" + q + "\"" }}).sort(sorting).project({
+	global.channels.find({
+		"$text": {"$search": "\"" + q + "\"" },
+		"language": req.cookies["channel-language"] || "en"
+	}).sort(sorting).project({
 		"videos": false,
 		"country": false
 	}).toArray(function(err, channels) {

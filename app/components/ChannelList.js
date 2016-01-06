@@ -22,6 +22,7 @@ class ChannelList extends React.Component {
 		// handle event bus page changes
 		$(window).on("changeSort", this.changeSort.bind(this));
 		$(window).on("scroll", this.scrollWindow.bind(this));
+		$(window).on("rerenderList", this.rerenderList.bind(this));
 
 		var sortBy = this.props.sortBy;
 		this.setState({
@@ -42,6 +43,7 @@ class ChannelList extends React.Component {
 		//$(window).off("typeSearchterm");
 		$(window).off("scroll");
 		$(window).off("changeSort");
+		$(window).off("rerenderList");
 
 		ChannelStore.unlisten(this.onChange);
 	}
@@ -114,6 +116,12 @@ class ChannelList extends React.Component {
 		   // load more data
 		   ChannelActions.getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
 	   	}
+	}
+
+	// RERENDER LIST
+	rerenderList() {
+		console.log("rerender");
+		this.loadData(this.props);
 	}
 
 	// CHANGE SORT

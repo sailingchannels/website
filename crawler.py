@@ -1,6 +1,9 @@
 import requests, json, config, calendar, sys
 from pymongo import MongoClient
 from datetime import datetime
+import detectlanguage
+
+detectlanguage.configuration.api_key = config.detectLanguage()
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
@@ -126,9 +129,12 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 			# video count
 			channels[subChannelId]["videoCount"] = len(channels[subChannelId]["videos"])
 
+			lotsOfText = channels[subChannelId]["description"] + " "
+
 			# last upload at
 			maxVideoAge = 0
 			for vid in channels[subChannelId]["videos"]:
+				lotsOfText += vid["description"] + " "
 				if vid["publishedAt"] > maxVideoAge:
 					maxVideoAge = vid["publishedAt"]
 
@@ -138,15 +144,18 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 			if channel_detail.has_key("country"):
 				channels[subChannelId]["country"] = channel_detail["country"].lower()
 
-				# read language information
-				try:
-					r = requests.get("https://restcountries.eu/rest/v1/alpha/" + channels[subChannelId]["country"])
-					country_result = r.json()
-					channels[subChannelId]["languages"] = country_result["languages"]
-				except:
-					channels[subChannelId]["languages"] = "en"
-			else:
-				channels[subChannelId]["languages"] = "en"
+			# detect the language of the channel
+			if db.channels.count({"_id": subChannelId}) == 0:
+
+				channels[subChannelId]["language"] = "en"
+				detectedLang = detectlanguage.detect(lotsOfText)
+
+				# did we find a language in the text body?
+				if len(detectedLang) > 0:
+
+					# is the detection reliable?
+					if detectedLang[0]["isReliable"]:
+						channels[subChannelId]["language"] = detectedLang[0]["language"]
 
 			# upsert data in mongodb
 			db.channels.update_one({

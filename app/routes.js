@@ -7,6 +7,7 @@ import DataCollection from "./components/DataCollection";
 import ChannelMissing from "./components/ChannelMissing";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Impressum from "./components/Impressum";
+import Contributions from "./components/Contributions";
 
 export default (
 	<Route path="/" component={App}>
@@ -17,6 +18,7 @@ export default (
 		<Route path="how-it-works" component={DataCollection} />
 		<Route path="channel-missing" component={ChannelMissing} />
 		<Route path="privacy" component={PrivacyPolicy} />
-		<Route path="Impressum" component={Impressum} />
+		<Route path="impressum" component={Impressum} />
+		<Route path="contributions" component={Contributions} />
 	</Route>
 );

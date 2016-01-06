@@ -203,7 +203,7 @@ var App = (function (_React$Component) {
 exports["default"] = App;
 module.exports = exports["default"];
 
-},{"./Footer":12,"react":"react"}],5:[function(require,module,exports){
+},{"./Footer":13,"react":"react"}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -565,7 +565,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":22,"./Logo":16,"./OffsetMenu":17,"react":"react"}],7:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":23,"./Logo":17,"./OffsetMenu":18,"react":"react"}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -625,6 +625,7 @@ var ChannelList = (function (_React$Component) {
 			// handle event bus page changes
 			$(window).on("changeSort", this.changeSort.bind(this));
 			$(window).on("scroll", this.scrollWindow.bind(this));
+			$(window).on("rerenderList", this.rerenderList.bind(this));
 
 			var sortBy = this.props.sortBy;
 			this.setState({
@@ -649,6 +650,7 @@ var ChannelList = (function (_React$Component) {
 			//$(window).off("typeSearchterm");
 			$(window).off("scroll");
 			$(window).off("changeSort");
+			$(window).off("rerenderList");
 
 			_storesChannelStore2["default"].unlisten(this.onChange);
 		}
@@ -729,6 +731,14 @@ var ChannelList = (function (_React$Component) {
 			}
 		}
 
+		// RERENDER LIST
+	}, {
+		key: "rerenderList",
+		value: function rerenderList() {
+			console.log("rerender");
+			this.loadData(this.props);
+		}
+
 		// CHANGE SORT
 	}, {
 		key: "changeSort",
@@ -799,7 +809,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":22,"./ChannelListItem":8,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":23,"./ChannelListItem":8,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -940,7 +950,7 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":11,"react":"react","react-router":"react-router"}],9:[function(require,module,exports){
+},{"./Description":12,"react":"react","react-router":"react-router"}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1043,7 +1053,133 @@ var ChannelMissing = (function (_React$Component) {
 exports["default"] = ChannelMissing;
 module.exports = exports["default"];
 
-},{"./Logo":16,"./OffsetMenu":17,"react":"react"}],10:[function(require,module,exports){
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+				value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var Contributions = (function (_React$Component) {
+				_inherits(Contributions, _React$Component);
+
+				function Contributions() {
+								_classCallCheck(this, Contributions);
+
+								_get(Object.getPrototypeOf(Contributions.prototype), "constructor", this).apply(this, arguments);
+				}
+
+				_createClass(Contributions, [{
+								key: "componentDidMount",
+
+								// COMPONENT DID MOUNT
+								value: function componentDidMount() {
+												document.title = "Contributions | Sailing Channels";
+								}
+
+								// RENDER
+				}, {
+								key: "render",
+								value: function render() {
+
+												return _react2["default"].createElement(
+																"div",
+																{ className: "container" },
+																_react2["default"].createElement(_Logo2["default"], null),
+																_react2["default"].createElement(_OffsetMenu2["default"], null),
+																_react2["default"].createElement(
+																				"div",
+																				{ className: "row content-row" },
+																				_react2["default"].createElement("div", { className: "col-md-3" }),
+																				_react2["default"].createElement(
+																								"div",
+																								{ className: "col-md-6" },
+																								_react2["default"].createElement(
+																												"h1",
+																												{ className: "content-h1" },
+																												"Contributions"
+																								),
+																								_react2["default"].createElement(
+																												"p",
+																												null,
+																												"At this place we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented:"
+																								),
+																								_react2["default"].createElement(
+																												"table",
+																												{ className: "table" },
+																												_react2["default"].createElement(
+																																"thead",
+																																null,
+																																_react2["default"].createElement(
+																																				"tr",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"th",
+																																								null,
+																																								"Feature"
+																																				),
+																																				_react2["default"].createElement(
+																																								"th",
+																																								null,
+																																								"Suggested by"
+																																				)
+																																)
+																												),
+																												_react2["default"].createElement(
+																																"tr",
+																																null,
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				"A way to filter by language of the channel"
+																																),
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"a",
+																																								{ href: "https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw", target: "_blank" },
+																																								"Norman Boyes"
+																																				)
+																																)
+																												)
+																								)
+																				),
+																				_react2["default"].createElement("div", { className: "col-md-3" })
+																)
+												);
+								}
+				}]);
+
+				return Contributions;
+})(_react2["default"].Component);
+
+exports["default"] = Contributions;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1149,7 +1285,7 @@ var DataCollection = (function (_React$Component) {
 exports["default"] = DataCollection;
 module.exports = exports["default"];
 
-},{"./Logo":16,"./OffsetMenu":17,"react":"react"}],11:[function(require,module,exports){
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1250,7 +1386,7 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":11,"react":"react"}],12:[function(require,module,exports){
+},{"./Description":12,"react":"react"}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1320,7 +1456,7 @@ var App = (function (_React$Component) {
 exports["default"] = App;
 module.exports = exports["default"];
 
-},{"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1414,7 +1550,7 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./Banner":5,"./ChannelList":7,"./Logo":16,"./OffsetMenu":17,"./SearchBar":19,"react":"react"}],14:[function(require,module,exports){
+},{"./Banner":5,"./ChannelList":7,"./Logo":17,"./OffsetMenu":18,"./SearchBar":20,"react":"react"}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1587,11 +1723,11 @@ var Impressum = (function (_React$Component) {
 exports["default"] = Impressum;
 module.exports = exports["default"];
 
-},{"./Logo":16,"./OffsetMenu":17,"react":"react"}],15:[function(require,module,exports){
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1617,108 +1753,82 @@ var _storesLanguageStore = require("../stores/LanguageStore");
 var _storesLanguageStore2 = _interopRequireDefault(_storesLanguageStore);
 
 var LanguagePicker = (function (_React$Component) {
-    _inherits(LanguagePicker, _React$Component);
+	_inherits(LanguagePicker, _React$Component);
 
-    // CONSTRUCTOR
+	// CONSTRUCTOR
 
-    function LanguagePicker(props) {
-        _classCallCheck(this, LanguagePicker);
+	function LanguagePicker(props) {
+		_classCallCheck(this, LanguagePicker);
 
-        _get(Object.getPrototypeOf(LanguagePicker.prototype), "constructor", this).call(this, props);
-        this.state = _storesLanguageStore2["default"].getState();
-        this.onChange = this.onChange.bind(this);
-    }
+		_get(Object.getPrototypeOf(LanguagePicker.prototype), "constructor", this).call(this, props);
+		this.state = _storesLanguageStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
 
-    // COMPONENT DID MOUNT
+	// COMPONENT DID MOUNT
 
-    _createClass(LanguagePicker, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            _storesLanguageStore2["default"].listen(this.onChange);
+	_createClass(LanguagePicker, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesLanguageStore2["default"].listen(this.onChange);
 
-            var defaultLanguage = "en";
+			_actionsLanguageActions2["default"].getLanguages();
+		}
 
-            // if no cookie exists yet, set the language to default english
-            if (!Cookies.get("channel-language")) {
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			_storesLanguageStore2["default"].unlisten(this.onChange);
+		}
 
-                Cookies.set("channel-language", defaultLanguage);
-                this.setState({
-                    "selectedLanguage": defaultLanguage
-                });
-            } else {
-                this.setState({
-                    "selectedLanguage": Cookies.get("channel-language")
-                });
-            }
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			console.log(state);
+			this.setState(state);
+		}
 
-            _actionsLanguageActions2["default"].getLanguages();
-        }
+		// SET LANGUAGE
+	}, {
+		key: "setLanguage",
+		value: function setLanguage(e) {
+			Cookies.set("channel-language", e.target.value);
+			this.setState({
+				"selectedLanguage": e.target.value
+			});
 
-        // COMPONENT WILL UNMOUNT
-    }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-            _storesLanguageStore2["default"].unlisten(this.onChange);
-        }
+			// make channel list rerender
+			$(window).trigger("rerenderList");
+		}
 
-        // ON CHANGE
-    }, {
-        key: "onChange",
-        value: function onChange(state) {
-            this.setState(state);
-        }
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
 
-        // SET LANGUAGE
-    }, {
-        key: "setLanguage",
-        value: function setLanguage(e) {
-            Cookies.set("channel-language", e.target.value);
-            this.setState({
-                "selectedLanguage": e.target.value
-            });
-        }
+			return _react2["default"].createElement(
+				"select",
+				{ className: "form-control language-picker", "data-dropdownjs": "true", value: this.state.selectedLanguage, onChange: this.setLanguage.bind(this) },
+				this.state.languages.map(function (l) {
+					return _react2["default"].createElement(
+						"option",
+						{ key: l.code, value: l.code },
+						l.name
+					);
+				})
+			);
+		}
+	}]);
 
-        // RENDER
-    }, {
-        key: "render",
-        value: function render() {
-
-            console.log(this.state.selectedLanguage);
-
-            var langOptions = [];
-            for (var l in this.state.languages) {
-                var ll = this.state.languages[l];
-
-                if (ll.code === this.state.selectedLanguage) {
-                    langOptions.push(_react2["default"].createElement(
-                        "option",
-                        { key: ll.code, value: ll.code, selected: true },
-                        ll.name
-                    ));
-                } else {
-                    langOptions.push(_react2["default"].createElement(
-                        "option",
-                        { key: ll.code, value: ll.code },
-                        ll.name
-                    ));
-                }
-            }
-
-            return _react2["default"].createElement(
-                "select",
-                { className: "form-control language-picker", "data-dropdownjs": "true", onChange: this.setLanguage.bind(this) },
-                langOptions
-            );
-        }
-    }]);
-
-    return LanguagePicker;
+	return LanguagePicker;
 })(_react2["default"].Component);
 
 exports["default"] = LanguagePicker;
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../stores/LanguageStore":23,"react":"react"}],16:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../stores/LanguageStore":24,"react":"react"}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1777,7 +1887,7 @@ var Logo = (function (_React$Component) {
 exports["default"] = Logo;
 module.exports = exports["default"];
 
-},{"react":"react","react-router":"react-router"}],17:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1821,10 +1931,10 @@ var OffsetMenu = (function (_React$Component) {
 
 			if ($(".offset-menu").find("ul").hasClass("hidden-xs")) {
 				$(".offset-menu").find("ul").removeClass("hidden-xs");
-				$(".logo").css("opacity", 0);
+				$(".logo, .search-row").css("opacity", 0);
 			} else {
 				$(".offset-menu").find("ul").addClass("hidden-xs");
-				$(".logo").css("opacity", 1);
+				$(".logo, .search-row").css("opacity", 1);
 			}
 		}
 
@@ -1889,6 +1999,15 @@ var OffsetMenu = (function (_React$Component) {
 							"li",
 							null,
 							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/contributions" },
+								"Contributions"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
 								"a",
 								{ href: "mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!", onMouseOver: this.replaceX.bind(this) },
 								"Contact"
@@ -1916,7 +2035,7 @@ var OffsetMenu = (function (_React$Component) {
 exports["default"] = OffsetMenu;
 module.exports = exports["default"];
 
-},{"./LanguagePicker":15,"react":"react","react-router":"react-router"}],18:[function(require,module,exports){
+},{"./LanguagePicker":16,"react":"react","react-router":"react-router"}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2295,7 +2414,7 @@ var PrivacyPolicy = (function (_React$Component) {
 exports["default"] = PrivacyPolicy;
 module.exports = exports["default"];
 
-},{"./Logo":16,"./OffsetMenu":17,"react":"react"}],19:[function(require,module,exports){
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2428,7 +2547,7 @@ var SearchBar = (function (_React$Component) {
 exports["default"] = SearchBar;
 module.exports = exports["default"];
 
-},{"react":"react"}],20:[function(require,module,exports){
+},{"react":"react"}],21:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -2461,7 +2580,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":21,"history/lib/createBrowserHistory":30,"react":"react","react-dom":"react-dom","react-router":"react-router"}],21:[function(require,module,exports){
+},{"./routes":22,"history/lib/createBrowserHistory":31,"react":"react","react-dom":"react-dom","react-router":"react-router"}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2504,6 +2623,10 @@ var _componentsImpressum = require("./components/Impressum");
 
 var _componentsImpressum2 = _interopRequireDefault(_componentsImpressum);
 
+var _componentsContributions = require("./components/Contributions");
+
+var _componentsContributions2 = _interopRequireDefault(_componentsContributions);
+
 exports["default"] = _react2["default"].createElement(
 	_reactRouter.Route,
 	{ path: "/", component: _componentsApp2["default"] },
@@ -2514,11 +2637,12 @@ exports["default"] = _react2["default"].createElement(
 	_react2["default"].createElement(_reactRouter.Route, { path: "how-it-works", component: _componentsDataCollection2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "channel-missing", component: _componentsChannelMissing2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "privacy", component: _componentsPrivacyPolicy2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "Impressum", component: _componentsImpressum2["default"] })
+	_react2["default"].createElement(_reactRouter.Route, { path: "impressum", component: _componentsImpressum2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "contributions", component: _componentsContributions2["default"] })
 );
 module.exports = exports["default"];
 
-},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/DataCollection":10,"./components/Home":13,"./components/Impressum":14,"./components/PrivacyPolicy":18,"react":"react","react-router":"react-router"}],22:[function(require,module,exports){
+},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/Contributions":10,"./components/DataCollection":11,"./components/Home":14,"./components/Impressum":15,"./components/PrivacyPolicy":19,"react":"react","react-router":"react-router"}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2632,7 +2756,7 @@ var ChannelStore = (function () {
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":3}],23:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":3}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2659,7 +2783,7 @@ var LanguageStore = (function () {
 
 		this.bindActions(_actionsLanguageActions2["default"]);
 		this.languages = [];
-		this.selectedLanguage = null;
+		this.selectedLanguage = "en";
 	}
 
 	// GET LANGUAGES SUCCESS
@@ -2668,7 +2792,8 @@ var LanguageStore = (function () {
 		key: "getLanguagesSuccess",
 		value: function getLanguagesSuccess(result) {
 
-			this.languages = result;
+			this.languages = result.languages;
+			this.selectedLanguage = result.selected;
 		}
 
 		// GET LANGUAGES FAIL
@@ -2687,7 +2812,7 @@ var LanguageStore = (function () {
 exports["default"] = _alt2["default"].createStore(LanguageStore);
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../alt":3}],24:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../alt":3}],25:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -2780,7 +2905,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -2812,7 +2937,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -2839,7 +2964,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -2910,7 +3035,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":24,"warning":42}],28:[function(require,module,exports){
+},{"_process":25,"warning":43}],29:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -2991,13 +3116,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3178,7 +3303,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":25,"./DOMStateStorage":27,"./DOMUtils":28,"./ExecutionEnvironment":29,"./createDOMHistory":31,"./parsePath":36,"_process":24,"invariant":41}],31:[function(require,module,exports){
+},{"./Actions":26,"./DOMStateStorage":28,"./DOMUtils":29,"./ExecutionEnvironment":30,"./createDOMHistory":32,"./parsePath":37,"_process":25,"invariant":42}],32:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3221,7 +3346,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":28,"./ExecutionEnvironment":29,"./createHistory":32,"_process":24,"invariant":41}],32:[function(require,module,exports){
+},{"./DOMUtils":29,"./ExecutionEnvironment":30,"./createHistory":33,"_process":25,"invariant":42}],33:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -3513,7 +3638,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":25,"./AsyncUtils":26,"./createLocation":33,"./deprecate":34,"./parsePath":36,"./runTransitionHook":37,"deep-equal":38}],33:[function(require,module,exports){
+},{"./Actions":26,"./AsyncUtils":27,"./createLocation":34,"./deprecate":35,"./parsePath":37,"./runTransitionHook":38,"deep-equal":39}],34:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -3568,7 +3693,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":25,"./parsePath":36}],34:[function(require,module,exports){
+},{"./Actions":26,"./parsePath":37}],35:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -3584,7 +3709,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -3598,7 +3723,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3645,7 +3770,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":35,"_process":24,"warning":42}],37:[function(require,module,exports){
+},{"./extractPath":36,"_process":25,"warning":43}],38:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3672,7 +3797,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":24,"warning":42}],38:[function(require,module,exports){
+},{"_process":25,"warning":43}],39:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -3768,7 +3893,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":39,"./lib/keys.js":40}],39:[function(require,module,exports){
+},{"./lib/is_arguments.js":40,"./lib/keys.js":41}],40:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -3790,7 +3915,7 @@ function unsupported(object){
     false;
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -3801,7 +3926,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -3856,7 +3981,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":24}],42:[function(require,module,exports){
+},{"_process":25}],43:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -3920,4 +4045,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":24}]},{},[20]);
+},{"_process":25}]},{},[21]);

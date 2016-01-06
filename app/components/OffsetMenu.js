@@ -9,11 +9,11 @@ class OffsetMenu extends React.Component {
 
 		if($(".offset-menu").find("ul").hasClass("hidden-xs")) {
 			$(".offset-menu").find("ul").removeClass("hidden-xs");
-			$(".logo").css("opacity", 0);
+			$(".logo, .search-row").css("opacity", 0);
 		}
 		else {
 			$(".offset-menu").find("ul").addClass("hidden-xs");
-			$(".logo").css("opacity", 1);
+			$(".logo, .search-row").css("opacity", 1);
 		}
 	}
 
@@ -37,6 +37,7 @@ class OffsetMenu extends React.Component {
 						<li><Link to="/">Home</Link></li>
 	                    <li><Link to="/how-it-works">How does this work?</Link></li>
 	                    <li><Link to="/channel-missing">My channel is missing!</Link></li>
+						<li><Link to="/contributions">Contributions</Link></li>
 	                    <li><a href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)}>Contact</a></li>
 						<li>
 							<div div className="little-space">Channel language</div>

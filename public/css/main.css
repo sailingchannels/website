@@ -97,6 +97,12 @@ h1 {
 	text-align: right;
 }
 
+@media (min-width: 1350px) {
+	.offset-menu {
+		position:fixed;
+	}
+}
+
 .offset-bars {
 	position:absolute;
   right: 20px;
@@ -136,7 +142,7 @@ h1 {
 }
 
 .offset-menu .little-space {
-	margin-top:20px;
+	margin-top:25px;
 }
 
 .content-row {
