@@ -1138,12 +1138,12 @@ var Contributions = (function (_React$Component) {
 																																				_react2["default"].createElement(
 																																								"th",
 																																								null,
-																																								"Feature"
+																																								"Suggestion"
 																																				),
 																																				_react2["default"].createElement(
 																																								"th",
 																																								null,
-																																								"Suggested by"
+																																								"By"
 																																				)
 																																)
 																												),
@@ -1162,6 +1162,24 @@ var Contributions = (function (_React$Component) {
 																																								"a",
 																																								{ href: "https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw", target: "_blank" },
 																																								"Norman Boyes"
+																																				)
+																																)
+																												),
+																												_react2["default"].createElement(
+																																"tr",
+																																null,
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				"Exclude channels that have not uploaded a video in a year"
+																																),
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"a",
+																																								{ href: "https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g", target: "_blank" },
+																																								"Someday sailor"
 																																				)
 																																)
 																												)
