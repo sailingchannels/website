@@ -144,8 +144,14 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 			if channel_detail.has_key("country"):
 				channels[subChannelId]["country"] = channel_detail["country"].lower()
 
+			hasLanguage = False
+			ch_lang = db.channels.find_one({"_id": subChannelId}, projection=["language"])
+			if ch_lang:
+				if ch_lang.has_key("language"):
+					hasLanguage = True
+
 			# detect the language of the channel
-			if db.channels.count({"_id": subChannelId}) == 0:
+			if not hasLanguage:
 
 				channels[subChannelId]["language"] = "en"
 				detectedLang = detectlanguage.detect(lotsOfText)
