@@ -7,6 +7,7 @@ import detectlanguage
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
 sailingTerms = []
+blacklist = []
 
 # open mongodb connection
 client = MongoClient(config.mongoDB())
@@ -20,6 +21,10 @@ db = client[db_name]
 # add sailing terms
 for tt in db.sailingterms.find({}):
 	sailingTerms.append(tt["_id"])
+
+# fill blacklist
+for bb in db.blacklist.find({}):
+	blacklist.append(bb["_id"])
 
 print sailingTerms
 
