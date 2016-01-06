@@ -26,13 +26,17 @@ class Contributions extends React.Component {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>Feature</th>
-                                    <th>Suggested by</th>
+                                    <th>Suggestion</th>
+                                    <th>By</th>
                                 </tr>
                             </thead>
                             <tr>
                                 <td>A way to filter by language of the channel</td>
                                 <td><a href="https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw" target="_blank">Norman Boyes</a></td>
+                            </tr>
+							<tr>
+                                <td>Exclude channels that have not uploaded a video in a year</td>
+                                <td><a href="https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g" target="_blank">Someday sailor</a></td>
                             </tr>
                         </table>
 					</div>

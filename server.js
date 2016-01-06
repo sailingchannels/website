@@ -97,7 +97,10 @@ app.get("/api/channels/get", function(req, res) {
 
 	// fetch channels from mongodb
 	global.channels.find({
-		"language": req.cookies["channel-language"] || "en"
+		"language": req.cookies["channel-language"] || "en",
+		"lastUploadAt": {
+			"$gte": parseInt(moment.utc().subtract(1, "year").format("X"))
+		}
 	}).skip(skip).limit(take).sort(sorting).project({
 		"videos": false,
 		"country": false
@@ -150,7 +153,10 @@ app.get("/api/channels/search", function(req, res) {
 	// fetch channels from mongodb
 	global.channels.find({
 		"$text": {"$search": "\"" + q + "\"" },
-		"language": req.cookies["channel-language"] || "en"
+		"language": req.cookies["channel-language"] || "en",
+		"lastUploadAt": {
+			"$gte": parseInt(moment.utc().subtract(1, "year").format("X"))
+		}
 	}).sort(sorting).project({
 		"videos": false,
 		"country": false
