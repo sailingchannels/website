@@ -3,8 +3,6 @@ from pymongo import MongoClient
 from datetime import datetime
 import detectlanguage
 
-detectlanguage.configuration.api_key = config.detectLanguage()
-
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
 maxLevels = 4
@@ -145,16 +143,26 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				channels[subChannelId]["country"] = channel_detail["country"].lower()
 
 			hasLanguage = False
-			ch_lang = db.channels.find_one({"_id": subChannelId}, projection=["language"])
+			ch_lang = db.channels.find_one({"_id": subChannelId}, projection=["detectedLanguage"])
 			if ch_lang:
-				if ch_lang.has_key("language"):
+				if ch_lang.has_key("detectedLanguage"):
 					hasLanguage = True
+
+			useDetectLangKey = 0
+			detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
+
 
 			# detect the language of the channel
 			if not hasLanguage:
 
 				channels[subChannelId]["language"] = "en"
-				detectedLang = detectlanguage.detect(lotsOfText)
+
+				try:
+					detectedLang = detectlanguage.detect(lotsOfText)
+				except:
+					useDetectLangKey = useDetectLangKey + 1
+					detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
+					detectedLang = detectlanguage.detect(lotsOfText)
 
 				# did we find a language in the text body?
 				if len(detectedLang) > 0:
@@ -162,6 +170,7 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 					# is the detection reliable?
 					if detectedLang[0]["isReliable"]:
 						channels[subChannelId]["language"] = detectedLang[0]["language"]
+						channels[subChannelId]["detectedLanguage"] = True
 
 			# upsert data in mongodb
 			db.channels.update_one({
