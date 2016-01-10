@@ -113,6 +113,11 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 		if ignoreSailingTerm == True:
 			hasSailingTerm = True
 
+		# blacklisted channel
+		if subChannelId in blacklist:
+			hasSailingTerm = False
+			db.channels.delete_one({"_id": subChannelId})
+
 		if int(stats["videoCount"]) > 0 and hasSailingTerm:
 
 			pd = datetime.strptime(channel_detail["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
