@@ -2,7 +2,42 @@ import requests, json, config, calendar, sys
 from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 import detectlanguage
-from thread import start_new_thread
+from Queue import Queue
+from threading import Thread
+
+# WORKER
+class Worker(Thread):
+    """Thread executing tasks from a given tasks queue"""
+    def __init__(self, tasks):
+        Thread.__init__(self)
+        self.tasks = tasks
+        self.daemon = True
+        self.start()
+
+    def run(self):
+        while True:
+            func, args, kargs = self.tasks.get()
+            try:
+                func(*args, **kargs)
+            except Exception, e:
+                print e
+            finally:
+                self.tasks.task_done()
+
+# THREAD POOL
+class ThreadPool:
+    """Pool of threads consuming tasks from a queue"""
+    def __init__(self, num_threads):
+        self.tasks = Queue(num_threads)
+        for _ in range(num_threads): Worker(self.tasks)
+
+    def add_task(self, func, *args, **kargs):
+        """Add a task to the queue"""
+        self.tasks.put((func, args, kargs))
+
+    def wait_completion(self):
+        """Wait for completion of all the tasks in the queue"""
+        self.tasks.join()
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
@@ -13,6 +48,8 @@ blacklist = []
 # open mongodb connection
 client = MongoClient(config.mongoDB())
 db_name = "sailing-channels"
+
+pool = ThreadPool(25)
 
 if len(sys.argv) != 2:
 	db_name += "-dev"
@@ -108,7 +145,8 @@ def readVideosPage(channelId, pageToken = None):
 		videos.append(vid)
 
 		# start new thread to extract video statistics
-		start_new_thread(storeVideoStats, (channelId, vid,))
+		#start_new_thread(storeVideoStats, (channelId, vid,))
+		pool.add_task(storeVideoStats, channelId, vid)
 
 	# is there a next page?
 	if vids.has_key("nextPageToken"):
@@ -334,3 +372,5 @@ def addAdditionalSubscriptions():
 
 readSubscriptions(startChannelId, 1)
 addAdditionalSubscriptions()
+
+pool.wait_completion()
