@@ -49,7 +49,7 @@ blacklist = []
 client = MongoClient(config.mongoDB())
 db_name = "sailing-channels"
 
-pool = ThreadPool(25)
+pool = ThreadPool(16)
 
 if len(sys.argv) != 2:
 	db_name += "-dev"
