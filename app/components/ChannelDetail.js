@@ -75,7 +75,7 @@ class ChannelDetail extends React.Component {
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
 								<p>&nbsp;</p>
 								<p><b>Latest video:</b></p>
-								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0].id} frameBorder="0" allowFullScreen></iframe>
+								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"]} frameBorder="0" allowFullScreen></iframe>
 							</div>
 							<div className="col-md-3 col-sm-3">
 								{(this.state.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}

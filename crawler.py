@@ -52,12 +52,25 @@ def readVideosPage(channelId, pageToken = None):
 
 		d = datetime.strptime(v["snippet"]["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
 
-		videos.append({
+		vid = {
 			"id": v["id"]["videoId"],
 			"title": v["snippet"]["title"],
 			"description": v["snippet"]["description"],
 			"publishedAt": calendar.timegm(d.utctimetuple())
-		})
+		}
+
+		videos.append(vid)
+
+		# prepare video for inserting into database
+		dbVid = vid
+		dbVid["_id"] = dbVid["id"]
+		dbVid["channel"] = channelId
+		del dbVid["id"]
+
+		try:
+			db.videos.insert_one(dbVid)
+		except:
+			pass
 
 	# is there a next page?
 	if vids.has_key("nextPageToken"):
@@ -130,18 +143,20 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
 				"subscribers": int(stats["subscriberCount"]),
 				"views": int(stats["viewCount"]),
-				"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
-				"videos": readVideos(subChannelId)
+				"subscribersHidden": bool(stats["hiddenSubscriberCount"])
 			}
 
+			# read the videos
+			channelVideos = readVideos(subChannelId)
+
 			# video count
-			channels[subChannelId]["videoCount"] = len(channels[subChannelId]["videos"])
+			channels[subChannelId]["videoCount"] = len(channelVideos)
 
 			lotsOfText = channels[subChannelId]["description"] + " "
 
 			# last upload at
 			maxVideoAge = 0
-			for vid in channels[subChannelId]["videos"]:
+			for vid in channelVideos:
 				lotsOfText += vid["description"] + " "
 				if vid["publishedAt"] > maxVideoAge:
 					maxVideoAge = vid["publishedAt"]
@@ -160,7 +175,6 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 
 			useDetectLangKey = 0
 			detectlanguage.configuration.api_key = config.detectLanguage()[useDetectLangKey]
-
 
 			# detect the language of the channel
 			if not hasLanguage:
@@ -189,11 +203,14 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 						channels[subChannelId]["detectedLanguage"] = True
 
 			# upsert data in mongodb
-			db.channels.update_one({
-				"_id": subChannelId
-			}, {
-				"$set": channels[subChannelId]
-			}, True)
+			try:
+				db.channels.update_one({
+					"_id": subChannelId
+				}, {
+					"$set": channels[subChannelId]
+				}, True)
+			except:
+				pass
 
 			# read sub level subscriptions
 			subLevel = level + 1
