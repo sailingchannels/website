@@ -25,7 +25,6 @@ class LanguagePicker extends React.Component {
 
     // ON CHANGE
 	onChange(state) {
-		console.log(state);
 		this.setState(state);
 	}
 

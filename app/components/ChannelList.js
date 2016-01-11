@@ -17,8 +17,6 @@ class ChannelList extends React.Component {
 	componentDidMount() {
 		ChannelStore.listen(this.onChange);
 
-		//console.log("componentDidMount", this.props);
-
 		// handle event bus page changes
 		$(window).on("changeSort", this.changeSort.bind(this));
 		$(window).on("scroll", this.scrollWindow.bind(this));
@@ -31,16 +29,10 @@ class ChannelList extends React.Component {
 
 		// load the channels
 		this.loadData(this.props);
-
-		if(this.props.query) {
-			$("#search-bar").val(this.props.query);
-			window.setTimeout(function() { $("#search-bar").focus(); }, 1);
-		}
 	}
 
 	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
-		//$(window).off("typeSearchterm");
 		$(window).off("scroll");
 		$(window).off("changeSort");
 		$(window).off("rerenderList");
@@ -52,7 +44,7 @@ class ChannelList extends React.Component {
 	componentWillReceiveProps(nextProps) {
 
 		//console.log("componentWillReceiveProps", this.props, nextProps);
-		if(this.props.sortBy !== nextProps.sortBy || this.props.query !== nextProps.query) {
+		if(this.props.sortBy !== nextProps.sortBy) {
 			this.loadData(nextProps);
 		}
 	}
@@ -63,39 +55,14 @@ class ChannelList extends React.Component {
 		document.title = "Sailing Channels";
 		$("meta[name='description']").attr("content", "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.");
 
-		// does a search query exists?
-		if(nextProps.query) {
+		this.setState({
+			channels: [],
+			skip: 0,
+			take: 25,
+			loading: false
+		});
 
-			// start search
-			if(nextProps.query.length > 2) {
-				ChannelActions.searchChannels(nextProps.query, nextProps.sortBy);
-			}
-
-			// reset search
-			else if(nextProps.query.length === 0) {
-
-				this.setState({
-					channels: [],
-					skip: 0,
-					take: 25,
-					loading: false
-				});
-
-				ChannelActions.getChannels(nextProps.sortBy, 0, 25);
-			}
-		}
-
-		// no query available
-		else {
-			this.setState({
-				channels: [],
-				skip: 0,
-				take: 25,
-				loading: false
-			});
-
-			ChannelActions.getChannels(nextProps.sortBy, 0, 25);
-		}
+		ChannelActions.getChannels(nextProps.sortBy, 0, 25);
 	}
 
     // ON CHANGE
@@ -133,12 +100,7 @@ class ChannelList extends React.Component {
 		});
 
 		// load the channels
-		if(this.state.searching ===  true) {
-			this.props.history.replaceState(null, "/by-" + data.sortBy + "/search/" + $("#search-bar").val());
-		}
-		else {
-			this.props.history.replaceState(null, "/by-" + data.sortBy);
-		}
+		this.props.history.replaceState(null, "/by-" + data.sortBy);
 	}
 
     // RENDER
@@ -151,7 +113,7 @@ class ChannelList extends React.Component {
 					<div className="col-md-1"></div>
 					<div className="col-md-10">
 						<center>
-							{(this.state.searching === true) ? "No channels match the search query!" : "Loading channels..."}
+							Loading channels...
 						</center>
 					</div>
 					<div className="col-md-1"></div>

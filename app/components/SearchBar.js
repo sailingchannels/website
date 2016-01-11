@@ -5,6 +5,7 @@ class SearchBar extends React.Component {
     // COMPONENT DID MOUNT
     componentDidMount() {
 
+        // intercept browser search ctrl+f
         $(window).on("keydown", function(e){
             if ((e.ctrlKey || e.metaKey) && e.keyCode === 70) {
 
@@ -34,12 +35,12 @@ class SearchBar extends React.Component {
         if(e.keyCode === 27 || e.target.value.length === 0) {
 
             e.target.value = "";
-            this.props.history.pushState(null, "/by-" + this.props.sortBy);
+            this.props.history.pushState(null, "/");
             return;
         }
 
         var v = e.target.value;
-        this.props.history.replaceState(null, "/by-" + this.props.sortBy + "/search/" + encodeURIComponent(v));
+        this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
     }
 
     // CHANGE SORT
@@ -49,6 +50,13 @@ class SearchBar extends React.Component {
 
     // RENDER
 	render() {
+
+        // make sort group invisible when we are searching
+        var sortGroupClass = "form-group sort-group";
+        if(this.props.query) {
+            sortGroupClass += " invisible";
+        }
+
 		return (
             <div className="row search-row">
 				<div className="col-md-4 col-sm-3"></div>
@@ -59,7 +67,7 @@ class SearchBar extends React.Component {
                         <span className="material-input"></span>
                     </div>
 
-                    <div className="form-group sort-group">
+                    <div className={sortGroupClass}>
                         <label className="sort-label control-label">Sort by:</label>
                         <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="subscribers" defaultChecked={this.props.sortBy === "subscribers"} />&nbsp;Subscribers
                         <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" defaultChecked={this.props.sortBy === "upload"} />&nbsp;Last upload

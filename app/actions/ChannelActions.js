@@ -47,10 +47,11 @@ class ChannelActions {
         });
     }
 
-    searchChannels(q, sortBy) {
+    // SEARCH CHANNELS
+    searchChannels(q) {
 
         $.ajax({
-            "url": "/api/channels/search?q=" + encodeURIComponent(q) + "&sort=" + sortBy,
+            "url": "/api/channels/search?q=" + encodeURIComponent(q),
             "type": "GET",
             "dataType": "json"
         })
