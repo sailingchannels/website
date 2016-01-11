@@ -1,6 +1,6 @@
 import requests, json, config, calendar, sys
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, date, timedelta
 import detectlanguage
 
 # config
@@ -31,6 +31,11 @@ print sailingTerms
 # members
 channels = {}
 
+# DELETE CHANNEL
+def deleteChannel(channelId):
+	db.channels.delete_one({"_id": channelId})
+	db.videos.delete_many({"channel": channelId})
+
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
 
@@ -50,6 +55,14 @@ def readVideosPage(channelId, pageToken = None):
 		if v["id"]["kind"] != "youtube#video":
 			continue
 
+		# fetch video statistics
+		rd = requests.get("https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" + v["id"]["videoId"] + "&key=" + config.apiKey())
+		videoStat = rd.json()
+		statistics = None
+
+		if len(videoStat["items"]) > 0:
+			statistics = videoStat["items"][0]["statistics"]
+
 		d = datetime.strptime(v["snippet"]["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
 
 		vid = {
@@ -58,6 +71,19 @@ def readVideosPage(channelId, pageToken = None):
 			"description": v["snippet"]["description"],
 			"publishedAt": calendar.timegm(d.utctimetuple())
 		}
+
+		if statistics:
+			if statistics.has_key("viewCount"):
+				vid["views"] = int(statistics["viewCount"])
+
+			if statistics.has_key("likeCount"):
+				vid["likes"] = int(statistics["likeCount"])
+
+			if statistics.has_key("dislikeCount"):
+				vid["dislikes"] = int(statistics["dislikeCount"])
+
+			if statistics.has_key("commentCount"):
+				vid["comments"] = int(statistics["commentCount"])
 
 		videos.append(vid)
 
@@ -68,7 +94,11 @@ def readVideosPage(channelId, pageToken = None):
 		del dbVid["id"]
 
 		try:
-			db.videos.insert_one(dbVid)
+			db.videos.update_one({
+				"_id": dbVid["_id"]
+			}, {
+				"$set": dbVid
+			}, True)
 		except:
 			pass
 
@@ -129,7 +159,7 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 		# blacklisted channel
 		if subChannelId in blacklist:
 			hasSailingTerm = False
-			db.channels.delete_one({"_id": subChannelId})
+			deleteChannel(subChannelId)
 
 		if int(stats["videoCount"]) > 0 and hasSailingTerm:
 
@@ -160,6 +190,13 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				lotsOfText += vid["description"] + " "
 				if vid["publishedAt"] > maxVideoAge:
 					maxVideoAge = vid["publishedAt"]
+
+			# channel is older than
+			aYearAgoDate = date.today() - timedelta(days=365)
+			aYearAgoUnix = calendar.timegm(aYearAgoDate.timetuple())
+			if maxVideoAge < aYearAgoUnix:
+				deleteChannel(subChannelId)
+				return
 
 			channels[subChannelId]["lastUploadAt"] = maxVideoAge
 

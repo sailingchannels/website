@@ -53,33 +53,13 @@ app.get("/api/stats", function(req, res) {
 		// count videos
 		"videos": function(callback) {
 
-			// find channels that are 1 year without upload
-			global.channels.find({
-				"lastUploadAt": {
-					"$lt": parseInt(moment.utc().subtract(1, "year").format("X"))
-				}
-			}).project({
-				"_id": true
-			}).toArray(function(err, channels) {
-
-				// get a list of ids
-				var channelIds = channels.map(function(item) {
-					return item._id;
-				});
-
-				global.videos.count({
-					"channel": {
-						"$nin": channelIds
-					}
-				}, callback);
-			});
+			global.videos.count({}, callback);
 		},
 
 		// count channels
 		"channels": function(callback) {
-			global.channels.count({"lastUploadAt": {
-				"$gte": parseInt(moment.utc().subtract(1, "year").format("X"))
-			}}, callback);
+
+			global.channels.count({}, callback);
 		}
 	}, function(err, counts) {
 
@@ -143,10 +123,7 @@ app.get("/api/channels/get", function(req, res) {
 
 	// fetch channels from mongodb
 	global.channels.find({
-		"language": req.cookies["channel-language"] || "en",
-		"lastUploadAt": {
-			"$gte": parseInt(moment.utc().subtract(1, "year").format("X"))
-		}
+		"language": req.cookies["channel-language"] || "en"
 	}).skip(skip).limit(take).sort(sorting).project({
 		"videos": false,
 		"country": false
@@ -187,30 +164,91 @@ app.get("/api/channels/search", function(req, res) {
 
 	var sorting = {};
 
-	// fetch channels from mongodb
-	global.channels.find({
-		"$text": {"$search": "\"" + q + "\"" },
-		"language": req.cookies["channel-language"] || "en",
-		"lastUploadAt": {
-			"$gte": parseInt(moment.utc().subtract(1, "year").format("X"))
-		}
-	}).sort(sorting).project({
-		"videos": false,
-		"country": false
-	}).toArray(function(err, channels) {
+	async.parallel({
 
-		// oh no!
-		if(err) {
-			return res.status(500).send({
-				"data": [],
-				"error": err
+		// search for channels
+		"channels": function(callback) {
+
+			global.channels.find({
+				"$text": {"$search": "\"" + q + "\"" },
+				//"$text": {"$search": q },
+				"language": req.cookies["channel-language"] || "en"
+			}).sort(sorting).project({
+				"videos": false,
+				"country": false,
+				"score": { "$meta": "textScore" }
+			}).limit(25).toArray(callback);
+		},
+
+		// search for videos
+		"videos": function(callback) {
+
+			global.videos.find({
+				"$text": {"$search": "\"" + q + "\"" }
+			}).project({
+				"score": { "$meta": "textScore" }
+			}).limit(25).toArray(function(err, videos) {
+
+				// find channel names to video
+				async.map(videos, function(item, done) {
+
+					global.channels.find({"_id": item.channel}).project({
+						"title": true
+					}).limit(1).next(function(err, channel) {
+
+						if(err || !channel) return done(err);
+
+						// set new channel information
+						item.channel = {
+							"_id": channel._id,
+							"title": channel.title
+						};
+
+						return done(null, item);
+					});
+
+				}, callback);
 			});
 		}
 
-		// send data out
-		return res.send({
-			"data": channels
+	}, function(err, results) {
+
+		// oh no!
+		if(err) {
+			return res.status(500).send(err);
+		}
+
+		// filter out empty videos
+		var videos = results.videos.filter(function(item) {
+			return !!item;
 		});
+
+		// add type to videos
+		videos = videos.map(function(item) {
+			item.type = "video";
+			return item;
+		});
+
+		// filter out empty channels
+		var channels = results.channels.filter(function(item) {
+			return !!item;
+		});
+
+		// add type to channels
+		channels = results.channels.map(function(item) {
+			item.type = "channel";
+			return item;
+		});
+
+		// merge arrays
+		var result = channels.concat(videos);
+
+		// sort by score
+		result.sort(function(a, b) {
+			return b.score - a.score;
+		});
+
+		return res.send(result);
 	});
 });
 

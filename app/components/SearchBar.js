@@ -32,7 +32,7 @@ class SearchBar extends React.Component {
     keyUp(e) {
 
         // ESC clears selection
-        if(e.keyCode === 27 || e.target.value.length === 0) {
+        if(e.keyCode === 27) {
 
             e.target.value = "";
             this.props.history.pushState(null, "/");

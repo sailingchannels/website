@@ -6,6 +6,7 @@ class ChannelStore {
 	constructor() {
 		this.bindActions(ChannelActions);
 		this.channels = [];
+		this.results = [];
 		this.loading = false;
 		this.skip = 0;
 		this.take = 25;
@@ -54,7 +55,7 @@ class ChannelStore {
 	// SEARCH CHANNELS SUCCESS
   	searchChannelsSuccess(result) {
 
-	    this.channels = result.data;
+	    this.results = result;
 		this.loading = false;
   	}
 

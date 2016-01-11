@@ -187,3 +187,11 @@ h1 {
 	max-width:110px;
 	float:right !important;
 }
+
+.btn-sidebar {
+	width:180px!important;
+}
+
+.inline-video {
+	margin:20px 0;
+}

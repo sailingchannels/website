@@ -1,5 +1,6 @@
 import React from "react";
 import ChannelListItem from "./ChannelListItem";
+import VideoListItem from "./VideoListItem";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 
@@ -47,13 +48,13 @@ class SearchResultList extends React.Component {
 	render() {
 
 		// no channels found
-		if(this.state.channels.length === 0) {
+		if(this.state.results.length === 0) {
 			return (
 				<div className="row">
 					<div className="col-md-1"></div>
 					<div className="col-md-10">
 						<center>
-							No channels match the search query!
+							No channels or videos match the search query!
 						</center>
 					</div>
 					<div className="col-md-1"></div>
@@ -61,14 +62,26 @@ class SearchResultList extends React.Component {
 			);
 		}
 
+		var results = [];
+
+		// loop results
+		for(var i in this.state.results) {
+			var item = this.state.results[i];
+
+			// what type of result is this?
+			if(item.type === "channel") {
+				results.push(<ChannelListItem key={"cli-" + item.id} channel={item} />);
+			}
+			else {
+				results.push(<VideoListItem key={"vli-" + item._id} video={item} />);
+			}
+		}
+
 		return (
 			<div className="row">
 				<div className="col-md-1"></div>
                 <div className="col-md-10">
-                    {this.state.channels.map(c => (
-        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
-        			))}
-					{(this.state.loading === true) ? <center className="loadMore">Loading more channels ...</center> : null}
+					{(this.state.loading === true) ? <center className="loadMore">Loading more channels ...</center> : results}
                 </div>
 				<div className="col-md-1"></div>
             </div>

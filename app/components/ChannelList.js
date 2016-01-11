@@ -75,7 +75,7 @@ class ChannelList extends React.Component {
 
 		var scrollBottomThreshold = 150;
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold &&
-			this.state.loading === false && this.state.searching === false)
+			this.state.loading === false)
 		{
 		   this.setState({
 			   "loading": true

@@ -586,7 +586,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":25,"./Logo":17,"./OffsetMenu":18,"react":"react"}],7:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":26,"./Logo":17,"./OffsetMenu":18,"react":"react"}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -708,7 +708,7 @@ var ChannelList = (function (_React$Component) {
 		value: function scrollWindow() {
 
 			var scrollBottomThreshold = 150;
-			if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold && this.state.loading === false && this.state.searching === false) {
+			if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold && this.state.loading === false) {
 				this.setState({
 					"loading": true
 				});
@@ -792,7 +792,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":25,"./ChannelListItem":8,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":26,"./ChannelListItem":8,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -892,7 +892,7 @@ var ChannelListItem = (function (_React$Component) {
               "Videos:"
             ),
             " ",
-            this.props.channel.videoCount
+            this.props.channel.videoCount.toLocaleString()
           ) : null,
           this.props.channel.lastUploadAt ? _react2["default"].createElement(
             "p",
@@ -918,7 +918,7 @@ var ChannelListItem = (function (_React$Component) {
           ),
           _react2["default"].createElement(
             "a",
-            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+            { target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-sidebar btn-raised" },
             _react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
             " Subscribe"
           )
@@ -1839,7 +1839,7 @@ var LanguagePicker = (function (_React$Component) {
 exports["default"] = LanguagePicker;
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../stores/LanguageStore":26,"react":"react"}],17:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../stores/LanguageStore":27,"react":"react"}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2492,7 +2492,7 @@ var SearchBar = (function (_React$Component) {
         value: function keyUp(e) {
 
             // ESC clears selection
-            if (e.keyCode === 27 || e.target.value.length === 0) {
+            if (e.keyCode === 27) {
 
                 e.target.value = "";
                 this.props.history.pushState(null, "/");
@@ -2675,6 +2675,10 @@ var _ChannelListItem = require("./ChannelListItem");
 
 var _ChannelListItem2 = _interopRequireDefault(_ChannelListItem);
 
+var _VideoListItem = require("./VideoListItem");
+
+var _VideoListItem2 = _interopRequireDefault(_VideoListItem);
+
 var _actionsChannelActions = require("../actions/ChannelActions");
 
 var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
@@ -2742,10 +2746,9 @@ var SearchResultList = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
-			var _this = this;
 
 			// no channels found
-			if (this.state.channels.length === 0) {
+			if (this.state.results.length === 0) {
 				return _react2["default"].createElement(
 					"div",
 					{ className: "row" },
@@ -2756,11 +2759,25 @@ var SearchResultList = (function (_React$Component) {
 						_react2["default"].createElement(
 							"center",
 							null,
-							"No channels match the search query!"
+							"No channels or videos match the search query!"
 						)
 					),
 					_react2["default"].createElement("div", { className: "col-md-1" })
 				);
+			}
+
+			var results = [];
+
+			// loop results
+			for (var i in this.state.results) {
+				var item = this.state.results[i];
+
+				// what type of result is this?
+				if (item.type === "channel") {
+					results.push(_react2["default"].createElement(_ChannelListItem2["default"], { key: "cli-" + item.id, channel: item }));
+				} else {
+					results.push(_react2["default"].createElement(_VideoListItem2["default"], { key: "vli-" + item._id, video: item }));
+				}
 			}
 
 			return _react2["default"].createElement(
@@ -2770,14 +2787,11 @@ var SearchResultList = (function (_React$Component) {
 				_react2["default"].createElement(
 					"div",
 					{ className: "col-md-10" },
-					this.state.channels.map(function (c) {
-						return _react2["default"].createElement(_ChannelListItem2["default"], { key: "cli-" + c.id, channel: c, sortBy: _this.state.sortBy });
-					}),
 					this.state.loading === true ? _react2["default"].createElement(
 						"center",
 						{ className: "loadMore" },
 						"Loading more channels ..."
-					) : null
+					) : results
 				),
 				_react2["default"].createElement("div", { className: "col-md-1" })
 			);
@@ -2790,7 +2804,166 @@ var SearchResultList = (function (_React$Component) {
 exports["default"] = SearchResultList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":25,"./ChannelListItem":8,"react":"react"}],23:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":26,"./ChannelListItem":8,"./VideoListItem":23,"react":"react"}],23:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var _reactRouter = require("react-router");
+
+var VideoListItem = (function (_React$Component) {
+	_inherits(VideoListItem, _React$Component);
+
+	// CONSTRUCTOR
+
+	function VideoListItem(props) {
+		_classCallCheck(this, VideoListItem);
+
+		_get(Object.getPrototypeOf(VideoListItem.prototype), "constructor", this).call(this, props);
+		this.state = {
+			"showVideo": false
+		};
+	}
+
+	_createClass(VideoListItem, [{
+		key: "toggleShowVideo",
+		value: function toggleShowVideo() {
+
+			// toggle video
+			this.setState({
+				"showVideo": !this.state.showVideo
+			});
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			if (!this.props.video.channel) return null;
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row channel-row" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-2 col-xs-2" },
+					_react2["default"].createElement(
+						"center",
+						null,
+						_react2["default"].createElement("img", { src: "http://img.youtube.com/vi/" + this.props.video._id + "/default.jpg", className: "channel-thumb" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-7 col-xs-10" },
+					_react2["default"].createElement(
+						"h3",
+						null,
+						_react2["default"].createElement(
+							"a",
+							{ href: "javascript:void(0);", onClick: this.toggleShowVideo.bind(this) },
+							this.props.video.title
+						)
+					),
+					_react2["default"].createElement(_Description2["default"], { text: this.props.video.description, video: true }),
+					this.state.showVideo === true ? _react2["default"].createElement("iframe", { className: "inline-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/" + this.props.video._id, frameBorder: "0", allowFullScreen: true }) : null
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0" },
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Channel:"
+						),
+						" ",
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/channel/" + this.props.video.channel._id },
+							this.props.video.channel.title
+						)
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Views:"
+						),
+						" ",
+						(this.props.video.views || 0).toLocaleString()
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Likes:"
+						),
+						" ",
+						_react2["default"].createElement("i", { className: "fa fa-thumbs-up fa-fw" }),
+						" ",
+						(this.props.video.likes || 0).toLocaleString(),
+						" ",
+						_react2["default"].createElement("i", { className: "fa fa-thumbs-down fa-fw" }),
+						" ",
+						(this.props.video.dislikes || 0).toLocaleString()
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Uploaded:"
+						),
+						" ",
+						moment.unix(this.props.video.publishedAt).format("ll")
+					),
+					_react2["default"].createElement(
+						"a",
+						{ href: "javascript:void(0);", onClick: this.toggleShowVideo.bind(this), className: "btn btn-default btn-sidebar btn-raised" },
+						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+						" Watch video"
+					)
+				)
+			);
+		}
+	}]);
+
+	return VideoListItem;
+})(_react2["default"].Component);
+
+exports["default"] = VideoListItem;
+module.exports = exports["default"];
+
+},{"./Description":12,"react":"react","react-router":"react-router"}],24:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -2823,7 +2996,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":24,"history/lib/createBrowserHistory":33,"react":"react","react-dom":"react-dom","react-router":"react-router"}],24:[function(require,module,exports){
+},{"./routes":25,"history/lib/createBrowserHistory":34,"react":"react","react-dom":"react-dom","react-router":"react-router"}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2889,7 +3062,7 @@ exports["default"] = _react2["default"].createElement(
 );
 module.exports = exports["default"];
 
-},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/Contributions":10,"./components/DataCollection":11,"./components/Home":14,"./components/Impressum":15,"./components/PrivacyPolicy":19,"./components/SearchResult":21,"react":"react","react-router":"react-router"}],25:[function(require,module,exports){
+},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/Contributions":10,"./components/DataCollection":11,"./components/Home":14,"./components/Impressum":15,"./components/PrivacyPolicy":19,"./components/SearchResult":21,"react":"react","react-router":"react-router"}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2916,6 +3089,7 @@ var ChannelStore = (function () {
 
 		this.bindActions(_actionsChannelActions2["default"]);
 		this.channels = [];
+		this.results = [];
 		this.loading = false;
 		this.skip = 0;
 		this.take = 25;
@@ -2974,7 +3148,7 @@ var ChannelStore = (function () {
 		key: "searchChannelsSuccess",
 		value: function searchChannelsSuccess(result) {
 
-			this.channels = result.data;
+			this.results = result;
 			this.loading = false;
 		}
 
@@ -2996,7 +3170,7 @@ var ChannelStore = (function () {
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":3}],26:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":3}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3052,7 +3226,7 @@ var LanguageStore = (function () {
 exports["default"] = _alt2["default"].createStore(LanguageStore);
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../alt":3}],27:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../alt":3}],28:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -3145,7 +3319,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -3177,7 +3351,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -3204,7 +3378,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -3275,7 +3449,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":27,"warning":45}],31:[function(require,module,exports){
+},{"_process":28,"warning":46}],32:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -3356,13 +3530,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3543,7 +3717,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":28,"./DOMStateStorage":30,"./DOMUtils":31,"./ExecutionEnvironment":32,"./createDOMHistory":34,"./parsePath":39,"_process":27,"invariant":44}],34:[function(require,module,exports){
+},{"./Actions":29,"./DOMStateStorage":31,"./DOMUtils":32,"./ExecutionEnvironment":33,"./createDOMHistory":35,"./parsePath":40,"_process":28,"invariant":45}],35:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -3586,7 +3760,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":31,"./ExecutionEnvironment":32,"./createHistory":35,"_process":27,"invariant":44}],35:[function(require,module,exports){
+},{"./DOMUtils":32,"./ExecutionEnvironment":33,"./createHistory":36,"_process":28,"invariant":45}],36:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -3878,7 +4052,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":28,"./AsyncUtils":29,"./createLocation":36,"./deprecate":37,"./parsePath":39,"./runTransitionHook":40,"deep-equal":41}],36:[function(require,module,exports){
+},{"./Actions":29,"./AsyncUtils":30,"./createLocation":37,"./deprecate":38,"./parsePath":40,"./runTransitionHook":41,"deep-equal":42}],37:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -3933,7 +4107,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":28,"./parsePath":39}],37:[function(require,module,exports){
+},{"./Actions":29,"./parsePath":40}],38:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -3949,7 +4123,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -3963,7 +4137,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -4010,7 +4184,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":38,"_process":27,"warning":45}],40:[function(require,module,exports){
+},{"./extractPath":39,"_process":28,"warning":46}],41:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -4037,7 +4211,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":27,"warning":45}],41:[function(require,module,exports){
+},{"_process":28,"warning":46}],42:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -4133,7 +4307,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":42,"./lib/keys.js":43}],42:[function(require,module,exports){
+},{"./lib/is_arguments.js":43,"./lib/keys.js":44}],43:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -4155,7 +4329,7 @@ function unsupported(object){
     false;
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -4166,7 +4340,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4221,7 +4395,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":27}],45:[function(require,module,exports){
+},{"_process":28}],46:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -4285,4 +4459,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":27}]},{},[23]);
+},{"_process":28}]},{},[24]);
