@@ -2,7 +2,7 @@ import requests, json, config, calendar, sys
 from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 import detectlanguage
-from tomorrow import threads
+from thread import start_new_thread
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
@@ -38,8 +38,7 @@ def deleteChannel(channelId):
 	db.videos.delete_many({"channel": channelId})
 
 # STORE VIDEO STATS
-@threads(25)
-def storeVideoStats(vid):
+def storeVideoStats(channelId, vid):
 
 	# fetch video statistics
 	rd = requests.get("https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" + vid["id"] + "&key=" + config.apiKey())
@@ -107,7 +106,9 @@ def readVideosPage(channelId, pageToken = None):
 		}
 
 		videos.append(vid)
-		storeVideoStats(vid)
+
+		# start new thread to extract video statistics
+		start_new_thread(storeVideoStats, (channelId, vid,))
 
 	# is there a next page?
 	if vids.has_key("nextPageToken"):
