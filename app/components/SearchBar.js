@@ -39,8 +39,11 @@ class SearchBar extends React.Component {
             return;
         }
 
-        var v = e.target.value;
-        this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
+        // ENTER triggers search
+        else if(e.keyCode === 13) {
+            var v = e.target.value;
+            this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
+        }
     }
 
     // CHANGE SORT
