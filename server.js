@@ -174,7 +174,6 @@ app.get("/api/channels/get", function(req, res) {
 // API / CHANNELS / SEARCH
 app.get("/api/channels/search", function(req, res) {
 
-	var sortBy = req.query.sort || "subscribers";
 	var q = req.query.q || null;
 
 	if(!q) return res.send({ "data": [] });
@@ -186,15 +185,7 @@ app.get("/api/channels/search", function(req, res) {
 		"time": moment.utc().toDate()
 	});
 
-	var sortKey = "subscribers";
-	switch(sortBy) {
-		case "subscribers": sortKey = "subscribers"; break;
-		case "founded": sortKey = "publishedAt"; break;
-		case "upload": sortKey = "lastUploadAt"; break;
-	}
-
 	var sorting = {};
-	sorting[sortKey] = -1;
 
 	// fetch channels from mongodb
 	global.channels.find({
