@@ -2,6 +2,7 @@ import requests, json, config, calendar, sys
 from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 import detectlanguage
+from tomorrow import threads
 
 # config
 startChannelId = "UC5xDht2blPNWdVtl9PkDmgA" # SailLife
@@ -36,6 +37,47 @@ def deleteChannel(channelId):
 	db.channels.delete_one({"_id": channelId})
 	db.videos.delete_many({"channel": channelId})
 
+# STORE VIDEO STATS
+@threads(25)
+def storeVideoStats(vid):
+
+	# fetch video statistics
+	rd = requests.get("https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" + vid["id"] + "&key=" + config.apiKey())
+	videoStat = rd.json()
+	statistics = None
+
+	if len(videoStat["items"]) > 0:
+		statistics = videoStat["items"][0]["statistics"]
+
+	if statistics:
+		if statistics.has_key("viewCount"):
+			vid["views"] = int(statistics["viewCount"])
+
+		if statistics.has_key("likeCount"):
+			vid["likes"] = int(statistics["likeCount"])
+
+		if statistics.has_key("dislikeCount"):
+			vid["dislikes"] = int(statistics["dislikeCount"])
+
+		if statistics.has_key("commentCount"):
+			vid["comments"] = int(statistics["commentCount"])
+
+	# prepare video for inserting into database
+	dbVid = vid
+	dbVid["_id"] = dbVid["id"]
+	dbVid["channel"] = channelId
+	del dbVid["id"]
+
+	try:
+		db.videos.update_one({
+			"_id": dbVid["_id"]
+		}, {
+			"$set": dbVid
+		}, True)
+	except:
+		pass
+
+
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
 
@@ -55,14 +97,6 @@ def readVideosPage(channelId, pageToken = None):
 		if v["id"]["kind"] != "youtube#video":
 			continue
 
-		# fetch video statistics
-		rd = requests.get("https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" + v["id"]["videoId"] + "&key=" + config.apiKey())
-		videoStat = rd.json()
-		statistics = None
-
-		if len(videoStat["items"]) > 0:
-			statistics = videoStat["items"][0]["statistics"]
-
 		d = datetime.strptime(v["snippet"]["publishedAt"], "%Y-%m-%dT%H:%M:%S.000Z")
 
 		vid = {
@@ -72,35 +106,8 @@ def readVideosPage(channelId, pageToken = None):
 			"publishedAt": calendar.timegm(d.utctimetuple())
 		}
 
-		if statistics:
-			if statistics.has_key("viewCount"):
-				vid["views"] = int(statistics["viewCount"])
-
-			if statistics.has_key("likeCount"):
-				vid["likes"] = int(statistics["likeCount"])
-
-			if statistics.has_key("dislikeCount"):
-				vid["dislikes"] = int(statistics["dislikeCount"])
-
-			if statistics.has_key("commentCount"):
-				vid["comments"] = int(statistics["commentCount"])
-
 		videos.append(vid)
-
-		# prepare video for inserting into database
-		dbVid = vid
-		dbVid["_id"] = dbVid["id"]
-		dbVid["channel"] = channelId
-		del dbVid["id"]
-
-		try:
-			db.videos.update_one({
-				"_id": dbVid["_id"]
-			}, {
-				"$set": dbVid
-			}, True)
-		except:
-			pass
+		storeVideoStats(vid)
 
 	# is there a next page?
 	if vids.has_key("nextPageToken"):
@@ -173,7 +180,8 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 				"thumbnail": i["snippet"]["thumbnails"]["default"]["url"],
 				"subscribers": int(stats["subscriberCount"]),
 				"views": int(stats["viewCount"]),
-				"subscribersHidden": bool(stats["hiddenSubscriberCount"])
+				"subscribersHidden": bool(stats["hiddenSubscriberCount"]),
+				"lastCrawl": datetime.now()
 			}
 
 			# read the videos
