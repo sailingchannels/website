@@ -12,6 +12,12 @@ class VideoListItem extends React.Component {
 		};
 	}
 
+	// COMPONENT DID MOUNT
+	componentDidMount() {
+		$(".channel-thumb").unveil();
+	}
+
+	// TOGGLE SHOW VIDEO
 	toggleShowVideo() {
 
 		// toggle video
@@ -29,7 +35,7 @@ class VideoListItem extends React.Component {
 			<div className="row channel-row">
                 <div className="col-md-2 col-xs-2">
 					<center>
-                    	<img src={"http://img.youtube.com/vi/" + this.props.video._id + "/default.jpg"} className="channel-thumb" />
+                    	<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/1x1.png" data-src={"http://img.youtube.com/vi/" + this.props.video._id + "/default.jpg"} className="channel-thumb" />
 					</center>
                 </div>
                 <div className="col-md-7 col-xs-10">
