@@ -283,7 +283,13 @@ app.use(function(req, res) {
 
 			return res.status(200).send(minify(page, {
 				removeComments: true,
-				minifyJS: true
+				minifyJS: true,
+				useShortDoctype: true,
+				removeRedundantAttributes: true,
+				removeOptionalTags: true,
+				removeStyleLinkTypeAttributes: true,
+				removeScriptTypeAttributes: true,
+				collapseWhitespace: true
 			}));
 		}
 
