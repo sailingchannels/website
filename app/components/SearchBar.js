@@ -62,8 +62,8 @@ class SearchBar extends React.Component {
 
 		return (
             <div className="row search-row">
-				<div className="col-md-4 col-sm-3"></div>
-                <div className="col-md-4 col-sm-6">
+				<div className="col-lg-4 col-md-3 col-sm-3"></div>
+                <div className="col-lg-4 col-md-6 col-sm-6">
                     <div className="form-group label-floating is-empty">
                         <label className="control-label">Search for ...</label>
                         <input className="form-control" type="text" id="search-bar" onKeyUp={this.keyUp.bind(this)} />
@@ -77,7 +77,7 @@ class SearchBar extends React.Component {
                         <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="founded" defaultChecked={this.props.sortBy === "newest"} />&nbsp;Founded
                     </div>
                 </div>
-				<div className="col-md-4 col-sm-3"></div>
+				<div className="col-lg-4 col-md-3 col-sm-3"></div>
             </div>
 		);
 	}
