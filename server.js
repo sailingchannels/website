@@ -288,8 +288,7 @@ app.use(function(req, res) {
 				removeRedundantAttributes: true,
 				removeOptionalTags: true,
 				removeStyleLinkTypeAttributes: true,
-				removeScriptTypeAttributes: true,
-				collapseWhitespace: true
+				removeScriptTypeAttributes: true
 			}));
 		}
 
