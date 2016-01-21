@@ -53,6 +53,7 @@ pool = ThreadPool(16)
 
 if len(sys.argv) != 2:
 	db_name += "-dev"
+	print "*** DEVELOPER MODE ***"
 
 db = client[db_name]
 
@@ -288,24 +289,25 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 
 			# upsert data in mongodb
 			try:
-                try:
-                    db.subscribers.update_one({
-                        "_id": {
-                            "channel": subChannelId,
-                            "date": int(datetime.date.today().strftime("%Y%m%d"))
-                        }
-                    }, {
-                        "$set": {
-                            "year": datetime.date.today().year,
-                            "month": datetime.date.today().month,
-                            "day": datetime.date.today().day,
-                            "date": datetime.date.today(),
-                            "subscribers": channels[subChannelId]["subscribers"]
-                        }
-                    }, True)
+				db.subscribers.update_one({
+					"_id": {
+						"channel": subChannelId,
+						"date": int(date.today().strftime("%Y%m%d"))
+					}
+				}, {
+					"$set": {
+						"year": date.today().year,
+						"month": date.today().month,
+						"day": date.today().day,
+						"date": datetime.utcnow(),
+						"subscribers": channels[subChannelId]["subscribers"]
+					}
+				}, True)
+			except:
+				pass
 
-                except:
-                    pass
+			# upsert data in mongodb
+			try:
 
 				db.channels.update_one({
 					"_id": subChannelId
