@@ -14,7 +14,7 @@ class ChannelMissing extends React.Component {
 
 	// COMPONENT DID MOUNT
     componentDidMount() {
-        document.title = "My channel is missing! | Sailing Channels";
+        document.title = "My channel is missing | Sailing Channels";
 
         var that = this;
 
@@ -46,7 +46,7 @@ class ChannelMissing extends React.Component {
                 <div className="row content-row">
 					<div className="col-md-3"></div>
 					<div className="col-md-6">
-	                    <h1 className="content-h1">My channel is missing!</h1>
+	                    <h1 className="content-h1">My channel is missing</h1>
                         {stats}
 						<p>
 							You were expecting to see your channel here? Well, that's easy.
