@@ -288,6 +288,25 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 
 			# upsert data in mongodb
 			try:
+                try:
+                    db.subscribers.update_one({
+                        "_id": {
+                            "channel": subChannelId,
+                            "date": int(datetime.date.today().strftime("%Y%m%d"))
+                        }
+                    }, {
+                        "$set": {
+                            "year": datetime.date.today().year,
+                            "month": datetime.date.today().month,
+                            "day": datetime.date.today().day,
+                            "date": datetime.date.today(),
+                            "subscribers": channels[subChannelId]["subscribers"]
+                        }
+                    }, True)
+
+                except:
+                    pass
+
 				db.channels.update_one({
 					"_id": subChannelId
 				}, {
