@@ -36,7 +36,7 @@ class OffsetMenu extends React.Component {
 	                <ul className="hidden-xs">
 						<li><Link to="/">Home</Link></li>
 	                    <li><Link to="/how-it-works">How does this work?</Link></li>
-	                    <li><Link to="/channel-missing">My channel is missing!</Link></li>
+	                    <li><Link to="/channel-missing">My channel is missing</Link></li>
 						<li><Link to="/contributions">Contributions</Link></li>
 	                    <li><a href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)}>Contact</a></li>
 						<li>
