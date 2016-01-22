@@ -31,8 +31,8 @@ class ChannelListItem extends React.Component {
 					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden <i className="fa fa-frown-o"></i></b></p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videoCount.toLocaleString()}</p> : null}
-					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.props.channel.lastUploadAt).fromNow()}</p> : ""}
-					<p><b>Founded:</b> {moment.unix(this.props.channel.publishedAt).format("ll")}</p>
+					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.props.channel.lastUploadAt * 1000))}</p> : ""}
+					<p><b>Founded:</b> {new Date(this.props.channel.publishedAt * 1000).toLocaleDateString()}</p>
 
 					<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-sidebar btn-raised">
 						<i className="fa fa-youtube-play"></i> Subscribe

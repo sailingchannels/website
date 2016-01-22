@@ -35,8 +35,7 @@ gulp.task("vendor-js", function() {
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
-			"bower_components/bootstrap-material-design/dist/js/ripples.min.js",
-			"bower_components/moment/min/moment.min.js",
+			"public/js/jquery.timeago.js",
 			"public/js/anchorme.min.js",
 			"bower_components/js-cookie/src/js.cookie.js",
 			"bower_components/jquery-unveil/jquery.unveil.js"
@@ -57,8 +56,6 @@ gulp.task("vendor-css", function() {
 	return gulp.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
-			"bower_components/bootstrap-material-design/dist/css/ripples.min.css",
-			"bower_components/font-awesome/css/font-awesome.min.css",
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))
