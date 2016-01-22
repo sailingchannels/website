@@ -26,6 +26,13 @@ class VideoListItem extends React.Component {
 		});
 	}
 
+	// FORMAT DATE
+	formatDate(unix) {
+		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var d = new Date(unix * 1000);
+		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+	}
+
     // RENDER
 	render() {
 
@@ -51,7 +58,7 @@ class VideoListItem extends React.Component {
 					<p><b>Channel:</b> <Link to={"/channel/" + this.props.video.channel._id}>{this.props.video.channel.title}</Link></p>
 					<p><b>Views:</b> {(this.props.video.views || 0).toLocaleString()}</p>
 					<p><b>Likes:</b> <i className="fa fa-thumbs-up fa-fw"></i> {(this.props.video.likes || 0).toLocaleString()} <i className="fa fa-thumbs-down fa-fw"></i> {(this.props.video.dislikes || 0).toLocaleString()}</p>
-					<p><b>Uploaded:</b> {new Date(this.props.video.publishedAt * 1000).toLocaleDateString()}</p>
+					<p><b>Uploaded:</b> {this.formatDate(this.props.video.publishedAt)}</p>
 
 					<a href="javascript:void(0);" onClick={this.toggleShowVideo.bind(this)} className="btn btn-default btn-sidebar btn-raised">
 						<i className="fa fa-youtube-play"></i> Watch video

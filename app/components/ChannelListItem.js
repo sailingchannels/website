@@ -9,6 +9,13 @@ class ChannelListItem extends React.Component {
 		$(".channel-thumb").unveil();
 	}
 
+	// FORMAT DATE
+	formatDate(unix) {
+		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var d = new Date(unix * 1000);
+		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+	}
+
     // RENDER
 	render() {
 		return (
@@ -32,7 +39,7 @@ class ChannelListItem extends React.Component {
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videoCount.toLocaleString()}</p> : null}
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.props.channel.lastUploadAt * 1000))}</p> : ""}
-					<p><b>Founded:</b> {new Date(this.props.channel.publishedAt * 1000).toLocaleDateString()}</p>
+					<p><b>Founded:</b> {this.formatDate(this.props.channel.publishedAt)}</p>
 
 					<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-sidebar btn-raised">
 						<i className="fa fa-youtube-play"></i> Subscribe

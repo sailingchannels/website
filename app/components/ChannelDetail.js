@@ -45,6 +45,13 @@ class ChannelDetail extends React.Component {
 		this.setState(state);
 	}
 
+	// FORMAT DATE
+	formatDate(unix) {
+		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var d = new Date(unix * 1000);
+		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+	}
+
     // RENDER
 	render() {
 
@@ -83,7 +90,7 @@ class ChannelDetail extends React.Component {
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
 								<p><b>Views:</b> {this.state.channel.views.toLocaleString()}</p>
 								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.state.channel.lastUploadAt * 1000))}</p> : ""}
-								<p><b>Founded:</b> {new Date(this.state.channel.publishedAt * 1000).toLocaleDateString()}</p>
+								<p><b>Founded:</b> {this.formatDate(this.state.channel.publishedAt)}</p>
 								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
