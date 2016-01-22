@@ -82,8 +82,8 @@ class ChannelDetail extends React.Component {
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.state.channel.subscribers.toLocaleString()}</p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
 								<p><b>Views:</b> {this.state.channel.views.toLocaleString()}</p>
-								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {moment.unix(this.state.channel.lastUploadAt).fromNow()}</p> : ""}
-								<p><b>Founded:</b> {moment.unix(this.state.channel.publishedAt).format("ll")}</p>
+								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.state.channel.lastUploadAt * 1000))}</p> : ""}
+								<p><b>Founded:</b> {new Date(this.state.channel.publishedAt * 1000).toLocaleDateString()}</p>
 								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
