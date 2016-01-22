@@ -4,6 +4,34 @@ from datetime import datetime, date, timedelta
 import detectlanguage
 from Queue import Queue
 from threading import Thread
+from twython import Twython
+from facepy import GraphAPI
+
+# social networks
+twitter = Twython(config.twitter()["consumerKey"], config.twitter()["consumerSecret"], config.twitter()["accessToken"], config.twitter()["accessSecret"])
+#facebook = GraphAPI(config.facebook()["accessToken"])
+
+# channelId = "test"
+# dbVid = {
+# 	"title": "test"
+# }
+#
+# # facebook
+# try:
+# 	foundPage = False
+# 	accounts = facebook.get("me/accounts")["data"]
+# 	for account in accounts:
+# 		if account["id"] == config.facebook()["pageId"]:
+# 			facebook = GraphAPI(account["access_token"])
+# 			foundPage = True
+# 			break
+#
+# 	# new status
+# 	if foundPage == True:
+# 		facebook.post("me/feed", message="New Video: \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
+#
+# except Exception, e:
+# 	print e
 
 # WORKER
 class Worker(Thread):
@@ -106,14 +134,33 @@ def storeVideoStats(channelId, vid):
 	del dbVid["id"]
 
 	try:
+		# check if this video exists in database
+		vid_exists = db.videos.count({"_id": dbVid["_id"]})
+
+		# reasonable fresh video, post to twitter and facebook
+		if vid_exists == 0 and int(dbVid["publishedAt"]) > time.mktime(datetime.utcnow().timetuple()) - 3600:
+
+			# twitter
+			try:
+				twitter.update_status(status="New: \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
+			except Exception, e:
+				print e
+
+			# facebook
+			# try:
+			# 	facebook.post("me/feed", message="New Video: \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
+			# except Exception, e:
+			# 	print e
+
+		# update information in database
 		db.videos.update_one({
 			"_id": dbVid["_id"]
 		}, {
 			"$set": dbVid
 		}, True)
+
 	except:
 		pass
-
 
 # READ VIDEOS PAGE
 def readVideosPage(channelId, pageToken = None):
