@@ -1,4 +1,4 @@
-import requests, json, config, calendar, sys
+import requests, json, config, calendar, sys, time
 from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 import detectlanguage
@@ -138,7 +138,7 @@ def storeVideoStats(channelId, vid):
 		vid_exists = db.videos.count({"_id": dbVid["_id"]})
 
 		# reasonable fresh video, post to twitter and facebook
-		if vid_exists == 0 and int(dbVid["publishedAt"]) > time.mktime(datetime.utcnow().timetuple()) - 3600:
+		if vid_exists == 0 and int(dbVid["publishedAt"]) > int(time.mktime(datetime.utcnow().timetuple())) - 7200:
 
 			# twitter
 			try:
