@@ -85,7 +85,7 @@ h1 {
 }
 
 .sort-group {
-	margin-top:10px!important;
+	margin-top:-10px!important;
 	font-size:0.9em;
 }
 
@@ -235,4 +235,10 @@ h1 {
 .social-em:hover {
 	color:#f2bb64;
 	text-decoration: none;
+}
+
+.sortBy-label {
+	cursor: pointer;
+	color: #333!important;
+	font-size: 0.9em!important;
 }

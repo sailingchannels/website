@@ -51,6 +51,12 @@ class SearchBar extends React.Component {
         $(window).trigger("changeSort", {"sortBy": e.target.value});
     }
 
+	// HIGHLIGHT SORT
+	highlightSort(item) {
+		//this.props.sortBy = item;
+		$(window).trigger("changeSort", {"sortBy": item});
+	}
+
     // RENDER
 	render() {
 
@@ -72,9 +78,18 @@ class SearchBar extends React.Component {
 
                     <div className={sortGroupClass}>
                         <label className="sort-label control-label">Sort by:</label>
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="subscribers" defaultChecked={this.props.sortBy === "subscribers"} />&nbsp;Subscribers
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" defaultChecked={this.props.sortBy === "upload"} />&nbsp;Last upload
-                        <input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="founded" defaultChecked={this.props.sortBy === "newest"} />&nbsp;Founded
+						<label className="sortBy-label">
+							<input id="sortBy-subscribers" type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="subscribers" defaultChecked={this.props.sortBy === "subscribers"} />
+							&nbsp;Subscribers
+						</label>
+						<label className="sortBy-label">
+							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" defaultChecked={this.props.sortBy === "upload"} />
+							&nbsp;Last upload
+						</label>
+						<label className="sortBy-label">
+							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="founded" defaultChecked={this.props.sortBy === "newest"} />
+							&nbsp;Founded
+						</label>
                     </div>
                 </div>
 				<div className="col-lg-4 col-md-3 col-sm-3"></div>
