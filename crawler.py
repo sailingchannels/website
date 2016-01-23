@@ -140,9 +140,11 @@ def storeVideoStats(channelId, vid):
 		# reasonable fresh video, post to twitter and facebook
 		if vid_exists == 0 and int(dbVid["publishedAt"]) > int(time.mktime(datetime.utcnow().timetuple())) - 7200:
 
+			ch = db.channels.find_one({"_id": channelId}, fields=["title"])
+
 			# twitter
 			try:
-				twitter.update_status(status="New: \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
+				twitter.update_status(status=ch["title"] + " \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
 			except Exception, e:
 				print e
 

@@ -131,10 +131,10 @@ h1 {
 
 .offset-menu a:hover {
 	font-size:1.1em;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	-ms-transition: all 0.1s ease;
 }
 
 .offset-menu .form-group {
@@ -194,4 +194,45 @@ h1 {
 
 .inline-video {
 	margin:20px 0;
+}
+
+.offset-social {
+	position:absolute;
+	background-color:white;
+	text-align: left;
+	top:20px;
+	left:20px;
+}
+
+@media (min-width: 768px) {
+	.offset-social {
+		top:50px;
+		left:50px;
+	}
+}
+
+.social {
+  color:#ddd;
+  text-decoration: none;
+	margin-right:10px;
+
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	-ms-transition: all 0.1s ease;
+}
+
+.social-fb:hover {
+  color:#3B5998;
+  text-decoration: none;
+}
+
+.social-tw:hover {
+  color:#55acee;
+  text-decoration: none;
+}
+
+.social-em:hover {
+	color:#f2bb64;
+	text-decoration: none;
 }

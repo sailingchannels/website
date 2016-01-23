@@ -17,11 +17,6 @@ class OffsetMenu extends React.Component {
 		}
 	}
 
-	// REPLACE X
-    replaceX(e) {
-        e.target.href = e.target.href.replace(/x/g, "");
-    }
-
 	// RENDER
 	render() {
 
@@ -38,7 +33,6 @@ class OffsetMenu extends React.Component {
 	                    <li><Link to="/how-it-works">How does this work?</Link></li>
 	                    <li><Link to="/channel-missing">My channel is missing</Link></li>
 						<li><Link to="/contributions">Contributions</Link></li>
-	                    <li><a href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)}>Contact</a></li>
 						<li>
 							<div div className="little-space">Channel language</div>
 							<LanguagePicker />
