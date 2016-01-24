@@ -1,4 +1,4 @@
-import requests, json, config, calendar, sys, time
+import requests, json, config, calendar, sys, time, math
 from pymongo import MongoClient
 from datetime import datetime, date, timedelta
 import detectlanguage
@@ -53,11 +53,13 @@ blacklist = []
 # open mongodb connection
 client = MongoClient(config.mongoDB())
 db_name = "sailing-channels"
+devMode = False
 
 pool = ThreadPool(16)
 
 if len(sys.argv) != 2:
 	db_name += "-dev"
+	devMode = True
 	print "*** DEVELOPER MODE ***"
 
 db = client[db_name]
@@ -115,21 +117,20 @@ def storeVideoStats(channelId, vid):
 		vid_exists = db.videos.count({"_id": dbVid["_id"]})
 
 		# reasonable fresh video, post to twitter and facebook
-		if vid_exists == 0 and int(dbVid["publishedAt"]) > time.mktime(datetime.utcnow().timetuple()) - 7200:
+		if vid_exists == 0 and math.fabs(int(dbVid["publishedAt"]) - time.mktime(datetime.utcnow().timetuple())) <= 15000:
 
-			ch = db.channels.find_one({"_id": channelId}, fields=["title"])
+			ch = db.channels.find_one({"_id": channelId}, projection=["title"])
 
 			# twitter
 			try:
-				twitter.update_status(status=ch["title"] + " \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
+				msg = "New: " + ch["title"] + " \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId
+				if devMode <> True:
+					twitter.update_status(status=msg)
+				else:
+					print msg
+
 			except Exception, e:
 				print e
-
-			# facebook
-			# try:
-			# 	facebook.post("me/feed", message="New Video: \"" + dbVid["title"] + "\" https://sailing-channels.com/channel/" + channelId)
-			# except Exception, e:
-			# 	print e
 
 		# update information in database
 		db.videos.update_one({
