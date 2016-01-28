@@ -16,7 +16,7 @@ class Banner extends React.Component {
                   </div>
                   <div className="modal-body">
                     <p>
-                        The <b>Two aboard Tuuli crew</b> created this website in their sparetime for you.
+                        The <a href="https://two-aboard-tuuli.com" target="_blank"><b>Two aboard Tuuli crew</b></a> created this website in their sparetime for you.
                     </p>
                     <p>
                         If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!
