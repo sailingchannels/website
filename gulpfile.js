@@ -42,7 +42,7 @@ gulp.task("vendor-js", function() {
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
-			mangle: false
+			mangle: production
 		})))
 		.pipe(gulp.dest("public/js"));
 });
@@ -75,7 +75,7 @@ gulp.task("browserify-vendor", function() {
 		.bundle()
 		.pipe(source("vendor.bundle.js"))
 		.pipe(gulpif(production, streamify(uglify({
-			mangle: false
+			mangle: production
 		}))))
 		.pipe(gulp.dest("public/js"));
 });
@@ -92,7 +92,7 @@ gulp.task("browserify", ["browserify-vendor"], function() {
 		.bundle()
 		.pipe(source("bundle.js"))
 		.pipe(gulpif(production, streamify(uglify({
-			mangle: false
+			mangle: production
 		}))))
 		.pipe(gulp.dest("public/js"));
 });
