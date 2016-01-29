@@ -299,7 +299,7 @@ app.use(function(req, res) {
 				removeOptionalTags: true,
 				removeStyleLinkTypeAttributes: true,
 				removeScriptTypeAttributes: true
-			}));
+			}).replace(/(\r\n|\n|\r|\t)/gm,""));
 		}
 
 		// not found
