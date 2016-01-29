@@ -4,33 +4,42 @@ class App extends React.Component {
 
 	// COMPONENT DID MOUNT
 	componentDidMount() {
-		var $el = $("#subsriberChart_" + this.props.channel.id);
+		this.loadChart(this.props);
+	}
 
-		// get canvas and set width
-		var canvas = $el.get(0);
-		canvas.width = $el.parent().width();
+	// COMPONENT WILL RECEIVE PROPS
+	componentWillReceiveProps(nextProps) {
+		this.loadChart(nextProps);
+	}
 
-		// get context object
-		var ctx = canvas.getContext("2d");
+	// LOAD CHART
+	loadChart(props) {
 
-		// filter out values and dates for labels
-		var values = this.props.channel.subHist.map((item) => {
-			return item.subscribers;
-		});
+		window.setTimeout(function() {
+			var $el = $("#subsriberChart_" + props.channel.id);
 
-		var labels = this.props.channel.subHist.map((item) => {
-			var raw = item._id.date + "";
-			var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)), parseInt(raw.substr(6, 2)));
-			return d.toLocaleDateString();
-		});
+			// get canvas and set width
+			var canvas = $el.get(0);
+			canvas.width = $el.parent().width();
 
-		console.log(labels);
+			// get context object
+			var ctx = canvas.getContext("2d");
 
-		// prepare data
-		var data = {
-		    labels: labels,
-		    datasets: [
-		        {
+			// filter out values and dates for labels
+			var values = props.channel.subHist.map((item) => {
+				return item.subscribers;
+			});
+
+			var labels = props.channel.subHist.map((item) => {
+				var raw = item._id.date + "";
+				var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)), parseInt(raw.substr(6, 2)));
+				return d.toLocaleDateString();
+			});
+
+			// prepare data
+			var data = {
+			    labels: labels,
+			    datasets: [{
 		            label: "My Second dataset",
 		            fillColor: "rgba(151,187,205,0.2)",
 		            strokeColor: "rgba(151,187,205,1)",
@@ -39,14 +48,15 @@ class App extends React.Component {
 		            pointHighlightFill: "#fff",
 		            pointHighlightStroke: "rgba(151,187,205,1)",
 		            data: values
-		        }
-		    ]
-		};
+		        }]
+			};
 
-		Chart.defaults.global.showScale = false;
+			Chart.defaults.global.showScale = false;
 
-		// draw line chart
-		var ch = new Chart(ctx).Line(data);
+			// draw line chart
+			var ch = new Chart(ctx).Line(data);
+
+		}, 500);
 	}
 
 	// RENDER
