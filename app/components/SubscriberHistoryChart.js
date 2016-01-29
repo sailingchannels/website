@@ -27,7 +27,7 @@ class App extends React.Component {
 
 			// filter out values and dates for labels
 			var values = props.channel.subHist.map((item) => {
-				return item.subscribers;
+				return item.subscribers.toLocaleString();
 			});
 
 			var labels = props.channel.subHist.map((item) => {
