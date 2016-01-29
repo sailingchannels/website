@@ -54,7 +54,9 @@ class App extends React.Component {
 			Chart.defaults.global.showScale = false;
 
 			// draw line chart
-			var ch = new Chart(ctx).Line(data);
+			var ch = new Chart(ctx).Line(data, {
+				"pointHitDetectionRadius": 5
+			});
 
 		}, 500);
 	}
