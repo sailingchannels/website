@@ -84,28 +84,59 @@ app.get("/api/channel/get/:id", function(req, res) {
 	var id = req.params.id;
 
 	// find one video
-	global.channels.find({"_id": id}).limit(1).next(function(err, channel) {
+	global.channels.find({"_id": id}).project({
+		"lastCrawl": false,
+		"language": false,
+		"detectedLanguage": false
+	}).limit(1).next(function(err, channel) {
 
 		// oh no!
 		if(err || !channel) {
 			return res.status(500).send(err);
 		}
 
-		// fetch latest video
-		global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
-			"videos.description": false
-		}).next(function(err, video) {
+		async.parallel({
+
+			// fetch latest video from mongodb
+			"video": function(done) {
+
+				// fetch latest video
+				global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
+					"videos.description": false
+				}).next(done);
+			},
+
+			// fetch the subscriber history of last 7 days
+			"subscribers": function(done) {
+
+				global.subscribers.find({
+					"_id.channel": id,
+					"date": {
+						"$gte": moment().subtract(7, "days").toDate()
+					}
+				})
+				.sort({"date": 1})
+				.project({
+					"subscribers": true
+				})
+				.toArray(done);
+			}
+
+		}, function(err, result) {
 
 			// oh no!
-			if(err || !video) {
+			if(err) {
 				return res.status(500).send(err);
 			}
 
 			channel.videos = [];
-			channel.videos.push(video);
+			channel.videos.push(result.video);
+			channel.subHist = result.subscribers;
 
 			return res.send(channel);
 		});
+
+
 	});
 });
 
@@ -323,6 +354,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.channels = db.collection("channels");
 	global.searches = db.collection("searches");
 	global.videos = db.collection("videos");
+	global.subscribers = db.collection("subscribers");
 
 	// start server
 	app.listen(app.get("port"), function() {

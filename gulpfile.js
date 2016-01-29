@@ -38,7 +38,8 @@ gulp.task("vendor-js", function() {
 			"public/js/jquery.timeago.js",
 			"public/js/anchorme.min.js",
 			"bower_components/js-cookie/src/js.cookie.js",
-			"bower_components/jquery-unveil/jquery.unveil.js"
+			"bower_components/jquery-unveil/jquery.unveil.js",
+			"public/js/libs/Chart.js/custom/Chart.min.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({

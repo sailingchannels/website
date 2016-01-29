@@ -3,6 +3,7 @@ import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 import OffsetMenu from "./OffsetMenu";
 import Logo from "./Logo";
+import SubscriberHistoryChart from "./SubscriberHistoryChart";
 
 class ChannelDetail extends React.Component {
 
@@ -85,6 +86,9 @@ class ChannelDetail extends React.Component {
 								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"]} frameBorder="0" allowFullScreen></iframe>
 							</div>
 							<div className="col-md-3 col-sm-3">
+								<p><b>Subscribers in last 7 days:</b></p>
+								<SubscriberHistoryChart channel={this.state.channel} />
+								<p>&nbsp;</p>							
 								{(this.state.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.state.channel.subscribers.toLocaleString()}</p> : null}
 								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
