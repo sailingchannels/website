@@ -40,6 +40,11 @@ app.get("/api/languages", function(req, res) {
 		return res.send({
 			"languages": ISO6391.getLanguages(languages).sort(function(a, b) {
 				return a.name.charCodeAt(0) - b.name.charCodeAt(0);
+			}).map(function(lang) {
+				return {
+					"code": lang.code,
+					"name": lang.name
+				};
 			}),
 			"selected": req.cookies["channel-language"] || "en"
 		});
@@ -141,7 +146,12 @@ app.get("/api/channels/get", function(req, res) {
 
 		// send data out
 		return res.send({
-			"data": channels,
+			"data": channels.map(function(item) {
+				delete item.lastCrawl;
+				delete item.detectedLanguage;
+				delete item.language;
+				return item;
+			}),
 			"skip": skip,
 			"take": take
 		});

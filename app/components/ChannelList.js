@@ -58,11 +58,11 @@ class ChannelList extends React.Component {
 		this.setState({
 			channels: [],
 			skip: 0,
-			take: 25,
+			take: 5,
 			loading: false
 		});
 
-		ChannelActions.getChannels(nextProps.sortBy, 0, 25);
+		ChannelActions.getChannels(nextProps.sortBy, 0, 5);
 	}
 
     // ON CHANGE
@@ -88,7 +88,6 @@ class ChannelList extends React.Component {
 
 	// RERENDER LIST
 	rerenderList() {
-		console.log("rerender");
 		this.loadData(this.props);
 	}
 
