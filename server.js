@@ -140,6 +140,45 @@ app.get("/api/channel/get/:id", function(req, res) {
 	});
 });
 
+// API / CHANNEL / GET / :ID / VIDEOS / :SKIP / :TAKE
+app.get("/api/channel/get/:id/videos", function(req, res) {
+
+	var take = parseInt(req.query.take) || 10;
+	var skip = parseInt(req.query.skip) || 0;
+
+	global.videos.find({
+		"channel": req.params.id
+	})
+	.skip(skip)
+	.limit(take)
+	.sort({
+		"publishedAt": -1
+	})
+	.project({
+		"channel": false,
+		"comments": false
+	})
+	.toArray(function(err, videos) {
+
+		// oh no!
+		if(err) {
+			return res.status(500).send({
+				"data": [],
+				"skip": skip,
+				"take": take,
+				"error": err
+			});
+		}
+
+		// send data out
+		return res.send({
+			"data": videos,
+			"skip": skip,
+			"take": take
+		});
+	});
+});
+
 // API / CHANNELS / GET
 app.get("/api/channels/get", function(req, res) {
 
@@ -162,7 +201,10 @@ app.get("/api/channels/get", function(req, res) {
 		"language": req.cookies["channel-language"] || "en"
 	}).skip(skip).limit(take).sort(sorting).project({
 		"videos": false,
-		"country": false
+		"country": false,
+		"lastCrawl": false,
+		"detectedLanguage": false,
+		"language": false
 	}).toArray(function(err, channels) {
 
 		// oh no!
@@ -177,12 +219,7 @@ app.get("/api/channels/get", function(req, res) {
 
 		// send data out
 		return res.send({
-			"data": channels.map(function(item) {
-				delete item.lastCrawl;
-				delete item.detectedLanguage;
-				delete item.language;
-				return item;
-			}),
+			"data": channels,
 			"skip": skip,
 			"take": take
 		});

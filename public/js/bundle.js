@@ -1,4 +1,4730 @@
-!function e(t,n,a){function r(l,i){if(!n[l]){if(!t[l]){var u="function"==typeof require&&require;if(!i&&u)return u(l,!0);if(o)return o(l,!0);var s=new Error("Cannot find module '"+l+"'");throw s.code="MODULE_NOT_FOUND",s}var c=n[l]={exports:{}};t[l][0].call(c.exports,function(e){var n=t[l][1][e];return r(n?n:e)},c,c.exports,e,t,n,a)}return n[l].exports}for(var o="function"==typeof require&&require,l=0;l<a.length;l++)r(a[l]);return r}({1:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),l=e("../alt"),i=a(l),u=function(){function e(){r(this,e),this.generateActions("getChannelsSuccess","getChannelsFail","getChannelSuccess","getChannelFail","searchChannelsSuccess","searchChannelsFail")}return o(e,[{key:"getChannels",value:function(e,t,n){var a=this;$.ajax({url:"/api/channels/get?sort="+e+"&skip="+t+"&take="+n,type:"GET",dataType:"json",cache:!0}).done(function(e){a.actions.getChannelsSuccess(e)}).fail(function(e){a.actions.getChannelsFail(e)})}},{key:"getChannel",value:function(e){var t=this;$.ajax({url:"/api/channel/get/"+e,type:"GET",dataType:"json"}).done(function(e){t.actions.getChannelSuccess(e)}).fail(function(e){t.actions.getChannelFail(e)})}},{key:"searchChannels",value:function(e){var t=this;$.ajax({url:"/api/channels/search?q="+encodeURIComponent(e),type:"GET",dataType:"json"}).done(function(e){t.actions.searchChannelsSuccess(e)}).fail(function(e){t.actions.searchChannelsFail(e)})}}]),e}();n["default"]=i["default"].createActions(u),t.exports=n["default"]},{"../alt":3}],2:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),l=e("../alt"),i=a(l),u=function(){function e(){r(this,e),this.generateActions("getLanguagesSuccess","getLanguagesFail")}return o(e,[{key:"getLanguages",value:function(){var e=this;$.ajax({url:"/api/languages",type:"GET",dataType:"json",cache:!0}).done(function(t){e.actions.getLanguagesSuccess(t)}).fail(function(t){e.actions.getLanguagesFail(t)})}}]),e}();n["default"]=i["default"].createActions(u),t.exports=n["default"]},{"../alt":3}],3:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(n,"__esModule",{value:!0});var r=e("alt"),o=a(r);n["default"]=new o["default"],t.exports=n["default"]},{alt:"alt"}],4:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./Footer"),f=a(c),d=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){$.material.init(),window.setTimeout(function(){($("#banner-dialog").data("bs.modal")||{}).isShown||Cookies.get("banner-dialog")||($("#banner-dialog").modal("show"),Cookies.set("banner-dialog","shown",{expires:3}))},15e3)}},{key:"render",value:function(){return s["default"].createElement("div",null,this.props.children,s["default"].createElement(f["default"],null))}}]),t}(s["default"].Component);n["default"]=d,t.exports=n["default"]},{"./Footer":13,react:"react"}],5:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=(e("react-router"),function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"render",value:function(){return s["default"].createElement("div",{id:"banner-dialog",className:"modal fade"},s["default"].createElement("div",{className:"modal-dialog"},s["default"].createElement("div",{className:"modal-content"},s["default"].createElement("div",{className:"modal-header"},s["default"].createElement("button",{type:"button",className:"close","data-dismiss":"modal","aria-hidden":"true"},"×"),s["default"].createElement("h3",{className:"modal-title"},"Thanks for stopping by!")),s["default"].createElement("div",{className:"modal-body"},s["default"].createElement("p",null,"The ",s["default"].createElement("a",{href:"https://two-aboard-tuuli.com",target:"_blank"},s["default"].createElement("b",null,"Two aboard Tuuli crew"))," created this website in their sparetime for you."),s["default"].createElement("p",null,"If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!"),s["default"].createElement("center",{className:"banner-channel"},s["default"].createElement("div",{className:"g-ytsubscribe","data-channelid":"UCZbZeC2OfdVMwm9AR_zu0_g","data-layout":"full","data-count":"default"}))))))}}]),t}(s["default"].Component));n["default"]=c,t.exports=n["default"]},{react:"react","react-router":"react-router"}],6:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("../actions/ChannelActions"),f=a(c),d=e("../stores/ChannelStore"),p=a(d),h=e("./OffsetMenu"),m=a(h),y=e("./Logo"),v=a(y),g=e("./SubscriberHistoryChart"),b=a(g),w=function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state=p["default"].getState(),this.onChange=this.onChange.bind(this)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){p["default"].listen(this.onChange),f["default"].getChannel(this.props.params.id)}},{key:"componentWillReceiveProps",value:function(e){e.params.id!==this.props.params.id&&f["default"].getChannel(e.params.id)}},{key:"componentDidUpdate",value:function(){this.state.channel&&(document.title=this.state.channel.title+" - Sailing Channels",$("meta[name='description']").attr("content",this.state.channel.description))}},{key:"componentWillUnmount",value:function(){p["default"].unlisten(this.onChange)}},{key:"onChange",value:function(e){this.setState(e)}},{key:"formatDate",value:function(e){var t=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],n=new Date(1e3*e);return t[n.getMonth()]+" "+n.getDate()+", "+n.getFullYear()}},{key:"render",value:function(){return this.state.channel?s["default"].createElement("div",{className:"container"},s["default"].createElement(v["default"],null),s["default"].createElement(m["default"],null),s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-1"}),s["default"].createElement("div",{className:"col-md-10"},s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-12"},s["default"].createElement("center",null,s["default"].createElement("h1",null,this.state.channel.title)))),s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-2 col-sm-2"},s["default"].createElement("img",{src:this.state.channel.thumbnail,className:"channel-thumb"})),s["default"].createElement("div",{className:"col-md-7 col-sm-7"},s["default"].createElement("p",{className:"channel-description",dangerouslySetInnerHTML:{__html:anchorme.js(this.state.channel.description.replace("\n","<br />"),{target:"_blank"})}}),s["default"].createElement("p",null," "),s["default"].createElement("p",null,s["default"].createElement("b",null,"Latest video:")),s["default"].createElement("iframe",{width:"100%",height:"315",src:"https://www.youtube.com/embed/"+this.state.channel.videos[0]._id,frameBorder:"0",allowFullScreen:!0})),s["default"].createElement("div",{className:"col-md-3 col-sm-3"},s["default"].createElement("p",null,s["default"].createElement("b",null,"Subscribers in last 7 days:")),s["default"].createElement(b["default"],{channel:this.state.channel}),s["default"].createElement("p",null," "),this.state.channel.subscribersHidden===!0?s["default"].createElement("p",{className:"text-warning"},s["default"].createElement("b",null,"Subscriber info hidden by channel ",s["default"].createElement("i",{className:"fa fa-frown-o"}))):null,this.state.channel.subscribersHidden===!1?s["default"].createElement("p",null,s["default"].createElement("b",null,"Subscribers:")," ",this.state.channel.subscribers.toLocaleString()):null,this.state.channel.subscribersHidden===!1?s["default"].createElement("p",null,s["default"].createElement("b",null,"Videos:")," ",this.state.channel.videoCount):null,s["default"].createElement("p",null,s["default"].createElement("b",null,"Views:")," ",this.state.channel.views.toLocaleString()),this.state.channel.lastUploadAt?s["default"].createElement("p",null,s["default"].createElement("b",null,"Last upload:")," ",$.timeago(new Date(1e3*this.state.channel.lastUploadAt))):"",s["default"].createElement("p",null,s["default"].createElement("b",null,"Founded:")," ",this.formatDate(this.state.channel.publishedAt)),s["default"].createElement("p",null," "),s["default"].createElement("a",{target:"_blank",href:"https://youtube.com/channel/"+this.state.channel.id},s["default"].createElement("i",{className:"fa fa-external-link"})," Open YouTube channel"),s["default"].createElement("a",{target:"_blank",href:"https://youtube.com/channel/"+this.state.channel.id+"?sub_confirmation=1",className:"btn btn-danger btn-raised"},s["default"].createElement("i",{className:"fa fa-youtube-play"})," Subscribe")))),s["default"].createElement("div",{className:"col-md-1"})),s["default"].createElement("p",null," ")):null}}]),t}(s["default"].Component);n["default"]=w,t.exports=n["default"]},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./Logo":17,"./OffsetMenu":18,"./SubscriberHistoryChart":24,react:"react"}],7:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./ChannelListItem"),f=a(c),d=e("../actions/ChannelActions"),p=a(d),h=e("../stores/ChannelStore"),m=a(h),y=(e("react-router"),function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state=m["default"].getState(),this.onChange=this.onChange.bind(this)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){m["default"].listen(this.onChange),$(window).on("changeSort",this.changeSort.bind(this)),$(window).on("scroll",this.scrollWindow.bind(this)),$(window).on("rerenderList",this.rerenderList.bind(this));var e=this.props.sortBy;this.setState({sortBy:e}),this.loadData(this.props)}},{key:"componentWillUnmount",value:function(){$(window).off("scroll"),$(window).off("changeSort"),$(window).off("rerenderList"),m["default"].unlisten(this.onChange)}},{key:"componentWillReceiveProps",value:function(e){this.props.sortBy!==e.sortBy&&this.loadData(e)}},{key:"loadData",value:function(e){document.title="Sailing Channels",$("meta[name='description']").attr("content","A compiled list of YouTube channels that are related to sailing or living aboard a sailboat."),this.setState({channels:[],skip:0,take:5,loading:!1}),p["default"].getChannels(e.sortBy,0,5)}},{key:"onChange",value:function(e){this.setState(e)}},{key:"scrollWindow",value:function(){var e=150;$(window).scrollTop()+$(window).height()>$(document).height()-e&&this.state.loading===!1&&(this.setState({loading:!0}),p["default"].getChannels(this.props.sortBy,this.state.skip+this.state.take,25))}},{key:"rerenderList",value:function(){this.loadData(this.props)}},{key:"changeSort",value:function(e,t){this.setState({sortBy:t.sortBy}),this.props.history.replaceState(null,"/by-"+t.sortBy)}},{key:"render",value:function(){var e=this;return 0===this.state.channels.length?s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-1"}),s["default"].createElement("div",{className:"col-md-10"},s["default"].createElement("center",null,"Loading channels...")),s["default"].createElement("div",{className:"col-md-1"})):s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-1"}),s["default"].createElement("div",{className:"col-md-10"},this.state.channels.map(function(t){return s["default"].createElement(f["default"],{key:"cli-"+t.id,channel:t,sortBy:e.state.sortBy})}),this.state.loading===!0?s["default"].createElement("center",{className:"loadMore"},"Loading more channels ..."):null),s["default"].createElement("div",{className:"col-md-1"}))}}]),t}(s["default"].Component));n["default"]=y,t.exports=n["default"]},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./ChannelListItem":8,react:"react","react-router":"react-router"}],8:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./Description"),f=a(c),d=e("react-router"),p=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){$(".channel-thumb").unveil()}},{key:"formatDate",value:function(e){var t=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],n=new Date(1e3*e);return t[n.getMonth()]+" "+n.getDate()+", "+n.getFullYear()}},{key:"render",value:function(){return s["default"].createElement("div",{className:"row channel-row"},s["default"].createElement("div",{className:"col-md-2 col-xs-2"},s["default"].createElement("center",null,s["default"].createElement("img",{src:"https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png","data-src":this.props.channel.thumbnail,className:"channel-thumb"}))),s["default"].createElement("div",{className:"col-md-7 col-xs-10"},s["default"].createElement("h3",null,s["default"].createElement(d.Link,{to:"/channel/"+this.props.channel.id},this.props.channel.title)),s["default"].createElement(f["default"],{text:this.props.channel.description})),s["default"].createElement("div",{className:"col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0"},this.props.channel.subscribersHidden===!0?s["default"].createElement("p",{className:"text-warning"},s["default"].createElement("b",null,"Subscriber info hidden ",s["default"].createElement("i",{className:"fa fa-frown-o"}))):null,this.props.channel.subscribersHidden===!1?s["default"].createElement("p",null,s["default"].createElement("b",null,"Subscribers:")," ",this.props.channel.subscribers.toLocaleString()):null,this.props.channel.subscribersHidden===!1?s["default"].createElement("p",null,s["default"].createElement("b",null,"Videos:")," ",this.props.channel.videoCount.toLocaleString()):null,this.props.channel.lastUploadAt?s["default"].createElement("p",null,s["default"].createElement("b",null,"Last upload:")," ",$.timeago(new Date(1e3*this.props.channel.lastUploadAt))):"",s["default"].createElement("p",null,s["default"].createElement("b",null,"Founded:")," ",this.formatDate(this.props.channel.publishedAt)),s["default"].createElement("a",{target:"_blank",href:"https://youtube.com/channel/"+this.props.channel.id+"?sub_confirmation=1",className:"btn btn-danger btn-sidebar btn-raised"},s["default"].createElement("i",{className:"fa fa-youtube-play"})," Subscribe")))}}]),t}(s["default"].Component);n["default"]=p,t.exports=n["default"]},{"./Description":12,react:"react","react-router":"react-router"}],9:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./OffsetMenu"),f=a(c),d=e("./Logo"),p=a(d),h=function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state={stats:null}}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.title="My channel is missing | Sailing Channels";var e=this;$.getJSON("/api/stats",function(t){e.setState({stats:t})})}},{key:"replaceX",value:function(e){e.target.href=e.target.href.replace(/x/g,"")}},{key:"render",value:function(){var e=null;return this.state.stats&&(e=s["default"].createElement("p",null,"This site currently lists ",this.state.stats.channels," channels with ",this.state.stats.videos," videos in total.")),s["default"].createElement("div",{className:"container"},s["default"].createElement(p["default"],null),s["default"].createElement(f["default"],null),s["default"].createElement("div",{className:"row content-row"},s["default"].createElement("div",{className:"col-md-3"}),s["default"].createElement("div",{className:"col-md-6"},s["default"].createElement("h1",{className:"content-h1"},"My channel is missing"),e,s["default"].createElement("p",null,"You were expecting to see your channel here? Well, that's easy. Just get in touch with us and we'll make sure you get listed!"),s["default"].createElement("p",null,"Send an email to ",s["default"].createElement("a",{href:"mailto:ahoyx@sailingx-channels.com",onMouseOver:this.replaceX.bind(this),className:"reverse"},"moc.slennahc-gnilias@yoha"))),s["default"].createElement("div",{className:"col-md-3"})))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"./Logo":17,"./OffsetMenu":18,react:"react"}],10:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./OffsetMenu"),f=a(c),d=e("./Logo"),p=a(d),h=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.title="Contributions | Sailing Channels"}},{key:"render",value:function(){return s["default"].createElement("div",{className:"container"},s["default"].createElement(p["default"],null),s["default"].createElement(f["default"],null),s["default"].createElement("div",{className:"row content-row"},s["default"].createElement("div",{className:"col-md-3"}),s["default"].createElement("div",{className:"col-md-6"},s["default"].createElement("h1",{className:"content-h1"},"Contributions"),s["default"].createElement("p",null,"This is the place we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented:"),s["default"].createElement("table",{className:"table"},s["default"].createElement("thead",null,s["default"].createElement("tr",null,s["default"].createElement("th",null,"Suggestion"),s["default"].createElement("th",null,"By"))),s["default"].createElement("tr",null,s["default"].createElement("td",null,"A way to filter by language of the channel"),s["default"].createElement("td",null,s["default"].createElement("a",{href:"https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw",target:"_blank"},"Norman Boyes"))),s["default"].createElement("tr",null,s["default"].createElement("td",null,"Exclude channels that have not uploaded a video in a year"),s["default"].createElement("td",null,s["default"].createElement("a",{href:"https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g",target:"_blank"},"Someday sailor"))))),s["default"].createElement("div",{className:"col-md-3"})))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"./Logo":17,"./OffsetMenu":18,react:"react"}],11:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./OffsetMenu"),f=a(c),d=e("./Logo"),p=a(d),h=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.title="How does this work? | Sailing Channels"}},{key:"render",value:function(){return s["default"].createElement("div",{className:"container"},s["default"].createElement(p["default"],null),s["default"].createElement(f["default"],null),s["default"].createElement("div",{className:"row content-row"},s["default"].createElement("div",{className:"col-md-3"}),s["default"].createElement("div",{className:"col-md-6"},s["default"].createElement("h1",{className:"content-h1"},"How does this work?"),s["default"].createElement("p",null,"Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats."),s["default"].createElement("p",null,"The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom."),s["default"].createElement("p",null,"The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on."),s["default"].createElement("p",null," "),s["default"].createElement("center",null,s["default"].createElement("iframe",{className:"intro-video",width:"100%",height:"315",src:"https://www.youtube.com/embed/RWosJPnB900?start=53",frameBorder:"0",allowFullScreen:!0}))),s["default"].createElement("div",{className:"col-md-3"})))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"./Logo":17,"./OffsetMenu":18,react:"react"}],12:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./Description"),f=(a(c),function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state={more:!1}}return o(t,e),l(t,[{key:"textCutter",value:function(e,t){if(t.length<e||this.state.more===!0)return t;var n=t.substr(0,e);return/^\S/.test(t.substr(e))?n.replace(/\s+\S*$/,""):n}},{key:"toggleMore",value:function(){this.setState({more:!this.state.more})}},{key:"render",value:function(){var e,t=this.state.more===!0?"less":"more",n=this.textCutter(250,this.props.text);return(n.length!==this.props.text.length||this.state.more===!0)&&(e=s["default"].createElement("a",{href:"javascript:void(0);",onClick:this.toggleMore.bind(this)},"[",t,"]")),s["default"].createElement("p",{className:"channel-description"},s["default"].createElement("span",{dangerouslySetInnerHTML:{__html:anchorme.js(n,{target:"_blank"})}})," ",e)}}]),t}(s["default"].Component));n["default"]=f,t.exports=n["default"]},{"./Description":12,react:"react"}],13:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{
-value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("react-router"),f=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"render",value:function(){return s["default"].createElement("div",{className:"container footer"},s["default"].createElement("center",null,s["default"].createElement(c.Link,{to:"/impressum"},"Impressum")," | ",s["default"].createElement(c.Link,{to:"/privacy"},"Privacy Policy")," | ",s["default"].createElement("a",{href:"https://github.com/thomasbrueggemann/sailing-channels",target:"_blank"},"Code on GitHub")))}}]),t}(s["default"].Component);n["default"]=f,t.exports=n["default"]},{react:"react","react-router":"react-router"}],14:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./ChannelList"),f=a(c),d=e("./SearchBar"),p=a(d),h=e("./OffsetMenu"),m=a(h),y=e("./OffsetSocial"),v=a(y),g=e("./Logo"),b=a(g),w=e("./Banner"),E=a(w),O=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"render",value:function(){var e=this.props.params.sortBy||"subscribers";return s["default"].createElement("div",{className:"container"},s["default"].createElement(v["default"],null),s["default"].createElement(b["default"],null),s["default"].createElement(m["default"],null),s["default"].createElement(p["default"],{sortBy:e,history:this.props.history}),s["default"].createElement(f["default"],{sortBy:e,history:this.props.history}),this.props.children,s["default"].createElement(E["default"],null))}}]),t}(s["default"].Component);n["default"]=O,t.exports=n["default"]},{"./Banner":5,"./ChannelList":7,"./Logo":17,"./OffsetMenu":18,"./OffsetSocial":19,"./SearchBar":21,react:"react"}],15:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./OffsetMenu"),f=a(c),d=e("./Logo"),p=a(d),h=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.title="Impressum | Sailing Channels"}},{key:"render",value:function(){return s["default"].createElement("div",{className:"container"},s["default"].createElement(p["default"],null),s["default"].createElement(f["default"],null),s["default"].createElement("div",{className:"row content-row"},s["default"].createElement("div",{className:"col-md-3"}),s["default"].createElement("div",{className:"col-md-6"},s["default"].createElement("h1",{className:"content-h1"},"Impressum"),s["default"].createElement("p",null,"The following information (Impressum) is required under German law."),s["default"].createElement("p",null,"Responsible for this site:"),s["default"].createElement("p",null,s["default"].createElement("span",{className:"reverse"},"nnameggürB samohT"),s["default"].createElement("br",null),s["default"].createElement("span",{className:"reverse"},"51 eßartsreliewtdiehcS"),s["default"].createElement("br",null),s["default"].createElement("span",{className:"reverse"},"nlöK 33905"),s["default"].createElement("br",null),s["default"].createElement("span",{className:"reverse"},"moc.slennahc-gnilias@yoha"),s["default"].createElement("br",null)),s["default"].createElement("h3",null,"Legal disclaimer"),s["default"].createElement("p",null,"The contents of these pages are generated automatically based on the YouTube channel title, description and videos of the individual channels listed. The creator of this website has no influence on the content of the channel descriptions or other channel related texts. Also, The creator of this website cannot assume liability for the timeless accuracy and completeness of the information. This website contains links to external websites. As the contents of these third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity for the contents of the linked pages is always held by the provider or operator of the pages."),s["default"].createElement("h3",null,"Data protection"),s["default"].createElement("p",null,"In general, when visiting the website of “Sailing Channels”, no personal data are saved. No data will be passed on to third parties without your consent. We point out that in regard to unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed. Such data could possibIy be accessed by third parties."),s["default"].createElement("h3",null,"Google Analytics"),s["default"].createElement("p",null,"This website uses Google Analytics, a web analytics service provided by Google, Inc. (»Google«). Google Analytics uses cookies, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. On this website the IP anonymization feature is activated. As a result Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above."),s["default"].createElement("h4",null,"How to prevent being tracked by Google Analytics on sailing-channels.com"),s["default"].createElement("ul",null,s["default"].createElement("li",null,"You may refuse the use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this, you may not be able to use the full functionality of this website."),s["default"].createElement("li",null,"Furthermore you can prevent Google’s collection and use of data (cookies and IP address) by downloading and installing the browser plug-in available under ",s["default"].createElement("a",{href:"https://tools.google.com/dlpage/gaoptout?hl=en",target:"_blank"},"https://tools.google.com/dlpage/gaoptout?hl=en")))),s["default"].createElement("div",{className:"col-md-3"})))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"./Logo":17,"./OffsetMenu":18,react:"react"}],16:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("../actions/LanguageActions"),f=a(c),d=e("../stores/LanguageStore"),p=a(d),h=function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state=p["default"].getState(),this.onChange=this.onChange.bind(this)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){p["default"].listen(this.onChange),f["default"].getLanguages()}},{key:"componentWillUnmount",value:function(){p["default"].unlisten(this.onChange)}},{key:"onChange",value:function(e){this.setState(e)}},{key:"setLanguage",value:function(e){Cookies.set("channel-language",e.target.value),this.setState({selectedLanguage:e.target.value}),$(window).trigger("rerenderList")}},{key:"render",value:function(){return s["default"].createElement("select",{className:"form-control language-picker","data-dropdownjs":"true",value:this.state.selectedLanguage,onChange:this.setLanguage.bind(this)},this.state.languages.map(function(e){return s["default"].createElement("option",{key:e.code,value:e.code},e.name)}))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"../actions/LanguageActions":2,"../stores/LanguageStore":29,react:"react"}],17:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("react-router"),f=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"render",value:function(){return s["default"].createElement("div",{className:"logo"},s["default"].createElement(c.Link,{to:"/"},s["default"].createElement("div",{className:"turnaround"},s["default"].createElement("div",{className:"front"}),s["default"].createElement("div",{className:"back"}))))}}]),t}(s["default"].Component);n["default"]=f,t.exports=n["default"]},{react:"react","react-router":"react-router"}],18:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("react-router"),f=e("./LanguagePicker"),d=a(f),p=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"toggleMenu",value:function(){$(".offset-menu").find("ul").hasClass("hidden-xs")?($(".offset-menu").find("ul").removeClass("hidden-xs"),$(".logo, .search-row").css("opacity",0)):($(".offset-menu").find("ul").addClass("hidden-xs"),$(".logo, .search-row").css("opacity",1))}},{key:"render",value:function(){return s["default"].createElement("div",null,s["default"].createElement("div",{className:"offset-bars hidden-md hidden-lg hidden-sm"},s["default"].createElement("div",{onClick:this.toggleMenu.bind(this)},s["default"].createElement("i",{className:"fa fa-bars"}))),s["default"].createElement("div",{className:"offset-menu"},s["default"].createElement("ul",{className:"hidden-xs"},s["default"].createElement("li",null,s["default"].createElement(c.Link,{to:"/"},"Home")),s["default"].createElement("li",null,s["default"].createElement(c.Link,{to:"/how-it-works"},"How does this work?")),s["default"].createElement("li",null,s["default"].createElement(c.Link,{to:"/channel-missing"},"My channel is missing")),s["default"].createElement("li",null,s["default"].createElement(c.Link,{to:"/contributions"},"Contributions")),s["default"].createElement("li",null,s["default"].createElement("div",{div:!0,className:"little-space"},"Channel language"),s["default"].createElement(d["default"],null)))))}}]),t}(s["default"].Component);n["default"]=p,t.exports=n["default"]},{"./LanguagePicker":16,react:"react","react-router":"react-router"}],19:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./Footer"),f=(a(c),function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"replaceX",value:function(e){var t=$(e.target);t.attr("href")||(t=t.parents("[href]")),t.attr("href",t.attr("href").replace(/x/g,""))}},{key:"render",value:function(){return s["default"].createElement("div",{className:"offset-social"},s["default"].createElement("a",{title:"Sailing Channels on Facebook",href:"https://www.facebook.com/Sailing-Channels-202488473434142",target:"_blank",className:"social social-fb"},s["default"].createElement("i",{className:"fa fa-facebook-square fa-3x"})),s["default"].createElement("br",null),s["default"].createElement("a",{title:"Sailing Channels on Twitter",href:"https://twitter.com/sailchannels",target:"_blank",className:"social social-tw"},s["default"].createElement("i",{className:"fa fa-twitter-square fa-3x"})),s["default"].createElement("br",null),s["default"].createElement("a",{title:"E-Mail",href:"mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!",onMouseOver:this.replaceX.bind(this),className:"social social-em"},s["default"].createElement("i",{className:"fa fa-envelope-square fa-3x"})))}}]),t}(s["default"].Component));n["default"]=f,t.exports=n["default"]},{"./Footer":13,react:"react"}],20:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./OffsetMenu"),f=a(c),d=e("./Logo"),p=a(d),h=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){document.title="Privacy Policy | Sailing Channels"}},{key:"render",value:function(){return s["default"].createElement("div",{className:"container"},s["default"].createElement(p["default"],null),s["default"].createElement(f["default"],null),s["default"].createElement("div",{className:"row content-row"},s["default"].createElement("div",{className:"col-md-3"}),s["default"].createElement("div",{className:"col-md-6"},s["default"].createElement("h1",{className:"content-h1"},"Privacy Policy"),s["default"].createElement("h3",null,"Data Controller and Owner"),s["default"].createElement("p",null,"Sailing Channels,",s["default"].createElement("span",{className:"reverse"},"moc.slennahc-gnilias@yoha")),s["default"].createElement("h3",null,"Types of Data collected"),s["default"].createElement("p",null,"Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Cookie and Usage data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner."),s["default"].createElement("h3",null,"Mode and place of processing the Data"),s["default"].createElement("h4",null,"Methods of processing"),s["default"].createElement("p",null,"The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time."),s["default"].createElement("h4",null,"Place"),s["default"].createElement("p",null,"The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller."),s["default"].createElement("h4",null,"Retention time"),s["default"].createElement("p",null,"The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data."),s["default"].createElement("h3",null,"The use of the collected Data"),s["default"].createElement("p",null,"The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Analytics and Displaying content from external platforms. The Personal Data used for each purpose is outlined in the specific sections of this document."),s["default"].createElement("h3",null,"Detailed information on the processing of Personal Data"),s["default"].createElement("p",null,"Personal Data is collected for the following purposes and using the following services:"),s["default"].createElement("h4",null,"Analytics"),s["default"].createElement("p",null,"The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior."),s["default"].createElement("h5",null,"Google Analytics (Google Inc.)"),s["default"].createElement("p",null,"Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this Application, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",s["default"].createElement("a",{href:"http://www.google.com/intl/en/policies/privacy/",target:"_blank"},"Privacy Policy")," – ",s["default"].createElement("a",{href:"http://tools.google.com/dlpage/gaoptout?hl=en",target:"_blank"},"Opt Out")),s["default"].createElement("h4",null,"Displaying content from external platforms"),s["default"].createElement("p",null,"These services allow you to view content hosted on external platforms directly from the pages of this Application and interact with them. If a service of this kind is installed, it may still collect web traffic data for the pages where the service is installed, even when users do not use it."),s["default"].createElement("h5",null,"Youtube video widget (Google Inc.)"),s["default"].createElement("p",null,"Youtube is a video content visualization service provided by Google Inc. that allows this Application to incorporate content of this kind on its pages. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",s["default"].createElement("a",{href:"http://www.google.it/intl/en/policies/privacy/",target:"_blank"},"Privacy Policy")),s["default"].createElement("h3",null,"Additional information about Data collection and processing"),s["default"].createElement("h4",null,"Legal action"),s["default"].createElement("p",null,"The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services. The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities."),s["default"].createElement("h4",null,"Additional information about User's Personal Data"),s["default"].createElement("p",null,"In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request."),s["default"].createElement("h4",null,"System Logs and Maintenance"),s["default"].createElement("p",null,"For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address)."),s["default"].createElement("h4",null,"Information not contained in this policy"),s["default"].createElement("p",null,"More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document."),s["default"].createElement("h4",null,"The rights of Users"),s["default"].createElement("p",null,"Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above. This Application does not support “Do Not Track” requests. To determine whether any of the third party services it uses honor the “Do Not Track” requests, please read their privacy policies."),s["default"].createElement("h4",null,"Changes to this privacy policy"),s["default"].createElement("p",null,"The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Application and can request that the Data Controller removes the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users."),s["default"].createElement("hr",null),s["default"].createElement("h3",null,"Definitions and legal references"),s["default"].createElement("h4",null,"Personal Data (or Data)"),s["default"].createElement("p",null,"Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number."),s["default"].createElement("h4",null,"Usage Data"),s["default"].createElement("p",null,"Information collected automatically from this Application (or third party services employed in this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment."),s["default"].createElement("h4",null,"User"),s["default"].createElement("p",null,"The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers."),s["default"].createElement("h4",null,"Data Subject"),s["default"].createElement("p",null,"The legal or natural person to whom the Personal Data refers."),s["default"].createElement("h4",null,"Data Processor (or Data Supervisor)"),s["default"].createElement("p",null,"The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy."),s["default"].createElement("h4",null,"Data Controller (or Owner)"),s["default"].createElement("p",null,"The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of this Application."),s["default"].createElement("h4",null,"This Application"),s["default"].createElement("p",null,"The hardware or software tool by which the Personal Data of the User is collected."),s["default"].createElement("h4",null,"Cookie"),s["default"].createElement("p",null,"Small piece of data stored in the User's device."),s["default"].createElement("hr",null),s["default"].createElement("h3",null,"Legal information"),s["default"].createElement("p",null,"Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies. This privacy policy relates solely to this Application.")),s["default"].createElement("div",{
-className:"col-md-3"})))}}]),t}(s["default"].Component);n["default"]=h,t.exports=n["default"]},{"./Logo":17,"./OffsetMenu":18,react:"react"}],21:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){$(window).on("keydown",function(e){(e.ctrlKey||e.metaKey)&&70===e.keyCode&&(e.preventDefault(),$("#search-bar").focus(),window.setTimeout(function(){window.scrollTo(0,0)},1))})}},{key:"componentWillUnmount",value:function(){$(window).off("keydown")}},{key:"keyUp",value:function(e){if(27===e.keyCode)return e.target.value="",void this.props.history.pushState(null,"/");if(13===e.keyCode){var t=e.target.value;this.props.history.replaceState(null,"/search/"+encodeURIComponent(t))}}},{key:"changeSort",value:function(e){$(window).trigger("changeSort",{sortBy:e.target.value})}},{key:"highlightSort",value:function(e){$(window).trigger("changeSort",{sortBy:e})}},{key:"render",value:function(){var e="form-group sort-group";return this.props.query&&(e+=" invisible"),s["default"].createElement("div",{className:"row search-row"},s["default"].createElement("div",{className:"col-lg-4 col-md-3 col-sm-3"}),s["default"].createElement("div",{className:"col-lg-4 col-md-64 col-sm-6"},s["default"].createElement("div",{className:"form-group label-floating is-empty"},s["default"].createElement("label",{className:"control-label"},"Search for ..."),s["default"].createElement("input",{className:"form-control",type:"text",id:"search-bar",onKeyUp:this.keyUp.bind(this)}),s["default"].createElement("span",{className:"material-input"})),s["default"].createElement("div",{className:e},s["default"].createElement("label",{className:"sort-label control-label"},"Sort by:"),s["default"].createElement("label",{className:"sortBy-label"},s["default"].createElement("input",{id:"sortBy-subscribers",type:"radio",onClick:this.changeSort.bind(this),className:"sort-option",name:"sortby",value:"subscribers",defaultChecked:"subscribers"===this.props.sortBy})," Subscribers"),s["default"].createElement("label",{className:"sortBy-label"},s["default"].createElement("input",{type:"radio",onClick:this.changeSort.bind(this),className:"sort-option",name:"sortby",value:"upload",defaultChecked:"upload"===this.props.sortBy})," Last upload"),s["default"].createElement("label",{className:"sortBy-label"},s["default"].createElement("input",{type:"radio",onClick:this.changeSort.bind(this),className:"sort-option",name:"sortby",value:"founded",defaultChecked:"newest"===this.props.sortBy})," Founded"))),s["default"].createElement("div",{className:"col-lg-4 col-md-3 col-sm-3"}))}}]),t}(s["default"].Component);n["default"]=c,t.exports=n["default"]},{react:"react"}],22:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./SearchResultList"),f=a(c),d=e("./SearchBar"),p=a(d),h=e("./OffsetMenu"),m=a(h),y=e("./Logo"),v=a(y),g=e("./Banner"),b=a(g),w=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){$("#search-bar").focus()}},{key:"render",value:function(){var e=this.props.params.query;return s["default"].createElement("div",{className:"container"},s["default"].createElement(v["default"],null),s["default"].createElement(m["default"],null),s["default"].createElement(p["default"],{history:this.props.history,query:e}),s["default"].createElement(f["default"],{history:this.props.history,query:e}),this.props.children,s["default"].createElement(b["default"],null))}}]),t}(s["default"].Component);n["default"]=w,t.exports=n["default"]},{"./Banner":5,"./Logo":17,"./OffsetMenu":18,"./SearchBar":21,"./SearchResultList":23,react:"react"}],23:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./ChannelListItem"),f=a(c),d=e("./VideoListItem"),p=a(d),h=e("../actions/ChannelActions"),m=a(h),y=e("../stores/ChannelStore"),v=a(y),g=function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state=v["default"].getState(),this.onChange=this.onChange.bind(this)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){v["default"].listen(this.onChange),this.props.query&&($("#search-bar").val(this.props.query),window.setTimeout(function(){$("#search-bar").focus()},1)),m["default"].searchChannels(this.props.query)}},{key:"componentWillUnmount",value:function(){v["default"].unlisten(this.onChange)}},{key:"componentWillReceiveProps",value:function(e){this.props.query!==e.query&&m["default"].searchChannels(e.query)}},{key:"onChange",value:function(e){this.setState(e)}},{key:"render",value:function(){if(0===this.state.results.length)return s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-1"}),s["default"].createElement("div",{className:"col-md-10"},s["default"].createElement("center",null,"No channels or videos match the search query!")),s["default"].createElement("div",{className:"col-md-1"}));var e=[];for(var t in this.state.results){var n=this.state.results[t];"channel"===n.type?e.push(s["default"].createElement(f["default"],{key:"cli-"+n.id,channel:n})):e.push(s["default"].createElement(p["default"],{key:"vli-"+n._id,video:n}))}return s["default"].createElement("div",{className:"row"},s["default"].createElement("div",{className:"col-md-1"}),s["default"].createElement("div",{className:"col-md-10"},this.state.loading===!0?s["default"].createElement("center",{className:"loadMore"},"Loading more channels ..."):e),s["default"].createElement("div",{className:"col-md-1"}))}}]),t}(s["default"].Component);n["default"]=g,t.exports=n["default"]},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./ChannelListItem":8,"./VideoListItem":25,react:"react"}],24:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return o(t,e),l(t,[{key:"componentDidMount",value:function(){this.loadChart(this.props)}},{key:"componentWillReceiveProps",value:function(e){this.loadChart(e)}},{key:"loadChart",value:function(e){window.setTimeout(function(){var t=$("#subsriberChart_"+e.channel.id),n=t.get(0);n.width=t.parent().width();var a=n.getContext("2d"),r=e.channel.subHist.map(function(e){return e.subscribers}),o=e.channel.subHist.map(function(e){var t=e._id.date+"",n=new Date(parseInt(t.substr(0,4)),parseInt(t.substr(4,2)),parseInt(t.substr(6,2)));return n.toLocaleDateString()}),l={labels:o,datasets:[{label:"My Second dataset",fillColor:"rgba(151,187,205,0.2)",strokeColor:"rgba(151,187,205,1)",pointColor:"rgba(151,187,205,1)",pointStrokeColor:"#fff",pointHighlightFill:"#fff",pointHighlightStroke:"rgba(151,187,205,1)",data:r}]};Chart.defaults.global.showScale=!1;new Chart(a).Line(l,{pointHitDetectionRadius:5})},500)}},{key:"render",value:function(){return s["default"].createElement("canvas",{id:"subsriberChart_"+this.props.channel.id,height:"100"})}}]),t}(s["default"].Component);n["default"]=c,t.exports=n["default"]},{react:"react"}],25:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(n,"__esModule",{value:!0});var l=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),i=function(e,t,n){for(var a=!0;a;){var r=e,o=t,l=n;a=!1,null===r&&(r=Function.prototype);var i=Object.getOwnPropertyDescriptor(r,o);if(void 0!==i){if("value"in i)return i.value;var u=i.get;if(void 0===u)return;return u.call(l)}var s=Object.getPrototypeOf(r);if(null===s)return;e=s,t=o,n=l,a=!0,i=s=void 0}},u=e("react"),s=a(u),c=e("./Description"),f=a(c),d=e("react-router"),p=function(e){function t(e){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).call(this,e),this.state={showVideo:!1}}return o(t,e),l(t,[{key:"componentDidMount",value:function(){$(".channel-thumb").unveil()}},{key:"toggleShowVideo",value:function(){this.setState({showVideo:!this.state.showVideo})}},{key:"formatDate",value:function(e){var t=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],n=new Date(1e3*e);return t[n.getMonth()]+" "+n.getDate()+", "+n.getFullYear()}},{key:"render",value:function(){return this.props.video.channel?s["default"].createElement("div",{className:"row channel-row"},s["default"].createElement("div",{className:"col-md-2 col-xs-2"},s["default"].createElement("center",null,s["default"].createElement("img",{src:"https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png","data-src":"http://img.youtube.com/vi/"+this.props.video._id+"/default.jpg",className:"channel-thumb"}))),s["default"].createElement("div",{className:"col-md-7 col-xs-10"},s["default"].createElement("h3",null,s["default"].createElement("a",{href:"javascript:void(0);",onClick:this.toggleShowVideo.bind(this)},this.props.video.title)),s["default"].createElement(f["default"],{text:this.props.video.description,video:!0}),this.state.showVideo===!0?s["default"].createElement("iframe",{className:"inline-video",width:"100%",height:"315",src:"https://www.youtube.com/embed/"+this.props.video._id,frameBorder:"0",allowFullScreen:!0}):null),s["default"].createElement("div",{className:"col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0"},s["default"].createElement("p",null,s["default"].createElement("b",null,"Channel:")," ",s["default"].createElement(d.Link,{to:"/channel/"+this.props.video.channel._id},this.props.video.channel.title)),s["default"].createElement("p",null,s["default"].createElement("b",null,"Views:")," ",(this.props.video.views||0).toLocaleString()),s["default"].createElement("p",null,s["default"].createElement("b",null,"Likes:")," ",s["default"].createElement("i",{className:"fa fa-thumbs-up fa-fw"})," ",(this.props.video.likes||0).toLocaleString()," ",s["default"].createElement("i",{className:"fa fa-thumbs-down fa-fw"})," ",(this.props.video.dislikes||0).toLocaleString()),s["default"].createElement("p",null,s["default"].createElement("b",null,"Uploaded:")," ",this.formatDate(this.props.video.publishedAt)),s["default"].createElement("a",{href:"javascript:void(0);",onClick:this.toggleShowVideo.bind(this),className:"btn btn-default btn-sidebar btn-raised"},s["default"].createElement("i",{className:"fa fa-youtube-play"})," Watch video"))):null}}]),t}(s["default"].Component);n["default"]=p,t.exports=n["default"]},{"./Description":12,react:"react","react-router":"react-router"}],26:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}var r=e("react"),o=a(r),l=e("react-router"),i=a(l),u=e("react-dom"),s=a(u),c=e("history/lib/createBrowserHistory"),f=a(c),d=e("./routes"),p=a(d),h=(0,f["default"])();s["default"].render(o["default"].createElement(i["default"],{history:h},p["default"]),document.getElementById("app"))},{"./routes":27,"history/lib/createBrowserHistory":36,react:"react","react-dom":"react-dom","react-router":"react-router"}],27:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(n,"__esModule",{value:!0});var r=e("react"),o=a(r),l=e("react-router"),i=e("./components/App"),u=a(i),s=e("./components/Home"),c=a(s),f=e("./components/SearchResult"),d=a(f),p=e("./components/ChannelDetail"),h=a(p),m=e("./components/DataCollection"),y=a(m),v=e("./components/ChannelMissing"),g=a(v),b=e("./components/PrivacyPolicy"),w=a(b),E=e("./components/Impressum"),O=a(E),_=e("./components/Contributions"),P=a(_);n["default"]=o["default"].createElement(l.Route,{path:"/",component:u["default"]},o["default"].createElement(l.IndexRoute,{component:c["default"]}),o["default"].createElement(l.Route,{path:"by-:sortBy",component:c["default"]}),o["default"].createElement(l.Route,{path:"channel/:id",component:h["default"]}),o["default"].createElement(l.Route,{path:"search/:query",component:d["default"]}),o["default"].createElement(l.Route,{path:"how-it-works",component:y["default"]}),o["default"].createElement(l.Route,{path:"channel-missing",component:g["default"]}),o["default"].createElement(l.Route,{path:"privacy",component:w["default"]}),o["default"].createElement(l.Route,{path:"impressum",component:O["default"]}),o["default"].createElement(l.Route,{path:"contributions",component:P["default"]})),t.exports=n["default"]},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/Contributions":10,"./components/DataCollection":11,"./components/Home":14,"./components/Impressum":15,"./components/PrivacyPolicy":20,"./components/SearchResult":22,react:"react","react-router":"react-router"}],28:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),l=e("../alt"),i=a(l),u=e("../actions/ChannelActions"),s=a(u),c=function(){function e(){r(this,e),this.bindActions(s["default"]),this.channels=[],this.results=[],this.loading=!1,this.skip=0,this.take=25,this.sortBy="subscribers",this.channel=null}return o(e,[{key:"getChannelsSuccess",value:function(e){e.skip>0?this.channels=this.channels.concat(e.data):this.channels=e.data,this.skip=e.skip,this.take=e.take,this.loading=!1}},{key:"getChannelSuccess",value:function(e){this.channel=e}},{key:"getChannelFail",value:function(e){console.error(e.responseJSON&&e.responseJSON.message||e.responseText||e.statusText)}},{key:"getChannelsFail",value:function(e){this.loading=!1,console.error(e.responseJSON&&e.responseJSON.message||e.responseText||e.statusText)}},{key:"searchChannelsSuccess",value:function(e){this.results=e,this.loading=!1}},{key:"searchChannelsFail",value:function(e){this.loading=!1,console.error(e.responseJSON&&e.responseJSON.message||e.responseText||e.statusText)}}]),e}();n["default"]=i["default"].createStore(c),t.exports=n["default"]},{"../actions/ChannelActions":1,"../alt":3}],29:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(n,"__esModule",{value:!0});var o=function(){function e(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}return function(t,n,a){return n&&e(t.prototype,n),a&&e(t,a),t}}(),l=e("../alt"),i=a(l),u=e("../actions/LanguageActions"),s=a(u),c=function(){function e(){r(this,e),this.bindActions(s["default"]),this.languages=[],this.selectedLanguage="en"}return o(e,[{key:"getLanguagesSuccess",value:function(e){this.languages=e.languages,this.selectedLanguage=e.selected}},{key:"getLanguagesFail",value:function(e){console.error(e.responseJSON&&e.responseJSON.message||e.responseText||e.statusText)}}]),e}();n["default"]=i["default"].createStore(c),t.exports=n["default"]},{"../actions/LanguageActions":2,"../alt":3}],30:[function(e,t,n){function a(){c=!1,i.length?s=i.concat(s):f=-1,s.length&&r()}function r(){if(!c){var e=setTimeout(a);c=!0;for(var t=s.length;t;){for(i=s,s=[];++f<t;)i&&i[f].run();f=-1,t=s.length}i=null,c=!1,clearTimeout(e)}}function o(e,t){this.fun=e,this.array=t}function l(){}var i,u=t.exports={},s=[],c=!1,f=-1;u.nextTick=function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];s.push(new o(e,t)),1!==s.length||c||setTimeout(r,0)},o.prototype.run=function(){this.fun.apply(null,this.array)},u.title="browser",u.browser=!0,u.env={},u.argv=[],u.version="",u.versions={},u.on=l,u.addListener=l,u.once=l,u.off=l,u.removeListener=l,u.removeAllListeners=l,u.emit=l,u.binding=function(e){throw new Error("process.binding is not supported")},u.cwd=function(){return"/"},u.chdir=function(e){throw new Error("process.chdir is not supported")},u.umask=function(){return 0}},{}],31:[function(e,t,n){"use strict";n.__esModule=!0;var a="PUSH";n.PUSH=a;var r="REPLACE";n.REPLACE=r;var o="POP";n.POP=o,n["default"]={PUSH:a,REPLACE:r,POP:o}},{}],32:[function(e,t,n){"use strict";function a(e,t,n){function a(){l=!0,n.apply(this,arguments)}function r(){l||(e>o?t.call(this,o++,r,a):a.apply(this,arguments))}var o=0,l=!1;r()}n.__esModule=!0,n.loopAsync=a},{}],33:[function(e,t,n){(function(t){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e){return s+e}function o(e,n){try{window.sessionStorage.setItem(r(e),JSON.stringify(n))}catch(a){if(a.name===f)return void("production"!==t.env.NODE_ENV?u["default"](!1,"[history] Unable to save state; sessionStorage is not available due to security settings"):void 0);if(a.name===c&&0===window.sessionStorage.length)return void("production"!==t.env.NODE_ENV?u["default"](!1,"[history] Unable to save state; sessionStorage is not available in Safari private mode"):void 0);throw a}}function l(e){var n=void 0;try{n=window.sessionStorage.getItem(r(e))}catch(a){if(a.name===f)return"production"!==t.env.NODE_ENV?u["default"](!1,"[history] Unable to read state; sessionStorage is not available due to security settings"):void 0,null}if(n)try{return JSON.parse(n)}catch(a){}return null}n.__esModule=!0,n.saveState=o,n.readState=l;var i=e("warning"),u=a(i),s="@@History/",c="QuotaExceededError",f="SecurityError"}).call(this,e("_process"))},{_process:30,warning:48}],34:[function(e,t,n){"use strict";function a(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent("on"+t,n)}function r(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent("on"+t,n)}function o(){return window.location.href.split("#")[1]||""}function l(e){window.location.replace(window.location.pathname+window.location.search+"#"+e)}function i(){return window.location.pathname+window.location.search+window.location.hash}function u(e){e&&window.history.go(e)}function s(e,t){t(window.confirm(e))}function c(){var e=navigator.userAgent;return-1===e.indexOf("Android 2.")&&-1===e.indexOf("Android 4.0")||-1===e.indexOf("Mobile Safari")||-1!==e.indexOf("Chrome")||-1!==e.indexOf("Windows Phone")?-1!==e.indexOf("CriOS")?!1:window.history&&"pushState"in window.history:!1}function f(){var e=navigator.userAgent;return-1===e.indexOf("Firefox")}n.__esModule=!0,n.addEventListener=a,n.removeEventListener=r,n.getHashPath=o,n.replaceHashPath=l,n.getWindowPath=i,n.go=u,n.getUserConfirmation=s,n.supportsHistory=c,n.supportsGoWithoutReloadUsingHash=f},{}],35:[function(e,t,n){"use strict";n.__esModule=!0;var a=!("undefined"==typeof window||!window.document||!window.document.createElement);n.canUseDOM=a},{}],36:[function(e,t,n){(function(a){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(){function e(e){e=e||window.history.state||{};var t=f.getWindowPath(),n=e,a=n.key,r=void 0;a?r=d.readState(a):(r=null,a=w.createKey(),g&&window.history.replaceState(l({},e,{key:a}),null,t));var o=y["default"](t);return w.createLocation(l({},o,{state:r}),void 0,a)}function t(t){function n(t){void 0!==t.state&&a(e(t.state))}var a=t.transitionTo;return f.addEventListener(window,"popstate",n),function(){f.removeEventListener(window,"popstate",n)}}function n(e){var t=e.basename,n=e.pathname,a=e.search,r=e.hash,o=e.state,l=e.action,i=e.key;if(l!==s.POP){d.saveState(i,o);var u=(t||"")+n+a+r,c={key:i};if(l===s.PUSH){if(b)return window.location.href=u,!1;window.history.pushState(c,null,u)}else{if(b)return window.location.replace(u),!1;window.history.replaceState(c,null,u)}}}function r(e){1===++E&&(O=t(w));var n=w.listenBefore(e);return function(){n(),0===--E&&O()}}function o(e){1===++E&&(O=t(w));var n=w.listen(e);return function(){n(),0===--E&&O()}}function i(e){1===++E&&(O=t(w)),w.registerTransitionHook(e)}function p(e){w.unregisterTransitionHook(e),0===--E&&O()}var m=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];c.canUseDOM?void 0:"production"!==a.env.NODE_ENV?u["default"](!1,"Browser history needs a DOM"):u["default"](!1);var v=m.forceRefresh,g=f.supportsHistory(),b=!g||v,w=h["default"](l({},m,{getCurrentLocation:e,finishTransition:n,saveState:d.saveState})),E=0,O=void 0;return l({},w,{listenBefore:r,listen:o,registerTransitionHook:i,unregisterTransitionHook:p})}n.__esModule=!0;var l=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},i=e("invariant"),u=r(i),s=e("./Actions"),c=e("./ExecutionEnvironment"),f=e("./DOMUtils"),d=e("./DOMStateStorage"),p=e("./createDOMHistory"),h=r(p),m=e("./parsePath"),y=r(m);n["default"]=o,t.exports=n["default"]}).call(this,e("_process"))},{"./Actions":31,"./DOMStateStorage":33,"./DOMUtils":34,"./ExecutionEnvironment":35,"./createDOMHistory":37,"./parsePath":42,_process:30,invariant:47}],37:[function(e,t,n){(function(a){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e){function t(e){return s.canUseDOM?void 0:"production"!==a.env.NODE_ENV?u["default"](!1,"DOM history needs a DOM"):u["default"](!1),n.listen(e)}var n=d["default"](l({getUserConfirmation:c.getUserConfirmation},e,{go:c.go}));return l({},n,{listen:t})}n.__esModule=!0;var l=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},i=e("invariant"),u=r(i),s=e("./ExecutionEnvironment"),c=e("./DOMUtils"),f=e("./createHistory"),d=r(f);n["default"]=o,t.exports=n["default"]}).call(this,e("_process"))},{"./DOMUtils":34,"./ExecutionEnvironment":35,"./createHistory":38,_process:30,invariant:47}],38:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(e){return Math.random().toString(36).substr(2,e)}function o(e,t){return e.pathname===t.pathname&&e.search===t.search&&e.key===t.key&&s["default"](e.state,t.state)}function l(){function e(e){return F.push(e),function(){F=F.filter(function(t){return t!==e})}}function t(){return q&&q.action===f.POP?H.indexOf(q.key):B?H.indexOf(B.key):-1}function n(e){var n=t();B=e,B.action===f.PUSH?H=[].concat(H.slice(0,n+1),[B.key]):B.action===f.REPLACE&&(H[n]=B.key),I.forEach(function(e){e(B)})}function a(e){if(I.push(e),B)e(B);else{var t=M();H=[t.key],n(t)}return function(){I=I.filter(function(t){return t!==e})}}function l(e,t){c.loopAsync(F.length,function(t,n,a){m["default"](F[t],e,function(e){null!=e?a(e):n()})},function(e){U&&"string"==typeof e?U(e,function(e){t(e!==!1)}):t(e!==!1)})}function u(e){B&&o(B,e)||(q=e,l(e,function(t){if(q===e)if(t){if(e.action===f.PUSH){var a=E(B),r=E(e);r===a&&(e.action=f.REPLACE)}x(e)!==!1&&n(e)}else if(B&&e.action===f.POP){var o=H.indexOf(B.key),l=H.indexOf(e.key);-1!==o&&-1!==l&&A(o-l)}}))}function s(e){u(_(e,f.PUSH,g()))}function d(e){u(_(e,f.REPLACE,g()))}function h(){A(-1)}function y(){A(1)}function g(){return r(L)}function E(e){if(null==e||"string"==typeof e)return e;var t=e.pathname,n=e.search,a=e.hash,r=t;return n&&(r+=n),a&&(r+=a),r}function O(e){return E(e)}function _(e,t){var n=arguments.length<=2||void 0===arguments[2]?g():arguments[2];return"object"==typeof t&&("string"==typeof e&&(e=v["default"](e)),e=i({},e,{state:t}),t=n,n=arguments[3]||g()),p["default"](e,t,n)}function P(e){B?(k(B,e),n(B)):k(M(),e)}function k(e,t){e.state=i({},e.state,t),T(e.key,e.state)}function j(e){-1===F.indexOf(e)&&F.push(e)}function C(e){F=F.filter(function(t){return t!==e})}function S(e,t){"string"==typeof t&&(t=v["default"](t)),s(i({state:e},t))}function N(e,t){"string"==typeof t&&(t=v["default"](t)),d(i({state:e},t))}var D=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],M=D.getCurrentLocation,x=D.finishTransition,T=D.saveState,A=D.go,L=D.keyLength,U=D.getUserConfirmation;"number"!=typeof L&&(L=w);var F=[],H=[],I=[],B=void 0,q=void 0;return{listenBefore:e,listen:a,transitionTo:u,push:s,replace:d,go:A,goBack:h,goForward:y,createKey:g,createPath:E,createHref:O,createLocation:_,setState:b["default"](P,"setState is deprecated; use location.key to save state instead"),registerTransitionHook:b["default"](j,"registerTransitionHook is deprecated; use listenBefore instead"),unregisterTransitionHook:b["default"](C,"unregisterTransitionHook is deprecated; use the callback returned from listenBefore instead"),pushState:b["default"](S,"pushState is deprecated; use push instead"),replaceState:b["default"](N,"replaceState is deprecated; use replace instead")}}n.__esModule=!0;var i=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},u=e("deep-equal"),s=a(u),c=e("./AsyncUtils"),f=e("./Actions"),d=e("./createLocation"),p=a(d),h=e("./runTransitionHook"),m=a(h),y=e("./parsePath"),v=a(y),g=e("./deprecate"),b=a(g),w=6;n["default"]=l,t.exports=n["default"]},{"./Actions":31,"./AsyncUtils":32,"./createLocation":39,"./deprecate":40,"./parsePath":42,"./runTransitionHook":43,"deep-equal":44}],39:[function(e,t,n){"use strict";function a(e){return e&&e.__esModule?e:{"default":e}}function r(){var e=arguments.length<=0||void 0===arguments[0]?"/":arguments[0],t=arguments.length<=1||void 0===arguments[1]?l.POP:arguments[1],n=arguments.length<=2||void 0===arguments[2]?null:arguments[2],a=arguments.length<=3||void 0===arguments[3]?null:arguments[3];"string"==typeof e&&(e=u["default"](e)),"object"==typeof t&&(e=o({},e,{state:t}),t=n||l.POP,n=a);var r=e.pathname||"/",i=e.search||"",s=e.hash||"",c=e.state||null;return{pathname:r,search:i,hash:s,state:c,action:t,key:n}}n.__esModule=!0;var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},l=e("./Actions"),i=e("./parsePath"),u=a(i);n["default"]=r,t.exports=n["default"]},{"./Actions":31,"./parsePath":42}],40:[function(e,t,n){"use strict";function a(e){return e}n.__esModule=!0,n["default"]=a,t.exports=n["default"]},{}],41:[function(e,t,n){"use strict";function a(e){var t=e.match(/^https?:\/\/[^\/]*/);return null==t?e:e.substring(t[0].length)}n.__esModule=!0,n["default"]=a,t.exports=n["default"]},{}],42:[function(e,t,n){(function(a){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e){var t=s["default"](e),n="",r="";"production"!==a.env.NODE_ENV?i["default"](e===t,'A path must be pathname + search + hash only, not a fully qualified URL like "%s"',e):void 0;var o=t.indexOf("#");-1!==o&&(r=t.substring(o),t=t.substring(0,o));var l=t.indexOf("?");return-1!==l&&(n=t.substring(l),t=t.substring(0,l)),""===t&&(t="/"),{pathname:t,search:n,hash:r}}n.__esModule=!0;var l=e("warning"),i=r(l),u=e("./extractPath"),s=r(u);n["default"]=o,t.exports=n["default"]}).call(this,e("_process"))},{"./extractPath":41,_process:30,warning:48}],43:[function(e,t,n){(function(a){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e,t,n){
-var r=e(t,n);e.length<2?n(r):"production"!==a.env.NODE_ENV?i["default"](void 0===r,'You should not "return" in a transition hook with a callback argument; call the callback instead'):void 0}n.__esModule=!0;var l=e("warning"),i=r(l);n["default"]=o,t.exports=n["default"]}).call(this,e("_process"))},{_process:30,warning:48}],44:[function(e,t,n){function a(e){return null===e||void 0===e}function r(e){return e&&"object"==typeof e&&"number"==typeof e.length?"function"!=typeof e.copy||"function"!=typeof e.slice?!1:e.length>0&&"number"!=typeof e[0]?!1:!0:!1}function o(e,t,n){var o,c;if(a(e)||a(t))return!1;if(e.prototype!==t.prototype)return!1;if(u(e))return u(t)?(e=l.call(e),t=l.call(t),s(e,t,n)):!1;if(r(e)){if(!r(t))return!1;if(e.length!==t.length)return!1;for(o=0;o<e.length;o++)if(e[o]!==t[o])return!1;return!0}try{var f=i(e),d=i(t)}catch(p){return!1}if(f.length!=d.length)return!1;for(f.sort(),d.sort(),o=f.length-1;o>=0;o--)if(f[o]!=d[o])return!1;for(o=f.length-1;o>=0;o--)if(c=f[o],!s(e[c],t[c],n))return!1;return typeof e==typeof t}var l=Array.prototype.slice,i=e("./lib/keys.js"),u=e("./lib/is_arguments.js"),s=t.exports=function(e,t,n){return n||(n={}),e===t?!0:e instanceof Date&&t instanceof Date?e.getTime()===t.getTime():!e||!t||"object"!=typeof e&&"object"!=typeof t?n.strict?e===t:e==t:o(e,t,n)}},{"./lib/is_arguments.js":45,"./lib/keys.js":46}],45:[function(e,t,n){function a(e){return"[object Arguments]"==Object.prototype.toString.call(e)}function r(e){return e&&"object"==typeof e&&"number"==typeof e.length&&Object.prototype.hasOwnProperty.call(e,"callee")&&!Object.prototype.propertyIsEnumerable.call(e,"callee")||!1}var o="[object Arguments]"==function(){return Object.prototype.toString.call(arguments)}();n=t.exports=o?a:r,n.supported=a,n.unsupported=r},{}],46:[function(e,t,n){function a(e){var t=[];for(var n in e)t.push(n);return t}n=t.exports="function"==typeof Object.keys?Object.keys:a,n.shim=a},{}],47:[function(e,t,n){"use strict";var a=function(e,t,n,a,r,o,l,i){if(!e){var u;if(void 0===t)u=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var s=[n,a,r,o,l,i],c=0;u=new Error(t.replace(/%s/g,function(){return s[c++]})),u.name="Invariant Violation"}throw u.framesToPop=1,u}};t.exports=a},{}],48:[function(e,t,n){"use strict";var a=function(){};t.exports=a},{}]},{},[26]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+// CHANNEL ACTIONS
+
+var ChannelActions = (function () {
+    function ChannelActions() {
+        _classCallCheck(this, ChannelActions);
+
+        this.generateActions("getChannelsSuccess", "getChannelsFail", "getChannelSuccess", "getChannelFail", "searchChannelsSuccess", "searchChannelsFail");
+    }
+
+    // GET CHANNEL
+
+    _createClass(ChannelActions, [{
+        key: "getChannels",
+        value: function getChannels(sortBy, skip, take) {
+            var _this = this;
+
+            $.ajax({
+                "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
+                "type": "GET",
+                "dataType": "json",
+                "cache": true
+            }).done(function (data) {
+                _this.actions.getChannelsSuccess(data);
+            }).fail(function (jqXhr) {
+                _this.actions.getChannelsFail(jqXhr);
+            });
+        }
+
+        // GET CHANNEL
+    }, {
+        key: "getChannel",
+        value: function getChannel(id) {
+            var _this2 = this;
+
+            $.ajax({
+                "url": "/api/channel/get/" + id,
+                "type": "GET",
+                "dataType": "json"
+            }).done(function (data) {
+                _this2.actions.getChannelSuccess(data);
+            }).fail(function (jqXhr) {
+                _this2.actions.getChannelFail(jqXhr);
+            });
+        }
+
+        // SEARCH CHANNELS
+    }, {
+        key: "searchChannels",
+        value: function searchChannels(q) {
+            var _this3 = this;
+
+            $.ajax({
+                "url": "/api/channels/search?q=" + encodeURIComponent(q),
+                "type": "GET",
+                "dataType": "json"
+            }).done(function (data) {
+                _this3.actions.searchChannelsSuccess(data);
+            }).fail(function (jqXhr) {
+                _this3.actions.searchChannelsFail(jqXhr);
+            });
+        }
+    }]);
+
+    return ChannelActions;
+})();
+
+exports["default"] = _alt2["default"].createActions(ChannelActions);
+module.exports = exports["default"];
+
+},{"../alt":3}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+// LANGUAGE ACTIONS
+
+var LanguageActions = (function () {
+    function LanguageActions() {
+        _classCallCheck(this, LanguageActions);
+
+        this.generateActions("getLanguagesSuccess", "getLanguagesFail");
+    }
+
+    // GET LANGUAGES
+
+    _createClass(LanguageActions, [{
+        key: "getLanguages",
+        value: function getLanguages() {
+            var _this = this;
+
+            $.ajax({
+                "url": "/api/languages",
+                "type": "GET",
+                "dataType": "json",
+                "cache": true
+            }).done(function (data) {
+                _this.actions.getLanguagesSuccess(data);
+            }).fail(function (jqXhr) {
+                _this.actions.getLanguagesFail(jqXhr);
+            });
+        }
+    }]);
+
+    return LanguageActions;
+})();
+
+exports["default"] = _alt2["default"].createActions(LanguageActions);
+module.exports = exports["default"];
+
+},{"../alt":3}],3:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _alt = require("alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+exports["default"] = new _alt2["default"]();
+module.exports = exports["default"];
+
+},{"alt":"alt"}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require("./Footer");
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var App = (function (_React$Component) {
+	_inherits(App, _React$Component);
+
+	function App() {
+		_classCallCheck(this, App);
+
+		_get(Object.getPrototypeOf(App.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(App, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			$.material.init();
+
+			window.setTimeout(function () {
+				if (!($("#banner-dialog").data("bs.modal") || {}).isShown && !Cookies.get("banner-dialog")) {
+
+					// open the dialog
+					$("#banner-dialog").modal("show");
+					Cookies.set("banner-dialog", "shown", { expires: 3 });
+				}
+			}, 15000);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				null,
+				this.props.children,
+				_react2["default"].createElement(_Footer2["default"], null)
+			);
+		}
+	}]);
+
+	return App;
+})(_react2["default"].Component);
+
+exports["default"] = App;
+module.exports = exports["default"];
+
+},{"./Footer":13,"react":"react"}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var Banner = (function (_React$Component) {
+  _inherits(Banner, _React$Component);
+
+  function Banner() {
+    _classCallCheck(this, Banner);
+
+    _get(Object.getPrototypeOf(Banner.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(Banner, [{
+    key: "render",
+
+    // RENDER
+    value: function render() {
+
+      return _react2["default"].createElement(
+        "div",
+        { id: "banner-dialog", className: "modal fade" },
+        _react2["default"].createElement(
+          "div",
+          { className: "modal-dialog" },
+          _react2["default"].createElement(
+            "div",
+            { className: "modal-content" },
+            _react2["default"].createElement(
+              "div",
+              { className: "modal-header" },
+              _react2["default"].createElement(
+                "button",
+                { type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+                "×"
+              ),
+              _react2["default"].createElement(
+                "h3",
+                { className: "modal-title" },
+                "Thanks for stopping by!"
+              )
+            ),
+            _react2["default"].createElement(
+              "div",
+              { className: "modal-body" },
+              _react2["default"].createElement(
+                "p",
+                null,
+                "The ",
+                _react2["default"].createElement(
+                  "a",
+                  { href: "https://two-aboard-tuuli.com", target: "_blank" },
+                  _react2["default"].createElement(
+                    "b",
+                    null,
+                    "Two aboard Tuuli crew"
+                  )
+                ),
+                " created this website in their sparetime for you."
+              ),
+              _react2["default"].createElement(
+                "p",
+                null,
+                "If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!"
+              ),
+              _react2["default"].createElement(
+                "center",
+                { className: "banner-channel" },
+                _react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": "UCZbZeC2OfdVMwm9AR_zu0_g", "data-layout": "full", "data-count": "default" })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Banner;
+})(_react2["default"].Component);
+
+exports["default"] = Banner;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _actionsChannelActions = require("../actions/ChannelActions");
+
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
+
+var _storesChannelStore = require("../stores/ChannelStore");
+
+var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var _SubscriberHistoryChart = require("./SubscriberHistoryChart");
+
+var _SubscriberHistoryChart2 = _interopRequireDefault(_SubscriberHistoryChart);
+
+var ChannelDetail = (function (_React$Component) {
+	_inherits(ChannelDetail, _React$Component);
+
+	// CONSTRUCTOR
+
+	function ChannelDetail(props) {
+		_classCallCheck(this, ChannelDetail);
+
+		_get(Object.getPrototypeOf(ChannelDetail.prototype), "constructor", this).call(this, props);
+		this.state = _storesChannelStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(ChannelDetail, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesChannelStore2["default"].listen(this.onChange);
+			_actionsChannelActions2["default"].getChannel(this.props.params.id);
+		}
+
+		// COMPONENT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+
+			if (nextProps.params.id !== this.props.params.id) {
+				_actionsChannelActions2["default"].getChannel(nextProps.params.id);
+			}
+		}
+
+		// COMPONENT DID UPDATE
+	}, {
+		key: "componentDidUpdate",
+		value: function componentDidUpdate() {
+			if (this.state.channel) {
+				document.title = this.state.channel.title + " - Sailing Channels";
+				$("meta[name='description']").attr("content", this.state.channel.description);
+			}
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
+
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
+
+		// FORMAT DATE
+	}, {
+		key: "formatDate",
+		value: function formatDate(unix) {
+			var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			var d = new Date(unix * 1000);
+			return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			// no channel yet
+			if (!this.state.channel) {
+				return null;
+			}
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-10" },
+						_react2["default"].createElement(
+							"div",
+							{ className: "row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-12" },
+								_react2["default"].createElement(
+									"center",
+									null,
+									_react2["default"].createElement(
+										"h1",
+										null,
+										this.state.channel.title
+									)
+								)
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-2 col-sm-2" },
+								_react2["default"].createElement("img", { src: this.state.channel.thumbnail, className: "channel-thumb" })
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-7 col-sm-7" },
+								_react2["default"].createElement("p", { className: "channel-description", dangerouslySetInnerHTML: { __html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), { target: "_blank" }) } }),
+								_react2["default"].createElement(
+									"p",
+									null,
+									" "
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Latest video:"
+									)
+								),
+								_react2["default"].createElement("iframe", { width: "100%", height: "315", src: "https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"], frameBorder: "0", allowFullScreen: true })
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-3 col-sm-3" },
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Subscribers in last 7 days:"
+									)
+								),
+								_react2["default"].createElement(_SubscriberHistoryChart2["default"], { channel: this.state.channel }),
+								_react2["default"].createElement(
+									"p",
+									null,
+									" "
+								),
+								this.state.channel.subscribersHidden === true ? _react2["default"].createElement(
+									"p",
+									{ className: "text-warning" },
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Subscriber info hidden by channel ",
+										_react2["default"].createElement("i", { className: "fa fa-frown-o" })
+									)
+								) : null,
+								this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Subscribers:"
+									),
+									" ",
+									this.state.channel.subscribers.toLocaleString()
+								) : null,
+								this.state.channel.subscribersHidden === false ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Videos:"
+									),
+									" ",
+									this.state.channel.videoCount
+								) : null,
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Views:"
+									),
+									" ",
+									this.state.channel.views.toLocaleString()
+								),
+								this.state.channel.lastUploadAt ? _react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Last upload:"
+									),
+									" ",
+									$.timeago(new Date(this.state.channel.lastUploadAt * 1000))
+								) : "",
+								_react2["default"].createElement(
+									"p",
+									null,
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Founded:"
+									),
+									" ",
+									this.formatDate(this.state.channel.publishedAt)
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									" "
+								),
+								_react2["default"].createElement(
+									"a",
+									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id },
+									_react2["default"].createElement("i", { className: "fa fa-external-link" }),
+									" Open YouTube channel"
+								),
+								_react2["default"].createElement(
+									"a",
+									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-raised" },
+									_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+									" Subscribe"
+								)
+							)
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				),
+				_react2["default"].createElement(
+					"p",
+					null,
+					" "
+				)
+			);
+		}
+	}]);
+
+	return ChannelDetail;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelDetail;
+module.exports = exports["default"];
+
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./Logo":17,"./OffsetMenu":18,"./SubscriberHistoryChart":24,"react":"react"}],7:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ChannelListItem = require("./ChannelListItem");
+
+var _ChannelListItem2 = _interopRequireDefault(_ChannelListItem);
+
+var _actionsChannelActions = require("../actions/ChannelActions");
+
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
+
+var _storesChannelStore = require("../stores/ChannelStore");
+
+var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
+
+var _reactRouter = require("react-router");
+
+var ChannelList = (function (_React$Component) {
+	_inherits(ChannelList, _React$Component);
+
+	// CONSTRUCTOR
+
+	function ChannelList(props) {
+		_classCallCheck(this, ChannelList);
+
+		_get(Object.getPrototypeOf(ChannelList.prototype), "constructor", this).call(this, props);
+		this.state = _storesChannelStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(ChannelList, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesChannelStore2["default"].listen(this.onChange);
+
+			// handle event bus page changes
+			$(window).on("changeSort", this.changeSort.bind(this));
+			$(window).on("scroll", this.scrollWindow.bind(this));
+			$(window).on("rerenderList", this.rerenderList.bind(this));
+
+			var sortBy = this.props.sortBy;
+			this.setState({
+				"sortBy": sortBy
+			});
+
+			// load the channels
+			this.loadData(this.props);
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			$(window).off("scroll");
+			$(window).off("changeSort");
+			$(window).off("rerenderList");
+
+			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
+
+		// COMPOENTNT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+
+			//console.log("componentWillReceiveProps", this.props, nextProps);
+			if (this.props.sortBy !== nextProps.sortBy) {
+				this.loadData(nextProps);
+			}
+		}
+
+		// LOAD
+	}, {
+		key: "loadData",
+		value: function loadData(nextProps) {
+
+			document.title = "Sailing Channels";
+			$("meta[name='description']").attr("content", "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.");
+
+			this.setState({
+				channels: [],
+				skip: 0,
+				take: 5,
+				loading: false
+			});
+
+			_actionsChannelActions2["default"].getChannels(nextProps.sortBy, 0, 5);
+		}
+
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
+
+		// SCROLL WINDOW
+	}, {
+		key: "scrollWindow",
+		value: function scrollWindow() {
+
+			var scrollBottomThreshold = 150;
+			if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold && this.state.loading === false) {
+				this.setState({
+					"loading": true
+				});
+
+				// load more data
+				_actionsChannelActions2["default"].getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
+			}
+		}
+
+		// RERENDER LIST
+	}, {
+		key: "rerenderList",
+		value: function rerenderList() {
+			this.loadData(this.props);
+		}
+
+		// CHANGE SORT
+	}, {
+		key: "changeSort",
+		value: function changeSort(e, data) {
+
+			this.setState({
+				sortBy: data.sortBy
+			});
+
+			// load the channels
+			this.props.history.replaceState(null, "/by-" + data.sortBy);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+			var _this = this;
+
+			// no channels found
+			if (this.state.channels.length === 0) {
+				return _react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-10" },
+						_react2["default"].createElement(
+							"center",
+							null,
+							"Loading channels..."
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				);
+			}
+
+			// channels where found
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row" },
+				_react2["default"].createElement("div", { className: "col-md-1" }),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-10" },
+					this.state.channels.map(function (c) {
+						return _react2["default"].createElement(_ChannelListItem2["default"], { key: "cli-" + c.id, channel: c, sortBy: _this.state.sortBy });
+					}),
+					this.state.loading === true ? _react2["default"].createElement(
+						"center",
+						{ className: "loadMore" },
+						"Loading more channels ..."
+					) : null
+				),
+				_react2["default"].createElement("div", { className: "col-md-1" })
+			);
+		}
+	}]);
+
+	return ChannelList;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelList;
+module.exports = exports["default"];
+
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./ChannelListItem":8,"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var _reactRouter = require("react-router");
+
+var ChannelListItem = (function (_React$Component) {
+	_inherits(ChannelListItem, _React$Component);
+
+	function ChannelListItem() {
+		_classCallCheck(this, ChannelListItem);
+
+		_get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(ChannelListItem, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			$(".channel-thumb").unveil();
+		}
+
+		// FORMAT DATE
+	}, {
+		key: "formatDate",
+		value: function formatDate(unix) {
+			var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			var d = new Date(unix * 1000);
+			return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row channel-row" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-2 col-xs-2" },
+					_react2["default"].createElement(
+						"center",
+						null,
+						_react2["default"].createElement("img", { src: "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png", "data-src": this.props.channel.thumbnail, className: "channel-thumb" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-7 col-xs-10" },
+					_react2["default"].createElement(
+						"h3",
+						null,
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/channel/" + this.props.channel.id },
+							this.props.channel.title
+						)
+					),
+					_react2["default"].createElement(_Description2["default"], { text: this.props.channel.description })
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0" },
+					this.props.channel.subscribersHidden === true ? _react2["default"].createElement(
+						"p",
+						{ className: "text-warning" },
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Subscriber info hidden ",
+							_react2["default"].createElement("i", { className: "fa fa-frown-o" })
+						)
+					) : null,
+					this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Subscribers:"
+						),
+						" ",
+						this.props.channel.subscribers.toLocaleString()
+					) : null,
+					this.props.channel.subscribersHidden === false ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Videos:"
+						),
+						" ",
+						this.props.channel.videoCount.toLocaleString()
+					) : null,
+					this.props.channel.lastUploadAt ? _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Last upload:"
+						),
+						" ",
+						$.timeago(new Date(this.props.channel.lastUploadAt * 1000))
+					) : "",
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Founded:"
+						),
+						" ",
+						this.formatDate(this.props.channel.publishedAt)
+					),
+					_react2["default"].createElement(
+						"a",
+						{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "btn btn-danger btn-sidebar btn-raised" },
+						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+						" Subscribe"
+					)
+				)
+			);
+		}
+	}]);
+
+	return ChannelListItem;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelListItem;
+module.exports = exports["default"];
+
+},{"./Description":12,"react":"react","react-router":"react-router"}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var ChannelMissing = (function (_React$Component) {
+    _inherits(ChannelMissing, _React$Component);
+
+    // CONSTRUCTOR
+
+    function ChannelMissing(props) {
+        _classCallCheck(this, ChannelMissing);
+
+        _get(Object.getPrototypeOf(ChannelMissing.prototype), "constructor", this).call(this, props);
+        this.state = {
+            "stats": null
+        };
+    }
+
+    // COMPONENT DID MOUNT
+
+    _createClass(ChannelMissing, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            document.title = "My channel is missing | Sailing Channels";
+
+            var that = this;
+
+            // read stats
+            $.getJSON("/api/stats", function (result) {
+                that.setState({
+                    "stats": result
+                });
+            });
+        }
+
+        // REPLACE X
+    }, {
+        key: "replaceX",
+        value: function replaceX(e) {
+            e.target.href = e.target.href.replace(/x/g, "");
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            var stats = null;
+            if (this.state.stats) {
+                stats = _react2["default"].createElement(
+                    "p",
+                    null,
+                    "This site currently lists ",
+                    this.state.stats.channels,
+                    " channels with ",
+                    this.state.stats.videos,
+                    " videos in total."
+                );
+            }
+
+            return _react2["default"].createElement(
+                "div",
+                { className: "container" },
+                _react2["default"].createElement(_Logo2["default"], null),
+                _react2["default"].createElement(_OffsetMenu2["default"], null),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "row content-row" },
+                    _react2["default"].createElement("div", { className: "col-md-3" }),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "col-md-6" },
+                        _react2["default"].createElement(
+                            "h1",
+                            { className: "content-h1" },
+                            "My channel is missing"
+                        ),
+                        stats,
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "You were expecting to see your channel here? Well, that's easy. Just get in touch with us and we'll make sure you get listed!"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Send an email to ",
+                            _react2["default"].createElement(
+                                "a",
+                                { href: "mailto:ahoyx@sailingx-channels.com", onMouseOver: this.replaceX.bind(this), className: "reverse" },
+                                "moc.slennahc-gnilias@yoha"
+                            )
+                        )
+                    ),
+                    _react2["default"].createElement("div", { className: "col-md-3" })
+                )
+            );
+        }
+    }]);
+
+    return ChannelMissing;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelMissing;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],10:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+				value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var Contributions = (function (_React$Component) {
+				_inherits(Contributions, _React$Component);
+
+				function Contributions() {
+								_classCallCheck(this, Contributions);
+
+								_get(Object.getPrototypeOf(Contributions.prototype), "constructor", this).apply(this, arguments);
+				}
+
+				_createClass(Contributions, [{
+								key: "componentDidMount",
+
+								// COMPONENT DID MOUNT
+								value: function componentDidMount() {
+												document.title = "Contributions | Sailing Channels";
+								}
+
+								// RENDER
+				}, {
+								key: "render",
+								value: function render() {
+
+												return _react2["default"].createElement(
+																"div",
+																{ className: "container" },
+																_react2["default"].createElement(_Logo2["default"], null),
+																_react2["default"].createElement(_OffsetMenu2["default"], null),
+																_react2["default"].createElement(
+																				"div",
+																				{ className: "row content-row" },
+																				_react2["default"].createElement("div", { className: "col-md-3" }),
+																				_react2["default"].createElement(
+																								"div",
+																								{ className: "col-md-6" },
+																								_react2["default"].createElement(
+																												"h1",
+																												{ className: "content-h1" },
+																												"Contributions"
+																								),
+																								_react2["default"].createElement(
+																												"p",
+																												null,
+																												"This is the place we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented:"
+																								),
+																								_react2["default"].createElement(
+																												"table",
+																												{ className: "table" },
+																												_react2["default"].createElement(
+																																"thead",
+																																null,
+																																_react2["default"].createElement(
+																																				"tr",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"th",
+																																								null,
+																																								"Suggestion"
+																																				),
+																																				_react2["default"].createElement(
+																																								"th",
+																																								null,
+																																								"By"
+																																				)
+																																)
+																												),
+																												_react2["default"].createElement(
+																																"tr",
+																																null,
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				"A way to filter by language of the channel"
+																																),
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"a",
+																																								{ href: "https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw", target: "_blank" },
+																																								"Norman Boyes"
+																																				)
+																																)
+																												),
+																												_react2["default"].createElement(
+																																"tr",
+																																null,
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				"Exclude channels that have not uploaded a video in a year"
+																																),
+																																_react2["default"].createElement(
+																																				"td",
+																																				null,
+																																				_react2["default"].createElement(
+																																								"a",
+																																								{ href: "https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g", target: "_blank" },
+																																								"Someday sailor"
+																																				)
+																																)
+																												)
+																								)
+																				),
+																				_react2["default"].createElement("div", { className: "col-md-3" })
+																)
+												);
+								}
+				}]);
+
+				return Contributions;
+})(_react2["default"].Component);
+
+exports["default"] = Contributions;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],11:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var DataCollection = (function (_React$Component) {
+	_inherits(DataCollection, _React$Component);
+
+	function DataCollection() {
+		_classCallCheck(this, DataCollection);
+
+		_get(Object.getPrototypeOf(DataCollection.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(DataCollection, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			document.title = "How does this work? | Sailing Channels";
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement(
+							"h1",
+							{ className: "content-h1" },
+							"How does this work?"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							" "
+						),
+						_react2["default"].createElement(
+							"center",
+							null,
+							_react2["default"].createElement("iframe", { className: "intro-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/RWosJPnB900?start=53", frameBorder: "0", allowFullScreen: true })
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				)
+			);
+		}
+	}]);
+
+	return DataCollection;
+})(_react2["default"].Component);
+
+exports["default"] = DataCollection;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],12:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var ChannelListItem = (function (_React$Component) {
+    _inherits(ChannelListItem, _React$Component);
+
+    // CONSTRUCTOR
+
+    function ChannelListItem(props) {
+        _classCallCheck(this, ChannelListItem);
+
+        _get(Object.getPrototypeOf(ChannelListItem.prototype), "constructor", this).call(this, props);
+        this.state = {
+            "more": false
+        };
+    }
+
+    // TEXT CUTTER
+
+    _createClass(ChannelListItem, [{
+        key: "textCutter",
+        value: function textCutter(i, text) {
+
+            if (text.length < i || this.state.more === true) return text;
+
+            var shorter = text.substr(0, i);
+            if (/^\S/.test(text.substr(i))) {
+                return shorter.replace(/\s+\S*$/, "");
+            }
+
+            return shorter;
+        }
+
+        // TOGGLE MORE
+    }, {
+        key: "toggleMore",
+        value: function toggleMore() {
+            this.setState({
+                "more": !this.state.more
+            });
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            // more is active, show "less" button
+            var moreOrLessTxt = this.state.more === true ? "less" : "more";
+            var descriptionTxt = this.textCutter(250, this.props.text);
+
+            // show a more or less button
+            var moreOrLess;
+            if (descriptionTxt.length !== this.props.text.length || this.state.more === true) {
+                moreOrLess = _react2["default"].createElement(
+                    "a",
+                    { href: "javascript:void(0);", onClick: this.toggleMore.bind(this) },
+                    "[",
+                    moreOrLessTxt,
+                    "]"
+                );
+            }
+
+            return _react2["default"].createElement(
+                "p",
+                { className: "channel-description" },
+                _react2["default"].createElement("span", { dangerouslySetInnerHTML: { __html: anchorme.js(descriptionTxt, { target: "_blank" }) } }),
+                " ",
+                moreOrLess
+            );
+        }
+    }]);
+
+    return ChannelListItem;
+})(_react2["default"].Component);
+
+exports["default"] = ChannelListItem;
+module.exports = exports["default"];
+
+},{"./Description":12,"react":"react"}],13:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var App = (function (_React$Component) {
+	_inherits(App, _React$Component);
+
+	function App() {
+		_classCallCheck(this, App);
+
+		_get(Object.getPrototypeOf(App.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(App, [{
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container footer" },
+				_react2["default"].createElement(
+					"center",
+					null,
+					_react2["default"].createElement(
+						_reactRouter.Link,
+						{ to: "/impressum" },
+						"Impressum"
+					),
+					" | ",
+					_react2["default"].createElement(
+						_reactRouter.Link,
+						{ to: "/privacy" },
+						"Privacy Policy"
+					),
+					" | ",
+					_react2["default"].createElement(
+						"a",
+						{ href: "https://github.com/thomasbrueggemann/sailing-channels", target: "_blank" },
+						"Code on GitHub"
+					)
+				)
+			);
+		}
+	}]);
+
+	return App;
+})(_react2["default"].Component);
+
+exports["default"] = App;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],14:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ChannelList = require("./ChannelList");
+
+var _ChannelList2 = _interopRequireDefault(_ChannelList);
+
+var _SearchBar = require("./SearchBar");
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _OffsetSocial = require("./OffsetSocial");
+
+var _OffsetSocial2 = _interopRequireDefault(_OffsetSocial);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var _Banner = require("./Banner");
+
+var _Banner2 = _interopRequireDefault(_Banner);
+
+var Home = (function (_React$Component) {
+	_inherits(Home, _React$Component);
+
+	function Home() {
+		_classCallCheck(this, Home);
+
+		_get(Object.getPrototypeOf(Home.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(Home, [{
+		key: "render",
+
+		// RENDER
+		value: function render() {
+
+			var sortBy = this.props.params.sortBy || "subscribers";
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_OffsetSocial2["default"], null),
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy, history: this.props.history }),
+				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history }),
+				this.props.children,
+				_react2["default"].createElement(_Banner2["default"], null)
+			);
+		}
+	}]);
+
+	return Home;
+})(_react2["default"].Component);
+
+exports["default"] = Home;
+module.exports = exports["default"];
+
+},{"./Banner":5,"./ChannelList":7,"./Logo":17,"./OffsetMenu":18,"./OffsetSocial":19,"./SearchBar":21,"react":"react"}],15:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var Impressum = (function (_React$Component) {
+    _inherits(Impressum, _React$Component);
+
+    function Impressum() {
+        _classCallCheck(this, Impressum);
+
+        _get(Object.getPrototypeOf(Impressum.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(Impressum, [{
+        key: "componentDidMount",
+
+        // COMPONENT DID MOUNT
+        value: function componentDidMount() {
+            document.title = "Impressum | Sailing Channels";
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            return _react2["default"].createElement(
+                "div",
+                { className: "container" },
+                _react2["default"].createElement(_Logo2["default"], null),
+                _react2["default"].createElement(_OffsetMenu2["default"], null),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "row content-row" },
+                    _react2["default"].createElement("div", { className: "col-md-3" }),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "col-md-6" },
+                        _react2["default"].createElement(
+                            "h1",
+                            { className: "content-h1" },
+                            "Impressum"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The following information (Impressum) is required under German law."
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Responsible for this site:"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            _react2["default"].createElement(
+                                "span",
+                                { className: "reverse" },
+                                "nnameggürB samohT"
+                            ),
+                            _react2["default"].createElement("br", null),
+                            _react2["default"].createElement(
+                                "span",
+                                { className: "reverse" },
+                                "51 eßartsreliewtdiehcS"
+                            ),
+                            _react2["default"].createElement("br", null),
+                            _react2["default"].createElement(
+                                "span",
+                                { className: "reverse" },
+                                "nlöK 33905"
+                            ),
+                            _react2["default"].createElement("br", null),
+                            _react2["default"].createElement(
+                                "span",
+                                { className: "reverse" },
+                                "moc.slennahc-gnilias@yoha"
+                            ),
+                            _react2["default"].createElement("br", null)
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Legal disclaimer"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The contents of these pages are generated automatically based on the YouTube channel title, description and videos of the individual channels listed. The creator of this website has no influence on the content of the channel descriptions or other channel related texts. Also, The creator of this website cannot assume liability for the timeless accuracy and completeness of the information. This website contains links to external websites. As the contents of these third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity for the contents of the linked pages is always held by the provider or operator of the pages."
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Data protection"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "In general, when visiting the website of “Sailing Channels”, no personal data are saved. No data will be passed on to third parties without your consent. We point out that in regard to unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed. Such data could possibIy be accessed by third parties."
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Google Analytics"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "This website uses Google Analytics, a web analytics service provided by Google, Inc. (»Google«). Google Analytics uses cookies, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. On this website the IP anonymization feature is activated. As a result Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "How to prevent being tracked by Google Analytics on sailing-channels.com"
+                        ),
+                        _react2["default"].createElement(
+                            "ul",
+                            null,
+                            _react2["default"].createElement(
+                                "li",
+                                null,
+                                "You may refuse the use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this, you may not be able to use the full functionality of this website."
+                            ),
+                            _react2["default"].createElement(
+                                "li",
+                                null,
+                                "Furthermore you can prevent Google’s collection and use of data (cookies and IP address) by downloading and installing the browser plug-in available under ",
+                                _react2["default"].createElement(
+                                    "a",
+                                    { href: "https://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
+                                    "https://tools.google.com/dlpage/gaoptout?hl=en"
+                                )
+                            )
+                        )
+                    ),
+                    _react2["default"].createElement("div", { className: "col-md-3" })
+                )
+            );
+        }
+    }]);
+
+    return Impressum;
+})(_react2["default"].Component);
+
+exports["default"] = Impressum;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],16:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _actionsLanguageActions = require("../actions/LanguageActions");
+
+var _actionsLanguageActions2 = _interopRequireDefault(_actionsLanguageActions);
+
+var _storesLanguageStore = require("../stores/LanguageStore");
+
+var _storesLanguageStore2 = _interopRequireDefault(_storesLanguageStore);
+
+var LanguagePicker = (function (_React$Component) {
+	_inherits(LanguagePicker, _React$Component);
+
+	// CONSTRUCTOR
+
+	function LanguagePicker(props) {
+		_classCallCheck(this, LanguagePicker);
+
+		_get(Object.getPrototypeOf(LanguagePicker.prototype), "constructor", this).call(this, props);
+		this.state = _storesLanguageStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(LanguagePicker, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesLanguageStore2["default"].listen(this.onChange);
+
+			_actionsLanguageActions2["default"].getLanguages();
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			_storesLanguageStore2["default"].unlisten(this.onChange);
+		}
+
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
+
+		// SET LANGUAGE
+	}, {
+		key: "setLanguage",
+		value: function setLanguage(e) {
+			Cookies.set("channel-language", e.target.value);
+			this.setState({
+				"selectedLanguage": e.target.value
+			});
+
+			// make channel list rerender
+			$(window).trigger("rerenderList");
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"select",
+				{ className: "form-control language-picker", "data-dropdownjs": "true", value: this.state.selectedLanguage, onChange: this.setLanguage.bind(this) },
+				this.state.languages.map(function (l) {
+					return _react2["default"].createElement(
+						"option",
+						{ key: l.code, value: l.code },
+						l.name
+					);
+				})
+			);
+		}
+	}]);
+
+	return LanguagePicker;
+})(_react2["default"].Component);
+
+exports["default"] = LanguagePicker;
+module.exports = exports["default"];
+
+},{"../actions/LanguageActions":2,"../stores/LanguageStore":29,"react":"react"}],17:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var Logo = (function (_React$Component) {
+	_inherits(Logo, _React$Component);
+
+	function Logo() {
+		_classCallCheck(this, Logo);
+
+		_get(Object.getPrototypeOf(Logo.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(Logo, [{
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "logo" },
+				_react2["default"].createElement(
+					_reactRouter.Link,
+					{ to: "/" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "turnaround" },
+						_react2["default"].createElement("div", { className: "front" }),
+						_react2["default"].createElement("div", { className: "back" })
+					)
+				)
+			);
+		}
+	}]);
+
+	return Logo;
+})(_react2["default"].Component);
+
+exports["default"] = Logo;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],18:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var _LanguagePicker = require("./LanguagePicker");
+
+var _LanguagePicker2 = _interopRequireDefault(_LanguagePicker);
+
+var OffsetMenu = (function (_React$Component) {
+	_inherits(OffsetMenu, _React$Component);
+
+	function OffsetMenu() {
+		_classCallCheck(this, OffsetMenu);
+
+		_get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(OffsetMenu, [{
+		key: "toggleMenu",
+
+		// TOGGLE MENU
+		value: function toggleMenu() {
+
+			if ($(".offset-menu").find("ul").hasClass("hidden-xs")) {
+				$(".offset-menu").find("ul").removeClass("hidden-xs");
+				$(".logo, .search-row").css("opacity", 0);
+			} else {
+				$(".offset-menu").find("ul").addClass("hidden-xs");
+				$(".logo, .search-row").css("opacity", 1);
+			}
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "offset-bars hidden-md hidden-lg hidden-sm" },
+					_react2["default"].createElement(
+						"div",
+						{ onClick: this.toggleMenu.bind(this) },
+						_react2["default"].createElement("i", { className: "fa fa-bars" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "offset-menu" },
+					_react2["default"].createElement(
+						"ul",
+						{ className: "hidden-xs" },
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/" },
+								"Home"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/how-it-works" },
+								"How does this work?"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/channel-missing" },
+								"My channel is missing"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/contributions" },
+								"Contributions"
+							)
+						),
+						_react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								"div",
+								{ div: true, className: "little-space" },
+								"Channel language"
+							),
+							_react2["default"].createElement(_LanguagePicker2["default"], null)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return OffsetMenu;
+})(_react2["default"].Component);
+
+exports["default"] = OffsetMenu;
+module.exports = exports["default"];
+
+},{"./LanguagePicker":16,"react":"react","react-router":"react-router"}],19:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = require("./Footer");
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var SocialOffset = (function (_React$Component) {
+	_inherits(SocialOffset, _React$Component);
+
+	function SocialOffset() {
+		_classCallCheck(this, SocialOffset);
+
+		_get(Object.getPrototypeOf(SocialOffset.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(SocialOffset, [{
+		key: "replaceX",
+
+		// REPLACE X
+		value: function replaceX(e) {
+			var $e = $(e.target);
+			if (!$e.attr("href")) {
+				$e = $e.parents("[href]");
+			}
+
+			$e.attr("href", $e.attr("href").replace(/x/g, ""));
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "offset-social" },
+				_react2["default"].createElement(
+					"a",
+					{ title: "Sailing Channels on Facebook", href: "https://www.facebook.com/Sailing-Channels-202488473434142", target: "_blank", className: "social social-fb" },
+					_react2["default"].createElement("i", { className: "fa fa-facebook-square fa-3x" })
+				),
+				_react2["default"].createElement("br", null),
+				_react2["default"].createElement(
+					"a",
+					{ title: "Sailing Channels on Twitter", href: "https://twitter.com/sailchannels", target: "_blank", className: "social social-tw" },
+					_react2["default"].createElement("i", { className: "fa fa-twitter-square fa-3x" })
+				),
+				_react2["default"].createElement("br", null),
+				_react2["default"].createElement(
+					"a",
+					{ title: "E-Mail", href: "mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!", onMouseOver: this.replaceX.bind(this), className: "social social-em" },
+					_react2["default"].createElement("i", { className: "fa fa-envelope-square fa-3x" })
+				)
+			);
+		}
+	}]);
+
+	return SocialOffset;
+})(_react2["default"].Component);
+
+exports["default"] = SocialOffset;
+module.exports = exports["default"];
+
+},{"./Footer":13,"react":"react"}],20:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var PrivacyPolicy = (function (_React$Component) {
+    _inherits(PrivacyPolicy, _React$Component);
+
+    function PrivacyPolicy() {
+        _classCallCheck(this, PrivacyPolicy);
+
+        _get(Object.getPrototypeOf(PrivacyPolicy.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(PrivacyPolicy, [{
+        key: "componentDidMount",
+
+        // COMPONENT DID MOUNT
+        value: function componentDidMount() {
+            document.title = "Privacy Policy | Sailing Channels";
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            return _react2["default"].createElement(
+                "div",
+                { className: "container" },
+                _react2["default"].createElement(_Logo2["default"], null),
+                _react2["default"].createElement(_OffsetMenu2["default"], null),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "row content-row" },
+                    _react2["default"].createElement("div", { className: "col-md-3" }),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "col-md-6" },
+                        _react2["default"].createElement(
+                            "h1",
+                            { className: "content-h1" },
+                            "Privacy Policy"
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Data Controller and Owner"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Sailing Channels,",
+                            _react2["default"].createElement(
+                                "span",
+                                { className: "reverse" },
+                                "moc.slennahc-gnilias@yoha"
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Types of Data collected"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Cookie and Usage data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner."
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Mode and place of processing the Data"
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Methods of processing"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Place"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Retention time"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data."
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "The use of the collected Data"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Analytics and Displaying content from external platforms. The Personal Data used for each purpose is outlined in the specific sections of this document."
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Detailed information on the processing of Personal Data"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Personal Data is collected for the following purposes and using the following services:"
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Analytics"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior."
+                        ),
+                        _react2["default"].createElement(
+                            "h5",
+                            null,
+                            "Google Analytics (Google Inc.)"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this Application, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
+                            _react2["default"].createElement(
+                                "a",
+                                { href: "http://www.google.com/intl/en/policies/privacy/", target: "_blank" },
+                                "Privacy Policy"
+                            ),
+                            " – ",
+                            _react2["default"].createElement(
+                                "a",
+                                { href: "http://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
+                                "Opt Out"
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Displaying content from external platforms"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "These services allow you to view content hosted on external platforms directly from the pages of this Application and interact with them. If a service of this kind is installed, it may still collect web traffic data for the pages where the service is installed, even when users do not use it."
+                        ),
+                        _react2["default"].createElement(
+                            "h5",
+                            null,
+                            "Youtube video widget (Google Inc.)"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Youtube is a video content visualization service provided by Google Inc. that allows this Application to incorporate content of this kind on its pages. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
+                            _react2["default"].createElement(
+                                "a",
+                                { href: "http://www.google.it/intl/en/policies/privacy/", target: "_blank" },
+                                "Privacy Policy"
+                            )
+                        ),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Additional information about Data collection and processing"
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Legal action"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services. The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Additional information about User's Personal Data"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "System Logs and Maintenance"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address)."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Information not contained in this policy"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "The rights of Users"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above. This Application does not support “Do Not Track” requests. To determine whether any of the third party services it uses honor the “Do Not Track” requests, please read their privacy policies."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Changes to this privacy policy"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Application and can request that the Data Controller removes the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users."
+                        ),
+                        _react2["default"].createElement("hr", null),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Definitions and legal references"
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Personal Data (or Data)"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Usage Data"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Information collected automatically from this Application (or third party services employed in this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "User"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Data Subject"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The legal or natural person to whom the Personal Data refers."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Data Processor (or Data Supervisor)"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Data Controller (or Owner)"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of this Application."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "This Application"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "The hardware or software tool by which the Personal Data of the User is collected."
+                        ),
+                        _react2["default"].createElement(
+                            "h4",
+                            null,
+                            "Cookie"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Small piece of data stored in the User's device."
+                        ),
+                        _react2["default"].createElement("hr", null),
+                        _react2["default"].createElement(
+                            "h3",
+                            null,
+                            "Legal information"
+                        ),
+                        _react2["default"].createElement(
+                            "p",
+                            null,
+                            "Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies. This privacy policy relates solely to this Application."
+                        )
+                    ),
+                    _react2["default"].createElement("div", { className: "col-md-3" })
+                )
+            );
+        }
+    }]);
+
+    return PrivacyPolicy;
+})(_react2["default"].Component);
+
+exports["default"] = PrivacyPolicy;
+module.exports = exports["default"];
+
+},{"./Logo":17,"./OffsetMenu":18,"react":"react"}],21:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var SearchBar = (function (_React$Component) {
+    _inherits(SearchBar, _React$Component);
+
+    function SearchBar() {
+        _classCallCheck(this, SearchBar);
+
+        _get(Object.getPrototypeOf(SearchBar.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(SearchBar, [{
+        key: "componentDidMount",
+
+        // COMPONENT DID MOUNT
+        value: function componentDidMount() {
+
+            // intercept browser search ctrl+f
+            $(window).on("keydown", function (e) {
+                if ((e.ctrlKey || e.metaKey) && e.keyCode === 70) {
+
+                    // don't open browser search
+                    e.preventDefault();
+
+                    // focus search bar
+                    $("#search-bar").focus();
+
+                    // scroll up
+                    window.setTimeout(function () {
+                        window.scrollTo(0, 0);
+                    }, 1);
+                }
+            });
+        }
+
+        // COMPONENT WILL UNMOUNT
+    }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+            $(window).off("keydown");
+        }
+
+        // KEY UP
+    }, {
+        key: "keyUp",
+        value: function keyUp(e) {
+
+            // ESC clears selection
+            if (e.keyCode === 27) {
+
+                e.target.value = "";
+                this.props.history.pushState(null, "/");
+                return;
+            }
+
+            // ENTER triggers search
+            else if (e.keyCode === 13) {
+                    var v = e.target.value;
+                    this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
+                }
+        }
+
+        // CHANGE SORT
+    }, {
+        key: "changeSort",
+        value: function changeSort(e) {
+            $(window).trigger("changeSort", { "sortBy": e.target.value });
+        }
+
+        // HIGHLIGHT SORT
+    }, {
+        key: "highlightSort",
+        value: function highlightSort(item) {
+            //this.props.sortBy = item;
+            $(window).trigger("changeSort", { "sortBy": item });
+        }
+
+        // RENDER
+    }, {
+        key: "render",
+        value: function render() {
+
+            // make sort group invisible when we are searching
+            var sortGroupClass = "form-group sort-group";
+            if (this.props.query) {
+                sortGroupClass += " invisible";
+            }
+
+            return _react2["default"].createElement(
+                "div",
+                { className: "row search-row" },
+                _react2["default"].createElement("div", { className: "col-lg-4 col-md-3 col-sm-3" }),
+                _react2["default"].createElement(
+                    "div",
+                    { className: "col-lg-4 col-md-64 col-sm-6" },
+                    _react2["default"].createElement(
+                        "div",
+                        { className: "form-group label-floating is-empty" },
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "control-label" },
+                            "Search for ..."
+                        ),
+                        _react2["default"].createElement("input", { className: "form-control", type: "text", id: "search-bar", onKeyUp: this.keyUp.bind(this) }),
+                        _react2["default"].createElement("span", { className: "material-input" })
+                    ),
+                    _react2["default"].createElement(
+                        "div",
+                        { className: sortGroupClass },
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "sort-label control-label" },
+                            "Sort by:"
+                        ),
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "sortBy-label" },
+                            _react2["default"].createElement("input", { id: "sortBy-subscribers", type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "subscribers", defaultChecked: this.props.sortBy === "subscribers" }),
+                            " Subscribers"
+                        ),
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "sortBy-label" },
+                            _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "upload", defaultChecked: this.props.sortBy === "upload" }),
+                            " Last upload"
+                        ),
+                        _react2["default"].createElement(
+                            "label",
+                            { className: "sortBy-label" },
+                            _react2["default"].createElement("input", { type: "radio", onClick: this.changeSort.bind(this), className: "sort-option", name: "sortby", value: "founded", defaultChecked: this.props.sortBy === "newest" }),
+                            " Founded"
+                        )
+                    )
+                ),
+                _react2["default"].createElement("div", { className: "col-lg-4 col-md-3 col-sm-3" })
+            );
+        }
+    }]);
+
+    return SearchBar;
+})(_react2["default"].Component);
+
+exports["default"] = SearchBar;
+module.exports = exports["default"];
+
+},{"react":"react"}],22:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SearchResultList = require("./SearchResultList");
+
+var _SearchResultList2 = _interopRequireDefault(_SearchResultList);
+
+var _SearchBar = require("./SearchBar");
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+var _OffsetMenu = require("./OffsetMenu");
+
+var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
+
+var _Logo = require("./Logo");
+
+var _Logo2 = _interopRequireDefault(_Logo);
+
+var _Banner = require("./Banner");
+
+var _Banner2 = _interopRequireDefault(_Banner);
+
+var SearchResult = (function (_React$Component) {
+	_inherits(SearchResult, _React$Component);
+
+	function SearchResult() {
+		_classCallCheck(this, SearchResult);
+
+		_get(Object.getPrototypeOf(SearchResult.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(SearchResult, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			$("#search-bar").focus();
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			var query = this.props.params.query;
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(_SearchBar2["default"], { history: this.props.history, query: query }),
+				_react2["default"].createElement(_SearchResultList2["default"], { history: this.props.history, query: query }),
+				this.props.children,
+				_react2["default"].createElement(_Banner2["default"], null)
+			);
+		}
+	}]);
+
+	return SearchResult;
+})(_react2["default"].Component);
+
+exports["default"] = SearchResult;
+module.exports = exports["default"];
+
+},{"./Banner":5,"./Logo":17,"./OffsetMenu":18,"./SearchBar":21,"./SearchResultList":23,"react":"react"}],23:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ChannelListItem = require("./ChannelListItem");
+
+var _ChannelListItem2 = _interopRequireDefault(_ChannelListItem);
+
+var _VideoListItem = require("./VideoListItem");
+
+var _VideoListItem2 = _interopRequireDefault(_VideoListItem);
+
+var _actionsChannelActions = require("../actions/ChannelActions");
+
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
+
+var _storesChannelStore = require("../stores/ChannelStore");
+
+var _storesChannelStore2 = _interopRequireDefault(_storesChannelStore);
+
+var SearchResultList = (function (_React$Component) {
+	_inherits(SearchResultList, _React$Component);
+
+	// CONSTRUCTOR
+
+	function SearchResultList(props) {
+		_classCallCheck(this, SearchResultList);
+
+		_get(Object.getPrototypeOf(SearchResultList.prototype), "constructor", this).call(this, props);
+		this.state = _storesChannelStore2["default"].getState();
+		this.onChange = this.onChange.bind(this);
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(SearchResultList, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			_storesChannelStore2["default"].listen(this.onChange);
+
+			if (this.props.query) {
+				$("#search-bar").val(this.props.query);
+				window.setTimeout(function () {
+					$("#search-bar").focus();
+				}, 1);
+			}
+
+			// trigger initial search
+			_actionsChannelActions2["default"].searchChannels(this.props.query);
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			_storesChannelStore2["default"].unlisten(this.onChange);
+		}
+
+		// COMPOENTNT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+
+			if (this.props.query !== nextProps.query) {
+				_actionsChannelActions2["default"].searchChannels(nextProps.query);
+			}
+		}
+
+		// ON CHANGE
+	}, {
+		key: "onChange",
+		value: function onChange(state) {
+			this.setState(state);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			// no channels found
+			if (this.state.results.length === 0) {
+				return _react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement("div", { className: "col-md-1" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-10" },
+						_react2["default"].createElement(
+							"center",
+							null,
+							"No channels or videos match the search query!"
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-1" })
+				);
+			}
+
+			var results = [];
+
+			// loop results
+			for (var i in this.state.results) {
+				var item = this.state.results[i];
+
+				// what type of result is this?
+				if (item.type === "channel") {
+					results.push(_react2["default"].createElement(_ChannelListItem2["default"], { key: "cli-" + item.id, channel: item }));
+				} else {
+					results.push(_react2["default"].createElement(_VideoListItem2["default"], { key: "vli-" + item._id, video: item }));
+				}
+			}
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row" },
+				_react2["default"].createElement("div", { className: "col-md-1" }),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-10" },
+					this.state.loading === true ? _react2["default"].createElement(
+						"center",
+						{ className: "loadMore" },
+						"Loading more channels ..."
+					) : results
+				),
+				_react2["default"].createElement("div", { className: "col-md-1" })
+			);
+		}
+	}]);
+
+	return SearchResultList;
+})(_react2["default"].Component);
+
+exports["default"] = SearchResultList;
+module.exports = exports["default"];
+
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":28,"./ChannelListItem":8,"./VideoListItem":25,"react":"react"}],24:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var App = (function (_React$Component) {
+	_inherits(App, _React$Component);
+
+	function App() {
+		_classCallCheck(this, App);
+
+		_get(Object.getPrototypeOf(App.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(App, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			this.loadChart(this.props);
+		}
+
+		// COMPONENT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+			this.loadChart(nextProps);
+		}
+
+		// LOAD CHART
+	}, {
+		key: "loadChart",
+		value: function loadChart(props) {
+
+			window.setTimeout(function () {
+				var $el = $("#subsriberChart_" + props.channel.id);
+
+				// get canvas and set width
+				var canvas = $el.get(0);
+				canvas.width = $el.parent().width();
+
+				// get context object
+				var ctx = canvas.getContext("2d");
+
+				// filter out values and dates for labels
+				var values = props.channel.subHist.map(function (item) {
+					return item.subscribers;
+				});
+
+				var labels = props.channel.subHist.map(function (item) {
+					var raw = item._id.date + "";
+					var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)), parseInt(raw.substr(6, 2)));
+					return d.toLocaleDateString();
+				});
+
+				// prepare data
+				var data = {
+					labels: labels,
+					datasets: [{
+						label: "My Second dataset",
+						fillColor: "rgba(151,187,205,0.2)",
+						strokeColor: "rgba(151,187,205,1)",
+						pointColor: "rgba(151,187,205,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(151,187,205,1)",
+						data: values
+					}]
+				};
+
+				Chart.defaults.global.showScale = false;
+
+				// draw line chart
+				var ch = new Chart(ctx).Line(data, {
+					"pointHitDetectionRadius": 5
+				});
+			}, 500);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement("canvas", { id: "subsriberChart_" + this.props.channel.id, height: "100" });
+		}
+	}]);
+
+	return App;
+})(_react2["default"].Component);
+
+exports["default"] = App;
+module.exports = exports["default"];
+
+},{"react":"react"}],25:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Description = require("./Description");
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var _reactRouter = require("react-router");
+
+var VideoListItem = (function (_React$Component) {
+	_inherits(VideoListItem, _React$Component);
+
+	// CONSTRUCTOR
+
+	function VideoListItem(props) {
+		_classCallCheck(this, VideoListItem);
+
+		_get(Object.getPrototypeOf(VideoListItem.prototype), "constructor", this).call(this, props);
+		this.state = {
+			"showVideo": false
+		};
+	}
+
+	// COMPONENT DID MOUNT
+
+	_createClass(VideoListItem, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			$(".channel-thumb").unveil();
+		}
+
+		// TOGGLE SHOW VIDEO
+	}, {
+		key: "toggleShowVideo",
+		value: function toggleShowVideo() {
+
+			// toggle video
+			this.setState({
+				"showVideo": !this.state.showVideo
+			});
+		}
+
+		// FORMAT DATE
+	}, {
+		key: "formatDate",
+		value: function formatDate(unix) {
+			var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			var d = new Date(unix * 1000);
+			return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			if (!this.props.video.channel) return null;
+
+			return _react2["default"].createElement(
+				"div",
+				{ className: "row channel-row" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-2 col-xs-2" },
+					_react2["default"].createElement(
+						"center",
+						null,
+						_react2["default"].createElement("img", { src: "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png", "data-src": "http://img.youtube.com/vi/" + this.props.video._id + "/default.jpg", className: "channel-thumb" })
+					)
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-7 col-xs-10" },
+					_react2["default"].createElement(
+						"h3",
+						null,
+						_react2["default"].createElement(
+							"a",
+							{ href: "javascript:void(0);", onClick: this.toggleShowVideo.bind(this) },
+							this.props.video.title
+						)
+					),
+					_react2["default"].createElement(_Description2["default"], { text: this.props.video.description, video: true }),
+					this.state.showVideo === true ? _react2["default"].createElement("iframe", { className: "inline-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/" + this.props.video._id, frameBorder: "0", allowFullScreen: true }) : null
+				),
+				_react2["default"].createElement(
+					"div",
+					{ className: "col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0" },
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Channel:"
+						),
+						" ",
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/channel/" + this.props.video.channel._id },
+							this.props.video.channel.title
+						)
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Views:"
+						),
+						" ",
+						(this.props.video.views || 0).toLocaleString()
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Likes:"
+						),
+						" ",
+						_react2["default"].createElement("i", { className: "fa fa-thumbs-up fa-fw" }),
+						" ",
+						(this.props.video.likes || 0).toLocaleString(),
+						" ",
+						_react2["default"].createElement("i", { className: "fa fa-thumbs-down fa-fw" }),
+						" ",
+						(this.props.video.dislikes || 0).toLocaleString()
+					),
+					_react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							"b",
+							null,
+							"Uploaded:"
+						),
+						" ",
+						this.formatDate(this.props.video.publishedAt)
+					),
+					_react2["default"].createElement(
+						"a",
+						{ href: "javascript:void(0);", onClick: this.toggleShowVideo.bind(this), className: "btn btn-default btn-sidebar btn-raised" },
+						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+						" Watch video"
+					)
+				)
+			);
+		}
+	}]);
+
+	return VideoListItem;
+})(_react2["default"].Component);
+
+exports["default"] = VideoListItem;
+module.exports = exports["default"];
+
+},{"./Description":12,"react":"react","react-router":"react-router"}],26:[function(require,module,exports){
+"use strict";
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _historyLibCreateBrowserHistory = require("history/lib/createBrowserHistory");
+
+var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
+
+var _routes = require("./routes");
+
+var _routes2 = _interopRequireDefault(_routes);
+
+var history = (0, _historyLibCreateBrowserHistory2["default"])();
+_reactDom2["default"].render(_react2["default"].createElement(
+  _reactRouter2["default"],
+  { history: history },
+  _routes2["default"]
+), document.getElementById("app"));
+
+},{"./routes":27,"history/lib/createBrowserHistory":36,"react":"react","react-dom":"react-dom","react-router":"react-router"}],27:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var _componentsApp = require("./components/App");
+
+var _componentsApp2 = _interopRequireDefault(_componentsApp);
+
+var _componentsHome = require("./components/Home");
+
+var _componentsHome2 = _interopRequireDefault(_componentsHome);
+
+var _componentsSearchResult = require("./components/SearchResult");
+
+var _componentsSearchResult2 = _interopRequireDefault(_componentsSearchResult);
+
+var _componentsChannelDetail = require("./components/ChannelDetail");
+
+var _componentsChannelDetail2 = _interopRequireDefault(_componentsChannelDetail);
+
+var _componentsDataCollection = require("./components/DataCollection");
+
+var _componentsDataCollection2 = _interopRequireDefault(_componentsDataCollection);
+
+var _componentsChannelMissing = require("./components/ChannelMissing");
+
+var _componentsChannelMissing2 = _interopRequireDefault(_componentsChannelMissing);
+
+var _componentsPrivacyPolicy = require("./components/PrivacyPolicy");
+
+var _componentsPrivacyPolicy2 = _interopRequireDefault(_componentsPrivacyPolicy);
+
+var _componentsImpressum = require("./components/Impressum");
+
+var _componentsImpressum2 = _interopRequireDefault(_componentsImpressum);
+
+var _componentsContributions = require("./components/Contributions");
+
+var _componentsContributions2 = _interopRequireDefault(_componentsContributions);
+
+exports["default"] = _react2["default"].createElement(
+	_reactRouter.Route,
+	{ path: "/", component: _componentsApp2["default"] },
+	_react2["default"].createElement(_reactRouter.IndexRoute, { component: _componentsHome2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "by-:sortBy", component: _componentsHome2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "channel/:id", component: _componentsChannelDetail2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "search/:query", component: _componentsSearchResult2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "how-it-works", component: _componentsDataCollection2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "channel-missing", component: _componentsChannelMissing2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "privacy", component: _componentsPrivacyPolicy2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "impressum", component: _componentsImpressum2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "contributions", component: _componentsContributions2["default"] })
+);
+module.exports = exports["default"];
+
+},{"./components/App":4,"./components/ChannelDetail":6,"./components/ChannelMissing":9,"./components/Contributions":10,"./components/DataCollection":11,"./components/Home":14,"./components/Impressum":15,"./components/PrivacyPolicy":20,"./components/SearchResult":22,"react":"react","react-router":"react-router"}],28:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+var _actionsChannelActions = require("../actions/ChannelActions");
+
+var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
+
+var ChannelStore = (function () {
+	function ChannelStore() {
+		_classCallCheck(this, ChannelStore);
+
+		this.bindActions(_actionsChannelActions2["default"]);
+		this.channels = [];
+		this.results = [];
+		this.loading = false;
+		this.skip = 0;
+		this.take = 25;
+		this.sortBy = "subscribers";
+
+		this.channel = null;
+	}
+
+	// GET CHANNELS SUCCESS
+
+	_createClass(ChannelStore, [{
+		key: "getChannelsSuccess",
+		value: function getChannelsSuccess(result) {
+
+			// add new data
+			if (result.skip > 0) {
+				this.channels = this.channels.concat(result.data);
+			} else {
+				this.channels = result.data;
+			}
+
+			this.skip = result.skip;
+			this.take = result.take;
+			this.loading = false;
+		}
+
+		// GET CHANNEL SUCCESS
+	}, {
+		key: "getChannelSuccess",
+		value: function getChannelSuccess(result) {
+			this.channel = result;
+		}
+
+		// GET CHANNEL FAIL
+	}, {
+		key: "getChannelFail",
+		value: function getChannelFail(jqXhr) {
+
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+
+		// GET CHANNELS FAIL
+	}, {
+		key: "getChannelsFail",
+		value: function getChannelsFail(jqXhr) {
+
+			this.loading = false;
+
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+
+		// SEARCH CHANNELS SUCCESS
+	}, {
+		key: "searchChannelsSuccess",
+		value: function searchChannelsSuccess(result) {
+
+			this.results = result;
+			this.loading = false;
+		}
+
+		// SEARCH CHANNELS FAIL
+	}, {
+		key: "searchChannelsFail",
+		value: function searchChannelsFail(jqXhr) {
+
+			this.loading = false;
+
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+	}]);
+
+	return ChannelStore;
+})();
+
+exports["default"] = _alt2["default"].createStore(ChannelStore);
+module.exports = exports["default"];
+
+},{"../actions/ChannelActions":1,"../alt":3}],29:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var _alt = require("../alt");
+
+var _alt2 = _interopRequireDefault(_alt);
+
+var _actionsLanguageActions = require("../actions/LanguageActions");
+
+var _actionsLanguageActions2 = _interopRequireDefault(_actionsLanguageActions);
+
+var LanguageStore = (function () {
+	function LanguageStore() {
+		_classCallCheck(this, LanguageStore);
+
+		this.bindActions(_actionsLanguageActions2["default"]);
+		this.languages = [];
+		this.selectedLanguage = "en";
+	}
+
+	// GET LANGUAGES SUCCESS
+
+	_createClass(LanguageStore, [{
+		key: "getLanguagesSuccess",
+		value: function getLanguagesSuccess(result) {
+
+			this.languages = result.languages;
+			this.selectedLanguage = result.selected;
+		}
+
+		// GET LANGUAGES FAIL
+	}, {
+		key: "getLanguagesFail",
+		value: function getLanguagesFail(jqXhr) {
+
+			// Handle multiple response formats, fallback to HTTP status code number.
+			console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		}
+	}]);
+
+	return LanguageStore;
+})();
+
+exports["default"] = _alt2["default"].createStore(LanguageStore);
+module.exports = exports["default"];
+
+},{"../actions/LanguageActions":2,"../alt":3}],30:[function(require,module,exports){
+// shim for using process in browser
+
+var process = module.exports = {};
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        setTimeout(drainQueue, 0);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],31:[function(require,module,exports){
+/**
+ * Indicates that navigation was caused by a call to history.push.
+ */
+'use strict';
+
+exports.__esModule = true;
+var PUSH = 'PUSH';
+
+exports.PUSH = PUSH;
+/**
+ * Indicates that navigation was caused by a call to history.replace.
+ */
+var REPLACE = 'REPLACE';
+
+exports.REPLACE = REPLACE;
+/**
+ * Indicates that navigation was caused by some other action such
+ * as using a browser's back/forward buttons and/or manually manipulating
+ * the URL in a browser's location bar. This is the default.
+ *
+ * See https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
+ * for more information.
+ */
+var POP = 'POP';
+
+exports.POP = POP;
+exports['default'] = {
+  PUSH: PUSH,
+  REPLACE: REPLACE,
+  POP: POP
+};
+},{}],32:[function(require,module,exports){
+"use strict";
+
+exports.__esModule = true;
+exports.loopAsync = loopAsync;
+
+function loopAsync(turns, work, callback) {
+  var currentTurn = 0;
+  var isDone = false;
+
+  function done() {
+    isDone = true;
+    callback.apply(this, arguments);
+  }
+
+  function next() {
+    if (isDone) return;
+
+    if (currentTurn < turns) {
+      work.call(this, currentTurn++, next, done);
+    } else {
+      done.apply(this, arguments);
+    }
+  }
+
+  next();
+}
+},{}],33:[function(require,module,exports){
+(function (process){
+/*eslint-disable no-empty */
+'use strict';
+
+exports.__esModule = true;
+exports.saveState = saveState;
+exports.readState = readState;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var KeyPrefix = '@@History/';
+var QuotaExceededError = 'QuotaExceededError';
+var SecurityError = 'SecurityError';
+
+function createKey(key) {
+  return KeyPrefix + key;
+}
+
+function saveState(key, state) {
+  try {
+    window.sessionStorage.setItem(createKey(key), JSON.stringify(state));
+  } catch (error) {
+    if (error.name === SecurityError) {
+      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+      // attempt to access window.sessionStorage.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to save state; sessionStorage is not available due to security settings') : undefined;
+
+      return;
+    }
+
+    if (error.name === QuotaExceededError && window.sessionStorage.length === 0) {
+      // Safari "private mode" throws QuotaExceededError.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to save state; sessionStorage is not available in Safari private mode') : undefined;
+
+      return;
+    }
+
+    throw error;
+  }
+}
+
+function readState(key) {
+  var json = undefined;
+  try {
+    json = window.sessionStorage.getItem(createKey(key));
+  } catch (error) {
+    if (error.name === SecurityError) {
+      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+      // attempt to access window.sessionStorage.
+      process.env.NODE_ENV !== 'production' ? _warning2['default'](false, '[history] Unable to read state; sessionStorage is not available due to security settings') : undefined;
+
+      return null;
+    }
+  }
+
+  if (json) {
+    try {
+      return JSON.parse(json);
+    } catch (error) {
+      // Ignore invalid JSON.
+    }
+  }
+
+  return null;
+}
+}).call(this,require('_process'))
+},{"_process":30,"warning":48}],34:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+exports.addEventListener = addEventListener;
+exports.removeEventListener = removeEventListener;
+exports.getHashPath = getHashPath;
+exports.replaceHashPath = replaceHashPath;
+exports.getWindowPath = getWindowPath;
+exports.go = go;
+exports.getUserConfirmation = getUserConfirmation;
+exports.supportsHistory = supportsHistory;
+exports.supportsGoWithoutReloadUsingHash = supportsGoWithoutReloadUsingHash;
+
+function addEventListener(node, event, listener) {
+  if (node.addEventListener) {
+    node.addEventListener(event, listener, false);
+  } else {
+    node.attachEvent('on' + event, listener);
+  }
+}
+
+function removeEventListener(node, event, listener) {
+  if (node.removeEventListener) {
+    node.removeEventListener(event, listener, false);
+  } else {
+    node.detachEvent('on' + event, listener);
+  }
+}
+
+function getHashPath() {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  return window.location.href.split('#')[1] || '';
+}
+
+function replaceHashPath(path) {
+  window.location.replace(window.location.pathname + window.location.search + '#' + path);
+}
+
+function getWindowPath() {
+  return window.location.pathname + window.location.search + window.location.hash;
+}
+
+function go(n) {
+  if (n) window.history.go(n);
+}
+
+function getUserConfirmation(message, callback) {
+  callback(window.confirm(message));
+}
+
+/**
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ *
+ * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+ * changed to avoid false negatives for Windows Phones: https://github.com/rackt/react-router/issues/586
+ */
+
+function supportsHistory() {
+  var ua = navigator.userAgent;
+  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) {
+    return false;
+  }
+  // FIXME: Work around our browser history not working correctly on Chrome
+  // iOS: https://github.com/rackt/react-router/issues/2565
+  if (ua.indexOf('CriOS') !== -1) {
+    return false;
+  }
+  return window.history && 'pushState' in window.history;
+}
+
+/**
+ * Returns false if using go(n) with hash history causes a full page reload.
+ */
+
+function supportsGoWithoutReloadUsingHash() {
+  var ua = navigator.userAgent;
+  return ua.indexOf('Firefox') === -1;
+}
+},{}],35:[function(require,module,exports){
+'use strict';
+
+exports.__esModule = true;
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+exports.canUseDOM = canUseDOM;
+},{}],36:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _invariant = require('invariant');
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _Actions = require('./Actions');
+
+var _ExecutionEnvironment = require('./ExecutionEnvironment');
+
+var _DOMUtils = require('./DOMUtils');
+
+var _DOMStateStorage = require('./DOMStateStorage');
+
+var _createDOMHistory = require('./createDOMHistory');
+
+var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
+
+var _parsePath = require('./parsePath');
+
+var _parsePath2 = _interopRequireDefault(_parsePath);
+
+/**
+ * Creates and returns a history object that uses HTML5's history API
+ * (pushState, replaceState, and the popstate event) to manage history.
+ * This is the recommended method of managing history in browsers because
+ * it provides the cleanest URLs.
+ *
+ * Note: In browsers that do not support the HTML5 history API full
+ * page reloads will be used to preserve URLs.
+ */
+function createBrowserHistory() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'Browser history needs a DOM') : _invariant2['default'](false) : undefined;
+
+  var forceRefresh = options.forceRefresh;
+
+  var isSupported = _DOMUtils.supportsHistory();
+  var useRefresh = !isSupported || forceRefresh;
+
+  function getCurrentLocation(historyState) {
+    historyState = historyState || window.history.state || {};
+
+    var path = _DOMUtils.getWindowPath();
+    var _historyState = historyState;
+    var key = _historyState.key;
+
+    var state = undefined;
+    if (key) {
+      state = _DOMStateStorage.readState(key);
+    } else {
+      state = null;
+      key = history.createKey();
+
+      if (isSupported) window.history.replaceState(_extends({}, historyState, { key: key }), null, path);
+    }
+
+    var location = _parsePath2['default'](path);
+
+    return history.createLocation(_extends({}, location, { state: state }), undefined, key);
+  }
+
+  function startPopStateListener(_ref) {
+    var transitionTo = _ref.transitionTo;
+
+    function popStateListener(event) {
+      if (event.state === undefined) return; // Ignore extraneous popstate events in WebKit.
+
+      transitionTo(getCurrentLocation(event.state));
+    }
+
+    _DOMUtils.addEventListener(window, 'popstate', popStateListener);
+
+    return function () {
+      _DOMUtils.removeEventListener(window, 'popstate', popStateListener);
+    };
+  }
+
+  function finishTransition(location) {
+    var basename = location.basename;
+    var pathname = location.pathname;
+    var search = location.search;
+    var hash = location.hash;
+    var state = location.state;
+    var action = location.action;
+    var key = location.key;
+
+    if (action === _Actions.POP) return; // Nothing to do.
+
+    _DOMStateStorage.saveState(key, state);
+
+    var path = (basename || '') + pathname + search + hash;
+    var historyState = {
+      key: key
+    };
+
+    if (action === _Actions.PUSH) {
+      if (useRefresh) {
+        window.location.href = path;
+        return false; // Prevent location update.
+      } else {
+          window.history.pushState(historyState, null, path);
+        }
+    } else {
+      // REPLACE
+      if (useRefresh) {
+        window.location.replace(path);
+        return false; // Prevent location update.
+      } else {
+          window.history.replaceState(historyState, null, path);
+        }
+    }
+  }
+
+  var history = _createDOMHistory2['default'](_extends({}, options, {
+    getCurrentLocation: getCurrentLocation,
+    finishTransition: finishTransition,
+    saveState: _DOMStateStorage.saveState
+  }));
+
+  var listenerCount = 0,
+      stopPopStateListener = undefined;
+
+  function listenBefore(listener) {
+    if (++listenerCount === 1) stopPopStateListener = startPopStateListener(history);
+
+    var unlisten = history.listenBefore(listener);
+
+    return function () {
+      unlisten();
+
+      if (--listenerCount === 0) stopPopStateListener();
+    };
+  }
+
+  function listen(listener) {
+    if (++listenerCount === 1) stopPopStateListener = startPopStateListener(history);
+
+    var unlisten = history.listen(listener);
+
+    return function () {
+      unlisten();
+
+      if (--listenerCount === 0) stopPopStateListener();
+    };
+  }
+
+  // deprecated
+  function registerTransitionHook(hook) {
+    if (++listenerCount === 1) stopPopStateListener = startPopStateListener(history);
+
+    history.registerTransitionHook(hook);
+  }
+
+  // deprecated
+  function unregisterTransitionHook(hook) {
+    history.unregisterTransitionHook(hook);
+
+    if (--listenerCount === 0) stopPopStateListener();
+  }
+
+  return _extends({}, history, {
+    listenBefore: listenBefore,
+    listen: listen,
+    registerTransitionHook: registerTransitionHook,
+    unregisterTransitionHook: unregisterTransitionHook
+  });
+}
+
+exports['default'] = createBrowserHistory;
+module.exports = exports['default'];
+}).call(this,require('_process'))
+},{"./Actions":31,"./DOMStateStorage":33,"./DOMUtils":34,"./ExecutionEnvironment":35,"./createDOMHistory":37,"./parsePath":42,"_process":30,"invariant":47}],37:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _invariant = require('invariant');
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _ExecutionEnvironment = require('./ExecutionEnvironment');
+
+var _DOMUtils = require('./DOMUtils');
+
+var _createHistory = require('./createHistory');
+
+var _createHistory2 = _interopRequireDefault(_createHistory);
+
+function createDOMHistory(options) {
+  var history = _createHistory2['default'](_extends({
+    getUserConfirmation: _DOMUtils.getUserConfirmation
+  }, options, {
+    go: _DOMUtils.go
+  }));
+
+  function listen(listener) {
+    !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? _invariant2['default'](false, 'DOM history needs a DOM') : _invariant2['default'](false) : undefined;
+
+    return history.listen(listener);
+  }
+
+  return _extends({}, history, {
+    listen: listen
+  });
+}
+
+exports['default'] = createDOMHistory;
+module.exports = exports['default'];
+}).call(this,require('_process'))
+},{"./DOMUtils":34,"./ExecutionEnvironment":35,"./createHistory":38,"_process":30,"invariant":47}],38:[function(require,module,exports){
+//import warning from 'warning'
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _deepEqual = require('deep-equal');
+
+var _deepEqual2 = _interopRequireDefault(_deepEqual);
+
+var _AsyncUtils = require('./AsyncUtils');
+
+var _Actions = require('./Actions');
+
+var _createLocation2 = require('./createLocation');
+
+var _createLocation3 = _interopRequireDefault(_createLocation2);
+
+var _runTransitionHook = require('./runTransitionHook');
+
+var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+var _parsePath = require('./parsePath');
+
+var _parsePath2 = _interopRequireDefault(_parsePath);
+
+var _deprecate = require('./deprecate');
+
+var _deprecate2 = _interopRequireDefault(_deprecate);
+
+function createRandomKey(length) {
+  return Math.random().toString(36).substr(2, length);
+}
+
+function locationsAreEqual(a, b) {
+  return a.pathname === b.pathname && a.search === b.search &&
+  //a.action === b.action && // Different action !== location change.
+  a.key === b.key && _deepEqual2['default'](a.state, b.state);
+}
+
+var DefaultKeyLength = 6;
+
+function createHistory() {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var getCurrentLocation = options.getCurrentLocation;
+  var finishTransition = options.finishTransition;
+  var saveState = options.saveState;
+  var go = options.go;
+  var keyLength = options.keyLength;
+  var getUserConfirmation = options.getUserConfirmation;
+
+  if (typeof keyLength !== 'number') keyLength = DefaultKeyLength;
+
+  var transitionHooks = [];
+
+  function listenBefore(hook) {
+    transitionHooks.push(hook);
+
+    return function () {
+      transitionHooks = transitionHooks.filter(function (item) {
+        return item !== hook;
+      });
+    };
+  }
+
+  var allKeys = [];
+  var changeListeners = [];
+  var location = undefined;
+
+  function getCurrent() {
+    if (pendingLocation && pendingLocation.action === _Actions.POP) {
+      return allKeys.indexOf(pendingLocation.key);
+    } else if (location) {
+      return allKeys.indexOf(location.key);
+    } else {
+      return -1;
+    }
+  }
+
+  function updateLocation(newLocation) {
+    var current = getCurrent();
+
+    location = newLocation;
+
+    if (location.action === _Actions.PUSH) {
+      allKeys = [].concat(allKeys.slice(0, current + 1), [location.key]);
+    } else if (location.action === _Actions.REPLACE) {
+      allKeys[current] = location.key;
+    }
+
+    changeListeners.forEach(function (listener) {
+      listener(location);
+    });
+  }
+
+  function listen(listener) {
+    changeListeners.push(listener);
+
+    if (location) {
+      listener(location);
+    } else {
+      var _location = getCurrentLocation();
+      allKeys = [_location.key];
+      updateLocation(_location);
+    }
+
+    return function () {
+      changeListeners = changeListeners.filter(function (item) {
+        return item !== listener;
+      });
+    };
+  }
+
+  function confirmTransitionTo(location, callback) {
+    _AsyncUtils.loopAsync(transitionHooks.length, function (index, next, done) {
+      _runTransitionHook2['default'](transitionHooks[index], location, function (result) {
+        if (result != null) {
+          done(result);
+        } else {
+          next();
+        }
+      });
+    }, function (message) {
+      if (getUserConfirmation && typeof message === 'string') {
+        getUserConfirmation(message, function (ok) {
+          callback(ok !== false);
+        });
+      } else {
+        callback(message !== false);
+      }
+    });
+  }
+
+  var pendingLocation = undefined;
+
+  function transitionTo(nextLocation) {
+    if (location && locationsAreEqual(location, nextLocation)) return; // Nothing to do.
+
+    pendingLocation = nextLocation;
+
+    confirmTransitionTo(nextLocation, function (ok) {
+      if (pendingLocation !== nextLocation) return; // Transition was interrupted.
+
+      if (ok) {
+        // treat PUSH to current path like REPLACE to be consistent with browsers
+        if (nextLocation.action === _Actions.PUSH) {
+          var prevPath = createPath(location);
+          var nextPath = createPath(nextLocation);
+
+          if (nextPath === prevPath) nextLocation.action = _Actions.REPLACE;
+        }
+
+        if (finishTransition(nextLocation) !== false) updateLocation(nextLocation);
+      } else if (location && nextLocation.action === _Actions.POP) {
+        var prevIndex = allKeys.indexOf(location.key);
+        var nextIndex = allKeys.indexOf(nextLocation.key);
+
+        if (prevIndex !== -1 && nextIndex !== -1) go(prevIndex - nextIndex); // Restore the URL.
+      }
+    });
+  }
+
+  function push(location) {
+    transitionTo(createLocation(location, _Actions.PUSH, createKey()));
+  }
+
+  function replace(location) {
+    transitionTo(createLocation(location, _Actions.REPLACE, createKey()));
+  }
+
+  function goBack() {
+    go(-1);
+  }
+
+  function goForward() {
+    go(1);
+  }
+
+  function createKey() {
+    return createRandomKey(keyLength);
+  }
+
+  function createPath(location) {
+    if (location == null || typeof location === 'string') return location;
+
+    var pathname = location.pathname;
+    var search = location.search;
+    var hash = location.hash;
+
+    var result = pathname;
+
+    if (search) result += search;
+
+    if (hash) result += hash;
+
+    return result;
+  }
+
+  function createHref(location) {
+    return createPath(location);
+  }
+
+  function createLocation(location, action) {
+    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
+
+    if (typeof action === 'object') {
+      //warning(
+      //  false,
+      //  'The state (2nd) argument to history.createLocation is deprecated; use a ' +
+      //  'location descriptor instead'
+      //)
+
+      if (typeof location === 'string') location = _parsePath2['default'](location);
+
+      location = _extends({}, location, { state: action });
+
+      action = key;
+      key = arguments[3] || createKey();
+    }
+
+    return _createLocation3['default'](location, action, key);
+  }
+
+  // deprecated
+  function setState(state) {
+    if (location) {
+      updateLocationState(location, state);
+      updateLocation(location);
+    } else {
+      updateLocationState(getCurrentLocation(), state);
+    }
+  }
+
+  function updateLocationState(location, state) {
+    location.state = _extends({}, location.state, state);
+    saveState(location.key, location.state);
+  }
+
+  // deprecated
+  function registerTransitionHook(hook) {
+    if (transitionHooks.indexOf(hook) === -1) transitionHooks.push(hook);
+  }
+
+  // deprecated
+  function unregisterTransitionHook(hook) {
+    transitionHooks = transitionHooks.filter(function (item) {
+      return item !== hook;
+    });
+  }
+
+  // deprecated
+  function pushState(state, path) {
+    if (typeof path === 'string') path = _parsePath2['default'](path);
+
+    push(_extends({ state: state }, path));
+  }
+
+  // deprecated
+  function replaceState(state, path) {
+    if (typeof path === 'string') path = _parsePath2['default'](path);
+
+    replace(_extends({ state: state }, path));
+  }
+
+  return {
+    listenBefore: listenBefore,
+    listen: listen,
+    transitionTo: transitionTo,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    createKey: createKey,
+    createPath: createPath,
+    createHref: createHref,
+    createLocation: createLocation,
+
+    setState: _deprecate2['default'](setState, 'setState is deprecated; use location.key to save state instead'),
+    registerTransitionHook: _deprecate2['default'](registerTransitionHook, 'registerTransitionHook is deprecated; use listenBefore instead'),
+    unregisterTransitionHook: _deprecate2['default'](unregisterTransitionHook, 'unregisterTransitionHook is deprecated; use the callback returned from listenBefore instead'),
+    pushState: _deprecate2['default'](pushState, 'pushState is deprecated; use push instead'),
+    replaceState: _deprecate2['default'](replaceState, 'replaceState is deprecated; use replace instead')
+  };
+}
+
+exports['default'] = createHistory;
+module.exports = exports['default'];
+},{"./Actions":31,"./AsyncUtils":32,"./createLocation":39,"./deprecate":40,"./parsePath":42,"./runTransitionHook":43,"deep-equal":44}],39:[function(require,module,exports){
+//import warning from 'warning'
+'use strict';
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _Actions = require('./Actions');
+
+var _parsePath = require('./parsePath');
+
+var _parsePath2 = _interopRequireDefault(_parsePath);
+
+function createLocation() {
+  var location = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
+  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+  var _fourthArg = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+
+  if (typeof location === 'string') location = _parsePath2['default'](location);
+
+  if (typeof action === 'object') {
+    //warning(
+    //  false,
+    //  'The state (2nd) argument to createLocation is deprecated; use a ' +
+    //  'location descriptor instead'
+    //)
+
+    location = _extends({}, location, { state: action });
+
+    action = key || _Actions.POP;
+    key = _fourthArg;
+  }
+
+  var pathname = location.pathname || '/';
+  var search = location.search || '';
+  var hash = location.hash || '';
+  var state = location.state || null;
+
+  return {
+    pathname: pathname,
+    search: search,
+    hash: hash,
+    state: state,
+    action: action,
+    key: key
+  };
+}
+
+exports['default'] = createLocation;
+module.exports = exports['default'];
+},{"./Actions":31,"./parsePath":42}],40:[function(require,module,exports){
+//import warning from 'warning'
+
+"use strict";
+
+exports.__esModule = true;
+function deprecate(fn) {
+  return fn;
+  //return function () {
+  //  warning(false, '[history] ' + message)
+  //  return fn.apply(this, arguments)
+  //}
+}
+
+exports["default"] = deprecate;
+module.exports = exports["default"];
+},{}],41:[function(require,module,exports){
+"use strict";
+
+exports.__esModule = true;
+function extractPath(string) {
+  var match = string.match(/^https?:\/\/[^\/]*/);
+
+  if (match == null) return string;
+
+  return string.substring(match[0].length);
+}
+
+exports["default"] = extractPath;
+module.exports = exports["default"];
+},{}],42:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _extractPath = require('./extractPath');
+
+var _extractPath2 = _interopRequireDefault(_extractPath);
+
+function parsePath(path) {
+  var pathname = _extractPath2['default'](path);
+  var search = '';
+  var hash = '';
+
+  process.env.NODE_ENV !== 'production' ? _warning2['default'](path === pathname, 'A path must be pathname + search + hash only, not a fully qualified URL like "%s"', path) : undefined;
+
+  var hashIndex = pathname.indexOf('#');
+  if (hashIndex !== -1) {
+    hash = pathname.substring(hashIndex);
+    pathname = pathname.substring(0, hashIndex);
+  }
+
+  var searchIndex = pathname.indexOf('?');
+  if (searchIndex !== -1) {
+    search = pathname.substring(searchIndex);
+    pathname = pathname.substring(0, searchIndex);
+  }
+
+  if (pathname === '') pathname = '/';
+
+  return {
+    pathname: pathname,
+    search: search,
+    hash: hash
+  };
+}
+
+exports['default'] = parsePath;
+module.exports = exports['default'];
+}).call(this,require('_process'))
+},{"./extractPath":41,"_process":30,"warning":48}],43:[function(require,module,exports){
+(function (process){
+'use strict';
+
+exports.__esModule = true;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function runTransitionHook(hook, location, callback) {
+  var result = hook(location, callback);
+
+  if (hook.length < 2) {
+    // Assume the hook runs synchronously and automatically
+    // call the callback with the return value.
+    callback(result);
+  } else {
+    process.env.NODE_ENV !== 'production' ? _warning2['default'](result === undefined, 'You should not "return" in a transition hook with a callback argument; call the callback instead') : undefined;
+  }
+}
+
+exports['default'] = runTransitionHook;
+module.exports = exports['default'];
+}).call(this,require('_process'))
+},{"_process":30,"warning":48}],44:[function(require,module,exports){
+var pSlice = Array.prototype.slice;
+var objectKeys = require('./lib/keys.js');
+var isArguments = require('./lib/is_arguments.js');
+
+var deepEqual = module.exports = function (actual, expected, opts) {
+  if (!opts) opts = {};
+  // 7.1. All identical values are equivalent, as determined by ===.
+  if (actual === expected) {
+    return true;
+
+  } else if (actual instanceof Date && expected instanceof Date) {
+    return actual.getTime() === expected.getTime();
+
+  // 7.3. Other pairs that do not both pass typeof value == 'object',
+  // equivalence is determined by ==.
+  } else if (!actual || !expected || typeof actual != 'object' && typeof expected != 'object') {
+    return opts.strict ? actual === expected : actual == expected;
+
+  // 7.4. For all other Object pairs, including Array objects, equivalence is
+  // determined by having the same number of owned properties (as verified
+  // with Object.prototype.hasOwnProperty.call), the same set of keys
+  // (although not necessarily the same order), equivalent values for every
+  // corresponding key, and an identical 'prototype' property. Note: this
+  // accounts for both named and indexed properties on Arrays.
+  } else {
+    return objEquiv(actual, expected, opts);
+  }
+}
+
+function isUndefinedOrNull(value) {
+  return value === null || value === undefined;
+}
+
+function isBuffer (x) {
+  if (!x || typeof x !== 'object' || typeof x.length !== 'number') return false;
+  if (typeof x.copy !== 'function' || typeof x.slice !== 'function') {
+    return false;
+  }
+  if (x.length > 0 && typeof x[0] !== 'number') return false;
+  return true;
+}
+
+function objEquiv(a, b, opts) {
+  var i, key;
+  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
+    return false;
+  // an identical 'prototype' property.
+  if (a.prototype !== b.prototype) return false;
+  //~~~I've managed to break Object.keys through screwy arguments passing.
+  //   Converting to array solves the problem.
+  if (isArguments(a)) {
+    if (!isArguments(b)) {
+      return false;
+    }
+    a = pSlice.call(a);
+    b = pSlice.call(b);
+    return deepEqual(a, b, opts);
+  }
+  if (isBuffer(a)) {
+    if (!isBuffer(b)) {
+      return false;
+    }
+    if (a.length !== b.length) return false;
+    for (i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+  try {
+    var ka = objectKeys(a),
+        kb = objectKeys(b);
+  } catch (e) {//happens when one is a string literal and the other isn't
+    return false;
+  }
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length != kb.length)
+    return false;
+  //the same set of keys (although not necessarily the same order),
+  ka.sort();
+  kb.sort();
+  //~~~cheap key test
+  for (i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] != kb[i])
+      return false;
+  }
+  //equivalent values for every corresponding key, and
+  //~~~possibly expensive deep test
+  for (i = ka.length - 1; i >= 0; i--) {
+    key = ka[i];
+    if (!deepEqual(a[key], b[key], opts)) return false;
+  }
+  return typeof a === typeof b;
+}
+
+},{"./lib/is_arguments.js":45,"./lib/keys.js":46}],45:[function(require,module,exports){
+var supportsArgumentsClass = (function(){
+  return Object.prototype.toString.call(arguments)
+})() == '[object Arguments]';
+
+exports = module.exports = supportsArgumentsClass ? supported : unsupported;
+
+exports.supported = supported;
+function supported(object) {
+  return Object.prototype.toString.call(object) == '[object Arguments]';
+};
+
+exports.unsupported = unsupported;
+function unsupported(object){
+  return object &&
+    typeof object == 'object' &&
+    typeof object.length == 'number' &&
+    Object.prototype.hasOwnProperty.call(object, 'callee') &&
+    !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
+    false;
+};
+
+},{}],46:[function(require,module,exports){
+exports = module.exports = typeof Object.keys === 'function'
+  ? Object.keys : shim;
+
+exports.shim = shim;
+function shim (obj) {
+  var keys = [];
+  for (var key in obj) keys.push(key);
+  return keys;
+}
+
+},{}],47:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+'use strict';
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (process.env.NODE_ENV !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+}).call(this,require('_process'))
+},{"_process":30}],48:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+'use strict';
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = function() {};
+
+if (process.env.NODE_ENV !== 'production') {
+  warning = function(condition, format, args) {
+    var len = arguments.length;
+    args = new Array(len > 2 ? len - 2 : 0);
+    for (var key = 2; key < len; key++) {
+      args[key - 2] = arguments[key];
+    }
+    if (format === undefined) {
+      throw new Error(
+        '`warning(condition, format, ...args)` requires a warning ' +
+        'message argument'
+      );
+    }
+
+    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+      throw new Error(
+        'The warning format should be able to uniquely identify this ' +
+        'warning. Please, use a more descriptive format than: ' + format
+      );
+    }
+
+    if (!condition) {
+      var argIndex = 0;
+      var message = 'Warning: ' +
+        format.replace(/%s/g, function() {
+          return args[argIndex++];
+        });
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch(x) {}
+    }
+  };
+}
+
+module.exports = warning;
+
+}).call(this,require('_process'))
+},{"_process":30}]},{},[26]);
