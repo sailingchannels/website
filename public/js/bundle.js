@@ -3208,6 +3208,26 @@ var VideoList = (function (_React$Component) {
 			_actionsVideoActions2["default"].getVideos(this.props.channel._id, this.state.skip, this.state.take);
 		}
 
+		// COMPONENT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+
+			// if the channel changed, reload
+			if (nextProps.channel._id !== this.props.channel._id) {
+
+				var newState = {
+					videos: [],
+					skip: 0,
+					take: this.state.take
+				};
+
+				this.setState(newState);
+
+				_actionsVideoActions2["default"].getVideos(this.nextProps.channel._id, newState.skip, newState.take);
+			}
+		}
+
 		// COMPONENT WILL UNMOUNT
 	}, {
 		key: "componentWillUnmount",
@@ -3221,6 +3241,40 @@ var VideoList = (function (_React$Component) {
 		value: function onChange(state) {
 			this.setState(state);
 			$(".channel-thumb").unveil();
+		}
+
+		// NEXT
+	}, {
+		key: "next",
+		value: function next() {
+
+			var newState = {
+				videos: [],
+				skip: this.state.skip + this.state.take,
+				take: this.state.take
+			};
+
+			this.setState(newState);
+
+			// load next videos
+			_actionsVideoActions2["default"].getVideos(this.props.channel._id, newState.skip, newState.take);
+		}
+
+		// PREV
+	}, {
+		key: "prev",
+		value: function prev() {
+
+			var newState = {
+				videos: [],
+				skip: this.state.skip - this.state.take,
+				take: this.state.take
+			};
+
+			this.setState(newState);
+
+			// load next videos
+			_actionsVideoActions2["default"].getVideos(this.props.channel._id, newState.skip, newState.take);
 		}
 
 		// RENDER
@@ -3259,7 +3313,31 @@ var VideoList = (function (_React$Component) {
 							_react2["default"].createElement(_Description2["default"], { text: v.description, video: true })
 						)
 					);
-				})
+				}),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6 text-left" },
+						this.state.skip > 0 ? _react2["default"].createElement(
+							"a",
+							{ className: "btn btn-raised", onClick: this.prev.bind(this) },
+							_react2["default"].createElement("i", { className: "fa fa-arrow-left" }),
+							" Previous"
+						) : null
+					),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6 text-right" },
+						_react2["default"].createElement(
+							"a",
+							{ className: "btn btn-raised", onClick: this.next.bind(this) },
+							"Next ",
+							_react2["default"].createElement("i", { className: "fa fa-arrow-right" })
+						)
+					)
+				)
 			);
 		}
 	}]);
@@ -3737,7 +3815,7 @@ var VideoStore = (function () {
 		this.bindActions(_actionsVideoActions2["default"]);
 		this.videos = [];
 		this.skip = 0;
-		this.take = 10;
+		this.take = 5;
 	}
 
 	// GET VIDEOS SUCCESS

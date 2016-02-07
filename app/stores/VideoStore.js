@@ -7,7 +7,7 @@ class VideoStore {
 		this.bindActions(VideoActions);
 		this.videos = [];
 		this.skip = 0;
-		this.take = 10;
+		this.take = 5;
 	}
 
 	// GET VIDEOS SUCCESS
