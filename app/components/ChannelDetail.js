@@ -2,6 +2,7 @@ import React from "react";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 import OffsetMenu from "./OffsetMenu";
+import OffsetSocial from "./OffsetSocial";
 import VideoList from "./VideoList";
 import Logo from "./Logo";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
@@ -64,6 +65,7 @@ class ChannelDetail extends React.Component {
 
         return (
 			<div className="container">
+				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />
 			  	<div className="row">

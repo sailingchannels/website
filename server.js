@@ -135,8 +135,6 @@ app.get("/api/channel/get/:id", function(req, res) {
 
 			return res.send(channel);
 		});
-
-
 	});
 });
 
@@ -327,6 +325,37 @@ app.get("/api/channels/search", function(req, res) {
 		});
 
 		return res.send(result);
+	});
+});
+
+// API / VIDEO / GET / :ID
+app.get("/api/video/get/:id", function(req, res) {
+
+	global.videos.find({
+		"_id": req.params.id
+	}).limit(1).next(function(err, video) {
+
+		// oh no!
+		if(err) {
+			return res.status(500).send(err);
+		}
+
+		// find matching channel
+		global.channels.find({
+			"_id": video.channel
+		}).project({
+			"title": true,
+			"thumbnail": true
+		}).limit(1).next(function(err, channel) {
+
+			// oh no!
+			if(err) {
+				return res.status(500).send(err);
+			}
+
+			video.channel = channel;
+			return res.send(video);
+		});
 	});
 });
 

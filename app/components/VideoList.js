@@ -49,6 +49,14 @@ class VideoList extends React.Component {
 		$(".channel-thumb").unveil();
 	}
 
+	// FORMAT DATE
+	formatDate(unix) {
+		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var d = new Date(unix * 1000);
+		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+	}
+
+
 	// NEXT
 	next() {
 
@@ -97,6 +105,7 @@ class VideoList extends React.Component {
 									{v.title}
 								</Link>
 							</h3>
+							<p>{this.formatDate(v.publishedAt)}</p>
 							<Description text={v.description} video={true} />
 						</div>
 					</div>

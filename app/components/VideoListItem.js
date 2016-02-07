@@ -4,26 +4,9 @@ import {Link} from "react-router";
 
 class VideoListItem extends React.Component {
 
-	// CONSTRUCTOR
-	constructor(props) {
-		super(props);
-		this.state = {
-			"showVideo": false
-		};
-	}
-
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		$(".channel-thumb").unveil();
-	}
-
-	// TOGGLE SHOW VIDEO
-	toggleShowVideo() {
-
-		// toggle video
-		this.setState({
-			"showVideo": !this.state.showVideo
-		});
 	}
 
 	// FORMAT DATE
@@ -47,12 +30,11 @@ class VideoListItem extends React.Component {
                 </div>
                 <div className="col-md-7 col-xs-10">
                     <h3>
-                        <a href="javascript:void(0);" onClick={this.toggleShowVideo.bind(this)}>
+                        <Link to={"/video/" + this.props.video._id}>
                             {this.props.video.title}
-                        </a>
+                        </Link>
                     </h3>
 					<Description text={this.props.video.description} video={true} />
-					{(this.state.showVideo === true) ? <iframe className="inline-video" width="100%" height="315" src={"https://www.youtube.com/embed/" + this.props.video._id} frameBorder="0" allowFullScreen></iframe> : null}
                 </div>
                 <div className="col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0">
 					<p><b>Channel:</b> <Link to={"/channel/" + this.props.video.channel._id}>{this.props.video.channel.title}</Link></p>
@@ -60,9 +42,9 @@ class VideoListItem extends React.Component {
 					<p><b>Likes:</b> <i className="fa fa-thumbs-up fa-fw"></i> {(this.props.video.likes || 0).toLocaleString()} <i className="fa fa-thumbs-down fa-fw"></i> {(this.props.video.dislikes || 0).toLocaleString()}</p>
 					<p><b>Uploaded:</b> {this.formatDate(this.props.video.publishedAt)}</p>
 
-					<a href="javascript:void(0);" onClick={this.toggleShowVideo.bind(this)} className="btn btn-default btn-sidebar btn-raised">
+					<Link to={"/video/" + this.props.video._id} className="btn btn-default btn-sidebar btn-raised">
 						<i className="fa fa-youtube-play"></i> Watch video
-					</a>
+					</Link>
                 </div>
 			</div>
 		);

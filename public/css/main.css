@@ -222,17 +222,17 @@ h1 {
 	-ms-transition: all 0.1s ease;
 }
 
-.social-fb:hover {
+.social-fb:hover, .social-fb:active {
   color:#3B5998;
   text-decoration: none;
 }
 
-.social-tw:hover {
+.social-tw:hover, .social-tw:active  {
   color:#55acee;
   text-decoration: none;
 }
 
-.social-em:hover {
+.social-em:hover, .social-em:active {
 	color:#f2bb64;
 	text-decoration: none;
 }
@@ -241,4 +241,8 @@ h1 {
 	cursor: pointer;
 	color: #333!important;
 	font-size: 0.9em!important;
+}
+
+.video-detail-title {
+	max-width:600px;
 }

@@ -6,7 +6,9 @@ class VideoActions {
     constructor() {
         this.generateActions(
             "getVideosSuccess",
-            "getVideosFail"
+            "getVideosFail",
+			"getVideoSuccess",
+			"getVideoFail"
         );
     }
 
@@ -20,13 +22,29 @@ class VideoActions {
             "cache": true
         })
         .done((data) => {
-			console.log(data);
             this.actions.getVideosSuccess(data);
         })
         .fail((jqXhr) => {
             this.actions.getVideosFail(jqXhr);
         });
     }
+
+	// GET VIDEO
+	getVideo(id) {
+
+		$.ajax({
+			"url": "/api/video/get/" + id,
+			"type": "GET",
+			"dataType": "json",
+			"cache": true
+		})
+		.done((data) => {
+			this.actions.getVideoSuccess(data);
+		})
+		.fail((jqXhr) => {
+			this.actions.getVideoFail(jqXhr);
+		});
+	}
 }
 
 export default alt.createActions(VideoActions);

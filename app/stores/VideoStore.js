@@ -6,6 +6,7 @@ class VideoStore {
 	constructor() {
 		this.bindActions(VideoActions);
 		this.videos = [];
+		this.video = null;
 		this.skip = 0;
 		this.take = 5;
 	}
@@ -20,6 +21,18 @@ class VideoStore {
 
 	// GET VIDEOS FAIL
   	getVideosFail(jqXhr) {
+
+    	// Handle multiple response formats, fallback to HTTP status code number.
+    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+  	}
+
+	// GET VIDEO SUCCESS
+	getVideoSuccess(result) {
+		this.video = result;
+	}
+
+	// GET VIDEO FAIL
+  	getVideoFail(jqXhr) {
 
     	// Handle multiple response formats, fallback to HTTP status code number.
     	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
