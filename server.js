@@ -140,7 +140,7 @@ app.get("/api/channel/get/:id", function(req, res) {
 	});
 });
 
-// API / CHANNEL / GET / :ID / VIDEOS / :SKIP / :TAKE
+// API / CHANNEL / GET / :ID / VIDEOS
 app.get("/api/channel/get/:id/videos", function(req, res) {
 
 	var take = parseInt(req.query.take) || 10;

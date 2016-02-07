@@ -1,5 +1,6 @@
 import React from "react";
 import OffsetMenu from "./OffsetMenu";
+import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 
 class DataCollection extends React.Component {
@@ -14,6 +15,7 @@ class DataCollection extends React.Component {
 
 		return (
             <div className="container">
+				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />
                 <div className="row content-row">

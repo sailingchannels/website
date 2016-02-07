@@ -1,5 +1,6 @@
 import React from "react";
 import OffsetMenu from "./OffsetMenu";
+import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 
 class ChannelMissing extends React.Component {
@@ -41,6 +42,7 @@ class ChannelMissing extends React.Component {
 
 		return (
             <div className="container">
+				<OffsetSocial />
                 <Logo />
 				<OffsetMenu />
                 <div className="row content-row">

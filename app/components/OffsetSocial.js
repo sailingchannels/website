@@ -18,7 +18,7 @@ class SocialOffset extends React.Component {
 
 		return (
 			<div className="offset-social">
-		        <a title="Sailing Channels on Facebook" href="https://www.facebook.com/Sailing-Channels-202488473434142" target="_blank" className="social social-fb">
+		        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
 		            <i className="fa fa-facebook-square fa-3x"></i>
 		        </a>
 				<br />

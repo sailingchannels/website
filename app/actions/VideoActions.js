@@ -10,16 +10,17 @@ class VideoActions {
         );
     }
 
-    // GET CHANNEL
-    getChannels(id, skip, take) {
+    // GET VIDEOS
+    getVideos(id, skip, take) {
 
         $.ajax({
-            "url": "/api/channels/get/" + id + "/?skip=" + skip + "&take=" + take,
+            "url": "/api/channel/get/" + id + "/videos?skip=" + skip + "&take=" + take,
             "type": "GET",
             "dataType": "json",
             "cache": true
         })
         .done((data) => {
+			console.log(data);
             this.actions.getVideosSuccess(data);
         })
         .fail((jqXhr) => {
