@@ -86,7 +86,7 @@ class ChannelDetail extends React.Component {
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
 								<p>&nbsp;</p>
 								<p><b>Latest video:</b></p>
-								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"]} frameBorder="0" allowFullScreen></iframe>
+								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"] + "?origin=https://sailing-channels.com"} frameBorder="0" allowFullScreen></iframe>
 								<p>&nbsp;</p>
 								<p><b>All videos:</b></p>
 								<VideoList channel={this.state.channel} />
