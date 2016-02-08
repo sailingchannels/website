@@ -112,14 +112,14 @@ class VideoList extends React.Component {
 				))}
 
 				<div className="row">
-					<div className="col-md-6 text-left">
+					<div className="col-md-6 col-xs-6 text-left">
 						{(this.state.skip > 0) ?
 							<a className="btn btn-raised" onClick={this.prev.bind(this)}>
 								<i className="fa fa-arrow-left"></i> Previous
 							</a>
 						: null }
 					</div>
-					<div className="col-md-6 text-right">
+					<div className="col-md-6 col-xs-6 text-right">
 						{(this.state.fin === false) ?
 							<a className="btn btn-raised" onClick={this.next.bind(this)}>
 								Next <i className="fa fa-arrow-right"></i>
