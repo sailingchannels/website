@@ -31,14 +31,6 @@ class VideoDetail extends React.Component {
         }
     }
 
-    // COMPONENT DID UPDATE
-    componentDidUpdate() {
-        if(this.state.video) {
-            //document.title = this.state.video.title + " - Sailing Channels";
-			//$("meta[name='description']").attr("content", this.state.video.description);
-        }
-    }
-
     // COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		VideoStore.unlisten(this.onChange);
@@ -66,12 +58,7 @@ class VideoDetail extends React.Component {
 
         return (
 			<div className="container">
-
-				<Helmet
-					title={this.state.video.title}
-					meta={[
-						{property: 'og:title', content: this.state.video.title},
-					]} />
+				<Helmet title={this.state.video.title} />
 				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />

@@ -6,7 +6,6 @@ var jsonfile = require("jsonfile");
 var bodyParser = require("body-parser");
 var swig = require("swig");
 var React = require("react");
-var Helmet = require("react-helmet");
 var ReactDOM = require("react-dom/server");
 var Router = require("react-router");
 var RoutingContext = Router.RoutingContext;
@@ -370,8 +369,68 @@ app.get("/api/video/get/:id", function(req, res) {
 	});
 });
 
+// FILL HEAD
+var fillHead = function(renderProps, callback) {
+
+	// extract head information
+	var head = {
+		"title": "Sailing Channels",
+		"description": "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.",
+		"banner": "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/banner.png"
+	};
+
+	// VIDEO
+	if(renderProps.location.pathname.indexOf("/video/") === 0) {
+
+		global.videos.find({
+			"_id": renderProps.params.id
+		}).project({
+			"title": true,
+			"description": true
+		}).limit(1).next(function(err, video) {
+
+			if(err || !video) return callback(head);
+
+			head.title = video.title;
+			head.description = video.description;
+			head.banner = "https://img.youtube.com/vi/" + video._id + "/default.jpg";
+
+			return callback(head);
+		});
+	}
+
+	// CHANNEL
+	else if(renderProps.location.pathname.indexOf("/channel/") === 0) {
+
+		global.channels.find({
+			"_id": renderProps.params.id
+		}).project({
+			"title": true,
+			"description": true,
+			"thumbnail": true
+		}).limit(1).next(function(err, channel) {
+
+			if(err || !channel) return callback(head);
+
+			head.title = channel.title;
+			head.description = channel.description;
+			head.banner = channel.thumbnail;
+
+			return callback(head);
+		});
+	}
+	else {
+		return callback(head);
+	}
+};
+
 // REACT MIDDLEWARE
 app.use(function(req, res) {
+
+	var staticPath = "";
+	if(tag !== "dev") {
+		staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
+	}
 
 	Router.match({ routes: routes, location: req.url }, function(err, redirectLocation, renderProps) {
 
@@ -388,25 +447,38 @@ app.use(function(req, res) {
 		// render
 		else if(renderProps) {
 
-			var staticPath = "";
-			if(tag !== "dev") {
-				staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
-			}
-
 			var html = ReactDOM.renderToString(<RoutingContext {...renderProps} />);
 
-			// extract head information
-			var head = Helmet.rewind();
-			console.log(head.title.toString());
+			// try to fill head info
+			fillHead(renderProps, function(head) {
 
-			// render the page
-			var page = swig.renderFile("views/index.html", {
-				title: head.title.toString(),
-				html: html,
+				// render the page
+				var page = swig.renderFile("views/index.html", {
+					head: head,
+					html: html,
+					staticPath: staticPath
+				});
+
+				// send rendered page
+				return res.status(200).send(minify(page, {
+					removeComments: true,
+					minifyJS: true,
+					useShortDoctype: true,
+					removeRedundantAttributes: true,
+					removeOptionalTags: true,
+					removeStyleLinkTypeAttributes: true,
+					removeScriptTypeAttributes: true
+				}).replace(/(\r\n|\n|\r|\t)/gm,""));
+			});
+		}
+
+		// not found
+		else {
+			var page = swig.renderFile("views/404.html", {
 				staticPath: staticPath
 			});
 
-			return res.status(200).send(minify(page, {
+			return res.status(404).send(minify(page, {
 				removeComments: true,
 				minifyJS: true,
 				useShortDoctype: true,
@@ -415,11 +487,6 @@ app.use(function(req, res) {
 				removeStyleLinkTypeAttributes: true,
 				removeScriptTypeAttributes: true
 			}).replace(/(\r\n|\n|\r|\t)/gm,""));
-		}
-
-		// not found
-		else {
-			return res.status(404).send("Page Not Found");
 		}
 	});
 });

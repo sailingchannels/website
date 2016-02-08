@@ -25,7 +25,7 @@ class VideoListItem extends React.Component {
 			<div className="row channel-row">
                 <div className="col-md-2 col-xs-2">
 					<center>
-                    	<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png" data-src={"http://img.youtube.com/vi/" + this.props.video._id + "/default.jpg"} className="channel-thumb" />
+                    	<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png" data-src={"https://img.youtube.com/vi/" + this.props.video._id + "/default.jpg"} className="channel-thumb" />
 					</center>
                 </div>
                 <div className="col-md-7 col-xs-10">

@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 import OffsetMenu from "./OffsetMenu";
@@ -30,14 +31,6 @@ class ChannelDetail extends React.Component {
         }
     }
 
-    // COMPONENT DID UPDATE
-    componentDidUpdate() {
-        if(this.state.channel) {
-            document.title = this.state.channel.title + " - Sailing Channels";
-			$("meta[name='description']").attr("content", this.state.channel.description);
-        }
-    }
-
     // COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		ChannelStore.unlisten(this.onChange);
@@ -65,6 +58,7 @@ class ChannelDetail extends React.Component {
 
         return (
 			<div className="container">
+			<Helmet title={this.state.channel.title} />
 				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />

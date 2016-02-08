@@ -96,7 +96,7 @@ class VideoList extends React.Component {
 					<div className="row channel-row" key={v._id}>
 						<div className="col-md-3 col-xs-3">
 							<center>
-								<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png" data-src={"http://img.youtube.com/vi/" + v._id + "/default.jpg"} className="channel-thumb" />
+								<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png" data-src={"https://img.youtube.com/vi/" + v._id + "/default.jpg"} className="channel-thumb" />
 							</center>
 						</div>
 						<div className="col-md-9 col-xs-9">
