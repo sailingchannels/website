@@ -30,6 +30,7 @@
     "morgan": "^1.6.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-helmet": "^2.3.1",
     "react-router": "^1.0.0-rc3",
     "request": "^2.65.0",
     "swig": "^1.4.2",

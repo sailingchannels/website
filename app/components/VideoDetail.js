@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import OffsetMenu from "./OffsetMenu";
 import VideoList from "./VideoList";
 import VideoActions from "../actions/VideoActions";
@@ -33,8 +34,8 @@ class VideoDetail extends React.Component {
     // COMPONENT DID UPDATE
     componentDidUpdate() {
         if(this.state.video) {
-            document.title = this.state.video.title + " - Sailing Channels";
-			$("meta[name='description']").attr("content", this.state.video.description);
+            //document.title = this.state.video.title + " - Sailing Channels";
+			//$("meta[name='description']").attr("content", this.state.video.description);
         }
     }
 
@@ -65,6 +66,12 @@ class VideoDetail extends React.Component {
 
         return (
 			<div className="container">
+
+				<Helmet
+					title={this.state.video.title}
+					meta={[
+						{property: 'og:title', content: this.state.video.title},
+					]} />
 				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />

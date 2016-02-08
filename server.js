@@ -6,6 +6,7 @@ var jsonfile = require("jsonfile");
 var bodyParser = require("body-parser");
 var swig = require("swig");
 var React = require("react");
+var Helmet = require("react-helmet");
 var ReactDOM = require("react-dom/server");
 var Router = require("react-router");
 var RoutingContext = Router.RoutingContext;
@@ -393,7 +394,14 @@ app.use(function(req, res) {
 			}
 
 			var html = ReactDOM.renderToString(<RoutingContext {...renderProps} />);
+
+			// extract head information
+			var head = Helmet.rewind();
+			console.log(head.title.toString());
+
+			// render the page
 			var page = swig.renderFile("views/index.html", {
+				title: head.title.toString(),
 				html: html,
 				staticPath: staticPath
 			});
