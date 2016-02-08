@@ -1,5 +1,6 @@
 import React from "react";
 import OffsetMenu from "./OffsetMenu";
+import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 
 class PrivacyPolicy extends React.Component {
@@ -14,7 +15,8 @@ class PrivacyPolicy extends React.Component {
 
 		return (
             <div className="container">
-                <Logo />
+				<OffsetSocial />
+				<Logo />
 				<OffsetMenu />
                 <div className="row content-row">
 					<div className="col-md-3"></div>

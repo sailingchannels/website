@@ -34,7 +34,7 @@ class VideoList extends React.Component {
 
 			this.setState(newState);
 
-            VideoActions.getVideos(this.nextProps.channel._id, newState.skip, newState.take);
+            VideoActions.getVideos(nextProps.channel._id, newState.skip, newState.take);
         }
     }
 
@@ -120,9 +120,11 @@ class VideoList extends React.Component {
 						: null }
 					</div>
 					<div className="col-md-6 text-right">
-						<a className="btn btn-raised" onClick={this.next.bind(this)}>
-							Next <i className="fa fa-arrow-right"></i>
-						</a>
+						{(this.state.fin === false) ?
+							<a className="btn btn-raised" onClick={this.next.bind(this)}>
+								Next <i className="fa fa-arrow-right"></i>
+							</a>
+						: null }
 					</div>
 				</div>
 			</div>

@@ -9,6 +9,7 @@ class VideoStore {
 		this.video = null;
 		this.skip = 0;
 		this.take = 5;
+		this.fin = false;
 	}
 
 	// GET VIDEOS SUCCESS
@@ -17,6 +18,7 @@ class VideoStore {
 		this.videos = result.data;
 		this.skip = result.skip;
 		this.take = result.take;
+		this.fin = result.fin;
   	}
 
 	// GET VIDEOS FAIL

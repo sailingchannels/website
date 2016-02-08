@@ -2303,6 +2303,10 @@ var _OffsetMenu = require("./OffsetMenu");
 
 var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
 
+var _OffsetSocial = require("./OffsetSocial");
+
+var _OffsetSocial2 = _interopRequireDefault(_OffsetSocial);
+
 var _Logo = require("./Logo");
 
 var _Logo2 = _interopRequireDefault(_Logo);
@@ -2332,6 +2336,7 @@ var PrivacyPolicy = (function (_React$Component) {
             return _react2["default"].createElement(
                 "div",
                 { className: "container" },
+                _react2["default"].createElement(_OffsetSocial2["default"], null),
                 _react2["default"].createElement(_Logo2["default"], null),
                 _react2["default"].createElement(_OffsetMenu2["default"], null),
                 _react2["default"].createElement(
@@ -2657,7 +2662,7 @@ var PrivacyPolicy = (function (_React$Component) {
 exports["default"] = PrivacyPolicy;
 module.exports = exports["default"];
 
-},{"./Logo":18,"./OffsetMenu":19,"react":"react"}],22:[function(require,module,exports){
+},{"./Logo":18,"./OffsetMenu":19,"./OffsetSocial":20,"react":"react"}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3515,7 +3520,7 @@ var VideoList = (function (_React$Component) {
 
 				this.setState(newState);
 
-				_actionsVideoActions2["default"].getVideos(this.nextProps.channel._id, newState.skip, newState.take);
+				_actionsVideoActions2["default"].getVideos(nextProps.channel._id, newState.skip, newState.take);
 			}
 		}
 
@@ -3636,12 +3641,12 @@ var VideoList = (function (_React$Component) {
 					_react2["default"].createElement(
 						"div",
 						{ className: "col-md-6 text-right" },
-						_react2["default"].createElement(
+						this.state.fin === false ? _react2["default"].createElement(
 							"a",
 							{ className: "btn btn-raised", onClick: this.next.bind(this) },
 							"Next ",
 							_react2["default"].createElement("i", { className: "fa fa-arrow-right" })
-						)
+						) : null
 					)
 				)
 			);
@@ -4111,6 +4116,7 @@ var VideoStore = (function () {
 		this.video = null;
 		this.skip = 0;
 		this.take = 5;
+		this.fin = false;
 	}
 
 	// GET VIDEOS SUCCESS
@@ -4122,6 +4128,7 @@ var VideoStore = (function () {
 			this.videos = result.data;
 			this.skip = result.skip;
 			this.take = result.take;
+			this.fin = result.fin;
 		}
 
 		// GET VIDEOS FAIL

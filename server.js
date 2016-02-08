@@ -144,36 +144,45 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 	var take = parseInt(req.query.take) || 10;
 	var skip = parseInt(req.query.skip) || 0;
 
-	global.videos.find({
+	// cound videos of channel
+	global.videos.count({
 		"channel": req.params.id
-	})
-	.skip(skip)
-	.limit(take)
-	.sort({
-		"publishedAt": -1
-	})
-	.project({
-		"channel": false,
-		"comments": false
-	})
-	.toArray(function(err, videos) {
+	}, function(err, videoCount) {
 
-		// oh no!
-		if(err) {
-			return res.status(500).send({
-				"data": [],
+		global.videos.find({
+			"channel": req.params.id
+		})
+		.skip(skip)
+		.limit(take)
+		.sort({
+			"publishedAt": -1
+		})
+		.project({
+			"channel": false,
+			"comments": false
+		})
+		.toArray(function(err, videos) {
+
+			// oh no!
+			if(err) {
+				return res.status(500).send({
+					"data": [],
+					"skip": skip,
+					"take": take,
+					"fin": false,
+					"error": err
+				});
+			}
+
+			// send data out
+			return res.send({
+				"data": videos,
 				"skip": skip,
 				"take": take,
-				"error": err
+				"fin": (skip + take >= videoCount)
 			});
-		}
-
-		// send data out
-		return res.send({
-			"data": videos,
-			"skip": skip,
-			"take": take
 		});
+
 	});
 });
 
@@ -345,7 +354,8 @@ app.get("/api/video/get/:id", function(req, res) {
 			"_id": video.channel
 		}).project({
 			"title": true,
-			"thumbnail": true
+			"thumbnail": true,
+			"videos": true
 		}).limit(1).next(function(err, channel) {
 
 			// oh no!
