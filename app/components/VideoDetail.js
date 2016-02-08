@@ -83,7 +83,7 @@ class VideoDetail extends React.Component {
 								<img src={this.state.video.channel.thumbnail} className="channel-thumb" />
 							</div>
 							<div className="col-md-7 col-sm-7">
-								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.video._id} frameBorder="0" allowFullScreen></iframe>
+								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.video._id + "?origin=https://sailing-channels.com"} frameBorder="0" allowFullScreen></iframe>
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.video.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
 								<p>&nbsp;</p>
 								<p><b>Other videos:</b></p>
