@@ -32,7 +32,7 @@ class App extends React.Component {
 
 			var labels = props.channel.subHist.map((item) => {
 				var raw = item._id.date + "";
-				var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)), parseInt(raw.substr(6, 2)));
+				var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)) - 1, parseInt(raw.substr(6, 2)));
 				return d.toLocaleDateString();
 			});
 
