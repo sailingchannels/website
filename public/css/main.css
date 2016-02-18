@@ -234,7 +234,6 @@ h1 {
   text-decoration: none;
 }
 
-.scroll-up-btn:hover,
 .social-em:hover,
 .social-em:active {
 	color:#f2bb64;
@@ -249,20 +248,4 @@ h1 {
 
 .video-detail-title {
 	max-width:600px;
-}
-
-.scroll-up-btn {
-	position:fixed;
-	bottom:20px;
-	left:25px;
-	color:#ddd;
-	cursor:pointer;
-	z-index:999999999999!important;
-}
-
-@media (min-width: 768px) {
-	.scroll-up-btn {
-		bottom:50px;
-		left:50px;
-	}
 }
