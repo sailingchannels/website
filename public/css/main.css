@@ -222,17 +222,21 @@ h1 {
 	-ms-transition: all 0.1s ease;
 }
 
-.social-fb:hover, .social-fb:active {
+.social-fb:hover,
+.social-fb:active {
   color:#3B5998;
   text-decoration: none;
 }
 
-.social-tw:hover, .social-tw:active  {
+.social-tw:hover,
+.social-tw:active  {
   color:#55acee;
   text-decoration: none;
 }
 
-.social-em:hover, .social-em:active {
+.scroll-up-btn:hover,
+.social-em:hover,
+.social-em:active {
 	color:#f2bb64;
 	text-decoration: none;
 }
@@ -245,4 +249,20 @@ h1 {
 
 .video-detail-title {
 	max-width:600px;
+}
+
+.scroll-up-btn {
+	position:fixed;
+	bottom:20px;
+	left:25px;
+	color:#ddd;
+	cursor:pointer;
+	z-index:999999999999!important;
+}
+
+@media (min-width: 768px) {
+	.scroll-up-btn {
+		bottom:50px;
+		left:50px;
+	}
 }
