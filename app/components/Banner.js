@@ -15,6 +15,9 @@ class Banner extends React.Component {
                     <h3 className="modal-title">Thanks for stopping by!</h3>
                   </div>
                   <div className="modal-body">
+				  	<p>
+						<img src="/img/twoaboardtuuli.jpg" width="100%" />
+					</p>
                     <p>
                         The <b>Two aboard Tuuli crew</b> created this website in their sparetime for you.
                     </p>

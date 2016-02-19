@@ -38,6 +38,7 @@
 </head>
 <body>
 	<div class="container" id="app">{{ html|safe }}</div>
+	<script>var window.staticPath = "{{staticPath}}";</script>
 	<script src="{{staticPath}}/js/vendor.js"></script>
 	<script src="{{staticPath}}/js/vendor.bundle.js"></script>
 	<script src="{{staticPath}}/js/bundle.js" async></script>
