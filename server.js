@@ -345,7 +345,7 @@ app.get("/api/video/get/:id", function(req, res) {
 	}).limit(1).next(function(err, video) {
 
 		// oh no!
-		if(err) {
+		if(err || !video) {
 			return res.status(500).send(err);
 		}
 
