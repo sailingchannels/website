@@ -1,4 +1,5 @@
 import alt from "../alt";
+import HTTP from "../helpers/http";
 
 // LANGUAGE ACTIONS
 class LanguageActions {
@@ -13,18 +14,20 @@ class LanguageActions {
     // GET LANGUAGES
     getLanguages() {
 
-        $.ajax({
+		new HTTP().get({
             "url": "/api/languages",
             "type": "GET",
             "dataType": "json",
-            "cache": true
-        })
-        .done((data) => {
-            this.actions.getLanguagesSuccess(data);
-        })
-        .fail((jqXhr) => {
-            this.actions.getLanguagesFail(jqXhr);
-        });
+            "cache": true,
+			"ttl": 86400
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.getLanguagesFail(err);
+			}
+
+			this.actions.getLanguagesSuccess(data);
+		});
     }
 }
 

@@ -40,7 +40,7 @@ class ChannelStore {
   	getChannelFail(jqXhr) {
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+    	console.error(jqXhr);
   	}
 
 	// GET CHANNELS FAIL
@@ -49,7 +49,7 @@ class ChannelStore {
 		this.loading = false;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+    	console.error(jqXhr);
   	}
 
 	// SEARCH CHANNELS SUCCESS
@@ -65,7 +65,7 @@ class ChannelStore {
 		this.loading = false;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+    	console.error(jqXhr);
   	}
 }
 

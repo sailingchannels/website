@@ -1,4 +1,5 @@
 import alt from "../alt";
+import HTTP from "../helpers/http";
 
 // CHANNEL ACTIONS
 class ChannelActions {
@@ -17,50 +18,58 @@ class ChannelActions {
     // GET CHANNEL
     getChannels(sortBy, skip, take) {
 
-        $.ajax({
+		new HTTP().get({
             "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
             "type": "GET",
             "dataType": "json",
-            "cache": true
-        })
-        .done((data) => {
-            this.actions.getChannelsSuccess(data);
-        })
-        .fail((jqXhr) => {
-            this.actions.getChannelsFail(jqXhr);
-        });
+            "cache": true,
+			"ttl": 300
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.getChannelsFail(err);
+			}
+
+			this.actions.getChannelsSuccess(data);
+		});
     }
 
     // GET CHANNEL
     getChannel(id) {
 
-        $.ajax({
+        new HTTP().get({
             "url": "/api/channel/get/" + id,
             "type": "GET",
-            "dataType": "json"
-        })
-        .done((data) => {
-            this.actions.getChannelSuccess(data);
-        })
-        .fail((jqXhr) => {
-            this.actions.getChannelFail(jqXhr);
-        });
+            "dataType": "json",
+			"cache": true,
+			"ttl": 300
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.getChannelFail(err);
+			}
+
+			this.actions.getChannelSuccess(data);
+		});
     }
 
     // SEARCH CHANNELS
     searchChannels(q) {
 
-        $.ajax({
+        new HTTP().get({
             "url": "/api/channels/search?q=" + encodeURIComponent(q),
             "type": "GET",
-            "dataType": "json"
-        })
-        .done((data) => {
-            this.actions.searchChannelsSuccess(data);
-        })
-        .fail((jqXhr) => {
-            this.actions.searchChannelsFail(jqXhr);
-        });
+            "dataType": "json",
+			"cache": true,
+			"ttl": 300
+    	}, (err, data) => {
+
+			if(err) {
+				return this.actions.searchChannelsFail(err);
+			}
+
+			this.actions.searchChannelsSuccess(data);
+		});
     }
 }
 
