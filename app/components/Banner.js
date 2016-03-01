@@ -16,7 +16,7 @@ class Banner extends React.Component {
                   </div>
                   <div className="modal-body">
 				  	<p>
-						<img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png" data-src="/img/twoaboardtuuli.jpg" width="100%" />
+						<img src="/img/twoaboardtuuli.jpg" width="100%" />
 					</p>
                     <p>
                         The <a href="https://two-aboard-tuuli.com" target="_blank"><b>Two aboard Tuuli crew</b></a> created this website in their sparetime for you.
