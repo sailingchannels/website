@@ -12,6 +12,7 @@ class HTTP {
 
 	// GET OBJECT
 	getObject(key) {
+		key = key.split("&_=")[0];
 		var value = localStorage.getItem(key);
 
 		// check ttl
@@ -30,6 +31,7 @@ class HTTP {
 
 	// SET OBJECT
 	setObject(key, value, ttl) {
+		key = key.split("&_=")[0];
 		localStorage.setItem(key, JSON.stringify(value));
 
 		if(ttl) {
