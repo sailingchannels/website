@@ -22,8 +22,7 @@ class ChannelActions {
             "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
             "type": "GET",
             "dataType": "json",
-            "cache": true,
-			"ttl": 300
+            "cache": false
         }, (err, data) => {
 
 			if(err) {
