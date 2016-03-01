@@ -31,7 +31,7 @@ class ChannelListItem extends React.Component {
                             {this.props.channel.title}
                         </Link>
                     </h3>
-					<Description text={this.props.channel.description} maxLength={500} />
+					<Description text={this.props.channel.description} maxLength={350} />
                 </div>
                 <div className="col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0">
 

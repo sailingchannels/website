@@ -149,6 +149,17 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 		"channel": req.params.id
 	}, function(err, videoCount) {
 
+		// oh no!
+		if(err) {
+			return res.status(500).send({
+				"data": [],
+				"skip": skip,
+				"take": take,
+				"fin": false,
+				"error": err
+			});
+		}
+
 		global.videos.find({
 			"channel": req.params.id
 		})
@@ -164,7 +175,7 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 		.toArray(function(err, videos) {
 
 			// oh no!
-			if(err) {
+			if(err || !videos) {
 				return res.status(500).send({
 					"data": [],
 					"skip": skip,
@@ -216,7 +227,7 @@ app.get("/api/channels/get", function(req, res) {
 	}).toArray(function(err, channels) {
 
 		// oh no!
-		if(err) {
+		if(err || !channels) {
 			return res.status(500).send({
 				"data": [],
 				"skip": skip,
@@ -300,7 +311,7 @@ app.get("/api/channels/search", function(req, res) {
 	}, function(err, results) {
 
 		// oh no!
-		if(err) {
+		if(err || !results.videos || !results.channels) {
 			return res.status(500).send(err);
 		}
 
@@ -360,7 +371,7 @@ app.get("/api/video/get/:id", function(req, res) {
 		}).limit(1).next(function(err, channel) {
 
 			// oh no!
-			if(err) {
+			if(err && !channel) {
 				return res.status(500).send(err);
 			}
 
