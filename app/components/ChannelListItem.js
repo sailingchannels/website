@@ -31,13 +31,14 @@ class ChannelListItem extends React.Component {
                             {this.props.channel.title}
                         </Link>
                     </h3>
-					<Description text={this.props.channel.description} />
+					<Description text={this.props.channel.description} maxLength={500} />
                 </div>
                 <div className="col-md-3 col-xs-10 col-xs-offset-2 col-md-offset-0">
 
 					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden <i className="fa fa-frown-o"></i></b></p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
-                    {(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videoCount.toLocaleString()}</p> : null}
+					<p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
+					{(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videoCount.toLocaleString()}</p> : null}
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.props.channel.lastUploadAt * 1000))}</p> : ""}
 					<p><b>Founded:</b> {this.formatDate(this.props.channel.publishedAt)}</p>
 
