@@ -30,6 +30,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// ROBOTS.TXT
+app.get("/robots.txt", function(req, res) {
+	res.set("Content-Type", "text/plain");
+	return res.send("User-agent: *\nAllow: /");
+});
+
 // API / LANGUAGES
 app.get("/api/languages", function(req, res) {
 
