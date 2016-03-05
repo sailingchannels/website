@@ -71,13 +71,9 @@ class ChannelList extends React.Component {
 		this.setState(state);
 	}
 
-	// SCROLL WINDOW
-	scrollWindow() {
+	// LOAD MORE
+	loadMore() {
 
-		/*var scrollBottomThreshold = 150;
-		if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold &&
-			this.state.loading === false)
-		{*/
 		if(this.state.loading === false) {
 		   this.setState({
 			   "loading": true
@@ -127,7 +123,7 @@ class ChannelList extends React.Component {
             <div className="row">
 				<div className="col-md-1"></div>
                 <div className="col-md-10">
-					<Infinite useWindowAsScrollContainer={true} elementHeight={230} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.scrollWindow.bind(this)}>
+					<Infinite useWindowAsScrollContainer={true} elementHeight={230} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.loadMore.bind(this)}>
 
 	                    {this.state.channels.map(c => (
 	        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
