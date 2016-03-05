@@ -61,3 +61,4 @@ config.py
 
 node_modules
 bower_components
+client_id.json

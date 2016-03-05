@@ -16,6 +16,7 @@ var mongodb = require("mongodb");
 var moment = require("moment");
 var ISO6391 = require("iso-639-1");
 var async = require("async");
+var youtube = require("youtube-api");
 
 var app = express();
 var tag = process.env.TAG || "dev";
@@ -29,6 +30,14 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(express.static(path.join(__dirname, "public")));
+
+const CREDENTIALS = jsonfile.readFileSync("client_id.json");
+var oauth = youtube.authenticate({
+    "type": "oauth",
+	"client_id": CREDENTIALS.web.client_id,
+	"client_secret": CREDENTIALS.web.client_secret,
+	"redirect_url": CREDENTIALS.web.redirect_uris[0]
+});
 
 // ROBOTS.TXT
 app.get("/robots.txt", function(req, res) {
