@@ -73,7 +73,7 @@ class HTTP {
 
 		// try access the cache
 		var cached = this.getObject("GET:" + url);
-		if(cached !== null && obj.force === false) {
+		if(cached !== null && obj.force === false && obj.cache === true) {
 			if(this.debug) console.log(url + " [cache hit]");
 
 			// render table with cached data
@@ -134,7 +134,7 @@ class HTTP {
 
 		// try access the cache
 		var cached = this.getObject("POST:" + url);
-		if(cached && obj.force === false) {
+		if(cached && obj.force === false && obj.cache === true) {
 			if(this.debug) console.log(url + " [cache hit]");
 
 			// render table with cached data
