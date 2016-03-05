@@ -73,7 +73,6 @@ class HTTP {
 
 		// try access the cache
 		var cached = this.getObject("GET:" + url);
-		console.log(cached);
 		if(cached !== null && obj.force === false) {
 			if(this.debug) console.log(url + " [cache hit]");
 
