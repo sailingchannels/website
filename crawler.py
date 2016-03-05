@@ -314,7 +314,7 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 						channels[subChannelId]["language"] = detectedLang[0]["language"]
 						channels[subChannelId]["detectedLanguage"] = True
 
-			# upsert data in mongodb
+			# insert subscriber counts
 			try:
 				db.subscribers.update_one({
 					"_id": {
@@ -328,6 +328,25 @@ def addSingleChannel(subChannelId, i, level, readSubs = True, ignoreSailingTerm 
 						"day": date.today().day,
 						"date": datetime.utcnow(),
 						"subscribers": channels[subChannelId]["subscribers"]
+					}
+				}, True)
+			except:
+				pass
+
+			# insert view counts
+			try:
+				db.views.update_one({
+					"_id": {
+						"channel": subChannelId,
+						"date": int(date.today().strftime("%Y%m%d"))
+					}
+				}, {
+					"$set": {
+						"year": date.today().year,
+						"month": date.today().month,
+						"day": date.today().day,
+						"date": datetime.utcnow(),
+						"views": channels[subChannelId]["views"]
 					}
 				}, True)
 			except:

@@ -30,6 +30,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// ROBOTS.TXT
+app.get("/robots.txt", function(req, res) {
+	res.set("Content-Type", "text/plain");
+	return res.send("User-agent: *\nAllow: /");
+});
+
 // API / LANGUAGES
 app.get("/api/languages", function(req, res) {
 
@@ -149,6 +155,17 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 		"channel": req.params.id
 	}, function(err, videoCount) {
 
+		// oh no!
+		if(err) {
+			return res.status(500).send({
+				"data": [],
+				"skip": skip,
+				"take": take,
+				"fin": false,
+				"error": err
+			});
+		}
+
 		global.videos.find({
 			"channel": req.params.id
 		})
@@ -164,7 +181,7 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 		.toArray(function(err, videos) {
 
 			// oh no!
-			if(err) {
+			if(err || !videos) {
 				return res.status(500).send({
 					"data": [],
 					"skip": skip,
@@ -198,6 +215,7 @@ app.get("/api/channels/get", function(req, res) {
 		case "subscribers": sortKey = "subscribers"; break;
 		case "founded": sortKey = "publishedAt"; break;
 		case "upload": sortKey = "lastUploadAt"; break;
+		case "views": sortKey = "views"; break;
 	}
 
 	var sorting = {};
@@ -215,7 +233,7 @@ app.get("/api/channels/get", function(req, res) {
 	}).toArray(function(err, channels) {
 
 		// oh no!
-		if(err) {
+		if(err || !channels) {
 			return res.status(500).send({
 				"data": [],
 				"skip": skip,
@@ -299,7 +317,7 @@ app.get("/api/channels/search", function(req, res) {
 	}, function(err, results) {
 
 		// oh no!
-		if(err) {
+		if(err || !results.videos || !results.channels) {
 			return res.status(500).send(err);
 		}
 
@@ -345,7 +363,7 @@ app.get("/api/video/get/:id", function(req, res) {
 	}).limit(1).next(function(err, video) {
 
 		// oh no!
-		if(err) {
+		if(err || !video) {
 			return res.status(500).send(err);
 		}
 
@@ -359,7 +377,7 @@ app.get("/api/video/get/:id", function(req, res) {
 		}).limit(1).next(function(err, channel) {
 
 			// oh no!
-			if(err) {
+			if(err && !channel) {
 				return res.status(500).send(err);
 			}
 

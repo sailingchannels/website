@@ -17,10 +17,8 @@ class LanguageStore {
   	}
 
 	// GET LANGUAGES FAIL
-  	getLanguagesFail(jqXhr) {
-
-    	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+  	getLanguagesFail(err) {
+    	console.error(err);
   	}
 }
 

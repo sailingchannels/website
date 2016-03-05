@@ -83,6 +83,10 @@ class SearchBar extends React.Component {
 							&nbsp;Subscribers
 						</label>
 						<label className="sortBy-label">
+							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="views" defaultChecked={this.props.sortBy === "views"} />
+							&nbsp;Views
+						</label>
+						<label className="sortBy-label">
 							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="upload" defaultChecked={this.props.sortBy === "upload"} />
 							&nbsp;Last upload
 						</label>
