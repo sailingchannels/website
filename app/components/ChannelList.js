@@ -3,6 +3,7 @@ import ChannelListItem from "./ChannelListItem";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 import {Navigation} from "react-router";
+import Infinite from "react-infinite";
 
 class ChannelList extends React.Component {
 
@@ -19,7 +20,7 @@ class ChannelList extends React.Component {
 
 		// handle event bus page changes
 		$(window).on("changeSort", this.changeSort.bind(this));
-		$(window).on("scroll", this.scrollWindow.bind(this));
+		//$(window).on("scroll", this.scrollWindow.bind(this));
 		$(window).on("rerenderList", this.rerenderList.bind(this));
 
 		var sortBy = this.props.sortBy;
@@ -33,7 +34,7 @@ class ChannelList extends React.Component {
 
 	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
-		$(window).off("scroll");
+		//$(window).off("scroll");
 		$(window).off("changeSort");
 		$(window).off("rerenderList");
 
@@ -73,17 +74,18 @@ class ChannelList extends React.Component {
 	// SCROLL WINDOW
 	scrollWindow() {
 
-		var scrollBottomThreshold = 150;
+		/*var scrollBottomThreshold = 150;
 		if ($(window).scrollTop() + $(window).height() > $(document).height() - scrollBottomThreshold &&
 			this.state.loading === false)
-		{
+		{*/
+		if(this.state.loading === false) {
 		   this.setState({
 			   "loading": true
 		   });
 
 		   // load more data
 		   ChannelActions.getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
-	   	}
+	  	}
 	}
 
 	// RERENDER LIST
@@ -125,10 +127,14 @@ class ChannelList extends React.Component {
             <div className="row">
 				<div className="col-md-1"></div>
                 <div className="col-md-10">
-                    {this.state.channels.map(c => (
-        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
-        			))}
-					{(this.state.loading === true) ? <center className="loadMore">Loading more channels ...</center> : null}
+					<Infinite useWindowAsScrollContainer={true} elementHeight={230} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.scrollWindow.bind(this)}>
+
+	                    {this.state.channels.map(c => (
+	        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
+	        			))}
+
+					</Infinite>
+
                 </div>
 				<div className="col-md-1"></div>
             </div>
