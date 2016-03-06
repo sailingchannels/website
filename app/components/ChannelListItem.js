@@ -44,9 +44,17 @@ class ChannelListItem extends React.Component {
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.props.channel.lastUploadAt * 1000))}</p> : ""}
 					<p><b>Founded:</b> {this.formatDate(this.props.channel.publishedAt)}</p>
 
-					<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
-						<i className="fa fa-youtube-play"></i> Subscribe
-					</a>
+					{(this.props.channel.subscribed === false)
+					?
+						<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
+							<i className="fa fa-youtube-play"></i> Subscribe
+						</a>
+					:
+						<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-sidebar btn-raised">
+							<i className="fa fa-youtube-play"></i> Unsubscribe
+						</a>
+					}
+
                 </div>
 			</div>
 		);

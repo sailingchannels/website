@@ -10,6 +10,7 @@ import ChannelMissing from "./components/ChannelMissing";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Impressum from "./components/Impressum";
 import Contributions from "./components/Contributions";
+import Login from "./components/Login";
 
 
 export default (
@@ -24,5 +25,6 @@ export default (
 		<Route path="privacy" component={PrivacyPolicy} />
 		<Route path="impressum" component={Impressum} />
 		<Route path="contributions" component={Contributions} />
+		<Route path="login" component={Login} />
 	</Route>
 );
