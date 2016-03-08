@@ -120,6 +120,14 @@ app.get("/oauth2callback", function(req, res) {
 	}
 });
 
+// LOGOUT
+app.get("/logout", function(req, res) {
+	res.clearCookie("credentials");
+	res.clearCookie("me");
+
+	return res.redirect(301, "/");
+});
+
 // API / LANGUAGES
 app.get("/api/languages", function(req, res) {
 
@@ -428,7 +436,7 @@ app.get("/api/channels/get", function(req, res) {
 
 		// if we have subscriptions, enhance the
 		var channels = results.channels.map(function(channel) {
-			channel.subscribed = (results.subscriptions.indexOf(channel._id) >= 0);
+			channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
 			return channel;
 		});
 

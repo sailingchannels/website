@@ -26,13 +26,7 @@ class Login extends React.Component {
 							To provide you with a tailored user interface, you can log in with your YouTube account.
 						</p>
 						<p>
-							sailing-channels.com <u>does not publish anything in your behalf nor track or share your data</u>.
-						</p>
-						<p>
-							The tailored features are:
-							<ol>
-								<li>Subscribe to channels directly from sailing-channels.com</li>
-							</ol>
+							sailing-channels.com <u>does not publish anything on your behalf nor track or share your data</u>.
 						</p>
 						<center>
 							<a href="/oauth2callback" className="btn btn-danger btn-lg btn-raised">

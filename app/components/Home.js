@@ -5,6 +5,7 @@ import OffsetMenu from "./OffsetMenu";
 import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 import Banner from "./Banner";
+import {Link} from "react-router";
 
 class Home extends React.Component {
 

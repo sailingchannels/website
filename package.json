@@ -31,6 +31,7 @@
     "mongodb": "2.0.48",
     "morgan": "^1.6.1",
     "react": "^0.14.0",
+    "react-cookie": "^0.4.5",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.3.1",
     "react-infinite": "^0.8.0",

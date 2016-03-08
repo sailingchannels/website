@@ -1769,6 +1769,8 @@ var _Banner = require("./Banner");
 
 var _Banner2 = _interopRequireDefault(_Banner);
 
+var _reactRouter = require("react-router");
+
 var Home = (function (_React$Component) {
 	_inherits(Home, _React$Component);
 
@@ -1857,7 +1859,7 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./Banner":6,"./ChannelList":8,"./Logo":19,"./OffsetMenu":20,"./OffsetSocial":21,"./SearchBar":23,"react":"react"}],16:[function(require,module,exports){
+},{"./Banner":6,"./ChannelList":8,"./Logo":19,"./OffsetMenu":20,"./OffsetSocial":21,"./SearchBar":23,"react":"react","react-router":"react-router"}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2224,23 +2226,9 @@ var Login = (function (_React$Component) {
 							_react2["default"].createElement(
 								"u",
 								null,
-								"does not publish anything in your behalf nor track or share your data"
+								"does not publish anything on your behalf nor track or share your data"
 							),
 							"."
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							"The tailored features are:",
-							_react2["default"].createElement(
-								"ol",
-								null,
-								_react2["default"].createElement(
-									"li",
-									null,
-									"Subscribe to channels directly from sailing-channels.com"
-								)
-							)
 						),
 						_react2["default"].createElement(
 							"center",
@@ -2351,19 +2339,29 @@ var _LanguagePicker = require("./LanguagePicker");
 
 var _LanguagePicker2 = _interopRequireDefault(_LanguagePicker);
 
+var _reactCookie = require("react-cookie");
+
+var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
 var OffsetMenu = (function (_React$Component) {
 	_inherits(OffsetMenu, _React$Component);
 
-	function OffsetMenu() {
+	function OffsetMenu(props) {
 		_classCallCheck(this, OffsetMenu);
 
-		_get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).apply(this, arguments);
+		_get(Object.getPrototypeOf(OffsetMenu.prototype), "constructor", this).call(this, props);
+
+		this.state = {
+			"me": _reactCookie2["default"].load("me") ? JSON.parse(_reactCookie2["default"].load("me").replace("j:", "")) : null
+		};
+
+		console.log(this.state);
 	}
+
+	// TOGGLE MENU
 
 	_createClass(OffsetMenu, [{
 		key: "toggleMenu",
-
-		// TOGGLE MENU
 		value: function toggleMenu() {
 
 			if ($(".offset-menu").find("ul").hasClass("hidden-xs")) {
@@ -2434,6 +2432,25 @@ var OffsetMenu = (function (_React$Component) {
 								"Contributions"
 							)
 						),
+						!this.state.me ? _react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								_reactRouter.Link,
+								{ to: "/login", className: "yt-login" },
+								_react2["default"].createElement("i", { className: "fa fa-youtube" }),
+								" Login"
+							)
+						) : _react2["default"].createElement(
+							"li",
+							null,
+							_react2["default"].createElement(
+								"a",
+								{ href: "/logout" },
+								_react2["default"].createElement("i", { className: "fa fa-power-off" }),
+								" Logout"
+							)
+						),
 						_react2["default"].createElement(
 							"li",
 							null,
@@ -2456,7 +2473,7 @@ var OffsetMenu = (function (_React$Component) {
 exports["default"] = OffsetMenu;
 module.exports = exports["default"];
 
-},{"./LanguagePicker":17,"react":"react","react-router":"react-router"}],21:[function(require,module,exports){
+},{"./LanguagePicker":17,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
