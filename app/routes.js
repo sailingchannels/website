@@ -8,7 +8,7 @@ import VideoDetail from "./components/VideoDetail";
 import DataCollection from "./components/DataCollection";
 import ChannelMissing from "./components/ChannelMissing";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-import Impressum from "./components/Impressum";
+import Imprint from "./components/Imprint";
 import Contributions from "./components/Contributions";
 
 
@@ -22,7 +22,7 @@ export default (
 		<Route path="how-it-works" component={DataCollection} />
 		<Route path="channel-missing" component={ChannelMissing} />
 		<Route path="privacy" component={PrivacyPolicy} />
-		<Route path="impressum" component={Impressum} />
+		<Route path="imprint" component={Imprint} />
 		<Route path="contributions" component={Contributions} />
 	</Route>
 );
