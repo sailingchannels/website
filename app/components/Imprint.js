@@ -3,7 +3,7 @@ import OffsetMenu from "./OffsetMenu";
 import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 
-class Impressum extends React.Component {
+class Imprint extends React.Component {
 
     // COMPONENT DID MOUNT
     componentDidMount() {
@@ -21,9 +21,9 @@ class Impressum extends React.Component {
                 <div className="row content-row">
 					<div className="col-md-3"></div>
 					<div className="col-md-6">
-	                    <h1 className="content-h1">Impressum</h1>
+	                    <h1 className="content-h1">Imprint</h1>
 						<p>
-                        The following information (Impressum) is required under German law.</p>
+                        The following information (Imprint) is required under German law.</p>
 
                         <p>Responsible for this site:</p>
 
@@ -56,4 +56,4 @@ class Impressum extends React.Component {
 	}
 }
 
-export default Impressum;
+export default Imprint;
