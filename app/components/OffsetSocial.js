@@ -1,7 +1,17 @@
 import React from "react";
 import Footer from "./Footer";
+import cookie from "react-cookie";
+import {Link} from "react-router";
 
 class SocialOffset extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
+		};
+	}
 
 	// REPLACE X
 	replaceX(e) {
@@ -18,6 +28,7 @@ class SocialOffset extends React.Component {
 
 		return (
 			<div className="offset-social">
+				{(this.state.me) ? <p>Hi, <Link to="/me">{this.state.me.title}</Link></p> : null}
 		        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
 		            <i className="fa fa-facebook-square fa-3x"></i>
 		        </a>

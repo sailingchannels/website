@@ -181,58 +181,85 @@ app.get("/api/channel/get/:id", function(req, res) {
 
 	var id = req.params.id;
 
-	// find one video
-	global.channels.find({"_id": id}).project({
-		"lastCrawl": false,
-		"language": false,
-		"detectedLanguage": false
-	}).limit(1).next(function(err, channel) {
+	async.parallel({
+		// SUBSCRIPTIONS
+		"subscriptions": function(done_subscriptions) {
 
-		// oh no!
-		if(err || !channel) {
+			if(req.cookies.credentials) {
+				readSubscriptions(req.cookies.credentials, done_subscriptions);
+			}
+			else {
+				// no credentials available
+				return done_subscriptions(null, null);
+			}
+		},
+
+		// CHANNEL
+		"channel": function(done_channel) {
+			// find one video
+			global.channels.find({"_id": id}).project({
+				"lastCrawl": false,
+				"language": false,
+				"detectedLanguage": false
+			}).limit(1).next(function(err, channel) {
+
+				// oh no!
+				if(err || !channel) {
+					return res.status(500).send(err);
+				}
+
+				async.parallel({
+
+					// fetch latest video from mongodb
+					"video": function(done) {
+
+						// fetch latest video
+						global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
+							"videos.description": false
+						}).next(done);
+					},
+
+					// fetch the subscriber history of last 7 days
+					"subscribers": function(done) {
+
+						global.subscribers.find({
+							"_id.channel": id,
+							"date": {
+								"$gte": moment().subtract(7, "days").toDate()
+							}
+						})
+						.sort({"date": 1})
+						.project({
+							"subscribers": true
+						})
+						.toArray(done);
+					}
+
+				}, function(err, result) {
+
+					// oh no!
+					if(err) {
+						return done_channel(err, null);
+					}
+
+					channel.videos = [];
+					channel.videos.push(result.video);
+					channel.subHist = result.subscribers;
+
+					return done_channel(null, channel);
+				});
+			});
+		}
+	}, function(err, results) {
+
+		if(err) {
 			return res.status(500).send(err);
 		}
 
-		async.parallel({
+		// check if user subscribed to this channel
+		results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
 
-			// fetch latest video from mongodb
-			"video": function(done) {
-
-				// fetch latest video
-				global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
-					"videos.description": false
-				}).next(done);
-			},
-
-			// fetch the subscriber history of last 7 days
-			"subscribers": function(done) {
-
-				global.subscribers.find({
-					"_id.channel": id,
-					"date": {
-						"$gte": moment().subtract(7, "days").toDate()
-					}
-				})
-				.sort({"date": 1})
-				.project({
-					"subscribers": true
-				})
-				.toArray(done);
-			}
-
-		}, function(err, result) {
-
-			// oh no!
-			if(err) {
-				return res.status(500).send(err);
-			}
-
-			channel.videos = [];
-			channel.videos.push(result.video);
-			channel.subHist = result.subscribers;
-
-			return res.send(channel);
-		});
+		return res.send(results.channel);
 	});
 });
 
@@ -379,8 +406,6 @@ var readSubscriptions = function(credentials, done) {
 // API / CHANNELS / GET
 app.get("/api/channels/get", function(req, res) {
 
-	console.log();
-
 	var sortBy = req.query.sort || "subscribers";
 	var take = parseInt(req.query.take) || 25;
 	var skip = parseInt(req.query.skip) || 0;
@@ -446,6 +471,46 @@ app.get("/api/channels/get", function(req, res) {
 			"skip": skip,
 			"take": take
 		});
+	});
+});
+
+// API / CHANNEL / SUBSCRIBE
+app.post("/api/channel/subscribe", function(req, res) {
+
+	var channel = req.body.channel;
+	if(!channel) {
+		return res.status(400).send({"error": "no channel id provided"});
+	}
+
+	// check if request is authenticated
+	if(!req.cookies.credentials) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	// authenticate next request
+	oauth.setCredentials(req.cookies.credentials);
+
+	// add the subscription
+	youtube.subscriptions.insert({
+		snippet: {
+			resourceId: {
+				kind: "youtube#channel",
+				channelId: channel
+			}
+		}
+	}, function (err, data) {
+
+		// handle error like a grown up
+		if(err) {
+			return res.status(500).send({"error": err});
+		}
+
+		// clear cache
+		global.CACHE_users_subscriptions.removeOne({
+			"_id": credentials.access_token
+		});
+
+		return res.send({"error": null, "success": true});
 	});
 });
 

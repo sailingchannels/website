@@ -48,6 +48,12 @@ class ChannelDetail extends React.Component {
 		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 	}
 
+	// SUBSCRIBE
+	subscribeChannel() {
+		console.log("subscribe");
+		ChannelActions.subscribe(this.state.channel.id);
+	}
+
     // RENDER
 	render() {
 
@@ -98,9 +104,16 @@ class ChannelDetail extends React.Component {
 								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
-								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
-									<i className="fa fa-youtube-play"></i> Subscribe
-								</a>
+								{(this.state.channel.subscribed === false)
+								?
+									<button onClick={this.subscribeChannel.bind(this)} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
+										<i className="fa fa-youtube-play"></i> Subscribe
+									</button>
+								:
+									<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-sidebar btn-raised">
+										<i className="fa fa-youtube-play"></i> Unsubscribe
+									</a>
+								}
 
 							</div>
 						</div>

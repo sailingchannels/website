@@ -11,7 +11,9 @@ class ChannelActions {
             "getChannelSuccess",
             "getChannelFail",
             "searchChannelsSuccess",
-            "searchChannelsFail"
+            "searchChannelsFail",
+			"subscribeSuccess",
+			"subscribeFail"
         );
     }
 
@@ -58,7 +60,7 @@ class ChannelActions {
             "url": "/api/channels/search?q=" + encodeURIComponent(q),
             "type": "GET",
             "dataType": "json",
-			"cache": false,
+			"cache": false
     	}, (err, data) => {
 
 			if(err) {
@@ -68,6 +70,27 @@ class ChannelActions {
 			this.actions.searchChannelsSuccess(data);
 		});
     }
+
+	// SUBSCRIEB
+	subscribe(channelId) {
+		console.log(channelId);
+		new HTTP().post({
+			"url": "/api/channels/subscribe",
+			"data": {
+				"channel": channelId
+			},
+			"type": "POST",
+			"dataType": "json",
+			"cache": false
+		}, (err, data) => {
+
+			if(err) {
+				return this.actions.subscribeFail(err);
+			}
+
+			this.actions.subscribeSuccess(data);
+		});
+	}
 }
 
 export default alt.createActions(ChannelActions);

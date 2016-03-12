@@ -37,19 +37,19 @@ class ChannelStore {
 	}
 
 	// GET CHANNEL FAIL
-  	getChannelFail(jqXhr) {
+  	getChannelFail(err) {
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr);
+    	console.error(err);
   	}
 
 	// GET CHANNELS FAIL
-  	getChannelsFail(jqXhr) {
+  	getChannelsFail(err) {
 
 		this.loading = false;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr);
+    	console.error(err);
   	}
 
 	// SEARCH CHANNELS SUCCESS
@@ -60,13 +60,27 @@ class ChannelStore {
   	}
 
 	// SEARCH CHANNELS FAIL
-  	searchChannelsFail(jqXhr) {
+  	searchChannelsFail(err) {
 
 		this.loading = false;
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr);
+    	console.error(err);
   	}
+
+	// SUBSCRIBE SUCCESS
+	subscribeSuccess(result) {
+
+		// set subscription status to current channel
+		if(this.channel && result.success) {
+			this.channel.subscribed = true;
+		}
+	}
+
+	// SUBSCRIBE FAIL
+	subscribeFail(err) {
+		console.error(err);
+	}
 }
 
 export default alt.createStore(ChannelStore);

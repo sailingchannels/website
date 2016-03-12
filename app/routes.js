@@ -11,7 +11,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import Imprint from "./components/Imprint";
 import Contributions from "./components/Contributions";
 import Login from "./components/Login";
-
+import Me from "./components/Me";
 
 export default (
 	<Route path="/" component={App}>
@@ -26,5 +26,6 @@ export default (
 		<Route path="imprint" component={Imprint} />
 		<Route path="contributions" component={Contributions} />
 		<Route path="login" component={Login} />
+		<Route path="me" component={Me} />
 	</Route>
 );
