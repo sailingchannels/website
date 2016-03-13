@@ -75,7 +75,7 @@ class ChannelActions {
 	subscribe(channelId) {
 		console.log(channelId);
 		new HTTP().post({
-			"url": "/api/channels/subscribe",
+			"url": "/api/channel/subscribe",
 			"data": {
 				"channel": channelId
 			},

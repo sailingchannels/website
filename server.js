@@ -483,7 +483,8 @@ app.post("/api/channel/subscribe", function(req, res) {
 	}
 
 	// check if request is authenticated
-	if(!req.cookies.credentials) {
+	var credentials = req.cookies.credentials;
+	if(!credentials) {
 		return res.status(401).send({"error": "no permission to perform this operation"});
 	}
 
@@ -492,10 +493,13 @@ app.post("/api/channel/subscribe", function(req, res) {
 
 	// add the subscription
 	youtube.subscriptions.insert({
-		snippet: {
-			resourceId: {
-				kind: "youtube#channel",
-				channelId: channel
+		part: "snippet",
+		resource: {
+			snippet: {
+				resourceId: {
+					kind: "youtube#channel",
+					channelId: channel
+				}
 			}
 		}
 	}, function (err, data) {

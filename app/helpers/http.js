@@ -116,7 +116,7 @@ class HTTP {
 
 		var obj = $.extend({
 			url: "",
-			params: {},
+			data: {},
 			ttl: null,
 			force: false,
 			timeout: 10000,
@@ -152,7 +152,7 @@ class HTTP {
 				"headers": obj.headers,
 				"dataType": "json",
 				"timeout": obj.timeout,
-				"data": obj.params
+				"data": obj.data
 			})
 			.done((data) => {
 

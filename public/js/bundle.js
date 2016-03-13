@@ -100,7 +100,7 @@ var ChannelActions = (function () {
 
 			console.log(channelId);
 			new _helpersHttp2["default"]().post({
-				"url": "/api/channels/subscribe",
+				"url": "/api/channel/subscribe",
 				"data": {
 					"channel": channelId
 				},
@@ -165,8 +165,7 @@ var LanguageActions = (function () {
                 "url": "/api/languages",
                 "type": "GET",
                 "dataType": "json",
-                "cache": true,
-                "ttl": 86400
+                "cache": false
             }, function (err, data) {
 
                 if (err) {
@@ -4399,7 +4398,7 @@ var HTTP = (function () {
 
 			var obj = $.extend({
 				url: "",
-				params: {},
+				data: {},
 				ttl: null,
 				force: false,
 				timeout: 10000,
@@ -4434,7 +4433,7 @@ var HTTP = (function () {
 					"headers": obj.headers,
 					"dataType": "json",
 					"timeout": obj.timeout,
-					"data": obj.params
+					"data": obj.data
 				}).done(function (data) {
 
 					// add to cache with TTL
