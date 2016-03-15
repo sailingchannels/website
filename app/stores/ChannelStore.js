@@ -81,6 +81,20 @@ class ChannelStore {
 	subscribeFail(err) {
 		console.error(err);
 	}
+
+	// UNSUBSCRIBE SUCCESS
+	unsubscribeSuccess(result) {
+
+		// set subscription status to current channel
+		if(this.channel && result.success) {
+			this.channel.subscribed = false;
+		}
+	}
+
+	// UNSUBSCRIBE FAIL
+	unsubscribeFail(err) {
+		console.error(err);
+	}
 }
 
 export default alt.createStore(ChannelStore);

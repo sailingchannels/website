@@ -510,11 +510,65 @@ app.post("/api/channel/subscribe", function(req, res) {
 		}
 
 		// clear cache
-		global.CACHE_users_subscriptions.removeOne({
+		global.CACHE_users_subscriptions.deleteOne({
 			"_id": credentials.access_token
 		});
 
 		return res.send({"error": null, "success": true});
+	});
+});
+
+// API / CHANNEL / UNSUBSCRIBE
+app.post("/api/channel/unsubscribe", function(req, res) {
+
+	var channel = req.body.channel;
+	if(!channel) {
+		return res.status(400).send({"error": "no channel id provided"});
+	}
+
+	// check if request is authenticated
+	var credentials = req.cookies.credentials;
+	if(!credentials) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	// authenticate next request
+	oauth.setCredentials(req.cookies.credentials);
+
+	// fetch subscription id
+	youtube.subscriptions.list({
+		"part": "id",
+		"forChannelId": channel,
+		"mine": true
+	}, function(err, subs) {
+
+		// handle error like a grown up
+		if(err) {
+			return res.status(500).send({"error": err});
+		}
+
+		// could not find enough results?
+		if(subs.pageInfo.totalResults !== 1) {
+			return res.status(500).send({"error": "could not find subscription result"});
+		}
+
+		// delete the subscription
+		youtube.subscriptions.delete({
+			"id": subs.items[0].id
+		}, function (err, data) {
+
+			// handle error like a grown up
+			if(err) {
+				return res.status(500).send({"error": err});
+			}
+
+			// clear cache
+			global.CACHE_users_subscriptions.deleteOne({
+				"_id": credentials.access_token
+			});
+
+			return res.send({"error": null, "success": true});
+		});
 	});
 });
 

@@ -49,9 +49,15 @@ class ChannelDetail extends React.Component {
 	}
 
 	// SUBSCRIBE
-	subscribeChannel() {
-		console.log("subscribe");
+	subscribeChannel(e) {
+		//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
 		ChannelActions.subscribe(this.state.channel.id);
+	}
+
+	// UNSUBSCRIBE
+	unsubscribeChannel(e) {
+		//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
+		ChannelActions.unsubscribe(this.state.channel.id);
 	}
 
     // RENDER
@@ -110,9 +116,9 @@ class ChannelDetail extends React.Component {
 										<i className="fa fa-youtube-play"></i> Subscribe
 									</button>
 								:
-									<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-sidebar btn-raised">
+									<button onClick={this.unsubscribeChannel.bind(this)} className="hidden-xs btn btn-sidebar btn-raised">
 										<i className="fa fa-youtube-play"></i> Unsubscribe
-									</a>
+									</button>
 								}
 
 							</div>

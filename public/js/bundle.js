@@ -25,7 +25,7 @@ var ChannelActions = (function () {
 	function ChannelActions() {
 		_classCallCheck(this, ChannelActions);
 
-		this.generateActions("getChannelsSuccess", "getChannelsFail", "getChannelSuccess", "getChannelFail", "searchChannelsSuccess", "searchChannelsFail", "subscribeSuccess", "subscribeFail");
+		this.generateActions("getChannelsSuccess", "getChannelsFail", "getChannelSuccess", "getChannelFail", "searchChannelsSuccess", "searchChannelsFail", "subscribeSuccess", "subscribeFail", "unsubscribeSuccess", "unsubscribeFail");
 	}
 
 	// GET CHANNEL
@@ -92,13 +92,12 @@ var ChannelActions = (function () {
 			});
 		}
 
-		// SUBSCRIEB
+		// SUBSCRIBE
 	}, {
 		key: "subscribe",
 		value: function subscribe(channelId) {
 			var _this4 = this;
 
-			console.log(channelId);
 			new _helpersHttp2["default"]().post({
 				"url": "/api/channel/subscribe",
 				"data": {
@@ -114,6 +113,30 @@ var ChannelActions = (function () {
 				}
 
 				_this4.actions.subscribeSuccess(data);
+			});
+		}
+
+		// UNSUBSCRIBE
+	}, {
+		key: "unsubscribe",
+		value: function unsubscribe(channelId) {
+			var _this5 = this;
+
+			new _helpersHttp2["default"]().post({
+				"url": "/api/channel/unsubscribe",
+				"data": {
+					"channel": channelId
+				},
+				"type": "POST",
+				"dataType": "json",
+				"cache": false
+			}, function (err, data) {
+
+				if (err) {
+					return _this5.actions.unsubscribeFail(err);
+				}
+
+				_this5.actions.unsubscribeSuccess(data);
 			});
 		}
 	}]);
@@ -558,9 +581,17 @@ var ChannelDetail = (function (_React$Component) {
 		// SUBSCRIBE
 	}, {
 		key: "subscribeChannel",
-		value: function subscribeChannel() {
-			console.log("subscribe");
+		value: function subscribeChannel(e) {
+			//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
 			_actionsChannelActions2["default"].subscribe(this.state.channel.id);
+		}
+
+		// UNSUBSCRIBE
+	}, {
+		key: "unsubscribeChannel",
+		value: function unsubscribeChannel(e) {
+			//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
+			_actionsChannelActions2["default"].unsubscribe(this.state.channel.id);
 		}
 
 		// RENDER
@@ -747,8 +778,8 @@ var ChannelDetail = (function (_React$Component) {
 									_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
 									" Subscribe"
 								) : _react2["default"].createElement(
-									"a",
-									{ target: "_blank", href: "https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1", className: "hidden-xs btn btn-sidebar btn-raised" },
+									"button",
+									{ onClick: this.unsubscribeChannel.bind(this), className: "hidden-xs btn btn-sidebar btn-raised" },
 									_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
 									" Unsubscribe"
 								)
@@ -4689,6 +4720,24 @@ var ChannelStore = (function () {
 	}, {
 		key: "subscribeFail",
 		value: function subscribeFail(err) {
+			console.error(err);
+		}
+
+		// UNSUBSCRIBE SUCCESS
+	}, {
+		key: "unsubscribeSuccess",
+		value: function unsubscribeSuccess(result) {
+
+			// set subscription status to current channel
+			if (this.channel && result.success) {
+				this.channel.subscribed = false;
+			}
+		}
+
+		// UNSUBSCRIBE FAIL
+	}, {
+		key: "unsubscribeFail",
+		value: function unsubscribeFail(err) {
 			console.error(err);
 		}
 	}]);

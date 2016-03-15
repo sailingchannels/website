@@ -13,7 +13,9 @@ class ChannelActions {
             "searchChannelsSuccess",
             "searchChannelsFail",
 			"subscribeSuccess",
-			"subscribeFail"
+			"subscribeFail",
+			"unsubscribeSuccess",
+			"unsubscribeFail"
         );
     }
 
@@ -71,9 +73,8 @@ class ChannelActions {
 		});
     }
 
-	// SUBSCRIEB
+	// SUBSCRIBE
 	subscribe(channelId) {
-		console.log(channelId);
 		new HTTP().post({
 			"url": "/api/channel/subscribe",
 			"data": {
@@ -89,6 +90,26 @@ class ChannelActions {
 			}
 
 			this.actions.subscribeSuccess(data);
+		});
+	}
+
+	// UNSUBSCRIBE
+	unsubscribe(channelId) {
+		new HTTP().post({
+			"url": "/api/channel/unsubscribe",
+			"data": {
+				"channel": channelId
+			},
+			"type": "POST",
+			"dataType": "json",
+			"cache": false
+		}, (err, data) => {
+
+			if(err) {
+				return this.actions.unsubscribeFail(err);
+			}
+
+			this.actions.unsubscribeSuccess(data);
 		});
 	}
 }
