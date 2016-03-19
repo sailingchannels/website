@@ -36,7 +36,7 @@ class Me extends React.Component {
 						</p>
 						<center>
 							<a href="/logout" className="btn btn-raised">
-								<i className="fa fa-off"></i> Sign Out
+								<i className="fa fa-power-off"></i> Sign Out
 							</a>
 						</center>
 					</div>

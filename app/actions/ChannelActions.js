@@ -11,11 +11,7 @@ class ChannelActions {
             "getChannelSuccess",
             "getChannelFail",
             "searchChannelsSuccess",
-            "searchChannelsFail",
-			"subscribeSuccess",
-			"subscribeFail",
-			"unsubscribeSuccess",
-			"unsubscribeFail"
+            "searchChannelsFail"
         );
     }
 
@@ -74,7 +70,7 @@ class ChannelActions {
     }
 
 	// SUBSCRIBE
-	subscribe(channelId) {
+	subscribe(channelId, callback) {
 		new HTTP().post({
 			"url": "/api/channel/subscribe",
 			"data": {
@@ -86,15 +82,15 @@ class ChannelActions {
 		}, (err, data) => {
 
 			if(err) {
-				return this.actions.subscribeFail(err);
+				return callback(err);
 			}
 
-			this.actions.subscribeSuccess(data);
+			return callback(null, data);
 		});
 	}
 
 	// UNSUBSCRIBE
-	unsubscribe(channelId) {
+	unsubscribe(channelId, callback) {
 		new HTTP().post({
 			"url": "/api/channel/unsubscribe",
 			"data": {
@@ -106,10 +102,10 @@ class ChannelActions {
 		}, (err, data) => {
 
 			if(err) {
-				return this.actions.unsubscribeFail(err);
+				return callback(err);
 			}
 
-			this.actions.unsubscribeSuccess(data);
+			return callback(null, data);
 		});
 	}
 }

@@ -7,6 +7,7 @@ import OffsetSocial from "./OffsetSocial";
 import VideoList from "./VideoList";
 import Logo from "./Logo";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
+import SubscribeButton from "./SubscribeButton";
 
 class ChannelDetail extends React.Component {
 
@@ -46,18 +47,6 @@ class ChannelDetail extends React.Component {
 		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		var d = new Date(unix * 1000);
 		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
-	}
-
-	// SUBSCRIBE
-	subscribeChannel(e) {
-		//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
-		ChannelActions.subscribe(this.state.channel.id);
-	}
-
-	// UNSUBSCRIBE
-	unsubscribeChannel(e) {
-		//$(e.target).parents("button").html('<i class="fa fa-spinner fa-pulse"></i>');
-		ChannelActions.unsubscribe(this.state.channel.id);
 	}
 
     // RENDER
@@ -110,16 +99,7 @@ class ChannelDetail extends React.Component {
 								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
-								{(this.state.channel.subscribed === false)
-								?
-									<button onClick={this.subscribeChannel.bind(this)} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
-										<i className="fa fa-youtube-play"></i> Subscribe
-									</button>
-								:
-									<button onClick={this.unsubscribeChannel.bind(this)} className="hidden-xs btn btn-sidebar btn-raised">
-										<i className="fa fa-youtube-play"></i> Unsubscribe
-									</button>
-								}
+								<SubscribeButton channel={this.state.channel} />
 
 							</div>
 						</div>
