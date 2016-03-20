@@ -91,7 +91,7 @@ app.get("/oauth2callback", function(req, res) {
 						"lastLogin": moment.utc().toDate(),
 						"title": data.items[0].snippet.title,
 						"thumbnail": data.items[0].snippet.thumbnails.default.url,
-						"country": data.items[0].snippet.country.toLowerCase()
+						"country": ("country" in data.items[0].snippet) ? data.items[0].snippet.country.toLowerCase() : null
 					};
 
 					global.users.updateOne({
@@ -378,7 +378,6 @@ var readSubscriptions = function(credentials, done) {
 						subscriptions = subscriptions.concat(items);
 						return callback(null, true);
 					}
-
 				});
 			},
 			function () { return lastResult.nextPageToken; },

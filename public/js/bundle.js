@@ -128,6 +128,7 @@ var ChannelActions = (function () {
 				"cache": false
 			}, function (err, data) {
 
+				console.log(err);
 				if (err) {
 					return callback(err);
 				}
@@ -143,7 +144,7 @@ var ChannelActions = (function () {
 exports["default"] = _alt2["default"].createActions(ChannelActions);
 module.exports = exports["default"];
 
-},{"../alt":4,"../helpers/http":32}],2:[function(require,module,exports){
+},{"../alt":4,"../helpers/http":33}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -202,7 +203,7 @@ var LanguageActions = (function () {
 exports["default"] = _alt2["default"].createActions(LanguageActions);
 module.exports = exports["default"];
 
-},{"../alt":4,"../helpers/http":32}],3:[function(require,module,exports){
+},{"../alt":4,"../helpers/http":33}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -363,7 +364,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -382,88 +383,88 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require("react-router");
 
-var Banner = (function (_React$Component) {
-  _inherits(Banner, _React$Component);
+var BannerDialog = (function (_React$Component) {
+	_inherits(BannerDialog, _React$Component);
 
-  function Banner() {
-    _classCallCheck(this, Banner);
+	function BannerDialog() {
+		_classCallCheck(this, BannerDialog);
 
-    _get(Object.getPrototypeOf(Banner.prototype), "constructor", this).apply(this, arguments);
-  }
+		_get(Object.getPrototypeOf(BannerDialog.prototype), "constructor", this).apply(this, arguments);
+	}
 
-  _createClass(Banner, [{
-    key: "render",
+	_createClass(BannerDialog, [{
+		key: "render",
 
-    // RENDER
-    value: function render() {
+		// RENDER
+		value: function render() {
 
-      return _react2["default"].createElement(
-        "div",
-        { id: "banner-dialog", className: "modal fade" },
-        _react2["default"].createElement(
-          "div",
-          { className: "modal-dialog" },
-          _react2["default"].createElement(
-            "div",
-            { className: "modal-content" },
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-header" },
-              _react2["default"].createElement(
-                "button",
-                { type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
-                "×"
-              ),
-              _react2["default"].createElement(
-                "h3",
-                { className: "modal-title" },
-                "Thanks for stopping by!"
-              )
-            ),
-            _react2["default"].createElement(
-              "div",
-              { className: "modal-body" },
-              _react2["default"].createElement(
-                "p",
-                null,
-                _react2["default"].createElement("img", { src: "/img/twoaboardtuuli.jpg", width: "100%" })
-              ),
-              _react2["default"].createElement(
-                "p",
-                null,
-                "The ",
-                _react2["default"].createElement(
-                  "a",
-                  { href: "https://two-aboard-tuuli.com", target: "_blank" },
-                  _react2["default"].createElement(
-                    "b",
-                    null,
-                    "Two aboard Tuuli crew"
-                  )
-                ),
-                " created this website in their sparetime for you."
-              ),
-              _react2["default"].createElement(
-                "p",
-                null,
-                "If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!"
-              ),
-              _react2["default"].createElement(
-                "center",
-                { className: "banner-channel" },
-                _react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": "UCZbZeC2OfdVMwm9AR_zu0_g", "data-layout": "full", "data-count": "default" })
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
+			return _react2["default"].createElement(
+				"div",
+				{ id: "banner-dialog", className: "modal fade" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "modal-dialog" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "modal-content" },
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-header" },
+							_react2["default"].createElement(
+								"button",
+								{ type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+								"×"
+							),
+							_react2["default"].createElement(
+								"h3",
+								{ className: "modal-title" },
+								"Thanks for stopping by!"
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-body" },
+							_react2["default"].createElement(
+								"p",
+								null,
+								_react2["default"].createElement("img", { src: "/img/twoaboardtuuli.jpg", width: "100%" })
+							),
+							_react2["default"].createElement(
+								"p",
+								null,
+								"The ",
+								_react2["default"].createElement(
+									"a",
+									{ href: "https://two-aboard-tuuli.com", target: "_blank" },
+									_react2["default"].createElement(
+										"b",
+										null,
+										"Two aboard Tuuli crew"
+									)
+								),
+								" created this website in their sparetime for you."
+							),
+							_react2["default"].createElement(
+								"p",
+								null,
+								"If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!"
+							),
+							_react2["default"].createElement(
+								"center",
+								{ className: "banner-channel" },
+								_react2["default"].createElement("div", { className: "g-ytsubscribe", "data-channelid": "UCZbZeC2OfdVMwm9AR_zu0_g", "data-layout": "full", "data-count": "default" })
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
 
-  return Banner;
+	return BannerDialog;
 })(_react2["default"].Component);
 
-exports["default"] = Banner;
+exports["default"] = BannerDialog;
 module.exports = exports["default"];
 
 },{"react":"react","react-router":"react-router"}],7:[function(require,module,exports){
@@ -777,7 +778,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":35,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./SubscribeButton":27,"./SubscriberHistoryChart":28,"./VideoList":30,"react":"react","react-helmet":59}],8:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":36,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./SubscribeButton":28,"./SubscriberHistoryChart":29,"./VideoList":31,"react":"react","react-helmet":60}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -984,7 +985,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":35,"./ChannelListItem":9,"react":"react","react-infinite":"react-infinite","react-router":"react-router"}],9:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":36,"./ChannelListItem":9,"react":"react","react-infinite":"react-infinite","react-router":"react-router"}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1011,6 +1012,10 @@ var _Description2 = _interopRequireDefault(_Description);
 
 var _reactRouter = require("react-router");
 
+var _SubscribeButton = require("./SubscribeButton");
+
+var _SubscribeButton2 = _interopRequireDefault(_SubscribeButton);
+
 var ChannelListItem = (function (_React$Component) {
 	_inherits(ChannelListItem, _React$Component);
 
@@ -1035,6 +1040,13 @@ var ChannelListItem = (function (_React$Component) {
 			var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			var d = new Date(unix * 1000);
 			return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+		}
+
+		// SHOULD COMPOENENT UPDATE
+	}, {
+		key: "shouldComponentUpdate",
+		value: function shouldComponentUpdate(nextProps, nextState) {
+			return nextProps.channel.id !== this.props.channel.id;
 		}
 
 		// RENDER
@@ -1139,17 +1151,7 @@ var ChannelListItem = (function (_React$Component) {
 						" ",
 						this.formatDate(this.props.channel.publishedAt)
 					),
-					this.props.channel.subscribed === false ? _react2["default"].createElement(
-						"a",
-						{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "hidden-xs btn btn-danger btn-sidebar btn-raised" },
-						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-						" Subscribe"
-					) : _react2["default"].createElement(
-						"a",
-						{ target: "_blank", href: "https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1", className: "hidden-xs btn btn-sidebar btn-raised" },
-						_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
-						" Unsubscribe"
-					)
+					_react2["default"].createElement(_SubscribeButton2["default"], { channel: this.props.channel })
 				)
 			);
 		}
@@ -1161,7 +1163,7 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":13,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+},{"./Description":13,"./SubscribeButton":28,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1563,7 +1565,25 @@ var DataCollection = (function (_React$Component) {
 						_react2["default"].createElement(
 							"p",
 							null,
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
 							"The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
 						),
 						_react2["default"].createElement(
 							"p",
@@ -1573,7 +1593,11 @@ var DataCollection = (function (_React$Component) {
 						_react2["default"].createElement(
 							"p",
 							null,
-							" "
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
 						),
 						_react2["default"].createElement(
 							"center",
@@ -1813,9 +1837,13 @@ var _Logo = require("./Logo");
 
 var _Logo2 = _interopRequireDefault(_Logo);
 
-var _Banner = require("./Banner");
+var _BannerDialog = require("./BannerDialog");
 
-var _Banner2 = _interopRequireDefault(_Banner);
+var _BannerDialog2 = _interopRequireDefault(_BannerDialog);
+
+var _SignInDialog = require("./SignInDialog");
+
+var _SignInDialog2 = _interopRequireDefault(_SignInDialog);
 
 var _reactCookie = require("react-cookie");
 
@@ -1901,7 +1929,7 @@ var Home = (function (_React$Component) {
 					null,
 					_react2["default"].createElement(
 						_reactRouter.Link,
-						{ to: "/login", className: "btn btn-raised btn-sm btn-danger yt-login" },
+						{ to: "/signin", className: "btn btn-raised btn-sm btn-danger yt-login" },
 						"Sign In with ",
 						_react2["default"].createElement("i", { className: "fa fa-youtube" }),
 						" YouTube"
@@ -1912,7 +1940,8 @@ var Home = (function (_React$Component) {
 				_react2["default"].createElement(_SearchBar2["default"], { sortBy: sortBy, history: this.props.history }),
 				_react2["default"].createElement(_ChannelList2["default"], { sortBy: sortBy, history: this.props.history }),
 				this.props.children,
-				_react2["default"].createElement(_Banner2["default"], null)
+				_react2["default"].createElement(_BannerDialog2["default"], null),
+				_react2["default"].createElement(_SignInDialog2["default"], null)
 			);
 		}
 	}]);
@@ -1923,11 +1952,11 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./Banner":6,"./ChannelList":8,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./SearchBar":24,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],16:[function(require,module,exports){
+},{"./BannerDialog":6,"./ChannelList":8,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./SearchBar":24,"./SignInDialog":27,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+                  value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1957,145 +1986,181 @@ var _Logo = require("./Logo");
 var _Logo2 = _interopRequireDefault(_Logo);
 
 var Imprint = (function (_React$Component) {
-    _inherits(Imprint, _React$Component);
+                  _inherits(Imprint, _React$Component);
 
-    function Imprint() {
-        _classCallCheck(this, Imprint);
+                  function Imprint() {
+                                    _classCallCheck(this, Imprint);
 
-        _get(Object.getPrototypeOf(Imprint.prototype), "constructor", this).apply(this, arguments);
-    }
+                                    _get(Object.getPrototypeOf(Imprint.prototype), "constructor", this).apply(this, arguments);
+                  }
 
-    _createClass(Imprint, [{
-        key: "componentDidMount",
+                  _createClass(Imprint, [{
+                                    key: "componentDidMount",
 
-        // COMPONENT DID MOUNT
-        value: function componentDidMount() {
-            document.title = "Impressum | Sailing Channels";
-        }
+                                    // COMPONENT DID MOUNT
+                                    value: function componentDidMount() {
+                                                      document.title = "Impressum | Sailing Channels";
+                                    }
 
-        // RENDER
-    }, {
-        key: "render",
-        value: function render() {
+                                    // RENDER
+                  }, {
+                                    key: "render",
+                                    value: function render() {
 
-            return _react2["default"].createElement(
-                "div",
-                { className: "container" },
-                _react2["default"].createElement(_OffsetSocial2["default"], null),
-                _react2["default"].createElement(_Logo2["default"], null),
-                _react2["default"].createElement(_OffsetMenu2["default"], null),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "row content-row" },
-                    _react2["default"].createElement("div", { className: "col-md-3" }),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "col-md-6" },
-                        _react2["default"].createElement(
-                            "h1",
-                            { className: "content-h1" },
-                            "Imprint"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The following information (Imprint) is required under German law."
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Responsible for this site:"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            _react2["default"].createElement(
-                                "span",
-                                { className: "reverse" },
-                                "nnameggürB samohT"
-                            ),
-                            _react2["default"].createElement("br", null),
-                            _react2["default"].createElement(
-                                "span",
-                                { className: "reverse" },
-                                "51 eßartsreliewtdiehcS"
-                            ),
-                            _react2["default"].createElement("br", null),
-                            _react2["default"].createElement(
-                                "span",
-                                { className: "reverse" },
-                                "nlöK 33905"
-                            ),
-                            _react2["default"].createElement("br", null),
-                            _react2["default"].createElement(
-                                "span",
-                                { className: "reverse" },
-                                "moc.slennahc-gnilias@yoha"
-                            ),
-                            _react2["default"].createElement("br", null)
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Legal disclaimer"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The contents of these pages are generated automatically based on the YouTube channel title, description and videos of the individual channels listed. The creator of this website has no influence on the content of the channel descriptions or other channel related texts. Also, The creator of this website cannot assume liability for the timeless accuracy and completeness of the information. This website contains links to external websites. As the contents of these third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity for the contents of the linked pages is always held by the provider or operator of the pages."
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Data protection"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "In general, when visiting the website of “Sailing Channels”, no personal data are saved. No data will be passed on to third parties without your consent. We point out that in regard to unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed. Such data could possibIy be accessed by third parties."
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Google Analytics"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "This website uses Google Analytics, a web analytics service provided by Google, Inc. (»Google«). Google Analytics uses cookies, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. On this website the IP anonymization feature is activated. As a result Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "How to prevent being tracked by Google Analytics on sailing-channels.com"
-                        ),
-                        _react2["default"].createElement(
-                            "ul",
-                            null,
-                            _react2["default"].createElement(
-                                "li",
-                                null,
-                                "You may refuse the use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this, you may not be able to use the full functionality of this website."
-                            ),
-                            _react2["default"].createElement(
-                                "li",
-                                null,
-                                "Furthermore you can prevent Google’s collection and use of data (cookies and IP address) by downloading and installing the browser plug-in available under ",
-                                _react2["default"].createElement(
-                                    "a",
-                                    { href: "https://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
-                                    "https://tools.google.com/dlpage/gaoptout?hl=en"
-                                )
-                            )
-                        )
-                    ),
-                    _react2["default"].createElement("div", { className: "col-md-3" })
-                )
-            );
-        }
-    }]);
+                                                      return _react2["default"].createElement(
+                                                                        "div",
+                                                                        { className: "container" },
+                                                                        _react2["default"].createElement(_OffsetSocial2["default"], null),
+                                                                        _react2["default"].createElement(_Logo2["default"], null),
+                                                                        _react2["default"].createElement(_OffsetMenu2["default"], null),
+                                                                        _react2["default"].createElement(
+                                                                                          "div",
+                                                                                          { className: "row content-row" },
+                                                                                          _react2["default"].createElement("div", { className: "col-md-3" }),
+                                                                                          _react2["default"].createElement(
+                                                                                                            "div",
+                                                                                                            { className: "col-md-6" },
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "h1",
+                                                                                                                              { className: "content-h1" },
+                                                                                                                              "Imprint"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              "The following information (Imprint) is required under German law."
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              "Responsible for this site:"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "span",
+                                                                                                                                                { className: "reverse" },
+                                                                                                                                                "nnameggürB samohT"
+                                                                                                                              ),
+                                                                                                                              _react2["default"].createElement("br", null),
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "span",
+                                                                                                                                                { className: "reverse" },
+                                                                                                                                                "51 eßartsreliewtdiehcS"
+                                                                                                                              ),
+                                                                                                                              _react2["default"].createElement("br", null),
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "span",
+                                                                                                                                                { className: "reverse" },
+                                                                                                                                                "nlöK 33905"
+                                                                                                                              ),
+                                                                                                                              _react2["default"].createElement("br", null),
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "span",
+                                                                                                                                                { className: "reverse" },
+                                                                                                                                                "moc.slennahc-gnilias@yoha"
+                                                                                                                              ),
+                                                                                                                              _react2["default"].createElement("br", null)
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "center",
+                                                                                                                                                null,
+                                                                                                                                                "~"
+                                                                                                                              )
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "h3",
+                                                                                                                              null,
+                                                                                                                              "Legal disclaimer"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              "The contents of these pages are generated automatically based on the YouTube channel title, description and videos of the individual channels listed. The creator of this website has no influence on the content of the channel descriptions or other channel related texts. Also, The creator of this website cannot assume liability for the timeless accuracy and completeness of the information. This website contains links to external websites. As the contents of these third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity for the contents of the linked pages is always held by the provider or operator of the pages."
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "center",
+                                                                                                                                                null,
+                                                                                                                                                "~"
+                                                                                                                              )
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "h3",
+                                                                                                                              null,
+                                                                                                                              "Data protection"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              "In general, when visiting the website of “Sailing Channels”, no personal data are saved. No data will be passed on to third parties without your consent. We point out that in regard to unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed. Such data could possibIy be accessed by third parties."
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "center",
+                                                                                                                                                null,
+                                                                                                                                                "~"
+                                                                                                                              )
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "h3",
+                                                                                                                              null,
+                                                                                                                              "Google Analytics"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              "This website uses Google Analytics, a web analytics service provided by Google, Inc. (»Google«). Google Analytics uses cookies, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. On this website the IP anonymization feature is activated. As a result Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above."
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "p",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "center",
+                                                                                                                                                null,
+                                                                                                                                                "~"
+                                                                                                                              )
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "h4",
+                                                                                                                              null,
+                                                                                                                              "How to prevent being tracked by Google Analytics on sailing-channels.com"
+                                                                                                            ),
+                                                                                                            _react2["default"].createElement(
+                                                                                                                              "ul",
+                                                                                                                              null,
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "li",
+                                                                                                                                                null,
+                                                                                                                                                "You may refuse the use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this, you may not be able to use the full functionality of this website."
+                                                                                                                              ),
+                                                                                                                              _react2["default"].createElement(
+                                                                                                                                                "li",
+                                                                                                                                                null,
+                                                                                                                                                "Furthermore you can prevent Google’s collection and use of data (cookies and IP address) by downloading and installing the browser plug-in available under ",
+                                                                                                                                                _react2["default"].createElement(
+                                                                                                                                                                  "a",
+                                                                                                                                                                  { href: "https://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
+                                                                                                                                                                  "https://tools.google.com/dlpage/gaoptout?hl=en"
+                                                                                                                                                )
+                                                                                                                              )
+                                                                                                            )
+                                                                                          ),
+                                                                                          _react2["default"].createElement("div", { className: "col-md-3" })
+                                                                        )
+                                                      );
+                                    }
+                  }]);
 
-    return Imprint;
+                  return Imprint;
 })(_react2["default"].Component);
 
 exports["default"] = Imprint;
@@ -2205,7 +2270,7 @@ var LanguagePicker = (function (_React$Component) {
 exports["default"] = LanguagePicker;
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../stores/LanguageStore":36,"react":"react"}],18:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../stores/LanguageStore":37,"react":"react"}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2281,7 +2346,16 @@ var Login = (function (_React$Component) {
 						_react2["default"].createElement(
 							"p",
 							null,
-							"To provide you with an awesome tailored user interface, you can log in with your YouTube account."
+							"To provide you with an awesome tailored user interface, you can sign in with your YouTube account."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
 						),
 						_react2["default"].createElement(
 							"p",
@@ -2290,9 +2364,45 @@ var Login = (function (_React$Component) {
 							_react2["default"].createElement(
 								"u",
 								null,
-								"does not publish anything on your behalf nor track or share your data"
+								"does not publish anything on your behalf nor does it track or share your data"
 							),
 							"."
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							_react2["default"].createElement(
+								"b",
+								null,
+								"Cool stuff you can do, when signed in:"
+							),
+							_react2["default"].createElement(
+								"ul",
+								null,
+								_react2["default"].createElement(
+									"li",
+									null,
+									"Manage subscribtions directly from list view"
+								)
+							)
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							_react2["default"].createElement(
+								"center",
+								null,
+								"~"
+							)
 						),
 						_react2["default"].createElement(
 							"center",
@@ -2724,7 +2834,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+																		value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -2754,351 +2864,594 @@ var _Logo = require("./Logo");
 var _Logo2 = _interopRequireDefault(_Logo);
 
 var PrivacyPolicy = (function (_React$Component) {
-    _inherits(PrivacyPolicy, _React$Component);
+																		_inherits(PrivacyPolicy, _React$Component);
 
-    function PrivacyPolicy() {
-        _classCallCheck(this, PrivacyPolicy);
+																		function PrivacyPolicy() {
+																																				_classCallCheck(this, PrivacyPolicy);
 
-        _get(Object.getPrototypeOf(PrivacyPolicy.prototype), "constructor", this).apply(this, arguments);
-    }
+																																				_get(Object.getPrototypeOf(PrivacyPolicy.prototype), "constructor", this).apply(this, arguments);
+																		}
 
-    _createClass(PrivacyPolicy, [{
-        key: "componentDidMount",
+																		_createClass(PrivacyPolicy, [{
+																																				key: "componentDidMount",
 
-        // COMPONENT DID MOUNT
-        value: function componentDidMount() {
-            document.title = "Privacy Policy | Sailing Channels";
-        }
+																																				// COMPONENT DID MOUNT
+																																				value: function componentDidMount() {
+																																																						document.title = "Privacy Policy | Sailing Channels";
+																																				}
 
-        // RENDER
-    }, {
-        key: "render",
-        value: function render() {
+																																				// RENDER
+																		}, {
+																																				key: "render",
+																																				value: function render() {
 
-            return _react2["default"].createElement(
-                "div",
-                { className: "container" },
-                _react2["default"].createElement(_OffsetSocial2["default"], null),
-                _react2["default"].createElement(_Logo2["default"], null),
-                _react2["default"].createElement(_OffsetMenu2["default"], null),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "row content-row" },
-                    _react2["default"].createElement("div", { className: "col-md-3" }),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "col-md-6" },
-                        _react2["default"].createElement(
-                            "h1",
-                            { className: "content-h1" },
-                            "Privacy Policy"
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Data Controller and Owner"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Sailing Channels,",
-                            _react2["default"].createElement(
-                                "span",
-                                { className: "reverse" },
-                                "moc.slennahc-gnilias@yoha"
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Types of Data collected"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Cookie and Usage data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner."
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Mode and place of processing the Data"
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Methods of processing"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Place"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Retention time"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data."
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "The use of the collected Data"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Analytics and Displaying content from external platforms. The Personal Data used for each purpose is outlined in the specific sections of this document."
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Detailed information on the processing of Personal Data"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Personal Data is collected for the following purposes and using the following services:"
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Analytics"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior."
-                        ),
-                        _react2["default"].createElement(
-                            "h5",
-                            null,
-                            "Google Analytics (Google Inc.)"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this Application, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
-                            _react2["default"].createElement(
-                                "a",
-                                { href: "http://www.google.com/intl/en/policies/privacy/", target: "_blank" },
-                                "Privacy Policy"
-                            ),
-                            " – ",
-                            _react2["default"].createElement(
-                                "a",
-                                { href: "http://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
-                                "Opt Out"
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Displaying content from external platforms"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "These services allow you to view content hosted on external platforms directly from the pages of this Application and interact with them. If a service of this kind is installed, it may still collect web traffic data for the pages where the service is installed, even when users do not use it."
-                        ),
-                        _react2["default"].createElement(
-                            "h5",
-                            null,
-                            "Youtube video widget (Google Inc.)"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Youtube is a video content visualization service provided by Google Inc. that allows this Application to incorporate content of this kind on its pages. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
-                            _react2["default"].createElement(
-                                "a",
-                                { href: "http://www.google.it/intl/en/policies/privacy/", target: "_blank" },
-                                "Privacy Policy"
-                            )
-                        ),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Additional information about Data collection and processing"
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Legal action"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services. The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Additional information about User's Personal Data"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "System Logs and Maintenance"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address)."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Information not contained in this policy"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "The rights of Users"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above. This Application does not support “Do Not Track” requests. To determine whether any of the third party services it uses honor the “Do Not Track” requests, please read their privacy policies."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Changes to this privacy policy"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Application and can request that the Data Controller removes the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users."
-                        ),
-                        _react2["default"].createElement("hr", null),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Definitions and legal references"
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Personal Data (or Data)"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Usage Data"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Information collected automatically from this Application (or third party services employed in this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "User"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Data Subject"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The legal or natural person to whom the Personal Data refers."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Data Processor (or Data Supervisor)"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Data Controller (or Owner)"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of this Application."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "This Application"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "The hardware or software tool by which the Personal Data of the User is collected."
-                        ),
-                        _react2["default"].createElement(
-                            "h4",
-                            null,
-                            "Cookie"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Small piece of data stored in the User's device."
-                        ),
-                        _react2["default"].createElement("hr", null),
-                        _react2["default"].createElement(
-                            "h3",
-                            null,
-                            "Legal information"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies. This privacy policy relates solely to this Application."
-                        )
-                    ),
-                    _react2["default"].createElement("div", { className: "col-md-3" })
-                )
-            );
-        }
-    }]);
+																																																						return _react2["default"].createElement(
+																																																																								"div",
+																																																																								{ className: "container" },
+																																																																								_react2["default"].createElement(_OffsetSocial2["default"], null),
+																																																																								_react2["default"].createElement(_Logo2["default"], null),
+																																																																								_react2["default"].createElement(_OffsetMenu2["default"], null),
+																																																																								_react2["default"].createElement(
+																																																																																										"div",
+																																																																																										{ className: "row content-row" },
+																																																																																										_react2["default"].createElement("div", { className: "col-md-3" }),
+																																																																																										_react2["default"].createElement(
+																																																																																																												"div",
+																																																																																																												{ className: "col-md-6" },
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h1",
+																																																																																																																														{ className: "content-h1" },
+																																																																																																																														"Privacy Policy"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Data Controller and Owner"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Sailing Channels,",
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"span",
+																																																																																																																																																{ className: "reverse" },
+																																																																																																																																																"moc.slennahc-gnilias@yoha"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Types of Data collected"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Cookie and Usage data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Mode and place of processing the Data"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Methods of processing"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Place"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Retention time"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"The use of the collected Data"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Analytics and Displaying content from external platforms. The Personal Data used for each purpose is outlined in the specific sections of this document."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Detailed information on the processing of Personal Data"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Personal Data is collected for the following purposes and using the following services:"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Analytics"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h5",
+																																																																																																																														null,
+																																																																																																																														"Google Analytics (Google Inc.)"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes the Data collected to track and examine the use of this Application, to prepare reports on its activities and share them with other Google services. Google may use the Data collected to contextualize and personalize the ads of its own advertising network. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"a",
+																																																																																																																																																{ href: "http://www.google.com/intl/en/policies/privacy/", target: "_blank" },
+																																																																																																																																																"Privacy Policy"
+																																																																																																																														),
+																																																																																																																														" – ",
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"a",
+																																																																																																																																																{ href: "http://tools.google.com/dlpage/gaoptout?hl=en", target: "_blank" },
+																																																																																																																																																"Opt Out"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Displaying content from external platforms"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"These services allow you to view content hosted on external platforms directly from the pages of this Application and interact with them. If a service of this kind is installed, it may still collect web traffic data for the pages where the service is installed, even when users do not use it."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h5",
+																																																																																																																														null,
+																																																																																																																														"Youtube video widget (Google Inc.)"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Youtube is a video content visualization service provided by Google Inc. that allows this Application to incorporate content of this kind on its pages. Personal Data collected: Cookie and Usage data. Place of processing: USA – ",
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"a",
+																																																																																																																																																{ href: "http://www.google.it/intl/en/policies/privacy/", target: "_blank" },
+																																																																																																																																																"Privacy Policy"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Additional information about Data collection and processing"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Legal action"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services. The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Additional information about User's Personal Data"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"System Logs and Maintenance"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address)."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Information not contained in this policy"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"The rights of Users"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above. This Application does not support “Do Not Track” requests. To determine whether any of the third party services it uses honor the “Do Not Track” requests, please read their privacy policies."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Changes to this privacy policy"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The Data Controller reserves the right to make changes to this privacy policy at any time by giving notice to its Users on this page. It is strongly recommended to check this page often, referring to the date of the last modification listed at the bottom. If a User objects to any of the changes to the Policy, the User must cease using this Application and can request that the Data Controller removes the Personal Data. Unless stated otherwise, the then-current privacy policy applies to all Personal Data the Data Controller has about Users."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement("hr", null),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Definitions and legal references"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Personal Data (or Data)"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Usage Data"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Information collected automatically from this Application (or third party services employed in this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"User"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Data Subject"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The legal or natural person to whom the Personal Data refers."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Data Processor (or Data Supervisor)"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Data Controller (or Owner)"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of this Application."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"This Application"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"The hardware or software tool by which the Personal Data of the User is collected."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														_react2["default"].createElement(
+																																																																																																																																																"center",
+																																																																																																																																																null,
+																																																																																																																																																"~"
+																																																																																																																														)
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h4",
+																																																																																																																														null,
+																																																																																																																														"Cookie"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Small piece of data stored in the User's device."
+																																																																																																												),
+																																																																																																												_react2["default"].createElement("hr", null),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"h3",
+																																																																																																																														null,
+																																																																																																																														"Legal information"
+																																																																																																												),
+																																																																																																												_react2["default"].createElement(
+																																																																																																																														"p",
+																																																																																																																														null,
+																																																																																																																														"Notice to European Users: this privacy statement has been prepared in fulfillment of the obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive 2002/58/EC, as revised by Directive 2009/136/EC, on the subject of Cookies. This privacy policy relates solely to this Application."
+																																																																																																												)
+																																																																																										),
+																																																																																										_react2["default"].createElement("div", { className: "col-md-3" })
+																																																																								)
+																																																						);
+																																				}
+																		}]);
 
-    return PrivacyPolicy;
+																		return PrivacyPolicy;
 })(_react2["default"].Component);
 
 exports["default"] = PrivacyPolicy;
@@ -3311,25 +3664,71 @@ var _Logo = require("./Logo");
 
 var _Logo2 = _interopRequireDefault(_Logo);
 
-var _Banner = require("./Banner");
+var _BannerDialog = require("./BannerDialog");
 
-var _Banner2 = _interopRequireDefault(_Banner);
+var _BannerDialog2 = _interopRequireDefault(_BannerDialog);
+
+var _SignInDialog = require("./SignInDialog");
+
+var _SignInDialog2 = _interopRequireDefault(_SignInDialog);
+
+var _reactCookie = require("react-cookie");
+
+var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
+var _reactRouter = require("react-router");
 
 var SearchResult = (function (_React$Component) {
 	_inherits(SearchResult, _React$Component);
 
-	function SearchResult() {
+	// CONSTRUCTOR
+
+	function SearchResult(props) {
 		_classCallCheck(this, SearchResult);
 
-		_get(Object.getPrototypeOf(SearchResult.prototype), "constructor", this).apply(this, arguments);
+		_get(Object.getPrototypeOf(SearchResult.prototype), "constructor", this).call(this, props);
+		this.state = {
+			"showScrollUp": false,
+			"me": _reactCookie2["default"].load("me") ? JSON.parse(_reactCookie2["default"].load("me").replace("j:", "")) : null
+		};
 	}
+
+	// COMPONENT DID MOUNT
 
 	_createClass(SearchResult, [{
 		key: "componentDidMount",
-
-		// COMPONENT DID MOUNT
 		value: function componentDidMount() {
+			$(window).on("scroll", this.onWindowScroll.bind(this));
 			$("#search-bar").focus();
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			$(window).off("scroll");
+		}
+
+		// SCROLL UP
+	}, {
+		key: "scrollUp",
+		value: function scrollUp() {
+			window.scrollTo(0, 0);
+		}
+
+		// ON WINDOW SCROLL
+	}, {
+		key: "onWindowScroll",
+		value: function onWindowScroll() {
+
+			// did the scrollup state change?
+			if (this.state.showScrollUp !== $(window).scrollTop() > 100) {
+
+				// do or do not show scrollup button
+				this.setState({
+					"showScrollUp": $(window).scrollTop() > 100
+				});
+			}
 		}
 
 		// RENDER
@@ -3337,17 +3736,40 @@ var SearchResult = (function (_React$Component) {
 		key: "render",
 		value: function render() {
 
+			var scrollUp = null;
+
+			if (this.state.showScrollUp === true) {
+				scrollUp = _react2["default"].createElement(
+					"div",
+					{ className: "scroll-up-btn", title: "Scroll to top", onClick: this.scrollUp.bind(this) },
+					_react2["default"].createElement("i", { className: "fa fa-arrow-circle-up fa-3x" })
+				);
+			}
+
 			var query = this.props.params.query;
 
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
 				_react2["default"].createElement(_Logo2["default"], null),
+				!this.state.me ? _react2["default"].createElement(
+					"center",
+					null,
+					_react2["default"].createElement(
+						_reactRouter.Link,
+						{ to: "/signin", className: "btn btn-raised btn-sm btn-danger yt-login" },
+						"Sign In with ",
+						_react2["default"].createElement("i", { className: "fa fa-youtube" }),
+						" YouTube"
+					)
+				) : null,
 				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				scrollUp,
 				_react2["default"].createElement(_SearchBar2["default"], { history: this.props.history, query: query }),
 				_react2["default"].createElement(_SearchResultList2["default"], { history: this.props.history, query: query }),
 				this.props.children,
-				_react2["default"].createElement(_Banner2["default"], null)
+				_react2["default"].createElement(_BannerDialog2["default"], null),
+				_react2["default"].createElement(_SignInDialog2["default"], null)
 			);
 		}
 	}]);
@@ -3358,7 +3780,7 @@ var SearchResult = (function (_React$Component) {
 exports["default"] = SearchResult;
 module.exports = exports["default"];
 
-},{"./Banner":6,"./Logo":19,"./OffsetMenu":21,"./SearchBar":24,"./SearchResultList":26,"react":"react"}],26:[function(require,module,exports){
+},{"./BannerDialog":6,"./Logo":19,"./OffsetMenu":21,"./SearchBar":24,"./SearchResultList":26,"./SignInDialog":27,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3512,7 +3934,105 @@ var SearchResultList = (function (_React$Component) {
 exports["default"] = SearchResultList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":35,"./ChannelListItem":9,"./VideoListItem":31,"react":"react"}],27:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":36,"./ChannelListItem":9,"./VideoListItem":32,"react":"react"}],27:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require("react-router");
+
+var SignInDialog = (function (_React$Component) {
+	_inherits(SignInDialog, _React$Component);
+
+	function SignInDialog() {
+		_classCallCheck(this, SignInDialog);
+
+		_get(Object.getPrototypeOf(SignInDialog.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(SignInDialog, [{
+		key: "render",
+
+		// RENDER
+		value: function render() {
+
+			return _react2["default"].createElement(
+				"div",
+				{ id: "signin-dialog", className: "modal fade" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "modal-dialog" },
+					_react2["default"].createElement(
+						"div",
+						{ className: "modal-content" },
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-header" },
+							_react2["default"].createElement(
+								"button",
+								{ type: "button", className: "close", "data-dismiss": "modal", "aria-hidden": "true" },
+								"×"
+							),
+							_react2["default"].createElement(
+								"h3",
+								{ className: "modal-title" },
+								"Oh no!"
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "modal-body" },
+							_react2["default"].createElement(
+								"p",
+								null,
+								"You need to sign in with your YouTube account in order to perform this action."
+							),
+							_react2["default"].createElement(
+								"p",
+								null,
+								"Consider visiting the sign in page for more information:"
+							),
+							_react2["default"].createElement(
+								"center",
+								{ className: "banner-channel" },
+								_react2["default"].createElement(
+									"a",
+									{ href: "/signin", className: "btn btn-raised btn-sm btn-danger yt-login" },
+									"Sign In with ",
+									_react2["default"].createElement("i", { className: "fa fa-youtube" }),
+									" YouTube"
+								)
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return SignInDialog;
+})(_react2["default"].Component);
+
+exports["default"] = SignInDialog;
+module.exports = exports["default"];
+
+},{"react":"react","react-router":"react-router"}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3537,6 +4057,10 @@ var _actionsChannelActions = require("../actions/ChannelActions");
 
 var _actionsChannelActions2 = _interopRequireDefault(_actionsChannelActions);
 
+var _reactCookie = require("react-cookie");
+
+var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
 var SubscribeButton = (function (_React$Component) {
 	_inherits(SubscribeButton, _React$Component);
 
@@ -3548,21 +4072,14 @@ var SubscribeButton = (function (_React$Component) {
 		_get(Object.getPrototypeOf(SubscribeButton.prototype), "constructor", this).call(this, props);
 
 		this.state = {
-			"subscribed": false,
+			"subscribed": props.channel.subscribed,
 			"loading": false
 		};
 	}
 
-	// COMPONENT DID MOUNT
+	// SUBSCRIBE
 
 	_createClass(SubscribeButton, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			this.state.subscribed = this.props.channel.subscribed;
-		}
-
-		// SUBSCRIBE
-	}, {
 		key: "subscribeChannel",
 		value: function subscribeChannel(e) {
 			var _this = this;
@@ -3578,6 +4095,11 @@ var SubscribeButton = (function (_React$Component) {
 				if (!err && data.success === true) {
 					_this.setState({
 						"subscribed": true,
+						"loading": false
+					});
+				} else {
+					_this.setState({
+						"subscribed": _this.state.subscribed,
 						"loading": false
 					});
 				}
@@ -3603,8 +4125,25 @@ var SubscribeButton = (function (_React$Component) {
 						"subscribed": false,
 						"loading": false
 					});
+				} else {
+					_this2.setState({
+						"subscribed": _this2.state.subscribed,
+						"loading": false
+					});
 				}
 			});
+		}
+
+		// SHOW SIGN IN BANNER
+	}, {
+		key: "showSignInBanner",
+		value: function showSignInBanner() {
+
+			if (!($("#signin-dialog").data("bs.modal") || {}).isShown) {
+
+				// open the dialog
+				$("#signin-dialog").modal("show");
+			}
 		}
 
 		// RENDER
@@ -3612,6 +4151,17 @@ var SubscribeButton = (function (_React$Component) {
 		key: "render",
 		value: function render() {
 
+			// user is not logged in
+			if (!_reactCookie2["default"].load("me")) {
+				return _react2["default"].createElement(
+					"button",
+					{ onClick: this.showSignInBanner.bind(this), className: "hidden-xs btn btn-danger btn-sidebar btn-raised" },
+					_react2["default"].createElement("i", { className: "fa fa-youtube-play" }),
+					" Subscribe"
+				);
+			}
+
+			// a subscription state is known
 			if (this.state.subscribed === false) {
 
 				// render subscribe button
@@ -3664,7 +4214,7 @@ var SubscribeButton = (function (_React$Component) {
 exports["default"] = SubscribeButton;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"react":"react"}],28:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"react":"react","react-cookie":"react-cookie"}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3774,7 +4324,7 @@ var App = (function (_React$Component) {
 exports["default"] = App;
 module.exports = exports["default"];
 
-},{"react":"react"}],29:[function(require,module,exports){
+},{"react":"react"}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4038,7 +4588,7 @@ var VideoDetail = (function (_React$Component) {
 exports["default"] = VideoDetail;
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":3,"../stores/VideoStore":37,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./VideoList":30,"react":"react","react-helmet":59,"react-router":"react-router"}],30:[function(require,module,exports){
+},{"../actions/VideoActions":3,"../stores/VideoStore":38,"./Logo":19,"./OffsetMenu":21,"./OffsetSocial":22,"./VideoList":31,"react":"react","react-helmet":60,"react-router":"react-router"}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4254,7 +4804,7 @@ var VideoList = (function (_React$Component) {
 exports["default"] = VideoList;
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":3,"../stores/VideoStore":37,"./Description":13,"./VideoListItem":31,"react":"react","react-router":"react-router"}],31:[function(require,module,exports){
+},{"../actions/VideoActions":3,"../stores/VideoStore":38,"./Description":13,"./VideoListItem":32,"react":"react","react-router":"react-router"}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4414,7 +4964,7 @@ var VideoListItem = (function (_React$Component) {
 exports["default"] = VideoListItem;
 module.exports = exports["default"];
 
-},{"./Description":13,"react":"react","react-router":"react-router"}],32:[function(require,module,exports){
+},{"./Description":13,"react":"react","react-router":"react-router"}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4600,7 +5150,7 @@ var HTTP = (function () {
 
 					// render table with remote data
 					return callback(null, data);
-				}).fail(function (err) {
+				}).fail(function (xhr) {
 					var data = JSON.parse(xhr.responseText);
 					return callback({
 						"statusCode": xhr.status,
@@ -4617,7 +5167,7 @@ var HTTP = (function () {
 exports["default"] = HTTP;
 module.exports = exports["default"];
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -4649,7 +5199,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":34,"history/lib/createBrowserHistory":46,"react":"react","react-dom":"react-dom","react-router":"react-router"}],34:[function(require,module,exports){
+},{"./routes":35,"history/lib/createBrowserHistory":47,"react":"react","react-dom":"react-dom","react-router":"react-router"}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4725,12 +5275,12 @@ exports["default"] = _react2["default"].createElement(
 	_react2["default"].createElement(_reactRouter.Route, { path: "privacy", component: _componentsPrivacyPolicy2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "imprint", component: _componentsImprint2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "contributions", component: _componentsContributions2["default"] }),
-	_react2["default"].createElement(_reactRouter.Route, { path: "login", component: _componentsLogin2["default"] }),
+	_react2["default"].createElement(_reactRouter.Route, { path: "signin", component: _componentsLogin2["default"] }),
 	_react2["default"].createElement(_reactRouter.Route, { path: "me", component: _componentsMe2["default"] })
 );
 module.exports = exports["default"];
 
-},{"./components/App":5,"./components/ChannelDetail":7,"./components/ChannelMissing":10,"./components/Contributions":11,"./components/DataCollection":12,"./components/Home":15,"./components/Imprint":16,"./components/Login":18,"./components/Me":20,"./components/PrivacyPolicy":23,"./components/SearchResult":25,"./components/VideoDetail":29,"react":"react","react-router":"react-router"}],35:[function(require,module,exports){
+},{"./components/App":5,"./components/ChannelDetail":7,"./components/ChannelMissing":10,"./components/Contributions":11,"./components/DataCollection":12,"./components/Home":15,"./components/Imprint":16,"./components/Login":18,"./components/Me":20,"./components/PrivacyPolicy":23,"./components/SearchResult":25,"./components/VideoDetail":30,"react":"react","react-router":"react-router"}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4838,7 +5388,7 @@ var ChannelStore = (function () {
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":4}],36:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":4}],37:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4892,7 +5442,7 @@ var LanguageStore = (function () {
 exports["default"] = _alt2["default"].createStore(LanguageStore);
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../alt":4}],37:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../alt":4}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4969,7 +5519,7 @@ var VideoStore = (function () {
 exports["default"] = _alt2["default"].createStore(VideoStore);
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":3,"../alt":4}],38:[function(require,module,exports){
+},{"../actions/VideoActions":3,"../alt":4}],39:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -5065,7 +5615,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":39,"./lib/keys.js":40}],39:[function(require,module,exports){
+},{"./lib/is_arguments.js":40,"./lib/keys.js":41}],40:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -5087,7 +5637,7 @@ function unsupported(object){
     false;
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -5098,7 +5648,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -5130,7 +5680,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -5157,7 +5707,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -5228,7 +5778,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":55,"warning":137}],44:[function(require,module,exports){
+},{"_process":56,"warning":138}],45:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -5309,13 +5859,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5496,7 +6046,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":41,"./DOMStateStorage":43,"./DOMUtils":44,"./ExecutionEnvironment":45,"./createDOMHistory":47,"./parsePath":52,"_process":55,"invariant":54}],47:[function(require,module,exports){
+},{"./Actions":42,"./DOMStateStorage":44,"./DOMUtils":45,"./ExecutionEnvironment":46,"./createDOMHistory":48,"./parsePath":53,"_process":56,"invariant":55}],48:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5539,7 +6089,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":44,"./ExecutionEnvironment":45,"./createHistory":48,"_process":55,"invariant":54}],48:[function(require,module,exports){
+},{"./DOMUtils":45,"./ExecutionEnvironment":46,"./createHistory":49,"_process":56,"invariant":55}],49:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -5831,7 +6381,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":41,"./AsyncUtils":42,"./createLocation":49,"./deprecate":50,"./parsePath":52,"./runTransitionHook":53,"deep-equal":38}],49:[function(require,module,exports){
+},{"./Actions":42,"./AsyncUtils":43,"./createLocation":50,"./deprecate":51,"./parsePath":53,"./runTransitionHook":54,"deep-equal":39}],50:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -5886,7 +6436,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":41,"./parsePath":52}],50:[function(require,module,exports){
+},{"./Actions":42,"./parsePath":53}],51:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -5902,7 +6452,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -5916,7 +6466,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5963,7 +6513,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":51,"_process":55,"warning":137}],53:[function(require,module,exports){
+},{"./extractPath":52,"_process":56,"warning":138}],54:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -5990,7 +6540,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":55,"warning":137}],54:[function(require,module,exports){
+},{"_process":56,"warning":138}],55:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -6045,7 +6595,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":55}],55:[function(require,module,exports){
+},{"_process":56}],56:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -6138,7 +6688,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -6628,7 +7178,7 @@ var SideEffect = (0, _reactSideEffect2["default"])(reducePropsToState, handleCli
 // PlainComponent is used to be a blank component decorated by react-side-effect
 exports["default"] = Helmet(SideEffect(_PlainComponent2["default"]));
 module.exports = exports["default"];
-},{"./HelmetConstants.js":57,"./PlainComponent":58,"deep-equal":38,"react":"react","react-side-effect":134}],57:[function(require,module,exports){
+},{"./HelmetConstants.js":58,"./PlainComponent":59,"deep-equal":39,"react":"react","react-side-effect":135}],58:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -6657,7 +7207,7 @@ var REACT_TAG_MAP = {
     "http-equiv": "httpEquiv"
 };
 exports.REACT_TAG_MAP = REACT_TAG_MAP;
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -6697,7 +7247,7 @@ var PlainComponent = (function (_React$Component) {
 
 exports["default"] = PlainComponent;
 module.exports = exports["default"];
-},{"react":"react"}],59:[function(require,module,exports){
+},{"react":"react"}],60:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -6724,37 +7274,37 @@ var _Helmet2 = _interopRequireDefault(_Helmet);
 
 exports["default"] = _Helmet2["default"];
 module.exports = exports["default"];
-},{"./Helmet":56,"core-js/fn/array/from":60,"core-js/fn/array/includes":61,"core-js/fn/map":62,"core-js/fn/object/get-own-property-symbols":63,"core-js/fn/object/is":64,"core-js/fn/object/keys":65,"core-js/fn/set":66}],60:[function(require,module,exports){
+},{"./Helmet":57,"core-js/fn/array/from":61,"core-js/fn/array/includes":62,"core-js/fn/map":63,"core-js/fn/object/get-own-property-symbols":64,"core-js/fn/object/is":65,"core-js/fn/object/keys":66,"core-js/fn/set":67}],61:[function(require,module,exports){
 require('../../modules/es6.string.iterator');
 require('../../modules/es6.array.from');
 module.exports = require('../../modules/_core').Array.from;
-},{"../../modules/_core":79,"../../modules/es6.array.from":121,"../../modules/es6.string.iterator":128}],61:[function(require,module,exports){
+},{"../../modules/_core":80,"../../modules/es6.array.from":122,"../../modules/es6.string.iterator":129}],62:[function(require,module,exports){
 require('../../modules/es7.array.includes');
 module.exports = require('../../modules/_core').Array.includes;
-},{"../../modules/_core":79,"../../modules/es7.array.includes":130}],62:[function(require,module,exports){
+},{"../../modules/_core":80,"../../modules/es7.array.includes":131}],63:[function(require,module,exports){
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');
 require('../modules/es6.map');
 require('../modules/es7.map.to-json');
 module.exports = require('../modules/_core').Map;
-},{"../modules/_core":79,"../modules/es6.map":123,"../modules/es6.object.to-string":126,"../modules/es6.string.iterator":128,"../modules/es7.map.to-json":131,"../modules/web.dom.iterable":133}],63:[function(require,module,exports){
+},{"../modules/_core":80,"../modules/es6.map":124,"../modules/es6.object.to-string":127,"../modules/es6.string.iterator":129,"../modules/es7.map.to-json":132,"../modules/web.dom.iterable":134}],64:[function(require,module,exports){
 require('../../modules/es6.symbol');
 module.exports = require('../../modules/_core').Object.getOwnPropertySymbols;
-},{"../../modules/_core":79,"../../modules/es6.symbol":129}],64:[function(require,module,exports){
+},{"../../modules/_core":80,"../../modules/es6.symbol":130}],65:[function(require,module,exports){
 require('../../modules/es6.object.is');
 module.exports = require('../../modules/_core').Object.is;
-},{"../../modules/_core":79,"../../modules/es6.object.is":124}],65:[function(require,module,exports){
+},{"../../modules/_core":80,"../../modules/es6.object.is":125}],66:[function(require,module,exports){
 require('../../modules/es6.object.keys');
 module.exports = require('../../modules/_core').Object.keys;
-},{"../../modules/_core":79,"../../modules/es6.object.keys":125}],66:[function(require,module,exports){
+},{"../../modules/_core":80,"../../modules/es6.object.keys":126}],67:[function(require,module,exports){
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');
 require('../modules/es6.set');
 require('../modules/es7.set.to-json');
 module.exports = require('../modules/_core').Set;
-},{"../modules/_core":79,"../modules/es6.object.to-string":126,"../modules/es6.set":127,"../modules/es6.string.iterator":128,"../modules/es7.set.to-json":132,"../modules/web.dom.iterable":133}],67:[function(require,module,exports){
+},{"../modules/_core":80,"../modules/es6.object.to-string":127,"../modules/es6.set":128,"../modules/es6.string.iterator":129,"../modules/es7.set.to-json":133,"../modules/web.dom.iterable":134}],68:[function(require,module,exports){
 var $Object = Object;
 module.exports = {
   create:     $Object.create,
@@ -6768,12 +7318,12 @@ module.exports = {
   getSymbols: $Object.getOwnPropertySymbols,
   each:       [].forEach
 };
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 module.exports = function(it){
   if(typeof it != 'function')throw TypeError(it + ' is not a function!');
   return it;
 };
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = require('./_wks')('unscopables')
   , ArrayProto  = Array.prototype;
@@ -6781,19 +7331,19 @@ if(ArrayProto[UNSCOPABLES] == undefined)require('./_hide')(ArrayProto, UNSCOPABL
 module.exports = function(key){
   ArrayProto[UNSCOPABLES][key] = true;
 };
-},{"./_hide":90,"./_wks":119}],70:[function(require,module,exports){
+},{"./_hide":91,"./_wks":120}],71:[function(require,module,exports){
 module.exports = function(it, Constructor, name, forbiddenField){
   if(!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)){
     throw TypeError(name + ': incorrect invocation!');
   } return it;
 };
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 var isObject = require('./_is-object');
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
-},{"./_is-object":94}],72:[function(require,module,exports){
+},{"./_is-object":95}],73:[function(require,module,exports){
 var forOf = require('./_for-of');
 
 module.exports = function(iter, ITERATOR){
@@ -6802,7 +7352,7 @@ module.exports = function(iter, ITERATOR){
   return result;
 };
 
-},{"./_for-of":86}],73:[function(require,module,exports){
+},{"./_for-of":87}],74:[function(require,module,exports){
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = require('./_to-iobject')
@@ -6824,7 +7374,7 @@ module.exports = function(IS_INCLUDES){
     } return !IS_INCLUDES && -1;
   };
 };
-},{"./_to-index":113,"./_to-iobject":115,"./_to-length":116}],74:[function(require,module,exports){
+},{"./_to-index":114,"./_to-iobject":116,"./_to-length":117}],75:[function(require,module,exports){
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = require('./_cof')
   , TAG = require('./_wks')('toStringTag')
@@ -6841,13 +7391,13 @@ module.exports = function(it){
     // ES3 arguments fallback
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
-},{"./_cof":75,"./_wks":119}],75:[function(require,module,exports){
+},{"./_cof":76,"./_wks":120}],76:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = function(it){
   return toString.call(it).slice(8, -1);
 };
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 var $           = require('./_')
   , hide        = require('./_hide')
@@ -6990,7 +7540,7 @@ module.exports = {
     setSpecies(NAME);
   }
 };
-},{"./_":67,"./_an-instance":70,"./_ctx":80,"./_defined":81,"./_descriptors":82,"./_for-of":86,"./_hide":90,"./_iter-define":97,"./_iter-step":99,"./_meta":103,"./_redefine-all":106,"./_set-species":109}],77:[function(require,module,exports){
+},{"./_":68,"./_an-instance":71,"./_ctx":81,"./_defined":82,"./_descriptors":83,"./_for-of":87,"./_hide":91,"./_iter-define":98,"./_iter-step":100,"./_meta":104,"./_redefine-all":107,"./_set-species":110}],78:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var classof = require('./_classof')
   , from    = require('./_array-from-iterable');
@@ -7000,7 +7550,7 @@ module.exports = function(NAME){
     return from(this);
   };
 };
-},{"./_array-from-iterable":72,"./_classof":74}],78:[function(require,module,exports){
+},{"./_array-from-iterable":73,"./_classof":75}],79:[function(require,module,exports){
 'use strict';
 var global         = require('./_global')
   , $export        = require('./_export')
@@ -7085,10 +7635,10 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
 
   return C;
 };
-},{"./_an-instance":70,"./_export":84,"./_fails":85,"./_for-of":86,"./_global":88,"./_is-object":94,"./_iter-detect":98,"./_meta":103,"./_redefine":107,"./_redefine-all":106,"./_set-to-string-tag":110}],79:[function(require,module,exports){
+},{"./_an-instance":71,"./_export":85,"./_fails":86,"./_for-of":87,"./_global":89,"./_is-object":95,"./_iter-detect":99,"./_meta":104,"./_redefine":108,"./_redefine-all":107,"./_set-to-string-tag":111}],80:[function(require,module,exports){
 var core = module.exports = {version: '2.0.3'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 // optional / simple context binding
 var aFunction = require('./_a-function');
 module.exports = function(fn, that, length){
@@ -7109,18 +7659,18 @@ module.exports = function(fn, that, length){
     return fn.apply(that, arguments);
   };
 };
-},{"./_a-function":68}],81:[function(require,module,exports){
+},{"./_a-function":69}],82:[function(require,module,exports){
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function(it){
   if(it == undefined)throw TypeError("Can't call method on  " + it);
   return it;
 };
-},{}],82:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function(){
   return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 });
-},{"./_fails":85}],83:[function(require,module,exports){
+},{"./_fails":86}],84:[function(require,module,exports){
 // all enumerable object keys, includes symbols
 var $ = require('./_');
 module.exports = function(it){
@@ -7135,7 +7685,7 @@ module.exports = function(it){
   }
   return keys;
 };
-},{"./_":67}],84:[function(require,module,exports){
+},{"./_":68}],85:[function(require,module,exports){
 var global    = require('./_global')
   , core      = require('./_core')
   , hide      = require('./_hide')
@@ -7179,7 +7729,7 @@ $export.W = 32;  // wrap
 $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library` 
 module.exports = $export;
-},{"./_core":79,"./_ctx":80,"./_global":88,"./_hide":90,"./_redefine":107}],85:[function(require,module,exports){
+},{"./_core":80,"./_ctx":81,"./_global":89,"./_hide":91,"./_redefine":108}],86:[function(require,module,exports){
 module.exports = function(exec){
   try {
     return !!exec();
@@ -7187,7 +7737,7 @@ module.exports = function(exec){
     return true;
   }
 };
-},{}],86:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 var ctx         = require('./_ctx')
   , call        = require('./_iter-call')
   , isArrayIter = require('./_is-array-iter')
@@ -7207,7 +7757,7 @@ module.exports = function(iterable, entries, fn, that, ITERATOR){
     call(iterator, f, step.value, entries);
   }
 };
-},{"./_an-object":71,"./_ctx":80,"./_is-array-iter":92,"./_iter-call":95,"./_to-length":116,"./core.get-iterator-method":120}],87:[function(require,module,exports){
+},{"./_an-object":72,"./_ctx":81,"./_is-array-iter":93,"./_iter-call":96,"./_to-length":117,"./core.get-iterator-method":121}],88:[function(require,module,exports){
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = require('./_to-iobject')
   , getNames  = require('./_').getNames
@@ -7227,17 +7777,17 @@ var getWindowNames = function(it){
 module.exports.get = function getOwnPropertyNames(it){
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : getNames(toIObject(it));
 };
-},{"./_":67,"./_to-iobject":115}],88:[function(require,module,exports){
+},{"./_":68,"./_to-iobject":116}],89:[function(require,module,exports){
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
 if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-},{}],89:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function(it, key){
   return hasOwnProperty.call(it, key);
 };
-},{}],90:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 var $          = require('./_')
   , createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function(object, key, value){
@@ -7246,13 +7796,13 @@ module.exports = require('./_descriptors') ? function(object, key, value){
   object[key] = value;
   return object;
 };
-},{"./_":67,"./_descriptors":82,"./_property-desc":105}],91:[function(require,module,exports){
+},{"./_":68,"./_descriptors":83,"./_property-desc":106}],92:[function(require,module,exports){
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 var cof = require('./_cof');
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
-},{"./_cof":75}],92:[function(require,module,exports){
+},{"./_cof":76}],93:[function(require,module,exports){
 // check on default Array iterator
 var Iterators  = require('./_iterators')
   , ITERATOR   = require('./_wks')('iterator')
@@ -7261,17 +7811,17 @@ var Iterators  = require('./_iterators')
 module.exports = function(it){
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
-},{"./_iterators":100,"./_wks":119}],93:[function(require,module,exports){
+},{"./_iterators":101,"./_wks":120}],94:[function(require,module,exports){
 // 7.2.2 IsArray(argument)
 var cof = require('./_cof');
 module.exports = Array.isArray || function(arg){
   return cof(arg) == 'Array';
 };
-},{"./_cof":75}],94:[function(require,module,exports){
+},{"./_cof":76}],95:[function(require,module,exports){
 module.exports = function(it){
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 // call something on iterator step with safe closing on error
 var anObject = require('./_an-object');
 module.exports = function(iterator, fn, value, entries){
@@ -7284,7 +7834,7 @@ module.exports = function(iterator, fn, value, entries){
     throw e;
   }
 };
-},{"./_an-object":71}],96:[function(require,module,exports){
+},{"./_an-object":72}],97:[function(require,module,exports){
 'use strict';
 var $              = require('./_')
   , descriptor     = require('./_property-desc')
@@ -7298,7 +7848,7 @@ module.exports = function(Constructor, NAME, next){
   Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
   setToStringTag(Constructor, NAME + ' Iterator');
 };
-},{"./_":67,"./_hide":90,"./_property-desc":105,"./_set-to-string-tag":110,"./_wks":119}],97:[function(require,module,exports){
+},{"./_":68,"./_hide":91,"./_property-desc":106,"./_set-to-string-tag":111,"./_wks":120}],98:[function(require,module,exports){
 'use strict';
 var LIBRARY        = require('./_library')
   , $export        = require('./_export')
@@ -7369,7 +7919,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
   }
   return methods;
 };
-},{"./_":67,"./_export":84,"./_has":89,"./_hide":90,"./_iter-create":96,"./_iterators":100,"./_library":102,"./_redefine":107,"./_set-to-string-tag":110,"./_wks":119}],98:[function(require,module,exports){
+},{"./_":68,"./_export":85,"./_has":90,"./_hide":91,"./_iter-create":97,"./_iterators":101,"./_library":103,"./_redefine":108,"./_set-to-string-tag":111,"./_wks":120}],99:[function(require,module,exports){
 var ITERATOR     = require('./_wks')('iterator')
   , SAFE_CLOSING = false;
 
@@ -7391,13 +7941,13 @@ module.exports = function(exec, skipClosing){
   } catch(e){ /* empty */ }
   return safe;
 };
-},{"./_wks":119}],99:[function(require,module,exports){
+},{"./_wks":120}],100:[function(require,module,exports){
 module.exports = function(done, value){
   return {value: value, done: !!done};
 };
-},{}],100:[function(require,module,exports){
-module.exports = {};
 },{}],101:[function(require,module,exports){
+module.exports = {};
+},{}],102:[function(require,module,exports){
 var $         = require('./_')
   , toIObject = require('./_to-iobject');
 module.exports = function(object, el){
@@ -7408,9 +7958,9 @@ module.exports = function(object, el){
     , key;
   while(length > index)if(O[key = keys[index++]] === el)return key;
 };
-},{"./_":67,"./_to-iobject":115}],102:[function(require,module,exports){
+},{"./_":68,"./_to-iobject":116}],103:[function(require,module,exports){
 module.exports = false;
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 var META     = require('./_uid')('meta')
   , isObject = require('./_is-object')
   , has      = require('./_has')
@@ -7464,7 +8014,7 @@ var meta = module.exports = {
   getWeak:  getWeak,
   onFreeze: onFreeze
 };
-},{"./_":67,"./_fails":85,"./_has":89,"./_is-object":94,"./_uid":118}],104:[function(require,module,exports){
+},{"./_":68,"./_fails":86,"./_has":90,"./_is-object":95,"./_uid":119}],105:[function(require,module,exports){
 // most Object methods by ES6 should accept primitives
 var $export = require('./_export')
   , core    = require('./_core')
@@ -7475,7 +8025,7 @@ module.exports = function(KEY, exec){
   exp[KEY] = exec(fn);
   $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
 };
-},{"./_core":79,"./_export":84,"./_fails":85}],105:[function(require,module,exports){
+},{"./_core":80,"./_export":85,"./_fails":86}],106:[function(require,module,exports){
 module.exports = function(bitmap, value){
   return {
     enumerable  : !(bitmap & 1),
@@ -7484,13 +8034,13 @@ module.exports = function(bitmap, value){
     value       : value
   };
 };
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 var redefine = require('./_redefine');
 module.exports = function(target, src, safe){
   for(var key in src)redefine(target, key, src[key], safe);
   return target;
 };
-},{"./_redefine":107}],107:[function(require,module,exports){
+},{"./_redefine":108}],108:[function(require,module,exports){
 // add fake Function#toString
 // for correct work wrapped methods / constructors with methods like LoDash isNative
 var global    = require('./_global')
@@ -7523,12 +8073,12 @@ require('./_core').inspectSource = function(it){
 })(Function.prototype, TO_STRING, function toString(){
   return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
-},{"./_core":79,"./_global":88,"./_hide":90,"./_uid":118}],108:[function(require,module,exports){
+},{"./_core":80,"./_global":89,"./_hide":91,"./_uid":119}],109:[function(require,module,exports){
 // 7.2.9 SameValue(x, y)
 module.exports = Object.is || function is(x, y){
   return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
 };
-},{}],109:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 'use strict';
 var global      = require('./_global')
   , $           = require('./_')
@@ -7542,7 +8092,7 @@ module.exports = function(KEY){
     get: function(){ return this; }
   });
 };
-},{"./_":67,"./_descriptors":82,"./_global":88,"./_wks":119}],110:[function(require,module,exports){
+},{"./_":68,"./_descriptors":83,"./_global":89,"./_wks":120}],111:[function(require,module,exports){
 var def = require('./_').setDesc
   , has = require('./_has')
   , TAG = require('./_wks')('toStringTag');
@@ -7550,14 +8100,14 @@ var def = require('./_').setDesc
 module.exports = function(it, tag, stat){
   if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 };
-},{"./_":67,"./_has":89,"./_wks":119}],111:[function(require,module,exports){
+},{"./_":68,"./_has":90,"./_wks":120}],112:[function(require,module,exports){
 var global = require('./_global')
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
   return store[key] || (store[key] = {});
 };
-},{"./_global":88}],112:[function(require,module,exports){
+},{"./_global":89}],113:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , defined   = require('./_defined');
 // true  -> String#at
@@ -7575,7 +8125,7 @@ module.exports = function(TO_STRING){
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
-},{"./_defined":81,"./_to-integer":114}],113:[function(require,module,exports){
+},{"./_defined":82,"./_to-integer":115}],114:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , max       = Math.max
   , min       = Math.min;
@@ -7583,40 +8133,40 @@ module.exports = function(index, length){
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
-},{"./_to-integer":114}],114:[function(require,module,exports){
+},{"./_to-integer":115}],115:[function(require,module,exports){
 // 7.1.4 ToInteger
 var ceil  = Math.ceil
   , floor = Math.floor;
 module.exports = function(it){
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
-},{}],115:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = require('./_iobject')
   , defined = require('./_defined');
 module.exports = function(it){
   return IObject(defined(it));
 };
-},{"./_defined":81,"./_iobject":91}],116:[function(require,module,exports){
+},{"./_defined":82,"./_iobject":92}],117:[function(require,module,exports){
 // 7.1.15 ToLength
 var toInteger = require('./_to-integer')
   , min       = Math.min;
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
-},{"./_to-integer":114}],117:[function(require,module,exports){
+},{"./_to-integer":115}],118:[function(require,module,exports){
 // 7.1.13 ToObject(argument)
 var defined = require('./_defined');
 module.exports = function(it){
   return Object(defined(it));
 };
-},{"./_defined":81}],118:[function(require,module,exports){
+},{"./_defined":82}],119:[function(require,module,exports){
 var id = 0
   , px = Math.random();
 module.exports = function(key){
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
-},{}],119:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 var store      = require('./_shared')('wks')
   , uid        = require('./_uid')
   , Symbol     = require('./_global').Symbol
@@ -7625,7 +8175,7 @@ module.exports = function(name){
   return store[name] || (store[name] =
     USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 };
-},{"./_global":88,"./_shared":111,"./_uid":118}],120:[function(require,module,exports){
+},{"./_global":89,"./_shared":112,"./_uid":119}],121:[function(require,module,exports){
 var classof   = require('./_classof')
   , ITERATOR  = require('./_wks')('iterator')
   , Iterators = require('./_iterators');
@@ -7634,7 +8184,7 @@ module.exports = require('./_core').getIteratorMethod = function(it){
     || it['@@iterator']
     || Iterators[classof(it)];
 };
-},{"./_classof":74,"./_core":79,"./_iterators":100,"./_wks":119}],121:[function(require,module,exports){
+},{"./_classof":75,"./_core":80,"./_iterators":101,"./_wks":120}],122:[function(require,module,exports){
 'use strict';
 var ctx         = require('./_ctx')
   , $export     = require('./_export')
@@ -7671,7 +8221,7 @@ $export($export.S + $export.F * !require('./_iter-detect')(function(iter){ Array
   }
 });
 
-},{"./_ctx":80,"./_export":84,"./_is-array-iter":92,"./_iter-call":95,"./_iter-detect":98,"./_to-length":116,"./_to-object":117,"./core.get-iterator-method":120}],122:[function(require,module,exports){
+},{"./_ctx":81,"./_export":85,"./_is-array-iter":93,"./_iter-call":96,"./_iter-detect":99,"./_to-length":117,"./_to-object":118,"./core.get-iterator-method":121}],123:[function(require,module,exports){
 'use strict';
 var addToUnscopables = require('./_add-to-unscopables')
   , step             = require('./_iter-step')
@@ -7706,7 +8256,7 @@ Iterators.Arguments = Iterators.Array;
 addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
-},{"./_add-to-unscopables":69,"./_iter-define":97,"./_iter-step":99,"./_iterators":100,"./_to-iobject":115}],123:[function(require,module,exports){
+},{"./_add-to-unscopables":70,"./_iter-define":98,"./_iter-step":100,"./_iterators":101,"./_to-iobject":116}],124:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 
@@ -7724,11 +8274,11 @@ module.exports = require('./_collection')('Map', function(get){
     return strong.def(this, key === 0 ? 0 : key, value);
   }
 }, strong, true);
-},{"./_collection":78,"./_collection-strong":76}],124:[function(require,module,exports){
+},{"./_collection":79,"./_collection-strong":77}],125:[function(require,module,exports){
 // 19.1.3.10 Object.is(value1, value2)
 var $export = require('./_export');
 $export($export.S, 'Object', {is: require('./_same-value')});
-},{"./_export":84,"./_same-value":108}],125:[function(require,module,exports){
+},{"./_export":85,"./_same-value":109}],126:[function(require,module,exports){
 // 19.1.2.14 Object.keys(O)
 var toObject = require('./_to-object');
 
@@ -7737,7 +8287,7 @@ require('./_object-sap')('keys', function($keys){
     return $keys(toObject(it));
   };
 });
-},{"./_object-sap":104,"./_to-object":117}],126:[function(require,module,exports){
+},{"./_object-sap":105,"./_to-object":118}],127:[function(require,module,exports){
 'use strict';
 // 19.1.3.6 Object.prototype.toString()
 var classof = require('./_classof')
@@ -7748,7 +8298,7 @@ if(test + '' != '[object z]'){
     return '[object ' + classof(this) + ']';
   }, true);
 }
-},{"./_classof":74,"./_redefine":107,"./_wks":119}],127:[function(require,module,exports){
+},{"./_classof":75,"./_redefine":108,"./_wks":120}],128:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 
@@ -7761,7 +8311,7 @@ module.exports = require('./_collection')('Set', function(get){
     return strong.def(this, value = value === 0 ? 0 : value, value);
   }
 }, strong);
-},{"./_collection":78,"./_collection-strong":76}],128:[function(require,module,exports){
+},{"./_collection":79,"./_collection-strong":77}],129:[function(require,module,exports){
 'use strict';
 var $at  = require('./_string-at')(true);
 
@@ -7779,7 +8329,7 @@ require('./_iter-define')(String, 'String', function(iterated){
   this._i += point.length;
   return {value: point, done: false};
 });
-},{"./_iter-define":97,"./_string-at":112}],129:[function(require,module,exports){
+},{"./_iter-define":98,"./_string-at":113}],130:[function(require,module,exports){
 'use strict';
 // ECMAScript 6 symbols shim
 var $              = require('./_')
@@ -8008,7 +8558,7 @@ setToStringTag($Symbol, 'Symbol');
 setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
-},{"./_":67,"./_an-object":71,"./_core":79,"./_descriptors":82,"./_enum-keys":83,"./_export":84,"./_fails":85,"./_get-names":87,"./_global":88,"./_has":89,"./_is-array":93,"./_keyof":101,"./_library":102,"./_meta":103,"./_property-desc":105,"./_redefine":107,"./_set-to-string-tag":110,"./_shared":111,"./_to-iobject":115,"./_uid":118,"./_wks":119}],130:[function(require,module,exports){
+},{"./_":68,"./_an-object":72,"./_core":80,"./_descriptors":83,"./_enum-keys":84,"./_export":85,"./_fails":86,"./_get-names":88,"./_global":89,"./_has":90,"./_is-array":94,"./_keyof":102,"./_library":103,"./_meta":104,"./_property-desc":106,"./_redefine":108,"./_set-to-string-tag":111,"./_shared":112,"./_to-iobject":116,"./_uid":119,"./_wks":120}],131:[function(require,module,exports){
 'use strict';
 var $export   = require('./_export')
   , $includes = require('./_array-includes')(true);
@@ -8021,17 +8571,17 @@ $export($export.P, 'Array', {
 });
 
 require('./_add-to-unscopables')('includes');
-},{"./_add-to-unscopables":69,"./_array-includes":73,"./_export":84}],131:[function(require,module,exports){
+},{"./_add-to-unscopables":70,"./_array-includes":74,"./_export":85}],132:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = require('./_export');
 
 $export($export.P + $export.R, 'Map', {toJSON: require('./_collection-to-json')('Map')});
-},{"./_collection-to-json":77,"./_export":84}],132:[function(require,module,exports){
+},{"./_collection-to-json":78,"./_export":85}],133:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = require('./_export');
 
 $export($export.P + $export.R, 'Set', {toJSON: require('./_collection-to-json')('Set')});
-},{"./_collection-to-json":77,"./_export":84}],133:[function(require,module,exports){
+},{"./_collection-to-json":78,"./_export":85}],134:[function(require,module,exports){
 var $iterators     = require('./es6.array.iterator')
   , redefine       = require('./_redefine')
   , global         = require('./_global')
@@ -8053,7 +8603,7 @@ require('./_').each.call(['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetLi
     for(key in $iterators)if(!proto[key])redefine(proto, key, $iterators[key], true);
   }
 });
-},{"./_":67,"./_global":88,"./_hide":90,"./_iterators":100,"./_redefine":107,"./_wks":119,"./es6.array.iterator":122}],134:[function(require,module,exports){
+},{"./_":68,"./_global":89,"./_hide":91,"./_iterators":101,"./_redefine":108,"./_wks":120,"./es6.array.iterator":123}],135:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -8178,7 +8728,7 @@ module.exports = function withSideEffect(reducePropsToState, handleStateChangeOn
     return SideEffect;
   };
 };
-},{"fbjs/lib/ExecutionEnvironment":135,"fbjs/lib/shallowEqual":136,"react":"react"}],135:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":136,"fbjs/lib/shallowEqual":137,"react":"react"}],136:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -8215,7 +8765,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -8266,7 +8816,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -8330,4 +8880,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":55}]},{},[33]);
+},{"_process":56}]},{},[34]);

@@ -1,5 +1,6 @@
 import React from "react";
 import ChannelActions from "../actions/ChannelActions";
+import cookie from "react-cookie";
 
 class SubscribeButton extends React.Component {
 
@@ -8,14 +9,9 @@ class SubscribeButton extends React.Component {
 		super(props);
 
 		this.state = {
-			"subscribed": false,
+			"subscribed": props.channel.subscribed,
 			"loading": false
 		};
-	}
-
-	// COMPONENT DID MOUNT
-	componentDidMount() {
-		this.state.subscribed = this.props.channel.subscribed;
 	}
 
 	// SUBSCRIBE
@@ -32,6 +28,12 @@ class SubscribeButton extends React.Component {
 			if(!err && data.success === true) {
 				this.setState({
 					"subscribed": true,
+					"loading": false
+				});
+			}
+			else {
+				this.setState({
+					"subscribed": this.state.subscribed,
 					"loading": false
 				});
 			}
@@ -55,12 +57,38 @@ class SubscribeButton extends React.Component {
 					"loading": false
 				});
 			}
+			else {
+				this.setState({
+					"subscribed": this.state.subscribed,
+					"loading": false
+				});
+			}
 		});
+	}
+
+	// SHOW SIGN IN BANNER
+	showSignInBanner() {
+
+		if(!($("#signin-dialog").data("bs.modal") || {}).isShown) {
+
+			// open the dialog
+			$("#signin-dialog").modal("show");
+		}
 	}
 
 	// RENDER
 	render() {
 
+		// user is not logged in
+		if(!cookie.load("me")) {
+			return (
+				<button onClick={this.showSignInBanner.bind(this)} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
+					<i className="fa fa-youtube-play"></i> Subscribe
+				</button>
+			);
+		}
+
+		// a subscription state is known
 		if(this.state.subscribed === false) {
 
 			// render subscribe button

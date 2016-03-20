@@ -101,6 +101,7 @@ class ChannelActions {
 			"cache": false
 		}, (err, data) => {
 
+			console.log(err);
 			if(err) {
 				return callback(err);
 			}

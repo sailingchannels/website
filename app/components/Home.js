@@ -4,7 +4,8 @@ import SearchBar from "./SearchBar";
 import OffsetMenu from "./OffsetMenu";
 import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
-import Banner from "./Banner";
+import BannerDialog from "./BannerDialog";
+import SignInDialog from "./SignInDialog";
 import cookie from "react-cookie";
 import {Link} from "react-router";
 
@@ -65,7 +66,7 @@ class Home extends React.Component {
 				<Logo />
 				{(!this.state.me) ?
 					<center>
-						<Link to="/login" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</Link>
+						<Link to="/signin" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</Link>
 					</center>
 					: null
 				}
@@ -74,7 +75,8 @@ class Home extends React.Component {
 				<SearchBar sortBy={sortBy} history={this.props.history} />
 				<ChannelList sortBy={sortBy} history={this.props.history} />
 				{this.props.children}
-				<Banner />
+				<BannerDialog />
+				<SignInDialog />
 			</div>
 		);
 	}

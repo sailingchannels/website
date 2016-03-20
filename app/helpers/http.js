@@ -164,7 +164,7 @@ class HTTP {
 				// render table with remote data
 				return callback(null, data);
 			})
-			.fail((err) => {
+			.fail((xhr) => {
 				var data = JSON.parse(xhr.responseText);
 				return callback({
 					"statusCode": xhr.status,
