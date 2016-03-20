@@ -18,8 +18,7 @@ class LanguageActions {
             "url": "/api/languages",
             "type": "GET",
             "dataType": "json",
-            "cache": true,
-			"ttl": 86400
+            "cache": false
         }, (err, data) => {
 
 			if(err) {

@@ -23,6 +23,7 @@ var dependencies = [
 	"react-dom",
 	"react-router",
 	"react-infinite",
+	"react-cookie",
 	"underscore"
 ];
 

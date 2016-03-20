@@ -7,6 +7,7 @@ import OffsetSocial from "./OffsetSocial";
 import VideoList from "./VideoList";
 import Logo from "./Logo";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
+import SubscribeButton from "./SubscribeButton";
 
 class ChannelDetail extends React.Component {
 
@@ -98,9 +99,7 @@ class ChannelDetail extends React.Component {
 								<p>&nbsp;</p>
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
-								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
-									<i className="fa fa-youtube-play"></i> Subscribe
-								</a>
+								<SubscribeButton channel={this.state.channel} />
 
 							</div>
 						</div>

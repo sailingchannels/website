@@ -16,9 +16,19 @@ var mongodb = require("mongodb");
 var moment = require("moment");
 var ISO6391 = require("iso-639-1");
 var async = require("async");
+var youtube = require("youtube-api");
+var loggly  = require("express-loggly");
+
+var tag = process.env.TAG || "dev";
+
+// setup Loggly configuration
+var loggly_config = {
+    token: "9650f16d-a911-48c8-b64b-5caf03749a4d",
+    subdomain: "sailchannels",
+    tags: [tag]
+};
 
 var app = express();
-var tag = process.env.TAG || "dev";
 
 app.set("port", process.env.PORT || 3000);
 app.use(logger("dev"));
@@ -29,11 +39,93 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(loggly({ loggly: loggly_config }));
+
+const CREDENTIALS = jsonfile.readFileSync("client_id.json");
+var oauth = youtube.authenticate({
+    "type": "oauth",
+	"client_id": CREDENTIALS.web.client_id,
+	"client_secret": CREDENTIALS.web.client_secret,
+	"redirect_url": (tag === "dev") ? CREDENTIALS.web.redirect_uris[1] : CREDENTIALS.web.redirect_uris[0]
+});
 
 // ROBOTS.TXT
 app.get("/robots.txt", function(req, res) {
 	res.set("Content-Type", "text/plain");
 	return res.send("User-agent: *\nAllow: /");
+});
+
+// OAUTH2CALLBACK
+app.get("/oauth2callback", function(req, res) {
+
+	// is code included?
+	if(!req.query.code) {
+		var redirect_to = oauth.generateAuthUrl({
+		    "access_type": "online",
+			"scope": ["https://www.googleapis.com/auth/youtube.force-ssl"]
+		});
+
+		return res.redirect(301, redirect_to);
+	}
+	else {
+
+		// get a token
+		oauth.getToken(req.query.code, function(err, credentials) {
+
+			if (err) {
+				return res.status(400).send(err);
+			}
+
+			// authenticate next request
+			oauth.setCredentials(credentials);
+
+			youtube.channels.list({
+			    "part": "id,snippet",
+			    "mine": true,
+			}, function (err, data) {
+
+				// store user information
+				if(!err && data && data.items.length > 0) {
+
+					var info = {
+						"lastLogin": moment.utc().toDate(),
+						"title": data.items[0].snippet.title,
+						"thumbnail": data.items[0].snippet.thumbnails.default.url,
+						"country": ("country" in data.items[0].snippet) ? data.items[0].snippet.country.toLowerCase() : null
+					};
+
+					global.users.updateOne({
+						"_id": data.items[0].id
+					}, {
+						"$set": info
+					}, {
+						"upsert": true
+					});
+
+					// keep credentials
+					res.cookie("credentials", credentials, {
+						"expires": new Date(credentials.expiry_date),
+						"httpOnly": true
+					});
+
+					// keep credentials
+					res.cookie("me", info, {
+						"expires": new Date(credentials.expiry_date)
+					});
+				}
+
+				return res.redirect(301, "/");
+			});
+		});
+	}
+});
+
+// LOGOUT
+app.get("/logout", function(req, res) {
+	res.clearCookie("credentials");
+	res.clearCookie("me");
+
+	return res.redirect(301, "/");
 });
 
 // API / LANGUAGES
@@ -89,58 +181,85 @@ app.get("/api/channel/get/:id", function(req, res) {
 
 	var id = req.params.id;
 
-	// find one video
-	global.channels.find({"_id": id}).project({
-		"lastCrawl": false,
-		"language": false,
-		"detectedLanguage": false
-	}).limit(1).next(function(err, channel) {
+	async.parallel({
+		// SUBSCRIPTIONS
+		"subscriptions": function(done_subscriptions) {
 
-		// oh no!
-		if(err || !channel) {
+			if(req.cookies.credentials) {
+				readSubscriptions(req.cookies.credentials, done_subscriptions);
+			}
+			else {
+				// no credentials available
+				return done_subscriptions(null, null);
+			}
+		},
+
+		// CHANNEL
+		"channel": function(done_channel) {
+			// find one video
+			global.channels.find({"_id": id}).project({
+				"lastCrawl": false,
+				"language": false,
+				"detectedLanguage": false
+			}).limit(1).next(function(err, channel) {
+
+				// oh no!
+				if(err || !channel) {
+					return res.status(500).send(err);
+				}
+
+				async.parallel({
+
+					// fetch latest video from mongodb
+					"video": function(done) {
+
+						// fetch latest video
+						global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
+							"videos.description": false
+						}).next(done);
+					},
+
+					// fetch the subscriber history of last 7 days
+					"subscribers": function(done) {
+
+						global.subscribers.find({
+							"_id.channel": id,
+							"date": {
+								"$gte": moment().subtract(7, "days").toDate()
+							}
+						})
+						.sort({"date": 1})
+						.project({
+							"subscribers": true
+						})
+						.toArray(done);
+					}
+
+				}, function(err, result) {
+
+					// oh no!
+					if(err) {
+						return done_channel(err, null);
+					}
+
+					channel.videos = [];
+					channel.videos.push(result.video);
+					channel.subHist = result.subscribers;
+
+					return done_channel(null, channel);
+				});
+			});
+		}
+	}, function(err, results) {
+
+		if(err) {
 			return res.status(500).send(err);
 		}
 
-		async.parallel({
+		// check if user subscribed to this channel
+		results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
 
-			// fetch latest video from mongodb
-			"video": function(done) {
-
-				// fetch latest video
-				global.videos.find({"channel": id}).sort({"publishedAt": -1}).limit(1).project({
-					"videos.description": false
-				}).next(done);
-			},
-
-			// fetch the subscriber history of last 7 days
-			"subscribers": function(done) {
-
-				global.subscribers.find({
-					"_id.channel": id,
-					"date": {
-						"$gte": moment().subtract(7, "days").toDate()
-					}
-				})
-				.sort({"date": 1})
-				.project({
-					"subscribers": true
-				})
-				.toArray(done);
-			}
-
-		}, function(err, result) {
-
-			// oh no!
-			if(err) {
-				return res.status(500).send(err);
-			}
-
-			channel.videos = [];
-			channel.videos.push(result.video);
-			channel.subHist = result.subscribers;
-
-			return res.send(channel);
-		});
+		return res.send(results.channel);
 	});
 });
 
@@ -203,6 +322,86 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 	});
 });
 
+// READ SUBSCRIPTIONS
+var readSubscriptions = function(credentials, done) {
+
+	// authenticate next request
+	oauth.setCredentials(credentials);
+
+	var lastResult = null;
+	var subscriptions = [];
+
+	// check if cache is available
+	global.CACHE_users_subscriptions.findOne({
+		"_id": credentials.access_token
+	}, function(err, cached_subs) {
+
+		// found cached subscriptions
+		if(!err && cached_subs) {
+			return done(null, cached_subs.subscriptions);
+		}
+
+		// loop multiple pages
+		async.doWhilst(
+			function (callback) {
+
+				var query = {
+					"part": "id,snippet",
+					"mine": true,
+					"maxResults": 50
+				};
+
+				// add next page token if available
+				if(lastResult && lastResult.nextPageToken) {
+					query.pageToken = lastResult.nextPageToken;
+				}
+
+				// read own subscriptions
+				youtube.subscriptions.list(query, function (err, data) {
+
+					if(err) {
+						return callback(err);
+					}
+
+					// store last result
+					if(data) {
+						lastResult = data;
+
+						var items = data.items.map(function(item) {
+
+							// only take channel ids
+							if(item.snippet.resourceId.kind === "youtube#channel") {
+								return item.snippet.resourceId.channelId;
+							}
+						});
+
+						subscriptions = subscriptions.concat(items);
+						return callback(null, true);
+					}
+				});
+			},
+			function () { return lastResult.nextPageToken; },
+			function (err, results) {
+
+				// cache subscriptions
+				global.CACHE_users_subscriptions.updateOne({
+					"_id": credentials.access_token
+				}, {
+					"$set": {
+						"subscriptions": subscriptions,
+						"stored": moment.utc().toDate()
+					}
+				}, {
+					"upsert": true
+				});
+
+				// all processed subscription ids
+				return done(err, subscriptions);
+			}
+		);
+	});
+};
+
 // API / CHANNELS / GET
 app.get("/api/channels/get", function(req, res) {
 
@@ -221,19 +420,36 @@ app.get("/api/channels/get", function(req, res) {
 	var sorting = {};
 	sorting[sortKey] = -1;
 
-	// fetch channels from mongodb
-	global.channels.find({
-		"language": req.cookies["channel-language"] || "en"
-	}).skip(skip).limit(take).sort(sorting).project({
-		"videos": false,
-		"country": false,
-		"lastCrawl": false,
-		"detectedLanguage": false,
-		"language": false
-	}).toArray(function(err, channels) {
+	async.parallel({
+		"subscriptions": function(done) {
+
+			if(req.cookies.credentials) {
+				readSubscriptions(req.cookies.credentials, done);
+			}
+			else {
+				// no credentials available
+				return done(null, null);
+			}
+		},
+
+		"channels": function(done) {
+
+			// fetch channels from mongodb
+			global.channels.find({
+				"language": req.cookies["channel-language"] || "en"
+			}).skip(skip).limit(take).sort(sorting).project({
+				"videos": false,
+				"country": false,
+				"lastCrawl": false,
+				"detectedLanguage": false,
+				"language": false
+			}).toArray(done);
+		}
+
+	}, function(err, results) {
 
 		// oh no!
-		if(err || !channels) {
+		if(err || !results.channels) {
 			return res.status(500).send({
 				"data": [],
 				"skip": skip,
@@ -242,11 +458,115 @@ app.get("/api/channels/get", function(req, res) {
 			});
 		}
 
+		// if we have subscriptions, enhance the
+		var channels = results.channels.map(function(channel) {
+			channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
+			return channel;
+		});
+
 		// send data out
 		return res.send({
 			"data": channels,
 			"skip": skip,
 			"take": take
+		});
+	});
+});
+
+// API / CHANNEL / SUBSCRIBE
+app.post("/api/channel/subscribe", function(req, res) {
+
+	var channel = req.body.channel;
+	if(!channel) {
+		return res.status(400).send({"error": "no channel id provided"});
+	}
+
+	// check if request is authenticated
+	var credentials = req.cookies.credentials;
+	if(!credentials) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	// authenticate next request
+	oauth.setCredentials(req.cookies.credentials);
+
+	// add the subscription
+	youtube.subscriptions.insert({
+		part: "snippet",
+		resource: {
+			snippet: {
+				resourceId: {
+					kind: "youtube#channel",
+					channelId: channel
+				}
+			}
+		}
+	}, function (err, data) {
+
+		// handle error like a grown up
+		if(err) {
+			return res.status(500).send({"error": err});
+		}
+
+		// clear cache
+		global.CACHE_users_subscriptions.deleteOne({
+			"_id": credentials.access_token
+		});
+
+		return res.send({"error": null, "success": true});
+	});
+});
+
+// API / CHANNEL / UNSUBSCRIBE
+app.post("/api/channel/unsubscribe", function(req, res) {
+
+	var channel = req.body.channel;
+	if(!channel) {
+		return res.status(400).send({"error": "no channel id provided"});
+	}
+
+	// check if request is authenticated
+	var credentials = req.cookies.credentials;
+	if(!credentials) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	// authenticate next request
+	oauth.setCredentials(req.cookies.credentials);
+
+	// fetch subscription id
+	youtube.subscriptions.list({
+		"part": "id",
+		"forChannelId": channel,
+		"mine": true
+	}, function(err, subs) {
+
+		// handle error like a grown up
+		if(err) {
+			return res.status(500).send({"error": err});
+		}
+
+		// could not find enough results?
+		if(subs.pageInfo.totalResults !== 1) {
+			return res.status(500).send({"error": "could not find subscription result"});
+		}
+
+		// delete the subscription
+		youtube.subscriptions.delete({
+			"id": subs.items[0].id
+		}, function (err, data) {
+
+			// handle error like a grown up
+			if(err) {
+				return res.status(500).send({"error": err});
+			}
+
+			// clear cache
+			global.CACHE_users_subscriptions.deleteOne({
+				"_id": credentials.access_token
+			});
+
+			return res.send({"error": null, "success": true});
 		});
 	});
 });
@@ -524,6 +844,9 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.searches = db.collection("searches");
 	global.videos = db.collection("videos");
 	global.subscribers = db.collection("subscribers");
+	global.views = db.collection("views");
+	global.users = db.collection("users");
+	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 
 	// start server
 	app.listen(app.get("port"), function() {

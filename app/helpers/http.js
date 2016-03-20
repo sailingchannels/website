@@ -116,7 +116,7 @@ class HTTP {
 
 		var obj = $.extend({
 			url: "",
-			params: {},
+			data: {},
 			ttl: null,
 			force: false,
 			timeout: 10000,
@@ -152,7 +152,7 @@ class HTTP {
 				"headers": obj.headers,
 				"dataType": "json",
 				"timeout": obj.timeout,
-				"data": obj.params
+				"data": obj.data
 			})
 			.done((data) => {
 
@@ -164,7 +164,7 @@ class HTTP {
 				// render table with remote data
 				return callback(null, data);
 			})
-			.fail((err) => {
+			.fail((xhr) => {
 				var data = JSON.parse(xhr.responseText);
 				return callback({
 					"statusCode": xhr.status,

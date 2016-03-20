@@ -25,13 +25,15 @@ class DataCollection extends React.Component {
 						<p>
 							Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats.
 						</p>
+						<p><center>~</center></p>
 						<p>
 							The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom.
 						</p>
+						<p><center>~</center></p>
 						<p>
 							The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on.
 						</p>
-						<p>&nbsp;</p>
+						<p><center>~</center></p>
 						<center>
 							<iframe className="intro-video" width="100%" height="315" src="https://www.youtube.com/embed/RWosJPnB900?start=53" frameBorder="0" allowFullScreen></iframe>
 						</center>

@@ -4,7 +4,10 @@ import SearchBar from "./SearchBar";
 import OffsetMenu from "./OffsetMenu";
 import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
-import Banner from "./Banner";
+import BannerDialog from "./BannerDialog";
+import SignInDialog from "./SignInDialog";
+import cookie from "react-cookie";
+import {Link} from "react-router";
 
 class Home extends React.Component {
 
@@ -12,7 +15,8 @@ class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			"showScrollUp": false
+			"showScrollUp": false,
+			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
 		};
 	}
 
@@ -60,12 +64,19 @@ class Home extends React.Component {
 			<div className="container">
 				<OffsetSocial />
 				<Logo />
+				{(!this.state.me) ?
+					<center>
+						<Link to="/signin" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</Link>
+					</center>
+					: null
+				}
 				<OffsetMenu />
 				{scrollUp}
 				<SearchBar sortBy={sortBy} history={this.props.history} />
 				<ChannelList sortBy={sortBy} history={this.props.history} />
 				{this.props.children}
-				<Banner />
+				<BannerDialog />
+				<SignInDialog />
 			</div>
 		);
 	}

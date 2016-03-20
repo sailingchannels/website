@@ -1,6 +1,7 @@
 import React from "react";
 import Description from "./Description";
 import {Link} from "react-router";
+import SubscribeButton from "./SubscribeButton";
 
 class ChannelListItem extends React.Component {
 
@@ -14,6 +15,11 @@ class ChannelListItem extends React.Component {
 		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		var d = new Date(unix * 1000);
 		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+	}
+
+	// SHOULD COMPOENENT UPDATE
+	shouldComponentUpdate(nextProps, nextState) {
+		return nextProps.channel.id !== this.props.channel.id;
 	}
 
     // RENDER
@@ -44,9 +50,8 @@ class ChannelListItem extends React.Component {
 					{(this.props.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.props.channel.lastUploadAt * 1000))}</p> : ""}
 					<p><b>Founded:</b> {this.formatDate(this.props.channel.publishedAt)}</p>
 
-					<a target="_blank" href={"https://youtube.com/channel/" + this.props.channel.id + "?sub_confirmation=1"} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
-						<i className="fa fa-youtube-play"></i> Subscribe
-					</a>
+					<SubscribeButton channel={this.props.channel} />
+
                 </div>
 			</div>
 		);

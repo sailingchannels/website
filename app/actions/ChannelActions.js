@@ -58,7 +58,7 @@ class ChannelActions {
             "url": "/api/channels/search?q=" + encodeURIComponent(q),
             "type": "GET",
             "dataType": "json",
-			"cache": false,
+			"cache": false
     	}, (err, data) => {
 
 			if(err) {
@@ -68,6 +68,47 @@ class ChannelActions {
 			this.actions.searchChannelsSuccess(data);
 		});
     }
+
+	// SUBSCRIBE
+	subscribe(channelId, callback) {
+		new HTTP().post({
+			"url": "/api/channel/subscribe",
+			"data": {
+				"channel": channelId
+			},
+			"type": "POST",
+			"dataType": "json",
+			"cache": false
+		}, (err, data) => {
+
+			if(err) {
+				return callback(err);
+			}
+
+			return callback(null, data);
+		});
+	}
+
+	// UNSUBSCRIBE
+	unsubscribe(channelId, callback) {
+		new HTTP().post({
+			"url": "/api/channel/unsubscribe",
+			"data": {
+				"channel": channelId
+			},
+			"type": "POST",
+			"dataType": "json",
+			"cache": false
+		}, (err, data) => {
+
+			console.log(err);
+			if(err) {
+				return callback(err);
+			}
+
+			return callback(null, data);
+		});
+	}
 }
 
 export default alt.createActions(ChannelActions);
