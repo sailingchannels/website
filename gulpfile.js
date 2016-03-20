@@ -24,7 +24,8 @@ var dependencies = [
 	"react-router",
 	"react-infinite",
 	"react-cookie",
-	"underscore"
+	"underscore",
+	"react-map-gl"
 ];
 
 /*

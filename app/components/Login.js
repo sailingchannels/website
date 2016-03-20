@@ -25,11 +25,11 @@ class Login extends React.Component {
 						<p>
 							To provide you with an awesome tailored user interface, you can sign in with your YouTube account.
 						</p>
-						<p><center>~</center></p>
+						<center><p>~</p></center>
 						<p>
 							sailing-channels.com <u>does not publish anything on your behalf nor does it track or share your data</u>.
 						</p>
-						<p><center>~</center></p>
+						<center><p>~</p></center>
 						<p>
 							<b>Cool stuff you can do, when signed in:</b>
 							<ul>
@@ -37,7 +37,7 @@ class Login extends React.Component {
 								<li>Display your AIS position on a map</li>
 							</ul>
 						</p>
-						<p><center>~</center></p>
+						<center><p>~</p></center>
 						<center>
 							<a href="/oauth2callback" className="btn btn-danger btn-lg btn-raised">
 								Sign In with <i className="fa fa-youtube"></i> YouTube

@@ -1,6 +1,6 @@
 import React from "react";
 
-class SubscriberHistoryChart extends React.Component {
+class ViewsHistoryChart extends React.Component {
 
 	// COMPONENT DID MOUNT
 	componentDidMount() {
@@ -16,7 +16,7 @@ class SubscriberHistoryChart extends React.Component {
 	loadChart(props) {
 
 		window.setTimeout(function() {
-			var $el = $("#subsriberChart_" + props.channel.id);
+			var $el = $("#viewsChart_" + props.channel.id);
 
 			// get canvas and set width
 			var canvas = $el.get(0);
@@ -26,11 +26,11 @@ class SubscriberHistoryChart extends React.Component {
 			var ctx = canvas.getContext("2d");
 
 			// filter out values and dates for labels
-			var values = props.channel.subHist.map((item) => {
-				return item.subscribers;
+			var values = props.channel.viewHist.map((item) => {
+				return item.views;
 			});
 
-			var labels = props.channel.subHist.map((item) => {
+			var labels = props.channel.viewHist.map((item) => {
 				var raw = item._id.date + "";
 				var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)) - 1, parseInt(raw.substr(6, 2)));
 				return d.toLocaleDateString();
@@ -64,9 +64,9 @@ class SubscriberHistoryChart extends React.Component {
 	render() {
 
 		return (
-			<canvas id={"subsriberChart_" + this.props.channel.id} height="100"></canvas>
+			<canvas id={"viewsChart_" + this.props.channel.id} height="100"></canvas>
 		);
 	}
 }
 
-export default SubscriberHistoryChart;
+export default ViewsHistoryChart;

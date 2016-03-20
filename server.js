@@ -195,19 +195,104 @@ app.get("/api/me", function(req, res) {
 
 		// read the users information
 		"user": function(done) {
-			global.users.find({"_id": me._id}).limit(1).next(done);
+			global.users.find({
+				"_id": me._id
+			})
+			.limit(1)
+			.next(done);
 		},
 
 		// try to fetch information on the channel of the user
 		"channel": function(done) {
-			global.channels.find({"_id": me._id}).limit(1).project({"videos": false}).next(done);
+			global.channels.find({
+				"_id": me._id
+			})
+			.limit(1)
+			.project({
+				"videos": false
+			})
+			.next(done);
+		},
+
+		// fetch the subscriber history of last 7 days
+		"subscribers": function(done) {
+
+			global.subscribers.find({
+				"_id.channel": me._id,
+				"date": {
+					"$gte": moment().subtract(7, "days").toDate()
+				}
+			})
+			.sort({"date": 1})
+			.project({
+				"subscribers": true
+			})
+			.toArray(done);
+		},
+
+		// fetch the view history of last 7 days
+		"views": function(done) {
+
+			global.views.find({
+				"_id.channel": me._id,
+				"date": {
+					"$gte": moment().subtract(7, "days").toDate()
+				}
+			})
+			.sort({"date": 1})
+			.project({
+				"views": true
+			})
+			.toArray(done);
 		}
 
 	}, function(err, results) {
 
 		if(err) return res.stus(500).send({"error": err});
 
+		if(results.channel) {
+
+			// try to append subscriber history
+			if(results.subscribers) {
+				results.channel.subHist = results.subscribers;
+			}
+
+			// try to append view history
+			if(results.views) {
+				results.channel.viewHist = results.views;
+			}
+		}
+
 		return res.send(results);
+	});
+});
+
+// API / ME / SETTINGS
+app.post("/api/me/settings", function(req, res) {
+
+	// check if request is authenticated
+	var me = req.cookies.me;
+	if(!me) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	if(!("_id" in me)) {
+		return res.status(400).send({"error": "no user id found"});
+	}
+
+	global.user.updateOne({
+		"_id": me._id
+	}, {
+		"$set": {
+			"settings": req.body
+		}
+	}, function(err, updt) {
+
+		// an error occured
+		if(err) return res.status(500).send({"error": err, "success": false});
+
+		// success
+		return res.send({"error": null, "success": true});
 	});
 });
 

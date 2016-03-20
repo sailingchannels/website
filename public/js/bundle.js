@@ -144,7 +144,7 @@ var ChannelActions = (function () {
 exports["default"] = _alt2["default"].createActions(ChannelActions);
 module.exports = exports["default"];
 
-},{"../alt":5,"../helpers/http":34}],2:[function(require,module,exports){
+},{"../alt":5,"../helpers/http":36}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -203,7 +203,7 @@ var LanguageActions = (function () {
 exports["default"] = _alt2["default"].createActions(LanguageActions);
 module.exports = exports["default"];
 
-},{"../alt":5,"../helpers/http":34}],3:[function(require,module,exports){
+},{"../alt":5,"../helpers/http":36}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -262,7 +262,7 @@ var MeActions = (function () {
 exports["default"] = _alt2["default"].createActions(MeActions);
 module.exports = exports["default"];
 
-},{"../alt":5,"../helpers/http":34}],4:[function(require,module,exports){
+},{"../alt":5,"../helpers/http":36}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -837,7 +837,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":37,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./SubscribeButton":29,"./SubscriberHistoryChart":30,"./VideoList":32,"react":"react","react-helmet":62}],9:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./SubscribeButton":30,"./SubscriberHistoryChart":31,"./VideoList":33,"react":"react","react-helmet":64}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1044,7 +1044,7 @@ var ChannelList = (function (_React$Component) {
 exports["default"] = ChannelList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":37,"./ChannelListItem":10,"react":"react","react-infinite":"react-infinite","react-router":"react-router"}],10:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./ChannelListItem":10,"react":"react","react-infinite":"react-infinite","react-router":"react-router"}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1222,7 +1222,7 @@ var ChannelListItem = (function (_React$Component) {
 exports["default"] = ChannelListItem;
 module.exports = exports["default"];
 
-},{"./Description":14,"./SubscribeButton":29,"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
+},{"./Description":14,"./SubscribeButton":30,"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1358,7 +1358,7 @@ var ChannelMissing = (function (_React$Component) {
 exports["default"] = ChannelMissing;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],12:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1543,7 +1543,7 @@ var Contributions = (function (_React$Component) {
 exports["default"] = Contributions;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],13:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1622,10 +1622,10 @@ var DataCollection = (function (_React$Component) {
 							"Well basically what this website does is list youtube channels that are related to sailing, circumnavigation or people living aboard their boats."
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -1636,10 +1636,10 @@ var DataCollection = (function (_React$Component) {
 							"The channels are discovered by doing a network analysis. Basically finding out who subscribed to whom."
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -1650,10 +1650,10 @@ var DataCollection = (function (_React$Component) {
 							"The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on."
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -1676,7 +1676,7 @@ var DataCollection = (function (_React$Component) {
 exports["default"] = DataCollection;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],14:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2011,7 +2011,7 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./BannerDialog":7,"./ChannelList":9,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./SearchBar":25,"./SignInDialog":28,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],17:[function(require,module,exports){
+},{"./BannerDialog":7,"./ChannelList":9,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./SearchBar":26,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2123,10 +2123,10 @@ var Imprint = (function (_React$Component) {
                                                                                                                               _react2["default"].createElement("br", null)
                                                                                                             ),
                                                                                                             _react2["default"].createElement(
-                                                                                                                              "p",
+                                                                                                                              "center",
                                                                                                                               null,
                                                                                                                               _react2["default"].createElement(
-                                                                                                                                                "center",
+                                                                                                                                                "p",
                                                                                                                                                 null,
                                                                                                                                                 "~"
                                                                                                                               )
@@ -2142,10 +2142,10 @@ var Imprint = (function (_React$Component) {
                                                                                                                               "The contents of these pages are generated automatically based on the YouTube channel title, description and videos of the individual channels listed. The creator of this website has no influence on the content of the channel descriptions or other channel related texts. Also, The creator of this website cannot assume liability for the timeless accuracy and completeness of the information. This website contains links to external websites. As the contents of these third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity for the contents of the linked pages is always held by the provider or operator of the pages."
                                                                                                             ),
                                                                                                             _react2["default"].createElement(
-                                                                                                                              "p",
+                                                                                                                              "center",
                                                                                                                               null,
                                                                                                                               _react2["default"].createElement(
-                                                                                                                                                "center",
+                                                                                                                                                "p",
                                                                                                                                                 null,
                                                                                                                                                 "~"
                                                                                                                               )
@@ -2161,10 +2161,10 @@ var Imprint = (function (_React$Component) {
                                                                                                                               "In general, when visiting the website of “Sailing Channels”, no personal data are saved. No data will be passed on to third parties without your consent. We point out that in regard to unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed. Such data could possibIy be accessed by third parties."
                                                                                                             ),
                                                                                                             _react2["default"].createElement(
-                                                                                                                              "p",
+                                                                                                                              "center",
                                                                                                                               null,
                                                                                                                               _react2["default"].createElement(
-                                                                                                                                                "center",
+                                                                                                                                                "p",
                                                                                                                                                 null,
                                                                                                                                                 "~"
                                                                                                                               )
@@ -2180,10 +2180,10 @@ var Imprint = (function (_React$Component) {
                                                                                                                               "This website uses Google Analytics, a web analytics service provided by Google, Inc. (»Google«). Google Analytics uses cookies, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. On this website the IP anonymization feature is activated. As a result Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. By using this website, you consent to the processing of data about you by Google in the manner and for the purposes set out above."
                                                                                                             ),
                                                                                                             _react2["default"].createElement(
-                                                                                                                              "p",
+                                                                                                                              "center",
                                                                                                                               null,
                                                                                                                               _react2["default"].createElement(
-                                                                                                                                                "center",
+                                                                                                                                                "p",
                                                                                                                                                 null,
                                                                                                                                                 "~"
                                                                                                                               )
@@ -2225,7 +2225,7 @@ var Imprint = (function (_React$Component) {
 exports["default"] = Imprint;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],18:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2329,7 +2329,7 @@ var LanguagePicker = (function (_React$Component) {
 exports["default"] = LanguagePicker;
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../stores/LanguageStore":38,"react":"react"}],19:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../stores/LanguageStore":40,"react":"react"}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2408,10 +2408,10 @@ var Login = (function (_React$Component) {
 							"To provide you with an awesome tailored user interface, you can sign in with your YouTube account."
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -2428,10 +2428,10 @@ var Login = (function (_React$Component) {
 							"."
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -2460,10 +2460,10 @@ var Login = (function (_React$Component) {
 							)
 						),
 						_react2["default"].createElement(
-							"p",
+							"center",
 							null,
 							_react2["default"].createElement(
-								"center",
+								"p",
 								null,
 								"~"
 							)
@@ -2492,7 +2492,7 @@ var Login = (function (_React$Component) {
 exports["default"] = Login;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],20:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2572,6 +2572,64 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactMapGl = require("react-map-gl");
+
+var _reactMapGl2 = _interopRequireDefault(_reactMapGl);
+
+var Map = (function (_React$Component) {
+	_inherits(Map, _React$Component);
+
+	function Map(props) {
+		_classCallCheck(this, Map);
+
+		_get(Object.getPrototypeOf(Map.prototype), "constructor", this).call(this, props);
+	}
+
+	// RENDER
+
+	_createClass(Map, [{
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement(_reactMapGl2["default"], {
+				width: 700,
+				height: 450,
+				latitude: 37.78,
+				longitude: -122.45,
+				zoom: 11,
+				mapStyle: "mapbox://styles/mapbox/streets-v8",
+				mapboxApiAccessToken: "pk.eyJ1Ijoic2FpbGluZ2NoYW5uZWxzIiwiYSI6ImNpbHp5MngxczAwaHp2OW00Y2szOG1oM2wifQ.4w_KaRlbtjBf9_TNQL6SXw"
+			});
+		}
+	}]);
+
+	return Map;
+})(_react2["default"].Component);
+
+exports["default"] = Map;
+module.exports = exports["default"];
+
+},{"react":"react","react-map-gl":"react-map-gl"}],22:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
 var _OffsetMenu = require("./OffsetMenu");
 
 var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
@@ -2595,6 +2653,18 @@ var _actionsMeActions2 = _interopRequireDefault(_actionsMeActions);
 var _storesMeStore = require("../stores/MeStore");
 
 var _storesMeStore2 = _interopRequireDefault(_storesMeStore);
+
+var _SubscriberHistoryChart = require("./SubscriberHistoryChart");
+
+var _SubscriberHistoryChart2 = _interopRequireDefault(_SubscriberHistoryChart);
+
+var _ViewsHistoryChart = require("./ViewsHistoryChart");
+
+var _ViewsHistoryChart2 = _interopRequireDefault(_ViewsHistoryChart);
+
+var _Map = require("./Map");
+
+var _Map2 = _interopRequireDefault(_Map);
 
 var Me = (function (_React$Component) {
 	_inherits(Me, _React$Component);
@@ -2638,40 +2708,7 @@ var Me = (function (_React$Component) {
 		value: function render() {
 
 			if (!this.state.me.user) return null;
-
-			var channelListed = null;
-
-			if (this.state.me.channel) {
-				channelListed = _react2["default"].createElement(
-					"div",
-					{ className: "form-horizontal" },
-					_react2["default"].createElement(
-						"div",
-						{ className: "form-group" },
-						_react2["default"].createElement(
-							"p",
-							null,
-							"In case you broadcast your positions via ",
-							_react2["default"].createElement(
-								"b",
-								null,
-								"AIS"
-							),
-							", you can store your MMSI number here. Your position will be displayed on a map on your channel detail page."
-						),
-						_react2["default"].createElement(
-							"label",
-							{ htmlFor: "mmsi", className: "col-sm-2 control-label" },
-							"AIS MMSI"
-						),
-						_react2["default"].createElement(
-							"div",
-							{ className: "col-sm-10" },
-							_react2["default"].createElement("input", { type: "number", className: "form-control", id: "mmsi", placeholder: "MMSI number" })
-						)
-					)
-				);
-			}
+			var isChannelListed = this.state.me.channel;
 
 			return _react2["default"].createElement(
 				"div",
@@ -2692,23 +2729,154 @@ var Me = (function (_React$Component) {
 							_react2["default"].createElement("img", { src: this.state.me.user.thumbnail, width: "50" }),
 							" ",
 							this.state.me.user.title
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				),
+				isChannelListed ? _react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement(
+							"h3",
+							null,
+							"Statistics"
 						),
-						channelListed,
+						_react2["default"].createElement(
+							"p",
+							null,
+							"See how well your channel is performing in the last 7 days:"
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6" },
+								_react2["default"].createElement(
+									"center",
+									null,
+									_react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Subscribers"
+										)
+									)
+								),
+								_react2["default"].createElement(_SubscriberHistoryChart2["default"], { channel: this.state.me.channel })
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6" },
+								_react2["default"].createElement(
+									"center",
+									null,
+									_react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Views"
+										)
+									)
+								),
+								_react2["default"].createElement(_ViewsHistoryChart2["default"], { channel: this.state.me.channel })
+							)
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				) : null,
+				isChannelListed ? _react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
 						_react2["default"].createElement(
 							"center",
 							null,
-							channelListed ? _react2["default"].createElement(
+							_react2["default"].createElement(
+								"p",
+								null,
+								"~"
+							)
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				) : null,
+				isChannelListed ? _react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement(
+							"h3",
+							null,
+							"AIS"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"In case you broadcast your positions via ",
+							_react2["default"].createElement(
+								"b",
+								null,
+								"AIS"
+							),
+							", you can store your MMSI number here. Your position will be displayed on a map on your channel detail page."
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "form-horizontal" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "form-group" },
+								_react2["default"].createElement(
+									"label",
+									{ htmlFor: "mmsi", className: "col-sm-2 control-label" },
+									"AIS MMSI"
+								),
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-sm-10" },
+									_react2["default"].createElement("input", { type: "number", className: "form-control", id: "mmsi", placeholder: "MMSI number" })
+								)
+							)
+						),
+						_react2["default"].createElement(_Map2["default"], null)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				) : null,
+				_react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement(
+							"center",
+							null,
+							isChannelListed ? _react2["default"].createElement(
 								"button",
 								{ className: "btn btn-success btn-raised" },
-								_react2["default"].createElement(
-									"i",
-									{ className: "fa fa-check" },
-									" Save"
-								)
+								_react2["default"].createElement("i", { className: "fa fa-check" }),
+								" Save"
 							) : null,
+							" ",
 							_react2["default"].createElement(
 								"a",
-								{ href: "/logout", className: "btn" },
+								{ href: "/logout", className: "btn btn-default btn-raised" },
 								_react2["default"].createElement("i", { className: "fa fa-power-off" }),
 								" Sign Out"
 							)
@@ -2725,8 +2893,9 @@ var Me = (function (_React$Component) {
 
 exports["default"] = Me;
 module.exports = exports["default"];
+/* STATISTICS */ /* MMSI */ /* CONTROLS */
 
-},{"../actions/MeActions":3,"../stores/MeStore":39,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react","react-cookie":"react-cookie"}],22:[function(require,module,exports){
+},{"../actions/MeActions":3,"../stores/MeStore":41,"./Logo":20,"./Map":21,"./OffsetMenu":23,"./OffsetSocial":24,"./SubscriberHistoryChart":31,"./ViewsHistoryChart":35,"react":"react","react-cookie":"react-cookie"}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2858,7 +3027,7 @@ var OffsetMenu = (function (_React$Component) {
 exports["default"] = OffsetMenu;
 module.exports = exports["default"];
 
-},{"./LanguagePicker":18,"react":"react","react-router":"react-router"}],23:[function(require,module,exports){
+},{"./LanguagePicker":18,"react":"react","react-router":"react-router"}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2960,7 +3129,7 @@ var SocialOffset = (function (_React$Component) {
 exports["default"] = SocialOffset;
 module.exports = exports["default"];
 
-},{"./Footer":15,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],24:[function(require,module,exports){
+},{"./Footer":15,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3049,10 +3218,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														)
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3068,10 +3237,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Among the types of Personal Data that this Application collects, by itself or through third parties, there are: Cookie and Usage data. Other Personal Data collected may be described in other sections of this privacy policy or by dedicated explanation text contextually with the Data collection. The Personal Data may be freely provided by the User, or collected automatically when using this Application. Any use of Cookies - or of other tracking tools - by this Application or by the owners of third party services used by this Application, unless stated otherwise, serves to identify Users and remember their preferences, for the sole purpose of providing the service required by the User. Failure to provide certain Personal Data may make it impossible for this Application to provide its services. Users are responsible for any Personal Data of third parties obtained, published or shared through this Application and confirm that they have the third party's consent to provide the Data to the Owner."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3082,10 +3251,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Mode and place of processing the Data"
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3101,10 +3270,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The Data Controller processes the Data of Users in a proper manner and shall take appropriate security measures to prevent unauthorized access, disclosure, modification, or unauthorized destruction of the Data. The Data processing is carried out using computers and/or IT enabled tools, following organizational procedures and modes strictly related to the purposes indicated. In addition to the Data Controller, in some cases, the Data may be accessible to certain types of persons in charge, involved with the operation of the site (administration, sales, marketing, legal, system administration) or external parties (such as third party technical service providers, mail carriers, hosting providers, IT companies, communications agencies) appointed, if necessary, as Data Processors by the Owner. The updated list of these parties may be requested from the Data Controller at any time."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3120,10 +3289,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The Data is processed at the Data Controller's operating offices and in any other places where the parties involved with the processing are located. For further information, please contact the Data Controller."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3139,10 +3308,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The Data is kept for the time necessary to provide the service requested by the User, or stated by the purposes outlined in this document, and the User can always request that the Data Controller suspend or remove the data."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3158,10 +3327,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The Data concerning the User is collected to allow the Owner to provide its services, as well as for the following purposes: Analytics and Displaying content from external platforms. The Personal Data used for each purpose is outlined in the specific sections of this document."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3177,10 +3346,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Personal Data is collected for the following purposes and using the following services:"
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3196,10 +3365,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The services contained in this section enable the Owner to monitor and analyze web traffic and can be used to keep track of User behavior."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3226,10 +3395,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														)
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3245,10 +3414,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"These services allow you to view content hosted on external platforms directly from the pages of this Application and interact with them. If a service of this kind is installed, it may still collect web traffic data for the pages where the service is installed, even when users do not use it."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3269,10 +3438,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														)
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3283,10 +3452,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Additional information about Data collection and processing"
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3302,10 +3471,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in the stages leading to possible legal action arising from improper use of this Application or the related services. The User declares to be aware that the Data Controller may be required to reveal personal data upon request of public authorities."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3321,10 +3490,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"In addition to the information contained in this privacy policy, this Application may provide the User with additional and contextual information concerning particular services or the collection and processing of Personal Data upon request."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3340,10 +3509,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"For operation and maintenance purposes, this Application and any third party services may collect files that record interaction with this Application (System Logs) or use for this purpose other Personal Data (such as IP Address)."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3359,10 +3528,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"More details concerning the collection or processing of Personal Data may be requested from the Data Controller at any time. Please see the contact information at the beginning of this document."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3378,10 +3547,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Users have the right, at any time, to know whether their Personal Data has been stored and can consult the Data Controller to learn about their contents and origin, to verify their accuracy or to ask for them to be supplemented, cancelled, updated or corrected, or for their transformation into anonymous format or to block any data held in violation of the law, as well as to oppose their treatment for any and all legitimate reasons. Requests should be sent to the Data Controller at the contact information set out above. This Application does not support “Do Not Track” requests. To determine whether any of the third party services it uses honor the “Do Not Track” requests, please read their privacy policies."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3403,10 +3572,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Definitions and legal references"
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3422,10 +3591,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Any information regarding a natural person, a legal person, an institution or an association, which is, or can be, identified, even indirectly, by reference to any other information, including a personal identification number."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3441,10 +3610,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Information collected automatically from this Application (or third party services employed in this Application), which can include: the IP addresses or domain names of the computers utilized by the Users who use this Application, the URI addresses (Uniform Resource Identifier), the time of the request, the method utilized to submit the request to the server, the size of the file received in response, the numerical code indicating the status of the server's answer (successful outcome, error, etc.), the country of origin, the features of the browser and the operating system utilized by the User, the various time details per visit (e.g., the time spent on each page within the Application) and the details about the path followed within the Application with special reference to the sequence of pages visited, and other parameters about the device operating system and/or the User's IT environment."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3460,10 +3629,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The individual using this Application, which must coincide with or be authorized by the Data Subject, to whom the Personal Data refers."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3479,10 +3648,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The legal or natural person to whom the Personal Data refers."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3498,10 +3667,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The natural person, legal person, public administration or any other body, association or organization authorized by the Data Controller to process the Personal Data in compliance with this privacy policy."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3512,10 +3681,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"Data Controller (or Owner)"
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3526,10 +3695,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The natural person, legal person, public administration or any other body, association or organization with the right, also jointly with another Data Controller, to make decisions regarding the purposes, and the methods of processing of Personal Data and the means used, including the security measures concerning the operation and use of this Application. The Data Controller, unless otherwise specified, is the Owner of this Application."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3545,10 +3714,10 @@ var PrivacyPolicy = (function (_React$Component) {
 																																																																																																																														"The hardware or software tool by which the Personal Data of the User is collected."
 																																																																																																												),
 																																																																																																												_react2["default"].createElement(
-																																																																																																																														"p",
+																																																																																																																														"center",
 																																																																																																																														null,
 																																																																																																																														_react2["default"].createElement(
-																																																																																																																																																"center",
+																																																																																																																																																"p",
 																																																																																																																																																null,
 																																																																																																																																																"~"
 																																																																																																																														)
@@ -3587,7 +3756,7 @@ var PrivacyPolicy = (function (_React$Component) {
 exports["default"] = PrivacyPolicy;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],25:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3757,7 +3926,7 @@ var SearchBar = (function (_React$Component) {
 exports["default"] = SearchBar;
 module.exports = exports["default"];
 
-},{"react":"react"}],26:[function(require,module,exports){
+},{"react":"react"}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3910,7 +4079,7 @@ var SearchResult = (function (_React$Component) {
 exports["default"] = SearchResult;
 module.exports = exports["default"];
 
-},{"./BannerDialog":7,"./Logo":20,"./OffsetMenu":22,"./SearchBar":25,"./SearchResultList":27,"./SignInDialog":28,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],27:[function(require,module,exports){
+},{"./BannerDialog":7,"./Logo":20,"./OffsetMenu":23,"./SearchBar":26,"./SearchResultList":28,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4064,7 +4233,7 @@ var SearchResultList = (function (_React$Component) {
 exports["default"] = SearchResultList;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":37,"./ChannelListItem":10,"./VideoListItem":33,"react":"react"}],28:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./ChannelListItem":10,"./VideoListItem":34,"react":"react"}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4162,7 +4331,7 @@ var SignInDialog = (function (_React$Component) {
 exports["default"] = SignInDialog;
 module.exports = exports["default"];
 
-},{"react":"react","react-router":"react-router"}],29:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4344,7 +4513,7 @@ var SubscribeButton = (function (_React$Component) {
 exports["default"] = SubscribeButton;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"react":"react","react-cookie":"react-cookie"}],30:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"react":"react","react-cookie":"react-cookie"}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4365,16 +4534,16 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var App = (function (_React$Component) {
-	_inherits(App, _React$Component);
+var SubscriberHistoryChart = (function (_React$Component) {
+	_inherits(SubscriberHistoryChart, _React$Component);
 
-	function App() {
-		_classCallCheck(this, App);
+	function SubscriberHistoryChart() {
+		_classCallCheck(this, SubscriberHistoryChart);
 
-		_get(Object.getPrototypeOf(App.prototype), "constructor", this).apply(this, arguments);
+		_get(Object.getPrototypeOf(SubscriberHistoryChart.prototype), "constructor", this).apply(this, arguments);
 	}
 
-	_createClass(App, [{
+	_createClass(SubscriberHistoryChart, [{
 		key: "componentDidMount",
 
 		// COMPONENT DID MOUNT
@@ -4419,7 +4588,6 @@ var App = (function (_React$Component) {
 				var data = {
 					labels: labels,
 					datasets: [{
-						label: "My Second dataset",
 						fillColor: "rgba(151,187,205,0.2)",
 						strokeColor: "rgba(151,187,205,1)",
 						pointColor: "rgba(151,187,205,1)",
@@ -4448,13 +4616,13 @@ var App = (function (_React$Component) {
 		}
 	}]);
 
-	return App;
+	return SubscriberHistoryChart;
 })(_react2["default"].Component);
 
-exports["default"] = App;
+exports["default"] = SubscriberHistoryChart;
 module.exports = exports["default"];
 
-},{"react":"react"}],31:[function(require,module,exports){
+},{"react":"react"}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4718,7 +4886,7 @@ var VideoDetail = (function (_React$Component) {
 exports["default"] = VideoDetail;
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":4,"../stores/VideoStore":40,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./VideoList":32,"react":"react","react-helmet":62,"react-router":"react-router"}],32:[function(require,module,exports){
+},{"../actions/VideoActions":4,"../stores/VideoStore":42,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./VideoList":33,"react":"react","react-helmet":64,"react-router":"react-router"}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4934,7 +5102,7 @@ var VideoList = (function (_React$Component) {
 exports["default"] = VideoList;
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":4,"../stores/VideoStore":40,"./Description":14,"./VideoListItem":33,"react":"react","react-router":"react-router"}],33:[function(require,module,exports){
+},{"../actions/VideoActions":4,"../stores/VideoStore":42,"./Description":14,"./VideoListItem":34,"react":"react","react-router":"react-router"}],34:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5094,7 +5262,116 @@ var VideoListItem = (function (_React$Component) {
 exports["default"] = VideoListItem;
 module.exports = exports["default"];
 
-},{"./Description":14,"react":"react","react-router":"react-router"}],34:[function(require,module,exports){
+},{"./Description":14,"react":"react","react-router":"react-router"}],35:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var ViewsHistoryChart = (function (_React$Component) {
+	_inherits(ViewsHistoryChart, _React$Component);
+
+	function ViewsHistoryChart() {
+		_classCallCheck(this, ViewsHistoryChart);
+
+		_get(Object.getPrototypeOf(ViewsHistoryChart.prototype), "constructor", this).apply(this, arguments);
+	}
+
+	_createClass(ViewsHistoryChart, [{
+		key: "componentDidMount",
+
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			this.loadChart(this.props);
+		}
+
+		// COMPONENT WILL RECEIVE PROPS
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+			this.loadChart(nextProps);
+		}
+
+		// LOAD CHART
+	}, {
+		key: "loadChart",
+		value: function loadChart(props) {
+
+			window.setTimeout(function () {
+				var $el = $("#viewsChart_" + props.channel.id);
+
+				// get canvas and set width
+				var canvas = $el.get(0);
+				canvas.width = $el.parent().width();
+
+				// get context object
+				var ctx = canvas.getContext("2d");
+
+				// filter out values and dates for labels
+				var values = props.channel.viewHist.map(function (item) {
+					return item.views;
+				});
+
+				var labels = props.channel.viewHist.map(function (item) {
+					var raw = item._id.date + "";
+					var d = new Date(parseInt(raw.substr(0, 4)), parseInt(raw.substr(4, 2)) - 1, parseInt(raw.substr(6, 2)));
+					return d.toLocaleDateString();
+				});
+
+				// prepare data
+				var data = {
+					labels: labels,
+					datasets: [{
+						fillColor: "rgba(151,187,205,0.2)",
+						strokeColor: "rgba(151,187,205,1)",
+						pointColor: "rgba(151,187,205,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(151,187,205,1)",
+						data: values
+					}]
+				};
+
+				Chart.defaults.global.showScale = false;
+
+				// draw line chart
+				var ch = new Chart(ctx).Line(data, {
+					"pointHitDetectionRadius": 5
+				});
+			}, 500);
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement("canvas", { id: "viewsChart_" + this.props.channel.id, height: "100" });
+		}
+	}]);
+
+	return ViewsHistoryChart;
+})(_react2["default"].Component);
+
+exports["default"] = ViewsHistoryChart;
+module.exports = exports["default"];
+
+},{"react":"react"}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5297,7 +5574,7 @@ var HTTP = (function () {
 exports["default"] = HTTP;
 module.exports = exports["default"];
 
-},{}],35:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -5329,7 +5606,7 @@ _reactDom2["default"].render(_react2["default"].createElement(
   _routes2["default"]
 ), document.getElementById("app"));
 
-},{"./routes":36,"history/lib/createBrowserHistory":49,"react":"react","react-dom":"react-dom","react-router":"react-router"}],36:[function(require,module,exports){
+},{"./routes":38,"history/lib/createBrowserHistory":51,"react":"react","react-dom":"react-dom","react-router":"react-router"}],38:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5410,7 +5687,7 @@ exports["default"] = _react2["default"].createElement(
 );
 module.exports = exports["default"];
 
-},{"./components/App":6,"./components/ChannelDetail":8,"./components/ChannelMissing":11,"./components/Contributions":12,"./components/DataCollection":13,"./components/Home":16,"./components/Imprint":17,"./components/Login":19,"./components/Me":21,"./components/PrivacyPolicy":24,"./components/SearchResult":26,"./components/VideoDetail":31,"react":"react","react-router":"react-router"}],37:[function(require,module,exports){
+},{"./components/App":6,"./components/ChannelDetail":8,"./components/ChannelMissing":11,"./components/Contributions":12,"./components/DataCollection":13,"./components/Home":16,"./components/Imprint":17,"./components/Login":19,"./components/Me":22,"./components/PrivacyPolicy":25,"./components/SearchResult":27,"./components/VideoDetail":32,"react":"react","react-router":"react-router"}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5518,7 +5795,7 @@ var ChannelStore = (function () {
 exports["default"] = _alt2["default"].createStore(ChannelStore);
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../alt":5}],38:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../alt":5}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5572,7 +5849,7 @@ var LanguageStore = (function () {
 exports["default"] = _alt2["default"].createStore(LanguageStore);
 module.exports = exports["default"];
 
-},{"../actions/LanguageActions":2,"../alt":5}],39:[function(require,module,exports){
+},{"../actions/LanguageActions":2,"../alt":5}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5624,7 +5901,7 @@ var MeStore = (function () {
 exports["default"] = _alt2["default"].createStore(MeStore);
 module.exports = exports["default"];
 
-},{"../actions/MeActions":3,"../alt":5}],40:[function(require,module,exports){
+},{"../actions/MeActions":3,"../alt":5}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5701,7 +5978,7 @@ var VideoStore = (function () {
 exports["default"] = _alt2["default"].createStore(VideoStore);
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":4,"../alt":5}],41:[function(require,module,exports){
+},{"../actions/VideoActions":4,"../alt":5}],43:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -5797,7 +6074,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":42,"./lib/keys.js":43}],42:[function(require,module,exports){
+},{"./lib/is_arguments.js":44,"./lib/keys.js":45}],44:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -5819,7 +6096,7 @@ function unsupported(object){
     false;
 };
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -5830,7 +6107,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
  * Indicates that navigation was caused by a call to history.push.
  */
@@ -5862,7 +6139,7 @@ exports['default'] = {
   REPLACE: REPLACE,
   POP: POP
 };
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -5889,7 +6166,7 @@ function loopAsync(turns, work, callback) {
 
   next();
 }
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 (function (process){
 /*eslint-disable no-empty */
 'use strict';
@@ -5960,7 +6237,7 @@ function readState(key) {
   return null;
 }
 }).call(this,require('_process'))
-},{"_process":58,"warning":140}],47:[function(require,module,exports){
+},{"_process":60,"warning":142}],49:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -6041,13 +6318,13 @@ function supportsGoWithoutReloadUsingHash() {
   var ua = navigator.userAgent;
   return ua.indexOf('Firefox') === -1;
 }
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 exports.canUseDOM = canUseDOM;
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6228,7 +6505,7 @@ function createBrowserHistory() {
 exports['default'] = createBrowserHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./Actions":44,"./DOMStateStorage":46,"./DOMUtils":47,"./ExecutionEnvironment":48,"./createDOMHistory":50,"./parsePath":55,"_process":58,"invariant":57}],50:[function(require,module,exports){
+},{"./Actions":46,"./DOMStateStorage":48,"./DOMUtils":49,"./ExecutionEnvironment":50,"./createDOMHistory":52,"./parsePath":57,"_process":60,"invariant":59}],52:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6271,7 +6548,7 @@ function createDOMHistory(options) {
 exports['default'] = createDOMHistory;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./DOMUtils":47,"./ExecutionEnvironment":48,"./createHistory":51,"_process":58,"invariant":57}],51:[function(require,module,exports){
+},{"./DOMUtils":49,"./ExecutionEnvironment":50,"./createHistory":53,"_process":60,"invariant":59}],53:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -6563,7 +6840,7 @@ function createHistory() {
 
 exports['default'] = createHistory;
 module.exports = exports['default'];
-},{"./Actions":44,"./AsyncUtils":45,"./createLocation":52,"./deprecate":53,"./parsePath":55,"./runTransitionHook":56,"deep-equal":41}],52:[function(require,module,exports){
+},{"./Actions":46,"./AsyncUtils":47,"./createLocation":54,"./deprecate":55,"./parsePath":57,"./runTransitionHook":58,"deep-equal":43}],54:[function(require,module,exports){
 //import warning from 'warning'
 'use strict';
 
@@ -6618,7 +6895,7 @@ function createLocation() {
 
 exports['default'] = createLocation;
 module.exports = exports['default'];
-},{"./Actions":44,"./parsePath":55}],53:[function(require,module,exports){
+},{"./Actions":46,"./parsePath":57}],55:[function(require,module,exports){
 //import warning from 'warning'
 
 "use strict";
@@ -6634,7 +6911,7 @@ function deprecate(fn) {
 
 exports["default"] = deprecate;
 module.exports = exports["default"];
-},{}],54:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -6648,7 +6925,7 @@ function extractPath(string) {
 
 exports["default"] = extractPath;
 module.exports = exports["default"];
-},{}],55:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6695,7 +6972,7 @@ function parsePath(path) {
 exports['default'] = parsePath;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"./extractPath":54,"_process":58,"warning":140}],56:[function(require,module,exports){
+},{"./extractPath":56,"_process":60,"warning":142}],58:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -6722,7 +6999,7 @@ function runTransitionHook(hook, location, callback) {
 exports['default'] = runTransitionHook;
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":58,"warning":140}],57:[function(require,module,exports){
+},{"_process":60,"warning":142}],59:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -6777,7 +7054,7 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":58}],58:[function(require,module,exports){
+},{"_process":60}],60:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -6870,7 +7147,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -7360,7 +7637,7 @@ var SideEffect = (0, _reactSideEffect2["default"])(reducePropsToState, handleCli
 // PlainComponent is used to be a blank component decorated by react-side-effect
 exports["default"] = Helmet(SideEffect(_PlainComponent2["default"]));
 module.exports = exports["default"];
-},{"./HelmetConstants.js":60,"./PlainComponent":61,"deep-equal":41,"react":"react","react-side-effect":137}],60:[function(require,module,exports){
+},{"./HelmetConstants.js":62,"./PlainComponent":63,"deep-equal":43,"react":"react","react-side-effect":139}],62:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -7389,7 +7666,7 @@ var REACT_TAG_MAP = {
     "http-equiv": "httpEquiv"
 };
 exports.REACT_TAG_MAP = REACT_TAG_MAP;
-},{}],61:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -7429,7 +7706,7 @@ var PlainComponent = (function (_React$Component) {
 
 exports["default"] = PlainComponent;
 module.exports = exports["default"];
-},{"react":"react"}],62:[function(require,module,exports){
+},{"react":"react"}],64:[function(require,module,exports){
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -7456,37 +7733,37 @@ var _Helmet2 = _interopRequireDefault(_Helmet);
 
 exports["default"] = _Helmet2["default"];
 module.exports = exports["default"];
-},{"./Helmet":59,"core-js/fn/array/from":63,"core-js/fn/array/includes":64,"core-js/fn/map":65,"core-js/fn/object/get-own-property-symbols":66,"core-js/fn/object/is":67,"core-js/fn/object/keys":68,"core-js/fn/set":69}],63:[function(require,module,exports){
+},{"./Helmet":61,"core-js/fn/array/from":65,"core-js/fn/array/includes":66,"core-js/fn/map":67,"core-js/fn/object/get-own-property-symbols":68,"core-js/fn/object/is":69,"core-js/fn/object/keys":70,"core-js/fn/set":71}],65:[function(require,module,exports){
 require('../../modules/es6.string.iterator');
 require('../../modules/es6.array.from');
 module.exports = require('../../modules/_core').Array.from;
-},{"../../modules/_core":82,"../../modules/es6.array.from":124,"../../modules/es6.string.iterator":131}],64:[function(require,module,exports){
+},{"../../modules/_core":84,"../../modules/es6.array.from":126,"../../modules/es6.string.iterator":133}],66:[function(require,module,exports){
 require('../../modules/es7.array.includes');
 module.exports = require('../../modules/_core').Array.includes;
-},{"../../modules/_core":82,"../../modules/es7.array.includes":133}],65:[function(require,module,exports){
+},{"../../modules/_core":84,"../../modules/es7.array.includes":135}],67:[function(require,module,exports){
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');
 require('../modules/es6.map');
 require('../modules/es7.map.to-json');
 module.exports = require('../modules/_core').Map;
-},{"../modules/_core":82,"../modules/es6.map":126,"../modules/es6.object.to-string":129,"../modules/es6.string.iterator":131,"../modules/es7.map.to-json":134,"../modules/web.dom.iterable":136}],66:[function(require,module,exports){
+},{"../modules/_core":84,"../modules/es6.map":128,"../modules/es6.object.to-string":131,"../modules/es6.string.iterator":133,"../modules/es7.map.to-json":136,"../modules/web.dom.iterable":138}],68:[function(require,module,exports){
 require('../../modules/es6.symbol');
 module.exports = require('../../modules/_core').Object.getOwnPropertySymbols;
-},{"../../modules/_core":82,"../../modules/es6.symbol":132}],67:[function(require,module,exports){
+},{"../../modules/_core":84,"../../modules/es6.symbol":134}],69:[function(require,module,exports){
 require('../../modules/es6.object.is');
 module.exports = require('../../modules/_core').Object.is;
-},{"../../modules/_core":82,"../../modules/es6.object.is":127}],68:[function(require,module,exports){
+},{"../../modules/_core":84,"../../modules/es6.object.is":129}],70:[function(require,module,exports){
 require('../../modules/es6.object.keys');
 module.exports = require('../../modules/_core').Object.keys;
-},{"../../modules/_core":82,"../../modules/es6.object.keys":128}],69:[function(require,module,exports){
+},{"../../modules/_core":84,"../../modules/es6.object.keys":130}],71:[function(require,module,exports){
 require('../modules/es6.object.to-string');
 require('../modules/es6.string.iterator');
 require('../modules/web.dom.iterable');
 require('../modules/es6.set');
 require('../modules/es7.set.to-json');
 module.exports = require('../modules/_core').Set;
-},{"../modules/_core":82,"../modules/es6.object.to-string":129,"../modules/es6.set":130,"../modules/es6.string.iterator":131,"../modules/es7.set.to-json":135,"../modules/web.dom.iterable":136}],70:[function(require,module,exports){
+},{"../modules/_core":84,"../modules/es6.object.to-string":131,"../modules/es6.set":132,"../modules/es6.string.iterator":133,"../modules/es7.set.to-json":137,"../modules/web.dom.iterable":138}],72:[function(require,module,exports){
 var $Object = Object;
 module.exports = {
   create:     $Object.create,
@@ -7500,12 +7777,12 @@ module.exports = {
   getSymbols: $Object.getOwnPropertySymbols,
   each:       [].forEach
 };
-},{}],71:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 module.exports = function(it){
   if(typeof it != 'function')throw TypeError(it + ' is not a function!');
   return it;
 };
-},{}],72:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = require('./_wks')('unscopables')
   , ArrayProto  = Array.prototype;
@@ -7513,19 +7790,19 @@ if(ArrayProto[UNSCOPABLES] == undefined)require('./_hide')(ArrayProto, UNSCOPABL
 module.exports = function(key){
   ArrayProto[UNSCOPABLES][key] = true;
 };
-},{"./_hide":93,"./_wks":122}],73:[function(require,module,exports){
+},{"./_hide":95,"./_wks":124}],75:[function(require,module,exports){
 module.exports = function(it, Constructor, name, forbiddenField){
   if(!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)){
     throw TypeError(name + ': incorrect invocation!');
   } return it;
 };
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 var isObject = require('./_is-object');
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
-},{"./_is-object":97}],75:[function(require,module,exports){
+},{"./_is-object":99}],77:[function(require,module,exports){
 var forOf = require('./_for-of');
 
 module.exports = function(iter, ITERATOR){
@@ -7534,7 +7811,7 @@ module.exports = function(iter, ITERATOR){
   return result;
 };
 
-},{"./_for-of":89}],76:[function(require,module,exports){
+},{"./_for-of":91}],78:[function(require,module,exports){
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = require('./_to-iobject')
@@ -7556,7 +7833,7 @@ module.exports = function(IS_INCLUDES){
     } return !IS_INCLUDES && -1;
   };
 };
-},{"./_to-index":116,"./_to-iobject":118,"./_to-length":119}],77:[function(require,module,exports){
+},{"./_to-index":118,"./_to-iobject":120,"./_to-length":121}],79:[function(require,module,exports){
 // getting tag from 19.1.3.6 Object.prototype.toString()
 var cof = require('./_cof')
   , TAG = require('./_wks')('toStringTag')
@@ -7573,13 +7850,13 @@ module.exports = function(it){
     // ES3 arguments fallback
     : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 };
-},{"./_cof":78,"./_wks":122}],78:[function(require,module,exports){
+},{"./_cof":80,"./_wks":124}],80:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = function(it){
   return toString.call(it).slice(8, -1);
 };
-},{}],79:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 'use strict';
 var $           = require('./_')
   , hide        = require('./_hide')
@@ -7722,7 +7999,7 @@ module.exports = {
     setSpecies(NAME);
   }
 };
-},{"./_":70,"./_an-instance":73,"./_ctx":83,"./_defined":84,"./_descriptors":85,"./_for-of":89,"./_hide":93,"./_iter-define":100,"./_iter-step":102,"./_meta":106,"./_redefine-all":109,"./_set-species":112}],80:[function(require,module,exports){
+},{"./_":72,"./_an-instance":75,"./_ctx":85,"./_defined":86,"./_descriptors":87,"./_for-of":91,"./_hide":95,"./_iter-define":102,"./_iter-step":104,"./_meta":108,"./_redefine-all":111,"./_set-species":114}],82:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var classof = require('./_classof')
   , from    = require('./_array-from-iterable');
@@ -7732,7 +8009,7 @@ module.exports = function(NAME){
     return from(this);
   };
 };
-},{"./_array-from-iterable":75,"./_classof":77}],81:[function(require,module,exports){
+},{"./_array-from-iterable":77,"./_classof":79}],83:[function(require,module,exports){
 'use strict';
 var global         = require('./_global')
   , $export        = require('./_export')
@@ -7817,10 +8094,10 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
 
   return C;
 };
-},{"./_an-instance":73,"./_export":87,"./_fails":88,"./_for-of":89,"./_global":91,"./_is-object":97,"./_iter-detect":101,"./_meta":106,"./_redefine":110,"./_redefine-all":109,"./_set-to-string-tag":113}],82:[function(require,module,exports){
+},{"./_an-instance":75,"./_export":89,"./_fails":90,"./_for-of":91,"./_global":93,"./_is-object":99,"./_iter-detect":103,"./_meta":108,"./_redefine":112,"./_redefine-all":111,"./_set-to-string-tag":115}],84:[function(require,module,exports){
 var core = module.exports = {version: '2.0.3'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-},{}],83:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 // optional / simple context binding
 var aFunction = require('./_a-function');
 module.exports = function(fn, that, length){
@@ -7841,18 +8118,18 @@ module.exports = function(fn, that, length){
     return fn.apply(that, arguments);
   };
 };
-},{"./_a-function":71}],84:[function(require,module,exports){
+},{"./_a-function":73}],86:[function(require,module,exports){
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function(it){
   if(it == undefined)throw TypeError("Can't call method on  " + it);
   return it;
 };
-},{}],85:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function(){
   return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 });
-},{"./_fails":88}],86:[function(require,module,exports){
+},{"./_fails":90}],88:[function(require,module,exports){
 // all enumerable object keys, includes symbols
 var $ = require('./_');
 module.exports = function(it){
@@ -7867,7 +8144,7 @@ module.exports = function(it){
   }
   return keys;
 };
-},{"./_":70}],87:[function(require,module,exports){
+},{"./_":72}],89:[function(require,module,exports){
 var global    = require('./_global')
   , core      = require('./_core')
   , hide      = require('./_hide')
@@ -7911,7 +8188,7 @@ $export.W = 32;  // wrap
 $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library` 
 module.exports = $export;
-},{"./_core":82,"./_ctx":83,"./_global":91,"./_hide":93,"./_redefine":110}],88:[function(require,module,exports){
+},{"./_core":84,"./_ctx":85,"./_global":93,"./_hide":95,"./_redefine":112}],90:[function(require,module,exports){
 module.exports = function(exec){
   try {
     return !!exec();
@@ -7919,7 +8196,7 @@ module.exports = function(exec){
     return true;
   }
 };
-},{}],89:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 var ctx         = require('./_ctx')
   , call        = require('./_iter-call')
   , isArrayIter = require('./_is-array-iter')
@@ -7939,7 +8216,7 @@ module.exports = function(iterable, entries, fn, that, ITERATOR){
     call(iterator, f, step.value, entries);
   }
 };
-},{"./_an-object":74,"./_ctx":83,"./_is-array-iter":95,"./_iter-call":98,"./_to-length":119,"./core.get-iterator-method":123}],90:[function(require,module,exports){
+},{"./_an-object":76,"./_ctx":85,"./_is-array-iter":97,"./_iter-call":100,"./_to-length":121,"./core.get-iterator-method":125}],92:[function(require,module,exports){
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = require('./_to-iobject')
   , getNames  = require('./_').getNames
@@ -7959,17 +8236,17 @@ var getWindowNames = function(it){
 module.exports.get = function getOwnPropertyNames(it){
   return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : getNames(toIObject(it));
 };
-},{"./_":70,"./_to-iobject":118}],91:[function(require,module,exports){
+},{"./_":72,"./_to-iobject":120}],93:[function(require,module,exports){
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
 if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-},{}],92:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function(it, key){
   return hasOwnProperty.call(it, key);
 };
-},{}],93:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 var $          = require('./_')
   , createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function(object, key, value){
@@ -7978,13 +8255,13 @@ module.exports = require('./_descriptors') ? function(object, key, value){
   object[key] = value;
   return object;
 };
-},{"./_":70,"./_descriptors":85,"./_property-desc":108}],94:[function(require,module,exports){
+},{"./_":72,"./_descriptors":87,"./_property-desc":110}],96:[function(require,module,exports){
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 var cof = require('./_cof');
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
-},{"./_cof":78}],95:[function(require,module,exports){
+},{"./_cof":80}],97:[function(require,module,exports){
 // check on default Array iterator
 var Iterators  = require('./_iterators')
   , ITERATOR   = require('./_wks')('iterator')
@@ -7993,17 +8270,17 @@ var Iterators  = require('./_iterators')
 module.exports = function(it){
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
 };
-},{"./_iterators":103,"./_wks":122}],96:[function(require,module,exports){
+},{"./_iterators":105,"./_wks":124}],98:[function(require,module,exports){
 // 7.2.2 IsArray(argument)
 var cof = require('./_cof');
 module.exports = Array.isArray || function(arg){
   return cof(arg) == 'Array';
 };
-},{"./_cof":78}],97:[function(require,module,exports){
+},{"./_cof":80}],99:[function(require,module,exports){
 module.exports = function(it){
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
-},{}],98:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 // call something on iterator step with safe closing on error
 var anObject = require('./_an-object');
 module.exports = function(iterator, fn, value, entries){
@@ -8016,7 +8293,7 @@ module.exports = function(iterator, fn, value, entries){
     throw e;
   }
 };
-},{"./_an-object":74}],99:[function(require,module,exports){
+},{"./_an-object":76}],101:[function(require,module,exports){
 'use strict';
 var $              = require('./_')
   , descriptor     = require('./_property-desc')
@@ -8030,7 +8307,7 @@ module.exports = function(Constructor, NAME, next){
   Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
   setToStringTag(Constructor, NAME + ' Iterator');
 };
-},{"./_":70,"./_hide":93,"./_property-desc":108,"./_set-to-string-tag":113,"./_wks":122}],100:[function(require,module,exports){
+},{"./_":72,"./_hide":95,"./_property-desc":110,"./_set-to-string-tag":115,"./_wks":124}],102:[function(require,module,exports){
 'use strict';
 var LIBRARY        = require('./_library')
   , $export        = require('./_export')
@@ -8101,7 +8378,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
   }
   return methods;
 };
-},{"./_":70,"./_export":87,"./_has":92,"./_hide":93,"./_iter-create":99,"./_iterators":103,"./_library":105,"./_redefine":110,"./_set-to-string-tag":113,"./_wks":122}],101:[function(require,module,exports){
+},{"./_":72,"./_export":89,"./_has":94,"./_hide":95,"./_iter-create":101,"./_iterators":105,"./_library":107,"./_redefine":112,"./_set-to-string-tag":115,"./_wks":124}],103:[function(require,module,exports){
 var ITERATOR     = require('./_wks')('iterator')
   , SAFE_CLOSING = false;
 
@@ -8123,13 +8400,13 @@ module.exports = function(exec, skipClosing){
   } catch(e){ /* empty */ }
   return safe;
 };
-},{"./_wks":122}],102:[function(require,module,exports){
+},{"./_wks":124}],104:[function(require,module,exports){
 module.exports = function(done, value){
   return {value: value, done: !!done};
 };
-},{}],103:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 module.exports = {};
-},{}],104:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 var $         = require('./_')
   , toIObject = require('./_to-iobject');
 module.exports = function(object, el){
@@ -8140,9 +8417,9 @@ module.exports = function(object, el){
     , key;
   while(length > index)if(O[key = keys[index++]] === el)return key;
 };
-},{"./_":70,"./_to-iobject":118}],105:[function(require,module,exports){
+},{"./_":72,"./_to-iobject":120}],107:[function(require,module,exports){
 module.exports = false;
-},{}],106:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 var META     = require('./_uid')('meta')
   , isObject = require('./_is-object')
   , has      = require('./_has')
@@ -8196,7 +8473,7 @@ var meta = module.exports = {
   getWeak:  getWeak,
   onFreeze: onFreeze
 };
-},{"./_":70,"./_fails":88,"./_has":92,"./_is-object":97,"./_uid":121}],107:[function(require,module,exports){
+},{"./_":72,"./_fails":90,"./_has":94,"./_is-object":99,"./_uid":123}],109:[function(require,module,exports){
 // most Object methods by ES6 should accept primitives
 var $export = require('./_export')
   , core    = require('./_core')
@@ -8207,7 +8484,7 @@ module.exports = function(KEY, exec){
   exp[KEY] = exec(fn);
   $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
 };
-},{"./_core":82,"./_export":87,"./_fails":88}],108:[function(require,module,exports){
+},{"./_core":84,"./_export":89,"./_fails":90}],110:[function(require,module,exports){
 module.exports = function(bitmap, value){
   return {
     enumerable  : !(bitmap & 1),
@@ -8216,13 +8493,13 @@ module.exports = function(bitmap, value){
     value       : value
   };
 };
-},{}],109:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 var redefine = require('./_redefine');
 module.exports = function(target, src, safe){
   for(var key in src)redefine(target, key, src[key], safe);
   return target;
 };
-},{"./_redefine":110}],110:[function(require,module,exports){
+},{"./_redefine":112}],112:[function(require,module,exports){
 // add fake Function#toString
 // for correct work wrapped methods / constructors with methods like LoDash isNative
 var global    = require('./_global')
@@ -8255,12 +8532,12 @@ require('./_core').inspectSource = function(it){
 })(Function.prototype, TO_STRING, function toString(){
   return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
-},{"./_core":82,"./_global":91,"./_hide":93,"./_uid":121}],111:[function(require,module,exports){
+},{"./_core":84,"./_global":93,"./_hide":95,"./_uid":123}],113:[function(require,module,exports){
 // 7.2.9 SameValue(x, y)
 module.exports = Object.is || function is(x, y){
   return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
 };
-},{}],112:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 'use strict';
 var global      = require('./_global')
   , $           = require('./_')
@@ -8274,7 +8551,7 @@ module.exports = function(KEY){
     get: function(){ return this; }
   });
 };
-},{"./_":70,"./_descriptors":85,"./_global":91,"./_wks":122}],113:[function(require,module,exports){
+},{"./_":72,"./_descriptors":87,"./_global":93,"./_wks":124}],115:[function(require,module,exports){
 var def = require('./_').setDesc
   , has = require('./_has')
   , TAG = require('./_wks')('toStringTag');
@@ -8282,14 +8559,14 @@ var def = require('./_').setDesc
 module.exports = function(it, tag, stat){
   if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 };
-},{"./_":70,"./_has":92,"./_wks":122}],114:[function(require,module,exports){
+},{"./_":72,"./_has":94,"./_wks":124}],116:[function(require,module,exports){
 var global = require('./_global')
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
   return store[key] || (store[key] = {});
 };
-},{"./_global":91}],115:[function(require,module,exports){
+},{"./_global":93}],117:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , defined   = require('./_defined');
 // true  -> String#at
@@ -8307,7 +8584,7 @@ module.exports = function(TO_STRING){
       : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
   };
 };
-},{"./_defined":84,"./_to-integer":117}],116:[function(require,module,exports){
+},{"./_defined":86,"./_to-integer":119}],118:[function(require,module,exports){
 var toInteger = require('./_to-integer')
   , max       = Math.max
   , min       = Math.min;
@@ -8315,40 +8592,40 @@ module.exports = function(index, length){
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
-},{"./_to-integer":117}],117:[function(require,module,exports){
+},{"./_to-integer":119}],119:[function(require,module,exports){
 // 7.1.4 ToInteger
 var ceil  = Math.ceil
   , floor = Math.floor;
 module.exports = function(it){
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
-},{}],118:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = require('./_iobject')
   , defined = require('./_defined');
 module.exports = function(it){
   return IObject(defined(it));
 };
-},{"./_defined":84,"./_iobject":94}],119:[function(require,module,exports){
+},{"./_defined":86,"./_iobject":96}],121:[function(require,module,exports){
 // 7.1.15 ToLength
 var toInteger = require('./_to-integer')
   , min       = Math.min;
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
-},{"./_to-integer":117}],120:[function(require,module,exports){
+},{"./_to-integer":119}],122:[function(require,module,exports){
 // 7.1.13 ToObject(argument)
 var defined = require('./_defined');
 module.exports = function(it){
   return Object(defined(it));
 };
-},{"./_defined":84}],121:[function(require,module,exports){
+},{"./_defined":86}],123:[function(require,module,exports){
 var id = 0
   , px = Math.random();
 module.exports = function(key){
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
-},{}],122:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 var store      = require('./_shared')('wks')
   , uid        = require('./_uid')
   , Symbol     = require('./_global').Symbol
@@ -8357,7 +8634,7 @@ module.exports = function(name){
   return store[name] || (store[name] =
     USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 };
-},{"./_global":91,"./_shared":114,"./_uid":121}],123:[function(require,module,exports){
+},{"./_global":93,"./_shared":116,"./_uid":123}],125:[function(require,module,exports){
 var classof   = require('./_classof')
   , ITERATOR  = require('./_wks')('iterator')
   , Iterators = require('./_iterators');
@@ -8366,7 +8643,7 @@ module.exports = require('./_core').getIteratorMethod = function(it){
     || it['@@iterator']
     || Iterators[classof(it)];
 };
-},{"./_classof":77,"./_core":82,"./_iterators":103,"./_wks":122}],124:[function(require,module,exports){
+},{"./_classof":79,"./_core":84,"./_iterators":105,"./_wks":124}],126:[function(require,module,exports){
 'use strict';
 var ctx         = require('./_ctx')
   , $export     = require('./_export')
@@ -8403,7 +8680,7 @@ $export($export.S + $export.F * !require('./_iter-detect')(function(iter){ Array
   }
 });
 
-},{"./_ctx":83,"./_export":87,"./_is-array-iter":95,"./_iter-call":98,"./_iter-detect":101,"./_to-length":119,"./_to-object":120,"./core.get-iterator-method":123}],125:[function(require,module,exports){
+},{"./_ctx":85,"./_export":89,"./_is-array-iter":97,"./_iter-call":100,"./_iter-detect":103,"./_to-length":121,"./_to-object":122,"./core.get-iterator-method":125}],127:[function(require,module,exports){
 'use strict';
 var addToUnscopables = require('./_add-to-unscopables')
   , step             = require('./_iter-step')
@@ -8438,7 +8715,7 @@ Iterators.Arguments = Iterators.Array;
 addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
-},{"./_add-to-unscopables":72,"./_iter-define":100,"./_iter-step":102,"./_iterators":103,"./_to-iobject":118}],126:[function(require,module,exports){
+},{"./_add-to-unscopables":74,"./_iter-define":102,"./_iter-step":104,"./_iterators":105,"./_to-iobject":120}],128:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 
@@ -8456,11 +8733,11 @@ module.exports = require('./_collection')('Map', function(get){
     return strong.def(this, key === 0 ? 0 : key, value);
   }
 }, strong, true);
-},{"./_collection":81,"./_collection-strong":79}],127:[function(require,module,exports){
+},{"./_collection":83,"./_collection-strong":81}],129:[function(require,module,exports){
 // 19.1.3.10 Object.is(value1, value2)
 var $export = require('./_export');
 $export($export.S, 'Object', {is: require('./_same-value')});
-},{"./_export":87,"./_same-value":111}],128:[function(require,module,exports){
+},{"./_export":89,"./_same-value":113}],130:[function(require,module,exports){
 // 19.1.2.14 Object.keys(O)
 var toObject = require('./_to-object');
 
@@ -8469,7 +8746,7 @@ require('./_object-sap')('keys', function($keys){
     return $keys(toObject(it));
   };
 });
-},{"./_object-sap":107,"./_to-object":120}],129:[function(require,module,exports){
+},{"./_object-sap":109,"./_to-object":122}],131:[function(require,module,exports){
 'use strict';
 // 19.1.3.6 Object.prototype.toString()
 var classof = require('./_classof')
@@ -8480,7 +8757,7 @@ if(test + '' != '[object z]'){
     return '[object ' + classof(this) + ']';
   }, true);
 }
-},{"./_classof":77,"./_redefine":110,"./_wks":122}],130:[function(require,module,exports){
+},{"./_classof":79,"./_redefine":112,"./_wks":124}],132:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 
@@ -8493,7 +8770,7 @@ module.exports = require('./_collection')('Set', function(get){
     return strong.def(this, value = value === 0 ? 0 : value, value);
   }
 }, strong);
-},{"./_collection":81,"./_collection-strong":79}],131:[function(require,module,exports){
+},{"./_collection":83,"./_collection-strong":81}],133:[function(require,module,exports){
 'use strict';
 var $at  = require('./_string-at')(true);
 
@@ -8511,7 +8788,7 @@ require('./_iter-define')(String, 'String', function(iterated){
   this._i += point.length;
   return {value: point, done: false};
 });
-},{"./_iter-define":100,"./_string-at":115}],132:[function(require,module,exports){
+},{"./_iter-define":102,"./_string-at":117}],134:[function(require,module,exports){
 'use strict';
 // ECMAScript 6 symbols shim
 var $              = require('./_')
@@ -8740,7 +9017,7 @@ setToStringTag($Symbol, 'Symbol');
 setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
-},{"./_":70,"./_an-object":74,"./_core":82,"./_descriptors":85,"./_enum-keys":86,"./_export":87,"./_fails":88,"./_get-names":90,"./_global":91,"./_has":92,"./_is-array":96,"./_keyof":104,"./_library":105,"./_meta":106,"./_property-desc":108,"./_redefine":110,"./_set-to-string-tag":113,"./_shared":114,"./_to-iobject":118,"./_uid":121,"./_wks":122}],133:[function(require,module,exports){
+},{"./_":72,"./_an-object":76,"./_core":84,"./_descriptors":87,"./_enum-keys":88,"./_export":89,"./_fails":90,"./_get-names":92,"./_global":93,"./_has":94,"./_is-array":98,"./_keyof":106,"./_library":107,"./_meta":108,"./_property-desc":110,"./_redefine":112,"./_set-to-string-tag":115,"./_shared":116,"./_to-iobject":120,"./_uid":123,"./_wks":124}],135:[function(require,module,exports){
 'use strict';
 var $export   = require('./_export')
   , $includes = require('./_array-includes')(true);
@@ -8753,17 +9030,17 @@ $export($export.P, 'Array', {
 });
 
 require('./_add-to-unscopables')('includes');
-},{"./_add-to-unscopables":72,"./_array-includes":76,"./_export":87}],134:[function(require,module,exports){
+},{"./_add-to-unscopables":74,"./_array-includes":78,"./_export":89}],136:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = require('./_export');
 
 $export($export.P + $export.R, 'Map', {toJSON: require('./_collection-to-json')('Map')});
-},{"./_collection-to-json":80,"./_export":87}],135:[function(require,module,exports){
+},{"./_collection-to-json":82,"./_export":89}],137:[function(require,module,exports){
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = require('./_export');
 
 $export($export.P + $export.R, 'Set', {toJSON: require('./_collection-to-json')('Set')});
-},{"./_collection-to-json":80,"./_export":87}],136:[function(require,module,exports){
+},{"./_collection-to-json":82,"./_export":89}],138:[function(require,module,exports){
 var $iterators     = require('./es6.array.iterator')
   , redefine       = require('./_redefine')
   , global         = require('./_global')
@@ -8785,7 +9062,7 @@ require('./_').each.call(['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetLi
     for(key in $iterators)if(!proto[key])redefine(proto, key, $iterators[key], true);
   }
 });
-},{"./_":70,"./_global":91,"./_hide":93,"./_iterators":103,"./_redefine":110,"./_wks":122,"./es6.array.iterator":125}],137:[function(require,module,exports){
+},{"./_":72,"./_global":93,"./_hide":95,"./_iterators":105,"./_redefine":112,"./_wks":124,"./es6.array.iterator":127}],139:[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -8910,7 +9187,7 @@ module.exports = function withSideEffect(reducePropsToState, handleStateChangeOn
     return SideEffect;
   };
 };
-},{"fbjs/lib/ExecutionEnvironment":138,"fbjs/lib/shallowEqual":139,"react":"react"}],138:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":140,"fbjs/lib/shallowEqual":141,"react":"react"}],140:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -8947,7 +9224,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],139:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -8998,7 +9275,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],140:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -9062,4 +9339,4 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":58}]},{},[35]);
+},{"_process":60}]},{},[37]);

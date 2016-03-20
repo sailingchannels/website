@@ -161,6 +161,10 @@ h1 {
 	text-align: center!important;
 }
 
+.content-h1 img {
+	border-radius: 50%;
+}
+
 .banner-channel {
 	margin-top:20px;
 	margin-bottom:20px;
