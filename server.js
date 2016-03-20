@@ -108,6 +108,8 @@ app.get("/oauth2callback", function(req, res) {
 						"httpOnly": true
 					});
 
+					info._id = data.items[0].id;
+
 					// keep credentials
 					res.cookie("me", info, {
 						"expires": new Date(credentials.expiry_date)
@@ -173,6 +175,39 @@ app.get("/api/stats", function(req, res) {
 
 		// return the number of stats
 		return res.send(counts);
+	});
+});
+
+// API / ME
+app.get("/api/me", function(req, res) {
+
+	// check if request is authenticated
+	var me = req.cookies.me;
+	if(!me) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	if(!("_id" in me)) {
+		return res.status(400).send({"error": "no user id found"});
+	}
+
+	async.parallel({
+
+		// read the users information
+		"user": function(done) {
+			global.users.find({"_id": me._id}).limit(1).next(done);
+		},
+
+		// try to fetch information on the channel of the user
+		"channel": function(done) {
+			global.channels.find({"_id": me._id}).limit(1).project({"videos": false}).next(done);
+		}
+
+	}, function(err, results) {
+
+		if(err) return res.stus(500).send({"error": err});
+
+		return res.send(results);
 	});
 });
 

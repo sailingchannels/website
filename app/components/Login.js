@@ -34,6 +34,7 @@ class Login extends React.Component {
 							<b>Cool stuff you can do, when signed in:</b>
 							<ul>
 								<li>Manage subscribtions directly from list view</li>
+								<li>Display your AIS position on a map</li>
 							</ul>
 						</p>
 						<p><center>~</center></p>
