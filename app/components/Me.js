@@ -12,6 +12,7 @@ class Me extends React.Component {
 		this.state = {
 			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
 		};
+
 	}
 
 	// COMPONENT DID MOUNT
@@ -30,7 +31,7 @@ class Me extends React.Component {
                 <div className="row content-row">
 					<div className="col-md-3"></div>
 					<div className="col-md-6">
-	                    <h1 className="content-h1">{(this.state.me) ? this.state.me.title : null}</h1>
+	                    <h1 className="content-h1">{(this.state.me) ? (this.state.me.title || "Your Profile") : null}</h1>
 						<p>
 							This will be your profile page in the future. Lots of cool things will happen here. Check back very soon and you'll see what we're talking about!
 						</p>
