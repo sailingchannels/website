@@ -2753,8 +2753,8 @@ var Me = (function (_React$Component) {
 							_react2["default"].createElement(
 								"a",
 								{ target: "_blank", href: "/channel/" + this.state.me.channel.id, className: "btn btn-default btn-raised btn-sm" },
-								_react2["default"].createElement("i", { className: "fa fa-share" }),
-								" Open channel page"
+								_react2["default"].createElement("i", { className: "fa fa-desktop" }),
+								" Preview channel page"
 							)
 						) : null
 					),
@@ -6039,7 +6039,9 @@ var MeStore = (function () {
 			this.loading = false;
 
 			window.setTimeout(function () {
-				$("input[type='color']").spectrum();
+				$("input[type='color']").spectrum({
+					preferredFormat: "hex"
+				});
 			}, 100);
 		}
 

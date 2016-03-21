@@ -304,3 +304,7 @@ input[type="color"] {
 	color: #bbb!important;
 	text-transform: capitalize;
 }
+
+.sp-replacer {
+	margin-top:12px!important;
+}

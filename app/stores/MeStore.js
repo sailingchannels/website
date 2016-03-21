@@ -15,7 +15,9 @@ class MeStore {
 		this.loading = false;
 
 		window.setTimeout(function() {
-			$("input[type='color']").spectrum();
+			$("input[type='color']").spectrum({
+				preferredFormat: "hex",
+			});
 		}, 100);
   	}
 
