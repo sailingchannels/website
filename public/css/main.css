@@ -278,5 +278,24 @@ h1 {
 
 .position-map {
 	width:100%;
-	height:200px;
+	height:150px;
+}
+
+.form-group {
+	margin:0px!important;
+}
+
+.form-group label.control-label {
+	margin: 8px 0 0!important;
+}
+
+input[type="color"] {
+	cursor:pointer;
+}
+
+@media (min-width: 990px) {
+
+	.by-col {
+		min-width:120px;
+	}
 }

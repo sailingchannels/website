@@ -37,12 +37,15 @@ gulp.task("vendor-js", function() {
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
-			"public/js/jquery.timeago.js",
-			"public/js/anchorme.min.js",
 			"bower_components/js-cookie/src/js.cookie.js",
 			"bower_components/jquery-unveil/jquery.unveil.js",
-			"public/js/libs/chart.min.js",
-			"bower_components/bower-leaflet/leaflet.js"
+			"bower_components/bower-leaflet/leaflet.js",
+			"bower_components/Leaflet.label/dist/leaflet.label.js",
+			"bower_components/spectrum/spectrum.js",
+			"public/js/jquery.timeago.js",
+			"public/js/anchorme.min.js",
+			"public/js/chart.min.js",
+			"public/js/leaflet.boatmarker.js",
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -61,6 +64,8 @@ gulp.task("vendor-css", function() {
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
 			"bower_components/bower-leaflet/leaflet.css",
+			"bower_components/Leaflet.label/dist/leaflet.label.css",
+			"bower_components/spectrum/spectrum.css",
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))

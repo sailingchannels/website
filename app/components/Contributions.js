@@ -30,25 +30,31 @@ class Contributions extends React.Component {
                             <thead>
                                 <tr>
                                     <th>Suggestion</th>
-                                    <th>By</th>
+                                    <th className="by-col">By</th>
                                 </tr>
                             </thead>
-                            <tr>
-                                <td>Feature: A way to filter by language of the channel</td>
-                                <td><a href="https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw" target="_blank">Norman Boyes</a></td>
-                            </tr>
-							<tr>
-                                <td>Feature: Exclude channels that have not uploaded a video in a year</td>
-                                <td><a href="https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g" target="_blank">Someday sailor</a></td>
-                            </tr>
-							<tr>
-                                <td>Feature: Sort channels by total views</td>
-                                <td><a href="https://www.youtube.com/user/briantrautman" target="_blank">Brian, SV Delos</a></td>
-                            </tr>
-							<tr>
-                                <td>Bug report: Website (scrolling) slows down drastically when loading lots of channels</td>
-                                <td><a href="https://www.youtube.com/user/steedharold" target="_blank">Harold Steed</a></td>
-                            </tr>
+							<tbody>
+	                            <tr>
+	                                <td>Feature: A way to filter by language of the channel</td>
+	                                <td><a href="https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw" target="_blank">Norman Boyes</a></td>
+	                            </tr>
+								<tr>
+	                                <td>Feature: Exclude channels that have not uploaded a video in a year</td>
+	                                <td><a href="https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g" target="_blank">Someday sailor</a></td>
+	                            </tr>
+								<tr>
+	                                <td>Feature: Sort channels by total views</td>
+	                                <td><a href="https://www.youtube.com/user/briantrautman" target="_blank">Brian, SV Delos</a></td>
+	                            </tr>
+								<tr>
+	                                <td>Bug report: Website (scrolling) slows down drastically when loading lots of channels</td>
+	                                <td><a href="https://www.youtube.com/user/steedharold" target="_blank">Harold Steed</a></td>
+	                            </tr>
+								<tr>
+									<td>Feature: Show vessel position that belongs to a channel on a map</td>
+									<td><a href="https://www.youtube.com/user/drakeParagon" target="_blank">Drake Paragon</a></td>
+								</tr>
+							</tbody>
                         </table>
 					</div>
 					<div className="col-md-3"></div>

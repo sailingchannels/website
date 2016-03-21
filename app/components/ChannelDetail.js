@@ -8,6 +8,7 @@ import VideoList from "./VideoList";
 import Logo from "./Logo";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
 import SubscribeButton from "./SubscribeButton";
+import PositionMap from "./PositionMap";
 
 class ChannelDetail extends React.Component {
 
@@ -59,7 +60,7 @@ class ChannelDetail extends React.Component {
 
         return (
 			<div className="container">
-			<Helmet title={this.state.channel.title} />
+			<Helmet title={this.state.channel.title + " | Sailing Channels"} />
 				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />
@@ -80,6 +81,17 @@ class ChannelDetail extends React.Component {
 							<div className="col-md-7 col-sm-7">
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
 								<p>&nbsp;</p>
+								{(this.state.channel.position) ?
+									<div>
+										<p><b>Latest AIS position:</b> <sup>(beta)</sup></p>
+										<PositionMap
+											coordinate={this.state.channel.position}
+											more={this.state.channel.vesselinfo}
+											boatcolor={this.state.channel.boatcolor}
+										/>
+										<p>&nbsp;</p>
+									</div>
+								: null}
 								<p><b>Latest video:</b></p>
 								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"] + "?origin=https://sailing-channels.com"} frameBorder="0" allowFullScreen></iframe>
 								<p>&nbsp;</p>
@@ -100,7 +112,6 @@ class ChannelDetail extends React.Component {
 								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
 
 								<SubscribeButton channel={this.state.channel} />
-
 							</div>
 						</div>
 					</div>

@@ -583,6 +583,10 @@ var _SubscribeButton = require("./SubscribeButton");
 
 var _SubscribeButton2 = _interopRequireDefault(_SubscribeButton);
 
+var _PositionMap = require("./PositionMap");
+
+var _PositionMap2 = _interopRequireDefault(_PositionMap);
+
 var ChannelDetail = (function (_React$Component) {
 	_inherits(ChannelDetail, _React$Component);
 
@@ -651,7 +655,7 @@ var ChannelDetail = (function (_React$Component) {
 			return _react2["default"].createElement(
 				"div",
 				{ className: "container" },
-				_react2["default"].createElement(_reactHelmet2["default"], { title: this.state.channel.title }),
+				_react2["default"].createElement(_reactHelmet2["default"], { title: this.state.channel.title + " | Sailing Channels" }),
 				_react2["default"].createElement(_OffsetSocial2["default"], null),
 				_react2["default"].createElement(_Logo2["default"], null),
 				_react2["default"].createElement(_OffsetMenu2["default"], null),
@@ -696,6 +700,35 @@ var ChannelDetail = (function (_React$Component) {
 									null,
 									" "
 								),
+								this.state.channel.position ? _react2["default"].createElement(
+									"div",
+									null,
+									_react2["default"].createElement(
+										"p",
+										null,
+										_react2["default"].createElement(
+											"b",
+											null,
+											"Latest AIS position:"
+										),
+										" ",
+										_react2["default"].createElement(
+											"sup",
+											null,
+											"(beta)"
+										)
+									),
+									_react2["default"].createElement(_PositionMap2["default"], {
+										coordinate: this.state.channel.position,
+										more: this.state.channel.vesselinfo,
+										boatcolor: this.state.channel.boatcolor
+									}),
+									_react2["default"].createElement(
+										"p",
+										null,
+										" "
+									)
+								) : null,
 								_react2["default"].createElement(
 									"p",
 									null,
@@ -837,7 +870,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./SubscribeButton":30,"./SubscriberHistoryChart":31,"./VideoList":33,"react":"react","react-helmet":64}],9:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./PositionMap":24,"./SubscribeButton":30,"./SubscriberHistoryChart":31,"./VideoList":33,"react":"react","react-helmet":64}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1362,7 +1395,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -1392,152 +1425,174 @@ var _Logo = require("./Logo");
 var _Logo2 = _interopRequireDefault(_Logo);
 
 var Contributions = (function (_React$Component) {
-    _inherits(Contributions, _React$Component);
+	_inherits(Contributions, _React$Component);
 
-    function Contributions() {
-        _classCallCheck(this, Contributions);
+	function Contributions() {
+		_classCallCheck(this, Contributions);
 
-        _get(Object.getPrototypeOf(Contributions.prototype), "constructor", this).apply(this, arguments);
-    }
+		_get(Object.getPrototypeOf(Contributions.prototype), "constructor", this).apply(this, arguments);
+	}
 
-    _createClass(Contributions, [{
-        key: "componentDidMount",
+	_createClass(Contributions, [{
+		key: "componentDidMount",
 
-        // COMPONENT DID MOUNT
-        value: function componentDidMount() {
-            document.title = "Contributions | Sailing Channels";
-        }
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
+			document.title = "Contributions | Sailing Channels";
+		}
 
-        // RENDER
-    }, {
-        key: "render",
-        value: function render() {
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
 
-            return _react2["default"].createElement(
-                "div",
-                { className: "container" },
-                _react2["default"].createElement(_OffsetSocial2["default"], null),
-                _react2["default"].createElement(_Logo2["default"], null),
-                _react2["default"].createElement(_OffsetMenu2["default"], null),
-                _react2["default"].createElement(
-                    "div",
-                    { className: "row content-row" },
-                    _react2["default"].createElement("div", { className: "col-md-3" }),
-                    _react2["default"].createElement(
-                        "div",
-                        { className: "col-md-6" },
-                        _react2["default"].createElement(
-                            "h1",
-                            { className: "content-h1" },
-                            "Contributions"
-                        ),
-                        _react2["default"].createElement(
-                            "p",
-                            null,
-                            "This is the place where we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented or fixed:"
-                        ),
-                        _react2["default"].createElement(
-                            "table",
-                            { className: "table" },
-                            _react2["default"].createElement(
-                                "thead",
-                                null,
-                                _react2["default"].createElement(
-                                    "tr",
-                                    null,
-                                    _react2["default"].createElement(
-                                        "th",
-                                        null,
-                                        "Suggestion"
-                                    ),
-                                    _react2["default"].createElement(
-                                        "th",
-                                        null,
-                                        "By"
-                                    )
-                                )
-                            ),
-                            _react2["default"].createElement(
-                                "tr",
-                                null,
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    "Feature: A way to filter by language of the channel"
-                                ),
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    _react2["default"].createElement(
-                                        "a",
-                                        { href: "https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw", target: "_blank" },
-                                        "Norman Boyes"
-                                    )
-                                )
-                            ),
-                            _react2["default"].createElement(
-                                "tr",
-                                null,
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    "Feature: Exclude channels that have not uploaded a video in a year"
-                                ),
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    _react2["default"].createElement(
-                                        "a",
-                                        { href: "https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g", target: "_blank" },
-                                        "Someday sailor"
-                                    )
-                                )
-                            ),
-                            _react2["default"].createElement(
-                                "tr",
-                                null,
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    "Feature: Sort channels by total views"
-                                ),
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    _react2["default"].createElement(
-                                        "a",
-                                        { href: "https://www.youtube.com/user/briantrautman", target: "_blank" },
-                                        "Brian, SV Delos"
-                                    )
-                                )
-                            ),
-                            _react2["default"].createElement(
-                                "tr",
-                                null,
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    "Bug report: Website (scrolling) slows down drastically when loading lots of channels"
-                                ),
-                                _react2["default"].createElement(
-                                    "td",
-                                    null,
-                                    _react2["default"].createElement(
-                                        "a",
-                                        { href: "https://www.youtube.com/user/steedharold", target: "_blank" },
-                                        "Harold Steed"
-                                    )
-                                )
-                            )
-                        )
-                    ),
-                    _react2["default"].createElement("div", { className: "col-md-3" })
-                )
-            );
-        }
-    }]);
+			return _react2["default"].createElement(
+				"div",
+				{ className: "container" },
+				_react2["default"].createElement(_OffsetSocial2["default"], null),
+				_react2["default"].createElement(_Logo2["default"], null),
+				_react2["default"].createElement(_OffsetMenu2["default"], null),
+				_react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement(
+							"h1",
+							{ className: "content-h1" },
+							"Contributions"
+						),
+						_react2["default"].createElement(
+							"p",
+							null,
+							"This is the place where we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented or fixed:"
+						),
+						_react2["default"].createElement(
+							"table",
+							{ className: "table" },
+							_react2["default"].createElement(
+								"thead",
+								null,
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"th",
+										null,
+										"Suggestion"
+									),
+									_react2["default"].createElement(
+										"th",
+										{ className: "by-col" },
+										"By"
+									)
+								)
+							),
+							_react2["default"].createElement(
+								"tbody",
+								null,
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"td",
+										null,
+										"Feature: A way to filter by language of the channel"
+									),
+									_react2["default"].createElement(
+										"td",
+										null,
+										_react2["default"].createElement(
+											"a",
+											{ href: "https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw", target: "_blank" },
+											"Norman Boyes"
+										)
+									)
+								),
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"td",
+										null,
+										"Feature: Exclude channels that have not uploaded a video in a year"
+									),
+									_react2["default"].createElement(
+										"td",
+										null,
+										_react2["default"].createElement(
+											"a",
+											{ href: "https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g", target: "_blank" },
+											"Someday sailor"
+										)
+									)
+								),
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"td",
+										null,
+										"Feature: Sort channels by total views"
+									),
+									_react2["default"].createElement(
+										"td",
+										null,
+										_react2["default"].createElement(
+											"a",
+											{ href: "https://www.youtube.com/user/briantrautman", target: "_blank" },
+											"Brian, SV Delos"
+										)
+									)
+								),
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"td",
+										null,
+										"Bug report: Website (scrolling) slows down drastically when loading lots of channels"
+									),
+									_react2["default"].createElement(
+										"td",
+										null,
+										_react2["default"].createElement(
+											"a",
+											{ href: "https://www.youtube.com/user/steedharold", target: "_blank" },
+											"Harold Steed"
+										)
+									)
+								),
+								_react2["default"].createElement(
+									"tr",
+									null,
+									_react2["default"].createElement(
+										"td",
+										null,
+										"Feature: Show vessel position that belongs to a channel on a map"
+									),
+									_react2["default"].createElement(
+										"td",
+										null,
+										_react2["default"].createElement(
+											"a",
+											{ href: "https://www.youtube.com/user/drakeParagon", target: "_blank" },
+											"Drake Paragon"
+										)
+									)
+								)
+							)
+						)
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				)
+			);
+		}
+	}]);
 
-    return Contributions;
+	return Contributions;
 })(_react2["default"].Component);
 
 exports["default"] = Contributions;
@@ -2654,9 +2709,10 @@ var Me = (function (_React$Component) {
 
 			// save the changes
 			$.post("/api/me/profile", {
-				"mmsi": parseInt($("#mmsi").val())
+				"mmsi": parseInt($("#mmsi").val()),
+				"boatcolor": $("#boatcolor").val()
 			}).done(function () {
-				_actionsMeActions2["default"].getMe();
+				location.reload();
 			});
 		}
 
@@ -2689,7 +2745,16 @@ var Me = (function (_React$Component) {
 							_react2["default"].createElement("img", { src: this.state.me.user.thumbnail, width: "50" }),
 							" ",
 							this.state.me.user.title
-						)
+						),
+						isChannelListed ? _react2["default"].createElement(
+							"center",
+							null,
+							_react2["default"].createElement(
+								"a",
+								{ target: "_blank", href: "/channel/" + this.state.me.channel.id, className: "btn btn-default btn-raised btn-sm" },
+								"Open channel page"
+							)
+						) : null
 					),
 					_react2["default"].createElement("div", { className: "col-md-3" })
 				),
@@ -2797,9 +2862,27 @@ var Me = (function (_React$Component) {
 									{ className: "col-sm-10" },
 									_react2["default"].createElement("input", { type: "number", className: "form-control", id: "mmsi", defaultValue: profile ? profile.mmsi : "", placeholder: "MMSI number" })
 								)
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "form-group" },
+								_react2["default"].createElement(
+									"label",
+									{ htmlFor: "hullcolor", className: "col-sm-2 control-label" },
+									"Boat Color"
+								),
+								_react2["default"].createElement(
+									"div",
+									{ className: "col-sm-10" },
+									_react2["default"].createElement("input", { type: "color", className: "form-control", id: "boatcolor", defaultValue: profile ? profile.boatcolor : "#f1c40f", placeholder: "E.g. hull color" })
+								)
 							)
 						),
-						this.state.me.user.position ? _react2["default"].createElement(_PositionMap2["default"], { coordinate: this.state.me.user.position }) : null
+						this.state.me.user.position ? _react2["default"].createElement(_PositionMap2["default"], {
+							coordinate: this.state.me.user.position,
+							more: this.state.me.user.vesselinfo,
+							boatcolor: this.state.me.user.profile.boatcolor
+						}) : null
 					),
 					_react2["default"].createElement("div", { className: "col-md-3" })
 				) : null,
@@ -3094,7 +3177,7 @@ module.exports = exports["default"];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -3116,50 +3199,73 @@ var _reactDom = require("react-dom");
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var PositionMap = (function (_React$Component) {
-  _inherits(PositionMap, _React$Component);
+	_inherits(PositionMap, _React$Component);
 
-  function PositionMap() {
-    _classCallCheck(this, PositionMap);
+	function PositionMap() {
+		_classCallCheck(this, PositionMap);
 
-    _get(Object.getPrototypeOf(PositionMap.prototype), "constructor", this).apply(this, arguments);
-  }
+		_get(Object.getPrototypeOf(PositionMap.prototype), "constructor", this).apply(this, arguments);
+	}
 
-  _createClass(PositionMap, [{
-    key: "componentDidMount",
+	_createClass(PositionMap, [{
+		key: "componentDidMount",
 
-    // COMPONENT DID MOUNT
-    value: function componentDidMount() {
+		// COMPONENT DID MOUNT
+		value: function componentDidMount() {
 
-      L.Icon.Default.imagePath = "/img/leaflet/";
+			L.Icon.Default.imagePath = "/img/leaflet/";
 
-      var map = this.map = L.map(_reactDom2["default"].findDOMNode(this), {
-        minZoom: 2,
-        maxZoom: 20,
-        layers: [L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' })],
-        attributionControl: false
-      });
+			var map = this.map = L.map(_reactDom2["default"].findDOMNode(this), {
+				minZoom: 2,
+				maxZoom: 20,
+				layers: [
+				// OSM map
+				L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+				}),
+				// Seamarks
+				L.tileLayer("//sailing-channels.com/seamark/{z}/{x}/{y}.png", {
+					maxZoom: 17,
+					minZoom: 10
+				})],
+				attributionControl: false
+			});
 
-      var marker = L.marker(this.props.coordinate).addTo(map);
-      map.setView(this.props.coordinate, 13);
-    }
+			var marker = L.boatMarker(this.props.coordinate, {
+				color: this.props.boatcolor || "#f1c40f"
+			});
 
-    // COMPONENT WILL UNMOUNT
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.map = null;
-    }
+			// more information available?
+			if (this.props.more) {
 
-    // RENDER
-  }, {
-    key: "render",
-    value: function render() {
+				// name the boat
+				if (this.props.more.name) marker.bindLabel(this.props.more.name, { noHide: true });
 
-      return _react2["default"].createElement("div", { className: "position-map" });
-    }
-  }]);
+				// set heading
+				marker.setHeading(this.props.more.course || 0);
+			}
 
-  return PositionMap;
+			marker.addTo(map);
+			map.setView(this.props.coordinate, 12);
+		}
+
+		// COMPONENT WILL UNMOUNT
+	}, {
+		key: "componentWillUnmount",
+		value: function componentWillUnmount() {
+			this.map = null;
+		}
+
+		// RENDER
+	}, {
+		key: "render",
+		value: function render() {
+
+			return _react2["default"].createElement("div", { className: "position-map" });
+		}
+	}]);
+
+	return PositionMap;
 })(_react2["default"].Component);
 
 exports["default"] = PositionMap;

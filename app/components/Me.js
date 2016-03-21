@@ -43,9 +43,10 @@ class Me extends React.Component {
 
 		// save the changes
 		$.post("/api/me/profile", {
-			"mmsi": parseInt($("#mmsi").val())
+			"mmsi": parseInt($("#mmsi").val()),
+			"boatcolor": $("#boatcolor").val()
 		}).done(function() {
-			MeActions.getMe();
+			location.reload();
 		});
 	}
 
@@ -68,6 +69,7 @@ class Me extends React.Component {
 	                    <h1 className="content-h1">
 							<img src={this.state.me.user.thumbnail} width="50" /> {this.state.me.user.title}
 						</h1>
+						{(isChannelListed) ? <center><a target="_blank" href={"/channel/" + this.state.me.channel.id} className="btn btn-default btn-raised btn-sm">Open channel page</a></center> : null }
 					</div>
 					<div className="col-md-3"></div>
                 </div>
@@ -115,15 +117,27 @@ class Me extends React.Component {
 							<h3>AIS</h3>
 							<p>In case you broadcast your positions via AIS, you can store your MMSI number here. Your position will be displayed on a map on your channel detail page.</p>
 							<div className="form-horizontal">
-							  <div className="form-group">
-								<label htmlFor="mmsi" className="col-sm-2 control-label">AIS MMSI</label>
-								<div className="col-sm-10">
-								  <input type="number" className="form-control" id="mmsi" defaultValue={(profile) ? profile.mmsi : ""} placeholder="MMSI number" />
+							  	<div className="form-group">
+									<label htmlFor="mmsi" className="col-sm-2 control-label">AIS MMSI</label>
+									<div className="col-sm-10">
+									  	<input type="number" className="form-control" id="mmsi" defaultValue={(profile) ? profile.mmsi : ""} placeholder="MMSI number" />
+									</div>
 								</div>
-							  </div>
+								<div className="form-group">
+									<label htmlFor="hullcolor" className="col-sm-2 control-label">Boat Color</label>
+									<div className="col-sm-10">
+									  	<input type="color" className="form-control" id="boatcolor" defaultValue={(profile) ? profile.boatcolor : "#f1c40f"} placeholder="E.g. hull color" />
+									</div>
+								</div>
 							</div>
 
-							{(this.state.me.user.position) ? <PositionMap coordinate={this.state.me.user.position} /> : null}
+							{(this.state.me.user.position) ?
+								<PositionMap
+									coordinate={this.state.me.user.position}
+									more={this.state.me.user.vesselinfo}
+									boatcolor={this.state.me.user.profile.boatcolor}
+								/>
+							: null}
 						</div>
 						<div className="col-md-3"></div>
 					</div>

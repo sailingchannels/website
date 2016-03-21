@@ -196,20 +196,21 @@ var readAISPosition = function(mmsi, callback) {
 
 		// not a cache hit
 		if(err || !data) {
-			ais.get(mmsi, function(pos) {
+			ais.get(mmsi, function(pos, more) {
 
 				// store value in cache
 				global.CACHE_ais_positions.insert({
 					"_id": mmsi,
 					"pos": pos,
+					"more": more,
 					"stored": moment.utc().toDate()
 				});
 
-				return callback(pos);
+				return callback(pos, more);
 			});
 		}
 		else {
-			return callback(data.pos);
+			return callback(data.pos, data.more);
 		}
 	});
 };
@@ -243,8 +244,9 @@ app.get("/api/me", function(req, res) {
 				if(user.profile && user.profile.mmsi) {
 
 					// fetch latest ais position
-					readAISPosition(user.profile.mmsi, function(pos) {
+					readAISPosition(user.profile.mmsi, function(pos, more) {
 						user.position = pos;
+						user.vesselinfo = more;
 						return done(null, user);
 					});
 				}
@@ -412,6 +414,18 @@ app.get("/api/channel/get/:id", function(req, res) {
 							"subscribers": true
 						})
 						.toArray(done);
+					},
+
+					"user": function(done) {
+
+						global.users.find({
+							"_id": id
+						})
+						.project({
+							"profile": true
+						})
+						.limit(1)
+						.next(done);
 					}
 
 				}, function(err, result) {
@@ -425,7 +439,21 @@ app.get("/api/channel/get/:id", function(req, res) {
 					channel.videos.push(result.video);
 					channel.subHist = result.subscribers;
 
-					return done_channel(null, channel);
+					// does the user have a profile with MMSI number?
+					if(result.user && result.user.profile && result.user.profile.mmsi) {
+
+						// read AIS position
+						readAISPosition(result.user.profile.mmsi, function(pos, more) {
+							channel.position = pos;
+							channel.vesselinfo = more;
+							return done_channel(null, channel);
+						});
+
+						channel.boatcolor = result.user.profile.boatcolor;
+					}
+					else {
+						return done_channel(null, channel);
+					}
 				});
 			});
 		}

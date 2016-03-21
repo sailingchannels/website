@@ -12,15 +12,35 @@ class PositionMap extends React.Component {
             minZoom: 2,
             maxZoom: 20,
             layers: [
-                L.tileLayer(
-                    "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'})
-            ],
+				// OSM map
+                L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+				}),
+				// Seamarks
+				L.tileLayer("//sailing-channels.com/seamark/{z}/{x}/{y}.png", {
+					maxZoom: 17,
+					minZoom: 10
+				})
+			],
             attributionControl: false
         });
 
-		var marker = L.marker(this.props.coordinate).addTo(map);
-		map.setView(this.props.coordinate, 13);
+		var marker = L.boatMarker(this.props.coordinate, {
+		    color: this.props.boatcolor || "#f1c40f"
+		});
+
+		// more information available?
+		if(this.props.more) {
+
+			// name the boat
+			if(this.props.more.name) marker.bindLabel(this.props.more.name, { noHide: true });
+
+			// set heading
+			marker.setHeading(this.props.more.course || 0);
+		}
+
+		marker.addTo(map);
+		map.setView(this.props.coordinate, 12);
     }
 
 	// COMPONENT WILL UNMOUNT
