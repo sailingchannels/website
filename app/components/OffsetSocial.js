@@ -26,9 +26,20 @@ class SocialOffset extends React.Component {
 	// RENDER
 	render() {
 
+		var profile = null;
+
+		if(this.state.me) {
+			if(!this.state.me.title || this.state.me.title === "") {
+				profile = <p><Link to="/me">Your profile</Link></p>;
+			}
+			else {
+				profile = <p>Hi, <Link to="/me">{this.state.me.title}</Link></p>;
+			}
+		}
+
 		return (
 			<div className="offset-social">
-				{(this.state.me) ? <p>Hi, <Link to="/me">{this.state.me.title}</Link></p> : null}
+				{profile}
 		        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
 		            <i className="fa fa-facebook-square fa-3x"></i>
 		        </a>
