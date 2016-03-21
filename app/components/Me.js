@@ -7,7 +7,7 @@ import MeActions from "../actions/MeActions";
 import MeStore from "../stores/MeStore";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
 import ViewsHistoryChart from "./ViewsHistoryChart";
-import Map from "./Map";
+import PositionMap from "./PositionMap";
 
 class Me extends React.Component {
 
@@ -35,11 +35,27 @@ class Me extends React.Component {
 		this.setState(state);
 	}
 
+	// SAFE PROFILE
+	saveProfile() {
+		this.setState({
+			"loading": true
+		});
+
+		// save the changes
+		$.post("/api/me/profile", {
+			"mmsi": parseInt($("#mmsi").val())
+		}).done(function() {
+			MeActions.getMe();
+		});
+	}
+
 	// RENDER
 	render() {
 
 		if(!this.state.me.user) return null;
 		var isChannelListed = this.state.me.channel;
+
+		var profile = this.state.me.user.profile || null;
 
 		return (
             <div className="container">
@@ -84,7 +100,7 @@ class Me extends React.Component {
 					<div className="row content-row">
 						<div className="col-md-3"></div>
 						<div className="col-md-6">
-							<center><p>~</p></center>
+							<hr />
 						</div>
 						<div className="col-md-3"></div>
 					</div>
@@ -97,16 +113,28 @@ class Me extends React.Component {
 						<div className="col-md-3"></div>
 						<div className="col-md-6">
 							<h3>AIS</h3>
-							<p>In case you broadcast your positions via <b>AIS</b>, you can store your MMSI number here. Your position will be displayed on a map on your channel detail page.</p>
+							<p>In case you broadcast your positions via AIS, you can store your MMSI number here. Your position will be displayed on a map on your channel detail page.</p>
 							<div className="form-horizontal">
 							  <div className="form-group">
 								<label htmlFor="mmsi" className="col-sm-2 control-label">AIS MMSI</label>
 								<div className="col-sm-10">
-								  <input type="number" className="form-control" id="mmsi" placeholder="MMSI number" />
+								  <input type="number" className="form-control" id="mmsi" defaultValue={(profile) ? profile.mmsi : ""} placeholder="MMSI number" />
 								</div>
 							  </div>
 							</div>
-							<Map />
+
+							{(this.state.me.user.position) ? <PositionMap coordinate={this.state.me.user.position} /> : null}
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
+							<hr />
 						</div>
 						<div className="col-md-3"></div>
 					</div>
@@ -119,9 +147,15 @@ class Me extends React.Component {
 					<div className="col-md-6">
 						<center>
 							{(isChannelListed) ?
-								<button className="btn btn-success btn-raised">
-									<i className="fa fa-check"></i> Save
-								</button>
+
+								(this.state.loading === true) ?
+									<button className="btn btn-success btn-raised" disabled="disabled">
+										<i className="fa fa-spinner fa-pulse"></i>
+									</button>
+								:
+									<button onClick={this.saveProfile.bind(this)} className="btn btn-success btn-raised">
+										<i className="fa fa-check"></i> Save
+									</button>
 							: null}
 							&nbsp;<a href="/logout" className="btn btn-default btn-raised">
 								<i className="fa fa-power-off"></i> Sign Out

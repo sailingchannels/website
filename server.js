@@ -18,6 +18,8 @@ var ISO6391 = require("iso-639-1");
 var async = require("async");
 var youtube = require("youtube-api");
 var loggly  = require("express-loggly");
+var ais = require("ais");
+var validator = require("validator");
 
 var tag = process.env.TAG || "dev";
 
@@ -178,6 +180,40 @@ app.get("/api/stats", function(req, res) {
 	});
 });
 
+// READ AIS POSITION
+var readAISPosition = function(mmsi, callback) {
+
+	if(!mmsi) return callback(null);
+
+	if(!validator.isNumeric(mmsi) || mmsi.trim().length !== 9) {
+		return callback(null);
+	}
+
+	mmsi = mmsi.trim();
+
+	// try cache
+	global.CACHE_ais_positions.find({"_id": mmsi}).next(function(err, data) {
+
+		// not a cache hit
+		if(err || !data) {
+			ais.get(mmsi, function(pos) {
+
+				// store value in cache
+				global.CACHE_ais_positions.insert({
+					"_id": mmsi,
+					"pos": pos,
+					"stored": moment.utc().toDate()
+				});
+
+				return callback(pos);
+			});
+		}
+		else {
+			return callback(data.pos);
+		}
+	});
+};
+
 // API / ME
 app.get("/api/me", function(req, res) {
 
@@ -199,7 +235,23 @@ app.get("/api/me", function(req, res) {
 				"_id": me._id
 			})
 			.limit(1)
-			.next(done);
+			.next(function(err, user) {
+
+				if(err) return done(err);
+
+				// does the user have a profile with mmsi number?
+				if(user.profile && user.profile.mmsi) {
+
+					// fetch latest ais position
+					readAISPosition(user.profile.mmsi, function(pos) {
+						user.position = pos;
+						return done(null, user);
+					});
+				}
+				else {
+					return done(null, user);
+				}
+			});
 		},
 
 		// try to fetch information on the channel of the user
@@ -248,18 +300,20 @@ app.get("/api/me", function(req, res) {
 
 	}, function(err, results) {
 
-		if(err) return res.stus(500).send({"error": err});
+		if(err) return res.status(500).send({"error": err});
 
 		if(results.channel) {
 
 			// try to append subscriber history
 			if(results.subscribers) {
 				results.channel.subHist = results.subscribers;
+				delete results.subscribers;
 			}
 
 			// try to append view history
 			if(results.views) {
 				results.channel.viewHist = results.views;
+				delete results.views;
 			}
 		}
 
@@ -268,7 +322,7 @@ app.get("/api/me", function(req, res) {
 });
 
 // API / ME / SETTINGS
-app.post("/api/me/settings", function(req, res) {
+app.post("/api/me/profile", function(req, res) {
 
 	// check if request is authenticated
 	var me = req.cookies.me;
@@ -280,16 +334,21 @@ app.post("/api/me/settings", function(req, res) {
 		return res.status(400).send({"error": "no user id found"});
 	}
 
-	global.user.updateOne({
+	global.users.updateOne({
 		"_id": me._id
 	}, {
 		"$set": {
-			"settings": req.body
+			"profile": req.body
 		}
 	}, function(err, updt) {
 
 		// an error occured
 		if(err) return res.status(500).send({"error": err, "success": false});
+
+		// clear mmsi cache
+		if(req.body.mmsi) {
+			global.CACHE_ais_positions.remove({"_id": req.body.mmsi});
+		}
 
 		// success
 		return res.send({"error": null, "success": true});
@@ -967,6 +1026,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.views = db.collection("views");
 	global.users = db.collection("users");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
+	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 
 	// start server
 	app.listen(app.get("port"), function() {

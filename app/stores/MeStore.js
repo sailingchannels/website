@@ -6,16 +6,18 @@ class MeStore {
 	constructor() {
 		this.bindActions(MeActions);
 		this.me = {};
+		this.loading = false;
 	}
 
 	// GET ME SUCCESS
   	getMeSuccess(result) {
-		console.log(result);
 		this.me = result;
+		this.loading = false;
   	}
 
 	// GET ME FAIL
   	getMeFail(err) {
+		this.loading = false;
     	console.error(err);
   	}
 }

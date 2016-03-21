@@ -24,8 +24,7 @@ var dependencies = [
 	"react-router",
 	"react-infinite",
 	"react-cookie",
-	"underscore",
-	"react-map-gl"
+	"underscore"
 ];
 
 /*
@@ -42,7 +41,8 @@ gulp.task("vendor-js", function() {
 			"public/js/anchorme.min.js",
 			"bower_components/js-cookie/src/js.cookie.js",
 			"bower_components/jquery-unveil/jquery.unveil.js",
-			"public/js/libs/chart.min.js"
+			"public/js/libs/chart.min.js",
+			"bower_components/bower-leaflet/leaflet.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -60,6 +60,7 @@ gulp.task("vendor-css", function() {
 	return gulp.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
+			"bower_components/bower-leaflet/leaflet.css",
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))

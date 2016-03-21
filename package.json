@@ -13,6 +13,7 @@
     "postinstall": "bower install && gulp build"
   },
   "dependencies": {
+    "ais": "^1.0.2",
     "alt": "^0.17.4",
     "async": "^1.4.2",
     "babel": "^5.8.23",
@@ -31,17 +32,16 @@
     "moment": "2.10.6",
     "mongodb": "2.0.48",
     "morgan": "^1.6.1",
-    "r-dom": "^2.1.0",
-    "react": "^0.14.0",
+    "react": "^0.14.7",
     "react-cookie": "^0.4.5",
-    "react-dom": "^0.14.0",
+    "react-dom": "^0.14.7",
     "react-helmet": "^2.3.1",
     "react-infinite": "^0.8.0",
-    "react-map-gl": "^0.6.6",
     "react-router": "^1.0.0-rc3",
     "request": "^2.65.0",
     "swig": "^1.4.2",
     "underscore": "^1.8.3",
+    "validator": "^5.1.0",
     "youtube-api": "^1.4.0"
   },
   "devDependencies": {

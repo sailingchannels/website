@@ -837,7 +837,7 @@ var ChannelDetail = (function (_React$Component) {
 exports["default"] = ChannelDetail;
 module.exports = exports["default"];
 
-},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./SubscribeButton":30,"./SubscriberHistoryChart":31,"./VideoList":33,"react":"react","react-helmet":64}],9:[function(require,module,exports){
+},{"../actions/ChannelActions":1,"../stores/ChannelStore":39,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./SubscribeButton":30,"./SubscriberHistoryChart":31,"./VideoList":33,"react":"react","react-helmet":64}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1358,7 +1358,7 @@ var ChannelMissing = (function (_React$Component) {
 exports["default"] = ChannelMissing;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],12:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1543,7 +1543,7 @@ var Contributions = (function (_React$Component) {
 exports["default"] = Contributions;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],13:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1676,7 +1676,7 @@ var DataCollection = (function (_React$Component) {
 exports["default"] = DataCollection;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],14:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2011,7 +2011,7 @@ var Home = (function (_React$Component) {
 exports["default"] = Home;
 module.exports = exports["default"];
 
-},{"./BannerDialog":7,"./ChannelList":9,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./SearchBar":26,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],17:[function(require,module,exports){
+},{"./BannerDialog":7,"./ChannelList":9,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./SearchBar":26,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2225,7 +2225,7 @@ var Imprint = (function (_React$Component) {
 exports["default"] = Imprint;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],18:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2492,7 +2492,7 @@ var Login = (function (_React$Component) {
 exports["default"] = Login;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],20:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2572,64 +2572,6 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactMapGl = require("react-map-gl");
-
-var _reactMapGl2 = _interopRequireDefault(_reactMapGl);
-
-var Map = (function (_React$Component) {
-	_inherits(Map, _React$Component);
-
-	function Map(props) {
-		_classCallCheck(this, Map);
-
-		_get(Object.getPrototypeOf(Map.prototype), "constructor", this).call(this, props);
-	}
-
-	// RENDER
-
-	_createClass(Map, [{
-		key: "render",
-		value: function render() {
-
-			return _react2["default"].createElement(_reactMapGl2["default"], {
-				width: 700,
-				height: 450,
-				latitude: 37.78,
-				longitude: -122.45,
-				zoom: 11,
-				mapStyle: "mapbox://styles/mapbox/streets-v8",
-				mapboxApiAccessToken: "pk.eyJ1Ijoic2FpbGluZ2NoYW5uZWxzIiwiYSI6ImNpbHp5MngxczAwaHp2OW00Y2szOG1oM2wifQ.4w_KaRlbtjBf9_TNQL6SXw"
-			});
-		}
-	}]);
-
-	return Map;
-})(_react2["default"].Component);
-
-exports["default"] = Map;
-module.exports = exports["default"];
-
-},{"react":"react","react-map-gl":"react-map-gl"}],22:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
 var _OffsetMenu = require("./OffsetMenu");
 
 var _OffsetMenu2 = _interopRequireDefault(_OffsetMenu);
@@ -2662,9 +2604,9 @@ var _ViewsHistoryChart = require("./ViewsHistoryChart");
 
 var _ViewsHistoryChart2 = _interopRequireDefault(_ViewsHistoryChart);
 
-var _Map = require("./Map");
+var _PositionMap = require("./PositionMap");
 
-var _Map2 = _interopRequireDefault(_Map);
+var _PositionMap2 = _interopRequireDefault(_PositionMap);
 
 var Me = (function (_React$Component) {
 	_inherits(Me, _React$Component);
@@ -2702,6 +2644,22 @@ var Me = (function (_React$Component) {
 			this.setState(state);
 		}
 
+		// SAFE PROFILE
+	}, {
+		key: "saveProfile",
+		value: function saveProfile() {
+			this.setState({
+				"loading": true
+			});
+
+			// save the changes
+			$.post("/api/me/profile", {
+				"mmsi": parseInt($("#mmsi").val())
+			}).done(function () {
+				_actionsMeActions2["default"].getMe();
+			});
+		}
+
 		// RENDER
 	}, {
 		key: "render",
@@ -2709,6 +2667,8 @@ var Me = (function (_React$Component) {
 
 			if (!this.state.me.user) return null;
 			var isChannelListed = this.state.me.channel;
+
+			var profile = this.state.me.user.profile || null;
 
 			return _react2["default"].createElement(
 				"div",
@@ -2800,15 +2760,7 @@ var Me = (function (_React$Component) {
 					_react2["default"].createElement(
 						"div",
 						{ className: "col-md-6" },
-						_react2["default"].createElement(
-							"center",
-							null,
-							_react2["default"].createElement(
-								"p",
-								null,
-								"~"
-							)
-						)
+						_react2["default"].createElement("hr", null)
 					),
 					_react2["default"].createElement("div", { className: "col-md-3" })
 				) : null,
@@ -2827,13 +2779,7 @@ var Me = (function (_React$Component) {
 						_react2["default"].createElement(
 							"p",
 							null,
-							"In case you broadcast your positions via ",
-							_react2["default"].createElement(
-								"b",
-								null,
-								"AIS"
-							),
-							", you can store your MMSI number here. Your position will be displayed on a map on your channel detail page."
+							"In case you broadcast your positions via AIS, you can store your MMSI number here. Your position will be displayed on a map on your channel detail page."
 						),
 						_react2["default"].createElement(
 							"div",
@@ -2849,11 +2795,22 @@ var Me = (function (_React$Component) {
 								_react2["default"].createElement(
 									"div",
 									{ className: "col-sm-10" },
-									_react2["default"].createElement("input", { type: "number", className: "form-control", id: "mmsi", placeholder: "MMSI number" })
+									_react2["default"].createElement("input", { type: "number", className: "form-control", id: "mmsi", defaultValue: profile ? profile.mmsi : "", placeholder: "MMSI number" })
 								)
 							)
 						),
-						_react2["default"].createElement(_Map2["default"], null)
+						this.state.me.user.position ? _react2["default"].createElement(_PositionMap2["default"], { coordinate: this.state.me.user.position }) : null
+					),
+					_react2["default"].createElement("div", { className: "col-md-3" })
+				) : null,
+				isChannelListed ? _react2["default"].createElement(
+					"div",
+					{ className: "row content-row" },
+					_react2["default"].createElement("div", { className: "col-md-3" }),
+					_react2["default"].createElement(
+						"div",
+						{ className: "col-md-6" },
+						_react2["default"].createElement("hr", null)
 					),
 					_react2["default"].createElement("div", { className: "col-md-3" })
 				) : null,
@@ -2867,9 +2824,13 @@ var Me = (function (_React$Component) {
 						_react2["default"].createElement(
 							"center",
 							null,
-							isChannelListed ? _react2["default"].createElement(
+							isChannelListed ? this.state.loading === true ? _react2["default"].createElement(
 								"button",
-								{ className: "btn btn-success btn-raised" },
+								{ className: "btn btn-success btn-raised", disabled: "disabled" },
+								_react2["default"].createElement("i", { className: "fa fa-spinner fa-pulse" })
+							) : _react2["default"].createElement(
+								"button",
+								{ onClick: this.saveProfile.bind(this), className: "btn btn-success btn-raised" },
 								_react2["default"].createElement("i", { className: "fa fa-check" }),
 								" Save"
 							) : null,
@@ -2895,7 +2856,7 @@ exports["default"] = Me;
 module.exports = exports["default"];
 /* STATISTICS */ /* MMSI */ /* CONTROLS */
 
-},{"../actions/MeActions":3,"../stores/MeStore":41,"./Logo":20,"./Map":21,"./OffsetMenu":23,"./OffsetSocial":24,"./SubscriberHistoryChart":31,"./ViewsHistoryChart":35,"react":"react","react-cookie":"react-cookie"}],23:[function(require,module,exports){
+},{"../actions/MeActions":3,"../stores/MeStore":41,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./PositionMap":24,"./SubscriberHistoryChart":31,"./ViewsHistoryChart":35,"react":"react","react-cookie":"react-cookie"}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3027,7 +2988,7 @@ var OffsetMenu = (function (_React$Component) {
 exports["default"] = OffsetMenu;
 module.exports = exports["default"];
 
-},{"./LanguagePicker":18,"react":"react","react-router":"react-router"}],24:[function(require,module,exports){
+},{"./LanguagePicker":18,"react":"react","react-router":"react-router"}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3129,7 +3090,82 @@ var SocialOffset = (function (_React$Component) {
 exports["default"] = SocialOffset;
 module.exports = exports["default"];
 
-},{"./Footer":15,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],25:[function(require,module,exports){
+},{"./Footer":15,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],24:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var PositionMap = (function (_React$Component) {
+  _inherits(PositionMap, _React$Component);
+
+  function PositionMap() {
+    _classCallCheck(this, PositionMap);
+
+    _get(Object.getPrototypeOf(PositionMap.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(PositionMap, [{
+    key: "componentDidMount",
+
+    // COMPONENT DID MOUNT
+    value: function componentDidMount() {
+
+      L.Icon.Default.imagePath = "/img/leaflet/";
+
+      var map = this.map = L.map(_reactDom2["default"].findDOMNode(this), {
+        minZoom: 2,
+        maxZoom: 20,
+        layers: [L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' })],
+        attributionControl: false
+      });
+
+      var marker = L.marker(this.props.coordinate).addTo(map);
+      map.setView(this.props.coordinate, 13);
+    }
+
+    // COMPONENT WILL UNMOUNT
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.map = null;
+    }
+
+    // RENDER
+  }, {
+    key: "render",
+    value: function render() {
+
+      return _react2["default"].createElement("div", { className: "position-map" });
+    }
+  }]);
+
+  return PositionMap;
+})(_react2["default"].Component);
+
+exports["default"] = PositionMap;
+module.exports = exports["default"];
+
+},{"react":"react","react-dom":"react-dom"}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3756,7 +3792,7 @@ var PrivacyPolicy = (function (_React$Component) {
 exports["default"] = PrivacyPolicy;
 module.exports = exports["default"];
 
-},{"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"react":"react"}],26:[function(require,module,exports){
+},{"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"react":"react"}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4079,7 +4115,7 @@ var SearchResult = (function (_React$Component) {
 exports["default"] = SearchResult;
 module.exports = exports["default"];
 
-},{"./BannerDialog":7,"./Logo":20,"./OffsetMenu":23,"./SearchBar":26,"./SearchResultList":28,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],28:[function(require,module,exports){
+},{"./BannerDialog":7,"./Logo":20,"./OffsetMenu":22,"./SearchBar":26,"./SearchResultList":28,"./SignInDialog":29,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4558,6 +4594,13 @@ var SubscriberHistoryChart = (function (_React$Component) {
 			this.loadChart(nextProps);
 		}
 
+		// SHOULD COMPONENT UPDATE
+	}, {
+		key: "shouldComponentUpdate",
+		value: function shouldComponentUpdate(nextProps, nextState) {
+			return this.props.channel.id !== nextProps.channel.id;
+		}
+
 		// LOAD CHART
 	}, {
 		key: "loadChart",
@@ -4886,7 +4929,7 @@ var VideoDetail = (function (_React$Component) {
 exports["default"] = VideoDetail;
 module.exports = exports["default"];
 
-},{"../actions/VideoActions":4,"../stores/VideoStore":42,"./Logo":20,"./OffsetMenu":23,"./OffsetSocial":24,"./VideoList":33,"react":"react","react-helmet":64,"react-router":"react-router"}],33:[function(require,module,exports){
+},{"../actions/VideoActions":4,"../stores/VideoStore":42,"./Logo":20,"./OffsetMenu":22,"./OffsetSocial":23,"./VideoList":33,"react":"react","react-helmet":64,"react-router":"react-router"}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5687,7 +5730,7 @@ exports["default"] = _react2["default"].createElement(
 );
 module.exports = exports["default"];
 
-},{"./components/App":6,"./components/ChannelDetail":8,"./components/ChannelMissing":11,"./components/Contributions":12,"./components/DataCollection":13,"./components/Home":16,"./components/Imprint":17,"./components/Login":19,"./components/Me":22,"./components/PrivacyPolicy":25,"./components/SearchResult":27,"./components/VideoDetail":32,"react":"react","react-router":"react-router"}],39:[function(require,module,exports){
+},{"./components/App":6,"./components/ChannelDetail":8,"./components/ChannelMissing":11,"./components/Contributions":12,"./components/DataCollection":13,"./components/Home":16,"./components/Imprint":17,"./components/Login":19,"./components/Me":21,"./components/PrivacyPolicy":25,"./components/SearchResult":27,"./components/VideoDetail":32,"react":"react","react-router":"react-router"}],39:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5876,6 +5919,7 @@ var MeStore = (function () {
 
 		this.bindActions(_actionsMeActions2["default"]);
 		this.me = {};
+		this.loading = false;
 	}
 
 	// GET ME SUCCESS
@@ -5883,14 +5927,15 @@ var MeStore = (function () {
 	_createClass(MeStore, [{
 		key: "getMeSuccess",
 		value: function getMeSuccess(result) {
-			console.log(result);
 			this.me = result;
+			this.loading = false;
 		}
 
 		// GET ME FAIL
 	}, {
 		key: "getMeFail",
 		value: function getMeFail(err) {
+			this.loading = false;
 			console.error(err);
 		}
 	}]);

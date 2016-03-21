@@ -12,6 +12,11 @@ class SubscriberHistoryChart extends React.Component {
 		this.loadChart(nextProps);
 	}
 
+	// SHOULD COMPONENT UPDATE
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.props.channel.id !== nextProps.channel.id;
+	}
+
 	// LOAD CHART
 	loadChart(props) {
 
