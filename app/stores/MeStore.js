@@ -15,9 +15,11 @@ class MeStore {
 		this.loading = false;
 
 		window.setTimeout(function() {
-			$("input[type='color']").spectrum({
-				preferredFormat: "hex",
-			});
+			if(!Modernizr.inputtypes.color) {
+				$("input[type='color']").spectrum({
+					preferredFormat: "hex"
+				});
+			}
 		}, 100);
   	}
 

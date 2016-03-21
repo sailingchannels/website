@@ -46,6 +46,7 @@ gulp.task("vendor-js", function() {
 			"public/js/anchorme.min.js",
 			"public/js/chart.min.js",
 			"public/js/leaflet.boatmarker.js",
+			"public/js/modernizr.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
