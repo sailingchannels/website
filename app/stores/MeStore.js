@@ -13,12 +13,16 @@ class MeStore {
   	getMeSuccess(result) {
 		this.me = result;
 		this.loading = false;
+
+		window.setTimeout(function() {
+			$("input[type='color']").spectrum();
+		}, 100);
   	}
 
 	// GET ME FAIL
   	getMeFail(err) {
 		this.loading = false;
-    	console.error(err);
+    	location.href = "/";
   	}
 }
 

@@ -33,9 +33,11 @@ class DataCollection extends React.Component {
 						<p>
 							The algorithm uses a (super secret) starting channel and scans all subscriptions of this channel. The next step is recursively scanning all subscriptions of the subscriptions of the starting channel and so on.
 						</p>
-						<center><p>~</p></center>
 						<center>
 							<iframe className="intro-video" width="100%" height="315" src="https://www.youtube.com/embed/RWosJPnB900?start=53" frameBorder="0" allowFullScreen></iframe>
+						</center>
+						<center>
+							<iframe className="intro-video" width="100%" height="315" src="https://www.youtube.com/embed/WFuSJj3v7PM" frameBorder="0" allowFullScreen></iframe>
 						</center>
 					</div>
 					<div className="col-md-3"></div>

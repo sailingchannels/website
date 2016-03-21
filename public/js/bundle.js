@@ -1707,16 +1707,12 @@ var DataCollection = (function (_React$Component) {
 						_react2["default"].createElement(
 							"center",
 							null,
-							_react2["default"].createElement(
-								"p",
-								null,
-								"~"
-							)
+							_react2["default"].createElement("iframe", { className: "intro-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/RWosJPnB900?start=53", frameBorder: "0", allowFullScreen: true })
 						),
 						_react2["default"].createElement(
 							"center",
 							null,
-							_react2["default"].createElement("iframe", { className: "intro-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/RWosJPnB900?start=53", frameBorder: "0", allowFullScreen: true })
+							_react2["default"].createElement("iframe", { className: "intro-video", width: "100%", height: "315", src: "https://www.youtube.com/embed/WFuSJj3v7PM", frameBorder: "0", allowFullScreen: true })
 						)
 					),
 					_react2["default"].createElement("div", { className: "col-md-3" })
@@ -2042,11 +2038,16 @@ var Home = (function (_React$Component) {
 					"center",
 					null,
 					_react2["default"].createElement(
-						_reactRouter.Link,
-						{ to: "/signin", className: "btn btn-raised btn-sm btn-danger yt-login" },
+						"a",
+						{ href: "/oauth2callback", className: "btn btn-raised btn-sm btn-danger yt-login" },
 						"Sign In with ",
 						_react2["default"].createElement("i", { className: "fa fa-youtube" }),
 						" YouTube"
+					),
+					_react2["default"].createElement(
+						_reactRouter.Link,
+						{ className: "btn btn-link show btn-more-info", to: "/signin" },
+						"More infos"
 					)
 				) : null,
 				_react2["default"].createElement(_OffsetMenu2["default"], null),
@@ -2752,7 +2753,8 @@ var Me = (function (_React$Component) {
 							_react2["default"].createElement(
 								"a",
 								{ target: "_blank", href: "/channel/" + this.state.me.channel.id, className: "btn btn-default btn-raised btn-sm" },
-								"Open channel page"
+								_react2["default"].createElement("i", { className: "fa fa-share" }),
+								" Open channel page"
 							)
 						) : null
 					),
@@ -6035,6 +6037,10 @@ var MeStore = (function () {
 		value: function getMeSuccess(result) {
 			this.me = result;
 			this.loading = false;
+
+			window.setTimeout(function () {
+				$("input[type='color']").spectrum();
+			}, 100);
 		}
 
 		// GET ME FAIL
@@ -6042,7 +6048,7 @@ var MeStore = (function () {
 		key: "getMeFail",
 		value: function getMeFail(err) {
 			this.loading = false;
-			console.error(err);
+			location.href = "/";
 		}
 	}]);
 

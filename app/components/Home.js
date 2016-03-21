@@ -66,7 +66,8 @@ class Home extends React.Component {
 				<Logo />
 				{(!this.state.me) ?
 					<center>
-						<Link to="/signin" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</Link>
+						<a href="/oauth2callback" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</a>
+						<Link className="btn btn-link show btn-more-info" to={"/signin"}>More infos</Link>
 					</center>
 					: null
 				}

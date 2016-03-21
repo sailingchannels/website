@@ -69,7 +69,7 @@ class Me extends React.Component {
 	                    <h1 className="content-h1">
 							<img src={this.state.me.user.thumbnail} width="50" /> {this.state.me.user.title}
 						</h1>
-						{(isChannelListed) ? <center><a target="_blank" href={"/channel/" + this.state.me.channel.id} className="btn btn-default btn-raised btn-sm">Open channel page</a></center> : null }
+						{(isChannelListed) ? <center><a target="_blank" href={"/channel/" + this.state.me.channel.id} className="btn btn-default btn-raised btn-sm"><i className="fa fa-share"></i> Open channel page</a></center> : null }
 					</div>
 					<div className="col-md-3"></div>
                 </div>

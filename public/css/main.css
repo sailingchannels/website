@@ -294,8 +294,13 @@ input[type="color"] {
 }
 
 @media (min-width: 990px) {
-
 	.by-col {
 		min-width:120px;
 	}
+}
+
+.btn-more-info {
+	margin-top: 15px;
+	color: #bbb!important;
+	text-transform: capitalize;
 }
