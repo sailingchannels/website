@@ -3135,19 +3135,37 @@ var SocialOffset = (function (_React$Component) {
 		key: "render",
 		value: function render() {
 
+			var profile = null;
+
+			if (this.state.me) {
+				if (!this.state.me.title || this.state.me.title === "") {
+					profile = _react2["default"].createElement(
+						"p",
+						null,
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/me" },
+							"Your profile"
+						)
+					);
+				} else {
+					profile = _react2["default"].createElement(
+						"p",
+						null,
+						"Hi, ",
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/me" },
+							this.state.me.title
+						)
+					);
+				}
+			}
+
 			return _react2["default"].createElement(
 				"div",
 				{ className: "offset-social" },
-				this.state.me ? _react2["default"].createElement(
-					"p",
-					null,
-					"Hi, ",
-					_react2["default"].createElement(
-						_reactRouter.Link,
-						{ to: "/me" },
-						this.state.me.title
-					)
-				) : null,
+				profile,
 				_react2["default"].createElement(
 					"a",
 					{ title: "Sailing Channels on Facebook", href: "https://www.fb.com/sailingchannels", target: "_blank", className: "social social-fb" },
