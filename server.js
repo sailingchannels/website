@@ -938,7 +938,7 @@ var fillHead = function(renderProps, callback) {
 
 			head.title = video.title;
 			head.description = video.description;
-			head.banner = "https://img.youtube.com/vi/" + video._id + "/default.jpg";
+			head.banner = "https://img.youtube.com/vi/" + video._id + "/hqdefault.jpg";
 
 			return callback(head);
 		});
