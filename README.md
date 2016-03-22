@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/1.2.5/public/img/banner.png" width="300" />
+  <img src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/1.2.5/public/img/banner.png" width="250" />
 </p>
 
 # Sailing Channels
