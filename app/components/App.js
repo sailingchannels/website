@@ -12,6 +12,7 @@ class App extends React.Component {
 
 				// open the dialog
 				$("#banner-dialog").modal("show");
+				$("#banner-img").attr("src", STATIC_PATH + "/img/twoaboardtuuli.jpg");
 				Cookies.set("banner-dialog", "shown", { expires: 3 });
 			}
 		}, 15000);

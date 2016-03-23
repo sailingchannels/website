@@ -7,7 +7,7 @@ class ChannelListItem extends React.Component {
 
 	// COMPONENT DID MOUNT
 	componentDidMount() {
-		$(".channel-thumb").unveil();
+		//$(".channel-thumb").unveil();
 	}
 
 	// FORMAT DATE

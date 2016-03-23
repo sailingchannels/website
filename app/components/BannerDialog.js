@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router";
 
 class BannerDialog extends React.Component {
-
+	
     // RENDER
 	render() {
 
@@ -16,7 +16,7 @@ class BannerDialog extends React.Component {
 						</div>
 						<div className="modal-body">
 							<p>
-								<img src="/img/twoaboardtuuli.jpg" width="100%" />
+								<img id="banner-img" src="" width="100%" />
 							</p>
 							<p>
 							    The <a href="https://two-aboard-tuuli.com" target="_blank"><b>Two aboard Tuuli crew</b></a> created this website in their sparetime for you.
