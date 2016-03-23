@@ -974,7 +974,8 @@ app.use(function(req, res) {
 
 	var staticPath = "";
 	if(tag !== "dev") {
-		staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
+		//staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
+		staticPath = "https://dto521q1h0se0.cloudfront.net/" + tag;
 	}
 
 	Router.match({ routes: routes, location: req.url }, function(err, redirectLocation, renderProps) {
