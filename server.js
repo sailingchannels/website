@@ -63,7 +63,7 @@ app.get("/oauth2callback", function(req, res) {
 	// is code included?
 	if(!req.query.code) {
 		var redirect_to = oauth.generateAuthUrl({
-		    "access_type": "online",
+		    "access_type": "offline",
 			"scope": ["https://www.googleapis.com/auth/youtube.force-ssl"]
 		});
 
@@ -73,6 +73,8 @@ app.get("/oauth2callback", function(req, res) {
 
 		// get a token
 		oauth.getToken(req.query.code, function(err, credentials) {
+
+			console.log(credentials);
 
 			if (err) {
 				return res.status(400).send(err);
@@ -106,7 +108,7 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("credentials", credentials, {
-						"expires": new Date(credentials.expiry_date),
+						//"expires": new Date(credentials.expiry_date),
 						"httpOnly": true
 					});
 
@@ -114,7 +116,7 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("me", info, {
-						"expires": new Date(credentials.expiry_date)
+						//"expires": new Date(credentials.expiry_date)
 					});
 				}
 
@@ -531,6 +533,8 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 
 // READ SUBSCRIPTIONS
 var readSubscriptions = function(credentials, done) {
+
+	console.log(credentials);
 
 	// authenticate next request
 	oauth.setCredentials(credentials);
