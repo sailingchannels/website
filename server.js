@@ -465,6 +465,13 @@ app.get("/api/channel/get/:id", function(req, res) {
 			return res.status(500).send(err);
 		}
 
+		// track the visit
+		global.visits.insertOne({
+			"channel": results.channel_.id,
+			"type": "channel",
+			"time": moment.utc().toDate()
+		});
+
 		// check if user subscribed to this channel
 		results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
 
@@ -898,6 +905,14 @@ app.get("/api/video/get/:id", function(req, res) {
 			return res.status(500).send(err);
 		}
 
+		// track the visit
+		global.visits.insertOne({
+			"video": req.params.id,
+			"channel": video.channel,
+			"type": "video",
+			"time": moment.utc().toDate()
+		});
+
 		// find matching channel
 		global.channels.find({
 			"_id": video.channel
@@ -1057,6 +1072,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.subscribers = db.collection("subscribers");
 	global.views = db.collection("views");
 	global.users = db.collection("users");
+	global.visits = db.collection("visits");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 
