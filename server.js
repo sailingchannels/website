@@ -698,9 +698,23 @@ app.get("/api/channels/get", function(req, res) {
 			});
 		}
 
+		// TEXT CUTTER
+		var textCutter = function(i, text) {
+
+			if(text.length < i) return text;
+
+	        var shorter = text.substr(0, i);
+	        if (/^\S/.test(text.substr(i))) {
+	            return shorter.replace(/\s+\S*$/, "") + " ...";
+			}
+
+	        return shorter;
+	    };
+
 		// if we have subscriptions, enhance the
 		var channels = results.channels.map(function(channel) {
 			channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
+			channel.description = textCutter(300, channel.description);
 			return channel;
 		});
 

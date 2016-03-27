@@ -38,7 +38,7 @@ class ChannelListItem extends React.Component {
                         </Link>
                     </h3>
 					<div className="hidden-xs">
-						<Description text={this.props.channel.description} maxLength={300} />
+						<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.props.channel.description, {target: "_blank"})}}></p>
 					</div>
                 </div>
                 <div className="col-md-3 col-sm-4 col-xs-10 col-xs-offset-3 col-md-offset-0 col-sm-offset-0">
