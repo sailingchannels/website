@@ -300,6 +300,32 @@ app.get("/api/me", function(req, res) {
 				"views": true
 			})
 			.toArray(done);
+		},
+
+		// VISITS TO CHANNEL
+		"visits_channel": function(done) {
+
+			global.visits.count({
+				"channel": me._id,
+				"type": "channel",
+				"time": {
+					"$gte": moment.utc().startOf("day").toDate(),
+					"$lt": moment.utc().endOf("day").toDate()
+				}
+			}, done);
+		},
+
+		// VISITS TO VIDEOS
+		"visits_videos": function(done) {
+
+			global.visits.count({
+				"channel": me._id,
+				"type": "video",
+				"time": {
+					"$gte": moment.utc().startOf("day").toDate(),
+					"$lt": moment.utc().endOf("day").toDate()
+				}
+			}, done);
 		}
 
 	}, function(err, results) {

@@ -102,6 +102,19 @@ class Me extends React.Component {
 					<div className="row content-row">
 						<div className="col-md-3"></div>
 						<div className="col-md-6">
+							<h4>On sailing-channels.com</h4>
+							<p><b>Today's channel views:</b> {this.state.me.visits_channel}</p>
+							<p><b>Today's Video views:</b> {this.state.me.visits_videos}</p>
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
 							<hr />
 						</div>
 						<div className="col-md-3"></div>
