@@ -467,7 +467,7 @@ app.get("/api/channel/get/:id", function(req, res) {
 
 		// track the visit
 		global.visits.insertOne({
-			"channel": results.channel_.id,
+			"channel": results.channel._id,
 			"type": "channel",
 			"time": moment.utc().toDate()
 		});
