@@ -74,8 +74,6 @@ app.get("/oauth2callback", function(req, res) {
 		// get a token
 		oauth.getToken(req.query.code, function(err, credentials) {
 
-			console.log(credentials);
-
 			if (err) {
 				return res.status(400).send(err);
 			}
@@ -566,8 +564,6 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 
 // READ SUBSCRIPTIONS
 var readSubscriptions = function(credentials, done) {
-
-	console.log(credentials);
 
 	// authenticate next request
 	oauth.setCredentials(credentials);
