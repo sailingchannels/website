@@ -18,8 +18,15 @@ class ChannelActions {
     // GET CHANNEL
     getChannels(sortBy, skip, take) {
 
+		var url = "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take;
+
+		// append mobile parameter to not load description
+		if($(window).width() < 768) {
+			url += "&mobile=true";
+		}
+
 		new HTTP().get({
-            "url": "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take,
+            "url": url,
             "type": "GET",
             "dataType": "json",
             "cache": false

@@ -648,6 +648,12 @@ app.get("/api/channels/get", function(req, res) {
 	var sortBy = req.query.sort || "subscribers";
 	var take = parseInt(req.query.take) || 25;
 	var skip = parseInt(req.query.skip) || 0;
+	var mobile = false;
+
+	// check if mobile is a parameter to this call
+	if("mobile" in req.query) {
+		mobile = (req.query.mobile === "true");
+	}
 
 	var sortKey = "subscribers";
 	switch(sortBy) {
@@ -713,8 +719,10 @@ app.get("/api/channels/get", function(req, res) {
 
 		// if we have subscriptions, enhance the
 		var channels = results.channels.map(function(channel) {
+
 			channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
-			channel.description = textCutter(300, channel.description);
+			channel.description = (mobile === false) ? textCutter(300, channel.description) : null;
+
 			return channel;
 		});
 
