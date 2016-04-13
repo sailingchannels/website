@@ -54,6 +54,10 @@ class Contributions extends React.Component {
 									<td>Feature: Show vessel position that belongs to a channel on a map</td>
 									<td><a href="https://www.youtube.com/user/drakeParagon" target="_blank">Drake Paragon</a></td>
 								</tr>
+								<tr>
+									<td>Feature: Sort channels by currently popular channels, see what's trending.</td>
+									<td><a href="https://www.youtube.com/channel/UC6ZRBkwBQBrEOQQKwGi85gQ" target="_blank">Kismet Adventures</a></td>
+								</tr>
 							</tbody>
                         </table>
 					</div>

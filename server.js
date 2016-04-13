@@ -664,6 +664,7 @@ app.get("/api/channels/get", function(req, res) {
 		case "founded": sortKey = "publishedAt"; break;
 		case "upload": sortKey = "lastUploadAt"; break;
 		case "views": sortKey = "views"; break;
+		case "trending": sortKey = "popularity.total"; break;
 	}
 
 	var sorting = {};

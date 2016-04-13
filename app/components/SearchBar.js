@@ -68,13 +68,19 @@ class SearchBar extends React.Component {
 
 		return (
             <div className="row search-row">
-				<div className="col-lg-4 col-md-3 col-sm-3"></div>
-                <div className="col-lg-4 col-md-64 col-sm-6">
-                    <div className="form-group label-floating is-empty">
-                        <label className="control-label">Search for ...</label>
-                        <input className="form-control" type="text" id="search-bar" onKeyUp={this.keyUp.bind(this)} />
-                        <span className="material-input"></span>
-                    </div>
+				<div className="col-lg-3 col-md-2 col-sm-2"></div>
+                <div className="col-lg-6 col-md-8 col-sm-8">
+					<div className="row">
+						<div className="col-lg-1 col-md-1 col-sm-0"></div>
+		                <div className="col-lg-10 col-md-10 col-sm-12">
+			                <div className="form-group label-floating is-empty">
+			                    <label className="control-label">Search for ...</label>
+			                    <input className="form-control" type="text" id="search-bar" onKeyUp={this.keyUp.bind(this)} />
+			                    <span className="material-input"></span>
+			                </div>
+						</div>
+						<div className="col-lg-1 col-md-1 col-sm-0"></div>
+					</div>
 
                     <div className={sortGroupClass}>
                         <label className="sort-label control-label">Sort by:</label>
@@ -94,9 +100,13 @@ class SearchBar extends React.Component {
 							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="founded" defaultChecked={this.props.sortBy === "newest"} />
 							&nbsp;Founded
 						</label>
+						<label className="sortBy-label">
+							<input type="radio" onClick={this.changeSort.bind(this)} className="sort-option" name="sortby" value="trending" defaultChecked={this.props.sortBy === "trending"} />
+							&nbsp;Trending
+						</label>
                     </div>
                 </div>
-				<div className="col-lg-4 col-md-3 col-sm-3"></div>
+				<div className="col-lg-3 col-md-2 col-sm-2"></div>
             </div>
 		);
 	}
