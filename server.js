@@ -64,7 +64,8 @@ app.get("/oauth2callback", function(req, res) {
 	if(!req.query.code) {
 		var redirect_to = oauth.generateAuthUrl({
 		    "access_type": "offline",
-			"scope": ["https://www.googleapis.com/auth/youtube.force-ssl"]
+			"scope": ["https://www.googleapis.com/auth/youtube.force-ssl"],
+			"approval_prompt": "force"
 		});
 
 		return res.redirect(301, redirect_to);
@@ -107,13 +108,17 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("credentials", credentials, {
-						"httpOnly": true
+						"httpOnly": true,
+						"secure": true
 					});
 
 					info._id = data.items[0].id;
+					delete info.credentials;
 
 					// keep credentials
-					res.cookie("me", info);
+					res.cookie("me", info, {
+						"secure": true
+					});
 				}
 
 				return res.redirect(301, "/");
