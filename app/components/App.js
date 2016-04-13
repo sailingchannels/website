@@ -15,7 +15,7 @@ class App extends React.Component {
 				$("#banner-img").attr("src", STATIC_PATH + "/img/twoaboardtuuli.jpg");
 				Cookies.set("banner-dialog", "shown", { expires: 3 });
 			}
-		}, 15000);
+		}, 45000);
 	}
 
 	// RENDER

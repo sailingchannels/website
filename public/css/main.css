@@ -92,7 +92,6 @@ h1 {
 
 .offset-menu {
 	position:absolute;
-	background-color:white;
 	top:50px;
 	right:50px;
 	text-align: right;
@@ -203,7 +202,6 @@ h1 {
 
 .offset-social {
 	position:absolute;
-	background-color:white;
 	text-align: left;
 	top:20px;
 	left:20px;

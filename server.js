@@ -93,7 +93,8 @@ app.get("/oauth2callback", function(req, res) {
 						"lastLogin": moment.utc().toDate(),
 						"title": data.items[0].snippet.title,
 						"thumbnail": data.items[0].snippet.thumbnails.default.url,
-						"country": ("country" in data.items[0].snippet) ? data.items[0].snippet.country.toLowerCase() : null
+						"country": ("country" in data.items[0].snippet) ? data.items[0].snippet.country.toLowerCase() : null,
+						"credentials": credentials
 					};
 
 					global.users.updateOne({
@@ -106,16 +107,13 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("credentials", credentials, {
-						//"expires": new Date(credentials.expiry_date),
 						"httpOnly": true
 					});
 
 					info._id = data.items[0].id;
 
 					// keep credentials
-					res.cookie("me", info, {
-						//"expires": new Date(credentials.expiry_date)
-					});
+					res.cookie("me", info);
 				}
 
 				return res.redirect(301, "/");
