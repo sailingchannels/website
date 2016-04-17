@@ -106,10 +106,12 @@ app.get("/oauth2callback", function(req, res) {
 						"upsert": true
 					});
 
+					var inAYear = moment().add(1, "year").toDate();
+
 					// keep credentials
 					res.cookie("credentials", credentials, {
-						"httpOnly": true,
-						"secure": true
+						"secure": true,
+						"expires": inAYear
 					});
 
 					info._id = data.items[0].id;
@@ -117,7 +119,8 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("me", info, {
-						"secure": true
+						"secure": true,
+						"expires": inAYear
 					});
 				}
 
