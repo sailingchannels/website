@@ -5,7 +5,6 @@ class FlagButton extends React.Component {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
-		console.log(Cookies.get("flagged." + this.props.channel.id));
 		this.state = {
 			"pressed": Cookies.get("flagged." + this.props.channel.id) || false,
 			"loggedIn": !!Cookies.get("me")

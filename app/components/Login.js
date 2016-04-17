@@ -34,12 +34,12 @@ class Login extends React.Component {
 							<b>Cool stuff you can do, when signed in:</b>
 							<ul>
 								<li>Manage subscribtions directly from list view</li>
+								<li>Flag channels as not sailing-related</li>
 							</ul>
 						</p>
 						<p>
 							<b>Even cooler stuff you can do, when signed in and your channel is listed:</b>
 							<ul>
-								<li>Manage subscribtions directly from list view</li>
 								<li>View your detailed channel profile page</li>
 								<li>Display AIS position on a map</li>
 							</ul>
