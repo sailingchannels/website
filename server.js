@@ -110,7 +110,7 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("credentials", credentials, {
-						"secure": true,
+						"secure": tag !== "dev",
 						"expires": inAYear
 					});
 
@@ -119,7 +119,7 @@ app.get("/oauth2callback", function(req, res) {
 
 					// keep credentials
 					res.cookie("me", info, {
-						"secure": true,
+						"secure": tag !== "dev",
 						"expires": inAYear
 					});
 				}
@@ -202,18 +202,24 @@ var readAISPosition = function(mmsi, callback) {
 
 		// not a cache hit
 		if(err || !data) {
-			ais.get(mmsi, function(pos, more) {
 
-				// store value in cache
-				global.CACHE_ais_positions.insert({
-					"_id": mmsi,
-					"pos": pos,
-					"more": more,
-					"stored": moment.utc().toDate()
+			try {
+				ais.get(mmsi, function(pos, more) {
+
+					// store value in cache
+					global.CACHE_ais_positions.insert({
+						"_id": mmsi,
+						"pos": pos,
+						"more": more,
+						"stored": moment.utc().toDate()
+					});
+
+					return callback(pos, more);
 				});
-
-				return callback(pos, more);
-			});
+			}
+			catch(e) {
+				return callback(null, null);
+			}
 		}
 		else {
 			return callback(data.pos, data.more);
@@ -251,8 +257,10 @@ app.get("/api/me", function(req, res) {
 
 					// fetch latest ais position
 					readAISPosition(user.profile.mmsi, function(pos, more) {
+
 						user.position = pos;
 						user.vesselinfo = more;
+
 						return done(null, user);
 					});
 				}
@@ -565,6 +573,34 @@ app.get("/api/channel/get/:id/videos", function(req, res) {
 			});
 		});
 
+	});
+});
+
+// API / CHANNEL / FLAG
+app.post("/api/channel/flag", function(req, res) {
+
+	// check if request is authenticated
+	var me = req.cookies.me;
+	if(!me) {
+		return res.status(401).send({"error": "no permission to perform this operation"});
+	}
+
+	if(!("_id" in me)) {
+		return res.status(400).send({"error": "no user id found"});
+	}
+
+	// insert the flag
+	global.flags.insertOne({
+		"_id": {
+			"channel": req.body.channel,
+			"user": me._id
+		},
+		"when": moment.utc().toDate()
+	});
+
+	return res.send({
+		"error": null,
+		"success": true
 	});
 });
 
@@ -1124,6 +1160,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.views = db.collection("views");
 	global.users = db.collection("users");
 	global.visits = db.collection("visits");
+	global.flags = db.collection("flags");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 

@@ -14,6 +14,7 @@ class Home extends React.Component {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
+		console.log(cookie.load("me"));
 		this.state = {
 			"showScrollUp": false,
 			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null

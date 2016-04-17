@@ -9,6 +9,7 @@ import Logo from "./Logo";
 import SubscriberHistoryChart from "./SubscriberHistoryChart";
 import SubscribeButton from "./SubscribeButton";
 import PositionMap from "./PositionMap";
+import FlagButton from "./FlagButton";
 
 class ChannelDetail extends React.Component {
 
@@ -109,9 +110,10 @@ class ChannelDetail extends React.Component {
 								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.state.channel.lastUploadAt * 1000))}</p> : ""}
 								<p><b>Founded:</b> {this.formatDate(this.state.channel.publishedAt)}</p>
 								<p>&nbsp;</p>
-								<a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link"></i> Open YouTube channel</a>
-
 								<SubscribeButton channel={this.state.channel} />
+								<p>&nbsp;</p>
+								<p><a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link fa-fw"></i> Open YouTube channel</a></p>
+								<p><FlagButton channel={this.state.channel} /></p>
 							</div>
 						</div>
 					</div>
