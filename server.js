@@ -20,6 +20,7 @@ var youtube = require("youtube-api");
 var loggly  = require("express-loggly");
 var ais = require("ais");
 var validator = require("validator");
+var youtubeCustomLinks = require("youtube-custom-links");
 
 var tag = process.env.TAG || "dev";
 
@@ -514,6 +515,19 @@ app.get("/api/channel/get/:id", function(req, res) {
 		results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
 
 		return res.send(results.channel);
+	});
+});
+
+// API / CHANNEL / GET / :ID / CUSTOMLINKS
+app.get("/api/channel/get/:id/customlinks", function(req, res) {
+
+	// try to fetcht the links
+	youtubeCustomLinks.customLinks(req.params.id, function(err, links) {
+		if(err) {
+			return res.status(500).send(err);
+		}
+
+		return res.send(links);
 	});
 });
 

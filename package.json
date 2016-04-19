@@ -42,7 +42,8 @@
     "swig": "^1.4.2",
     "underscore": "^1.8.3",
     "validator": "^5.1.0",
-    "youtube-api": "^1.4.0"
+    "youtube-api": "^1.4.0",
+	"youtube-custom-links": "^1.0.2"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
