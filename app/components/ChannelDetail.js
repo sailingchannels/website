@@ -59,6 +59,23 @@ class ChannelDetail extends React.Component {
             return (null);
         }
 
+		console.log(this.state.channel);
+
+		// create custom links list
+		var customLinks = [];
+		if("customLinks" in this.state.channel && this.state.channel.customLinks !== null && this.state.channel.customLinks.length > 0) {
+
+			for(var l in this.state.channel.customLinks) {
+				customLinks.push(
+					<li>
+						<a target="_blank" href={this.state.channel.customLinks[l].url}>
+							<img src={this.state.channel.customLinks[l].icon} /> {this.state.channel.customLinks[l].title}
+						</a>
+					</li>
+				);
+			}
+		}
+
         return (
 			<div className="container">
 			<Helmet title={this.state.channel.title + " | Sailing Channels"} />
@@ -78,6 +95,7 @@ class ChannelDetail extends React.Component {
 						<div className="row">
 							<div className="col-md-2 col-sm-2">
 								<img src={this.state.channel.thumbnail} className="channel-thumb" />
+
 							</div>
 							<div className="col-md-7 col-sm-7">
 								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
@@ -114,6 +132,13 @@ class ChannelDetail extends React.Component {
 								<p>&nbsp;</p>
 								<p><a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link fa-fw"></i> Open YouTube channel</a></p>
 								<p><FlagButton channel={this.state.channel} /></p>
+								<p>&nbsp;</p>
+								{(customLinks.length > 0) ?
+									<ul className="hidden-sm hidden-xs list-unstyled websites-list">
+										<li><b>Links:</b></li>
+										{customLinks}
+									</ul>
+								: null}
 							</div>
 						</div>
 					</div>
