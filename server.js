@@ -1027,7 +1027,9 @@ var fillHead = function(renderProps, callback) {
 	var head = {
 		"title": "Sailing Channels",
 		"description": "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.",
-		"banner": "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/banner.png"
+		"banner": "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/banner.png",
+		"type": "website",
+		"url": "https://sailing-channels.com"
 	};
 
 	// VIDEO
@@ -1045,6 +1047,8 @@ var fillHead = function(renderProps, callback) {
 			head.title = video.title;
 			head.description = video.description;
 			head.banner = "https://img.youtube.com/vi/" + video._id + "/hqdefault.jpg";
+			head.type = "article";
+			head.url = "https://sailing-channels.com/video/" + video._id;
 
 			return callback(head);
 		});
@@ -1066,6 +1070,8 @@ var fillHead = function(renderProps, callback) {
 			head.title = channel.title;
 			head.description = channel.description;
 			head.banner = channel.thumbnail;
+			head.type = "profile";
+			head.url = "https://sailing-channels.com/channel/" + renderProps.params.id;
 
 			return callback(head);
 		});
