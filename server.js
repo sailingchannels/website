@@ -521,13 +521,29 @@ app.get("/api/channel/get/:id", function(req, res) {
 // API / CHANNEL / GET / :ID / CUSTOMLINKS
 app.get("/api/channel/get/:id/customlinks", function(req, res) {
 
-	// try to fetcht the links
-	youtubeCustomLinks.customLinks(req.params.id, function(err, links) {
-		if(err) {
-			return res.status(500).send(err);
-		}
+	global.CACHE_custom_links.findOne({
+		"_id": req.params.id
+	}, function(err, data) {
 
-		return res.send(links);
+		if(!err && data) {
+			return res.send(data.links);
+		}
+		else {
+			// try to fetcht the links
+			youtubeCustomLinks.customLinks(req.params.id, function(err, links) {
+				if(err) {
+					return res.status(500).send(err);
+				}
+
+				global.CACHE_custom_links.insertOne({
+					"_id": req.params.id,
+					"links": links,
+					"stored": moment.utc().toDate()
+				});
+
+				return res.send(links);
+			});
+		}
 	});
 });
 
@@ -1183,6 +1199,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.flags = db.collection("flags");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
+	global.CACHE_custom_links = db.collection("CACHE_custom_links");
 
 	// start server
 	app.listen(app.get("port"), function() {
