@@ -39,10 +39,6 @@ class Contributions extends React.Component {
 	                                <td><a href="https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw" target="_blank">Norman Boyes</a></td>
 	                            </tr>
 								<tr>
-	                                <td>Feature: Exclude channels that have not uploaded a video in a year</td>
-	                                <td><a href="https://www.youtube.com/channel/UCpqFgOKXM0yMji81WxQjl-g" target="_blank">Someday sailor</a></td>
-	                            </tr>
-								<tr>
 	                                <td>Feature: Sort channels by total views</td>
 	                                <td><a href="https://www.youtube.com/user/briantrautman" target="_blank">Brian, SV Delos</a></td>
 	                            </tr>
