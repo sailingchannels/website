@@ -39,6 +39,9 @@ class DataCollection extends React.Component {
 						<center>
 							<iframe className="intro-video" width="100%" height="315" src="https://www.youtube.com/embed/WFuSJj3v7PM" frameBorder="0" allowFullScreen></iframe>
 						</center>
+						<center>
+							<iframe className="intro-video" width="100%" height="315" src="https://www.youtube.com/embed/5PXhfW7j2m8" frameBorder="0" allowFullScreen></iframe>
+						</center>
 					</div>
 					<div className="col-md-3"></div>
                 </div>
