@@ -54,6 +54,10 @@ class Contributions extends React.Component {
 									<td>Feature: Sort channels by currently popular channels, see what's trending.</td>
 									<td><a href="https://www.youtube.com/channel/UC6ZRBkwBQBrEOQQKwGi85gQ" target="_blank">Kismet Adventures</a></td>
 								</tr>
+								<tr>
+									<td>Improvement: Implementing a subscriber threshold that channels have to reach in order to be listed on the "trending" page.<br /><i>(Ed.: The threshold is now the median value of the subscriber distribution of all listed channels.)</i></td>
+									<td><a href="https://www.youtube.com/user/dubaidd1" target="_blank">The Corsair</a></td>
+								</tr>
 							</tbody>
                         </table>
 					</div>

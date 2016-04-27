@@ -727,85 +727,161 @@ app.get("/api/channels/get", function(req, res) {
 		mobile = (req.query.mobile === "true");
 	}
 
-	var sortKey = "subscribers";
-	switch(sortBy) {
-		case "subscribers": sortKey = "subscribers"; break;
-		case "founded": sortKey = "publishedAt"; break;
-		case "upload": sortKey = "lastUploadAt"; break;
-		case "views": sortKey = "views"; break;
-		case "trending": sortKey = "popularity.total"; break;
-	}
+	// first determine async the sort key and
+	// query for the channel mongodb query...
+	async.waterfall([
+		function(callback) {
 
-	var sorting = {};
-	sorting[sortKey] = -1;
-
-	async.parallel({
-		"subscriptions": function(done) {
-
-			if(req.cookies.credentials) {
-				readSubscriptions(req.cookies.credentials, done);
-			}
-			else {
-				// no credentials available
-				return done(null, null);
-			}
-		},
-
-		"channels": function(done) {
-
-			// fetch channels from mongodb
-			global.channels.find({
+			var query = {
 				"language": req.cookies["channel-language"] || "en"
-			}).skip(skip).limit(take).sort(sorting).project({
-				"videos": false,
-				"country": false,
-				"lastCrawl": false,
-				"detectedLanguage": false,
-				"language": false
-			}).toArray(done);
-		}
+			};
+			var sortKey = "subscribers";
+			switch(sortBy) {
+				case "subscribers":
+					sortKey = "subscribers";
+					return callback(null, {
+						"query": query,
+						"sortKey": sortKey
+					});
 
-	}, function(err, results) {
+				case "founded":
+					sortKey = "publishedAt";
+					return callback(null, {
+						"query": query,
+						"sortKey": sortKey
+					});
 
-		// oh no!
-		if(err || !results.channels) {
-			return res.status(500).send({
-				"data": [],
-				"skip": skip,
-				"take": take,
-				"error": err
+				case "upload":
+					sortKey = "lastUploadAt";
+					return callback(null, {
+						"query": query,
+						"sortKey": sortKey
+					});
+
+				case "views":
+					sortKey = "views";
+					return callback(null, {
+						"query": query,
+						"sortKey": sortKey
+					});
+
+				case "trending":
+					sortKey = "popularity.total";
+
+					// how many channels are currently listed?
+					global.channels.count(function(err, channel_count) {
+						if(err) {
+							return callback(err);
+						}
+
+						// fetch the median values
+						global.channels.find({}).skip(channel_count / 2).limit(1).sort({
+							"subscribers": 1
+						}).project({
+							"subscribers": true
+						}).next(function(err, median_channel) {
+							if(err) {
+								return callback(err);
+							}
+
+							console.log("Subscriber Median:", median_channel.subscribers);
+
+							query.subscribers = {
+								"$gte": median_channel.subscribers
+							};
+
+							return callback(null, {
+								"query": query,
+								"sortKey": sortKey
+							});
+						});
+					});
+			}
+		}],
+
+		// ... then apply these query and sorting values to
+		// the actual query
+		function(err, step1) {
+
+			if(err) {
+				return res.status(500).send({
+					"data": [],
+					"skip": skip,
+					"take": take,
+					"error": err
+				});
+			}
+
+			var sorting = {};
+			sorting[step1.sortKey] = -1;
+
+			async.parallel({
+				"subscriptions": function(done) {
+
+					if(req.cookies.credentials) {
+						readSubscriptions(req.cookies.credentials, done);
+					}
+					else {
+						// no credentials available
+						return done(null, null);
+					}
+				},
+
+				"channels": function(done) {
+
+					// fetch channels from mongodb
+					global.channels.find(step1.query).skip(skip).limit(take).sort(sorting).project({
+						"videos": false,
+						"country": false,
+						"lastCrawl": false,
+						"detectedLanguage": false,
+						"language": false
+					}).toArray(done);
+				}
+
+			}, function(err, results) {
+
+				// oh no!
+				if(err || !results.channels) {
+					return res.status(500).send({
+						"data": [],
+						"skip": skip,
+						"take": take,
+						"error": err
+					});
+				}
+
+				// TEXT CUTTER
+				var textCutter = function(i, text) {
+
+					if(text.length < i) return text;
+
+					var shorter = text.substr(0, i);
+					if (/^\S/.test(text.substr(i))) {
+						return shorter.replace(/\s+\S*$/, "") + " ...";
+					}
+
+					return shorter;
+				};
+
+				// if we have subscriptions, enhance the
+				var channels = results.channels.map(function(channel) {
+
+					channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
+					channel.description = (mobile === false) ? textCutter(300, channel.description) : null;
+
+					return channel;
+				});
+
+				// send data out
+				return res.send({
+					"data": channels,
+					"skip": skip,
+					"take": take
+				});
 			});
 		}
-
-		// TEXT CUTTER
-		var textCutter = function(i, text) {
-
-			if(text.length < i) return text;
-
-	        var shorter = text.substr(0, i);
-	        if (/^\S/.test(text.substr(i))) {
-	            return shorter.replace(/\s+\S*$/, "") + " ...";
-			}
-
-	        return shorter;
-	    };
-
-		// if we have subscriptions, enhance the
-		var channels = results.channels.map(function(channel) {
-
-			channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(channel._id) >= 0) : false;
-			channel.description = (mobile === false) ? textCutter(300, channel.description) : null;
-
-			return channel;
-		});
-
-		// send data out
-		return res.send({
-			"data": channels,
-			"skip": skip,
-			"take": take
-		});
-	});
+	);
 });
 
 // API / CHANNEL / SUBSCRIBE
