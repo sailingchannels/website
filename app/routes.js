@@ -12,6 +12,7 @@ import Imprint from "./components/Imprint";
 import Contributions from "./components/Contributions";
 import Login from "./components/Login";
 import Me from "./components/Me";
+import SupportUs from "./components/SupportUs";
 
 export default (
 	<Route path="/" component={App}>
@@ -26,6 +27,7 @@ export default (
 		<Route path="imprint" component={Imprint} />
 		<Route path="contributions" component={Contributions} />
 		<Route path="signin" component={Login} />
+		<Route path="support" component={SupportUs} />
 		<Route path="me" component={Me} />
 	</Route>
 );

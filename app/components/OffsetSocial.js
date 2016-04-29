@@ -9,8 +9,19 @@ class SocialOffset extends React.Component {
 		super(props);
 
 		this.state = {
-			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
+			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null,
+			"bannerdialog": !!cookie.load("banner-dialog")
 		};
+	}
+
+	// COMPONENT DID MOUNT
+	componentDidMount() {
+		$("#banner-dialog").on("hidden.bs.modal", this.modalClosed.bind(this));
+	}
+
+	// COMPONENT WILL UNMOUNT
+	componentWillUnmount() {
+		$("#banner-dialog").on("hidden.bs.modal");
 	}
 
 	// REPLACE X
@@ -21,6 +32,25 @@ class SocialOffset extends React.Component {
 		}
 
 		$e.attr("href", $e.attr("href").replace(/x/g, ""));
+	}
+
+	// REVEAL GREY
+	revealGrey(e) {
+		$(e.target).removeClass("grey");
+	}
+
+	// ADD GREY
+	addGrey(e) {
+		$(e.target).addClass("grey");
+	}
+
+	// MODAL CLOSED
+	modalClosed() {
+		this.setState({
+			"bannerdialog": true
+		});
+
+		//this.forceUpdate();
 	}
 
 	// RENDER
@@ -51,6 +81,22 @@ class SocialOffset extends React.Component {
 				<a title="E-Mail" href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)} className="social social-em">
 		            <i className="fa fa-envelope-square fa-3x"></i>
 		        </a>
+
+				{(this.state.bannerdialog === true) ?
+					<div className="support-row hidden-sm hidden-xs">
+						<p className="sc-text">Support us:</p>
+						<p>
+							<a href="https://www.patreon.com/sailingchannels" target="_blank">
+								<img src="/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+							</a>
+						</p>
+						<p>
+							<a href="https://www.paypal.me/sailingchannels" target="_blank">
+								<img src="/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+							</a>
+						</p>
+					</div>
+				: null}
 		    </div>
 		);
 	}

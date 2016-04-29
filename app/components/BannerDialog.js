@@ -19,14 +19,27 @@ class BannerDialog extends React.Component {
 								<img id="banner-img" src="" width="100%" />
 							</p>
 							<p>
-							    The <a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank"><b>Two aboard Tuuli crew</b></a> created this website in their sparetime for you.
+								The <a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank"><b>Two aboard Tuuli crew</b></a> created this website in their sparetime for you.
 							</p>
 							<p>
-							    If you like it, we would be very pleased if you return the favour and subscribe to our YouTube channel!
+								If you like it, and want to give something back, feel free to support us with a tip via the following platforms. It means a lot to us!
 							</p>
-							<center className="banner-channel">
-								<div className="g-ytsubscribe" data-channelid="UCZbZeC2OfdVMwm9AR_zu0_g" data-layout="full" data-count="default"></div>
-							</center>
+							<p>
+								- Kristy & Thomas
+							</p>
+
+							<div className="row support-row">
+								<div className="col-md-6 text-center">
+									<a href="https://www.patreon.com/sailingchannels" target="_blank">
+										<img src="/img/patreon.jpg" height="120" width="120" />
+									</a>
+								</div>
+								<div className="col-md-6 text-center">
+									<a href="https://www.paypal.me/sailingchannels" target="_blank">
+										<img src="/img/paypal.png" height="120" width="120" />
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
