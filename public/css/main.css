@@ -318,3 +318,20 @@ input[type="color"] {
 .websites-list li {
 	margin-bottom:5px;
 }
+
+ .support-row {
+	 margin:50px 0;
+ }
+
+ .sc-text {
+ 	color:#ccc;
+ 	text-transform: uppercase;
+ }
+
+.grey {
+	-webkit-filter: grayscale(1);
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+	filter: grayscale(100%);
+	opacity: 0.4;
+}
