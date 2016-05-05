@@ -136,10 +136,69 @@ class Me extends React.Component {
 									  	<input type="number" className="form-control" id="mmsi" defaultValue={(profile) ? profile.mmsi : ""} placeholder="MMSI number" />
 									</div>
 								</div>
+							</div>
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
+							<hr />
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{/* INREACH */}
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
+							<h3>DeLorme inReach</h3>
+							<p>If you are using DeLorme's inReach satellite position tracking and share your position updates via the "share" page, type your username or the link to your shared map into the following field:</p>
+							<div className="form-horizontal">
+							  	<div className="form-group">
+									<label htmlFor="mmsi" className="col-sm-2 control-label">inReach Username</label>
+									<div className="col-sm-10">
+									  	<input type="number" className="form-control" id="inreach" defaultValue={(profile) ? profile.inreach : ""} placeholder="https://share.delorme.com/username" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
+							<hr />
+						</div>
+						<div className="col-md-3"></div>
+					</div>
+					: null
+				}
+
+				{/* MAP */}
+				{(isChannelListed) ?
+					<div className="row content-row">
+						<div className="col-md-3"></div>
+						<div className="col-md-6">
+
+							<h3>Your boat position</h3>
+
+							<div className="form-horizontal">
 								<div className="form-group">
 									<label htmlFor="hullcolor" className="col-sm-2 control-label">Boat Color</label>
 									<div className="col-sm-10">
-									  	<input type="color" className="form-control" id="boatcolor" defaultValue={(profile) ? profile.boatcolor : "#f1c40f"} placeholder="E.g. hull color" />
+										<input type="color" className="form-control" id="boatcolor" defaultValue={(profile) ? profile.boatcolor : "#f1c40f"} placeholder="E.g. hull color" />
 									</div>
 								</div>
 							</div>
