@@ -3608,6 +3608,15 @@ var PositionMap = (function (_React$Component) {
 				attributionControl: false
 			});
 
+			var pressurecntr = L.OWM.pressureContour({ opacity: 0.5 });
+			var wind = L.OWM.wind({ opacity: 0.5 });
+
+			var overlayMaps = {};
+			overlayMaps.Windspeed = wind;
+			overlayMaps.Isobars = pressurecntr;
+
+			var layerControl = L.control.layers([], overlayMaps, { collapsed: false }).addTo(map);
+
 			var marker = L.boatMarker(this.props.coordinate, {
 				color: this.props.boatcolor || "#f1c40f"
 			});
@@ -3623,7 +3632,7 @@ var PositionMap = (function (_React$Component) {
 			}
 
 			marker.addTo(map);
-			map.setView(this.props.coordinate, 12);
+			map.setView(this.props.coordinate, 9);
 		}
 
 		// COMPONENT WILL UNMOUNT

@@ -46,7 +46,8 @@ gulp.task("vendor-js", function() {
 			"public/js/anchorme.min.js",
 			"public/js/chart.min.js",
 			"public/js/leaflet.boatmarker.js",
-			"public/js/modernizr.js"
+			"public/js/modernizr.js",
+			"public/js/leaflet-openweathermap.js"
 		])
 		.pipe(concat("vendor.js"))
 		.pipe(gulpif(production, uglify({
@@ -67,6 +68,7 @@ gulp.task("vendor-css", function() {
 			"bower_components/bower-leaflet/leaflet.css",
 			"bower_components/Leaflet.label/dist/leaflet.label.css",
 			"bower_components/spectrum/spectrum.css",
+			"public/js/leaflet-openweathermap.css",
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))
