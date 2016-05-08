@@ -1,5 +1,5 @@
 .leaflet-control-fullscreen a {
-  background:#fff url("/public/img/fullscreen.png") no-repeat 0 0;
+  background:#fff url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/fullscreen.png") no-repeat 0 0;
   background-size:26px 52px;
   }
   .leaflet-touch .leaflet-control-fullscreen a {
@@ -35,6 +35,6 @@
   (-webkit-min-device-pixel-ratio:2),
   (min-resolution:192dpi) {
     .leaflet-control-fullscreen a {
-      background-image:url("/public/img/fullscreen@2x.png");
+      background-image:url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/fullscreen@2x.png");
     }
   }
