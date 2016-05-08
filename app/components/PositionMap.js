@@ -56,7 +56,6 @@ class PositionMap extends React.Component {
 		pup += "<tr><td><b>Speed:</b></td><td>" + spd + " kn</td></tr>";
 
 		marker.bindPopup(pup);
-    	marker.openPopup();
 
 		// more information available?
 		if(this.props.more) {
@@ -69,10 +68,13 @@ class PositionMap extends React.Component {
 		}
 
 		marker.addTo(map);
-		map.setView(this.props.coordinate, 9);
+		map.setView(this.props.coordinate, 8);
 
-		map.on("resize", function() {
-			map.invalidateSize();
+		// check for fullscreen change event
+		map.on("fullscreenchange", function () {
+		    if (map.isFullscreen()) {
+				$(".leaflet-control-layers-overlays input[type='checkbox']").trigger("click");
+		    }
 		});
     }
 
