@@ -175,7 +175,7 @@ module.exports = {
 
 						// keep credentials
 						res.cookie("credentials", credentials, {
-							"secure": tag !== "dev",
+							"secure": global.tag !== "dev",
 							"expires": inAYear
 						});
 
@@ -184,7 +184,7 @@ module.exports = {
 
 						// keep credentials
 						res.cookie("me", info, {
-							"secure": tag !== "dev",
+							"secure": global.tag !== "dev",
 							"expires": inAYear
 						});
 					}

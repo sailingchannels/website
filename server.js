@@ -23,6 +23,7 @@ var video = require("./server/video");
 var misc = require("./server/misc");
 
 var tag = process.env.TAG || "dev";
+global.tag = tag;
 
 // setup Loggly configuration
 var loggly_config = {
