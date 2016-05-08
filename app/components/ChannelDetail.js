@@ -59,8 +59,6 @@ class ChannelDetail extends React.Component {
             return (null);
         }
 
-		console.log(this.state.channel);
-
 		// create custom links list
 		var customLinks = [];
 		if("customLinks" in this.state.channel && this.state.channel.customLinks !== null && this.state.channel.customLinks.length > 0) {

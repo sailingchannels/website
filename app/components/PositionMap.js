@@ -22,7 +22,8 @@ class PositionMap extends React.Component {
 					minZoom: 10
 				})
 			],
-            attributionControl: false
+            attributionControl: false,
+			fullscreenControl: true
         });
 
 		var pressurecntr = L.OWM.pressureContour({opacity: 0.5});
@@ -35,8 +36,27 @@ class PositionMap extends React.Component {
 		var layerControl = L.control.layers([], overlayMaps, {collapsed: false}).addTo(map);
 
 		var marker = L.boatMarker(this.props.coordinate, {
-		    color: this.props.boatcolor || "#f1c40f"
+		    "color": this.props.boatcolor || "#f1c40f"
 		});
+
+		var pup = "<table border='0'>";
+		pup += "<tr><td><b>Name:</b></td><td>" + this.props.more.name + "</td></tr>";
+
+		var coded_src = "";
+		switch(this.props.source) {
+			case "mmsi": coded_src = "AIS"; break;
+			case "inreach": coded_src = "DeLorme inReach"; break;
+		}
+
+		var crs = this.props.more.course || 0;
+		var spd = this.props.more.speed || 0;
+
+		pup += "<tr><td><b>Device:</b></td><td>" + coded_src + "</td></tr>";
+		pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + crs + "°</td></tr>";
+		pup += "<tr><td><b>Speed:</b></td><td>" + spd + " kn</td></tr>";
+
+		marker.bindPopup(pup);
+    	marker.openPopup();
 
 		// more information available?
 		if(this.props.more) {
@@ -45,11 +65,15 @@ class PositionMap extends React.Component {
 			if(this.props.more.name) marker.bindLabel(this.props.more.name, { noHide: true });
 
 			// set heading
-			marker.setHeading(this.props.more.course || 0);
+			marker.setHeading(crs);
 		}
 
 		marker.addTo(map);
 		map.setView(this.props.coordinate, 9);
+
+		map.on("resize", function() {
+			map.invalidateSize();
+		});
     }
 
 	// COMPONENT WILL UNMOUNT
@@ -61,7 +85,7 @@ class PositionMap extends React.Component {
 	render() {
 
 		return (
-			<div className="position-map"></div>
+			<div id="map" className="position-map"></div>
 		);
 	}
 }

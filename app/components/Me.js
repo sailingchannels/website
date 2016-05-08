@@ -44,10 +44,19 @@ class Me extends React.Component {
 		// save the changes
 		$.post("/api/me/profile", {
 			"mmsi": parseInt($("#mmsi").val()),
+			"inreach": $("#inreach").val(),
 			"boatcolor": $("#boatcolor").val()
 		}).done(function() {
 			location.reload();
 		});
+	}
+
+	// CORRENT IN REACH USERNAME
+	correctInReachUsername(e) {
+		var $e = $(e.target);
+		var s = $e.val().split("/");
+		var username = s[s.length - 1];
+		$e.val(username);
 	}
 
 	// RENDER
@@ -165,7 +174,7 @@ class Me extends React.Component {
 							  	<div className="form-group">
 									<label htmlFor="mmsi" className="col-sm-2 control-label">inReach Username</label>
 									<div className="col-sm-10">
-									  	<input type="number" className="form-control" id="inreach" defaultValue={(profile) ? profile.inreach : ""} placeholder="https://share.delorme.com/username" />
+									  	<input type="text" className="form-control" onBlur={this.correctInReachUsername.bind(this)} id="inreach" defaultValue={(profile) ? profile.inreach : ""} placeholder="https://share.delorme.com/username" />
 									</div>
 								</div>
 							</div>
@@ -207,6 +216,7 @@ class Me extends React.Component {
 								<PositionMap
 									coordinate={this.state.me.user.position}
 									more={this.state.me.user.vesselinfo}
+									source={this.state.me.user.positionsource}
 									boatcolor={this.state.me.user.profile.boatcolor}
 								/>
 							: null}

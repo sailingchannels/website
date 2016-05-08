@@ -686,8 +686,6 @@ var ChannelDetail = (function (_React$Component) {
 				return null;
 			}
 
-			console.log(this.state.channel);
-
 			// create custom links list
 			var customLinks = [];
 			if ("customLinks" in this.state.channel && this.state.channel.customLinks !== null && this.state.channel.customLinks.length > 0) {
@@ -2955,10 +2953,21 @@ var Me = (function (_React$Component) {
 			// save the changes
 			$.post("/api/me/profile", {
 				"mmsi": parseInt($("#mmsi").val()),
+				"inreach": $("#inreach").val(),
 				"boatcolor": $("#boatcolor").val()
 			}).done(function () {
 				location.reload();
 			});
+		}
+
+		// CORRENT IN REACH USERNAME
+	}, {
+		key: "correctInReachUsername",
+		value: function correctInReachUsername(e) {
+			var $e = $(e.target);
+			var s = $e.val().split("/");
+			var username = s[s.length - 1];
+			$e.val(username);
 		}
 
 		// RENDER
@@ -3192,7 +3201,7 @@ var Me = (function (_React$Component) {
 								_react2["default"].createElement(
 									"div",
 									{ className: "col-sm-10" },
-									_react2["default"].createElement("input", { type: "number", className: "form-control", id: "inreach", defaultValue: profile ? profile.inreach : "", placeholder: "https://share.delorme.com/username" })
+									_react2["default"].createElement("input", { type: "text", className: "form-control", onBlur: this.correctInReachUsername.bind(this), id: "inreach", defaultValue: profile ? profile.inreach : "", placeholder: "https://share.delorme.com/username" })
 								)
 							)
 						)
@@ -3243,6 +3252,7 @@ var Me = (function (_React$Component) {
 						this.state.me.user.position ? _react2["default"].createElement(_PositionMap2["default"], {
 							coordinate: this.state.me.user.position,
 							more: this.state.me.user.vesselinfo,
+							source: this.state.me.user.positionsource,
 							boatcolor: this.state.me.user.profile.boatcolor
 						}) : null
 					),
@@ -3684,7 +3694,8 @@ var PositionMap = (function (_React$Component) {
 					maxZoom: 17,
 					minZoom: 10
 				})],
-				attributionControl: false
+				attributionControl: false,
+				fullscreenControl: true
 			});
 
 			var pressurecntr = L.OWM.pressureContour({ opacity: 0.5 });
@@ -3697,8 +3708,29 @@ var PositionMap = (function (_React$Component) {
 			var layerControl = L.control.layers([], overlayMaps, { collapsed: false }).addTo(map);
 
 			var marker = L.boatMarker(this.props.coordinate, {
-				color: this.props.boatcolor || "#f1c40f"
+				"color": this.props.boatcolor || "#f1c40f"
 			});
+
+			var pup = "<table border='0'>";
+			pup += "<tr><td><b>Name:</b></td><td>" + this.props.more.name + "</td></tr>";
+
+			var coded_src = "";
+			switch (this.props.source) {
+				case "mmsi":
+					coded_src = "AIS";break;
+				case "inreach":
+					coded_src = "DeLorme inReach";break;
+			}
+
+			var crs = this.props.more.course || 0;
+			var spd = this.props.more.speed || 0;
+
+			pup += "<tr><td><b>Device:</b></td><td>" + coded_src + "</td></tr>";
+			pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + crs + "°</td></tr>";
+			pup += "<tr><td><b>Speed:</b></td><td>" + spd + " kn</td></tr>";
+
+			marker.bindPopup(pup);
+			marker.openPopup();
 
 			// more information available?
 			if (this.props.more) {
@@ -3707,11 +3739,15 @@ var PositionMap = (function (_React$Component) {
 				if (this.props.more.name) marker.bindLabel(this.props.more.name, { noHide: true });
 
 				// set heading
-				marker.setHeading(this.props.more.course || 0);
+				marker.setHeading(crs);
 			}
 
 			marker.addTo(map);
 			map.setView(this.props.coordinate, 9);
+
+			map.on("resize", function () {
+				map.invalidateSize();
+			});
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -3726,7 +3762,7 @@ var PositionMap = (function (_React$Component) {
 		key: "render",
 		value: function render() {
 
-			return _react2["default"].createElement("div", { className: "position-map" });
+			return _react2["default"].createElement("div", { id: "map", className: "position-map" });
 		}
 	}]);
 
