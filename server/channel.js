@@ -91,7 +91,10 @@ module.exports = {
 						// does the user have a profile with MMSI number?
 						if(result.user) {
 
-							channel.boatcolor = result.user.profile.boatcolor;
+							if(result.user.profile) {
+
+								channel.boatcolor = result.user.profile.boatcolor;
+							}
 
 							// read AIS position
 							positions.readPosition(result.user.profile, function(pos, more, source) {
