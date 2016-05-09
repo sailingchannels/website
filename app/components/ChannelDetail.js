@@ -105,6 +105,7 @@ class ChannelDetail extends React.Component {
 											coordinate={this.state.channel.position}
 											more={this.state.channel.vesselinfo}
 											boatcolor={this.state.channel.boatcolor}
+											source={this.state.channel.positionsource}
 										/>
 										<p>&nbsp;</p>
 									</div>

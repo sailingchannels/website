@@ -55,6 +55,10 @@ class PositionMap extends React.Component {
 		pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + crs + "°</td></tr>";
 		pup += "<tr><td><b>Speed:</b></td><td>" + spd + " kn</td></tr>";
 
+		if("time" in this.props.more && this.props.more.time) {
+			pup += "<tr><td><b>Received:</b></td><td>" + $.timeago(new Date(this.props.more.time * 1000)) + "</td></tr>";
+		}
+
 		marker.bindPopup(pup);
 
 		// more information available?
