@@ -90,7 +90,22 @@ module.exports = {
 		// check for inreach
 		if(profile && "inreach" in profile && profile.inreach.length > 0) {
 			module.exports.readInReachPosition(profile.inreach, function(pos, more) {
-				return callback(pos, more, "inreach");
+
+				// no position? fallback to mmsi / ais positioning
+				if(pos === null) {
+
+					if(profile && "mmsi" in profile && profile.mmsi.length > 0) {
+						module.exports.readAISPosition(profile.mmsi, function(pos, more) {
+							return callback(pos, more, "mmsi");
+						});
+					}
+					else {
+						return callback(null, null, null);
+					}
+				}
+				else {
+					return callback(pos, more, "inreach");
+				}
 			});
 		}
 
