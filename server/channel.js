@@ -95,6 +95,9 @@ module.exports = {
 
 								channel.boatcolor = result.user.profile.boatcolor;
 							}
+							else {
+								//channel.boatcolor = ""
+							}
 
 							// read AIS position
 							positions.readPosition(result.user.profile, function(pos, more, source) {
