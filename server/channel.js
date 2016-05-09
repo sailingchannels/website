@@ -2,6 +2,7 @@ var positions = require("./positions");
 var moment = require("moment");
 var async = require("async");
 var me = require("./me");
+var youtube = require("youtube-api");
 var youtubeCustomLinks = require("youtube-custom-links");
 
 module.exports = {
@@ -264,7 +265,7 @@ module.exports = {
 		}
 
 		// authenticate next request
-		oauth.setCredentials(req.cookies.credentials);
+		global.oauth.setCredentials(req.cookies.credentials);
 
 		// add the subscription
 		youtube.subscriptions.insert({
@@ -308,7 +309,7 @@ module.exports = {
 		}
 
 		// authenticate next request
-		oauth.setCredentials(req.cookies.credentials);
+		global.oauth.setCredentials(req.cookies.credentials);
 
 		// fetch subscription id
 		youtube.subscriptions.list({
