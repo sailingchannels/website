@@ -40,7 +40,7 @@ class Contributions extends React.Component {
 	                            </tr>
 								<tr>
 	                                <td>Feature: Sort channels by total views</td>
-	                                <td><a href="https://www.youtube.com/user/briantrautman" target="_blank">Brian, SV Delos</a></td>
+	                                <td><a href="https://sailing-channels.com/channel/UCvLc83k5o11EIF1lEo0VmuQ" target="_blank">Brian, SV Delos</a></td>
 	                            </tr>
 								<tr>
 	                                <td>Bug report: Website (scrolling) slows down drastically when loading lots of channels</td>
@@ -48,15 +48,19 @@ class Contributions extends React.Component {
 	                            </tr>
 								<tr>
 									<td>Feature: Show vessel position that belongs to a channel on a map</td>
-									<td><a href="https://www.youtube.com/user/drakeParagon" target="_blank">Drake Paragon</a></td>
+									<td><a href="https://sailing-channels.com/channel/UCpfax0gLoUZMqw-ROxX77Yw" target="_blank">Drake Paragon</a></td>
 								</tr>
 								<tr>
 									<td>Feature: Sort channels by currently popular channels, see what's trending.</td>
-									<td><a href="https://www.youtube.com/channel/UC6ZRBkwBQBrEOQQKwGi85gQ" target="_blank">Kismet Adventures</a></td>
+									<td><a href="https://www.sailing-channels.com/channel/UC6ZRBkwBQBrEOQQKwGi85gQ" target="_blank">Kismet Adventures</a></td>
 								</tr>
 								<tr>
 									<td>Improvement: Implementing a subscriber threshold that channels have to reach in order to be listed on the "trending" page.<br /><i>(Ed.: The threshold is now the median value of the subscriber distribution of all listed channels.)</i></td>
-									<td><a href="https://www.youtube.com/user/dubaidd1" target="_blank">The Corsair</a></td>
+									<td><a href="https://sailing-channels.com/channel/UC8dsJQ_9CEwRmur_HFSXezA" target="_blank">The Corsair</a></td>
+								</tr>
+								<tr>
+									<td>Improvement: Set "Last upload" as default sorting option to facilitate attention to a broader variety of channels.</td>
+									<td><a href="https://sailing-channels.com/channel/UCu08YiFDAiIxl4xJDveTdJw" target="_blank">Mount Ocean</a></td>
 								</tr>
 							</tbody>
                         </table>

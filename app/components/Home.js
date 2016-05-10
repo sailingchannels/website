@@ -52,7 +52,7 @@ class Home extends React.Component {
 	// RENDER
 	render() {
 
-		var sortBy = this.props.params.sortBy || "subscribers";
+		var sortBy = this.props.params.sortBy || "upload";
 		var scrollUp = null;
 
 		if(this.state.showScrollUp === true) {

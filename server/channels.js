@@ -26,7 +26,8 @@ module.exports = {
 				var query = {
 					"language": req.cookies["channel-language"] || "en"
 				};
-				var sortKey = "subscribers";
+				
+				var sortKey = "upload";
 				switch(sortBy) {
 					case "subscribers":
 						sortKey = "subscribers";
