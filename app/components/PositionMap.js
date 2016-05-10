@@ -52,8 +52,8 @@ class PositionMap extends React.Component {
 		var spd = this.props.more.speed || 0;
 
 		pup += "<tr><td><b>Device:</b></td><td>" + coded_src + "</td></tr>";
-		pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + crs + "°</td></tr>";
-		pup += "<tr><td><b>Speed:</b></td><td>" + spd + " kn</td></tr>";
+		pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + parseInt(crs) + "°</td></tr>";
+		pup += "<tr><td><b>Speed:</b></td><td>" + spd.toFixed(1) + " kn</td></tr>";
 
 		if("time" in this.props.more && this.props.more.time) {
 			pup += "<tr><td><b>Received:</b></td><td>" + $.timeago(new Date(this.props.more.time * 1000)) + "</td></tr>";
