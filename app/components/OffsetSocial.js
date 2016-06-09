@@ -87,12 +87,12 @@ class SocialOffset extends React.Component {
 						<p className="sc-text">Support us:</p>
 						<p>
 							<a href="https://www.patreon.com/sailingchannels" target="_blank">
-								<img src="/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
 							</a>
 						</p>
 						<p>
 							<a href="https://www.paypal.me/sailingchannels" target="_blank">
-								<img src="/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
 							</a>
 						</p>
 					</div>

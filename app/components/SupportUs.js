@@ -38,12 +38,12 @@ class Contributions extends React.Component {
 						<div id="support-links" className="row support-row">
 							<div className="col-md-6 text-center">
 								<a href="https://www.patreon.com/sailingchannels" target="_blank">
-									<img src="/img/patreon.jpg" height="150" width="150" />
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" height="150" width="150" />
 								</a>
 							</div>
 							<div className="col-md-6 text-center">
 								<a href="https://www.paypal.me/sailingchannels" target="_blank">
-									<img src="/img/paypal.png" height="150" width="150" />
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" height="150" width="150" />
 								</a>
 							</div>
 						</div>
