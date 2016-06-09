@@ -40,7 +40,7 @@ class ChannelStore {
   	getChannelFail(err) {
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(err);
+    	location.href = "/404";
   	}
 
 	// GET CHANNELS FAIL

@@ -31,12 +31,12 @@ class BannerDialog extends React.Component {
 							<div className="row support-row">
 								<div className="col-md-6 text-center">
 									<a href="https://www.patreon.com/sailingchannels" target="_blank">
-										<img src="/img/patreon.jpg" height="120" width="120" />
+										<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" height="120" width="120" />
 									</a>
 								</div>
 								<div className="col-md-6 text-center">
 									<a href="https://www.paypal.me/sailingchannels" target="_blank">
-										<img src="/img/paypal.png" height="120" width="120" />
+										<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" height="120" width="120" />
 									</a>
 								</div>
 							</div>

@@ -7,6 +7,7 @@ import VideoStore from "../stores/VideoStore";
 import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 import {Navigation, Link} from "react-router";
+import SubscribeButton from "./SubscribeButton";
 
 class VideoDetail extends React.Component {
 
@@ -56,6 +57,8 @@ class VideoDetail extends React.Component {
             return (null);
         }
 
+		console.log(this.state.video.channel._id);
+
         return (
 			<div className="container">
 				<Helmet title={this.state.video.title} />
@@ -89,9 +92,7 @@ class VideoDetail extends React.Component {
 								<p><b>Uploaded:</b> {this.formatDate(this.state.video.publishedAt)}</p>
 								<p>&nbsp;</p>
 								<p><b>Channel:</b> <Link to={"/channel/" + this.state.video.channel._id}>{this.state.video.channel.title}</Link></p>
-								<a target="_blank" href={"https://youtube.com/channel/" + this.state.video.channel._id + "?sub_confirmation=1"} className="btn btn-danger btn-raised">
-									<i className="fa fa-youtube-play"></i> Subscribe
-								</a>
+								<SubscribeButton channel={this.state.video.channel} />
 
 							</div>
 						</div>

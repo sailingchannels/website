@@ -31,13 +31,15 @@ class VideoStore {
 	// GET VIDEO SUCCESS
 	getVideoSuccess(result) {
 		this.video = result;
+		this.video.channel.id = this.video.channel._id;
 	}
 
 	// GET VIDEO FAIL
   	getVideoFail(jqXhr) {
 
     	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+    	//console.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+		location.href = "/404";
   	}
 }
 

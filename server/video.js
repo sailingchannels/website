@@ -1,5 +1,6 @@
 var moment = require("moment");
 var async = require("async");
+var me = require("./me");
 
 module.exports = {
 
@@ -23,21 +24,42 @@ module.exports = {
 				"time": moment.utc().toDate()
 			});
 
-			// find matching channel
-			global.channels.find({
-				"_id": video.channel
-			}).project({
-				"title": true,
-				"thumbnail": true,
-				"videos": true
-			}).limit(1).next(function(err, channel) {
+			async.parallel({
+
+				// SUBSCRIPTIONS
+				"subscriptions": function(done_subscriptions) {
+
+					if(req.cookies.credentials) {
+						me.readSubscriptions(req.cookies.credentials, done_subscriptions);
+					}
+					else {
+						// no credentials available
+						return done_subscriptions(null, null);
+					}
+				},
+
+				// CHANNEL
+				"channel": function(done_channel) {
+					// find matching channel
+					global.channels.find({
+						"_id": video.channel
+					}).project({
+						"title": true,
+						"thumbnail": true,
+						"videos": true
+					}).limit(1).next(done_channel);
+				}
+
+			}, function(err, results) {
 
 				// oh no!
-				if(err && !channel) {
+				if(err && !results.channel) {
 					return res.status(500).send(err);
 				}
 
-				video.channel = channel;
+				results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
+				video.channel = results.channel;
+
 				return res.send(video);
 			});
 		});
