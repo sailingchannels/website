@@ -28,8 +28,8 @@ class Imprint extends React.Component {
                         <p>Responsible for this site:</p>
 
                         <p><span className="reverse">nnameggürB samohT</span><br />
-                        <span className="reverse">51 eßartsreliewtdiehcS</span><br />
-                        <span className="reverse">nlöK 33905</span><br />
+                        <span className="reverse">9 pmakrefoH</span><br />
+                        <span className="reverse">nesreiV 15714</span><br />
                         <span className="reverse">moc.slennahc-gnilias@yoha</span><br />
 						</p>
 						<center><p>~</p></center>

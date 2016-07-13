@@ -83,18 +83,28 @@ class SocialOffset extends React.Component {
 		        </a>
 
 				{(this.state.bannerdialog === true) ?
-					<div className="support-row hidden-sm hidden-xs">
-						<p className="sc-text">Support us:</p>
-						<p>
-							<a href="https://www.patreon.com/sailingchannels" target="_blank">
-								<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
-							</a>
-						</p>
-						<p>
-							<a href="https://www.paypal.me/sailingchannels" target="_blank">
-								<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
-							</a>
-						</p>
+					<div>
+						<div className="support-row hidden-sm hidden-xs">
+							<p className="sc-text">Support us:</p>
+							<p>
+								<a href="https://www.patreon.com/sailingchannels" target="_blank">
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								</a>
+							</p>
+							<p>
+								<a href="https://www.paypal.me/sailingchannels" target="_blank">
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								</a>
+							</p>
+						</div>
+						<div className="support-row hidden-sm hidden-xs">
+							<p className="sc-text">Special thanks to:</p>
+							<p>
+								<a href="http://isailor.us/" target="_blank">
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/transas.png" className="grey support-img" width="70%" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								</a>
+							</p>
+						</div>
 					</div>
 				: null}
 		    </div>
