@@ -57,7 +57,13 @@ module.exports = {
 					return res.status(500).send(err);
 				}
 
-				results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
+				try {
+					results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
+				}
+				catch(e) {
+					results.channel.subscribed = false;
+				}
+
 				video.channel = results.channel;
 
 				return res.send(video);
