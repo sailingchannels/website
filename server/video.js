@@ -53,17 +53,11 @@ module.exports = {
 			}, function(err, results) {
 
 				// oh no!
-				if(err && !results.channel) {
+				if(err || !results.channel) {
 					return res.status(500).send(err);
 				}
 
-				try {
-					results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
-				}
-				catch(e) {
-					results.channel.subscribed = false;
-				}
-
+				results.channel.subscribed = (results.subscriptions) ? (results.subscriptions.indexOf(results.channel._id) >= 0) : false;
 				video.channel = results.channel;
 
 				return res.send(video);
