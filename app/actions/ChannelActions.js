@@ -61,8 +61,15 @@ class ChannelActions {
     // SEARCH CHANNELS
     searchChannels(q) {
 
+		var url = "/api/channels/search?q=" + encodeURIComponent(q);
+
+		// append mobile parameter to not load description
+		if($(window).width() < 768) {
+			url += "&mobile=true";
+		}
+
         new HTTP().get({
-            "url": "/api/channels/search?q=" + encodeURIComponent(q),
+            "url": url,
             "type": "GET",
             "dataType": "json",
 			"cache": false

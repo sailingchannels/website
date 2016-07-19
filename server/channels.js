@@ -3,6 +3,19 @@ var me = require("./me");
 var moment = require("moment");
 var async = require("async");
 
+// TEXT CUTTER
+var textCutter = function(i, text) {
+
+	if(text.length < i) return text;
+
+	var shorter = text.substr(0, i);
+	if (/^\S/.test(text.substr(i))) {
+		return shorter.replace(/\s+\S*$/, "") + " ...";
+	}
+
+	return shorter;
+};
+
 module.exports = {
 
 	// GET
@@ -26,7 +39,7 @@ module.exports = {
 				var query = {
 					"language": req.cookies["channel-language"] || "en"
 				};
-				
+
 				var sortKey = "upload";
 				switch(sortBy) {
 					case "subscribers":
@@ -143,19 +156,6 @@ module.exports = {
 						});
 					}
 
-					// TEXT CUTTER
-					var textCutter = function(i, text) {
-
-						if(text.length < i) return text;
-
-						var shorter = text.substr(0, i);
-						if (/^\S/.test(text.substr(i))) {
-							return shorter.replace(/\s+\S*$/, "") + " ...";
-						}
-
-						return shorter;
-					};
-
 					// if we have subscriptions, enhance the
 					var channels = results.channels.map(function(channel) {
 
@@ -180,6 +180,12 @@ module.exports = {
 	search: function(req, res) {
 
 		var q = req.query.q || null;
+		var mobile = false;
+
+		// check if mobile is a parameter to this call
+		if("mobile" in req.query) {
+			mobile = (req.query.mobile === "true");
+		}
 
 		if(!q) return res.send({ "data": [] });
 		q = q.toLowerCase();
@@ -199,7 +205,6 @@ module.exports = {
 
 				global.channels.find({
 					"$text": {"$search": "\"" + q + "\"" },
-					//"$text": {"$search": q },
 					"language": req.cookies["channel-language"] || "en"
 				}).sort(sorting).project({
 					"videos": false,
@@ -254,6 +259,7 @@ module.exports = {
 			// add type to videos
 			videos = videos.map(function(item) {
 				item.type = "video";
+				item.description = (mobile === false) ? textCutter(300, item.description) : null;
 				return item;
 			});
 
@@ -265,6 +271,7 @@ module.exports = {
 			// add type to channels
 			channels = results.channels.map(function(item) {
 				item.type = "channel";
+				item.description = (mobile === false) ? textCutter(300, item.description) : null;
 				return item;
 			});
 
