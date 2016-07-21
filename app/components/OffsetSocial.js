@@ -101,7 +101,12 @@ class SocialOffset extends React.Component {
 							<p className="sc-text">Special thanks to:</p>
 							<p>
 								<a href="http://isailor.us/" target="_blank">
-									<img src="https://rawgit.com/sailingchannels/website/master/public/img/transas.png" className="grey support-img" width="70%" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/transas.png" className="grey support-img thanks-img" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+								</a>
+							</p>
+							<p>
+								<a href="http://www.inreachdelorme.com/" target="_blank">
+									<img src="img/delorme.png" className="grey support-img thanks-img" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
 								</a>
 							</p>
 						</div>

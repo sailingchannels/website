@@ -319,14 +319,14 @@ input[type="color"] {
 	margin-bottom:5px;
 }
 
- .support-row {
-	 margin:50px 0;
- }
+.support-row {
+	margin:50px 0;
+}
 
- .sc-text {
- 	color:#ccc;
- 	text-transform: uppercase;
- }
+.sc-text {
+	color:#ccc;
+	text-transform: uppercase;
+}
 
 .grey {
 	-webkit-filter: grayscale(1);
@@ -334,4 +334,9 @@ input[type="color"] {
 	filter: gray;
 	filter: grayscale(100%);
 	opacity: 0.4;
+}
+
+.thanks-img {
+	width:140px!important;
+	margin-bottom:10px;
 }
