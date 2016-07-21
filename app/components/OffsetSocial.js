@@ -106,7 +106,7 @@ class SocialOffset extends React.Component {
 							</p>
 							<p>
 								<a href="http://www.inreachdelorme.com/" target="_blank">
-									<img src="img/delorme.png" className="grey support-img thanks-img" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+									<img src="https://rawgit.com/sailingchannels/website/master/public/img/delorme.png" className="grey support-img thanks-img" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
 								</a>
 							</p>
 						</div>
