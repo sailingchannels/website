@@ -39,7 +39,7 @@ gulp.task("vendor-js", function() {
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
 			"bower_components/js-cookie/src/js.cookie.js",
 			"bower_components/jquery-unveil/jquery.unveil.js",
-			"bower_components/bower-leaflet/leaflet.js",
+			"bower_components/leaflet/dist/leaflet.js",
 			"bower_components/Leaflet.label/dist/leaflet.label.js",
 			"bower_components/spectrum/spectrum.js",
 			"public/js/jquery.timeago.js",
@@ -66,7 +66,7 @@ gulp.task("vendor-css", function() {
 	return gulp.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
-			"bower_components/bower-leaflet/leaflet.css",
+			"bower_components/leaflet/dist/leaflet.css",
 			"bower_components/Leaflet.label/dist/leaflet.label.css",
 			"bower_components/spectrum/spectrum.css",
 			"public/css/leaflet-openweathermap.css",

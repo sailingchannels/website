@@ -26,14 +26,10 @@ class PositionMap extends React.Component {
 			fullscreenControl: true
         });
 
-		var pressurecntr = L.OWM.pressureContour({opacity: 0.5});
-		var wind = L.OWM.wind({opacity: 0.5});
-
-		var overlayMaps = {};
-		overlayMaps.Windspeed = wind;
-		overlayMaps.Isobars = pressurecntr;
-
-		var layerControl = L.control.layers([], overlayMaps, {collapsed: false}).addTo(map);
+		var windytyInit = {
+			// Required: API key
+			"key": "PsL-At-XpsPTZexBwUkO7Mx5I"
+		};
 
 		var marker = L.boatMarker(this.props.coordinate, {
 		    "color": this.props.boatcolor || "#f1c40f"
@@ -89,9 +85,8 @@ class PositionMap extends React.Component {
 
 	// RENDER
 	render() {
-
 		return (
-			<div id="map" className="position-map"></div>
+			<div id="windyty" className="position-map"></div>
 		);
 	}
 }
