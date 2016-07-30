@@ -25,6 +25,11 @@ var misc = require("./server/misc");
 var tag = process.env.TAG || "dev";
 global.tag = tag;
 
+var staticPath = "";
+if(tag !== "dev") {
+	staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
+}
+
 // setup Loggly configuration
 var loggly_config = {
     token: "9650f16d-a911-48c8-b64b-5caf03749a4d",
@@ -90,14 +95,25 @@ app.get("/api/channels/search", channels.search);
 // API / VIDEO
 app.get("/api/video/get/:id", video.get);
 
+// MAP
+app.get("/map", function(req, res) {
+	var page = swig.renderFile("views/map.html", {
+		staticPath: staticPath
+	});
+
+	return res.status(404).send(minify(page, {
+		removeComments: true,
+		minifyJS: true,
+		useShortDoctype: true,
+		removeRedundantAttributes: true,
+		removeOptionalTags: true,
+		removeStyleLinkTypeAttributes: true,
+		removeScriptTypeAttributes: true
+	}).replace(/(\r\n|\n|\r|\t)/gm,""));
+});
 
 // REACT MIDDLEWARE
 app.use(function(req, res) {
-
-	var staticPath = "";
-	if(tag !== "dev") {
-		staticPath = "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/" + tag + "/public";
-	}
 
 	Router.match({ routes: routes, location: req.url }, function(err, redirectLocation, renderProps) {
 
