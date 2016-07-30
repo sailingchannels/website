@@ -101,12 +101,7 @@ class ChannelDetail extends React.Component {
 								{(this.state.channel.position) ?
 									<div>
 										<p><b>Latest position:</b> <sup>(beta)</sup></p>
-										<PositionMap
-											coordinate={this.state.channel.position}
-											more={this.state.channel.vesselinfo}
-											boatcolor={this.state.channel.boatcolor}
-											source={this.state.channel.positionsource}
-										/>
+										<PositionMap channel={this.state.channel.id} />
 										<p>&nbsp;</p>
 									</div>
 								: null}

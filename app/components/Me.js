@@ -214,10 +214,7 @@ class Me extends React.Component {
 
 							{(this.state.me.user.position) ?
 								<PositionMap
-									coordinate={this.state.me.user.position}
-									more={this.state.me.user.vesselinfo}
-									source={this.state.me.user.positionsource}
-									boatcolor={this.state.me.user.profile.boatcolor}
+									channel={this.state.me.channel.id}
 								/>
 							: null}
 						</div>
