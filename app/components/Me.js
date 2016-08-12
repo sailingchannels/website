@@ -51,6 +51,12 @@ class Me extends React.Component {
 		});
 	}
 
+	// SELECT EMBED CODE
+	selectEmbedCode(e) {
+		e.target.focus();
+		e.target.select()
+	}
+
 	// CORRENT IN REACH USERNAME
 	correctInReachUsername(e) {
 		var $e = $(e.target);
@@ -66,6 +72,7 @@ class Me extends React.Component {
 		var isChannelListed = this.state.me.channel;
 
 		var profile = this.state.me.user.profile || null;
+		var channelMapEmbedCode = "<iframe src=\"https://sailing-channels.com/map?channel=" + this.state.me.channel.id + "\" width=\"100%\" height=\"500px\" frameborder=\"0\"></iframe><p>Check out my YouTube channel on <a href=\"https://sailing-channels.com/channel/" + this.state.me.channel.id + "\" target=\"_blank\">https://sailing-channels.com/channel/" + this.state.me.channel.id + "</a></p>";
 
 		return (
             <div className="container">
@@ -213,9 +220,15 @@ class Me extends React.Component {
 							</div>
 
 							{(this.state.me.user.position) ?
-								<PositionMap
-									channel={this.state.me.channel.id}
-								/>
+
+								<div>
+									<PositionMap channel={this.state.me.channel.id} />
+									<p>&nbsp;</p>
+									<p>
+										Feel free to <b>embed the map</b> into your website via the following HTML code:
+										<textarea className="embed-code-form-control form-control" rows="4" value={channelMapEmbedCode} onClick={this.selectEmbedCode.bind(this)}></textarea>
+									</p>
+								</div>
 							: null}
 						</div>
 						<div className="col-md-3"></div>

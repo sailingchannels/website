@@ -340,3 +340,7 @@ input[type="color"] {
 	width:140px!important;
 	margin-bottom:10px;
 }
+
+.embed-code-form-control {
+	background-color:#efefef;
+}
