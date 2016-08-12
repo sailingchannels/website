@@ -193,6 +193,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.users = db.collection("users");
 	global.visits = db.collection("visits");
 	global.flags = db.collection("flags");
+	global.positions = db.collection("positions");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 	global.CACHE_inreach_positions = db.collection("CACHE_inreach_positions");

@@ -7,7 +7,7 @@ var inreach = require("inreach");
 module.exports = {
 
 	// READ AIS POSITION
-	readAISPosition: function(mmsi, callback) {
+	readAISPosition: function(userId, mmsi, callback) {
 
 		if(!mmsi) return callback(null);
 
@@ -34,6 +34,23 @@ module.exports = {
 							"stored": moment.utc().toDate()
 						});
 
+						// store value in positions history
+						global.positions.insert({
+							"_id": {
+								"user": userId,
+								"time": more.time
+							},
+							"pos": pos,
+							"spd": more.speed,
+							"crs": more.course,
+							"time": more.time,
+							"src": {
+								"type": "AIS",
+								"mmsi": mmsi,
+								"name": more.name
+							}
+						});
+
 						return callback(pos, more);
 					});
 				}
@@ -48,7 +65,7 @@ module.exports = {
 	},
 
 	// READ INREACH POSITION
-	readInReachPosition: function(username, callback) {
+	readInReachPosition: function(userId, username, callback) {
 
 		if(!username || username.trim().length < 2) return callback(null);
 
@@ -71,6 +88,23 @@ module.exports = {
 							"stored": moment.utc().toDate()
 						});
 
+						// store position in history
+						global.positions.insert({
+							"_id": {
+								"user": userId,
+								"time": more.time
+							},
+							"pos": pos,
+							"spd": more.speed,
+							"crs": more.course,
+							"time": more.time,
+							"src": {
+								"type": "InReach",
+								"username": username,
+								"name": more.name
+							}
+						});
+
 						return callback(pos, more);
 					});
 				}
@@ -85,17 +119,19 @@ module.exports = {
 	},
 
 	// READ POSITION
-	readPosition: function(profile, callback) {
+	readPosition: function(user, callback) {
+
+		var profile = user.profile;
 
 		// check for inreach
 		if(profile && "inreach" in profile && profile.inreach.length > 0) {
-			module.exports.readInReachPosition(profile.inreach, function(pos, more) {
+			module.exports.readInReachPosition(user._id, profile.inreach, function(pos, more) {
 
 				// no position? fallback to mmsi / ais positioning
 				if(pos === null) {
 
 					if(profile && "mmsi" in profile && profile.mmsi.length > 0) {
-						module.exports.readAISPosition(profile.mmsi, function(pos, more) {
+						module.exports.readAISPosition(user._id, profile.mmsi, function(pos, more) {
 							return callback(pos, more, "mmsi");
 						});
 					}
@@ -111,7 +147,7 @@ module.exports = {
 
 		// check for mmsi
 		else if(profile && "mmsi" in profile && profile.mmsi.length > 0) {
-			module.exports.readAISPosition(profile.mmsi, function(pos, more) {
+			module.exports.readAISPosition(user._id, profile.mmsi, function(pos, more) {
 				return callback(pos, more, "mmsi");
 			});
 		}

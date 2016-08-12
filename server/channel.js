@@ -101,7 +101,7 @@ module.exports = {
 							}
 
 							// read AIS position
-							positions.readPosition(result.user.profile, function(pos, more, source) {
+							positions.readPosition(result.user, function(pos, more, source) {
 								channel.position = pos;
 								channel.vesselinfo = more;
 								channel.positionsource = source;

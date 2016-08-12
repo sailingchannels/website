@@ -35,7 +35,7 @@ module.exports = {
 					if(user.profile && user.profile.mmsi) {
 
 						// fetch latest ais position
-						positions.readPosition(user.profile, function(pos, more, source) {
+						positions.readPosition(user, function(pos, more, source) {
 
 							user.position = pos;
 							user.vesselinfo = more;
