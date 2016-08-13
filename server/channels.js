@@ -1,4 +1,3 @@
-var positions = require("./positions");
 var me = require("./me");
 var moment = require("moment");
 var async = require("async");
