@@ -21,6 +21,7 @@ var channel = require("./server/channel");
 var channels = require("./server/channels");
 var video = require("./server/video");
 var misc = require("./server/misc");
+var positions = require("./server/positions");
 
 var tag = process.env.TAG || "dev";
 global.tag = tag;
@@ -91,6 +92,9 @@ app.post("/api/channel/unsubscribe", channel.unsubscribe);
 // API / CHANNELS
 app.get("/api/channels/get", channels.get);
 app.get("/api/channels/search", channels.search);
+
+// API / POSITIONS
+app.get("/api/positions/:id/last/:n", positions.last)
 
 // API / VIDEO
 app.get("/api/video/get/:id", video.get);

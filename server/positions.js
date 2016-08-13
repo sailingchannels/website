@@ -44,7 +44,6 @@ module.exports = {
 								"pos": pos,
 								"spd": more.speed,
 								"crs": more.course,
-								"time": more.time,
 								"src": {
 									"type": "AIS",
 									"mmsi": mmsi,
@@ -102,7 +101,6 @@ module.exports = {
 								"pos": pos,
 								"spd": more.speed,
 								"crs": more.course,
-								"time": more.time,
 								"src": {
 									"type": "InReach",
 									"username": username,
@@ -165,5 +163,29 @@ module.exports = {
 		else {
 			return callback(null, null, null);
 		}
+	},
+
+	// LAST
+	// retriece the last n positions per channel
+	last: function(req, res) {
+
+		var n = (req.params.n) ? parseInt(req.params.n) : 100;
+
+		// fetch positions
+		global.positions.find({
+			"_id.user": req.params.id
+		}).sort({
+			"_id.time": -1
+		}).project({
+			"time": false
+		}).limit(n).toArray(function(err, positions) {
+
+			// handle the error
+			if(err || !positions) {
+				return res.status(500).send(err || "unable to retrieve positions");
+			}
+
+			return res.send(positions);
+		});
 	}
 };

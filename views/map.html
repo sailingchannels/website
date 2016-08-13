@@ -114,6 +114,25 @@
 
 				marker.addTo(map);
 				map.setView(data.position, 9);
+
+				// fetch trail
+				$.getJSON("/api/positions/" + channel + "/last/100", function(data) {
+
+					// filter out coords
+					var coords = data.map(function(item) {
+						return {
+							"lat": item.pos[0],
+							"lng": item.pos[1]
+						};
+					});
+
+					coords.reverse();
+
+					// add polyline to map
+					var polyline = L.polyline(coords, {
+						color: "black"
+					}).addTo(map);
+				});
 			});
 		}
 
