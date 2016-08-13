@@ -35,21 +35,25 @@ module.exports = {
 						});
 
 						// store value in positions history
-						global.positions.insert({
-							"_id": {
-								"user": userId,
-								"time": more.time
-							},
-							"pos": pos,
-							"spd": more.speed,
-							"crs": more.course,
-							"time": more.time,
-							"src": {
-								"type": "AIS",
-								"mmsi": mmsi,
-								"name": more.name
-							}
-						});
+						try {
+							global.positions.insert({
+								"_id": {
+									"user": userId,
+									"time": more.time
+								},
+								"pos": pos,
+								"spd": more.speed,
+								"crs": more.course,
+								"time": more.time,
+								"src": {
+									"type": "AIS",
+									"mmsi": mmsi,
+									"name": more.name
+								}
+							});
+						} catch (e) {
+
+						}
 
 						return callback(pos, more);
 					});
@@ -89,21 +93,26 @@ module.exports = {
 						});
 
 						// store position in history
-						global.positions.insert({
-							"_id": {
-								"user": userId,
-								"time": more.time
-							},
-							"pos": pos,
-							"spd": more.speed,
-							"crs": more.course,
-							"time": more.time,
-							"src": {
-								"type": "InReach",
-								"username": username,
-								"name": more.name
-							}
-						});
+						try {
+							global.positions.insert({
+								"_id": {
+									"user": userId,
+									"time": more.time
+								},
+								"pos": pos,
+								"spd": more.speed,
+								"crs": more.course,
+								"time": more.time,
+								"src": {
+									"type": "InReach",
+									"username": username,
+									"name": more.name
+								}
+							});
+						}
+						catch(e) {
+
+						}
 
 						return callback(pos, more);
 					});
