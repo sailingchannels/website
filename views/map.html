@@ -118,20 +118,24 @@
 				// fetch trail
 				$.getJSON("/api/positions/" + channel + "/last/100", function(data) {
 
-					// filter out coords
-					var coords = data.map(function(item) {
-						return {
-							"lat": item.pos[0],
-							"lng": item.pos[1]
-						};
-					});
+					if(data) {
 
-					coords.reverse();
+						// filter out coords
+						var coords = data.map(function(item) {
+							return {
+								"lat": item.pos[0],
+								"lng": item.pos[1]
+							};
+						});
 
-					// add polyline to map
-					var polyline = L.polyline(coords, {
-						color: "black"
-					}).addTo(map);
+						if(coords.length > 0) {
+
+							// add polyline to map
+							var polyline = L.polyline(coords, {
+								color: "black"
+							}).addTo(map);
+						}
+					}
 				});
 			});
 		}
