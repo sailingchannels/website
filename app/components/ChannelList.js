@@ -103,6 +103,16 @@ class ChannelList extends React.Component {
     // RENDER
 	render() {
 
+		var loadingDiv = <div className="row">
+			<div className="col-md-1"></div>
+			<div className="col-md-10">
+				<center>
+					Loading channels...
+				</center>
+			</div>
+			<div className="col-md-1"></div>
+		</div>;
+
 		// no channels found
 		if(this.state.channels.length === 0) {
 			return (
@@ -123,7 +133,7 @@ class ChannelList extends React.Component {
             <div className="row">
 				<div className="col-md-1"></div>
                 <div className="col-md-10">
-					<Infinite useWindowAsScrollContainer={true} elementHeight={230} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.loadMore.bind(this)}>
+					<Infinite useWindowAsScrollContainer={true} elementHeight={230} loadingSpinnerDelegate={loadingDiv} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.loadMore.bind(this)}>
 
 	                    {this.state.channels.map(c => (
 	        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
