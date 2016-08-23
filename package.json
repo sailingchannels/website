@@ -33,6 +33,7 @@
     "moment": "2.10.6",
     "mongodb": "2.0.48",
     "morgan": "^1.6.1",
+    "predictwind": "^1.0.0",
     "react": "^0.14.7",
     "react-cookie": "^0.4.5",
     "react-dom": "^0.14.7",
