@@ -199,17 +199,17 @@ module.exports = {
 					// read latest predict wind position
 					module.exports.readPredictWindPosition(user._id, profile.inreach, function(pos, more) {
 
-						return done(null, pos, more);
+						return done(null, pos, more, "predictwind");
 					});
 				}
-				else return done(null, null, null);
+				else return done(null, null, null, null);
 		    },
 
 			// inreach
-		    function(pos, more, done) {
+		    function(pos, more, source, done) {
 
 				// previous position exists? pass through
-				if(pos) return done(null, pos, more);
+				if(pos) return done(null, pos, more, source);
 
 				// check for inreach
 				if("inreach" in profile && profile.inreach.length > 0) {
@@ -217,13 +217,14 @@ module.exports = {
 					// read latest inreach position
 					module.exports.readInReachPosition(user._id, profile.inreach, function(pos, more) {
 
-						return done(null, pos, more);
+						return done(null, pos, more, "inreach");
 					});
 				}
+				else return done(null, null, null, null);
 		    },
 
 			// ais
-		    function(pos, more, done) {
+		    function(pos, more, source, done) {
 
 				// previous position exists? pass through
 				if(pos) return done(null, pos, more);
@@ -234,9 +235,10 @@ module.exports = {
 					// read latest ais position
 					module.exports.readAISPosition(user._id, profile.mmsi, function(pos, more) {
 
-						return done(null, pos, more);
+						return done(null, pos, more, "mmsi");
 					});
 				}
+				else return done(null, null, null, null);
 		    }
 
 		], callback);
