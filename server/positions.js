@@ -185,6 +185,16 @@ module.exports = {
 				return res.status(500).send(err || "unable to retrieve positions");
 			}
 
+			// remap properties of array
+			positions = positions.map((p) => {
+
+				// remap time
+				p["time"] = p["_id"]["time"];
+				delete p["_id"];
+
+				return p;
+			});
+
 			return res.send(positions);
 		});
 	}
