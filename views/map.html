@@ -20,14 +20,30 @@
 	<meta name="msapplication-config" content="{{staticPath}}/img/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 	<title>Sailing Channels</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.9/font-awesome-animation.min.css">
 	<style type="text/css">
     	#windyty {
 			height: 100%;
 			width: 100%;
 		}
+
+		.red {
+			color:red;
+		}
+
+		#live {
+			position:absolute;
+			top:20px;
+			left:20px;
+			z-index: 999999999;
+		}
     </style>
 </head>
 <body>
+	<div id="live" style="display:none;">
+		<i class="fa fa-circle faa faa-flash animated red" aria-hidden="true"></i> LIVE
+	</div>
 	<div id="windyty"></div>
 
 	<script src="{{staticPath}}/js/vendor.js"></script>
@@ -72,72 +88,102 @@
 				minZoom: 12
 			}));
 
+			var marker = null;
+			var polyline = null;
+
 			// load channel information
 			var channel = getParameterByName("channel");
-			$.getJSON("/api/channel/get/" + channel, function(data) {
 
-				var marker = L.boatMarker(data.position, {
-				    "color": data.boatcolor || "#f1c40f"
-				});
+			var loadPosition = function() {
 
-				var pup = "<table border='0'>";
-				pup += "<tr><td><b>Name:</b></td><td>" + data.vesselinfo.name + "</td></tr>";
+				// get channel information (incl. position)
+				$.getJSON("/api/channel/get/" + channel, function(data) {
 
-				var coded_src = "";
-				switch(data.positionsource) {
-					case "mmsi": coded_src = "AIS"; break;
-					case "inreach": coded_src = "DeLorme inReach"; break;
-				}
+					var crs = data.vesselinfo.course || 0;
+					var spd = data.vesselinfo.speed || 0;
 
-				var crs = data.vesselinfo.course || 0;
-				var spd = data.vesselinfo.speed || 0;
+					// show hide the live indicator
+					if(spd > 0) $("#live").show();
+					else $("#live").hide();
 
-				pup += "<tr><td><b>Device:</b></td><td>" + coded_src + "</td></tr>";
-				pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + parseInt(crs) + "°</td></tr>";
-				pup += "<tr><td><b>Speed:</b></td><td>" + spd.toFixed(1) + " kn</td></tr>";
-
-				if("time" in data.vesselinfo && data.vesselinfo.time) {
-					pup += "<tr><td><b>Received:</b></td><td>" + $.timeago(new Date(data.vesselinfo.time * 1000)) + "</td></tr>";
-				}
-
-				marker.bindPopup(pup);
-
-				// more information available?
-				if(data.vesselinfo) {
-
-					// name the boat
-					if(data.vesselinfo.name) marker.bindLabel(data.vesselinfo.name, { noHide: true });
-
-					// set heading
-					marker.setHeading(crs);
-				}
-
-				marker.addTo(map);
-				map.setView(data.position, 9);
-
-				// fetch trail
-				$.getJSON("/api/positions/" + channel + "/last/100", function(data) {
-
-					if(data) {
-
-						// filter out coords
-						var coords = data.map(function(item) {
-							return {
-								"lat": item.pos[0],
-								"lng": item.pos[1]
-							};
+					// create or update marker
+					if(marker) {
+						marker.setHeading(crs);
+						marker.setLatLng(data.position);
+					}
+					else {
+						marker = L.boatMarker(data.position, {
+						    "color": data.boatcolor || "#f1c40f"
 						});
 
-						if(coords.length > 0) {
-
-							// add polyline to map
-							var polyline = L.polyline(coords, {
-								color: "black"
-							}).addTo(map);
-						}
+						marker.addTo(map);
 					}
+
+					var pup = "<table border='0'>";
+					pup += "<tr><td><b>Name:</b></td><td>" + data.vesselinfo.name + "</td></tr>";
+
+					var coded_src = "";
+					switch(data.positionsource) {
+						case "mmsi": coded_src = "AIS"; break;
+						case "inreach": coded_src = "DeLorme inReach"; break;
+					}
+
+					pup += "<tr><td><b>Device:</b></td><td>" + coded_src + "</td></tr>";
+					pup += "<tr><td><b>Course:&nbsp;</b></td><td>" + parseInt(crs) + "°</td></tr>";
+					pup += "<tr><td><b>Speed:</b></td><td>" + spd.toFixed(1) + " kn</td></tr>";
+
+					if("time" in data.vesselinfo && data.vesselinfo.time) {
+						pup += "<tr><td><b>Received:</b></td><td>" + $.timeago(new Date(data.vesselinfo.time * 1000)) + "</td></tr>";
+					}
+
+					marker.bindPopup(pup);
+
+					// more information available?
+					if(data.vesselinfo) {
+
+						// name the boat
+						if(data.vesselinfo.name) marker.bindLabel(data.vesselinfo.name, { noHide: true });
+
+						// set heading
+						marker.setHeading(crs);
+					}
+
+					map.setView(data.position, 9);
+
+					// fetch trail
+					$.getJSON("/api/positions/" + channel + "/last/100", function(data) {
+
+						if(data) {
+
+							// filter out coords
+							var coords = data.map(function(item) {
+								return {
+									"lat": item.pos[0],
+									"lng": item.pos[1]
+								};
+							});
+
+							if(coords.length > 0) {
+
+								// add polyline to map
+								if(polyline) {
+									polyline.setLatLngs(coords);
+								}
+								else {
+									polyline = L.polyline(coords, {
+										color: "black"
+									}).addTo(map);
+								}
+							}
+						}
+					});
 				});
-			});
+
+			};
+
+			// update every x seconds
+			window.setInterval(loadPosition, 10000);
+			loadPosition();
 		}
 
     </script>
