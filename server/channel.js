@@ -95,6 +95,7 @@ module.exports = {
 							if(result.user.profile) {
 
 								channel.boatcolor = result.user.profile.boatcolor;
+								channel.trailnumber = result.user.profile.trailnumber;
 							}
 							else {
 								//channel.boatcolor = ""

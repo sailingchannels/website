@@ -156,6 +156,11 @@ module.exports = {
 			return res.status(400).send({"error": "no user id found"});
 		}
 
+		// some datatype fixes
+		if("trailnumber" in req.body) {
+			req.body.trailnumber = parseInt(req.body.trailnumber);
+		}
+
 		global.users.updateOne({
 			"_id": me._id
 		}, {

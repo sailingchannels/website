@@ -45,7 +45,8 @@ class Me extends React.Component {
 		$.post("/api/me/profile", {
 			"mmsi": parseInt($("#mmsi").val()),
 			"inreach": $("#inreach").val(),
-			"boatcolor": $("#boatcolor").val()
+			"boatcolor": $("#boatcolor").val(),
+			"trailnumber": parseInt(Math.min(99999, Math.max(0, parseInt($("#trailnumber").val()))))
 		}).done(function() {
 			location.reload();
 		});
@@ -212,9 +213,15 @@ class Me extends React.Component {
 
 							<div className="form-horizontal">
 								<div className="form-group">
-									<label htmlFor="hullcolor" className="col-sm-2 control-label">Boat Color</label>
+									<label htmlFor="boatcolor" className="col-sm-2 control-label">Boat Color</label>
 									<div className="col-sm-10">
-										<input type="color" className="form-control" id="boatcolor" defaultValue={(profile) ? profile.boatcolor : "#f1c40f"} placeholder="E.g. hull color" />
+										<input type="color" className="form-control" id="boatcolor" defaultValue={(profile && profile.boatcolor) ? profile.boatcolor : "#f1c40f"} placeholder="E.g. hull color" />
+									</div>
+								</div>
+								<div className="form-group">
+									<label htmlFor="trailnumber" className="col-sm-2 control-label">Show last positions</label>
+									<div className="col-sm-10">
+										<input type="number" className="form-control" min="0" max="99999" step="1" id="trailnumber" defaultValue={(profile && profile.trailnumber) ? profile.trailnumber : "100"} />
 									</div>
 								</div>
 							</div>

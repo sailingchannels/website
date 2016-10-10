@@ -169,33 +169,39 @@ module.exports = {
 	// retriece the last n positions per channel
 	last: function(req, res) {
 
-		var n = (req.params.n) ? parseInt(req.params.n) : 100;
+		var n = parseInt(req.params.n);
 
-		// fetch positions
-		global.positions.find({
-			"_id.user": req.params.id
-		}).sort({
-			"_id.time": -1
-		}).project({
-			"time": false
-		}).limit(n).toArray(function(err, positions) {
+		if(n > 0) {
 
-			// handle the error
-			if(err || !positions) {
-				return res.status(500).send(err || "unable to retrieve positions");
-			}
+			// fetch positions
+			global.positions.find({
+				"_id.user": req.params.id
+			}).sort({
+				"_id.time": -1
+			}).project({
+				"time": false
+			}).limit(n).toArray(function(err, positions) {
 
-			// remap properties of array
-			positions = positions.map((p) => {
+				// handle the error
+				if(err || !positions) {
+					return res.status(500).send(err || "unable to retrieve positions");
+				}
 
-				// remap time
-				p["time"] = p["_id"]["time"];
-				delete p["_id"];
+				// remap properties of array
+				positions = positions.map((p) => {
 
-				return p;
+					// remap time
+					p["time"] = p["_id"]["time"];
+					delete p["_id"];
+
+					return p;
+				});
+
+				return res.send(positions);
 			});
-
-			return res.send(positions);
-		});
+		}
+		else {
+			return res.send([]);
+		}
 	}
 };

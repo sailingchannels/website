@@ -153,8 +153,13 @@
 
 					map.setView(data.position, 9);
 
+					var trailnumber = 100;
+					if(data.trailnumber !== null || typeof data.trailnumber !== undefined) {
+						trailnumber = data.trailnumber;
+					}
+
 					// fetch trail
-					$.getJSON("/api/positions/" + channel + "/last/100", function(data) {
+					$.getJSON("/api/positions/" + channel + "/last/" + trailnumber, function(data) {
 
 						if(data) {
 
@@ -185,7 +190,7 @@
 			};
 
 			// update every x seconds
-			window.setInterval(loadPosition, 10000);
+			window.setInterval(loadPosition, 30000);
 			loadPosition();
 		}
 
