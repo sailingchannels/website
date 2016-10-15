@@ -105,8 +105,17 @@
 					var crs = data.vesselinfo.course || 0;
 					var spd = data.vesselinfo.speed || 0;
 
+					// check if we are live
+					var isLive = false;
+					if("time" in data.vesselinfo && data.vesselinfo.time) {
+						isLive = Math.abs((new Date().getTime() / 1000) - data.vesselinfo.time) <= 3600 && spd > 0;
+					}
+					else {
+						isLive = spd > 0;
+					}
+
 					// show hide the live indicator
-					if(spd > 0) $("#live").show();
+					if(isLive) $("#live").show();
 					else $("#live").hide();
 
 					// create or update marker
