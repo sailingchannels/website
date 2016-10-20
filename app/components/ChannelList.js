@@ -2,7 +2,6 @@ import React from "react";
 import ChannelListItem from "./ChannelListItem";
 import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
-import {Navigation} from "react-router";
 import Infinite from "react-infinite";
 
 class ChannelList extends React.Component {

@@ -13,6 +13,10 @@ import Contributions from "./components/Contributions";
 import Login from "./components/Login";
 import Me from "./components/Me";
 import SupportUs from "./components/SupportUs";
+import Admin from "./components/Admin/Admin";
+import AdminDashboard from "./components/Admin/Dashboard";
+import AdminAdditional from "./components/Admin/Additional";
+import AdminBlacklist from "./components/Admin/Blacklist";
 
 export default (
 	<Route path="/" component={App}>
@@ -29,5 +33,11 @@ export default (
 		<Route path="signin" component={Login} />
 		<Route path="support" component={SupportUs} />
 		<Route path="me" component={Me} />
+		<Route path="admin/" component={Admin}>
+			<IndexRoute component={AdminDashboard} />
+			<Route path="dashboard" component={AdminDashboard} />
+			<Route path="additional" component={AdminAdditional} />
+			<Route path="blacklist" component={AdminBlacklist} />
+		</Route>
 	</Route>
 );

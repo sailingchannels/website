@@ -22,6 +22,7 @@ var channels = require("./server/channels");
 var video = require("./server/video");
 var misc = require("./server/misc");
 var positions = require("./server/positions");
+var admin = require("./server/admin");
 
 var tag = process.env.TAG || "dev";
 global.tag = tag;
@@ -98,6 +99,9 @@ app.get("/api/positions/:id/last/:n", positions.last)
 
 // API / VIDEO
 app.get("/api/video/get/:id", video.get);
+
+// API / ADMIN / BLACKLISTED
+app.get("/api/admin/blacklisted", admin.blacklisted);
 
 // MAP
 app.get("/map", function(req, res) {
@@ -198,6 +202,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.visits = db.collection("visits");
 	global.flags = db.collection("flags");
 	global.positions = db.collection("positions");
+	global.blacklist = db.collection("blacklist");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 	global.CACHE_inreach_positions = db.collection("CACHE_inreach_positions");
