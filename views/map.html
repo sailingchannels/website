@@ -148,7 +148,10 @@
 				pup += "<tr><td><b>Speed:</b></td><td>" + speed + " kn</td></tr>";
 
 				if(data.time) {
-					pup += "<tr><td><b>Received:</b></td><td>" + $.timeago(new Date(data.time * 1000)) + "</td></tr>";
+					var d = new Date(data.time * 1000);
+					var datestring = ("0"+(d.getMonth()+1)).slice(-2) + "/" + ("0" + d.getDate()).slice(-2) + "/" +
+    								(d.getFullYear() + "").slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+					pup += "<tr><td><b>Received:</b></td><td>" + datestring + "</td></tr>";
 				}
 
 				return pup;
