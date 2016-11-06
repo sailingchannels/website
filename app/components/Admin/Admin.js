@@ -28,12 +28,16 @@ class Admin extends React.Component {
 	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
+
+		// check if user is authorised to view the admin page
+		if(!this.state.me.user || !(this.state.me.user.admin === true)) {
+			this.props.history.push("/");
+		}
 	}
 
 	// RENDER
 	render() {
 
-		// check if user is authorised to view the admin page
 		if(!this.state.me.user || !(this.state.me.user.admin === true)) {
 			return null;
 		}

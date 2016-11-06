@@ -548,6 +548,11 @@ var Admin = (function (_React$Component) {
 		key: "onChange",
 		value: function onChange(state) {
 			this.setState(state);
+
+			// check if user is authorised to view the admin page
+			if (!this.state.me.user || !(this.state.me.user.admin === true)) {
+				this.props.history.push("/");
+			}
 		}
 
 		// RENDER
@@ -555,7 +560,6 @@ var Admin = (function (_React$Component) {
 		key: "render",
 		value: function render() {
 
-			// check if user is authorised to view the admin page
 			if (!this.state.me.user || !(this.state.me.user.admin === true)) {
 				return null;
 			}
