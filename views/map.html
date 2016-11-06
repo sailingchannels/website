@@ -198,10 +198,12 @@
 					if(marker) {
 						marker.setHeading(crs);
 						marker.setLatLng(data.position);
+						marker.setSpeed(spd);
 					}
 					else {
 						marker = L.boatMarker(data.position, {
-							"color": data.boatcolor || "#f1c40f"
+							"color": data.boatcolor || "#f1c40f",
+							"idleCircle": true
 						});
 
 						marker.addTo(map);
@@ -228,6 +230,7 @@
 
 						// set heading
 						marker.setHeading(crs);
+						marker.setSpeed(spd);
 					}
 
 					map.setView(data.position, 9);
