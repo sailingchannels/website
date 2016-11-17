@@ -51,6 +51,7 @@ class Admin extends React.Component {
 						<div className="col-md-3">
 							<ul className="navi">
 								<li><Link to="/admin/dashboard">Dashboard</Link></li>
+								<li><Link to="/admin/flags">Flags</Link></li>
 								<li><Link to="/admin/additional">Additional Channels</Link></li>
 								<li><Link to="/admin/blacklist">Blacklist Channel</Link></li>
 							</ul>

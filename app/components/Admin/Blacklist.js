@@ -1,7 +1,7 @@
 import React from "react";
 import AdminActions from "../../actions/AdminActions";
 import AdminStore from "../../stores/AdminStore";
-import BlacklistItem from "./BlacklistItem";
+import AdminListItem from "./AdminListItem";
 
 class Blacklist extends React.Component {
 
@@ -19,12 +19,27 @@ class Blacklist extends React.Component {
 
 	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
-		ChannelStore.unlisten(this.onChange);
+		AdminStore.unlisten(this.onChange);
 	}
 
 	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
+	}
+
+	// DELETE BLACKLISTED
+	deleteItem(id) {
+		if(confirm("Really?") === true) {
+			AdminActions.deleteBlacklisted(id);
+		}
+	}
+
+	// ADD BLACKLISTED
+	addBlacklisted() {
+		var id = $("input[name='channelId']").val();
+		if(id) {
+			AdminActions.addBlacklisted(id);
+		}
 	}
 
 	// RENDER
@@ -33,9 +48,34 @@ class Blacklist extends React.Component {
 		return (
 			<div className="row">
 				<div className="col-md-12">
-					{this.state.blacklisted.map(b => (
-						<BlacklistItem id={b._id} />
-					))}
+
+					<div className="row">
+						<div className="col-md-12">
+							<h2>Blacklist Channels</h2>
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-md-3">
+							<input type="text" width="100%" className="form-control" placeholder="ChannelId" name="channelId"></input>
+						</div>
+						<div className="col-md-1">
+							<button className="btn btn-primary" onClick={this.addBlacklisted.bind(this)}>Add</button>
+						</div>
+						<div className="col-md-8"></div>
+					</div>
+
+					<div className="row">
+						<div className="col-md-12">
+							<table className="table">
+								<tbody>
+									{this.state.blacklisted.map(b => (
+										<AdminListItem key={b._id} id={b._id} parent={this} />
+									))}
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

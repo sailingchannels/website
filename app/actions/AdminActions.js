@@ -7,7 +7,21 @@ class AdminActions {
     constructor() {
         this.generateActions(
             "getBlacklistedSuccess",
-			"getBlacklistedFail"
+			"getBlacklistedFail",
+			"deleteBlacklistedSuccess",
+			"deleteBlacklistedFail",
+			"addBlacklistedSuccess",
+			"addBlacklistedFail",
+			"getAdditionalSuccess",
+			"getAdditionalFail",
+			"addAdditionalSuccess",
+			"addAdditionalFail",
+			"deleteAdditionalSuccess",
+			"deleteAdditionalFail",
+			"getFlagsSuccess",
+			"getFlagsFail",
+			"deleteFlagsSuccess",
+			"deleteFlagsFail"
         );
     }
 
@@ -16,7 +30,6 @@ class AdminActions {
 
 		new HTTP().get({
             "url": "/api/admin/blacklisted",
-            "type": "GET",
             "dataType": "json",
             "cache": false
         }, (err, data) => {
@@ -28,6 +41,125 @@ class AdminActions {
 			this.actions.getBlacklistedSuccess(data);
 		});
     }
+
+	// DELETE BACKLISTED
+	deleteBlacklisted(id) {
+
+		new HTTP().get({
+            "url": "/api/admin/blacklisted/delete/" + id,
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.deleteBlacklistedFail(err);
+			}
+
+			this.actions.deleteBlacklistedSuccess(data);
+		});
+	}
+
+	// ADD BLACKLISTED
+	addBlacklisted(id) {
+
+		new HTTP().get({
+            "url": "/api/admin/blacklisted/add/" + id,
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.addBlacklistedFail(err);
+			}
+
+			this.actions.addBlacklistedSuccess(data);
+		});
+	}
+
+	// GET ADDITIONAL
+	getAdditional() {
+
+		new HTTP().get({
+            "url": "/api/admin/additional",
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.getAdditionalFail(err);
+			}
+
+			this.actions.getAdditionalSuccess(data);
+		});
+	}
+
+	// ADD ADDITIONAL
+	addAdditional(id) {
+
+		new HTTP().get({
+            "url": "/api/admin/additional/add/" + id,
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.addAdditionalFail(err);
+			}
+
+			this.actions.addAdditionalSuccess(data);
+		});
+	}
+
+	// DELETE BACKLISTED
+	deleteAdditional(id) {
+
+		new HTTP().get({
+            "url": "/api/admin/additional/delete/" + id,
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.deleteAdditionalFail(err);
+			}
+
+			this.actions.deleteAdditionalSuccess(data);
+		});
+	}
+
+	// GET FLAGS
+	getFlags() {
+
+		new HTTP().get({
+            "url": "/api/admin/flags",
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.getFlagsFail(err);
+			}
+
+			this.actions.getFlagsSuccess(data);
+		});
+	}
+
+	// DELETE FLAGS
+	deleteFlags(channel, user) {
+
+		new HTTP().get({
+            "url": "/api/admin/flags/delete/" + channel + "/" + user,
+            "dataType": "json",
+            "cache": false
+        }, (err, data) => {
+
+			if(err) {
+				return this.actions.deleteFlagsFail(err);
+			}
+
+			this.actions.deleteFlagsSuccess(data);
+		});
+	}
 }
 
 export default alt.createActions(AdminActions);

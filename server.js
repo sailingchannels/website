@@ -101,7 +101,14 @@ app.get("/api/positions/:id/last/:n", positions.last)
 app.get("/api/video/get/:id", video.get);
 
 // API / ADMIN / BLACKLISTED
-app.get("/api/admin/blacklisted", admin.blacklisted);
+app.get("/api/admin/blacklisted", admin.getBlacklisted);
+app.get("/api/admin/blacklisted/delete/:id", admin.deleteBlacklisted);
+app.get("/api/admin/blacklisted/add/:id", admin.addBlacklisted);
+app.get("/api/admin/additional", admin.getAdditional);
+app.get("/api/admin/additional/delete/:id", admin.deleteAdditional);
+app.get("/api/admin/additional/add/:id", admin.addAdditional);
+app.get("/api/admin/flags", admin.getFlags);
+app.get("/api/admin/flags/delete/:channel/:user", admin.deleteFlags);
 
 // MAP
 app.get("/map", function(req, res) {
@@ -203,6 +210,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.flags = db.collection("flags");
 	global.positions = db.collection("positions");
 	global.blacklist = db.collection("blacklist");
+	global.additional = db.collection("additional");
 	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 	global.CACHE_inreach_positions = db.collection("CACHE_inreach_positions");
