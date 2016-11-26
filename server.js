@@ -109,6 +109,7 @@ app.get("/api/admin/additional/delete/:id", admin.deleteAdditional);
 app.get("/api/admin/additional/add/:id", admin.addAdditional);
 app.get("/api/admin/flags", admin.getFlags);
 app.get("/api/admin/flags/delete/:channel/:user", admin.deleteFlags);
+app.get("/api/admin/channel/:id", admin.getChannelInfo);
 
 // MAP
 app.get("/map", function(req, res) {

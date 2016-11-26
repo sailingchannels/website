@@ -1,6 +1,7 @@
 import React from "react";
 import AdminStore from "../../stores/AdminStore";
 import AdminActions from "../../actions/AdminActions";
+import ChannelInfo from "./ChannelInfo";
 
 class BlacklistItem extends React.Component {
 
@@ -21,7 +22,7 @@ class BlacklistItem extends React.Component {
 					<button className="btn btn-danger" onClick={this.deleteItem.bind(this)}>Delete</button>
                 </td>
                 <td>
-					{this.props.id}
+					<ChannelInfo id={this.props.id} />
                 </td>
 			</tr>
 		);

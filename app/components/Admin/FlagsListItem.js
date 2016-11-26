@@ -1,6 +1,7 @@
 import React from "react";
 import AdminStore from "../../stores/AdminStore";
 import AdminActions from "../../actions/AdminActions";
+import ChannelInfo from "./ChannelInfo";
 
 class BlacklistItem extends React.Component {
 
@@ -29,8 +30,8 @@ class BlacklistItem extends React.Component {
 					Ignore
 				</button>
 			</td>
-			<td>{this.props.data._id.channel}</td>
-			<td>{this.props.data._id.user}</td>
+			<td><ChannelInfo id={this.props.data._id.channel} /></td>
+			<td><ChannelInfo id={this.props.data._id.user} /></td>
 			<td>{this.props.data.when}</td>
 		</tr>
 		);

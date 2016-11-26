@@ -1,5 +1,6 @@
 var moment = require("moment");
 var async = require("async");
+var youtube = require("youtube-api");
 
 // IS ADMIN?
 var isAdmin = function(userId, callback) {
@@ -109,6 +110,14 @@ module.exports = {
 				if(err) {
 					return res.status(500).send({"error": err});
 				}
+
+				// remove the existance of this channel from all collections
+				global.channels.remove({"_id": req.params.id});
+				global.positions.remove({"_id.user": req.params.id});
+				global.subscribers.remove({"_id.channel": req.params.id});
+				global.videos.remove({"channel": req.params.id});
+				global.views.remove({"_id.channel": req.params.id});
+				global.visits.remove({"_id.channel": req.params.id});
 
 				return res.send({
 					"_id": req.params.id
@@ -294,6 +303,27 @@ module.exports = {
 
 	// GET CHANNEL INFO
 	getChannelInfo: function(req, res) {
-		return res.send(null);
+
+		// check if request is authenticated
+		var credentials = req.cookies.credentials;
+		if(!credentials) {
+			return res.status(401).send({"error": "no permission to perform this operation"});
+		}
+
+		// authenticate next request
+		global.oauth.setCredentials(credentials);
+
+		youtube.channels.list({
+			"part": "snippet",
+			"id": req.params.id
+		}, function (err, data) {
+
+			// create response
+			return res.send({
+				"title": data.items[0].snippet.title,
+				"description": data.items[0].snippet.description,
+				"thumbnail": data.items[0].snippet.thumbnails.default.url
+			});
+		});
 	}
 };
