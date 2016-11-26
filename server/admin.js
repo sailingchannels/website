@@ -318,12 +318,17 @@ module.exports = {
 			"id": req.params.id
 		}, function (err, data) {
 
-			// create response
-			return res.send({
-				"title": data.items[0].snippet.title,
-				"description": data.items[0].snippet.description,
-				"thumbnail": data.items[0].snippet.thumbnails.default.url
-			});
+			try {
+				// create response
+				return res.send({
+					"title": data.items[0].snippet.title,
+					"description": data.items[0].snippet.description,
+					"thumbnail": data.items[0].snippet.thumbnails.default.url
+				});
+			}
+			catch(e) {
+				return res.status(500).send({"err": e});
+			}
 		});
 	}
 };
