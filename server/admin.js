@@ -252,7 +252,9 @@ module.exports = {
 			}
 
 			// all blacklisted channels
-			global.flags.find({}).toArray(function(err, data) {
+			global.flags.find({}).sort({
+				"when": -1
+			}).toArray(function(err, data) {
 
 				if(err) {
 					return res.status(500).send({"error": err});
