@@ -203,5 +203,47 @@ module.exports = {
 		else {
 			return res.send([]);
 		}
+	},
+
+	// GEOLOCATIONS
+	geolocations: function(req, res) {
+
+		global.videos.find({
+			"geo": {
+				"$exists": true
+			}
+		}).project({
+			"_id": true,
+			"geo": true
+		}).toArray(function(err, locations) {
+
+			// handle the error
+			if(err || !locations) {
+				return res.status(500).send(err || "unable to retrieve geolocations");
+			}
+
+			var geojson = {
+				"type": "FeatureCollection",
+				"features": []
+			};
+
+			// iterate over locations and build geojson
+			for(var l in locations) {
+
+				// iterate over the geometries of the locations
+				for(var g in locations[l].geo.geometries)
+				var feature = {
+					"type": "Feature",
+					"geometry": locations[l].geo.geometries[g],
+					"properties": {
+						"v": locations[l]["_id"]
+					}
+				}
+
+				geojson.features.push(feature);
+			}
+
+			return res.send(geojson);
+		});
 	}
 };

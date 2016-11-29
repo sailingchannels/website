@@ -95,7 +95,8 @@ app.get("/api/channels/get", channels.get);
 app.get("/api/channels/search", channels.search);
 
 // API / POSITIONS
-app.get("/api/positions/:id/last/:n", positions.last)
+app.get("/api/positions/:id/last/:n", positions.last);
+app.get("/api/positions/geolocations", positions.geolocations);
 
 // API / VIDEO
 app.get("/api/video/get/:id", video.get);
@@ -114,6 +115,23 @@ app.get("/api/admin/channel/:id", admin.getChannelInfo);
 // MAP
 app.get("/map", function(req, res) {
 	var page = swig.renderFile("views/map.html", {
+		staticPath: staticPath
+	});
+
+	return res.status(404).send(minify(page, {
+		removeComments: true,
+		minifyJS: true,
+		useShortDoctype: true,
+		removeRedundantAttributes: true,
+		removeOptionalTags: true,
+		removeStyleLinkTypeAttributes: true,
+		removeScriptTypeAttributes: true
+	}).replace(/(\r\n|\n|\r|\t)/gm,""));
+});
+
+// MAP
+app.get("/world", function(req, res) {
+	var page = swig.renderFile("views/world.html", {
 		staticPath: staticPath
 	});
 
