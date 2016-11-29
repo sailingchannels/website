@@ -20,6 +20,7 @@
 	<meta name="msapplication-config" content="{{staticPath}}/img/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 	<title>World Map | Sailing Channels</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{staticPath}}/css/vendor.css">
 	<link href="https://api.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css" rel="stylesheet" />
 	<style>
@@ -42,12 +43,33 @@
 			margin-top:15px;
 		}
 
+		.back-link {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			font-weight: bold;
+		}
+
+		.popup-frame {
+			max-width: 300px;
+			width:300px;
+		}
+
+		.popup-frame .fa-spinner {
+			color:lightgrey;
+		}
+
+		.popup-frame .description {
+			margin-top:10px;
+		}
+
 	</style>
 </head>
 <body>
 	<div id="map"></div>
 
 	<div class="container">
+		<a href="/" class="back-link">&#8592; back to sailing-channels.com</a>
 		<div class="logo">
 			<a href="/">
 			  <div class="turnaround">
@@ -70,9 +92,11 @@
 			"hash": true
 		});
 
+		map.transform.lngRange = [-180, 180];
+
 		map.on('load', function () {
 		    // Add a GeoJSON source containing the state polygons.
-		    map.addSource("videos", {
+		    map.addSource("videos-src", {
 		        "type": "geojson",
 		        "data": "/api/positions/geolocations"
 		    });
@@ -81,11 +105,18 @@
 			map.addLayer({
 		        "id": "videos",
 		        "type": "symbol",
-		        "source": "videos",
+		        "source": "videos-src",
 		        "layout": {
 					"icon-image": "marker-15"
 		        }
 		    });
+
+			// Use the same approach as above to indicate that the symbols are clickable
+			// by changing the cursor style to 'pointer'.
+			map.on("mousemove", function (e) {
+				var features = map.queryRenderedFeatures(e.point, { layers: ["videos"] });
+				map.getCanvas().style.cursor = (features.length) ? "pointer" : "";
+			});
 		});
 
 		// When a click event occurs near a polygon, open a popup at the location of
@@ -97,21 +128,32 @@
 		    }
 
 		    var feature = features[0];
-			var ytFrame = '<iframe width="280" height="150" src="https://www.youtube.com/embed/' + feature.properties.v + '" frameborder="0" allowfullscreen></iframe>';
+			var popHtml = '<div id="popup-space" class="popup-frame"><center><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></center></div>';
 
 		    var popup = new mapboxgl.Popup()
 		        .setLngLat(map.unproject(e.point))
-		        .setHTML(ytFrame)
+		        .setHTML(popHtml)
 		        .addTo(map);
-		});
 
-		// Use the same approach as above to indicate that the symbols are clickable
-		// by changing the cursor style to 'pointer'.
-		map.on("mousemove", function (e) {
-		    var features = map.queryRenderedFeatures(e.point, { layers: ["videos"] });
-		    map.getCanvas().style.cursor = (features.length) ? "pointer" : "";
-		});
+			console.log(e.lngLat);
 
+			// query for videos on this location
+			$.get("/api/videos/geo/" + e.lngLat.lng + "/" + e.lngLat.lat, function(data) {
+				var inner = "";
+
+				// loop the results and build a slick carousel out them
+				for(var i in data) {
+					inner += "<div>";
+					inner += "<iframe width='300' height='150' src='https://www.youtube.com/embed/" + data[i].i + "?showinfo=0&rel=0' frameborder='0' allowfullscreen></iframe>";
+					inner += "<b>" + data[i].t + "</b><br />";
+					inner += "by <a href='/channel/" + data[i].ci + "' target='_blank'>" + data[i].c + "</a>";
+					inner += "<p class='description'>" + data[i].d + "</p>";
+ 				}
+
+				$("#popup-space").html(inner);
+				$("#popup-space").slick();
+			});
+		});
 
 	  	(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
 	  	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -124,5 +166,7 @@
 	 		nonInteraction: true
 	  	});
 	</script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 </body>
 </html>

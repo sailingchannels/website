@@ -232,20 +232,24 @@ module.exports = {
 						"features": []
 					};
 
+					var unique = [];
+
 					// iterate over locations and build geojson
 					for(var l in locations) {
 
-						// iterate over the geometries of the locations
-						for(var g in locations[l].geo.geometries)
-						var feature = {
-							"type": "Feature",
-							"geometry": locations[l].geo.geometries[g],
-							"properties": {
-								"v": locations[l]["_id"]
+						if(unique.indexOf(locations[l].geo.geometries[g]) === -1) {
+
+							// iterate over the geometries of the locations
+							for(var g in locations[l].geo.geometries) {
+								var feature = {
+									"type": "Feature",
+									"geometry": locations[l].geo.geometries[g]
+								}
+
+								geojson.features.push(feature);
+								unique.push(locations[l].geo.geometries[g]);
 							}
 						}
-
-						geojson.features.push(feature);
 					}
 
 					// store geolocations cache

@@ -23,6 +23,7 @@ var video = require("./server/video");
 var misc = require("./server/misc");
 var positions = require("./server/positions");
 var admin = require("./server/admin");
+var videos = require("./server/videos");
 
 var tag = process.env.TAG || "dev";
 global.tag = tag;
@@ -100,6 +101,9 @@ app.get("/api/positions/geolocations", positions.geolocations);
 
 // API / VIDEO
 app.get("/api/video/get/:id", video.get);
+
+// API / VIDEOS
+app.get("/api/videos/geo/:lng/:lat", videos.geo);
 
 // API / ADMIN / BLACKLISTED
 app.get("/api/admin/blacklisted", admin.getBlacklisted);
