@@ -208,42 +208,62 @@ module.exports = {
 	// GEOLOCATIONS
 	geolocations: function(req, res) {
 
-		global.videos.find({
-			"geo": {
-				"$exists": true
-			}
-		}).project({
-			"_id": true,
-			"geo": true
-		}).toArray(function(err, locations) {
+		// check if there is a cached version available
+		global.CACHE_geolocations.findOne({"_id": "geolocations"}, function(err, data) {
 
-			// handle the error
-			if(err || !locations) {
-				return res.status(500).send(err || "unable to retrieve geolocations");
-			}
+			if(err || !data) {
 
-			var geojson = {
-				"type": "FeatureCollection",
-				"features": []
-			};
-
-			// iterate over locations and build geojson
-			for(var l in locations) {
-
-				// iterate over the geometries of the locations
-				for(var g in locations[l].geo.geometries)
-				var feature = {
-					"type": "Feature",
-					"geometry": locations[l].geo.geometries[g],
-					"properties": {
-						"v": locations[l]["_id"]
+				global.videos.find({
+					"geo": {
+						"$exists": true
 					}
-				}
+				}).project({
+					"_id": true,
+					"geo": true
+				}).toArray(function(err, locations) {
 
-				geojson.features.push(feature);
+					// handle the error
+					if(err || !locations) {
+						return res.status(500).send(err || "unable to retrieve geolocations");
+					}
+
+					var geojson = {
+						"type": "FeatureCollection",
+						"features": []
+					};
+
+					// iterate over locations and build geojson
+					for(var l in locations) {
+
+						// iterate over the geometries of the locations
+						for(var g in locations[l].geo.geometries)
+						var feature = {
+							"type": "Feature",
+							"geometry": locations[l].geo.geometries[g],
+							"properties": {
+								"v": locations[l]["_id"]
+							}
+						}
+
+						geojson.features.push(feature);
+					}
+
+					// store geolocations cache
+					global.CACHE_geolocations.insert({
+						"_id": "geolocations",
+						"time": moment().toDate()
+						"data": geojson
+					});
+
+					return res.send(geojson);
+				});
+			}
+			else {
+				return res.send(data);
 			}
 
-			return res.send(geojson);
 		});
+
+
 	}
 };

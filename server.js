@@ -234,6 +234,7 @@ mongodb.connect("mongodb://localhost:27017/" + mongodbURL, function(err, db) {
 	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
 	global.CACHE_inreach_positions = db.collection("CACHE_inreach_positions");
 	global.CACHE_custom_links = db.collection("CACHE_custom_links");
+	global.CACHE_geolocations = db.collection("CACHE_geolocations");
 
 	// start server
 	app.listen(app.get("port"), function() {
