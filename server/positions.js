@@ -251,7 +251,7 @@ module.exports = {
 					// store geolocations cache
 					global.CACHE_geolocations.insert({
 						"_id": "geolocations",
-						"time": moment().toDate()
+						"time": moment().toDate(),
 						"data": geojson
 					});
 
