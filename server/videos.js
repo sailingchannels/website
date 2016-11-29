@@ -11,7 +11,8 @@ module.exports = {
 		// query videos that are near this position
 		global.videos.geoNear(parseFloat(req.params.lng), parseFloat(req.params.lat), {
 			"maxDistance": 0.1,
-			"spherical": true
+			"spherical": true,
+			"num": 10
 		}, function(err, docs) {
 
 			if(err) {
