@@ -211,8 +211,6 @@ module.exports = {
 		// check if there is a cached version available
 		global.CACHE_geolocations.findOne({"_id": "geolocations"}, function(err, data) {
 
-			console.log(err, data);
-
 			if(err || !data) {
 
 				global.videos.find({
