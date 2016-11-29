@@ -143,11 +143,14 @@
 
 				// loop the results and build a slick carousel out them
 				for(var i in data) {
-					inner += "<div>";
-					inner += "<iframe width='300' height='150' src='https://www.youtube.com/embed/" + data[i].i + "?showinfo=0&rel=0' frameborder='0' allowfullscreen></iframe>";
-					inner += "<b>" + data[i].t + "</b><br />";
-					inner += "by <a href='/channel/" + data[i].ci + "' target='_blank'>" + data[i].c + "</a>";
-					inner += "<p class='description'>" + data[i].d + "</p>";
+
+					if(data[i]) {
+						inner += "<div>";
+						inner += "<iframe width='300' height='150' src='https://www.youtube.com/embed/" + data[i].i + "?showinfo=0&rel=0' frameborder='0' allowfullscreen></iframe>";
+						inner += "<b>" + data[i].t + "</b><br />";
+						inner += "by <a href='/channel/" + data[i].ci + "' target='_blank'>" + data[i].c + "</a>";
+						inner += "<p class='description'>" + data[i].d + "</p>";
+					}
  				}
 
 				$("#popup-space").html(inner);
