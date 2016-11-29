@@ -23,6 +23,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{staticPath}}/css/vendor.css">
 	<link href="https://api.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet">
 	<style>
 		html, body {
 			height:100%;
@@ -61,6 +63,17 @@
 
 		.popup-frame .description {
 			margin-top:10px;
+		}
+
+		.slick-next {
+			right: 5px!important;
+    		top: 90px!important;
+		}
+
+		.slick-prev {
+			left: 5px!important;
+    		top: 90px!important;
+			z-index:9999!important;
 		}
 
 	</style>
@@ -155,7 +168,9 @@
  				}
 
 				$("#popup-space").html(inner);
-				$("#popup-space").slick();
+				$("#popup-space").slick({
+					"dots": true
+				});
 			});
 		});
 
@@ -170,7 +185,6 @@
 	 		nonInteraction: true
 	  	});
 	</script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 </body>
 </html>
