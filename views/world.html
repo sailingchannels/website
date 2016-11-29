@@ -65,17 +65,6 @@
 			margin-top:10px;
 		}
 
-		.slick-next {
-			right: 5px!important;
-    		top: 90px!important;
-		}
-
-		.slick-prev {
-			left: 5px!important;
-    		top: 90px!important;
-			z-index:9999!important;
-		}
-
 	</style>
 </head>
 <body>
@@ -107,7 +96,8 @@
 
 		map.transform.lngRange = [-180, 180];
 
-		map.on('load', function () {
+		map.on("load", function () {
+
 		    // Add a GeoJSON source containing the state polygons.
 		    map.addSource("videos-src", {
 		        "type": "geojson",
@@ -169,7 +159,8 @@
 
 				$("#popup-space").html(inner);
 				$("#popup-space").slick({
-					"dots": true
+					"dots": true,
+					"arrows": false
 				});
 			});
 		});
