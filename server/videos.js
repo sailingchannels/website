@@ -29,6 +29,10 @@ module.exports = {
 					}
 				}, function(err, channel) {
 
+					if(err || !channel) {
+						return done(err || "no channel available", null);
+					}
+
 					return done(null, {
 						"t": item.obj.title,
 						"i": item.obj._id,
