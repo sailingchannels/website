@@ -66,14 +66,22 @@ gulp.task("vendor-css", function() {
 	return gulp.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
+			"public/css/main.css"
+		])
+		.pipe(concat("vendor.css"))
+		.pipe(minifyCss({compatibility: "ie8"}))
+		.pipe(gulp.dest("public/css"));
+});
+
+gulp.task("vendor-css-lazy", function() {
+	return gulp.src([
 			"bower_components/leaflet/dist/leaflet.css",
 			"bower_components/Leaflet.label/dist/leaflet.label.css",
 			"bower_components/spectrum/spectrum.css",
-			"public/css/leaflet-openweathermap.css",
-			"public/css/main.css",
+			"public/css/main-lazy.css",
 			"public/css/leaflet.fullscreen.css"
 		])
-		.pipe(concat("vendor.css"))
+		.pipe(concat("vendor-lazy.css"))
 		.pipe(minifyCss({compatibility: "ie8"}))
 		.pipe(gulp.dest("public/css"));
 });
@@ -138,5 +146,5 @@ gulp.task("browserify-watch", ["browserify-vendor"], function() {
 	}
 });
 
-gulp.task("default", ["vendor-js", "vendor-css", "browserify-watch"]);
-gulp.task("build", ["vendor-js", "vendor-css", "browserify"]);
+gulp.task("default", ["vendor-js", "vendor-css", "vendor-css-lazy", "browserify-watch"]);
+gulp.task("build", ["vendor-js", "vendor-css", "vendor-css-lazy", "browserify"]);
