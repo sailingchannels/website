@@ -69,22 +69,50 @@ module.exports = {
 	// LANGUAGES
 	languages: function(req, res) {
 
-		// fetch distinct countries
-		global.channels.distinct("language", function(err, languages) {
+		// check if languages are in cache
+		global.CACHE_languages.findOne({"_id": "languages"}, function(err, data) {
 
-			// return some iso information
-			return res.send({
-				"languages": ISO6391.getLanguages(languages).sort(function(a, b) {
-					return a.name.charCodeAt(0) - b.name.charCodeAt(0);
-				}).map(function(lang) {
-					return {
-						"code": lang.code,
-						"name": lang.name
+			// not in cache
+			if(err || !data) {
+
+				// fetch distinct countries
+				global.channels.distinct("language", function(err, languages) {
+
+					// return some iso information
+					var languages = {
+						"languages": ISO6391.getLanguages(languages).sort(function(a, b) {
+							return a.name.charCodeAt(0) - b.name.charCodeAt(0);
+						}).map(function(lang) {
+							return {
+								"code": lang.code,
+								"name": lang.name
+							};
+						})
 					};
-				}),
-				"selected": req.cookies["channel-language"] || "en"
-			});
-		});
+
+					// add cache entry
+					global.CACHE_languages.insert({
+						"_id": "languages",
+						"time": moment().toDate(),
+						"data": languages
+					});
+
+					// add user based selection magic
+					languages["selected"] = req.cookies["channel-language"] || "en";
+
+					return res.send(languages);
+				});
+			}
+
+			// found a cache entry
+			else {
+				// add user based selection magic
+				data.data["selected"] = req.cookies["channel-language"] || "en";
+				return res.send(data.data);
+			}
+		})
+
+
 	},
 
 	// STATS
