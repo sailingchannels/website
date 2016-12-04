@@ -15,6 +15,7 @@
   "dependencies": {
     "ais": "^1.2.1",
     "alt": "^0.17.4",
+    "apicache": "^0.7.2",
     "async": "^1.4.2",
     "babel": "^5.8.23",
     "body-parser": "^1.14.1",

@@ -24,6 +24,7 @@ var misc = require("./server/misc");
 var positions = require("./server/positions");
 var admin = require("./server/admin");
 var videos = require("./server/videos");
+var cache = require("apicache").middleware;
 
 var tag = process.env.TAG || "dev";
 global.tag = tag;
@@ -39,6 +40,12 @@ var loggly_config = {
     subdomain: "sailchannels",
     tags: [tag]
 };
+
+// chache setup
+var onlyStatus200 = function(req) { return req.statusCode === 200; };
+var cache5 = cache("5 minutes", onlyStatus200);
+var cache15 = cache("15 minutes", onlyStatus200);
+var cache60 = cache("60 minutes", onlyStatus200);
 
 var app = express();
 
@@ -84,15 +91,15 @@ app.get("/api/me", me.me);
 app.post("/api/me/profile", me.profile);
 
 // API / CHANNEL
-app.get("/api/channel/get/:id", channel.getById);
-app.get("/api/channel/get/:id/customlinks", channel.getCustomLinks);
+app.get("/api/channel/get/:id", cache15, channel.getById);
+app.get("/api/channel/get/:id/customlinks", cache60, channel.getCustomLinks);
 app.get("/api/channel/get/:id/videos", channel.getVideos);
 app.post("/api/channel/flag", channel.flag);
 app.post("/api/channel/subscribe", channel.subscribe);
 app.post("/api/channel/unsubscribe", channel.unsubscribe);
 
 // API / CHANNELS
-app.get("/api/channels/get", channels.get);
+app.get("/api/channels/get", cache15, channels.get);
 app.get("/api/channels/search", channels.search);
 
 // API / POSITIONS
@@ -100,7 +107,7 @@ app.get("/api/positions/:id/last/:n", positions.last);
 app.get("/api/positions/geolocations", positions.geolocations);
 
 // API / VIDEO
-app.get("/api/video/get/:id", video.get);
+app.get("/api/video/get/:id", cache60, video.get);
 
 // API / VIDEOS
 app.get("/api/videos/geo/:lng/:lat", videos.geo);
@@ -117,7 +124,7 @@ app.get("/api/admin/flags/delete/:channel/:user", admin.deleteFlags);
 app.get("/api/admin/channel/:id", admin.getChannelInfo);
 
 // MAP
-app.get("/map", function(req, res) {
+app.get("/map", cache15, function(req, res) {
 	var page = swig.renderFile("views/map.html", {
 		staticPath: staticPath
 	});

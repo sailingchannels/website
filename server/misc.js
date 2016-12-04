@@ -110,9 +110,7 @@ module.exports = {
 				data.data["selected"] = req.cookies["channel-language"] || "en";
 				return res.send(data.data);
 			}
-		})
-
-
+		});
 	},
 
 	// STATS

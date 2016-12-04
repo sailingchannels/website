@@ -35,7 +35,7 @@ class OffsetMenu extends React.Component {
 						<li><Link to="/contributions">Contributions</Link></li>
 						<li><Link to="/support">Support us</Link></li>
 						<li>
-							<div div className="little-space">Channel language</div>
+							<div className="little-space">Channel language</div>
 							<LanguagePicker />
 						</li>
 	                </ul>
