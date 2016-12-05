@@ -104,7 +104,7 @@ app.get("/api/channels/search", channels.search);
 
 // API / POSITIONS
 app.get("/api/positions/:id/last/:n", positions.last);
-app.get("/api/positions/geolocations", positions.geolocations);
+app.get("/api/positions/geolocations", cache60, positions.geolocations);
 
 // API / VIDEO
 app.get("/api/video/get/:id", cache60, video.get);
