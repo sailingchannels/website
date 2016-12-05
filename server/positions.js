@@ -208,66 +208,46 @@ module.exports = {
 	// GEOLOCATIONS
 	geolocations: function(req, res) {
 
-		// check if there is a cached version available
-		global.CACHE_geolocations.findOne({"_id": "geolocations"}, function(err, data) {
+		global.videos.find({
+			"geo": {
+				"$exists": true
+			}
+		}).project({
+			"_id": true,
+			"geo": true
+		}).toArray(function(err, locations) {
 
-			if(err || !data) {
+			// handle the error
+			if(err || !locations) {
+				return res.status(500).send(err || "unable to retrieve geolocations");
+			}
 
-				global.videos.find({
-					"geo": {
-						"$exists": true
-					}
-				}).project({
-					"_id": true,
-					"geo": true
-				}).toArray(function(err, locations) {
+			var geojson = {
+				"type": "FeatureCollection",
+				"features": []
+			};
 
-					// handle the error
-					if(err || !locations) {
-						return res.status(500).send(err || "unable to retrieve geolocations");
-					}
+			var unique = [];
 
-					var geojson = {
-						"type": "FeatureCollection",
-						"features": []
-					};
+			// iterate over locations and build geojson
+			for(var l in locations) {
 
-					var unique = [];
+				if(unique.indexOf(locations[l].geo.geometries[g]) === -1) {
 
-					// iterate over locations and build geojson
-					for(var l in locations) {
-
-						if(unique.indexOf(locations[l].geo.geometries[g]) === -1) {
-
-							// iterate over the geometries of the locations
-							for(var g in locations[l].geo.geometries) {
-								var feature = {
-									"type": "Feature",
-									"geometry": locations[l].geo.geometries[g]
-								}
-
-								geojson.features.push(feature);
-								unique.push(locations[l].geo.geometries[g]);
-							}
+					// iterate over the geometries of the locations
+					for(var g in locations[l].geo.geometries) {
+						var feature = {
+							"type": "Feature",
+							"geometry": locations[l].geo.geometries[g]
 						}
+
+						geojson.features.push(feature);
+						unique.push(locations[l].geo.geometries[g]);
 					}
-
-					// store geolocations cache
-					global.CACHE_geolocations.insert({
-						"_id": "geolocations",
-						"time": moment().toDate(),
-						"data": geojson
-					});
-
-					return res.send(geojson);
-				});
-			}
-			else {
-				return res.send(data.data);
+				}
 			}
 
+			return res.send(geojson);
 		});
-
-
 	}
 };
