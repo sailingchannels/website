@@ -60,16 +60,17 @@ class SocialOffset extends React.Component {
 
 		if(this.state.me) {
 			if(!this.state.me.title || this.state.me.title === "") {
-				profile = <p><Link to="/me">Your profile</Link></p>;
+				profile = <p className="profile-link"><Link to="/me">Your profile</Link></p>;
 			}
 			else {
-				profile = <p>Hi, <Link to="/me">{this.state.me.title}</Link></p>;
+				profile = <p className="profile-link">Hi, <Link to="/me">{this.state.me.title}</Link></p>;
 			}
 		}
 
 		return (
 			<div className="offset-social">
 				{profile}
+				<p className="sc-text">CONTACT<br />sailing-channels.com:</p>
 		        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
 		            <i className="fa fa-facebook-square fa-3x"></i>
 		        </a>
@@ -85,7 +86,7 @@ class SocialOffset extends React.Component {
 				{(this.state.bannerdialog === true) ?
 					<div>
 						<div className="support-row hidden-sm hidden-xs">
-							<p className="sc-text">Support us:</p>
+							<p className="sc-text">SUPPORT<br />sailing-channels.com:</p>
 							<p>
 								<a href="https://www.patreon.com/sailingchannels" target="_blank">
 									<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />

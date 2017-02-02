@@ -285,7 +285,10 @@ input[type="color"] {
 
 .sc-text {
 	color:#ccc;
-	text-transform: uppercase;
+}
+
+.profile-link {
+	margin-bottom:40px;
 }
 
 .grey {
