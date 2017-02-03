@@ -45,7 +45,7 @@ class ChannelListItem extends React.Component {
                 </div>
                 <div className="col-md-3 col-sm-4 col-xs-10 col-xs-offset-3 col-md-offset-0 col-sm-offset-0">
 
-					{(this.props.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden <i className="fa fa-frown-o"></i></b></p> : null}
+					{(this.props.channel.subscribersHidden === true) ? <p className="text-muted"><b>Subscriber info hidden</b></p> : null}
                     {(this.props.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.props.channel.subscribers.toLocaleString()}</p> : null}
 					<p><b>Views:</b> {this.props.channel.views.toLocaleString()}</p>
 					{(this.props.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.props.channel.videoCount.toLocaleString()}</p> : null}
