@@ -1,6 +1,7 @@
 var me = require("./me");
 var moment = require("moment");
 var async = require("async");
+var ServerTiming = require("servertiming");
 
 // TEXT CUTTER
 var textCutter = function(i, text) {
@@ -20,6 +21,8 @@ module.exports = {
 	// GET
 	get: function(req, res) {
 
+		var Timing = new ServerTiming();
+
 		var sortBy = req.query.sort || "subscribers";
 		var take = parseInt(req.query.take) || 25;
 		var skip = parseInt(req.query.skip) || 0;
@@ -34,6 +37,8 @@ module.exports = {
 		// query for the channel mongodb query...
 		async.waterfall([
 			function(callback) {
+
+				Timing.start("Determine Sort Key");
 
 				var query = {
 					"language": req.cookies["channel-language"] || "en"
@@ -107,6 +112,8 @@ module.exports = {
 			// the actual query
 			function(err, step1) {
 
+				Timing.stop("Determine Sort Key");
+
 				if(err) {
 					return res.status(500).send({
 						"data": [],
@@ -118,6 +125,8 @@ module.exports = {
 
 				var sorting = {};
 				sorting[step1.sortKey] = -1;
+
+				Timing.start("Read Subs and Channels");
 
 				async.parallel({
 					"subscriptions": function(done) {
@@ -145,6 +154,8 @@ module.exports = {
 
 				}, function(err, results) {
 
+					Timing.stop("Read Subs and Channels");
+
 					// oh no!
 					if(err || !results.channels) {
 						return res.status(500).send({
@@ -155,6 +166,8 @@ module.exports = {
 						});
 					}
 
+					Timing.start("Enhance Subscriptions");
+
 					// if we have subscriptions, enhance the
 					var channels = results.channels.map(function(channel) {
 
@@ -164,7 +177,10 @@ module.exports = {
 						return channel;
 					});
 
+					Timing.stop("Enhance Subscriptions");
+
 					// send data out
+					res.header("Server-Timing", Timing.generateHeader());
 					return res.send({
 						"data": channels,
 						"skip": skip,
