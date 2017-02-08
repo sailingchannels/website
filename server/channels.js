@@ -38,7 +38,7 @@ module.exports = {
 		async.waterfall([
 			function(callback) {
 
-				Timing.start("Determine Sort Key");
+				Timing.startTimer("Determine Sort Key");
 
 				var query = {
 					"language": req.cookies["channel-language"] || "en"
@@ -112,7 +112,7 @@ module.exports = {
 			// the actual query
 			function(err, step1) {
 
-				Timing.stop("Determine Sort Key");
+				Timing.stopTimer("Determine Sort Key");
 
 				if(err) {
 					return res.status(500).send({
@@ -126,7 +126,7 @@ module.exports = {
 				var sorting = {};
 				sorting[step1.sortKey] = -1;
 
-				Timing.start("Read Subs and Channels");
+				Timing.startTimer("Read Subs and Channels");
 
 				async.parallel({
 					"subscriptions": function(done) {
@@ -154,7 +154,7 @@ module.exports = {
 
 				}, function(err, results) {
 
-					Timing.stop("Read Subs and Channels");
+					Timing.stopTimer("Read Subs and Channels");
 
 					// oh no!
 					if(err || !results.channels) {
@@ -166,7 +166,7 @@ module.exports = {
 						});
 					}
 
-					Timing.start("Enhance Subscriptions");
+					Timing.startTimer("Enhance Subscriptions");
 
 					// if we have subscriptions, enhance the
 					var channels = results.channels.map(function(channel) {
@@ -177,7 +177,7 @@ module.exports = {
 						return channel;
 					});
 
-					Timing.stop("Enhance Subscriptions");
+					Timing.stopTimer("Enhance Subscriptions");
 
 					// send data out
 					res.header("Server-Timing", Timing.generateHeader());

@@ -41,7 +41,7 @@
     "react-infinite": "^0.8.0",
     "react-router": "^1.0.0-rc3",
     "request": "^2.65.0",
-    "servertiming": "^1.1.1",
+    "servertiming": "^1.1.2",
     "swig": "^1.4.2",
     "underscore": "^1.8.3",
     "validator": "^5.1.0",
