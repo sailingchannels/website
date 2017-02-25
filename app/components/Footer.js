@@ -8,7 +8,6 @@ class App extends React.Component {
 		return (
 			<div className="container footer">
                 <center>
-					<a href="http://status.sailing-channels.com/" target="_blank">Status</a>&nbsp;|&nbsp;
 				    <Link to="/imprint">Imprint</Link>&nbsp;|&nbsp;
                     <Link to="/privacy">Privacy Policy</Link>&nbsp;|&nbsp;
                     <a href="https://github.com/sailingchannels" target="_blank">Code on GitHub</a>
