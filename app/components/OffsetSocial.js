@@ -70,18 +70,20 @@ class SocialOffset extends React.Component {
 		return (
 			<div className="offset-social">
 				{profile}
-				<p className="sc-text">CONTACT<br />sailing-channels.com:</p>
-		        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
-		            <i className="fa fa-facebook-square fa-3x"></i>
-		        </a>
-				<br />
-		        <a title="Sailing Channels on Twitter" href="https://twitter.com/sailchannels" target="_blank" className="social social-tw">
-		            <i className="fa fa-twitter-square fa-3x"></i>
-		        </a>
-				<br />
-				<a title="E-Mail" href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)} className="social social-em">
-		            <i className="fa fa-envelope-square fa-3x"></i>
-		        </a>
+				<div className="hidden-sm hidden-xs">
+					<p className="sc-text">CONTACT<br />sailing-channels.com:</p>
+			        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
+			            <i className="fa fa-facebook-square fa-3x"></i>
+			        </a>
+					<br />
+			        <a title="Sailing Channels on Twitter" href="https://twitter.com/sailchannels" target="_blank" className="social social-tw">
+			            <i className="fa fa-twitter-square fa-3x"></i>
+			        </a>
+					<br />
+					<a title="E-Mail" href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)} className="social social-em">
+			            <i className="fa fa-envelope-square fa-3x"></i>
+			        </a>
+				</div>
 
 				{(this.state.bannerdialog === true) ?
 					<div>

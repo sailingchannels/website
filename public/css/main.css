@@ -196,8 +196,8 @@ h1 {
 }
 
 .social {
-  color:#ddd;
-  text-decoration: none;
+	color:#ddd;
+	text-decoration: none;
 	margin-right:10px;
 
 	-webkit-transition: all 0.1s ease;
@@ -208,14 +208,14 @@ h1 {
 
 .social-fb:hover,
 .social-fb:active {
-  color:#3B5998;
-  text-decoration: none;
+	color:#3B5998;
+	text-decoration: none;
 }
 
 .social-tw:hover,
 .social-tw:active  {
-  color:#55acee;
-  text-decoration: none;
+	color:#55acee;
+	text-decoration: none;
 }
 
 .scroll-up-btn:hover,

@@ -36,7 +36,7 @@
     "morgan": "^1.6.1",
     "react": "^0.14.7",
     "react-cookie": "^0.4.5",
-    "react-dom": "^0.14.7",
+    "react-dom": "^0.14.8",
     "react-helmet": "^2.3.1",
     "react-infinite": "^0.8.0",
     "react-router": "^1.0.0-rc3",

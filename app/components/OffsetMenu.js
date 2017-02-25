@@ -8,11 +8,14 @@ class OffsetMenu extends React.Component {
 	toggleMenu() {
 
 		if($(".offset-menu").find("ul").hasClass("hidden-xs")) {
+
 			$(".offset-menu").find("ul").removeClass("hidden-xs");
+			$(".offset-menu").addClass("cover-up");
 			$(".logo, .search-row").css("opacity", 0);
 		}
 		else {
 			$(".offset-menu").find("ul").addClass("hidden-xs");
+			$(".offset-menu").removeClass("cover-up");
 			$(".logo, .search-row").css("opacity", 1);
 		}
 	}
