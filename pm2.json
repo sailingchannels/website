@@ -5,7 +5,7 @@
 		"exec_interpreter"	: "./node_modules/.bin/babel-node",
 		"watch"       		: true,
 		"env": {
-			"TAG"			: "1.13.5",
+			"TAG"			: "1.13.6",
 			"PORT"			: "8999"
 		}
 	}]
