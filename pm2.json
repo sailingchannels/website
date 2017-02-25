@@ -1,0 +1,12 @@
+{
+	"apps" : [{
+		"name"        		: "sailing-channels.com",
+		"script"      		: "./server.js",
+		"exec_interpreter"	: "./node_modules/.bin/babel-node",
+		"watch"       		: true,
+		"env": {
+			"TAG"			: "1.13.5",
+			"PORT"			: "8999"
+		}
+	}]
+}
