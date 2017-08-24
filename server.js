@@ -227,12 +227,17 @@ app.use(function(req, res) {
 });
 
 var mongodbURL = "sailing-channels";
+var mongodbHost = "mongo";
 if (tag === "dev") {
-	mongodbURL += "-dev";
+	//mongodbURL += "-dev";
+	mongodbHost = "localhost";
 }
 
 // mongodb connect
-mongodb.connect("mongodb://mongo:27017/" + mongodbURL, function(err, db) {
+mongodb.connect("mongodb://" + mongodbHost + ":27017/" + mongodbURL, function(
+	err,
+	db
+) {
 	if (err) throw err;
 
 	// collections
