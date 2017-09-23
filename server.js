@@ -57,6 +57,11 @@ app.use(
 	})
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use(function(req, res, next) {
+	// add tag to response
+	res.set("X-Version", global.tag);
+	next();
+});
 
 const CREDENTIALS = jsonfile.readFileSync("client_id.json");
 global.oauth = youtube.authenticate({
