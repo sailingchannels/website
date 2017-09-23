@@ -1,16 +1,18 @@
 import React from "react";
 import Footer from "./Footer";
 import cookie from "react-cookie";
-import {Link} from "react-router";
+import { Link } from "react-router";
+import LazyLoad from "react-lazyload";
 
 class SocialOffset extends React.Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null,
-			"bannerdialog": !!cookie.load("banner-dialog")
+			me: cookie.load("me")
+				? JSON.parse(cookie.load("me").replace("j:", ""))
+				: null,
+			bannerdialog: !!cookie.load("banner-dialog")
 		};
 	}
 
@@ -27,7 +29,7 @@ class SocialOffset extends React.Component {
 	// REPLACE X
 	replaceX(e) {
 		var $e = $(e.target);
-		if(!$e.attr("href")) {
+		if (!$e.attr("href")) {
 			$e = $e.parents("[href]");
 		}
 
@@ -47,7 +49,7 @@ class SocialOffset extends React.Component {
 	// MODAL CLOSED
 	modalClosed() {
 		this.setState({
-			"bannerdialog": true
+			bannerdialog: true
 		});
 
 		//this.forceUpdate();
@@ -55,15 +57,21 @@ class SocialOffset extends React.Component {
 
 	// RENDER
 	render() {
-
 		var profile = null;
 
-		if(this.state.me) {
-			if(!this.state.me.title || this.state.me.title === "") {
-				profile = <p className="profile-link"><Link to="/me">Your profile</Link></p>;
-			}
-			else {
-				profile = <p className="profile-link">Hi, <Link to="/me">{this.state.me.title}</Link></p>;
+		if (this.state.me) {
+			if (!this.state.me.title || this.state.me.title === "") {
+				profile = (
+					<p className="profile-link">
+						<Link to="/me">Your profile</Link>
+					</p>
+				);
+			} else {
+				profile = (
+					<p className="profile-link">
+						Hi, <Link to="/me">{this.state.me.title}</Link>
+					</p>
+				);
 			}
 		}
 
@@ -71,38 +79,85 @@ class SocialOffset extends React.Component {
 			<div className="offset-social">
 				{profile}
 				<div className="hidden-sm hidden-xs">
-					<p className="sc-text">CONTACT<br />sailing-channels.com:</p>
-			        <a title="Sailing Channels on Facebook" href="https://www.fb.com/sailingchannels" target="_blank" className="social social-fb">
-			            <i className="fa fa-facebook-square fa-3x"></i>
-			        </a>
+					<p className="sc-text">
+						CONTACT<br />sailing-channels.com:
+					</p>
+					<a
+						title="Sailing Channels on Facebook"
+						href="https://www.fb.com/sailingchannels"
+						target="_blank"
+						className="social social-fb"
+					>
+						<i className="fa fa-facebook-square fa-3x" />
+					</a>
 					<br />
-			        <a title="Sailing Channels on Twitter" href="https://twitter.com/sailchannels" target="_blank" className="social social-tw">
-			            <i className="fa fa-twitter-square fa-3x"></i>
-			        </a>
+					<a
+						title="Sailing Channels on Twitter"
+						href="https://twitter.com/sailchannels"
+						target="_blank"
+						className="social social-tw"
+					>
+						<i className="fa fa-twitter-square fa-3x" />
+					</a>
 					<br />
-					<a title="E-Mail" href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!" onMouseOver={this.replaceX.bind(this)} className="social social-em">
-			            <i className="fa fa-envelope-square fa-3x"></i>
-			        </a>
+					<a
+						title="E-Mail"
+						href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!"
+						onMouseOver={this.replaceX.bind(this)}
+						className="social social-em"
+					>
+						<i className="fa fa-envelope-square fa-3x" />
+					</a>
 				</div>
 
-				{(this.state.bannerdialog === true) ?
+				{this.state.bannerdialog === true ? (
 					<div>
 						<div className="support-row hidden-sm hidden-xs">
-							<p className="sc-text">SUPPORT<br />sailing-channels.com:</p>
-							<p>
-								<a href="https://www.patreon.com/sailingchannels" target="_blank">
-									<img src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
-								</a>
+							<p className="sc-text">
+								SUPPORT<br />sailing-channels.com:
 							</p>
-							<p>
-								<a href="https://www.paypal.me/sailingchannels" target="_blank">
-									<img src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png" className="grey support-img" height="50" width="50" onMouseOver={this.revealGrey.bind(this)} onMouseOut={this.addGrey.bind(this)} />
+							<div>
+								<a
+									href="https://www.patreon.com/sailingchannels"
+									target="_blank"
+								>
+									<LazyLoad height="50">
+										<img
+											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
+											className="grey support-img"
+											height="50"
+											width="50"
+											onMouseOver={this.revealGrey.bind(
+												this
+											)}
+											onMouseOut={this.addGrey.bind(this)}
+										/>
+									</LazyLoad>
 								</a>
-							</p>
+							</div>
+							<div style={{ marginTop: "10px" }}>
+								<a
+									href="https://www.paypal.me/sailingchannels"
+									target="_blank"
+								>
+									<LazyLoad height="50">
+										<img
+											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
+											className="grey support-img"
+											height="50"
+											width="50"
+											onMouseOver={this.revealGrey.bind(
+												this
+											)}
+											onMouseOut={this.addGrey.bind(this)}
+										/>
+									</LazyLoad>
+								</a>
+							</div>
 						</div>
 					</div>
-				: null}
-		    </div>
+				) : null}
+			</div>
 		);
 	}
 }

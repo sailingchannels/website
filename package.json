@@ -1,7 +1,8 @@
 {
 	"name": "SailingChannels",
-	"description": "Discovering YouTube sailing channels by using a network analysis on recursive channel subscriptions",
-	"version": "1.13.11",
+	"description":
+		"Discovering YouTube sailing channels by using a network analysis on recursive channel subscriptions",
+	"version": "1.13.12",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thomasbrueggemann/sailing-channels.git"
@@ -39,6 +40,7 @@
 		"react-dom": "^0.14.8",
 		"react-helmet": "^2.3.1",
 		"react-infinite": "^0.8.0",
+		"react-lazyload": "^2.2.7",
 		"react-router": "^1.0.0-rc3",
 		"request": "^2.65.0",
 		"servertiming": "^1.1.2",
