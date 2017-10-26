@@ -103,6 +103,7 @@ app.get("/api/channel/get/:id/videos", channel.getVideos);
 app.post("/api/channel/flag", channel.flag);
 app.post("/api/channel/subscribe", channel.subscribe);
 app.post("/api/channel/unsubscribe", channel.unsubscribe);
+app.get("/api/channel/fromyoutube", channel.getFromYouTubeURL);
 
 // API / CHANNELS
 app.get("/api/channels/get", cache15, channels.get);
