@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, IndexRoute} from "react-router";
+import { Route, IndexRoute } from "react-router";
 import App from "./components/App";
 import Home from "./components/Home";
 import SearchResult from "./components/SearchResult";
@@ -18,6 +18,7 @@ import AdminDashboard from "./components/Admin/Dashboard";
 import AdminAdditional from "./components/Admin/Additional";
 import AdminBlacklist from "./components/Admin/Blacklist";
 import AdminFlags from "./components/Admin/Flags";
+import Suggest from "./components/Suggest";
 
 export default (
 	<Route path="/" component={App}>
@@ -28,6 +29,7 @@ export default (
 		<Route path="search/:query" component={SearchResult} />
 		<Route path="how-it-works" component={DataCollection} />
 		<Route path="channel-missing" component={ChannelMissing} />
+		<Route path="suggest" component={Suggest} />
 		<Route path="privacy" component={PrivacyPolicy} />
 		<Route path="imprint" component={Imprint} />
 		<Route path="contributions" component={Contributions} />

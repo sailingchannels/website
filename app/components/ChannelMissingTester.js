@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import HTTP from "../helpers/http";
 
 class ChannelMissingTester extends Component {
 	// CONSTRUCTOR
@@ -12,12 +13,37 @@ class ChannelMissingTester extends Component {
 		};
 	}
 
+	// REPLACE X
+	replaceX(e) {
+		e.target.href = e.target.href.replace(/x/g, "");
+	}
+
 	// HANDLE CHANGE
 	handleChange(event) {
 		const v = event.target.value;
 
 		this.setState({ channelValue: v, checking: v.length > 0 });
-		console.log(v);
+
+		new HTTP().post(
+			{
+				url: "/api/channels/identify",
+				data: JSON.stringify({
+					hints: [v]
+				}),
+				headers: {
+					"Content-Type": "application/json"
+				},
+				type: "POST",
+				dataType: "json",
+				cache: false
+			},
+			(err, data) => {
+				this.setState({
+					checkChannelResult: data[0].src === "db",
+					checking: false
+				});
+			}
+		);
 	}
 
 	// RENDER

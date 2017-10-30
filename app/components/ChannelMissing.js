@@ -27,11 +27,6 @@ class ChannelMissing extends React.Component {
 		});
 	}
 
-	// REPLACE X
-	replaceX(e) {
-		e.target.href = e.target.href.replace(/x/g, "");
-	}
-
 	// RENDER
 	render() {
 		var stats = null;
