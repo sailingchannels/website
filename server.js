@@ -103,11 +103,11 @@ app.get("/api/channel/get/:id/videos", channel.getVideos);
 app.post("/api/channel/flag", channel.flag);
 app.post("/api/channel/subscribe", channel.subscribe);
 app.post("/api/channel/unsubscribe", channel.unsubscribe);
-app.get("/api/channel/fromyoutube", channel.getFromYouTubeURL);
 
 // API / CHANNELS
 app.get("/api/channels/get", cache15, channels.get);
 app.get("/api/channels/search", channels.search);
+app.post("/api/channels/identify", channels.identify);
 
 // API / POSITIONS
 app.get("/api/positions/:id/last/:n", positions.last);
@@ -258,6 +258,7 @@ mongodb.connect("mongodb://" + mongodbHost + ":27017/" + mongodbURL, function(
 	global.positions = db.collection("positions");
 	global.blacklist = db.collection("blacklist");
 	global.additional = db.collection("additional");
+	global.sailingterms = db.collection("sailingterms");
 	global.CACHE_users_subscriptions = db.collection(
 		"CACHE_users_subscriptions"
 	);

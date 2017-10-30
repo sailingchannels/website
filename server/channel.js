@@ -1,10 +1,9 @@
-var positions = require("./positions");
-var moment = require("moment");
-var async = require("async");
-var me = require("./me");
-var youtube = require("youtube-api");
-var youtubeCustomLinks = require("youtube-custom-links");
-var request = require("request");
+const positions = require("./positions");
+const moment = require("moment");
+const async = require("async");
+const me = require("./me");
+const youtube = require("youtube-api");
+const youtubeCustomLinks = require("youtube-custom-links");
 
 module.exports = {
 	// GET BY ID
@@ -378,20 +377,5 @@ module.exports = {
 				);
 			}
 		);
-	},
-
-	// GET FROM YOUTUBE URL
-	getFromYouTubeURL: function(req, res) {
-		const url = req.query.url;
-
-		// fetch source code of url
-		request.get(url, function(err, response, body) {
-			// match the ucid
-			var ucidMatcher = /"ucid":"(.{24})/;
-			var m = ucidMatcher.exec(body);
-
-			// return channel result to caller
-			return res.send({ channelid: m[1] });
-		});
 	}
 };
