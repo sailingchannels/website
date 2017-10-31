@@ -5,11 +5,6 @@ import SubscribeButton from "./SubscribeButton";
 import LazyLoad from "react-lazyload";
 
 class ChannelListItem extends React.Component {
-	// COMPONENT DID MOUNT
-	componentDidMount() {
-		//$(".channel-thumb").unveil();
-	}
-
 	// FORMAT DATE
 	formatDate(unix) {
 		var m = [

@@ -4,7 +4,6 @@ import OffsetSocial from "./OffsetSocial";
 import Logo from "./Logo";
 
 class Login extends React.Component {
-
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		document.title = "Sign In | Sailing Channels";
@@ -12,48 +11,69 @@ class Login extends React.Component {
 
 	// RENDER
 	render() {
-
 		return (
-            <div className="container">
+			<div className="container">
 				<OffsetSocial />
 				<Logo />
 				<OffsetMenu />
-                <div className="row content-row">
-					<div className="col-md-4"></div>
+				<div className="row content-row">
+					<div className="col-md-4" />
 					<div className="col-md-4">
-	                    <h1 className="content-h1">SignIn</h1>
+						<h1 className="content-h1">SignIn</h1>
 						<p>
-							To provide you with an awesome tailored user interface, you can sign in with your YouTube account.
+							To provide you with an awesome tailored user
+							interface, you can sign in with your YouTube
+							account.
 						</p>
-						<center><p>~</p></center>
+						<center>
+							<p>~</p>
+						</center>
 						<p>
-							sailing-channels.com <u>does not publish anything on your behalf nor does it track or share your data</u>.
+							sailing-channels.com{" "}
+							<u>
+								does not publish anything on your behalf nor
+								does it track or share your data
+							</u>.
 						</p>
-						<center><p>~</p></center>
+						<center>
+							<p>~</p>
+						</center>
 						<p>
 							<b>Cool stuff you can do, when signed in:</b>
 							<ul>
-								<li>Manage subscribtions directly from list view</li>
+								<li>
+									Manage subscribtions directly from list view
+								</li>
 								<li>Flag channels as not sailing-related</li>
+								<li>Suggest channels to the list</li>
 							</ul>
 						</p>
 						<p>
-							<b>Even cooler stuff you can do, when signed in and your channel is listed:</b>
+							<b>
+								Even cooler stuff you can do, when signed in and
+								your channel is listed:
+							</b>
 							<ul>
 								<li>View your detailed channel profile page</li>
 								<li>Display AIS position on a map</li>
 							</ul>
 						</p>
-						<center><p>~</p></center>
 						<center>
-							<a href="/oauth2callback" className="btn btn-danger btn-lg btn-raised">
-								Sign In with <i className="fa fa-youtube"></i> YouTube
+							<p>~</p>
+						</center>
+						<center>
+							<a
+								href="/oauth2callback"
+								className="btn btn-danger btn-lg btn-raised"
+							>
+								Sign In with <i className="fa fa-youtube" />{" "}
+								YouTube
 							</a>
 						</center>
 					</div>
-					<div className="col-md-4"></div>
-                </div>
-            </div>
+					<div className="col-md-4" />
+				</div>
+			</div>
 		);
 	}
 }

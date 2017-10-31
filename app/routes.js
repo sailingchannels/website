@@ -6,7 +6,6 @@ import SearchResult from "./components/SearchResult";
 import ChannelDetail from "./components/ChannelDetail";
 import VideoDetail from "./components/VideoDetail";
 import DataCollection from "./components/DataCollection";
-import ChannelMissing from "./components/ChannelMissing";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Imprint from "./components/Imprint";
 import Contributions from "./components/Contributions";
@@ -28,7 +27,6 @@ export default (
 		<Route path="video/:id" component={VideoDetail} />
 		<Route path="search/:query" component={SearchResult} />
 		<Route path="how-it-works" component={DataCollection} />
-		<Route path="channel-missing" component={ChannelMissing} />
 		<Route path="suggest" component={Suggest} />
 		<Route path="privacy" component={PrivacyPolicy} />
 		<Route path="imprint" component={Imprint} />

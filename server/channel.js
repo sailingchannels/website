@@ -377,5 +377,40 @@ module.exports = {
 				);
 			}
 		);
+	},
+
+	// SUGGEST
+	suggest: function(req, res) {
+		// check if request is authenticated
+		var me = req.cookies.me;
+		if (!me) {
+			return res
+				.status(401)
+				.send({ error: "no permission to perform this operation" });
+		}
+
+		if (!("_id" in me)) {
+			return res.status(400).send({ error: "no user id found" });
+		}
+
+		var channel = req.body.channel;
+
+		if (!channel) {
+			return res.status(400).send({ error: "no channel id provided" });
+		}
+
+		// insert the suggestion
+		global.suggestions.insertOne({
+			_id: {
+				channel: channel,
+				user: me._id
+			},
+			when: moment.utc().toDate()
+		});
+
+		return res.send({
+			error: null,
+			success: true
+		});
 	}
 };

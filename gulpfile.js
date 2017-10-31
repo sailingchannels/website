@@ -33,7 +33,8 @@ var dependencies = [
  |--------------------------------------------------------------------------
  */
 gulp.task("vendor-js", function() {
-	return gulp.src([
+	return gulp
+		.src([
 			"bower_components/jquery/dist/jquery.js",
 			"bower_components/bootstrap/dist/js/bootstrap.js",
 			"bower_components/bootstrap-material-design/dist/js/material.min.js",
@@ -51,9 +52,14 @@ gulp.task("vendor-js", function() {
 			"public/js/Leaflet.fullscreen.min.js"
 		])
 		.pipe(concat("vendor.js"))
-		.pipe(gulpif(production, uglify({
-			mangle: production
-		})))
+		.pipe(
+			gulpif(
+				production,
+				uglify({
+					mangle: production
+				})
+			)
+		)
 		.pipe(gulp.dest("public/js"));
 });
 
@@ -63,18 +69,20 @@ gulp.task("vendor-js", function() {
  |--------------------------------------------------------------------------
  */
 gulp.task("vendor-css", function() {
-	return gulp.src([
+	return gulp
+		.src([
 			"bower_components/bootstrap/dist/css/bootstrap.min.css",
 			"bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css",
 			"public/css/main.css"
 		])
 		.pipe(concat("vendor.css"))
-		.pipe(minifyCss({compatibility: "ie8"}))
+		.pipe(minifyCss({ compatibility: "ie8" }))
 		.pipe(gulp.dest("public/css"));
 });
 
 gulp.task("vendor-css-lazy", function() {
-	return gulp.src([
+	return gulp
+		.src([
 			"bower_components/leaflet/dist/leaflet.css",
 			"bower_components/Leaflet.label/dist/leaflet.label.css",
 			"bower_components/spectrum/spectrum.css",
@@ -82,10 +90,9 @@ gulp.task("vendor-css-lazy", function() {
 			"public/css/leaflet.fullscreen.css"
 		])
 		.pipe(concat("vendor-lazy.css"))
-		.pipe(minifyCss({compatibility: "ie8"}))
+		.pipe(minifyCss({ compatibility: "ie8" }))
 		.pipe(gulp.dest("public/css"));
 });
-
 
 /*
  |--------------------------------------------------------------------------
@@ -97,9 +104,16 @@ gulp.task("browserify-vendor", function() {
 		.require(dependencies)
 		.bundle()
 		.pipe(source("vendor.bundle.js"))
-		.pipe(gulpif(production, streamify(uglify({
-			mangle: production
-		}))))
+		.pipe(
+			gulpif(
+				production,
+				streamify(
+					uglify({
+						mangle: production
+					})
+				)
+			)
+		)
 		.pipe(gulp.dest("public/js"));
 });
 
@@ -114,9 +128,16 @@ gulp.task("browserify", ["browserify-vendor"], function() {
 		.transform(babelify)
 		.bundle()
 		.pipe(source("bundle.js"))
-		.pipe(gulpif(production, streamify(uglify({
-			mangle: production
-		}))))
+		.pipe(
+			gulpif(
+				production,
+				streamify(
+					uglify({
+						mangle: production
+					})
+				)
+			)
+		)
 		.pipe(gulp.dest("public/js"));
 });
 
@@ -134,17 +155,33 @@ gulp.task("browserify-watch", ["browserify-vendor"], function() {
 
 	function rebundle() {
 		var start = Date.now();
-		return bundler.bundle()
+		return bundler
+			.bundle()
 			.on("error", function(err) {
 				gutil.log(gutil.colors.red(err.toString()));
 			})
 			.on("end", function() {
-				gutil.log(gutil.colors.green("Finished rebundling in", (Date.now() - start) + "ms."));
+				gutil.log(
+					gutil.colors.green(
+						"Finished rebundling in",
+						Date.now() - start + "ms."
+					)
+				);
 			})
 			.pipe(source("bundle.js"))
 			.pipe(gulp.dest("public/js/"));
 	}
 });
 
-gulp.task("default", ["vendor-js", "vendor-css", "vendor-css-lazy", "browserify-watch"]);
-gulp.task("build", ["vendor-js", "vendor-css", "vendor-css-lazy", "browserify"]);
+gulp.task("default", [
+	"vendor-js",
+	"vendor-css",
+	"vendor-css-lazy",
+	"browserify-watch"
+]);
+gulp.task("build", [
+	"vendor-js",
+	"vendor-css",
+	"vendor-css-lazy",
+	"browserify"
+]);

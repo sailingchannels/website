@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import HTTP from "../helpers/http";
+import SuggestChannelsList from "./SuggestChannelsList";
 
 class ChannelMissingTester extends Component {
 	// CONSTRUCTOR
@@ -13,16 +14,15 @@ class ChannelMissingTester extends Component {
 		};
 	}
 
-	// REPLACE X
-	replaceX(e) {
-		e.target.href = e.target.href.replace(/x/g, "");
-	}
-
 	// HANDLE CHANGE
 	handleChange(event) {
 		const v = event.target.value;
 
-		this.setState({ channelValue: v, checking: v.length > 0 });
+		this.setState({
+			channelValue: v,
+			checking: v.length > 0,
+			checkChannelResult: null
+		});
 
 		new HTTP().post(
 			{
@@ -38,10 +38,27 @@ class ChannelMissingTester extends Component {
 				cache: false
 			},
 			(err, data) => {
-				this.setState({
-					checkChannelResult: data[0].src === "db",
-					checking: false
-				});
+				if (err || !data) {
+					this.setState({
+						checkChannelResult: null,
+						channel: null,
+						checking: false
+					});
+				} else {
+					if (data[0].src === null) {
+						this.setState({
+							checkChannelResult: false,
+							channel: null,
+							checking: false
+						});
+					} else {
+						this.setState({
+							checkChannelResult: data[0].src === "db",
+							channel: data[0],
+							checking: false
+						});
+					}
+				}
 			}
 		);
 	}
@@ -64,22 +81,21 @@ class ChannelMissingTester extends Component {
 				</center>
 
 				{this.state.checkChannelResult === false ? (
-					<p>
-						Send an email to{" "}
-						<a
-							href="mailto:ahoyx@sailingx-channels.com"
-							onMouseOver={this.replaceX.bind(this)}
-							className="reverse"
-						>
-							moc.slennahc-gnilias@yoha
-						</a>
-					</p>
+					<SuggestChannelsList channels={[this.state.channel]} />
 				) : null}
 
 				{this.state.checkChannelResult === true ? (
-					<p>
-						Congratulations, your channel is already listed:
-						<Link to={""}>Channel name</Link>
+					<p className="text text-success">
+						Well, this channel is already listed:{" "}
+						<Link to={"/channel/" + this.state.channel._id}>
+							{this.state.channel.data.title}
+						</Link>
+					</p>
+				) : null}
+
+				{this.state.checkChannelResult === false ? (
+					<p className="text text-warning">
+						This is not a valid YouTube channel!
 					</p>
 				) : null}
 			</div>

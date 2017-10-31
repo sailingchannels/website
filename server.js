@@ -95,6 +95,7 @@ app.get("/api/stats", misc.stats);
 // API / ME
 app.get("/api/me", me.me);
 app.post("/api/me/profile", me.profile);
+app.get("/api/me/subscriptions", me.subscriptions);
 
 // API / CHANNEL
 app.get("/api/channel/get/:id", cache15, channel.getById);
@@ -103,6 +104,7 @@ app.get("/api/channel/get/:id/videos", channel.getVideos);
 app.post("/api/channel/flag", channel.flag);
 app.post("/api/channel/subscribe", channel.subscribe);
 app.post("/api/channel/unsubscribe", channel.unsubscribe);
+app.post("/api/channel/suggest", channel.suggest);
 
 // API / CHANNELS
 app.get("/api/channels/get", cache15, channels.get);
@@ -259,6 +261,7 @@ mongodb.connect("mongodb://" + mongodbHost + ":27017/" + mongodbURL, function(
 	global.blacklist = db.collection("blacklist");
 	global.additional = db.collection("additional");
 	global.sailingterms = db.collection("sailingterms");
+	global.suggestions = db.collection("suggestions");
 	global.CACHE_users_subscriptions = db.collection(
 		"CACHE_users_subscriptions"
 	);

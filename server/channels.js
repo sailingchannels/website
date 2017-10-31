@@ -400,7 +400,7 @@ module.exports = {
 									// channel info came from mongodb
 									delete data["_id"];
 									return done(null, {
-										id: channelid,
+										_id: channelid,
 										hint: hint,
 										src: "db",
 										sail: checkSailingTerms(
@@ -424,7 +424,7 @@ module.exports = {
 
 											// create response
 											return done(null, {
-												id: channelid,
+												_id: channelid,
 												hint: hint,
 												src: "yt",
 												sail: checkSailingTerms(

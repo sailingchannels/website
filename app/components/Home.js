@@ -7,17 +7,17 @@ import Logo from "./Logo";
 import BannerDialog from "./BannerDialog";
 import SignInDialog from "./SignInDialog";
 import cookie from "react-cookie";
-import {Link} from "react-router";
+import { Link } from "react-router";
 
 class Home extends React.Component {
-
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
-		console.log(cookie.load("me"));
 		this.state = {
-			"showScrollUp": false,
-			"me": cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
+			showScrollUp: false,
+			me: cookie.load("me")
+				? JSON.parse(cookie.load("me").replace("j:", ""))
+				: null
 		};
 	}
 
@@ -33,13 +33,11 @@ class Home extends React.Component {
 
 	// ON WINDOW SCROLL
 	onWindowScroll() {
-
 		// did the scrollup state change?
-		if(this.state.showScrollUp !== ($(window).scrollTop() > 100)) {
-
+		if (this.state.showScrollUp !== $(window).scrollTop() > 100) {
 			// do or do not show scrollup button
 			this.setState({
-				"showScrollUp": ($(window).scrollTop() > 100)
+				showScrollUp: $(window).scrollTop() > 100
 			});
 		}
 	}
@@ -51,27 +49,41 @@ class Home extends React.Component {
 
 	// RENDER
 	render() {
-
 		var sortBy = this.props.params.sortBy || "upload";
 		var scrollUp = null;
 
-		if(this.state.showScrollUp === true) {
-			scrollUp = <div className="scroll-up-btn" title="Scroll to top" onClick={this.scrollUp.bind(this)}>
-				<i className="fa fa-arrow-circle-up fa-3x"></i>
-			</div>;
+		if (this.state.showScrollUp === true) {
+			scrollUp = (
+				<div
+					className="scroll-up-btn"
+					title="Scroll to top"
+					onClick={this.scrollUp.bind(this)}
+				>
+					<i className="fa fa-arrow-circle-up fa-3x" />
+				</div>
+			);
 		}
 
 		return (
 			<div className="container">
 				<OffsetSocial />
 				<Logo />
-				{(!this.state.me) ?
+				{!this.state.me ? (
 					<center>
-						<a href="/oauth2callback" className="btn btn-raised btn-sm btn-danger yt-login">Sign In with <i className="fa fa-youtube"></i> YouTube</a>
-						<Link className="btn btn-link show btn-more-info" to={"/signin"}>More info</Link>
+						<a
+							href="/oauth2callback"
+							className="btn btn-raised btn-sm btn-danger yt-login"
+						>
+							Sign In with <i className="fa fa-youtube" /> YouTube
+						</a>
+						<Link
+							className="btn btn-link show btn-more-info"
+							to={"/signin"}
+						>
+							More info
+						</Link>
 					</center>
-					: null
-				}
+				) : null}
 				<OffsetMenu />
 				{scrollUp}
 				<SearchBar sortBy={sortBy} history={this.props.history} />
