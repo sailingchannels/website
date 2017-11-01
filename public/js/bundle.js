@@ -2676,6 +2676,8 @@ var ChannelMissingTester = (function (_Component) {
 	}, {
 		key: "render",
 		value: function render() {
+			console.log(this.state);
+
 			return _react2["default"].createElement(
 				"div",
 				null,
@@ -2685,7 +2687,7 @@ var ChannelMissingTester = (function (_Component) {
 					_react2["default"].createElement("input", {
 						type: "text",
 						placeholder: "https://youtube.com/channel/...",
-						style: { width: "80%" },
+						style: { width: "80%", marginBottom: "20px" },
 						className: "form-control",
 						value: this.state.channelValue,
 						onChange: this.handleChange.bind(this)
@@ -2696,22 +2698,30 @@ var ChannelMissingTester = (function (_Component) {
 						"Checking..."
 					) : null
 				),
-				this.state.checkChannelResult === false ? _react2["default"].createElement(_SuggestChannelsList2["default"], { channels: [this.state.channel] }) : null,
-				this.state.checkChannelResult === true ? _react2["default"].createElement(
-					"p",
-					{ className: "text text-success" },
-					"Well, this channel is already listed:",
-					" ",
+				this.state.checkChannelResult === false && this.state.channel !== null && this.state.channelValue.length > 0 ? _react2["default"].createElement(_SuggestChannelsList2["default"], { channels: [this.state.channel] }) : null,
+				this.state.checkChannelResult === true && this.state.channelValue.length > 0 ? _react2["default"].createElement(
+					"center",
+					null,
 					_react2["default"].createElement(
-						_reactRouter.Link,
-						{ to: "/channel/" + this.state.channel._id },
-						this.state.channel.data.title
+						"p",
+						{ className: "text text-success" },
+						"Well, this channel is already listed, check it out:",
+						" ",
+						_react2["default"].createElement(
+							_reactRouter.Link,
+							{ to: "/channel/" + this.state.channel._id },
+							this.state.channel.data.title
+						)
 					)
 				) : null,
-				this.state.checkChannelResult === false ? _react2["default"].createElement(
-					"p",
-					{ className: "text text-warning" },
-					"This is not a valid YouTube channel!"
+				this.state.checkChannelResult === false && this.state.channel === null && this.state.channelValue.length > 0 ? _react2["default"].createElement(
+					"center",
+					null,
+					_react2["default"].createElement(
+						"p",
+						{ className: "text text-warning" },
+						"This is not a valid YouTube channel!"
+					)
 				) : null
 			);
 		}
@@ -2722,6 +2732,7 @@ var ChannelMissingTester = (function (_Component) {
 
 exports["default"] = ChannelMissingTester;
 module.exports = exports["default"];
+/* CHANNEL NOT LISTED YET */ /* CHANNEL ALREADY LISTED */ /* NOT A REAL CHANNEL */
 
 },{"../helpers/http":51,"./SuggestChannelsList":45,"react":"react","react-router":"react-router"}],21:[function(require,module,exports){
 "use strict";
@@ -6635,6 +6646,8 @@ var _SuggestChannels = require("./SuggestChannels");
 
 var _SuggestChannels2 = _interopRequireDefault(_SuggestChannels);
 
+var _reactRouter = require("react-router");
+
 var Suggest = (function (_Component) {
 	_inherits(Suggest, _Component);
 
@@ -6654,7 +6667,8 @@ var Suggest = (function (_Component) {
 		value: function componentDidMount() {
 			document.title = "Suggest a channel | Sailing Channels";
 			_storesMeStore2["default"].listen(this.onChange);
-			if (this.state.subscriptions.length === 0) _actionsMeActions2["default"].getSubscriptions();
+
+			_actionsMeActions2["default"].getMe();
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -6669,6 +6683,9 @@ var Suggest = (function (_Component) {
 		key: "onChange",
 		value: function onChange(state) {
 			this.setState(state);
+
+			// should the subscriptions be fetched?
+			if (this.state.subscriptions.length === 0 && Object.keys(this.state.me).length > 0) _actionsMeActions2["default"].getSubscriptions();
 		}
 
 		// REPLACE X
@@ -6700,7 +6717,7 @@ var Suggest = (function (_Component) {
 							{ className: "content-h1" },
 							"Suggest a channel"
 						),
-						this.state.me !== null ? _react2["default"].createElement(
+						Object.keys(this.state.me).length > 0 ? _react2["default"].createElement(
 							"div",
 							null,
 							_react2["default"].createElement(
@@ -6713,18 +6730,57 @@ var Suggest = (function (_Component) {
 								subscriptions: this.state.subscriptions
 							})
 						) : _react2["default"].createElement(
-							"p",
+							"div",
 							null,
-							"Send an email to",
-							" ",
 							_react2["default"].createElement(
-								"a",
-								{
-									href: "mailto:ahoyx@sailingx-channels.com",
-									onMouseOver: this.replaceX.bind(this),
-									className: "reverse"
-								},
-								"moc.slennahc-gnilias@yoha"
+								"p",
+								null,
+								"Know of any sailing channels that are not listed here? Well, that's brilliant! Send an email with the link to the channel to",
+								" ",
+								_react2["default"].createElement(
+									"a",
+									{
+										href: "mailto:ahoyx@sailingx-channels.com",
+										onMouseOver: this.replaceX.bind(this),
+										className: "reverse"
+									},
+									"moc.slennahc-gnilias@yoha"
+								)
+							),
+							_react2["default"].createElement(
+								"p",
+								null,
+								"If you login with your YouTube account, you can easily suggest channels from this page."
+							),
+							_react2["default"].createElement(
+								"center",
+								null,
+								_react2["default"].createElement(
+									"a",
+									{
+										href: "/oauth2callback",
+										className: "btn btn-raised btn-sm btn-danger yt-login"
+									},
+									"Sign In with",
+									" ",
+									_react2["default"].createElement("i", { className: "fa fa-youtube" }),
+									" YouTube"
+								),
+								_react2["default"].createElement(
+									_reactRouter.Link,
+									{
+										className: "btn btn-link show btn-more-info",
+										to: "/signin"
+									},
+									"More info"
+								)
+							),
+							_react2["default"].createElement(
+								"p",
+								null,
+								_react2["default"].createElement("img", {
+									src: prefix + "/img/features/suggest.png"
+								})
 							)
 						)
 					),
@@ -6740,7 +6796,7 @@ var Suggest = (function (_Component) {
 exports["default"] = Suggest;
 module.exports = exports["default"];
 
-},{"../actions/MeActions":4,"../stores/MeStore":57,"./ChannelMissingTester":20,"./Logo":30,"./OffsetMenu":32,"./OffsetSocial":33,"./SuggestChannels":44,"react":"react"}],43:[function(require,module,exports){
+},{"../actions/MeActions":4,"../stores/MeStore":57,"./ChannelMissingTester":20,"./Logo":30,"./OffsetMenu":32,"./OffsetSocial":33,"./SuggestChannels":44,"react":"react","react-router":"react-router"}],43:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6920,6 +6976,11 @@ var SuggestChannels = (function (_Component) {
 				_react2["default"].createElement(
 					"center",
 					null,
+					_react2["default"].createElement(
+						"p",
+						null,
+						" "
+					),
 					_react2["default"].createElement(
 						"h3",
 						null,

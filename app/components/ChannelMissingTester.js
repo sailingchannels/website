@@ -65,13 +65,15 @@ class ChannelMissingTester extends Component {
 
 	// RENDER
 	render() {
+		console.log(this.state);
+
 		return (
 			<div>
 				<center>
 					<input
 						type="text"
 						placeholder="https://youtube.com/channel/..."
-						style={{ width: "80%" }}
+						style={{ width: "80%", marginBottom: "20px" }}
 						className="form-control"
 						value={this.state.channelValue}
 						onChange={this.handleChange.bind(this)}
@@ -80,23 +82,35 @@ class ChannelMissingTester extends Component {
 					{this.state.checking ? <p>Checking...</p> : null}
 				</center>
 
-				{this.state.checkChannelResult === false ? (
+				{/* CHANNEL NOT LISTED YET */}
+				{this.state.checkChannelResult === false &&
+				this.state.channel !== null &&
+				this.state.channelValue.length > 0 ? (
 					<SuggestChannelsList channels={[this.state.channel]} />
 				) : null}
 
-				{this.state.checkChannelResult === true ? (
-					<p className="text text-success">
-						Well, this channel is already listed:{" "}
-						<Link to={"/channel/" + this.state.channel._id}>
-							{this.state.channel.data.title}
-						</Link>
-					</p>
+				{/* CHANNEL ALREADY LISTED */}
+				{this.state.checkChannelResult === true &&
+				this.state.channelValue.length > 0 ? (
+					<center>
+						<p className="text text-success">
+							Well, this channel is already listed, check it out:{" "}
+							<Link to={"/channel/" + this.state.channel._id}>
+								{this.state.channel.data.title}
+							</Link>
+						</p>
+					</center>
 				) : null}
 
-				{this.state.checkChannelResult === false ? (
-					<p className="text text-warning">
-						This is not a valid YouTube channel!
-					</p>
+				{/* NOT A REAL CHANNEL */}
+				{this.state.checkChannelResult === false &&
+				this.state.channel === null &&
+				this.state.channelValue.length > 0 ? (
+					<center>
+						<p className="text text-warning">
+							This is not a valid YouTube channel!
+						</p>
+					</center>
 				) : null}
 			</div>
 		);

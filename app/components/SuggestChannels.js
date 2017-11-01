@@ -51,6 +51,7 @@ class SuggestChannels extends Component {
 			<div>
 				<hr />
 				<center>
+					<p>&nbsp;</p>
 					<h3>
 						<i className="fa fa-youtube" /> Channels you subscribed
 						to
