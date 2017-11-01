@@ -17,6 +17,7 @@ import AdminDashboard from "./components/Admin/Dashboard";
 import AdminAdditional from "./components/Admin/Additional";
 import AdminBlacklist from "./components/Admin/Blacklist";
 import AdminFlags from "./components/Admin/Flags";
+import AdminSuggestions from "./components/Admin/Suggestions";
 import Suggest from "./components/Suggest";
 
 export default (
@@ -40,6 +41,7 @@ export default (
 			<Route path="additional" component={AdminAdditional} />
 			<Route path="blacklist" component={AdminBlacklist} />
 			<Route path="flags" component={AdminFlags} />
+			<Route path="suggestions" component={AdminSuggestions} />
 		</Route>
 	</Route>
 );

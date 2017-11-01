@@ -362,5 +362,84 @@ module.exports = {
 				}
 			}
 		);
+	},
+
+	// GET SUGESTED CHANNELS
+	getSuggestions: function(req, res) {
+		// check if request is authenticated
+		var me = req.cookies.me;
+		if (!me) {
+			return res
+				.status(401)
+				.send({ error: "no permission to perform this operation" });
+		}
+
+		if (!("_id" in me)) {
+			return res.status(400).send({ error: "no user id found" });
+		}
+
+		// check if user is admin
+		isAdmin(me._id, function(admin) {
+			// user is not admin
+			if (admin === false) {
+				return res
+					.status(401)
+					.send({ error: "no permission to perform this operation" });
+			}
+
+			// all blacklisted channels
+			global.suggestions.find({}).toArray(function(err, data) {
+				if (err) {
+					return res.status(500).send({ error: err });
+				}
+
+				return res.send(data);
+			});
+		});
+	},
+
+	// DELETE SUGGESTIONS
+	deleteSuggestions: function(req, res) {
+		// check if request is authenticated
+		var me = req.cookies.me;
+		if (!me) {
+			return res
+				.status(401)
+				.send({ error: "no permission to perform this operation" });
+		}
+
+		if (!("_id" in me)) {
+			return res.status(400).send({ error: "no user id found" });
+		}
+
+		// check if user is admin
+		isAdmin(me._id, function(admin) {
+			// user is not admin
+			if (admin === false) {
+				return res
+					.status(401)
+					.send({ error: "no permission to perform this operation" });
+			}
+
+			// actually delete item from mongodb
+			global.suggestions.remove(
+				{
+					"_id.channel": req.params.channel,
+					"_id.user": req.params.user
+				},
+				function(err, result) {
+					if (err) {
+						return res.status(500).send({ error: err });
+					}
+
+					return res.send({
+						_id: {
+							channel: req.params.channel,
+							user: req.params.user
+						}
+					});
+				}
+			);
+		});
 	}
 };

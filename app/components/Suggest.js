@@ -106,13 +106,6 @@ class Suggest extends Component {
 										More info
 									</Link>
 								</center>
-								<p>
-									<img
-										src={
-											prefix + "/img/features/suggest.png"
-										}
-									/>
-								</p>
 							</div>
 						)}
 					</div>

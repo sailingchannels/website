@@ -4,16 +4,16 @@ import AdminActions from "../../actions/AdminActions";
 import ChannelInfo from "./ChannelInfo";
 import moment from "moment";
 
-class BlacklistItem extends React.Component {
-	addBlacklisted() {
-		this.props.parent.addBlacklisted(
+class SuggestionsListItem extends React.Component {
+	addAdditional() {
+		this.props.parent.addAdditional(
 			this.props.data._id.channel,
 			this.props.data._id.user
 		);
 	}
 
-	ignoreFlags() {
-		this.props.parent.ignoreFlags(
+	ignoreSuggestion() {
+		this.props.parent.ignoreSuggestion(
 			this.props.data._id.channel,
 			this.props.data._id.user
 		);
@@ -25,14 +25,14 @@ class BlacklistItem extends React.Component {
 			<tr>
 				<td>
 					<button
-						className="btn btn-danger"
-						onClick={this.addBlacklisted.bind(this)}
+						className="btn btn-success"
+						onClick={this.addAdditional.bind(this)}
 					>
-						Blacklist
+						Add
 					</button>
 					<button
 						className="btn btn-default"
-						onClick={this.ignoreFlags.bind(this)}
+						onClick={this.ignoreSuggestion.bind(this)}
 					>
 						Ignore
 					</button>
@@ -49,4 +49,4 @@ class BlacklistItem extends React.Component {
 	}
 }
 
-export default BlacklistItem;
+export default SuggestionsListItem;

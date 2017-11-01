@@ -121,7 +121,7 @@ app.get("/api/video/get/:id", cache60, video.get);
 // API / VIDEOS
 app.get("/api/videos/geo/:lng/:lat", videos.geo);
 
-// API / ADMIN / BLACKLISTED
+// API / ADMIN
 app.get("/api/admin/blacklisted", admin.getBlacklisted);
 app.get("/api/admin/blacklisted/delete/:id", admin.deleteBlacklisted);
 app.get("/api/admin/blacklisted/add/:id", admin.addBlacklisted);
@@ -131,6 +131,11 @@ app.get("/api/admin/additional/add/:id", admin.addAdditional);
 app.get("/api/admin/flags", admin.getFlags);
 app.get("/api/admin/flags/delete/:channel/:user", admin.deleteFlags);
 app.get("/api/admin/channel/:id", admin.getChannelInfo);
+app.get("/api/admin/suggestions", admin.getSuggestions);
+app.get(
+	"/api/admin/suggestions/delete/:channel/:user",
+	admin.deleteSuggestions
+);
 
 // MAP
 app.get("/map", cache15, function(req, res) {
