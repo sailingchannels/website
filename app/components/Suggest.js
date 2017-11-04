@@ -13,11 +13,7 @@ class Suggest extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			me: cookie.load("me")
-				? JSON.parse(cookie.load("me").replace("j:", ""))
-				: null
-		};
+		this.state = MeStore.getState();
 		this.onChange = this.onChange.bind(this);
 	}
 
@@ -25,6 +21,19 @@ class Suggest extends Component {
 	componentDidMount() {
 		document.title = "Suggest a channel | Sailing Channels";
 		MeStore.listen(this.onChange);
+
+		this.setState(
+			{
+				me: cookie.load("me")
+					? JSON.parse(cookie.load("me").replace("j:", ""))
+					: null
+			},
+			() => {
+				// should the subscriptions be fetched?
+				if (this.state.subscriptions.length === 0 && this.state.me)
+					MeActions.getSubscriptions();
+			}
+		);
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -35,10 +44,6 @@ class Suggest extends Component {
 	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
-
-		// should the subscriptions be fetched?
-		if (this.state.subscriptions.length === 0 && this.state.me)
-			MeActions.getSubscriptions();
 	}
 
 	// REPLACE X
