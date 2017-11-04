@@ -2,117 +2,123 @@ body {
 	background-color: white;
 }
 
-h1, h2, h3 {
-	margin:0 0 10px 0;
-	padding:0px;
+h1,
+h2,
+h3 {
+	margin: 0 0 10px 0;
+	padding: 0px;
 }
 
 h1 {
-	margin-bottom:30px;
-	margin-top:30px;
+	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .channel-row {
-	border-bottom:1px solid #eee;
+	border-bottom: 1px solid #eee;
 	margin-bottom: 20px;
-	padding-bottom:20px;
+	padding-bottom: 20px;
 	height: 230px;
 }
 
 .search-row {
-	margin-top:20px;
-	margin-bottom:50px;
+	margin-top: 20px;
+	margin-bottom: 50px;
 }
 
 .channel-description {
-	text-align:justify;
+	text-align: justify;
 }
 
 .logo {
-	width:150px;
-	height:150px;
-	margin:20px auto;
-	display:block;
+	width: 150px;
+	height: 150px;
+	margin: 20px auto;
+	display: block;
 	perspective: 1500; /* Hier wird die Perspektive der gesamten Szene festgelegt. Der Wert hat Auswirkung auf die Verzerrung */
 }
 
 .logo:hover .turnaround {
-   transform: rotateY(180deg); /* Beim Mouse-Over wird die Szene umgedreht */
+	transform: rotateY(180deg); /* Beim Mouse-Over wird die Szene umgedreht */
 }
 
 .logo .front {
-  background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo.svg") 0 0 no-repeat;
+	background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo.svg")
+		0 0 no-repeat;
 	background-size: contain;
 }
 
 .logo .back {
-  background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo2.svg") 0 0 no-repeat;
+	background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo2.svg")
+		0 0 no-repeat;
 	background-size: contain;
 }
 
 .turnaround {
-   transition: .5s /* Die Drehung soll 0,5 Sekunden dauern */;
-   transform-style: preserve-3d; /* Kind-Elemente  (.front + .back) sollen ihre 3D-Eigenschaften behalten*/
-   position: relative;
-   height: 100%;
+	transition: 0.5s;
+	transform-style: preserve-3d; /* Kind-Elemente  (.front + .back) sollen ihre 3D-Eigenschaften behalten*/
+	position: relative;
+	height: 100%;
 }
 
 .front,
 .back {
-   backface-visibility: hidden /* Die Rückseite von Elementen soll unsichtbar sein */;
-   position: absolute;
-   width: 100%;
-   height: 100%;
+	backface-visibility: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
-.front { z-index: 2; }
+.front {
+	z-index: 2;
+}
 
 .back {
-   transform: rotateY(180deg) /* Die Rückseite des Logos wird umgedreht, um dann bei der Drehung der gesamten Szene vorne zu sein :) */;
-   z-index: 1;
+	transform: rotateY(180deg);
+	z-index: 1;
 }
 
 .channel-thumb {
-	width:100%;
+	width: 100%;
 	max-width: 120px;
 }
 
 .loadMore {
-	margin-bottom:25px;
+	margin-bottom: 25px;
 }
 
 .sort-option {
-	margin-left:10px!important;
+	margin-left: 10px !important;
 }
 
 .sort-group {
-	margin-top:-10px!important;
-	font-size:0.9em;
+	margin-top: -10px !important;
+	font-size: 0.9em;
 	text-align: center;
 }
 
 .offset-menu {
-	position:absolute;
-	top:50px;
-	right:50px;
+	position: absolute;
+	top: 50px;
+	right: 50px;
 	text-align: right;
 }
 
 @media (min-width: 1350px) {
 	.offset-menu {
-		position:fixed;
+		position: fixed;
 	}
 }
 
 .offset-bars {
-	position:absolute;
-  right: 20px;
-  top: 20px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 }
 
 .offset-bars i {
-	font-size:2em;
-	color:grey;
+	font-size: 2em;
+	color: grey;
 }
 
 .offset-menu ul {
@@ -121,17 +127,17 @@ h1 {
 
 .offset-menu li {
 	line-height: 30px;
-	color:#ccc;
+	color: #ccc;
 	text-transform: uppercase;
 }
 
 .offset-menu a {
-	color:#ccc;
+	color: #ccc;
 	text-transform: uppercase;
 }
 
 .offset-menu a:hover {
-	font-size:1.1em;
+	font-size: 1.1em;
 	-webkit-transition: all 0.1s ease;
 	-moz-transition: all 0.1s ease;
 	-o-transition: all 0.1s ease;
@@ -139,11 +145,11 @@ h1 {
 }
 
 .offset-menu .form-group {
-	margin-top:0px;
+	margin-top: 0px;
 }
 
 .offset-menu .little-space {
-	margin-top:25px;
+	margin-top: 25px;
 }
 
 .content-row {
@@ -151,8 +157,8 @@ h1 {
 }
 
 .content-h1 {
-	margin-bottom:25px;
-	text-align: center!important;
+	margin-bottom: 25px;
+	text-align: center !important;
 }
 
 .content-h1 img {
@@ -160,12 +166,12 @@ h1 {
 }
 
 .banner-channel {
-	margin-top:20px;
-	margin-bottom:20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .banner-channel iframe {
-	height:50px!important;
+	height: 50px !important;
 }
 
 .intro-video {
@@ -173,32 +179,32 @@ h1 {
 }
 
 .language-picker {
-	max-width:110px;
-	float:right !important;
+	max-width: 110px;
+	float: right !important;
 }
 
 .btn-sidebar {
-	width:180px!important;
+	width: 180px !important;
 }
 
 .offset-social {
-	position:absolute;
+	position: absolute;
 	text-align: left;
-	top:20px;
-	left:20px;
+	top: 20px;
+	left: 20px;
 }
 
 @media (min-width: 768px) {
 	.offset-social {
-		top:50px;
-		left:50px;
+		top: 50px;
+		left: 50px;
 	}
 }
 
 .social {
-	color:#ddd;
+	color: #ddd;
 	text-decoration: none;
-	margin-right:10px;
+	margin-right: 10px;
 
 	-webkit-transition: all 0.1s ease;
 	-moz-transition: all 0.1s ease;
@@ -208,87 +214,87 @@ h1 {
 
 .social-fb:hover,
 .social-fb:active {
-	color:#3B5998;
+	color: #3b5998;
 	text-decoration: none;
 }
 
 .social-tw:hover,
-.social-tw:active  {
-	color:#55acee;
+.social-tw:active {
+	color: #55acee;
 	text-decoration: none;
 }
 
 .scroll-up-btn:hover,
 .social-em:hover,
 .social-em:active {
-	color:#f2bb64;
+	color: #f2bb64;
 	text-decoration: none;
 }
 
 .sortBy-label {
 	cursor: pointer;
-	color: #333!important;
-	font-size: 0.9em!important;
+	color: #333 !important;
+	font-size: 0.9em !important;
 }
 
 .scroll-up-btn {
-	position:fixed;
-	bottom:20px;
-	left:25px;
-	color:#ddd;
-	cursor:pointer;
-	z-index:999999999999!important;
+	position: fixed;
+	bottom: 20px;
+	left: 25px;
+	color: #ddd;
+	cursor: pointer;
+	z-index: 999999999999 !important;
 }
 
 @media (min-width: 768px) {
 	.scroll-up-btn {
-		bottom:50px;
-		left:50px;
+		bottom: 50px;
+		left: 50px;
 	}
 }
 
 .yt-login {
-	margin-bottom:-15px;
+	margin-bottom: -15px;
 }
 
 .form-group {
-	margin:0px!important;
+	margin: 0px !important;
 }
 
 .form-group label.control-label {
-	margin: 8px 0 0!important;
+	margin: 8px 0 0 !important;
 }
 
 input[type="color"] {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 @media (min-width: 990px) {
 	.by-col {
-		min-width:120px;
+		min-width: 120px;
 	}
 }
 
 .btn-more-info {
 	margin-top: 15px;
-	color: #bbb!important;
+	color: #bbb !important;
 	text-transform: capitalize;
 }
 
 .sp-replacer {
-	margin-top:12px!important;
+	margin-top: 12px !important;
 }
 
 .support-row {
-	margin:50px 0;
+	margin: 50px 0;
 }
 
 .sc-text {
-	color:#ccc;
+	color: #ccc;
 }
 
 .profile-link {
-	margin-bottom:40px;
+	margin-bottom: 40px;
 }
 
 .grey {
@@ -297,4 +303,24 @@ input[type="color"] {
 	filter: gray;
 	filter: grayscale(100%);
 	opacity: 0.4;
+}
+
+.feature-backdrop {
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+	border: 1px solid #ddd;
+}
+
+.feature-col {
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.feature-col p {
+	margin-top: 10px;
+}
+
+.feature-row {
+	margin-bottom: 30px;
 }

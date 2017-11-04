@@ -7,12 +7,17 @@ import MeActions from "../actions/MeActions";
 import MeStore from "../stores/MeStore";
 import SuggestChannels from "./SuggestChannels";
 import { Link } from "react-router";
+import cookie from "react-cookie";
 
 class Suggest extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = MeStore.getState();
+		this.state = {
+			me: cookie.load("me")
+				? JSON.parse(cookie.load("me").replace("j:", ""))
+				: null
+		};
 		this.onChange = this.onChange.bind(this);
 	}
 
@@ -20,8 +25,6 @@ class Suggest extends Component {
 	componentDidMount() {
 		document.title = "Suggest a channel | Sailing Channels";
 		MeStore.listen(this.onChange);
-
-		MeActions.getMe();
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -58,7 +61,7 @@ class Suggest extends Component {
 					<div className="col-md-6">
 						<h1 className="content-h1">Suggest a channel</h1>
 
-						{Object.keys(this.state.me).length > 0 ? (
+						{this.state.me ? (
 							<div>
 								<p>
 									Know of any sailing channels that are not
@@ -87,10 +90,6 @@ class Suggest extends Component {
 										moc.slennahc-gnilias@yoha
 									</a>
 								</p>
-								<p>
-									If you login with your YouTube account, you
-									can easily suggest channels from this page.
-								</p>
 								<center>
 									<a
 										href="/oauth2callback"
@@ -104,6 +103,19 @@ class Suggest extends Component {
 										to={"/signin"}
 									>
 										More info
+									</Link>
+									<p>
+										If you login with your YouTube account,<br />
+										you can easily suggest channels from
+										this page:
+									</p>
+									<p>&nbsp;</p>
+									<Link to={"/signin"}>
+										<img
+											className="feature-backdrop"
+											width="80%"
+											src="https://cdn.rawgit.com/sailingchannels/website/9783a9b7/public/img/features/suggest.png"
+										/>
 									</Link>
 								</center>
 							</div>

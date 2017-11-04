@@ -35,33 +35,10 @@ class Login extends React.Component {
 								does it track or share your data
 							</u>.
 						</p>
-						<center>
-							<p>~</p>
-						</center>
-						<p>
-							<b>Cool stuff you can do, when signed in:</b>
-							<ul>
-								<li>
-									Manage subscribtions directly from list view
-								</li>
-								<li>Flag channels as not sailing-related</li>
-								<li>Suggest channels to the list</li>
-							</ul>
-						</p>
-						<p>
-							<b>
-								Even cooler stuff you can do, when signed in and
-								your channel is listed:
-							</b>
-							<ul>
-								<li>View your detailed channel profile page</li>
-								<li>Display AIS position on a map</li>
-							</ul>
-						</p>
-						<center>
-							<p>~</p>
-						</center>
-						<center>
+
+						<center
+							style={{ marginTop: "30px", marginBottom: "30px" }}
+						>
 							<a
 								href="/oauth2callback"
 								className="btn btn-danger btn-lg btn-raised"
@@ -70,6 +47,42 @@ class Login extends React.Component {
 								YouTube
 							</a>
 						</center>
+
+						<div className="row feature-row">
+							<div className="col-md-6 feature-col">
+								<span className="fa-stack fa-lg">
+									<i className="fa fa-circle fa-stack-2x" />
+									<i className="fa fa-youtube-play fa-stack-1x fa-inverse" />
+								</span>
+								<p>
+									Manage subscribtions directly from list view
+								</p>
+							</div>
+							<div className="col-md-6 feature-col">
+								<span className="fa-stack fa-lg">
+									<i className="fa fa-circle fa-stack-2x" />
+									<i className="fa fa-flag fa-stack-1x fa-inverse" />
+								</span>
+								<p>Flag channels as not sailing-related</p>
+							</div>
+						</div>
+
+						<div className="row feature-row">
+							<div className="col-md-6 feature-col">
+								<span className="fa-stack fa-lg">
+									<i className="fa fa-circle fa-stack-2x" />
+									<i className="fa fa-bullhorn fa-stack-1x fa-inverse" />
+								</span>
+								<p>Suggest channels to the list</p>
+							</div>
+							<div className="col-md-6 feature-col">
+								<span className="fa-stack fa-lg">
+									<i className="fa fa-circle fa-stack-2x" />
+									<i className="fa fa-user fa-stack-1x fa-inverse" />
+								</span>
+								<p>View your detailed channel profile page</p>
+							</div>
+						</div>
 					</div>
 					<div className="col-md-4" />
 				</div>

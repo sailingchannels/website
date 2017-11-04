@@ -4300,76 +4300,9 @@ var Login = (function (_React$Component) {
 						),
 						_react2["default"].createElement(
 							"center",
-							null,
-							_react2["default"].createElement(
-								"p",
-								null,
-								"~"
-							)
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							_react2["default"].createElement(
-								"b",
-								null,
-								"Cool stuff you can do, when signed in:"
-							),
-							_react2["default"].createElement(
-								"ul",
-								null,
-								_react2["default"].createElement(
-									"li",
-									null,
-									"Manage subscribtions directly from list view"
-								),
-								_react2["default"].createElement(
-									"li",
-									null,
-									"Flag channels as not sailing-related"
-								),
-								_react2["default"].createElement(
-									"li",
-									null,
-									"Suggest channels to the list"
-								)
-							)
-						),
-						_react2["default"].createElement(
-							"p",
-							null,
-							_react2["default"].createElement(
-								"b",
-								null,
-								"Even cooler stuff you can do, when signed in and your channel is listed:"
-							),
-							_react2["default"].createElement(
-								"ul",
-								null,
-								_react2["default"].createElement(
-									"li",
-									null,
-									"View your detailed channel profile page"
-								),
-								_react2["default"].createElement(
-									"li",
-									null,
-									"Display AIS position on a map"
-								)
-							)
-						),
-						_react2["default"].createElement(
-							"center",
-							null,
-							_react2["default"].createElement(
-								"p",
-								null,
-								"~"
-							)
-						),
-						_react2["default"].createElement(
-							"center",
-							null,
+							{
+								style: { marginTop: "30px", marginBottom: "30px" }
+							},
 							_react2["default"].createElement(
 								"a",
 								{
@@ -4380,6 +4313,74 @@ var Login = (function (_React$Component) {
 								_react2["default"].createElement("i", { className: "fa fa-youtube" }),
 								" ",
 								"YouTube"
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "row feature-row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6 feature-col" },
+								_react2["default"].createElement(
+									"span",
+									{ className: "fa-stack fa-lg" },
+									_react2["default"].createElement("i", { className: "fa fa-circle fa-stack-2x" }),
+									_react2["default"].createElement("i", { className: "fa fa-youtube-play fa-stack-1x fa-inverse" })
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									"Manage subscribtions directly from list view"
+								)
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6 feature-col" },
+								_react2["default"].createElement(
+									"span",
+									{ className: "fa-stack fa-lg" },
+									_react2["default"].createElement("i", { className: "fa fa-circle fa-stack-2x" }),
+									_react2["default"].createElement("i", { className: "fa fa-flag fa-stack-1x fa-inverse" })
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									"Flag channels as not sailing-related"
+								)
+							)
+						),
+						_react2["default"].createElement(
+							"div",
+							{ className: "row feature-row" },
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6 feature-col" },
+								_react2["default"].createElement(
+									"span",
+									{ className: "fa-stack fa-lg" },
+									_react2["default"].createElement("i", { className: "fa fa-circle fa-stack-2x" }),
+									_react2["default"].createElement("i", { className: "fa fa-bullhorn fa-stack-1x fa-inverse" })
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									"Suggest channels to the list"
+								)
+							),
+							_react2["default"].createElement(
+								"div",
+								{ className: "col-md-6 feature-col" },
+								_react2["default"].createElement(
+									"span",
+									{ className: "fa-stack fa-lg" },
+									_react2["default"].createElement("i", { className: "fa fa-circle fa-stack-2x" }),
+									_react2["default"].createElement("i", { className: "fa fa-user fa-stack-1x fa-inverse" })
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									"View your detailed channel profile page"
+								)
 							)
 						)
 					),
@@ -6969,6 +6970,10 @@ var _SuggestChannels2 = _interopRequireDefault(_SuggestChannels);
 
 var _reactRouter = require("react-router");
 
+var _reactCookie = require("react-cookie");
+
+var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
 var Suggest = (function (_Component) {
 	_inherits(Suggest, _Component);
 
@@ -6977,7 +6982,9 @@ var Suggest = (function (_Component) {
 
 		_get(Object.getPrototypeOf(Suggest.prototype), "constructor", this).call(this, props);
 
-		this.state = _storesMeStore2["default"].getState();
+		this.state = {
+			me: _reactCookie2["default"].load("me") ? JSON.parse(_reactCookie2["default"].load("me").replace("j:", "")) : null
+		};
 		this.onChange = this.onChange.bind(this);
 	}
 
@@ -6988,8 +6995,6 @@ var Suggest = (function (_Component) {
 		value: function componentDidMount() {
 			document.title = "Suggest a channel | Sailing Channels";
 			_storesMeStore2["default"].listen(this.onChange);
-
-			_actionsMeActions2["default"].getMe();
 		}
 
 		// COMPONENT WILL UNMOUNT
@@ -7038,7 +7043,7 @@ var Suggest = (function (_Component) {
 							{ className: "content-h1" },
 							"Suggest a channel"
 						),
-						Object.keys(this.state.me).length > 0 ? _react2["default"].createElement(
+						this.state.me ? _react2["default"].createElement(
 							"div",
 							null,
 							_react2["default"].createElement(
@@ -7069,11 +7074,6 @@ var Suggest = (function (_Component) {
 								)
 							),
 							_react2["default"].createElement(
-								"p",
-								null,
-								"If you login with your YouTube account, you can easily suggest channels from this page."
-							),
-							_react2["default"].createElement(
 								"center",
 								null,
 								_react2["default"].createElement(
@@ -7094,6 +7094,27 @@ var Suggest = (function (_Component) {
 										to: "/signin"
 									},
 									"More info"
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									"If you login with your YouTube account,",
+									_react2["default"].createElement("br", null),
+									"you can easily suggest channels from this page:"
+								),
+								_react2["default"].createElement(
+									"p",
+									null,
+									" "
+								),
+								_react2["default"].createElement(
+									_reactRouter.Link,
+									{ to: "/signin" },
+									_react2["default"].createElement("img", {
+										className: "feature-backdrop",
+										width: "80%",
+										src: "https://cdn.rawgit.com/sailingchannels/website/9783a9b7/public/img/features/suggest.png"
+									})
 								)
 							)
 						)
@@ -7110,7 +7131,7 @@ var Suggest = (function (_Component) {
 exports["default"] = Suggest;
 module.exports = exports["default"];
 
-},{"../actions/MeActions":4,"../stores/MeStore":59,"./ChannelMissingTester":22,"./Logo":32,"./OffsetMenu":34,"./OffsetSocial":35,"./SuggestChannels":46,"react":"react","react-router":"react-router"}],45:[function(require,module,exports){
+},{"../actions/MeActions":4,"../stores/MeStore":59,"./ChannelMissingTester":22,"./Logo":32,"./OffsetMenu":34,"./OffsetSocial":35,"./SuggestChannels":46,"react":"react","react-cookie":"react-cookie","react-router":"react-router"}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8941,7 +8962,6 @@ var ChannelStore = (function () {
 	_createClass(ChannelStore, [{
 		key: "getChannelsSuccess",
 		value: function getChannelsSuccess(result) {
-
 			// add new data
 			if (result.skip > 0) {
 				this.channels = this.channels.concat(result.data);
@@ -8959,13 +8979,16 @@ var ChannelStore = (function () {
 		key: "getChannelSuccess",
 		value: function getChannelSuccess(result) {
 			this.channel = result;
+
+			if (!result) {
+				location.href = "/404";
+			}
 		}
 
 		// GET CHANNEL FAIL
 	}, {
 		key: "getChannelFail",
 		value: function getChannelFail(err) {
-
 			// Handle multiple response formats, fallback to HTTP status code number.
 			location.href = "/404";
 		}
@@ -8974,7 +8997,6 @@ var ChannelStore = (function () {
 	}, {
 		key: "getChannelsFail",
 		value: function getChannelsFail(err) {
-
 			this.loading = false;
 
 			// Handle multiple response formats, fallback to HTTP status code number.
@@ -8985,7 +9007,6 @@ var ChannelStore = (function () {
 	}, {
 		key: "searchChannelsSuccess",
 		value: function searchChannelsSuccess(result) {
-
 			this.results = result;
 			this.loading = false;
 		}
@@ -8994,7 +9015,6 @@ var ChannelStore = (function () {
 	}, {
 		key: "searchChannelsFail",
 		value: function searchChannelsFail(err) {
-
 			this.loading = false;
 
 			// Handle multiple response formats, fallback to HTTP status code number.

@@ -2,7 +2,6 @@ import alt from "../alt";
 import ChannelActions from "../actions/ChannelActions";
 
 class ChannelStore {
-
 	constructor() {
 		this.bindActions(ChannelActions);
 		this.channels = [];
@@ -16,57 +15,55 @@ class ChannelStore {
 	}
 
 	// GET CHANNELS SUCCESS
-  	getChannelsSuccess(result) {
-
+	getChannelsSuccess(result) {
 		// add new data
-		if(result.skip > 0) {
-	    	this.channels = this.channels.concat(result.data);
-		}
-		else {
+		if (result.skip > 0) {
+			this.channels = this.channels.concat(result.data);
+		} else {
 			this.channels = result.data;
 		}
 
 		this.skip = result.skip;
 		this.take = result.take;
 		this.loading = false;
-  	}
+	}
 
 	// GET CHANNEL SUCCESS
 	getChannelSuccess(result) {
 		this.channel = result;
+
+		if (!result) {
+			location.href = "/404";
+		}
 	}
 
 	// GET CHANNEL FAIL
-  	getChannelFail(err) {
-
-    	// Handle multiple response formats, fallback to HTTP status code number.
-    	location.href = "/404";
-  	}
+	getChannelFail(err) {
+		// Handle multiple response formats, fallback to HTTP status code number.
+		location.href = "/404";
+	}
 
 	// GET CHANNELS FAIL
-  	getChannelsFail(err) {
-
+	getChannelsFail(err) {
 		this.loading = false;
 
-    	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(err);
-  	}
+		// Handle multiple response formats, fallback to HTTP status code number.
+		console.error(err);
+	}
 
 	// SEARCH CHANNELS SUCCESS
-  	searchChannelsSuccess(result) {
-
-	    this.results = result;
+	searchChannelsSuccess(result) {
+		this.results = result;
 		this.loading = false;
-  	}
+	}
 
 	// SEARCH CHANNELS FAIL
-  	searchChannelsFail(err) {
-
+	searchChannelsFail(err) {
 		this.loading = false;
 
-    	// Handle multiple response formats, fallback to HTTP status code number.
-    	console.error(err);
-  	}
+		// Handle multiple response formats, fallback to HTTP status code number.
+		console.error(err);
+	}
 }
 
 export default alt.createStore(ChannelStore);
