@@ -37,10 +37,7 @@ class Suggest extends Component {
 		this.setState(state);
 
 		// should the subscriptions be fetched?
-		if (
-			this.state.subscriptions.length === 0 &&
-			Object.keys(this.state.me).length > 0
-		)
+		if (this.state.subscriptions.length === 0 && this.state.me)
 			MeActions.getSubscriptions();
 	}
 
