@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
+import MobileMenu from "./MobileMenu";
 
 class App extends React.Component {
 	// COMPONENT DID MOUNT
@@ -28,6 +29,7 @@ class App extends React.Component {
 			<div>
 				{this.props.children}
 				<Footer />
+				<MobileMenu />
 			</div>
 		);
 	}
