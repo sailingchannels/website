@@ -3,125 +3,131 @@ import HTTP from "../helpers/http";
 
 // CHANNEL ACTIONS
 class ChannelActions {
+	constructor() {
+		this.generateActions(
+			"getChannelsSuccess",
+			"getChannelsFail",
+			"getChannelSuccess",
+			"getChannelFail",
+			"searchChannelsSuccess",
+			"searchChannelsFail"
+		);
+	}
 
-    constructor() {
-        this.generateActions(
-            "getChannelsSuccess",
-            "getChannelsFail",
-            "getChannelSuccess",
-            "getChannelFail",
-            "searchChannelsSuccess",
-            "searchChannelsFail"
-        );
-    }
-
-    // GET CHANNEL
-    getChannels(sortBy, skip, take) {
-
+	// GET CHANNEL
+	getChannels(sortBy, skip, take) {
 		var url = "/api/channels/get?sort=" + sortBy + "&skip=" + skip + "&take=" + take;
 
 		// append mobile parameter to not load description
-		if($(window).width() < 768) {
+		if ($(window).width() < 768) {
 			url += "&mobile=true";
 		}
 
-		new HTTP().get({
-            "url": url,
-            "type": "GET",
-            "dataType": "json",
-            "cache": false
-        }, (err, data) => {
+		new HTTP().get(
+			{
+				url: url,
+				type: "GET",
+				dataType: "json",
+				cache: false
+			},
+			(err, data) => {
+				if (err) {
+					return this.actions.getChannelsFail(err);
+				}
 
-			if(err) {
-				return this.actions.getChannelsFail(err);
+				this.actions.getChannelsSuccess(data);
 			}
+		);
+	}
 
-			this.actions.getChannelsSuccess(data);
-		});
-    }
+	// GET CHANNEL
+	getChannel(id) {
+		new HTTP().get(
+			{
+				url: "/api/channel/get/" + id,
+				type: "GET",
+				dataType: "json",
+				cache: false
+			},
+			(err, data) => {
+				if (err) {
+					return this.actions.getChannelFail(err);
+				}
 
-    // GET CHANNEL
-    getChannel(id) {
-
-        new HTTP().get({
-            "url": "/api/channel/get/" + id,
-            "type": "GET",
-            "dataType": "json",
-			"cache": false
-        }, (err, data) => {
-
-			if(err) {
-				return this.actions.getChannelFail(err);
+				this.actions.getChannelSuccess(data);
 			}
+		);
+	}
 
-			this.actions.getChannelSuccess(data);
-		});
-    }
-
-    // SEARCH CHANNELS
-    searchChannels(q) {
-
+	// SEARCH CHANNELS
+	searchChannels(q) {
 		var url = "/api/channels/search?q=" + encodeURIComponent(q);
 
 		// append mobile parameter to not load description
-		if($(window).width() < 768) {
+		if ($(window).width() < 768) {
 			url += "&mobile=true";
 		}
 
-        new HTTP().get({
-            "url": url,
-            "type": "GET",
-            "dataType": "json",
-			"cache": false
-    	}, (err, data) => {
+		new HTTP().get(
+			{
+				url: url,
+				type: "GET",
+				dataType: "json",
+				cache: false
+			},
+			(err, data) => {
+				if (err) {
+					return this.actions.searchChannelsFail(err);
+				}
 
-			if(err) {
-				return this.actions.searchChannelsFail(err);
+				this.actions.searchChannelsSuccess(data);
 			}
-
-			this.actions.searchChannelsSuccess(data);
-		});
-    }
+		);
+	}
 
 	// SUBSCRIBE
 	subscribe(channelId, callback) {
-		new HTTP().post({
-			"url": "/api/channel/subscribe",
-			"data": {
-				"channel": channelId
+		new HTTP().post(
+			{
+				url: "/api/channel/subscribe",
+				data: {
+					channel: channelId
+				},
+				type: "POST",
+				dataType: "json",
+				cache: false
 			},
-			"type": "POST",
-			"dataType": "json",
-			"cache": false
-		}, (err, data) => {
+			(err, data) => {
+				if (err) {
+					return callback(err);
+				}
 
-			if(err) {
-				return callback(err);
+				return callback(null, data);
 			}
-
-			return callback(null, data);
-		});
+		);
 	}
 
 	// UNSUBSCRIBE
 	unsubscribe(channelId, callback) {
-		new HTTP().post({
-			"url": "/api/channel/unsubscribe",
-			"data": {
-				"channel": channelId
+		new HTTP().post(
+			{
+				url: "/api/channel/unsubscribe",
+				data: {
+					channel: channelId
+				},
+				type: "POST",
+				dataType: "json",
+				cache: false
 			},
-			"type": "POST",
-			"dataType": "json",
-			"cache": false
-		}, (err, data) => {
+			(err, data) => {
+				console.log(err);
+				if (err) {
+					return callback(err);
+				}
 
-			console.log(err);
-			if(err) {
-				return callback(err);
+				return callback(null, data);
 			}
-
-			return callback(null, data);
-		});
+		);
 	}
 }
 

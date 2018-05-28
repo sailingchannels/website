@@ -324,19 +324,3 @@ input[type="color"] {
 .feature-row {
 	margin-bottom: 30px;
 }
-
-.mobile-navbar {
-	position: fixed;
-	bottom: 0px;
-	margin-bottom: 0px;
-	width: 100%;
-}
-
-.mobile-navbar .nav > li,
-.mobile-navbar .nav > li > a {
-	display: inline;
-}
-
-.mobile-navbar .nav > li > a > .fa {
-	display: block;
-}

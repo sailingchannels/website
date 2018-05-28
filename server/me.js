@@ -12,9 +12,7 @@ module.exports = {
 		// check if request is authenticated
 		var me = req.cookies.me;
 		if (!me) {
-			return res
-				.status(401)
-				.send({ error: "no permission to perform this operation" });
+			return res.status(401).send({ error: "no permission to perform this operation" });
 		}
 
 		if (!("_id" in me)) {
@@ -36,11 +34,7 @@ module.exports = {
 							// does the user have a profile with mmsi number?
 							if (user.profile && user.profile.mmsi) {
 								// fetch latest ais position
-								positions.readPosition(user, function(
-									pos,
-									more,
-									source
-								) {
+								positions.readPosition(user, function(pos, more, source) {
 									user.position = pos;
 									user.vesselinfo = more;
 									user.positionsource = source;
@@ -174,9 +168,7 @@ module.exports = {
 		// check if request is authenticated
 		var me = req.cookies.me;
 		if (!me) {
-			return res
-				.status(401)
-				.send({ error: "no permission to perform this operation" });
+			return res.status(401).send({ error: "no permission to perform this operation" });
 		}
 
 		if (!("_id" in me)) {
@@ -199,8 +191,7 @@ module.exports = {
 			},
 			function(err, updt) {
 				// an error occured
-				if (err)
-					return res.status(500).send({ error: err, success: false });
+				if (err) return res.status(500).send({ error: err, success: false });
 
 				// clear mmsi cache
 				if (req.body.mmsi) {
@@ -219,9 +210,7 @@ module.exports = {
 		// check if request is authenticated
 		var credentials = req.cookies.credentials;
 		if (!credentials) {
-			return res
-				.status(401)
-				.send({ error: "no permission to perform this operation" });
+			return res.status(401).send({ error: "no permission to perform this operation" });
 		}
 
 		// read subscriptions
@@ -279,12 +268,8 @@ module.exports = {
 
 								var items = data.items.map(function(item) {
 									// only take channel ids
-									if (
-										item.snippet.resourceId.kind ===
-										"youtube#channel"
-									) {
-										return item.snippet.resourceId
-											.channelId;
+									if (item.snippet.resourceId.kind === "youtube#channel") {
+										return item.snippet.resourceId.channelId;
 									}
 								});
 

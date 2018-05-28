@@ -69,5 +69,11 @@
 		"vinyl-source-stream": "^1.1.0",
 		"watchify": "^3.4.0"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"prettier": {
+		"printWidth": 100,
+		"useTabs": true,
+		"tabWidth": 4,
+		"arrowParens": "always"
+	}
 }
