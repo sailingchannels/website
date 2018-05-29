@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 MAINTAINER Thomas Brüggemann <mail@thomasbrueggemann.com>
-LABEL Description="sailing-channels.com Website" Vendor="Sailing Channels" Version="1.14.1"
+LABEL Description="sailing-channels.com Website" Vendor="Sailing Channels" Version="1.14.2"
 
 # INSTALL DEPENDENCIES
 RUN apt-get update -y && apt-get install -y curl
@@ -15,5 +15,5 @@ EXPOSE 8999
 
 RUN npm install
 ENV PORT=8999
-ENV TAG=1.14.1
+ENV TAG=1.14.2
 ENTRYPOINT exec npm start

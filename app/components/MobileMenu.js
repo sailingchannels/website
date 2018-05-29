@@ -11,7 +11,7 @@ class MobileMenu extends Component {
 		};
 	}
 
-	componentDidMount() {
+	setNewRoute() {
 		try {
 			const urlSplitted = window.location.href.split("/");
 
@@ -19,6 +19,18 @@ class MobileMenu extends Component {
 				route: urlSplitted[3]
 			});
 		} catch (e) {}
+	}
+
+	componentDidMount() {
+		window.setTimeout(() => {
+			this.setNewRoute();
+		}, 0);
+	}
+
+	componentWillUpdate() {
+		window.setTimeout(() => {
+			this.setNewRoute();
+		}, 0);
 	}
 
 	onSearchClicked() {
