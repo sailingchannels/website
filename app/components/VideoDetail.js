@@ -67,8 +67,6 @@ class VideoDetail extends React.Component {
 			return null;
 		}
 
-		console.log(this.state.video.channel._id);
-
 		return (
 			<div className="container">
 				<Helmet title={this.state.video.title} />

@@ -3,6 +3,24 @@ import { Link } from "react-router";
 import Logo from "./Logo";
 
 class MobileMenu extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			route: ""
+		};
+	}
+
+	componentDidMount() {
+		try {
+			const urlSplitted = window.location.href.split("/");
+
+			this.setState({
+				route: urlSplitted[3]
+			});
+		} catch (e) {}
+	}
+
 	onSearchClicked() {
 		if ($(".search-row").hasClass("hidden-xs")) {
 			$(".search-row").removeClass("hidden-xs hidden-sm");
@@ -12,11 +30,8 @@ class MobileMenu extends Component {
 	}
 
 	render() {
-		const urlSplitted = window.location.href.split("/");
-		const route = urlSplitted[3];
-
 		var title;
-		switch (route) {
+		switch (this.state.route) {
 			case "by-subscribers":
 				title = "Most subscribers";
 				break;
@@ -58,7 +73,7 @@ class MobileMenu extends Component {
 						<li>
 							<Link
 								to={"/by-subscribers"}
-								className={route === "by-subscribers" ? "active" : null}
+								className={this.state.route === "by-subscribers" ? "active" : null}
 							>
 								<i className="fa fa-users" />
 							</Link>
@@ -66,7 +81,7 @@ class MobileMenu extends Component {
 						<li>
 							<Link
 								to={"/by-views"}
-								className={route === "by-views" ? "active" : null}
+								className={this.state.route === "by-views" ? "active" : null}
 							>
 								<i className="fa fa-eye" />
 							</Link>
@@ -74,7 +89,11 @@ class MobileMenu extends Component {
 						<li>
 							<Link
 								to={"/by-upload"}
-								className={route === "by-upload" || route === "" ? "active" : null}
+								className={
+									this.state.route === "by-upload" || this.state.route === ""
+										? "active"
+										: null
+								}
 							>
 								<i className="fa fa-clock-o" />
 							</Link>
@@ -82,7 +101,7 @@ class MobileMenu extends Component {
 						<li>
 							<Link
 								to={"/by-founded"}
-								className={route === "by-founded" ? "active" : null}
+								className={this.state.route === "by-founded" ? "active" : null}
 							>
 								<i className="fa fa-graduation-cap" />
 							</Link>
@@ -90,7 +109,7 @@ class MobileMenu extends Component {
 						<li>
 							<Link
 								to={"/by-trending"}
-								className={route === "by-trending" ? "active" : null}
+								className={this.state.route === "by-trending" ? "active" : null}
 							>
 								<i className="fa fa-line-chart" />
 							</Link>
