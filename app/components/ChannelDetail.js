@@ -12,8 +12,7 @@ import PositionMap from "./PositionMap";
 import FlagButton from "./FlagButton";
 
 class ChannelDetail extends React.Component {
-
-    // CONSTRUCTOR
+	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 		this.state = ChannelStore.getState();
@@ -22,66 +21,81 @@ class ChannelDetail extends React.Component {
 
 	// COMPONENT DID MOUNT
 	componentDidMount() {
-        ChannelStore.listen(this.onChange);
-        ChannelActions.getChannel(this.props.params.id);
+		ChannelStore.listen(this.onChange);
+		ChannelActions.getChannel(this.props.params.id);
 	}
 
-    // COMPONENT WILL RECEIVE PROPS
-    componentWillReceiveProps(nextProps) {
+	// COMPONENT WILL RECEIVE PROPS
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.params.id !== this.props.params.id) {
+			ChannelActions.getChannel(nextProps.params.id);
+		}
+	}
 
-        if(nextProps.params.id !== this.props.params.id) {
-            ChannelActions.getChannel(nextProps.params.id);
-        }
-    }
-
-    // COMPONENT WILL UNMOUNT
+	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		ChannelStore.unlisten(this.onChange);
 	}
 
-    // ON CHANGE
+	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
 	}
 
 	// FORMAT DATE
 	formatDate(unix) {
-		var m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var m = [
+			"Jan",
+			"Feb",
+			"Mar",
+			"Apr",
+			"May",
+			"Jun",
+			"Jul",
+			"Aug",
+			"Sep",
+			"Oct",
+			"Nov",
+			"Dec"
+		];
 		var d = new Date(unix * 1000);
 		return m[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 	}
 
-    // RENDER
+	// RENDER
 	render() {
-
-        // no channel yet
-        if(!this.state.channel) {
-            return (null);
-        }
+		// no channel yet
+		if (!this.state.channel) {
+			return null;
+		}
 
 		// create custom links list
 		var customLinks = [];
-		if("customLinks" in this.state.channel && this.state.channel.customLinks !== null && this.state.channel.customLinks.length > 0) {
-
-			for(var l in this.state.channel.customLinks) {
+		if (
+			"customLinks" in this.state.channel &&
+			this.state.channel.customLinks !== null &&
+			this.state.channel.customLinks.length > 0
+		) {
+			for (var l in this.state.channel.customLinks) {
 				customLinks.push(
 					<li>
 						<a target="_blank" href={this.state.channel.customLinks[l].url}>
-							<img src={this.state.channel.customLinks[l].icon} /> {this.state.channel.customLinks[l].title}
+							<img src={this.state.channel.customLinks[l].icon} />{" "}
+							{this.state.channel.customLinks[l].title}
 						</a>
 					</li>
 				);
 			}
 		}
 
-        return (
+		return (
 			<div className="container">
-			<Helmet title={this.state.channel.title + " | Sailing Channels"} />
+				<Helmet title={this.state.channel.title + " | Sailing Channels"} />
 				<OffsetSocial />
-				<Logo />
+				<Logo className="hidden-xs hidden-sm" />
 				<OffsetMenu />
-			  	<div className="row">
-					<div className="col-md-1"></div>
+				<div className="row">
+					<div className="col-md-1" />
 					<div className="col-md-10">
 						<div className="row">
 							<div className="col-md-12">
@@ -93,55 +107,124 @@ class ChannelDetail extends React.Component {
 						<div className="row">
 							<div className="col-md-2 col-sm-2">
 								<img src={this.state.channel.thumbnail} className="channel-thumb" />
-
 							</div>
 							<div className="col-md-7 col-sm-7">
-								<p className="channel-description" dangerouslySetInnerHTML={{__html: anchorme.js(this.state.channel.description.replace("\n", "<br />"), {target: "_blank"})}}></p>
+								<p
+									className="channel-description"
+									dangerouslySetInnerHTML={{
+										__html: anchorme.js(
+											this.state.channel.description.replace("\n", "<br />"),
+											{ target: "_blank" }
+										)
+									}}
+								/>
 								<p>&nbsp;</p>
-								{(this.state.channel.position) ?
+								{this.state.channel.position ? (
 									<div>
-										<p><b>Latest position:</b> <sup>(beta)</sup></p>
+										<p>
+											<b>Latest position:</b> <sup>(beta)</sup>
+										</p>
 										<PositionMap channel={this.state.channel.id} />
 										<p>&nbsp;</p>
 									</div>
-								: null}
-								<p><b>Latest video:</b></p>
-								<iframe width="100%" height="315" src={"https://www.youtube.com/embed/" + this.state.channel.videos[0]["_id"] + "?origin=https://sailing-channels.com"} frameBorder="0" allowFullScreen></iframe>
+								) : null}
+								<p>
+									<b>Latest video:</b>
+								</p>
+								<iframe
+									width="100%"
+									height="315"
+									src={
+										"https://www.youtube.com/embed/" +
+										this.state.channel.videos[0]["_id"] +
+										"?origin=https://sailing-channels.com"
+									}
+									frameBorder="0"
+									allowFullScreen
+								/>
 								<p>&nbsp;</p>
-								<p><b>All videos:</b></p>
+								<p>
+									<b>All videos:</b>
+								</p>
 								<VideoList channel={this.state.channel} />
 							</div>
 							<div className="col-md-3 col-sm-3">
-								<p><b>Subscribers in last 7 days:</b></p>
+								<p>
+									<b>Subscribers in last 7 days:</b>
+								</p>
 								<SubscriberHistoryChart channel={this.state.channel} />
 								<p>&nbsp;</p>
-								{(this.state.channel.subscribersHidden === true) ? <p className="text-warning"><b>Subscriber info hidden by channel <i className="fa fa-frown-o"></i></b></p> : null}
-								{(this.state.channel.subscribersHidden === false) ? <p><b>Subscribers:</b> {this.state.channel.subscribers.toLocaleString()}</p> : null}
-								{(this.state.channel.subscribersHidden === false) ? <p><b>Videos:</b> {this.state.channel.videoCount}</p> : null}
-								<p><b>Views:</b> {this.state.channel.views.toLocaleString()}</p>
-								{(this.state.channel.lastUploadAt) ? <p><b>Last upload:</b> {$.timeago(new Date(this.state.channel.lastUploadAt * 1000))}</p> : ""}
-								<p><b>Founded:</b> {this.formatDate(this.state.channel.publishedAt)}</p>
+								{this.state.channel.subscribersHidden === true ? (
+									<p className="text-warning">
+										<b>
+											Subscriber info hidden by channel{" "}
+											<i className="fa fa-frown-o" />
+										</b>
+									</p>
+								) : null}
+								{this.state.channel.subscribersHidden === false ? (
+									<p>
+										<b>Subscribers:</b>{" "}
+										{this.state.channel.subscribers.toLocaleString()}
+									</p>
+								) : null}
+								{this.state.channel.subscribersHidden === false ? (
+									<p>
+										<b>Videos:</b> {this.state.channel.videoCount}
+									</p>
+								) : null}
+								<p>
+									<b>Views:</b> {this.state.channel.views.toLocaleString()}
+								</p>
+								{this.state.channel.lastUploadAt ? (
+									<p>
+										<b>Last upload:</b>{" "}
+										{$.timeago(
+											new Date(this.state.channel.lastUploadAt * 1000)
+										)}
+									</p>
+								) : (
+									""
+								)}
+								<p>
+									<b>Founded:</b>{" "}
+									{this.formatDate(this.state.channel.publishedAt)}
+								</p>
 								<p>&nbsp;</p>
 								<SubscribeButton channel={this.state.channel} />
 								<p>&nbsp;</p>
-								<p><a target="_blank" href={"https://youtube.com/channel/" + this.state.channel.id}><i className="fa fa-external-link fa-fw"></i> Open YouTube channel</a></p>
-								<p><FlagButton channel={this.state.channel} /></p>
+								<p>
+									<a
+										target="_blank"
+										href={
+											"https://youtube.com/channel/" + this.state.channel.id
+										}
+									>
+										<i className="fa fa-external-link fa-fw" /> Open YouTube
+										channel
+									</a>
+								</p>
+								<p>
+									<FlagButton channel={this.state.channel} />
+								</p>
 								<p>&nbsp;</p>
-								{(customLinks.length > 0) ?
+								{customLinks.length > 0 ? (
 									<ul className="hidden-sm hidden-xs list-unstyled websites-list">
-										<li><b>Links:</b></li>
+										<li>
+											<b>Links:</b>
+										</li>
 										{customLinks}
 									</ul>
-								: null}
+								) : null}
 							</div>
 						</div>
 					</div>
-					<div className="col-md-1"></div>
+					<div className="col-md-1" />
 				</div>
 				<p>&nbsp;</p>
-            </div>
-        );
-    }
+			</div>
+		);
+	}
 }
 
 export default ChannelDetail;

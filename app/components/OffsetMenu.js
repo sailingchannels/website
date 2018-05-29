@@ -8,17 +8,20 @@ class OffsetMenu extends React.Component {
 		if (
 			$(".offset-menu")
 				.find("ul")
+				.hasClass("hidden-sm") ||
+			$(".offset-menu")
+				.find("ul")
 				.hasClass("hidden-xs")
 		) {
 			$(".offset-menu")
 				.find("ul")
-				.removeClass("hidden-xs");
+				.removeClass("hidden-xs hidden-sm");
 			$(".offset-menu").addClass("cover-up");
 			$(".logo, .search-row").css("opacity", 0);
 		} else {
 			$(".offset-menu")
 				.find("ul")
-				.addClass("hidden-xs");
+				.addClass("hidden-xs hidden-sm");
 			$(".offset-menu").removeClass("cover-up");
 			$(".logo, .search-row").css("opacity", 1);
 		}
@@ -28,13 +31,13 @@ class OffsetMenu extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="offset-bars hidden-md hidden-lg hidden-sm">
+				<div className="offset-bars hidden-md hidden-lg">
 					<div onClick={this.toggleMenu.bind(this)}>
 						<i className="fa fa-bars" />
 					</div>
 				</div>
 				<div className="offset-menu">
-					<ul className="hidden-xs">
+					<ul className="hidden-xs hidden-sm">
 						<li>
 							<Link to="/">Home</Link>
 						</li>
@@ -43,10 +46,7 @@ class OffsetMenu extends React.Component {
 						</li>
 						<li>
 							<Link to="/suggest">
-								<span className="label label-success">
-									New
-								</span>{" "}
-								Suggest a channel
+								<span className="label label-success">New</span> Suggest a channel
 							</Link>
 						</li>
 						<li>

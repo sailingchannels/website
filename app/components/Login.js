@@ -14,16 +14,15 @@ class Login extends React.Component {
 		return (
 			<div className="container">
 				<OffsetSocial />
-				<Logo />
+				<Logo className="hidden-xs hidden-sm" />
 				<OffsetMenu />
 				<div className="row content-row">
 					<div className="col-md-4" />
 					<div className="col-md-4">
 						<h1 className="content-h1">SignIn</h1>
 						<p>
-							To provide you with an awesome tailored user
-							interface, you can sign in with your YouTube
-							account.
+							To provide you with an awesome tailored user interface, you can sign in
+							with your YouTube account.
 						</p>
 						<center>
 							<p>~</p>
@@ -31,20 +30,14 @@ class Login extends React.Component {
 						<p>
 							sailing-channels.com{" "}
 							<u>
-								does not publish anything on your behalf nor
-								does it track or share your data
+								does not publish anything on your behalf nor does it track or share
+								your data
 							</u>.
 						</p>
 
-						<center
-							style={{ marginTop: "30px", marginBottom: "30px" }}
-						>
-							<a
-								href="/oauth2callback"
-								className="btn btn-danger btn-lg btn-raised"
-							>
-								Sign In with <i className="fa fa-youtube" />{" "}
-								YouTube
+						<center style={{ marginTop: "30px", marginBottom: "30px" }}>
+							<a href="/oauth2callback" className="btn btn-danger btn-lg btn-raised">
+								Sign In with <i className="fa fa-youtube" /> YouTube
 							</a>
 						</center>
 
@@ -54,9 +47,7 @@ class Login extends React.Component {
 									<i className="fa fa-circle fa-stack-2x" />
 									<i className="fa fa-youtube-play fa-stack-1x fa-inverse" />
 								</span>
-								<p>
-									Manage subscribtions directly from list view
-								</p>
+								<p>Manage subscribtions directly from list view</p>
 							</div>
 							<div className="col-md-6 feature-col">
 								<span className="fa-stack fa-lg">

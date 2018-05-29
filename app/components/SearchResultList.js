@@ -5,36 +5,36 @@ import ChannelActions from "../actions/ChannelActions";
 import ChannelStore from "../stores/ChannelStore";
 
 class SearchResultList extends React.Component {
-
-    // CONSTRUCTOR
+	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 		this.state = ChannelStore.getState();
 		this.onChange = this.onChange.bind(this);
 	}
 
-    // COMPONENT DID MOUNT
+	// COMPONENT DID MOUNT
 	componentDidMount() {
 		ChannelStore.listen(this.onChange);
 
-		if(this.props.query) {
+		if (this.props.query) {
 			$("#search-bar").val(this.props.query);
-			window.setTimeout(function() { $("#search-bar").focus(); }, 1);
+			window.setTimeout(function() {
+				$("#search-bar").focus();
+			}, 1);
 		}
 
 		// trigger initial search
 		ChannelActions.searchChannels(this.props.query);
-    }
+	}
 
-    // COMPONENT WILL UNMOUNT
+	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		ChannelStore.unlisten(this.onChange);
 	}
 
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
-
-		if(this.props.query !== nextProps.query) {
+		if (this.props.query !== nextProps.query) {
 			ChannelActions.searchChannels(nextProps.query);
 		}
 	}
@@ -44,20 +44,17 @@ class SearchResultList extends React.Component {
 		this.setState(state);
 	}
 
-    // RENDER
+	// RENDER
 	render() {
-
 		// no channels found
-		if(this.state.results.length === 0) {
+		if (this.state.results.length === 0) {
 			return (
 				<div className="row">
-					<div className="col-md-1"></div>
+					<div className="col-md-1" />
 					<div className="col-md-10">
-						<center>
-							No channels or videos match the search query!
-						</center>
+						<center>No channels or videos match the search query!</center>
 					</div>
-					<div className="col-md-1"></div>
+					<div className="col-md-1" />
 				</div>
 			);
 		}
@@ -65,26 +62,29 @@ class SearchResultList extends React.Component {
 		var results = [];
 
 		// loop results
-		for(var i in this.state.results) {
+		for (var i in this.state.results) {
 			var item = this.state.results[i];
 
 			// what type of result is this?
-			if(item.type === "channel") {
+			if (item.type === "channel") {
 				results.push(<ChannelListItem key={"cli-" + item.id} channel={item} />);
-			}
-			else {
+			} else {
 				results.push(<VideoListItem key={"vli-" + item._id} video={item} />);
 			}
 		}
 
 		return (
 			<div className="row">
-				<div className="col-md-1"></div>
-                <div className="col-md-10">
-					{(this.state.loading === true) ? <center className="loadMore">Loading more channels ...</center> : results}
-                </div>
-				<div className="col-md-1"></div>
-            </div>
+				<div className="col-md-1" />
+				<div className="col-md-10">
+					{this.state.loading === true ? (
+						<center className="loadMore">Loading more channels ...</center>
+					) : (
+						results
+					)}
+				</div>
+				<div className="col-md-1" />
+			</div>
 		);
 	}
 }

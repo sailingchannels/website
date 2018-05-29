@@ -9,9 +9,7 @@ class SocialOffset extends React.Component {
 		super(props);
 
 		this.state = {
-			me: cookie.load("me")
-				? JSON.parse(cookie.load("me").replace("j:", ""))
-				: null,
+			me: cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null,
 			bannerdialog: !!cookie.load("banner-dialog")
 		};
 	}
@@ -51,8 +49,6 @@ class SocialOffset extends React.Component {
 		this.setState({
 			bannerdialog: true
 		});
-
-		//this.forceUpdate();
 	}
 
 	// RENDER
@@ -62,13 +58,13 @@ class SocialOffset extends React.Component {
 		if (this.state.me) {
 			if (!this.state.me.title || this.state.me.title === "") {
 				profile = (
-					<p className="profile-link">
+					<p className="profile-link hidden-xs hidden-sm">
 						<Link to="/me">Your profile</Link>
 					</p>
 				);
 			} else {
 				profile = (
-					<p className="profile-link">
+					<p className="profile-link hidden-xs hidden-sm">
 						Hi, <Link to="/me">{this.state.me.title}</Link>
 					</p>
 				);
@@ -117,38 +113,28 @@ class SocialOffset extends React.Component {
 								SUPPORT<br />sailing-channels.com:
 							</p>
 							<div>
-								<a
-									href="https://www.patreon.com/sailingchannels"
-									target="_blank"
-								>
+								<a href="https://www.patreon.com/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
 											className="grey support-img"
 											height="50"
 											width="50"
-											onMouseOver={this.revealGrey.bind(
-												this
-											)}
+											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>
 									</LazyLoad>
 								</a>
 							</div>
 							<div style={{ marginTop: "10px" }}>
-								<a
-									href="https://www.paypal.me/sailingchannels"
-									target="_blank"
-								>
+								<a href="https://www.paypal.me/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
 											className="grey support-img"
 											height="50"
 											width="50"
-											onMouseOver={this.revealGrey.bind(
-												this
-											)}
+											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>
 									</LazyLoad>

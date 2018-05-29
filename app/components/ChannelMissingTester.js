@@ -65,8 +65,6 @@ class ChannelMissingTester extends Component {
 
 	// RENDER
 	render() {
-		console.log(this.state);
-
 		return (
 			<div>
 				<center>
@@ -90,8 +88,7 @@ class ChannelMissingTester extends Component {
 				) : null}
 
 				{/* CHANNEL ALREADY LISTED */}
-				{this.state.checkChannelResult === true &&
-				this.state.channelValue.length > 0 ? (
+				{this.state.checkChannelResult === true && this.state.channelValue.length > 0 ? (
 					<center>
 						<p className="text text-success">
 							Well, this channel is already listed, check it out:{" "}
@@ -107,9 +104,7 @@ class ChannelMissingTester extends Component {
 				this.state.channel === null &&
 				this.state.channelValue.length > 0 ? (
 					<center>
-						<p className="text text-warning">
-							This is not a valid YouTube channel!
-						</p>
+						<p className="text text-warning">This is not a valid YouTube channel!</p>
 					</center>
 				) : null}
 			</div>
