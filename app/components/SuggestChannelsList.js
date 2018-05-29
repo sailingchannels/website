@@ -8,7 +8,7 @@ class SuggestChannelsList extends Component {
 	render() {
 		return (
 			<div>
-				{this.props.channels.map(c => {
+				{this.props.channels.map((c) => {
 					return (
 						<div
 							key={"channel-suggest-" + c._id}
@@ -18,20 +18,14 @@ class SuggestChannelsList extends Component {
 							<div className="col-md-2 col-sm-2 col-xs-3">
 								<center>
 									<LazyLoad once>
-										<img
-											src={c.data.thumbnail}
-											className="channel-thumb"
-										/>
+										<img src={c.data.thumbnail} className="channel-thumb" />
 									</LazyLoad>
 								</center>
 							</div>
 							<div className="col-md-7 col-sm-6 col-xs-9">
 								<h3>
 									<a
-										href={
-											"https://youtube.com/channel/" +
-											c._id
-										}
+										href={"https://youtube.com/channel/" + c._id}
 										target="_blank"
 									>
 										{c.data.title}

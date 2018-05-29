@@ -9,9 +9,7 @@ class SocialOffset extends React.Component {
 		super(props);
 
 		this.state = {
-			me: cookie.load("me")
-				? JSON.parse(cookie.load("me").replace("j:", ""))
-				: null,
+			me: cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null,
 			bannerdialog: !!cookie.load("banner-dialog")
 		};
 	}
@@ -117,38 +115,28 @@ class SocialOffset extends React.Component {
 								SUPPORT<br />sailing-channels.com:
 							</p>
 							<div>
-								<a
-									href="https://www.patreon.com/sailingchannels"
-									target="_blank"
-								>
+								<a href="https://www.patreon.com/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
 											className="grey support-img"
 											height="50"
 											width="50"
-											onMouseOver={this.revealGrey.bind(
-												this
-											)}
+											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>
 									</LazyLoad>
 								</a>
 							</div>
 							<div style={{ marginTop: "10px" }}>
-								<a
-									href="https://www.paypal.me/sailingchannels"
-									target="_blank"
-								>
+								<a href="https://www.paypal.me/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
 											className="grey support-img"
 											height="50"
 											width="50"
-											onMouseOver={this.revealGrey.bind(
-												this
-											)}
+											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>
 									</LazyLoad>

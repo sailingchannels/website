@@ -15,9 +15,7 @@ class Home extends React.Component {
 		super(props);
 		this.state = {
 			showScrollUp: false,
-			me: cookie.load("me")
-				? JSON.parse(cookie.load("me").replace("j:", ""))
-				: null
+			me: cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
 		};
 	}
 
@@ -67,7 +65,7 @@ class Home extends React.Component {
 		return (
 			<div className="container">
 				<OffsetSocial />
-				<Logo />
+				<Logo className="hidden-xs hidden-sm" />
 				{!this.state.me ? (
 					<center>
 						<a
@@ -76,10 +74,7 @@ class Home extends React.Component {
 						>
 							Sign In with <i className="fa fa-youtube" /> YouTube
 						</a>
-						<Link
-							className="btn btn-link show btn-more-info"
-							to={"/signin"}
-						>
+						<Link className="btn btn-link show btn-more-info" to={"/signin"}>
 							More info
 						</Link>
 					</center>

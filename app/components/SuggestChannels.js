@@ -31,10 +31,10 @@ class SuggestChannels extends Component {
 			},
 			(err, data) => {
 				this.setState({
-					sail: data.filter(c => {
+					sail: data.filter((c) => {
 						return c.src == "yt" && c.sail === true;
 					}),
-					nonsail: data.filter(c => {
+					nonsail: data.filter((c) => {
 						return c.src == "yt" && c.sail === false;
 					})
 				});
@@ -44,8 +44,7 @@ class SuggestChannels extends Component {
 
 	// RENDER
 	render() {
-		if (this.state.sail.length === 0 && this.state.nonsail.length === 0)
-			return null;
+		if (this.state.sail.length === 0 && this.state.nonsail.length === 0) return null;
 
 		return (
 			<div>
@@ -53,22 +52,20 @@ class SuggestChannels extends Component {
 				<center>
 					<p>&nbsp;</p>
 					<h3>
-						<i className="fa fa-youtube" /> Channels you subscribed
-						to
+						<i className="fa fa-youtube" /> Channels you subscribed to
 					</h3>
 					<p>
-						Some of your subscriptions are likely to be sailing
-						channels and are <u>not</u> yet listed on
-						sailing-channels.com. You can easliy suggest them to be
-						listed:
+						Some of your subscriptions are likely to be sailing channels and are{" "}
+						<u>not</u> yet listed on sailing-channels.com. You can easliy suggest them
+						to be listed:
 					</p>
 					<p>&nbsp;</p>
 				</center>
 				<SuggestChannelsList channels={this.state.sail} />
 				<hr />
 				<div className="alert alert-info" role="alert">
-					Some of your subscriptions are probably not
-					sailing-channels, but you can check and suggest them anyway:
+					Some of your subscriptions are probably not sailing-channels, but you can check
+					and suggest them anyway:
 				</div>
 				<p>&nbsp;</p>
 				<SuggestChannelsList channels={this.state.nonsail} />

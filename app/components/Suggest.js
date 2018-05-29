@@ -24,9 +24,7 @@ class Suggest extends Component {
 
 		this.setState(
 			{
-				me: cookie.load("me")
-					? JSON.parse(cookie.load("me").replace("j:", ""))
-					: null
+				me: cookie.load("me") ? JSON.parse(cookie.load("me").replace("j:", "")) : null
 			},
 			() => {
 				// should the subscriptions be fetched?
@@ -56,7 +54,7 @@ class Suggest extends Component {
 		return (
 			<div className="container">
 				<OffsetSocial />
-				<Logo />
+				<Logo className="hidden-xs hidden-sm" />
 				<OffsetMenu />
 				<div className="row content-row">
 					<div className="col-md-3" />
@@ -66,24 +64,20 @@ class Suggest extends Component {
 						{this.state.me ? (
 							<div>
 								<p>
-									Know of any sailing channels that are not
-									listed here? Well, that's brilliant! You can
-									use the form below to check and suggest a
-									channel for the list:
+									Know of any sailing channels that are not listed here? Well,
+									that's brilliant! You can use the form below to check and
+									suggest a channel for the list:
 								</p>
 
 								<ChannelMissingTester />
 
-								<SuggestChannels
-									subscriptions={this.state.subscriptions}
-								/>
+								<SuggestChannels subscriptions={this.state.subscriptions} />
 							</div>
 						) : (
 							<div>
 								<p>
-									Know of any sailing channels that are not
-									listed here? Well, that's brilliant! Send an
-									email with the link to the channel to{" "}
+									Know of any sailing channels that are not listed here? Well,
+									that's brilliant! Send an email with the link to the channel to{" "}
 									<a
 										href="mailto:ahoyx@sailingx-channels.com"
 										onMouseOver={this.replaceX.bind(this)}
@@ -97,8 +91,7 @@ class Suggest extends Component {
 										href="/oauth2callback"
 										className="btn btn-raised btn-sm btn-danger yt-login"
 									>
-										Sign In with{" "}
-										<i className="fa fa-youtube" /> YouTube
+										Sign In with <i className="fa fa-youtube" /> YouTube
 									</a>
 									<Link
 										className="btn btn-link show btn-more-info"
@@ -108,8 +101,7 @@ class Suggest extends Component {
 									</Link>
 									<p>
 										If you login with your YouTube account,<br />
-										you can easily suggest channels from
-										this page:
+										you can easily suggest channels from this page:
 									</p>
 									<p>&nbsp;</p>
 									<Link to={"/signin"}>

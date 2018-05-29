@@ -3,38 +3,34 @@ import ChannelActions from "../actions/ChannelActions";
 import cookie from "react-cookie";
 
 class SubscribeButton extends React.Component {
-
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			"subscribed": props.channel.subscribed,
-			"loading": false
+			subscribed: props.channel.subscribed,
+			loading: false
 		};
 	}
 
 	// SUBSCRIBE
 	subscribeChannel(e) {
-
 		this.setState({
-			"subscribed": this.state.subscribed,
-			"loading": true
+			subscribed: this.state.subscribed,
+			loading: true
 		});
 
 		// perform the subscribe action
 		ChannelActions.subscribe(this.props.channel.id, (err, data) => {
-
-			if(!err && data.success === true) {
+			if (!err && data.success === true) {
 				this.setState({
-					"subscribed": true,
-					"loading": false
+					subscribed: true,
+					loading: false
 				});
-			}
-			else {
+			} else {
 				this.setState({
-					"subscribed": this.state.subscribed,
-					"loading": false
+					subscribed: this.state.subscribed,
+					loading: false
 				});
 			}
 		});
@@ -42,25 +38,22 @@ class SubscribeButton extends React.Component {
 
 	// UNSUBSCRIBE
 	unsubscribeChannel(e) {
-
 		this.setState({
-			"subscribed": this.state.subscribed,
-			"loading": true
+			subscribed: this.state.subscribed,
+			loading: true
 		});
 
 		// perform the unsubscribe action
 		ChannelActions.unsubscribe(this.props.channel.id, (err, data) => {
-
-			if(!err && data.success === true) {
+			if (!err && data.success === true) {
 				this.setState({
-					"subscribed": false,
-					"loading": false
+					subscribed: false,
+					loading: false
 				});
-			}
-			else {
+			} else {
 				this.setState({
-					"subscribed": this.state.subscribed,
-					"loading": false
+					subscribed: this.state.subscribed,
+					loading: false
 				});
 			}
 		});
@@ -68,9 +61,7 @@ class SubscribeButton extends React.Component {
 
 	// SHOW SIGN IN BANNER
 	showSignInBanner() {
-
-		if(!($("#signin-dialog").data("bs.modal") || {}).isShown) {
-
+		if (!($("#signin-dialog").data("bs.modal") || {}).isShown) {
 			// open the dialog
 			$("#signin-dialog").modal("show");
 		}
@@ -78,49 +69,59 @@ class SubscribeButton extends React.Component {
 
 	// RENDER
 	render() {
-
 		// user is not logged in
-		if(!cookie.load("me")) {
+		if (!cookie.load("me")) {
 			return (
-				<button onClick={this.showSignInBanner.bind(this)} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
-					<i className="fa fa-youtube-play"></i> Subscribe
+				<button
+					onClick={this.showSignInBanner.bind(this)}
+					className="hidden-xs btn btn-danger btn-sidebar btn-raised"
+				>
+					<i className="fa fa-youtube-play" /> Subscribe
 				</button>
 			);
 		}
 
 		// a subscription state is known
-		if(this.state.subscribed === false) {
-
+		if (this.state.subscribed === false) {
 			// render subscribe button
-			if(this.state.loading === true) {
+			if (this.state.loading === true) {
 				return (
-					<button className="hidden-xs btn btn-danger btn-sidebar btn-raised" disabled="disabled">
-						<i className="fa fa-spinner fa-pulse"></i>
+					<button
+						className="hidden-xs btn btn-danger btn-sidebar btn-raised"
+						disabled="disabled"
+					>
+						<i className="fa fa-spinner fa-pulse" />
+					</button>
+				);
+			} else {
+				return (
+					<button
+						onClick={this.subscribeChannel.bind(this)}
+						className="hidden-xs btn btn-danger btn-sidebar btn-raised"
+					>
+						<span>
+							<i className="fa fa-youtube-play" /> Subscribe
+						</span>
 					</button>
 				);
 			}
-			else {
-				return (
-					<button onClick={this.subscribeChannel.bind(this)} className="hidden-xs btn btn-danger btn-sidebar btn-raised">
-						<span><i className="fa fa-youtube-play"></i> Subscribe</span>
-					</button>
-				);
-			}
-		}
-		else {
-
+		} else {
 			// render unsuscribe button
-			if(this.state.loading === true) {
+			if (this.state.loading === true) {
 				return (
 					<button className="hidden-xs btn btn-sidebar btn-raised" disabled="disabled">
-						<i className="fa fa-spinner fa-pulse"></i>
+						<i className="fa fa-spinner fa-pulse" />
 					</button>
 				);
-			}
-			else {
+			} else {
 				return (
-					<button onClick={this.unsubscribeChannel.bind(this)} className="hidden-xs btn btn-sidebar btn-raised">
-						<span><i className="fa fa-youtube-play"></i> Unsubscribe</span>
+					<button
+						onClick={this.unsubscribeChannel.bind(this)}
+						className="hidden-xs btn btn-sidebar btn-raised"
+					>
+						<span>
+							<i className="fa fa-youtube-play" /> Unsubscribe
+						</span>
 					</button>
 				);
 			}

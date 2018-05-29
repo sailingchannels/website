@@ -110,17 +110,6 @@ h1 {
 	}
 }
 
-.offset-bars {
-	position: absolute;
-	right: 20px;
-	top: 20px;
-}
-
-.offset-bars i {
-	font-size: 2em;
-	color: grey;
-}
-
 .offset-menu ul {
 	list-style-type: none;
 }

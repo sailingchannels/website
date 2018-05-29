@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
+import MobileMenu from "./MobileMenu";
 
 class App extends React.Component {
 	// COMPONENT DID MOUNT
@@ -13,10 +14,7 @@ class App extends React.Component {
 			) {
 				// open the dialog
 				$("#banner-dialog").modal("show");
-				$("#banner-img").attr(
-					"src",
-					STATIC_PATH + "/img/twoaboardtuuli.jpg"
-				);
+				$("#banner-img").attr("src", STATIC_PATH + "/img/twoaboardtuuli.jpg");
 				Cookies.set("banner-dialog", "shown", { expires: 3 });
 			}
 		}, 45000);
@@ -26,6 +24,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<MobileMenu />
 				{this.props.children}
 				<Footer />
 			</div>

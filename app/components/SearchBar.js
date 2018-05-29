@@ -35,10 +35,7 @@ class SearchBar extends React.Component {
 		} else if (e.keyCode === 13) {
 			// ENTER triggers search
 			var v = e.target.value;
-			this.props.history.replaceState(
-				null,
-				"/search/" + encodeURIComponent(v)
-			);
+			this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
 		}
 	}
 
@@ -56,7 +53,7 @@ class SearchBar extends React.Component {
 	// RENDER
 	render() {
 		// make sort group invisible when we are searching
-		var sortGroupClass = "form-group sort-group";
+		var sortGroupClass = "hidden-xs hidden-sm form-group sort-group";
 		if (this.props.query) {
 			sortGroupClass += " invisible";
 		}
@@ -69,9 +66,7 @@ class SearchBar extends React.Component {
 						<div className="col-lg-1 col-md-1 col-sm-0" />
 						<div className="col-lg-10 col-md-10 col-sm-12">
 							<div className="form-group label-floating is-empty">
-								<label className="control-label">
-									Search for ...
-								</label>
+								<label className="control-label">Search for ...</label>
 								<input
 									className="form-control"
 									type="text"
@@ -85,9 +80,7 @@ class SearchBar extends React.Component {
 					</div>
 
 					<div className={sortGroupClass}>
-						<label className="sort-label control-label">
-							Sort by:
-						</label>
+						<label className="sort-label control-label">Sort by:</label>
 						<label className="sortBy-label">
 							<input
 								id="sortBy-subscribers"
@@ -96,9 +89,7 @@ class SearchBar extends React.Component {
 								className="sort-option"
 								name="sortby"
 								value="subscribers"
-								defaultChecked={
-									this.props.sortBy === "subscribers"
-								}
+								defaultChecked={this.props.sortBy === "subscribers"}
 							/>
 							&nbsp;Subscribers
 						</label>
@@ -142,9 +133,7 @@ class SearchBar extends React.Component {
 								className="sort-option"
 								name="sortby"
 								value="trending"
-								defaultChecked={
-									this.props.sortBy === "trending"
-								}
+								defaultChecked={this.props.sortBy === "trending"}
 							/>
 							&nbsp;Trending
 						</label>

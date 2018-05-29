@@ -5,8 +5,7 @@ import ChannelStore from "../stores/ChannelStore";
 import Infinite from "react-infinite";
 
 class ChannelList extends React.Component {
-
-    // CONSTRUCTOR
+	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 		this.state = ChannelStore.getState();
@@ -24,7 +23,7 @@ class ChannelList extends React.Component {
 
 		var sortBy = this.props.sortBy;
 		this.setState({
-			"sortBy": sortBy
+			sortBy: sortBy
 		});
 
 		// load the channels
@@ -42,18 +41,19 @@ class ChannelList extends React.Component {
 
 	// COMPOENTNT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
-
 		//console.log("componentWillReceiveProps", this.props, nextProps);
-		if(this.props.sortBy !== nextProps.sortBy) {
+		if (this.props.sortBy !== nextProps.sortBy) {
 			this.loadData(nextProps);
 		}
 	}
 
 	// LOAD
 	loadData(nextProps) {
-
 		document.title = "Sailing Channels";
-		$("meta[name='description']").attr("content", "A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.");
+		$("meta[name='description']").attr(
+			"content",
+			"A compiled list of YouTube channels that are related to sailing or living aboard a sailboat."
+		);
 
 		this.setState({
 			channels: [],
@@ -65,22 +65,21 @@ class ChannelList extends React.Component {
 		ChannelActions.getChannels(nextProps.sortBy, 0, 5);
 	}
 
-    // ON CHANGE
+	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
 	}
 
 	// LOAD MORE
 	loadMore() {
+		if (this.state.loading === false) {
+			this.setState({
+				loading: true
+			});
 
-		if(this.state.loading === false) {
-		   this.setState({
-			   "loading": true
-		   });
-
-		   // load more data
-		   ChannelActions.getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
-	  	}
+			// load more data
+			ChannelActions.getChannels(this.props.sortBy, this.state.skip + this.state.take, 25);
+		}
 	}
 
 	// RERENDER LIST
@@ -90,7 +89,6 @@ class ChannelList extends React.Component {
 
 	// CHANGE SORT
 	changeSort(e, data) {
-
 		this.setState({
 			sortBy: data.sortBy
 		});
@@ -99,40 +97,43 @@ class ChannelList extends React.Component {
 		this.props.history.replaceState(null, "/by-" + data.sortBy);
 	}
 
-    // RENDER
+	// RENDER
 	render() {
-
 		// no channels found
-		if(this.state.channels.length === 0) {
+		if (this.state.channels.length === 0) {
 			return (
 				<div className="row">
-					<div className="col-md-1"></div>
+					<div className="col-md-1" />
 					<div className="col-md-10">
-						<center>
-							Loading channels...
-						</center>
+						<center>Loading channels...</center>
 					</div>
-					<div className="col-md-1"></div>
+					<div className="col-md-1" />
 				</div>
 			);
 		}
 
 		// channels where found
 		return (
-            <div className="row">
-				<div className="col-md-1"></div>
-                <div className="col-md-10">
-					<Infinite useWindowAsScrollContainer={true} elementHeight={230} infiniteLoadBeginEdgeOffset={230} onInfiniteLoad={this.loadMore.bind(this)}>
-
-	                    {this.state.channels.map(c => (
-	        				<ChannelListItem key={"cli-" + c.id} channel={c} sortBy={this.state.sortBy} />
-	        			))}
-
+			<div className="row">
+				<div className="col-md-1" />
+				<div className="col-md-10">
+					<Infinite
+						useWindowAsScrollContainer={true}
+						elementHeight={230}
+						infiniteLoadBeginEdgeOffset={230}
+						onInfiniteLoad={this.loadMore.bind(this)}
+					>
+						{this.state.channels.map((c) => (
+							<ChannelListItem
+								key={"cli-" + c.id}
+								channel={c}
+								sortBy={this.state.sortBy}
+							/>
+						))}
 					</Infinite>
-
-                </div>
-				<div className="col-md-1"></div>
-            </div>
+				</div>
+				<div className="col-md-1" />
+			</div>
 		);
 	}
 }

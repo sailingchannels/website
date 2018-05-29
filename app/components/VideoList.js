@@ -16,11 +16,7 @@ class VideoList extends React.Component {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		VideoStore.listen(this.onChange);
-		VideoActions.getVideos(
-			this.props.channel._id,
-			this.state.skip,
-			this.state.take
-		);
+		VideoActions.getVideos(this.props.channel._id, this.state.skip, this.state.take);
 	}
 
 	// COMPONENT WILL RECEIVE PROPS
@@ -35,11 +31,7 @@ class VideoList extends React.Component {
 
 			this.setState(newState);
 
-			VideoActions.getVideos(
-				nextProps.channel._id,
-				newState.skip,
-				newState.take
-			);
+			VideoActions.getVideos(nextProps.channel._id, newState.skip, newState.take);
 		}
 	}
 
@@ -85,11 +77,7 @@ class VideoList extends React.Component {
 		this.setState(newState);
 
 		// load next videos
-		VideoActions.getVideos(
-			this.props.channel._id,
-			newState.skip,
-			newState.take
-		);
+		VideoActions.getVideos(this.props.channel._id, newState.skip, newState.take);
 	}
 
 	// PREV
@@ -103,27 +91,21 @@ class VideoList extends React.Component {
 		this.setState(newState);
 
 		// load next videos
-		VideoActions.getVideos(
-			this.props.channel._id,
-			newState.skip,
-			newState.take
-		);
+		VideoActions.getVideos(this.props.channel._id, newState.skip, newState.take);
 	}
 
 	// RENDER
 	render() {
 		return (
 			<div>
-				{this.state.videos.map(v => (
+				{this.state.videos.map((v) => (
 					<div className="row channel-row" key={v._id}>
 						<div className="col-md-3 col-xs-3">
 							<center>
 								<img
 									src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png"
 									data-src={
-										"https://img.youtube.com/vi/" +
-										v._id +
-										"/default.jpg"
+										"https://img.youtube.com/vi/" + v._id + "/default.jpg"
 									}
 									className="channel-thumb"
 								/>
@@ -136,9 +118,8 @@ class VideoList extends React.Component {
 							<p>
 								{this.formatDate(v.publishedAt)} &middot;{" "}
 								<i className="fa fa-eye" /> {v.views} &middot;{" "}
-								<i className="fa fa-thumbs-up" /> {v.likes}{" "}
-								&middot; <i className="fa fa-thumbs-down" />{" "}
-								{v.dislikes}
+								<i className="fa fa-thumbs-up" /> {v.likes} &middot;{" "}
+								<i className="fa fa-thumbs-down" /> {v.dislikes}
 							</p>
 							<Description text={v.description} video={true} />
 						</div>
@@ -148,20 +129,14 @@ class VideoList extends React.Component {
 				<div className="row">
 					<div className="col-md-6 col-xs-6 text-left">
 						{this.state.skip > 0 ? (
-							<a
-								className="btn btn-raised"
-								onClick={this.prev.bind(this)}
-							>
+							<a className="btn btn-raised" onClick={this.prev.bind(this)}>
 								<i className="fa fa-arrow-left" /> Previous
 							</a>
 						) : null}
 					</div>
 					<div className="col-md-6 col-xs-6 text-right">
 						{this.state.fin === false ? (
-							<a
-								className="btn btn-raised"
-								onClick={this.next.bind(this)}
-							>
+							<a className="btn btn-raised" onClick={this.next.bind(this)}>
 								Next <i className="fa fa-arrow-right" />
 							</a>
 						) : null}

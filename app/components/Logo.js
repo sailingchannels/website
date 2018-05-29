@@ -1,19 +1,22 @@
 import React from "react";
-import {Link} from "react-router";
+import { Link } from "react-router";
 
 class Logo extends React.Component {
-
 	render() {
+		let classes = "logo";
+		if (this.props.className) {
+			classes += " " + this.props.className;
+		}
 
 		return (
-            <div className="logo">
+			<div className={classes}>
 				<Link to="/">
-	              <div className="turnaround">
-	                <div className="front"></div>
-	                <div className="back"></div>
-	              </div>
-				 </Link>
-            </div>
+					<div className="turnaround">
+						<div className="front" />
+						<div className="back" />
+					</div>
+				</Link>
+			</div>
 		);
 	}
 }

@@ -43,10 +43,7 @@ class OffsetMenu extends React.Component {
 						</li>
 						<li>
 							<Link to="/suggest">
-								<span className="label label-success">
-									New
-								</span>{" "}
-								Suggest a channel
+								<span className="label label-success">New</span> Suggest a channel
 							</Link>
 						</li>
 						<li>

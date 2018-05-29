@@ -3,8 +3,7 @@ import LanguageActions from "../actions/LanguageActions";
 import LanguageStore from "../stores/LanguageStore";
 
 class LanguagePicker extends React.Component {
-
-    // CONSTRUCTOR
+	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
 		this.state = LanguageStore.getState();
@@ -15,39 +14,45 @@ class LanguagePicker extends React.Component {
 	componentDidMount() {
 		LanguageStore.listen(this.onChange);
 
-        LanguageActions.getLanguages();
-    }
+		LanguageActions.getLanguages();
+	}
 
-    // COMPONENT WILL UNMOUNT
+	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		LanguageStore.unlisten(this.onChange);
 	}
 
-    // ON CHANGE
+	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
 	}
 
-    // SET LANGUAGE
-    setLanguage(e) {
-        Cookies.set("channel-language", e.target.value);
-        this.setState({
-            "selectedLanguage": e.target.value
-        });
+	// SET LANGUAGE
+	setLanguage(e) {
+		Cookies.set("channel-language", e.target.value);
+		this.setState({
+			selectedLanguage: e.target.value
+		});
 
 		// make channel list rerender
 		$(window).trigger("rerenderList");
-    }
+	}
 
-    // RENDER
+	// RENDER
 	render() {
-
 		return (
-            <select className="form-control language-picker" data-dropdownjs="true" value={this.state.selectedLanguage} onChange={this.setLanguage.bind(this)}>
-              {this.state.languages.map(l => (
-				  <option key={l.code} value={l.code}>{l.name}</option>
-			  ))}
-            </select>
+			<select
+				className="form-control language-picker"
+				data-dropdownjs="true"
+				value={this.state.selectedLanguage}
+				onChange={this.setLanguage.bind(this)}
+			>
+				{this.state.languages.map((l) => (
+					<option key={l.code} value={l.code}>
+						{l.name}
+					</option>
+				))}
+			</select>
 		);
 	}
 }
