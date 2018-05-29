@@ -49,8 +49,6 @@ class SocialOffset extends React.Component {
 		this.setState({
 			bannerdialog: true
 		});
-
-		//this.forceUpdate();
 	}
 
 	// RENDER
@@ -60,13 +58,13 @@ class SocialOffset extends React.Component {
 		if (this.state.me) {
 			if (!this.state.me.title || this.state.me.title === "") {
 				profile = (
-					<p className="profile-link">
+					<p className="profile-link hidden-xs hidden-sm">
 						<Link to="/me">Your profile</Link>
 					</p>
 				);
 			} else {
 				profile = (
-					<p className="profile-link">
+					<p className="profile-link hidden-xs hidden-sm">
 						Hi, <Link to="/me">{this.state.me.title}</Link>
 					</p>
 				);

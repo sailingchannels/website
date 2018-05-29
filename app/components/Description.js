@@ -12,6 +12,8 @@ class ChannelListItem extends React.Component {
 
 	// TEXT CUTTER
 	textCutter(i, text) {
+		if (!text) return "";
+
 		if (text.length < i || this.state.more === true) return text;
 
 		var shorter = text.substr(0, i);
@@ -31,6 +33,7 @@ class ChannelListItem extends React.Component {
 
 	// RENDER
 	render() {
+		if (!descriptionTxt) return null;
 		var l = this.props.maxLength ? parseInt(this.props.maxLength) : 250;
 
 		// more is active, show "less" button

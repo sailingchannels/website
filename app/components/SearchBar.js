@@ -59,7 +59,7 @@ class SearchBar extends React.Component {
 		}
 
 		return (
-			<div className="row search-row">
+			<div className="row search-row hidden-xs hidden-sm">
 				<div className="col-lg-3 col-md-2 col-sm-2" />
 				<div className="col-lg-6 col-md-8 col-sm-8">
 					<div className="row">

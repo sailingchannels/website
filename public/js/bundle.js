@@ -3554,6 +3554,8 @@ var ChannelListItem = (function (_React$Component) {
 	_createClass(ChannelListItem, [{
 		key: "textCutter",
 		value: function textCutter(i, text) {
+			if (!text) return "";
+
 			if (text.length < i || this.state.more === true) return text;
 
 			var shorter = text.substr(0, i);
@@ -3577,6 +3579,7 @@ var ChannelListItem = (function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
+			if (!descriptionTxt) return null;
 			var l = this.props.maxLength ? parseInt(this.props.maxLength) : 250;
 
 			// more is active, show "less" button
@@ -5105,11 +5108,54 @@ var MobileMenu = (function (_Component) {
 	}
 
 	_createClass(MobileMenu, [{
+		key: "onSearchClicked",
+		value: function onSearchClicked() {
+			if ($(".search-row").hasClass("hidden-xs")) {
+				$(".search-row").removeClass("hidden-xs hidden-sm");
+			} else {
+				$(".search-row").addClass("hidden-xs hidden-sm");
+			}
+		}
+	}, {
 		key: "render",
 		value: function render() {
+			var urlSplitted = window.location.href.split("/");
+			var route = urlSplitted[3];
+
+			var title;
+			switch (route) {
+				case "by-subscribers":
+					title = "Most subscribers";
+					break;
+				case "by-views":
+					title = "Most views";
+					break;
+				case "by-upload":
+				case "":
+					title = "Latest upload";
+					break;
+				case "by-founded":
+					title = "Newest channel";
+					break;
+				case "by-trending":
+					title = "Trending";
+					break;
+				case "search":
+					title = "Search";
+					break;
+				case "imprint":
+					title = "Imprint";
+					break;
+			}
+
 			return _react2["default"].createElement(
 				"div",
 				{ className: "mobile-menu-container hidden-lg hidden-md" },
+				_react2["default"].createElement(
+					"div",
+					{ className: "offset-search", onClick: this.onSearchClicked.bind(this) },
+					_react2["default"].createElement("i", { className: "fa fa-search" })
+				),
 				_react2["default"].createElement(
 					"div",
 					{ className: "row mobile-menu-row" },
@@ -5121,7 +5167,7 @@ var MobileMenu = (function (_Component) {
 					_react2["default"].createElement(
 						"div",
 						{ className: "col-xs-8 mobile-title" },
-						"Newly uploaded"
+						title
 					)
 				),
 				_react2["default"].createElement(
@@ -5135,7 +5181,10 @@ var MobileMenu = (function (_Component) {
 							null,
 							_react2["default"].createElement(
 								_reactRouter.Link,
-								{ to: "/by-subscribers", className: "active" },
+								{
+									to: "/by-subscribers",
+									className: route === "by-subscribers" ? "active" : null
+								},
 								_react2["default"].createElement("i", { className: "fa fa-users" })
 							)
 						),
@@ -5144,7 +5193,10 @@ var MobileMenu = (function (_Component) {
 							null,
 							_react2["default"].createElement(
 								_reactRouter.Link,
-								{ to: "/by-views" },
+								{
+									to: "/by-views",
+									className: route === "by-views" ? "active" : null
+								},
 								_react2["default"].createElement("i", { className: "fa fa-eye" })
 							)
 						),
@@ -5153,7 +5205,10 @@ var MobileMenu = (function (_Component) {
 							null,
 							_react2["default"].createElement(
 								_reactRouter.Link,
-								{ to: "/by-upload" },
+								{
+									to: "/by-upload",
+									className: route === "by-upload" || route === "" ? "active" : null
+								},
 								_react2["default"].createElement("i", { className: "fa fa-clock-o" })
 							)
 						),
@@ -5162,7 +5217,10 @@ var MobileMenu = (function (_Component) {
 							null,
 							_react2["default"].createElement(
 								_reactRouter.Link,
-								{ to: "/by-founded" },
+								{
+									to: "/by-founded",
+									className: route === "by-founded" ? "active" : null
+								},
 								_react2["default"].createElement("i", { className: "fa fa-graduation-cap" })
 							)
 						),
@@ -5171,7 +5229,10 @@ var MobileMenu = (function (_Component) {
 							null,
 							_react2["default"].createElement(
 								_reactRouter.Link,
-								{ to: "/by-trending" },
+								{
+									to: "/by-trending",
+									className: route === "by-trending" ? "active" : null
+								},
 								_react2["default"].createElement("i", { className: "fa fa-line-chart" })
 							)
 						)
@@ -5228,12 +5289,12 @@ var OffsetMenu = (function (_React$Component) {
 
 		// TOGGLE MENU
 		value: function toggleMenu() {
-			if ($(".offset-menu").find("ul").hasClass("hidden-xs")) {
-				$(".offset-menu").find("ul").removeClass("hidden-xs");
+			if ($(".offset-menu").find("ul").hasClass("hidden-sm") || $(".offset-menu").find("ul").hasClass("hidden-xs")) {
+				$(".offset-menu").find("ul").removeClass("hidden-xs hidden-sm");
 				$(".offset-menu").addClass("cover-up");
 				$(".logo, .search-row").css("opacity", 0);
 			} else {
-				$(".offset-menu").find("ul").addClass("hidden-xs");
+				$(".offset-menu").find("ul").addClass("hidden-xs hidden-sm");
 				$(".offset-menu").removeClass("cover-up");
 				$(".logo, .search-row").css("opacity", 1);
 			}
@@ -5248,7 +5309,7 @@ var OffsetMenu = (function (_React$Component) {
 				null,
 				_react2["default"].createElement(
 					"div",
-					{ className: "offset-bars hidden-md hidden-lg hidden-sm" },
+					{ className: "offset-bars hidden-md hidden-lg" },
 					_react2["default"].createElement(
 						"div",
 						{ onClick: this.toggleMenu.bind(this) },
@@ -5260,7 +5321,7 @@ var OffsetMenu = (function (_React$Component) {
 					{ className: "offset-menu" },
 					_react2["default"].createElement(
 						"ul",
-						{ className: "hidden-xs" },
+						{ className: "hidden-xs hidden-sm" },
 						_react2["default"].createElement(
 							"li",
 							null,
@@ -5430,8 +5491,6 @@ var SocialOffset = (function (_React$Component) {
 			this.setState({
 				bannerdialog: true
 			});
-
-			//this.forceUpdate();
 		}
 
 		// RENDER
@@ -5444,7 +5503,7 @@ var SocialOffset = (function (_React$Component) {
 				if (!this.state.me.title || this.state.me.title === "") {
 					profile = _react2["default"].createElement(
 						"p",
-						{ className: "profile-link" },
+						{ className: "profile-link hidden-xs hidden-sm" },
 						_react2["default"].createElement(
 							_reactRouter.Link,
 							{ to: "/me" },
@@ -5454,7 +5513,7 @@ var SocialOffset = (function (_React$Component) {
 				} else {
 					profile = _react2["default"].createElement(
 						"p",
-						{ className: "profile-link" },
+						{ className: "profile-link hidden-xs hidden-sm" },
 						"Hi, ",
 						_react2["default"].createElement(
 							_reactRouter.Link,
@@ -6368,7 +6427,7 @@ var SearchBar = (function (_React$Component) {
 
 			return _react2["default"].createElement(
 				"div",
-				{ className: "row search-row" },
+				{ className: "row search-row hidden-xs hidden-sm" },
 				_react2["default"].createElement("div", { className: "col-lg-3 col-md-2 col-sm-2" }),
 				_react2["default"].createElement(
 					"div",
