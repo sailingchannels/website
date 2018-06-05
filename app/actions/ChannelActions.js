@@ -10,7 +10,9 @@ class ChannelActions {
 			"getChannelSuccess",
 			"getChannelFail",
 			"searchChannelsSuccess",
-			"searchChannelsFail"
+			"searchChannelsFail",
+			"getTagsSuccess",
+			"getTagsFail"
 		);
 	}
 
@@ -36,6 +38,25 @@ class ChannelActions {
 				}
 
 				this.actions.getChannelsSuccess(data);
+			}
+		);
+	}
+
+	// GET TAGS
+	getTags(id) {
+		new HTTP().get(
+			{
+				url: "/api/tags/" + id,
+				type: "GET",
+				dataType: "json",
+				cache: false
+			},
+			(err, data) => {
+				if (err) {
+					return this.actions.getTagsFail(err);
+				}
+
+				this.actions.getTagsSuccess(data);
 			}
 		);
 	}

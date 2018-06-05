@@ -10,6 +10,7 @@ class ChannelStore {
 		this.skip = 0;
 		this.take = 25;
 		this.sortBy = "subscribers";
+		this.tags = [];
 
 		this.channel = null;
 	}
@@ -62,6 +63,16 @@ class ChannelStore {
 		this.loading = false;
 
 		// Handle multiple response formats, fallback to HTTP status code number.
+		console.error(err);
+	}
+
+	// GET TAGS SUCCESS
+	getTagsSuccess(result) {
+		this.tags = result;
+	}
+
+	// GET TAGS FAIL
+	getTagsFail(err) {
 		console.error(err);
 	}
 }

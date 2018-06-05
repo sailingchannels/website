@@ -33,7 +33,7 @@ class ChannelListItem extends React.Component {
 
 	// RENDER
 	render() {
-		if (!descriptionTxt) return null;
+		if (!this.props.text) return null;
 		var l = this.props.maxLength ? parseInt(this.props.maxLength) : 250;
 
 		// more is active, show "less" button

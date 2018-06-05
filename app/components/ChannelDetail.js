@@ -10,6 +10,7 @@ import SubscriberHistoryChart from "./SubscriberHistoryChart";
 import SubscribeButton from "./SubscribeButton";
 import PositionMap from "./PositionMap";
 import FlagButton from "./FlagButton";
+import Tags from "./Tags";
 
 class ChannelDetail extends React.Component {
 	// CONSTRUCTOR
@@ -78,7 +79,7 @@ class ChannelDetail extends React.Component {
 		) {
 			for (var l in this.state.channel.customLinks) {
 				customLinks.push(
-					<li>
+					<li key={"customlink_" + l}>
 						<a target="_blank" href={this.state.channel.customLinks[l].url}>
 							<img src={this.state.channel.customLinks[l].icon} />{" "}
 							{this.state.channel.customLinks[l].title}
@@ -107,6 +108,8 @@ class ChannelDetail extends React.Component {
 						<div className="row">
 							<div className="col-md-2 col-sm-2">
 								<img src={this.state.channel.thumbnail} className="channel-thumb" />
+
+								<Tags id={this.state.channel.id} />
 							</div>
 							<div className="col-md-7 col-sm-7">
 								<p
