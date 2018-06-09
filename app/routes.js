@@ -12,13 +12,15 @@ import Contributions from "./components/Contributions";
 import Login from "./components/Login";
 import Me from "./components/Me";
 import SupportUs from "./components/SupportUs";
+import Suggest from "./components/Suggest";
+
+// admin
 import Admin from "./components/Admin/Admin";
 import AdminDashboard from "./components/Admin/Dashboard";
 import AdminAdditional from "./components/Admin/Additional";
 import AdminBlacklist from "./components/Admin/Blacklist";
 import AdminFlags from "./components/Admin/Flags";
 import AdminSuggestions from "./components/Admin/Suggestions";
-import Suggest from "./components/Suggest";
 
 export default (
 	<Route path="/" component={App}>

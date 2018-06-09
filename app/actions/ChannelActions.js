@@ -1,5 +1,6 @@
 import alt from "../alt";
 import HTTP from "../helpers/http";
+import $ from "jquery";
 
 // CHANNEL ACTIONS
 class ChannelActions {

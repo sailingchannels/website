@@ -1,0 +1,47 @@
+.logo {
+	width: 150px;
+	height: 150px;
+	margin: 20px auto;
+	display: block;
+	perspective: 1500; /* Hier wird die Perspektive der gesamten Szene festgelegt. Der Wert hat Auswirkung auf die Verzerrung */
+}
+
+.logo:hover .turnaround {
+	transform: rotateY(180deg); /* Beim Mouse-Over wird die Szene umgedreht */
+}
+
+.logo .front {
+	background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo.svg")
+		0 0 no-repeat;
+	background-size: contain;
+}
+
+.logo .back {
+	background: url("https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/logo2.svg")
+		0 0 no-repeat;
+	background-size: contain;
+}
+
+.turnaround {
+	transition: 0.5s;
+	transform-style: preserve-3d; /* Kind-Elemente  (.front + .back) sollen ihre 3D-Eigenschaften behalten*/
+	position: relative;
+	height: 100%;
+}
+
+.front,
+.back {
+	backface-visibility: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.front {
+	z-index: 2;
+}
+
+.back {
+	transform: rotateY(180deg);
+	z-index: 1;
+}

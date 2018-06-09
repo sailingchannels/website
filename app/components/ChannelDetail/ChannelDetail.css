@@ -1,0 +1,7 @@
+.websites-list li:first-child {
+	margin-bottom: 10px;
+}
+
+.websites-list li {
+	margin-bottom: 5px;
+}

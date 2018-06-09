@@ -1,0 +1,12 @@
+.feature-col {
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.feature-col p {
+	margin-top: 10px;
+}
+
+.feature-row {
+	margin-bottom: 30px;
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import cookie from "react-cookie";
 import MeActions from "../../actions/MeActions";
 import MeStore from "../../stores/MeStore";
-import Logo from "../Logo";
+import Logo from "../Logo/index";
 
 class Admin extends React.Component {
 	constructor(props) {
@@ -53,19 +53,13 @@ class Admin extends React.Component {
 									<Link to="/admin/flags">Flags</Link>
 								</li>
 								<li>
-									<Link to="/admin/additional">
-										Additional Channels
-									</Link>
+									<Link to="/admin/additional">Additional Channels</Link>
 								</li>
 								<li>
-									<Link to="/admin/blacklist">
-										Blacklist Channel
-									</Link>
+									<Link to="/admin/blacklist">Blacklist Channel</Link>
 								</li>
 								<li>
-									<Link to="/admin/suggestions">
-										Channel Suggestions
-									</Link>
+									<Link to="/admin/suggestions">Channel Suggestions</Link>
 								</li>
 							</ul>
 						</div>
