@@ -1,6 +1,9 @@
 var __wpo = {
 	assets: {
 		main: [
+			"/c28786718cde9f7fa6b0c00b03bccacf.jpg",
+			"/993dcdc9accc3ba091b9cc34a4aea2b2.png",
+			"/066e6bc09552583108f5b742c2618022.jpg",
 			"/f4769f9bdb7466be65088239c12046d1.eot",
 			"/89889688147bd7575d6327160d64e760.svg",
 			"/e18bbf611f2a2e43afc071aa2f4e1512.ttf",
@@ -15,13 +18,16 @@ var __wpo = {
 			"/icon-512x512.png",
 			"/icon-72x72.png",
 			"/icon-96x96.png",
+			"/patreon.jpg",
+			"/paypal.png",
+			"/twoaboardtuuli.jpg",
 			"/manifest.json",
 			"/674f50d287a8c48dc19ba404d20fe713.eot",
 			"/912ec66d7572ff821749319396470bde.svg",
 			"/b06871f281fee6b241d60582ae9369b9.ttf",
 			"/af7ae505a9eed503f8b8e6982036873e.woff2",
 			"/fee66e712a8a08eef5805a46892932ad.woff",
-			"/main.cd4c9b5561fd1e5bda2e.js",
+			"/main.dec0abbe1dcadb5a244e.js",
 			"/"
 		],
 		additional: [],
@@ -29,6 +35,9 @@ var __wpo = {
 	},
 	externals: [],
 	hashesMap: {
+		"1d4da9eb8b5ec3289cbb40020522568b9c41a965": "/c28786718cde9f7fa6b0c00b03bccacf.jpg",
+		"60ffad155199b0da59c425dcc02fc3dbef66bf3a": "/993dcdc9accc3ba091b9cc34a4aea2b2.png",
+		"05edb9e976b76ff773151dbec0e5b8ada3cba4a6": "/066e6bc09552583108f5b742c2618022.jpg",
 		"86b6f62b7853e67d3e635f6512a5a5efc58ea3c3": "/f4769f9bdb7466be65088239c12046d1.eot",
 		de51a8494180a6db074af2dee2383f0a363c5b08: "/89889688147bd7575d6327160d64e760.svg",
 		"44bc1850f570972267b169ae18f1cb06b611ffa2": "/e18bbf611f2a2e43afc071aa2f4e1512.ttf",
@@ -43,18 +52,21 @@ var __wpo = {
 		b67f088e7e322151554db542d2178263ee5d9d9e: "/icon-512x512.png",
 		a92e8d747cad968d6ba947fc04936aa1234114cd: "/icon-72x72.png",
 		eee8b3b18d94bcdb972bd7aab450f2ce0ee7fb71: "/icon-96x96.png",
+		"980e2b0b6449d617909f2cf95c58baf481f96afe": "/patreon.jpg",
+		"903a70df639ab1920d37c18164fe65367a052c41": "/paypal.png",
+		f3ca1b26d36e6df53161249328c0bd4c8019bf1b: "/twoaboardtuuli.jpg",
 		"35892e63232118565bb6215e09f53ac06b5782ad": "/manifest.json",
 		d980c2ce873dc43af460d4d572d441304499f400: "/674f50d287a8c48dc19ba404d20fe713.eot",
 		"98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed": "/912ec66d7572ff821749319396470bde.svg",
 		"13b1eab65a983c7a73bc7997c479d66943f7c6cb": "/b06871f281fee6b241d60582ae9369b9.ttf",
 		d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c: "/af7ae505a9eed503f8b8e6982036873e.woff2",
 		"28b782240b3e76db824e12c02754a9731a167527": "/fee66e712a8a08eef5805a46892932ad.woff",
-		"3eae595db11cb93e6f6e030c2bdd33547141b2b9": "/main.cd4c9b5561fd1e5bda2e.js",
-		"4bb3760348cf66e067b1d83de10ae0c114654859": "/"
+		"0a9606a5974319f0035ec976dfd91ea66ab94291": "/main.dec0abbe1dcadb5a244e.js",
+		d5b34f711200ecfa4f4939dc602081dbf42e4c0c: "/"
 	},
 	strategy: "changed",
 	responseStrategy: "cache-first",
-	version: "6/9/2018, 9:10:32 PM",
+	version: "6/10/2018, 1:50:45 AM",
 	name: "webpack-offline",
 	pluginVersion: "4.8.1",
 	relativePaths: false

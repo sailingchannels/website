@@ -1,4 +1,6 @@
 import React from "react";
+import $ from "jquery";
+import Chart from "chart.js";
 
 class SubscriberHistoryChart extends React.Component {
 	// COMPONENT DID MOUNT

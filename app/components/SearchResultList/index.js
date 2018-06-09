@@ -3,6 +3,7 @@ import ChannelListItem from "components/ChannelListItem";
 import VideoListItem from "components/VideoListItem";
 import ChannelActions from "actions/ChannelActions";
 import ChannelStore from "stores/ChannelStore";
+import $ from "jquery";
 
 import "./SearchResultList.css";
 

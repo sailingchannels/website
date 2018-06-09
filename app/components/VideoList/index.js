@@ -4,6 +4,8 @@ import VideoActions from "actions/VideoActions";
 import VideoStore from "stores/VideoStore";
 import Description from "components/Description";
 import { Navigation, Link } from "react-router";
+import LazyLoad from "react-lazyload";
+import $ from "jquery";
 
 class VideoList extends React.Component {
 	// CONSTRUCTOR
@@ -43,7 +45,6 @@ class VideoList extends React.Component {
 	// ON CHANGE
 	onChange(state) {
 		this.setState(state);
-		$(".channel-thumb").unveil();
 	}
 
 	// FORMAT DATE
@@ -102,13 +103,12 @@ class VideoList extends React.Component {
 					<div className="row channel-row" key={v._id}>
 						<div className="col-md-3 col-xs-3">
 							<center>
-								<img
-									src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png"
-									data-src={
-										"https://img.youtube.com/vi/" + v._id + "/default.jpg"
-									}
-									className="channel-thumb"
-								/>
+								<LazyLoad>
+									<img
+										src={"https://img.youtube.com/vi/" + v._id + "/default.jpg"}
+										className="channel-thumb"
+									/>
+								</LazyLoad>
 							</center>
 						</div>
 						<div className="col-md-9 col-xs-9">

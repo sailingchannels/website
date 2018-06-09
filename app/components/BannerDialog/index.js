@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router";
 
+import LazyLoad from "react-lazyload";
+
 class BannerDialog extends React.Component {
 	// RENDER
 	render() {
-		console.log("BannerDialog");
 		return (
 			<div id="banner-dialog" className="modal fade">
 				<div className="modal-dialog">
@@ -21,9 +22,15 @@ class BannerDialog extends React.Component {
 							<h3 className="modal-title">Thanks for stopping by!</h3>
 						</div>
 						<div className="modal-body">
-							<p>
-								<img id="banner-img" src="" width="100%" />
-							</p>
+							<LazyLoad>
+								<p>
+									<img
+										id="banner-img"
+										src="/img/twoaboardtuuli.jpg"
+										width="100%"
+									/>
+								</p>
+							</LazyLoad>
 							<p>
 								The{" "}
 								<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank">

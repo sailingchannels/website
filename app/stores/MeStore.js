@@ -1,5 +1,6 @@
 import alt from "../alt";
 import MeActions from "../actions/MeActions";
+import Modernizr from "modernizr";
 
 class MeStore {
 	constructor() {

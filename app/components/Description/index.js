@@ -1,5 +1,6 @@
 import React from "react";
 import Description from "components/Description";
+import anchorme from "anchorme";
 
 class ChannelListItem extends React.Component {
 	// CONSTRUCTOR
@@ -54,7 +55,7 @@ class ChannelListItem extends React.Component {
 			<p className="channel-description">
 				<span
 					dangerouslySetInnerHTML={{
-						__html: anchorme.js(descriptionTxt, { target: "_blank" })
+						__html: anchorme(descriptionTxt, { target: "_blank" })
 					}}
 				/>
 				&nbsp;{moreOrLess}

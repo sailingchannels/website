@@ -4,7 +4,7 @@ import SearchBar from "components/SearchBar";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
-import BannerDialog from "components/BannerDialog/Loadable";
+import BannerDialog from "components/BannerDialog";
 import SignInDialog from "components/SignInDialog";
 import cookie from "react-cookie";
 import { Link } from "react-router";

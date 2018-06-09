@@ -20,6 +20,9 @@ import "!file-loader?name=[name].[ext]!./images/icons/icon-152x152.png";
 import "!file-loader?name=[name].[ext]!./images/icons/icon-192x192.png";
 import "!file-loader?name=[name].[ext]!./images/icons/icon-384x384.png";
 import "!file-loader?name=[name].[ext]!./images/icons/icon-512x512.png";
+import "!file-loader?name=[name].[ext]!./images/patreon.jpg";
+import "!file-loader?name=[name].[ext]!./images/paypal.png";
+import "!file-loader?name=[name].[ext]!./images/twoaboardtuuli.jpg";
 import "!file-loader?name=[name].[ext]!./manifest.json";
 
 const MOUNT_NODE = document.getElementById("app");

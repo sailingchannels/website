@@ -3,11 +3,6 @@ import Description from "components/Description";
 import { Link } from "react-router";
 
 class VideoListItem extends React.Component {
-	// COMPONENT DID MOUNT
-	componentDidMount() {
-		$(".channel-thumb").unveil();
-	}
-
 	// FORMAT DATE
 	formatDate(unix) {
 		var m = [

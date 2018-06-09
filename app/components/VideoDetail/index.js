@@ -8,6 +8,7 @@ import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
 import { Navigation, Link } from "react-router";
 import SubscribeButton from "components/SubscribeButton";
+import anchorme from "anchorme";
 
 import "./VideoDetail.css";
 
@@ -107,7 +108,7 @@ class VideoDetail extends React.Component {
 								<p
 									className="channel-description"
 									dangerouslySetInnerHTML={{
-										__html: anchorme.js(
+										__html: anchorme(
 											this.state.video.description.replace("\n", "<br />"),
 											{ target: "_blank" }
 										)

@@ -1,5 +1,8 @@
 import React from "react";
 import Helmet from "react-helmet";
+import anchorme from "anchorme";
+import $ from "jquery";
+
 import ChannelActions from "actions/ChannelActions";
 import ChannelStore from "stores/ChannelStore";
 import OffsetMenu from "components/OffsetMenu";
@@ -117,7 +120,7 @@ class ChannelDetail extends React.Component {
 								<p
 									className="channel-description"
 									dangerouslySetInnerHTML={{
-										__html: anchorme.js(
+										__html: anchorme(
 											this.state.channel.description.replace("\n", "<br />"),
 											{ target: "_blank" }
 										)

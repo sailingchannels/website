@@ -2,6 +2,7 @@ import React from "react";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
+import LazyLoad from "react-lazyload";
 
 class Contributions extends React.Component {
 	// COMPONENT DID MOUNT
@@ -20,9 +21,15 @@ class Contributions extends React.Component {
 					<div className="col-md-3" />
 					<div className="col-md-6">
 						<h1 className="content-h1">Support Us</h1>
-						<p>
-							<img id="banner-img" src="/img/twoaboardtuuli.jpg" width="100%" />
-						</p>
+						<LazyLoad>
+							<p>
+								<img
+									id="banner-img"
+									src={require("images/twoaboardtuuli.jpg")}
+									width="100%"
+								/>
+							</p>
+						</LazyLoad>
 						<p>
 							The{" "}
 							<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank">
@@ -40,7 +47,7 @@ class Contributions extends React.Component {
 							<div className="col-md-6 text-center">
 								<a href="https://www.patreon.com/sailingchannels" target="_blank">
 									<img
-										src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
+										src={require("images/patreon.jpg")}
 										height="150"
 										width="150"
 									/>
@@ -49,7 +56,7 @@ class Contributions extends React.Component {
 							<div className="col-md-6 text-center">
 								<a href="https://www.paypal.me/sailingchannels" target="_blank">
 									<img
-										src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
+										src={require("images/paypal.png")}
 										height="150"
 										width="150"
 									/>

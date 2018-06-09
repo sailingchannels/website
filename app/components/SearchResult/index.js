@@ -7,6 +7,7 @@ import BannerDialog from "components/BannerDialog";
 import SignInDialog from "components/SignInDialog";
 import cookie from "react-cookie";
 import { Link } from "react-router";
+import $ from "jquery";
 
 class SearchResult extends React.Component {
 	// CONSTRUCTOR

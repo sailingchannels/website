@@ -27,9 +27,9 @@ class Imprint extends React.Component {
 						<p>
 							<span className="reverse">nnameggürB samohT</span>
 							<br />
-							<span className="reverse">9 pmakrefoH</span>
+							<span className="reverse">21 grubnenorC</span>
 							<br />
-							<span className="reverse">nesreiV 15714</span>
+							<span className="reverse">nehcrikslegnE 66715</span>
 							<br />
 							<span className="reverse">moc.slennahc-gnilias@yoha</span>
 							<br />
