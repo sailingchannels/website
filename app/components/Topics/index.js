@@ -63,9 +63,11 @@ class Topics extends React.Component {
 				<Logo className="hidden-xs hidden-sm" />
 				<OffsetMenu />
 				<div className="row content-row">
-					<div className="col-md-1" />
-					<div className="col-md-10">
-						<h1 className="content-h1">Explore by topics</h1>
+					<div className="col-md-3" />
+					<div className="col-md-6">
+						<h1 className="content-h1">
+							Explore by topics <sup style={{ color: "#C0C0C0" }}>beta</sup>
+						</h1>
 						<center>
 							<p style={{ marginBottom: "40px" }}>
 								Explore sailing channels by their topics. Channels are automatically
@@ -81,7 +83,7 @@ class Topics extends React.Component {
 							</p>
 						</center>
 					</div>
-					<div className="col-md-1" />
+					<div className="col-md-3" />
 				</div>
 				<div className="row content-row">
 					{this.state.topics.chunk(2).map((resultsChunk, chunkIdx) => {

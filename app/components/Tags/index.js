@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ChannelActions from "actions/ChannelActions";
 import ChannelStore from "stores/ChannelStore";
 
@@ -39,15 +38,12 @@ class Tags extends React.Component {
 
 		return (
 			<div>
+				<b style={{ marginTop: "35px", display: "block" }}>Popular video tags:</b>
 				{this.state.tags.map((t, i) => {
 					return (
-						<Link
-							className="badge badge-secondary"
-							key={i}
-							to={"/topic/" + encodeURIComponent(t.tag)}
-						>
+						<span className="badge badge-secondary" key={i}>
 							{t.tag}
-						</Link>
+						</span>
 					);
 				})}
 			</div>

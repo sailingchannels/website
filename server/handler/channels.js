@@ -4,18 +4,7 @@ const async = require("async");
 const ServerTiming = require("servertiming");
 const misc = require("./misc");
 const youtube = require("youtube-api");
-
-// TEXT CUTTER
-var textCutter = function(i, text) {
-	if (text.length < i) return text;
-
-	var shorter = text.substr(0, i);
-	if (/^\S/.test(text.substr(i))) {
-		return shorter.replace(/\s+\S*$/, "") + " ...";
-	}
-
-	return shorter;
-};
+const textCutter = require("../utils/textcutter");
 
 // CHECK SAILING TERMS
 var checkSailingTerms = function(terms, title, description) {

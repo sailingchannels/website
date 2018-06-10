@@ -8,11 +8,15 @@ class TopicActions {
 			"getTopicsSuccess",
 			"getTopicsFail",
 			"getTopicSuccess",
-			"getTopicFail"
+			"getTopicFail",
+			"resetChannels",
+			"setLoading"
 		);
 	}
 
 	getTopics() {
+		this.actions.setLoading();
+
 		new HTTP().get(
 			{
 				url: "/api/topics",
@@ -30,10 +34,12 @@ class TopicActions {
 		);
 	}
 
-	getTopic(id) {
+	getTopic(id, skip, take) {
+		this.actions.setLoading();
+
 		new HTTP().get(
 			{
-				url: "/api/topic/" + id,
+				url: "/api/topic/" + id + "?skip=" + skip + "&take=" + take,
 				type: "GET",
 				dataType: "json",
 				cache: true

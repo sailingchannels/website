@@ -5,9 +5,8 @@ import TopicStore from "stores/TopicStore";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
-import $ from "jquery";
-
-import "./Topic.css";
+import Infinite from "react-infinite";
+import ChannelListItem from "components/ChannelListItem/Loadable";
 
 class Topic extends React.Component {
 	// CONSTRUCTOR
@@ -20,7 +19,9 @@ class Topic extends React.Component {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		TopicStore.listen(this.onChange);
-		TopicActions.getTopic(this.props.match.params.id);
+
+		TopicActions.resetChannels();
+		TopicActions.getTopic(this.props.match.params.id, this.state.skip, this.state.take);
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -33,6 +34,18 @@ class Topic extends React.Component {
 		this.setState(state);
 	}
 
+	// LOAD MORE
+	loadMore() {
+		if (this.state.loading === false) {
+			// load more data
+			TopicActions.getTopic(
+				this.props.match.params.id,
+				this.state.skip + this.state.take,
+				this.state.take
+			);
+		}
+	}
+
 	render() {
 		if (!this.state.topic) return null;
 
@@ -42,18 +55,34 @@ class Topic extends React.Component {
 				<Logo className="hidden-xs hidden-sm" />
 				<OffsetMenu />
 				<div className="row content-row">
-					<div className="col-md-1" />
-					<div className="col-md-10">
-						<h1 className="content-h1">Topic: {this.state.topic.topic.title}</h1>
+					<div className="col-md-3" />
+					<div className="col-md-6">
+						<h1 className="content-h1">Topic: {this.state.topic.title}</h1>
 						<center>
-							<p style={{ marginBottom: "40px" }}>
-								{this.state.topic.topic.description}
-							</p>
+							<p>{this.state.topic.description}</p>
+							<Link
+								style={{ marginBottom: "40px" }}
+								className="btn btn-default btn-raised"
+								to="/topics"
+							>
+								<i className="fa fa-arrow-left" /> back to topics
+							</Link>
 						</center>
 					</div>
-					<div className="col-md-1" />
+					<div className="col-md-3" />
 				</div>
-				<div className="row content-row" />
+				<div className="row content-row">
+					<Infinite
+						useWindowAsScrollContainer={true}
+						elementHeight={230}
+						infiniteLoadBeginEdgeOffset={230}
+						onInfiniteLoad={this.loadMore.bind(this)}
+					>
+						{this.state.channels.map((c) => {
+							return <ChannelListItem key={"cli-" + c.id} channel={c} />;
+						})}
+					</Infinite>
+				</div>
 			</div>
 		);
 	}

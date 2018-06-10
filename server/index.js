@@ -10,6 +10,7 @@ const youtube = require("youtube-api");
 const minify = require("html-minifier").minify;
 const cache = require("apicache").middleware;
 const setup = require("./middlewares/frontendMiddleware");
+const setGlobals = require("./globals");
 
 const argv = require("./argv");
 const port = require("./port");
@@ -166,27 +167,8 @@ const cache60 = cache("60 minutes", onlyStatus200);
 	// mongodb connect
 	const db = await mongodb.connect("mongodb://" + mongodbHost + ":27017/" + mongodbURL);
 
-	// collections
-	global.channels = db.collection("channels");
-	global.searches = db.collection("searches");
-	global.videos = db.collection("videos");
-	global.subscribers = db.collection("subscribers");
-	global.views = db.collection("views");
-	global.users = db.collection("users");
-	global.visits = db.collection("visits");
-	global.flags = db.collection("flags");
-	global.positions = db.collection("positions");
-	global.blacklist = db.collection("blacklist");
-	global.additional = db.collection("additional");
-	global.sailingterms = db.collection("sailingterms");
-	global.suggestions = db.collection("suggestions");
-	global.tags = db.collection("tags");
-	global.topics = db.collection("topics");
-	global.CACHE_users_subscriptions = db.collection("CACHE_users_subscriptions");
-	global.CACHE_ais_positions = db.collection("CACHE_ais_positions");
-	global.CACHE_inreach_positions = db.collection("CACHE_inreach_positions");
-	global.CACHE_custom_links = db.collection("CACHE_custom_links");
-	global.CACHE_languages = db.collection("CACHE_languages");
+	// set collection globals
+	setGlobals(db);
 
 	// In production we need to pass these values in instead of relying on webpack
 	setup(app, {
