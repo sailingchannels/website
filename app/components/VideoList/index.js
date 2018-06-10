@@ -5,7 +5,6 @@ import VideoStore from "stores/VideoStore";
 import Description from "components/Description";
 import { Navigation, Link } from "react-router";
 import LazyLoad from "react-lazyload";
-import $ from "jquery";
 
 class VideoList extends React.Component {
 	// CONSTRUCTOR

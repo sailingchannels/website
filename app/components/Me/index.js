@@ -5,9 +5,9 @@ import Logo from "components/Logo";
 import cookie from "react-cookie";
 import MeActions from "actions/MeActions";
 import MeStore from "stores/MeStore";
-import SubscriberHistoryChart from "components/SubscriberHistoryChart";
-import ViewsHistoryChart from "components/ViewsHistoryChart";
+import HistoryChart from "components/HistoryChart";
 import PositionMap from "components/PositionMap";
+import $ from "jquery";
 
 import "./Me.css";
 
@@ -37,7 +37,9 @@ class Me extends React.Component {
 	}
 
 	// SAFE PROFILE
-	saveProfile() {
+	saveProfile(e) {
+		e.preventDefault();
+
 		this.setState({
 			loading: true
 		});
@@ -124,7 +126,10 @@ class Me extends React.Component {
 											<b>Subscribers</b>
 										</p>
 									</center>
-									<SubscriberHistoryChart channel={this.state.me.channel} />
+									<HistoryChart
+										name="subscribers"
+										data={this.state.me.channel.subHist}
+									/>
 								</div>
 								<div className="col-md-6">
 									<center>
@@ -132,7 +137,10 @@ class Me extends React.Component {
 											<b>Views</b>
 										</p>
 									</center>
-									<ViewsHistoryChart channel={this.state.me.channel} />
+									<HistoryChart
+										name="views"
+										data={this.state.me.channel.viewHist}
+									/>
 								</div>
 							</div>
 						</div>

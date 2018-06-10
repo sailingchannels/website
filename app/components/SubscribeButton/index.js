@@ -1,6 +1,7 @@
 import React from "react";
 import ChannelActions from "actions/ChannelActions";
 import cookie from "react-cookie";
+import $ from "jquery";
 
 class SubscribeButton extends React.Component {
 	// CONSTRUCTOR

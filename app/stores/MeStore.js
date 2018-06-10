@@ -1,6 +1,12 @@
 import alt from "../alt";
 import MeActions from "../actions/MeActions";
-import Modernizr from "modernizr";
+import $ from "jquery";
+
+const isInputColorSupported = () => {
+	var i = document.createElement("input");
+	i.setAttribute("type", "color");
+	return i.type !== "text";
+};
 
 class MeStore {
 	constructor() {
@@ -16,7 +22,7 @@ class MeStore {
 		this.loading = false;
 
 		window.setTimeout(function() {
-			if (!Modernizr.inputtypes.color) {
+			if (!isInputColorSupported()) {
 				$("input[type='color']").spectrum({
 					preferredFormat: "hex"
 				});

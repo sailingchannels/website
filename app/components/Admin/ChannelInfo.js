@@ -1,7 +1,7 @@
 import React from "react";
+import $ from "jquery";
 
 class ChannelInfo extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -10,23 +10,31 @@ class ChannelInfo extends React.Component {
 	componentDidMount() {
 		var that = this;
 
-		$.get("/api/admin/channel/" + this.props.id, function(data) {
-			this.setState(data);
-		}.bind(this));
+		$.get(
+			"/api/admin/channel/" + this.props.id,
+			function(data) {
+				this.setState(data);
+			}.bind(this)
+		);
 	}
 
 	// RENDER
 	render() {
-
-		if(!this.state.title) {
+		if (!this.state.title) {
 			return (
-				<a target="_blank" href={"https://youtube.com/channel/" + this.props.id}>{this.props.id}</a>
+				<a target="_blank" href={"https://youtube.com/channel/" + this.props.id}>
+					{this.props.id}
+				</a>
 			);
-		}
-		else {
-
+		} else {
 			return (
-				<a target="_blank" href={"https://youtube.com/channel/" + this.props.id} title={this.state.description}>{this.state.title}</a>
+				<a
+					target="_blank"
+					href={"https://youtube.com/channel/" + this.props.id}
+					title={this.state.description}
+				>
+					{this.state.title}
+				</a>
 			);
 		}
 	}

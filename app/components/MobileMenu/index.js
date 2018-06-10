@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
 import Logo from "components/Logo";
+import $ from "jquery";
 
 import "./MobileMenu.css";
 

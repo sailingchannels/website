@@ -1,5 +1,6 @@
 import React from "react";
 import Cookies from "js-cookie";
+import $ from "jquery";
 
 class FlagButton extends React.Component {
 	// CONSTRUCTOR

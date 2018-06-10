@@ -9,7 +9,7 @@ import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import VideoList from "components/VideoList";
 import Logo from "components/Logo";
-import SubscriberHistoryChart from "components/SubscriberHistoryChart";
+import HistoryChart from "components/HistoryChart";
 import SubscribeButton from "components/SubscribeButton";
 import PositionMap from "components/PositionMap";
 import FlagButton from "components/FlagButton";
@@ -160,7 +160,10 @@ class ChannelDetail extends React.Component {
 								<p>
 									<b>Subscribers in last 7 days:</b>
 								</p>
-								<SubscriberHistoryChart channel={this.state.channel} />
+								<HistoryChart
+									name="subscribers"
+									data={this.state.channel.subHist}
+								/>
 								<p>&nbsp;</p>
 								{this.state.channel.subscribersHidden === true ? (
 									<p className="text-warning">

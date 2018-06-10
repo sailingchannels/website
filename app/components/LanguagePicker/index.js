@@ -2,6 +2,7 @@ import React from "react";
 import LanguageActions from "actions/LanguageActions";
 import LanguageStore from "stores/LanguageStore";
 import Cookies from "js-cookie";
+import $ from "jquery";
 
 import "./LanguagePicker.css";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import LanguagePicker from "components/LanguagePicker";
+import $ from "jquery";
 
 import "./OffsetMenu.css";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Description from "components/Description";
 import anchorme from "anchorme";
+import $ from "jquery";
 
 class ChannelListItem extends React.Component {
 	// CONSTRUCTOR

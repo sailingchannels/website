@@ -2,6 +2,7 @@ import React from "react";
 import AdminActions from "../../actions/AdminActions";
 import AdminStore from "../../stores/AdminStore";
 import AdminListItem from "./AdminListItem";
+import $ from "jquery";
 
 class Additional extends React.Component {
 	constructor(props) {
@@ -80,12 +81,8 @@ class Additional extends React.Component {
 					<div className="row">
 						<table className="table">
 							<tbody>
-								{this.state.additional.map(b => (
-									<AdminListItem
-										key={b._id}
-										id={b._id}
-										parent={this}
-									/>
+								{this.state.additional.map((b) => (
+									<AdminListItem key={b._id} id={b._id} parent={this} />
 								))}
 							</tbody>
 						</table>

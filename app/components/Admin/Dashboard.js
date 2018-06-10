@@ -1,7 +1,7 @@
 import React from "react";
+import $ from "jquery";
 
 class Dashboard extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.int = null;
@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
 	}
 
 	updateData() {
-
 		// stats
 		$.get("/api/stats", function(data) {
 			$("#channelsCount").html(data.channels);
@@ -28,11 +27,9 @@ class Dashboard extends React.Component {
 
 	// RENDER
 	render() {
-
 		return (
 			<div className="row">
 				<div className="col-md-12">
-
 					<div className="row">
 						<div className="col-md-12">
 							<h2>Dashboard</h2>
@@ -40,8 +37,12 @@ class Dashboard extends React.Component {
 					</div>
 
 					<div className="row">
-						<div className="col-md-3"><span id="channelsCount"></span> Channels</div>
-						<div className="col-md-3"><span id="videosCount"></span> Videos</div>
+						<div className="col-md-3">
+							<span id="channelsCount" /> Channels
+						</div>
+						<div className="col-md-3">
+							<span id="videosCount" /> Videos
+						</div>
 					</div>
 				</div>
 			</div>
