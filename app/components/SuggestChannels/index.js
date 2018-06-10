@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import HTTP from "helpers/http";
-import SuggestChannelsList from "components/SuggestChannelsList";
+import SuggestChannelsList from "components/SuggestChannelsList/Loadable";
 
 class SuggestChannels extends Component {
 	// CONSTRUCTOR

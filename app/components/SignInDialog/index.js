@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import "./SignInDialog.css";
 
-class SignInDialog extends React.Component {
+class SignInDialog extends React.PureComponent {
 	// RENDER
 	render() {
 		return (

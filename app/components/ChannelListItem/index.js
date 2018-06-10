@@ -1,7 +1,7 @@
 import React from "react";
-import Description from "components/Description";
+import Description from "components/Description/Loadable";
 import { Link } from "react-router-dom";
-import SubscribeButton from "components/SubscribeButton";
+import SubscribeButton from "components/SubscribeButton/Loadable";
 import LazyLoad from "react-lazyload";
 import anchorme from "anchorme";
 import $ from "jquery";

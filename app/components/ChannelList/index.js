@@ -1,5 +1,5 @@
 import React from "react";
-import ChannelListItem from "components/ChannelListItem";
+import ChannelListItem from "components/ChannelListItem/Loadable";
 import ChannelActions from "actions/ChannelActions";
 import ChannelStore from "stores/ChannelStore";
 import Infinite from "react-infinite";

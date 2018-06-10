@@ -11,7 +11,7 @@ module.exports = require("./webpack.base.babel")({
 	// Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
 	output: {
 		filename: "[name].[chunkhash].js",
-		publicPath: "https://cdn.sailing-channels.com/",
+		/*publicPath: "https://cdn.sailing-channels.com/",*/
 		chunkFilename: "[name].[chunkhash].chunk.js"
 	},
 
@@ -26,7 +26,7 @@ module.exports = require("./webpack.base.babel")({
 
 		// Minify and optimize the index.html
 		new HtmlWebpackPlugin({
-			template: "views/index.html",
+			template: "index.html",
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,

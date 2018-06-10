@@ -4,8 +4,8 @@ import SearchBar from "components/SearchBar";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
-import BannerDialog from "components/BannerDialog";
-import SignInDialog from "components/SignInDialog";
+import BannerDialog from "components/BannerDialog/Loadable";
+import SignInDialog from "components/SignInDialog/Loadable";
 import cookie from "react-cookie";
 import { Link } from "react-router-dom";
 import $ from "jquery";
@@ -49,6 +49,7 @@ class Home extends React.Component {
 	// RENDER
 	render() {
 		const sortBy = this.props.match.params.sortBy || "upload";
+
 		var scrollUp = null;
 
 		if (this.state.showScrollUp === true) {
@@ -82,8 +83,8 @@ class Home extends React.Component {
 				) : null}
 				<OffsetMenu />
 				{scrollUp}
-				<SearchBar sortBy={sortBy} history={this.props.history} />
-				<ChannelList sortBy={sortBy} history={this.props.history} />
+				<SearchBar history={this.props.history} sortBy={sortBy} />
+				<ChannelList history={this.props.history} sortBy={sortBy} />
 				{this.props.children}
 				<BannerDialog />
 				<SignInDialog />

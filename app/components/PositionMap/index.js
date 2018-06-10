@@ -1,9 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import "./PositionMap.css";
 
-class PositionMap extends React.Component {
+class PositionMap extends React.PureComponent {
 	// RENDER
 	render() {
 		return (

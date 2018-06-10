@@ -4,7 +4,7 @@ import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
 import LazyLoad from "react-lazyload";
 
-class Contributions extends React.Component {
+class Contributions extends React.PureComponent {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		document.title = "Support Us | Sailing Channels";

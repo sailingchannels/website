@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Description from "components/Description";
+import Description from "components/Description/Loadable";
 import LazyLoad from "react-lazyload";
-import SuggestButton from "components/SuggestButton";
+import SuggestButton from "components/SuggestButton/Loadable";
 
 class SuggestChannelsList extends Component {
 	// RENDER

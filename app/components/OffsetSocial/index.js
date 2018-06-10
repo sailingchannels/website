@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "components/Footer";
 import cookie from "react-cookie";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
@@ -119,7 +118,7 @@ class SocialOffset extends React.Component {
 								<a href="https://www.patreon.com/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
-											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
+											src={require("images/patreon.jpg")}
 											className="grey support-img"
 											height="50"
 											width="50"
@@ -133,7 +132,7 @@ class SocialOffset extends React.Component {
 								<a href="https://www.paypal.me/sailingchannels" target="_blank">
 									<LazyLoad height="50">
 										<img
-											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
+											src={require("images/paypal.png")}
 											className="grey support-img"
 											height="50"
 											width="50"

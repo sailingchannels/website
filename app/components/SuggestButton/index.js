@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import HTTP from "helpers/http";
 
-class SuggestButton extends Component {
+class SuggestButton extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {

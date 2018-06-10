@@ -3,7 +3,7 @@ import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
 
-class PrivacyPolicy extends React.Component {
+class PrivacyPolicy extends React.PureComponent {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		document.title = "Privacy Policy | Sailing Channels";

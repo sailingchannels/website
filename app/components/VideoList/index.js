@@ -1,8 +1,8 @@
 import React from "react";
-import VideoListItem from "components/VideoListItem";
+import VideoListItem from "components/VideoListItem/Loadable";
 import VideoActions from "actions/VideoActions";
 import VideoStore from "stores/VideoStore";
-import Description from "components/Description";
+import Description from "components/Description/Loadable";
 import { Navigation, Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 

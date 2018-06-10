@@ -5,8 +5,8 @@ import Logo from "components/Logo";
 import cookie from "react-cookie";
 import MeActions from "actions/MeActions";
 import MeStore from "stores/MeStore";
-import HistoryChart from "components/HistoryChart";
-import PositionMap from "components/PositionMap";
+import HistoryChart from "components/HistoryChart/Loadable";
+import PositionMap from "components/PositionMap/Loadable";
 import $ from "jquery";
 
 import "./Me.css";

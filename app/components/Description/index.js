@@ -1,9 +1,7 @@
 import React from "react";
-import Description from "components/Description";
 import anchorme from "anchorme";
-import $ from "jquery";
 
-class ChannelListItem extends React.Component {
+class Description extends React.Component {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
@@ -65,4 +63,4 @@ class ChannelListItem extends React.Component {
 	}
 }
 
-export default ChannelListItem;
+export default Description;

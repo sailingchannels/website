@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require("express");
 const compress = require("compression");
 const path = require("path");
@@ -6,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const mongodb = require("mongodb");
 const youtube = require("youtube-api");
+const minify = require("html-minifier").minify;
 const cache = require("apicache").middleware;
 const setup = require("./middlewares/frontendMiddleware");
 
@@ -132,23 +134,21 @@ app.get("/api/admin/suggestions", admin.getSuggestions);
 app.get("/api/admin/suggestions/delete/:channel/:user", admin.deleteSuggestions);
 
 // MAP
-/*app.get("/map", cache15, (req, res) => {
-	var page = swig.renderFile("views/map.html", {
-		staticPath: staticPath
+app.get("/map", (req, res) => {
+	fs.readFile("map.html", (err, content) => {
+		return res.send(
+			minify(content.toString("utf8"), {
+				removeComments: true,
+				minifyJS: true,
+				useShortDoctype: true,
+				removeRedundantAttributes: true,
+				removeOptionalTags: true,
+				removeStyleLinkTypeAttributes: true,
+				removeScriptTypeAttributes: true
+			}).replace(/(\r\n|\n|\r|\t)/gm, "")
+		);
 	});
-
-	return res.status(404).send(
-		minify(page, {
-			removeComments: true,
-			minifyJS: true,
-			useShortDoctype: true,
-			removeRedundantAttributes: true,
-			removeOptionalTags: true,
-			removeStyleLinkTypeAttributes: true,
-			removeScriptTypeAttributes: true
-		}).replace(/(\r\n|\n|\r|\t)/gm, "")
-	);
-});*/
+});
 
 var mongodbURL = "sailing-channels";
 var mongodbHost = "mongo";

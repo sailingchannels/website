@@ -27,10 +27,38 @@ var __wpo = {
 			"/b06871f281fee6b241d60582ae9369b9.ttf",
 			"/af7ae505a9eed503f8b8e6982036873e.woff2",
 			"/fee66e712a8a08eef5805a46892932ad.woff",
-			"/main.dec0abbe1dcadb5a244e.js",
+			"/main.7d16f4fce288515f0c08.js",
 			"/"
 		],
-		additional: [],
+		additional: [
+			"/0.a7904f6ba3df5f4a0480.chunk.js",
+			"/1.edc1ec694258289c5b15.chunk.js",
+			"/2.fc13078277a9a10e5313.chunk.js",
+			"/3.bf5f7fe0591696e97431.chunk.js",
+			"/4.388ecbe5f6a0c9e87269.chunk.js",
+			"/5.8065b2770b9ce017f36b.chunk.js",
+			"/6.6c73926dedc53334d21e.chunk.js",
+			"/7.c29e0837d03a268f47ed.chunk.js",
+			"/8.db6a74c27f04175fe377.chunk.js",
+			"/9.50081f47f93bb40cb568.chunk.js",
+			"/10.bc632eb06f5a065be14b.chunk.js",
+			"/11.8162a21376d09c50caf5.chunk.js",
+			"/12.ef771d35aad37c229d49.chunk.js",
+			"/13.b0dcb228851601ff0a4b.chunk.js",
+			"/14.d52285e8e231ca9290a7.chunk.js",
+			"/15.ee3b18496083436489b8.chunk.js",
+			"/16.3893450ae379c177776f.chunk.js",
+			"/17.dab7ebdbf00eeb4daab9.chunk.js",
+			"/18.fac7415ba5f4636b81ac.chunk.js",
+			"/19.1c7516d5670295bf81be.chunk.js",
+			"/20.d039b1a2be22a70df562.chunk.js",
+			"/21.f162b75a8b00736e8978.chunk.js",
+			"/22.5a4ce92ada2be980b83c.chunk.js",
+			"/23.2ed734706fe1ae691cac.chunk.js",
+			"/24.2e5c3e2fa48e0876e94a.chunk.js",
+			"/25.6376d3f89eec6fcb80d8.chunk.js",
+			"/26.d9a0694df89a0920e86a.chunk.js"
+		],
 		optional: []
 	},
 	externals: [],
@@ -61,12 +89,39 @@ var __wpo = {
 		"13b1eab65a983c7a73bc7997c479d66943f7c6cb": "/b06871f281fee6b241d60582ae9369b9.ttf",
 		d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c: "/af7ae505a9eed503f8b8e6982036873e.woff2",
 		"28b782240b3e76db824e12c02754a9731a167527": "/fee66e712a8a08eef5805a46892932ad.woff",
-		"0a9606a5974319f0035ec976dfd91ea66ab94291": "/main.dec0abbe1dcadb5a244e.js",
-		d5b34f711200ecfa4f4939dc602081dbf42e4c0c: "/"
+		a25e71bdb53f0db2ddef7a6d857b9edb9632d6bf: "/0.a7904f6ba3df5f4a0480.chunk.js",
+		df1a6895ae3a7897bdc5f5967ea2f9fb7cb38b0f: "/1.edc1ec694258289c5b15.chunk.js",
+		b08a5b63b6b1aa00e5a9a5334551c0be35c7216a: "/2.fc13078277a9a10e5313.chunk.js",
+		e0ca7987094f7e84410263668cbababe68873fed: "/3.bf5f7fe0591696e97431.chunk.js",
+		"2e81d8788f77b867f2c1b5341a707c1cd10e8015": "/4.388ecbe5f6a0c9e87269.chunk.js",
+		"1baf1ff3f4d6568ba3619c387ea274516ea0063e": "/5.8065b2770b9ce017f36b.chunk.js",
+		"0807da3e50039a7210d071260251d82ff601a9b3": "/6.6c73926dedc53334d21e.chunk.js",
+		"0d7e50e2c31b9acd7278a0477aa37783106c0c64": "/7.c29e0837d03a268f47ed.chunk.js",
+		"62bda687551d234a1986fd8311b6c7dfc5093bef": "/8.db6a74c27f04175fe377.chunk.js",
+		"6fc09bc6c400539bd54580887cf6805a7cd522ea": "/9.50081f47f93bb40cb568.chunk.js",
+		"33cb239f9fb2b0c8c9b352ac34f2e77fc9083310": "/10.bc632eb06f5a065be14b.chunk.js",
+		"75db30407fdae1855d41d86b7ea693bc474464d9": "/11.8162a21376d09c50caf5.chunk.js",
+		"4f53d00506cfbe3b260c31b051d1e4a7805d6696": "/12.ef771d35aad37c229d49.chunk.js",
+		"46af8d322c6695610ab58dff417e9aed6eebb608": "/13.b0dcb228851601ff0a4b.chunk.js",
+		d0d3eddab119a097a3b3d5c71da7bb7b1452b635: "/14.d52285e8e231ca9290a7.chunk.js",
+		"36d9cebdbd4516df77347d6eeb1451d949787a23": "/15.ee3b18496083436489b8.chunk.js",
+		"4f76d7c4298e2f31e7e0b5cf84d2a61d206bb080": "/16.3893450ae379c177776f.chunk.js",
+		a5f74df8cf2459efd5734d04df8a20f5e46a5ae1: "/17.dab7ebdbf00eeb4daab9.chunk.js",
+		"6fd729620ea755f35ad85ff8cb798828329f902e": "/18.fac7415ba5f4636b81ac.chunk.js",
+		f117a8be14957e446ef971bd2047f4de7adf80fe: "/19.1c7516d5670295bf81be.chunk.js",
+		"7c5c9fc1c05be4103ff94fc254d92227241c9302": "/20.d039b1a2be22a70df562.chunk.js",
+		"4e01ea82e136ecfd2c712cc584fd398d1260b00c": "/21.f162b75a8b00736e8978.chunk.js",
+		aae7a45cd6e9ef7b855d6d040437b2710b2b62f0: "/22.5a4ce92ada2be980b83c.chunk.js",
+		"3cd4b312ed0b5ec1a726c116ebc2579b5171f92c": "/23.2ed734706fe1ae691cac.chunk.js",
+		b1177f88ad03076415654754bd20f16813b700fc: "/24.2e5c3e2fa48e0876e94a.chunk.js",
+		af59aacb7481f40961e86ac0b90da27920dc9f5a: "/25.6376d3f89eec6fcb80d8.chunk.js",
+		"232fbb1af58da815923e339110e028514004394b": "/26.d9a0694df89a0920e86a.chunk.js",
+		c07f096d56fee8f20c9369a55799746980293737: "/main.7d16f4fce288515f0c08.js",
+		"15209580ceae924d2488966878d2ab9d6be05f4c": "/"
 	},
 	strategy: "changed",
 	responseStrategy: "cache-first",
-	version: "6/10/2018, 1:50:45 AM",
+	version: "6/10/2018, 2:50:08 PM",
 	name: "webpack-offline",
 	pluginVersion: "4.8.1",
 	relativePaths: false
@@ -98,7 +153,7 @@ var __wpo = {
 		(t.o = function(e, t) {
 			return Object.prototype.hasOwnProperty.call(e, t);
 		}),
-		(t.p = "https://cdn.sailing-channels.com/"),
+		(t.p = "/"),
 		t(
 			(t.s =
 				"./node_modules/offline-plugin/lib/misc/sw-loader.js?json=%7B%22data_var_name%22%3A%22__wpo%22%2C%22loaders%22%3A%5B%5D%2C%22cacheMaps%22%3A%5B%5D%7D!./node_modules/offline-plugin/tpls/empty-entry.js")
@@ -108,35 +163,51 @@ var __wpo = {
 		e,
 		t
 	) {
-		!(function() {
+		!(function(e) {
 			"use strict";
-			function e(e) {
-				if (
-					("string" != typeof e && (e = e.toString()),
-					/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e))
-				)
+			function t(e) {
+				if (("string" != typeof e && (e = String(e)), /[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e)))
 					throw new TypeError("Invalid character in header field name");
 				return e.toLowerCase();
 			}
-			function t(e) {
-				return "string" != typeof e && (e = e.toString()), e;
-			}
 			function n(e) {
+				return "string" != typeof e && (e = String(e)), e;
+			}
+			function r(e) {
+				var t = {
+					next: function() {
+						var t = e.shift();
+						return { done: void 0 === t, value: t };
+					}
+				};
+				return (
+					v.iterable &&
+						(t[Symbol.iterator] = function() {
+							return t;
+						}),
+					t
+				);
+			}
+			function o(e) {
 				(this.map = {}),
-					e instanceof n
+					e instanceof o
 						? e.forEach(function(e, t) {
 								this.append(t, e);
 						  }, this)
-						: e &&
-						  Object.getOwnPropertyNames(e).forEach(function(t) {
-								this.append(t, e[t]);
-						  }, this);
+						: Array.isArray(e)
+							? e.forEach(function(e) {
+									this.append(e[0], e[1]);
+							  }, this)
+							: e &&
+							  Object.getOwnPropertyNames(e).forEach(function(t) {
+									this.append(t, e[t]);
+							  }, this);
 			}
-			function r(e) {
+			function i(e) {
 				if (e.bodyUsed) return Promise.reject(new TypeError("Already read"));
 				e.bodyUsed = !0;
 			}
-			function o(e) {
+			function s(e) {
 				return new Promise(function(t, n) {
 					(e.onload = function() {
 						t(e.result);
@@ -146,54 +217,89 @@ var __wpo = {
 						});
 				});
 			}
-			function i(e) {
-				var t = new FileReader();
-				return t.readAsArrayBuffer(e), o(t);
+			function a(e) {
+				var t = new FileReader(),
+					n = s(t);
+				return t.readAsArrayBuffer(e), n;
 			}
-			function s(e) {
-				var t = new FileReader();
-				return t.readAsText(e), o(t);
+			function u(e) {
+				var t = new FileReader(),
+					n = s(t);
+				return t.readAsText(e), n;
 			}
-			function a() {
+			function c(e) {
+				for (var t = new Uint8Array(e), n = new Array(t.length), r = 0; r < t.length; r++)
+					n[r] = String.fromCharCode(t[r]);
+				return n.join("");
+			}
+			function f(e) {
+				if (e.slice) return e.slice(0);
+				var t = new Uint8Array(e.byteLength);
+				return t.set(new Uint8Array(e)), t.buffer;
+			}
+			function l() {
 				return (
 					(this.bodyUsed = !1),
 					(this._initBody = function(e) {
-						if (((this._bodyInit = e), "string" == typeof e)) this._bodyText = e;
-						else if (d.blob && Blob.prototype.isPrototypeOf(e)) this._bodyBlob = e;
-						else if (d.formData && FormData.prototype.isPrototypeOf(e))
-							this._bodyFormData = e;
-						else {
-							if (e) throw new Error("unsupported BodyInit type");
-							this._bodyText = "";
-						}
+						if (((this._bodyInit = e), e))
+							if ("string" == typeof e) this._bodyText = e;
+							else if (v.blob && Blob.prototype.isPrototypeOf(e)) this._bodyBlob = e;
+							else if (v.formData && FormData.prototype.isPrototypeOf(e))
+								this._bodyFormData = e;
+							else if (v.searchParams && URLSearchParams.prototype.isPrototypeOf(e))
+								this._bodyText = e.toString();
+							else if (v.arrayBuffer && v.blob && w(e))
+								(this._bodyArrayBuffer = f(e.buffer)),
+									(this._bodyInit = new Blob([this._bodyArrayBuffer]));
+							else {
+								if (
+									!v.arrayBuffer ||
+									(!ArrayBuffer.prototype.isPrototypeOf(e) && !g(e))
+								)
+									throw new Error("unsupported BodyInit type");
+								this._bodyArrayBuffer = f(e);
+							}
+						else this._bodyText = "";
+						this.headers.get("content-type") ||
+							("string" == typeof e
+								? this.headers.set("content-type", "text/plain;charset=UTF-8")
+								: this._bodyBlob && this._bodyBlob.type
+									? this.headers.set("content-type", this._bodyBlob.type)
+									: v.searchParams &&
+									  URLSearchParams.prototype.isPrototypeOf(e) &&
+									  this.headers.set(
+											"content-type",
+											"application/x-www-form-urlencoded;charset=UTF-8"
+									  ));
 					}),
-					d.blob
-						? ((this.blob = function() {
-								var e = r(this);
-								if (e) return e;
-								if (this._bodyBlob) return Promise.resolve(this._bodyBlob);
-								if (this._bodyFormData)
-									throw new Error("could not read FormData body as blob");
-								return Promise.resolve(new Blob([this._bodyText]));
-						  }),
-						  (this.arrayBuffer = function() {
-								return this.blob().then(i);
-						  }),
-						  (this.text = function() {
-								var e = r(this);
-								if (e) return e;
-								if (this._bodyBlob) return s(this._bodyBlob);
-								if (this._bodyFormData)
-									throw new Error("could not read FormData body as text");
-								return Promise.resolve(this._bodyText);
-						  }))
-						: (this.text = function() {
-								var e = r(this);
-								return e || Promise.resolve(this._bodyText);
-						  }),
-					d.formData &&
+					v.blob &&
+						((this.blob = function() {
+							var e = i(this);
+							if (e) return e;
+							if (this._bodyBlob) return Promise.resolve(this._bodyBlob);
+							if (this._bodyArrayBuffer)
+								return Promise.resolve(new Blob([this._bodyArrayBuffer]));
+							if (this._bodyFormData)
+								throw new Error("could not read FormData body as blob");
+							return Promise.resolve(new Blob([this._bodyText]));
+						}),
+						(this.arrayBuffer = function() {
+							return this._bodyArrayBuffer
+								? i(this) || Promise.resolve(this._bodyArrayBuffer)
+								: this.blob().then(a);
+						})),
+					(this.text = function() {
+						var e = i(this);
+						if (e) return e;
+						if (this._bodyBlob) return u(this._bodyBlob);
+						if (this._bodyArrayBuffer) return Promise.resolve(c(this._bodyArrayBuffer));
+						if (this._bodyFormData)
+							throw new Error("could not read FormData body as text");
+						return Promise.resolve(this._bodyText);
+					}),
+					v.formData &&
 						(this.formData = function() {
-							return this.text().then(f);
+							return this.text().then(p);
 						}),
 					(this.json = function() {
 						return this.text().then(JSON.parse);
@@ -201,25 +307,34 @@ var __wpo = {
 					this
 				);
 			}
-			function u(e) {
+			function h(e) {
 				var t = e.toUpperCase();
-				return p.indexOf(t) > -1 ? t : e;
+				return _.indexOf(t) > -1 ? t : e;
 			}
-			function c(e, t) {
+			function d(e, t) {
+				t = t || {};
+				var n = t.body;
+				if (e instanceof d) {
+					if (e.bodyUsed) throw new TypeError("Already read");
+					(this.url = e.url),
+						(this.credentials = e.credentials),
+						t.headers || (this.headers = new o(e.headers)),
+						(this.method = e.method),
+						(this.mode = e.mode),
+						n || null == e._bodyInit || ((n = e._bodyInit), (e.bodyUsed = !0));
+				} else this.url = String(e);
 				if (
-					((t = t || {}),
-					(this.url = e),
-					(this.credentials = t.credentials || "omit"),
-					(this.headers = new n(t.headers)),
-					(this.method = u(t.method || "GET")),
-					(this.mode = t.mode || null),
+					((this.credentials = t.credentials || this.credentials || "omit"),
+					(!t.headers && this.headers) || (this.headers = new o(t.headers)),
+					(this.method = h(t.method || this.method || "GET")),
+					(this.mode = t.mode || this.mode || null),
 					(this.referrer = null),
-					("GET" === this.method || "HEAD" === this.method) && t.body)
+					("GET" === this.method || "HEAD" === this.method) && n)
 				)
 					throw new TypeError("Body not allowed for GET or HEAD requests");
-				this._initBody(t.body);
+				this._initBody(n);
 			}
-			function f(e) {
+			function p(e) {
 				var t = new FormData();
 				return (
 					e
@@ -236,123 +351,182 @@ var __wpo = {
 					t
 				);
 			}
-			function l(e) {
-				var t = new n();
+			function y(e) {
+				var t = new o();
 				return (
 					e
-						.getAllResponseHeaders()
-						.trim()
-						.split("\n")
+						.replace(/\r?\n[\t ]+/g, " ")
+						.split(/\r?\n/)
 						.forEach(function(e) {
-							var n = e.trim().split(":"),
-								r = n.shift().trim(),
-								o = n.join(":").trim();
-							t.append(r, o);
+							var n = e.split(":"),
+								r = n.shift().trim();
+							if (r) {
+								var o = n.join(":").trim();
+								t.append(r, o);
+							}
 						}),
 					t
 				);
 			}
-			function h(e, t) {
+			function m(e, t) {
 				t || (t = {}),
-					this._initBody(e),
 					(this.type = "default"),
-					(this.url = null),
-					(this.status = t.status),
+					(this.status = void 0 === t.status ? 200 : t.status),
 					(this.ok = this.status >= 200 && this.status < 300),
-					(this.statusText = t.statusText),
-					(this.headers = t.headers instanceof n ? t.headers : new n(t.headers)),
-					(this.url = t.url || "");
+					(this.statusText = "statusText" in t ? t.statusText : "OK"),
+					(this.headers = new o(t.headers)),
+					(this.url = t.url || ""),
+					this._initBody(e);
 			}
-			if (!self.fetch) {
-				(n.prototype.append = function(n, r) {
-					(n = e(n)), (r = t(r));
-					var o = this.map[n];
-					o || ((o = []), (this.map[n] = o)), o.push(r);
+			if (!e.fetch) {
+				var v = {
+					searchParams: "URLSearchParams" in e,
+					iterable: "Symbol" in e && "iterator" in Symbol,
+					blob:
+						"FileReader" in e &&
+						"Blob" in e &&
+						(function() {
+							try {
+								return new Blob(), !0;
+							} catch (e) {
+								return !1;
+							}
+						})(),
+					formData: "FormData" in e,
+					arrayBuffer: "ArrayBuffer" in e
+				};
+				if (v.arrayBuffer)
+					var b = [
+							"[object Int8Array]",
+							"[object Uint8Array]",
+							"[object Uint8ClampedArray]",
+							"[object Int16Array]",
+							"[object Uint16Array]",
+							"[object Int32Array]",
+							"[object Uint32Array]",
+							"[object Float32Array]",
+							"[object Float64Array]"
+						],
+						w = function(e) {
+							return e && DataView.prototype.isPrototypeOf(e);
+						},
+						g =
+							ArrayBuffer.isView ||
+							function(e) {
+								return e && b.indexOf(Object.prototype.toString.call(e)) > -1;
+							};
+				(o.prototype.append = function(e, r) {
+					(e = t(e)), (r = n(r));
+					var o = this.map[e];
+					this.map[e] = o ? o + "," + r : r;
 				}),
-					(n.prototype.delete = function(t) {
-						delete this.map[e(t)];
+					(o.prototype.delete = function(e) {
+						delete this.map[t(e)];
 					}),
-					(n.prototype.get = function(t) {
-						var n = this.map[e(t)];
-						return n ? n[0] : null;
+					(o.prototype.get = function(e) {
+						return (e = t(e)), this.has(e) ? this.map[e] : null;
 					}),
-					(n.prototype.getAll = function(t) {
-						return this.map[e(t)] || [];
+					(o.prototype.has = function(e) {
+						return this.map.hasOwnProperty(t(e));
 					}),
-					(n.prototype.has = function(t) {
-						return this.map.hasOwnProperty(e(t));
+					(o.prototype.set = function(e, r) {
+						this.map[t(e)] = n(r);
 					}),
-					(n.prototype.set = function(n, r) {
-						this.map[e(n)] = [t(r)];
+					(o.prototype.forEach = function(e, t) {
+						for (var n in this.map)
+							this.map.hasOwnProperty(n) && e.call(t, this.map[n], n, this);
 					}),
-					(n.prototype.forEach = function(e, t) {
-						Object.getOwnPropertyNames(this.map).forEach(function(n) {
-							this.map[n].forEach(function(r) {
-								e.call(t, r, n, this);
-							}, this);
-						}, this);
-					});
-				var d = {
-						blob:
-							"FileReader" in self &&
-							"Blob" in self &&
-							(function() {
-								try {
-									return new Blob(), !0;
-								} catch (e) {
-									return !1;
-								}
-							})(),
-						formData: "FormData" in self
-					},
-					p = ["DELETE", "GET", "HEAD", "OPTIONS", "POST", "PUT"];
-				a.call(c.prototype),
-					a.call(h.prototype),
-					(self.Headers = n),
-					(self.Request = c),
-					(self.Response = h),
-					(self.fetch = function(e, t) {
-						var n;
+					(o.prototype.keys = function() {
+						var e = [];
 						return (
-							(n = c.prototype.isPrototypeOf(e) && !t ? e : new c(e, t)),
-							new Promise(function(e, t) {
-								function r() {
-									return "responseURL" in o
-										? o.responseURL
-										: /^X-Request-URL:/m.test(o.getAllResponseHeaders())
-											? o.getResponseHeader("X-Request-URL")
-											: void 0;
-								}
-								var o = new XMLHttpRequest();
-								(o.onload = function() {
-									var n = 1223 === o.status ? 204 : o.status;
-									if (n < 100 || n > 599)
-										return void t(new TypeError("Network request failed"));
-									var i = {
-											status: n,
-											statusText: o.statusText,
-											headers: l(o),
-											url: r()
-										},
-										s = "response" in o ? o.response : o.responseText;
-									e(new h(s, i));
-								}),
-									(o.onerror = function() {
-										t(new TypeError("Network request failed"));
-									}),
-									o.open(n.method, n.url, !0),
-									"include" === n.credentials && (o.withCredentials = !0),
-									"responseType" in o && d.blob && (o.responseType = "blob"),
-									n.headers.forEach(function(e, t) {
-										o.setRequestHeader(t, e);
-									}),
-									o.send(void 0 === n._bodyInit ? null : n._bodyInit);
-							})
+							this.forEach(function(t, n) {
+								e.push(n);
+							}),
+							r(e)
 						);
 					}),
-					(self.fetch.polyfill = !0);
+					(o.prototype.values = function() {
+						var e = [];
+						return (
+							this.forEach(function(t) {
+								e.push(t);
+							}),
+							r(e)
+						);
+					}),
+					(o.prototype.entries = function() {
+						var e = [];
+						return (
+							this.forEach(function(t, n) {
+								e.push([n, t]);
+							}),
+							r(e)
+						);
+					}),
+					v.iterable && (o.prototype[Symbol.iterator] = o.prototype.entries);
+				var _ = ["DELETE", "GET", "HEAD", "OPTIONS", "POST", "PUT"];
+				(d.prototype.clone = function() {
+					return new d(this, { body: this._bodyInit });
+				}),
+					l.call(d.prototype),
+					l.call(m.prototype),
+					(m.prototype.clone = function() {
+						return new m(this._bodyInit, {
+							status: this.status,
+							statusText: this.statusText,
+							headers: new o(this.headers),
+							url: this.url
+						});
+					}),
+					(m.error = function() {
+						var e = new m(null, { status: 0, statusText: "" });
+						return (e.type = "error"), e;
+					});
+				var x = [301, 302, 303, 307, 308];
+				(m.redirect = function(e, t) {
+					if (-1 === x.indexOf(t)) throw new RangeError("Invalid status code");
+					return new m(null, { status: t, headers: { location: e } });
+				}),
+					(e.Headers = o),
+					(e.Request = d),
+					(e.Response = m),
+					(e.fetch = function(e, t) {
+						return new Promise(function(n, r) {
+							var o = new d(e, t),
+								i = new XMLHttpRequest();
+							(i.onload = function() {
+								var e = {
+									status: i.status,
+									statusText: i.statusText,
+									headers: y(i.getAllResponseHeaders() || "")
+								};
+								e.url =
+									"responseURL" in i
+										? i.responseURL
+										: e.headers.get("X-Request-URL");
+								var t = "response" in i ? i.response : i.responseText;
+								n(new m(t, e));
+							}),
+								(i.onerror = function() {
+									r(new TypeError("Network request failed"));
+								}),
+								(i.ontimeout = function() {
+									r(new TypeError("Network request failed"));
+								}),
+								i.open(o.method, o.url, !0),
+								"include" === o.credentials
+									? (i.withCredentials = !0)
+									: "omit" === o.credentials && (i.withCredentials = !1),
+								"responseType" in i && v.blob && (i.responseType = "blob"),
+								o.headers.forEach(function(e, t) {
+									i.setRequestHeader(t, e);
+								}),
+								i.send(void 0 === o._bodyInit ? null : o._bodyInit);
+						});
+					}),
+					(e.fetch.polyfill = !0);
 			}
-		})(),
+		})("undefined" != typeof self ? self : this),
 			(e.exports = self.fetch);
 	},
 	"./node_modules/offline-plugin/lib/misc/sw-loader.js?json=%7B%22data_var_name%22%3A%22__wpo%22%2C%22loaders%22%3A%5B%5D%2C%22cacheMaps%22%3A%5B%5D%7D!./node_modules/offline-plugin/tpls/empty-entry.js": function(
@@ -452,7 +626,7 @@ var __wpo = {
 				var f = !1;
 			!(function(e, n) {
 				function s() {
-					if (!P.additional.length) return Promise.resolve();
+					if (!U.additional.length) return Promise.resolve();
 					f && console.log("[SW]:", "Caching additional");
 					var e = void 0;
 					return (
@@ -463,11 +637,11 @@ var __wpo = {
 					);
 				}
 				function l(t) {
-					var n = P[t];
+					var n = U[t];
 					return caches
-						.open(S)
+						.open(T)
 						.then(function(t) {
-							return b(t, n, { bust: e.version, request: e.prefetchRequest });
+							return w(t, n, { bust: e.version, request: e.prefetchRequest });
 						})
 						.then(function() {
 							c("Cached assets: " + t, n);
@@ -492,13 +666,13 @@ var __wpo = {
 								var t = new URL(e.url);
 								return (t.search = ""), t.toString();
 							}),
-							h = P[t],
+							h = U[t],
 							d = [],
 							p = h.filter(function(e) {
 								return -1 === f.indexOf(e) || -1 === u.indexOf(e);
 							});
-						Object.keys(k).forEach(function(e) {
-							var t = k[e];
+						Object.keys(B).forEach(function(e) {
+							var t = B[e];
 							if (-1 !== h.indexOf(t) && -1 === p.indexOf(t) && -1 === d.indexOf(t)) {
 								var n = s[e];
 								n && -1 !== f.indexOf(n) ? d.push([n, t]) : p.push(t);
@@ -506,15 +680,15 @@ var __wpo = {
 						}),
 							c("Changed assets: " + t, p),
 							c("Moved assets: " + t, d);
-						var m = Promise.all(
+						var y = Promise.all(
 							d.map(function(e) {
 								return r.match(e[0]).then(function(t) {
 									return [e[1], t];
 								});
 							})
 						);
-						return caches.open(S).then(function(t) {
-							var n = m.then(function(e) {
+						return caches.open(T).then(function(t) {
+							var n = y.then(function(e) {
 								return Promise.all(
 									e.map(function(e) {
 										return t.put(e[0], e[1]);
@@ -523,7 +697,7 @@ var __wpo = {
 							});
 							return Promise.all([
 								n,
-								b(t, p, { bust: e.version, request: e.prefetchRequest })
+								w(t, p, { bust: e.version, request: e.prefetchRequest })
 							]);
 						});
 					});
@@ -531,7 +705,7 @@ var __wpo = {
 				function d() {
 					return caches.keys().then(function(e) {
 						var t = e.map(function(e) {
-							if (0 === e.indexOf(L) && 0 !== e.indexOf(S))
+							if (0 === e.indexOf(j) && 0 !== e.indexOf(T))
 								return console.log("[SW]:", "Delete cache:", e), caches.delete(e);
 						});
 						return Promise.all(t);
@@ -541,7 +715,7 @@ var __wpo = {
 					return caches.keys().then(function(e) {
 						for (
 							var t = e.length, n = void 0;
-							t-- && ((n = e[t]), 0 !== n.indexOf(L));
+							t-- && ((n = e[t]), 0 !== n.indexOf(j));
 
 						);
 						if (n) {
@@ -549,7 +723,7 @@ var __wpo = {
 							return caches
 								.open(n)
 								.then(function(e) {
-									return (r = e), e.match(new URL(q, location).toString());
+									return (r = e), e.match(new URL(L, location).toString());
 								})
 								.then(function(e) {
 									if (e) return Promise.all([r, r.keys(), e.json()]);
@@ -557,14 +731,14 @@ var __wpo = {
 						}
 					});
 				}
-				function m() {
-					return caches.open(S).then(function(t) {
-						var n = new Response(JSON.stringify({ version: e.version, hashmap: k }));
-						return t.put(new URL(q, location).toString(), n);
+				function y() {
+					return caches.open(T).then(function(t) {
+						var n = new Response(JSON.stringify({ version: e.version, hashmap: B }));
+						return t.put(new URL(L, location).toString(), n);
 					});
 				}
-				function v(e, n, o) {
-					return r(o, S).then(function(r) {
+				function m(e, n, o) {
+					return r(o, T).then(function(r) {
 						return r
 							? (f && console.log("[SW]:", "URL [" + o + "](" + n + ") from cache"),
 							  r)
@@ -579,7 +753,7 @@ var __wpo = {
 												(function() {
 													var r = t.clone(),
 														o = caches
-															.open(S)
+															.open(T)
 															.then(function(e) {
 																return e.put(n, r);
 															})
@@ -606,7 +780,7 @@ var __wpo = {
 							  });
 					});
 				}
-				function y(e, n, o) {
+				function v(e, n, o) {
 					return t(e.request)
 						.then(function(e) {
 							if (e.ok)
@@ -616,25 +790,25 @@ var __wpo = {
 						.catch(function() {
 							return (
 								f && console.log("[SW]:", "URL [" + n + "] from cache if possible"),
-								r(o, S)
+								r(o, T)
 							);
 						});
 				}
-				function g(e) {
+				function b(e) {
 					return e.catch(function() {}).then(function(e) {
 						var t = e && e.ok,
 							n = e && "opaqueredirect" === e.type;
-						return t || (n && !B)
+						return t || (n && !D)
 							? e
 							: (f &&
 									console.log(
 										"[SW]:",
-										"Loading navigation fallback [" + W + "] from cache"
+										"Loading navigation fallback [" + q + "] from cache"
 									),
-							  r(W, S));
+							  r(q, T));
 					});
 				}
-				function b(e, n, r) {
+				function w(e, n, r) {
 					var i = !1 !== r.allowLoaders,
 						s = r && r.bust,
 						c = r.request || { credentials: "omit", mode: "cors" };
@@ -651,7 +825,7 @@ var __wpo = {
 							return Promise.reject(new Error("Wrong response status"));
 						var o = [],
 							s = t.map(function(t, r) {
-								return i && o.push(w(n[r], t)), e.put(n[r], t);
+								return i && o.push(g(n[r], t)), e.put(n[r], t);
 							});
 						return (
 							o.length
@@ -662,7 +836,7 @@ var __wpo = {
 										s = Promise.all(o).then(function(r) {
 											var o = [].concat.apply([], r);
 											return (
-												n.length && (i = i.concat(b(e, o, t))),
+												n.length && (i = i.concat(w(e, o, t))),
 												Promise.all(i)
 											);
 										});
@@ -672,10 +846,10 @@ var __wpo = {
 						);
 					});
 				}
-				function w(e, t) {
-					var n = Object.keys(U)
+				function g(e, t) {
+					var n = Object.keys(A)
 						.map(function(n) {
-							if (-1 !== U[n].indexOf(e) && _[n]) return _[n](t.clone());
+							if (-1 !== A[n].indexOf(e) && x[n]) return x[n](t.clone());
 						})
 						.filter(function(e) {
 							return !!e;
@@ -684,7 +858,7 @@ var __wpo = {
 						return [].concat.apply([], e);
 					});
 				}
-				function x(e) {
+				function _(e) {
 					var t = e.url,
 						n = new URL(t),
 						r = void 0;
@@ -709,48 +883,48 @@ var __wpo = {
 						}
 					}
 				}
-				var _ = n.loaders,
+				var x = n.loaders,
 					E = n.cacheMaps,
 					O = e.strategy,
-					R = e.responseStrategy,
-					P = e.assets,
-					U = e.loaders || {},
-					k = e.hashesMap,
-					j = e.externals,
-					L = e.name,
-					T = e.version,
-					S = L + ":" + T,
-					q = "__offline_webpack__data";
+					P = e.responseStrategy,
+					U = e.assets,
+					A = e.loaders || {},
+					B = e.hashesMap,
+					R = e.externals,
+					j = e.name,
+					S = e.version,
+					T = j + ":" + S,
+					L = "__offline_webpack__data";
 				!(function() {
-					Object.keys(P).forEach(function(e) {
-						P[e] = P[e].map(function(e) {
+					Object.keys(U).forEach(function(e) {
+						U[e] = U[e].map(function(e) {
 							var t = new URL(e, location);
 							return (
-								-1 === j.indexOf(e) ? (t.search = "") : (t.hash = ""), t.toString()
+								-1 === R.indexOf(e) ? (t.search = "") : (t.hash = ""), t.toString()
 							);
 						});
 					}),
-						Object.keys(U).forEach(function(e) {
-							U[e] = U[e].map(function(e) {
+						Object.keys(A).forEach(function(e) {
+							A[e] = A[e].map(function(e) {
 								var t = new URL(e, location);
 								return (
-									-1 === j.indexOf(e) ? (t.search = "") : (t.hash = ""),
+									-1 === R.indexOf(e) ? (t.search = "") : (t.hash = ""),
 									t.toString()
 								);
 							});
 						}),
-						(k = Object.keys(k).reduce(function(e, t) {
-							var n = new URL(k[t], location);
+						(B = Object.keys(B).reduce(function(e, t) {
+							var n = new URL(B[t], location);
 							return (n.search = ""), (e[t] = n.toString()), e;
 						}, {})),
-						(j = j.map(function(e) {
+						(R = R.map(function(e) {
 							var t = new URL(e, location);
 							return (t.hash = ""), t.toString();
 						}));
 				})();
-				var D = [].concat(P.main, P.additional, P.optional),
-					W = e.navigateFallbackURL,
-					B = e.navigateFallbackForRedirects;
+				var k = [].concat(U.main, U.additional, U.optional),
+					q = e.navigateFallbackURL,
+					D = e.navigateFallbackForRedirects;
 				self.addEventListener("install", function(e) {
 					console.log("[SW]:", "Install event");
 					var t = void 0;
@@ -759,7 +933,7 @@ var __wpo = {
 					self.addEventListener("activate", function(e) {
 						console.log("[SW]:", "Activate event");
 						var t = s();
-						(t = t.then(m)),
+						(t = t.then(y)),
 							(t = t.then(d)),
 							(t = t.then(function() {
 								if (self.clients && self.clients.claim) return self.clients.claim();
@@ -770,16 +944,16 @@ var __wpo = {
 						var n = e.request.url,
 							r = new URL(n),
 							o = void 0;
-						-1 !== j.indexOf(n) ? (o = n) : ((r.search = ""), (o = r.toString()));
+						-1 !== R.indexOf(n) ? (o = n) : ((r.search = ""), (o = r.toString()));
 						var s = "GET" === e.request.method,
-							a = -1 !== D.indexOf(o),
+							a = -1 !== k.indexOf(o),
 							u = o;
 						if (!a) {
-							var c = x(e.request);
+							var c = _(e.request);
 							c && ((u = c), (a = !0));
 						}
-						if (!a && s && W && i(e.request))
-							return void e.respondWith(g(t(e.request)));
+						if (!a && s && q && i(e.request))
+							return void e.respondWith(b(t(e.request)));
 						if (!a || !s)
 							return void (
 								r.origin !== location.origin &&
@@ -787,8 +961,8 @@ var __wpo = {
 								e.respondWith(t(e.request))
 							);
 						var f = void 0;
-						(f = "network-first" === R ? y(e, o, u) : v(e, o, u)),
-							W && i(e.request) && (f = g(f)),
+						(f = "network-first" === P ? v(e, o, u) : m(e, o, u)),
+							q && i(e.request) && (f = b(f)),
 							e.respondWith(f);
 					}),
 					self.addEventListener("message", function(e) {

@@ -2,18 +2,19 @@ import React from "react";
 import Helmet from "react-helmet";
 import anchorme from "anchorme";
 import $ from "jquery";
+import timeago from "timeago";
 
 import ChannelActions from "actions/ChannelActions";
 import ChannelStore from "stores/ChannelStore";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
-import VideoList from "components/VideoList";
+import VideoList from "components/VideoList/Loadable";
 import Logo from "components/Logo";
-import HistoryChart from "components/HistoryChart";
-import SubscribeButton from "components/SubscribeButton";
-import PositionMap from "components/PositionMap";
-import FlagButton from "components/FlagButton";
-import Tags from "components/Tags";
+import HistoryChart from "components/HistoryChart/Loadable";
+import SubscribeButton from "components/SubscribeButton/Loadable";
+import PositionMap from "components/PositionMap/Loadable";
+import FlagButton from "components/FlagButton/Loadable";
+import Tags from "components/Tags/Loadable";
 
 import "./ChannelDetail.css";
 
@@ -127,7 +128,7 @@ class ChannelDetail extends React.Component {
 									}}
 								/>
 								<p>&nbsp;</p>
-								{this.state.channel.position ? (
+								{this.state.channel.position && this.state.channel.position[0] ? (
 									<div>
 										<p>
 											<b>Latest position:</b> <sup>(beta)</sup>

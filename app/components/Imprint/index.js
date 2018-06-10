@@ -3,7 +3,7 @@ import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
 
-class Imprint extends React.Component {
+class Imprint extends React.PureComponent {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		document.title = "Impressum | Sailing Channels";

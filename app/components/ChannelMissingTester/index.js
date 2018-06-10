@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import HTTP from "helpers/http";
-import SuggestChannelsList from "components/SuggestChannelsList";
+import SuggestChannelsList from "components/SuggestChannelsList/Loadable";
 
 class ChannelMissingTester extends Component {
 	// CONSTRUCTOR

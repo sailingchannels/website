@@ -10,7 +10,9 @@
 		"start": "cross-env NODE_ENV=development node server",
 		"build": "npm run build:clean && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
 		"build:clean": "rimraf ./docs",
-		"precommit": "pretty-quick --staged"
+		"precommit": "pretty-quick --staged",
+		"start:production": "npm run build && npm run start:prod",
+		"start:prod": "cross-env NODE_ENV=production node server"
 	},
 	"babel": {
 		"presets": [
@@ -68,6 +70,7 @@
 		"envify": "^3.4.0",
 		"express": "^4.13.3",
 		"font-awesome": "^4.7.0",
+		"html-minifier": "^1.0.1",
 		"immutable": "^3.7.6",
 		"inreach": "^1.1.3",
 		"ip": "1.1.5",
@@ -80,13 +83,13 @@
 		"mongodb": "2.0.48",
 		"parse-youtube-user": "0.0.2",
 		"prop-types": "^15.6.1",
-		"react": "^0.14.7",
+		"react": "^16.4.0",
 		"react-bootstrap": "^0.32.1",
 		"react-chartjs-2": "^2.7.2",
 		"react-cookie": "^0.4.5",
-		"react-dom": "^0.14.8",
-		"react-helmet": "^2.3.1",
-		"react-infinite": "^0.8.0",
+		"react-dom": "^16.4.0",
+		"react-helmet": "^5.0.0",
+		"react-infinite": "^0.13.0",
 		"react-lazyload": "^2.2.7",
 		"react-loadable": "5.3.1",
 		"react-router-dom": "^4.2.2",
@@ -138,7 +141,8 @@
 		"url-loader": "0.5.8",
 		"webpack": "3.5.5",
 		"webpack-dev-middleware": "1.11.0",
-		"webpack-hot-middleware": "2.18.0"
+		"webpack-hot-middleware": "2.18.0",
+		"whatwg-fetch": "^2.0.4"
 	},
 	"license": "MIT",
 	"prettier": {

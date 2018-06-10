@@ -1,5 +1,5 @@
 import React from "react";
-import Description from "components/Description";
+import Description from "components/Description/Loadable";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 

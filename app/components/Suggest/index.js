@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import OffsetMenu from "components/OffsetMenu";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
-import ChannelMissingTester from "components/ChannelMissingTester";
+import ChannelMissingTester from "components/ChannelMissingTester/Loadable";
 import MeActions from "actions/MeActions";
 import MeStore from "stores/MeStore";
-import SuggestChannels from "components/SuggestChannels";
+import SuggestChannels from "components/SuggestChannels/Loadable";
 import { Link } from "react-router-dom";
 import cookie from "react-cookie";
 

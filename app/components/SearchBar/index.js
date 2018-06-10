@@ -1,10 +1,10 @@
 import React from "react";
 import $ from "jquery";
+import { Link } from "react-router-dom";
 
 import "./SearchBar.css";
 
 class SearchBar extends React.Component {
-	// COMPONENT DID MOUNT
 	componentDidMount() {
 		// intercept browser search ctrl+f
 		$(window).on("keydown", function(e) {
@@ -23,37 +23,23 @@ class SearchBar extends React.Component {
 		});
 	}
 
-	// COMPONENT WILL UNMOUNT
 	componentWillUnmount() {
 		$(window).off("keydown");
 	}
 
-	// KEY UP
 	keyUp(e) {
 		// ESC clears selection
 		if (e.keyCode === 27) {
 			e.target.value = "";
-			this.props.history.pushState(null, "/");
+			this.props.history.push("/");
 			return;
 		} else if (e.keyCode === 13) {
 			// ENTER triggers search
 			var v = e.target.value;
-			this.props.history.replaceState(null, "/search/" + encodeURIComponent(v));
+			this.props.history.push("/search/" + encodeURIComponent(v));
 		}
 	}
 
-	// CHANGE SORT
-	changeSort(e) {
-		$(window).trigger("changeSort", { sortBy: e.target.value });
-	}
-
-	// HIGHLIGHT SORT
-	highlightSort(item) {
-		//this.props.sortBy = item;
-		$(window).trigger("changeSort", { sortBy: item });
-	}
-
-	// RENDER
 	render() {
 		// make sort group invisible when we are searching
 		var sortGroupClass = "hidden-xs hidden-sm form-group sort-group";
@@ -84,62 +70,51 @@ class SearchBar extends React.Component {
 
 					<div className={sortGroupClass}>
 						<label className="sort-label control-label">Sort by:</label>
-						<label className="sortBy-label">
+						<Link to={"/by-subscribers"} className="sortBy-label">
 							<input
-								id="sortBy-subscribers"
+								readOnly
 								type="radio"
-								onClick={this.changeSort.bind(this)}
 								className="sort-option"
-								name="sortby"
-								value="subscribers"
-								defaultChecked={this.props.sortBy === "subscribers"}
+								checked={this.props.sortBy === "subscribers"}
 							/>
 							&nbsp;Subscribers
-						</label>
-						<label className="sortBy-label">
+						</Link>
+						<Link to={"/by-views"} className="sortBy-label">
 							<input
+								readOnly
 								type="radio"
-								onClick={this.changeSort.bind(this)}
 								className="sort-option"
-								name="sortby"
-								value="views"
-								defaultChecked={this.props.sortBy === "views"}
+								checked={this.props.sortBy === "views"}
 							/>
 							&nbsp;Views
-						</label>
-						<label className="sortBy-label">
+						</Link>
+						<Link to={"/by-upload"} className="sortBy-label">
 							<input
+								readOnly
 								type="radio"
-								onClick={this.changeSort.bind(this)}
 								className="sort-option"
-								name="sortby"
-								value="upload"
-								defaultChecked={this.props.sortBy === "upload"}
+								checked={this.props.sortBy === "upload"}
 							/>
 							&nbsp;Last upload
-						</label>
-						<label className="sortBy-label">
+						</Link>
+						<Link to={"/by-founded"} className="sortBy-label">
 							<input
+								readOnly
 								type="radio"
-								onClick={this.changeSort.bind(this)}
 								className="sort-option"
-								name="sortby"
-								value="founded"
-								defaultChecked={this.props.sortBy === "newest"}
+								checked={this.props.sortBy === "founded"}
 							/>
 							&nbsp;Founded
-						</label>
-						<label className="sortBy-label">
+						</Link>
+						<Link to={"/by-trending"} className="sortBy-label">
 							<input
+								readOnly
 								type="radio"
-								onClick={this.changeSort.bind(this)}
 								className="sort-option"
-								name="sortby"
-								value="trending"
-								defaultChecked={this.props.sortBy === "trending"}
+								checked={this.props.sortBy === "trending"}
 							/>
 							&nbsp;Trending
-						</label>
+						</Link>
 					</div>
 				</div>
 				<div className="col-lg-3 col-md-2 col-sm-2" />

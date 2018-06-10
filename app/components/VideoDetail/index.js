@@ -7,7 +7,7 @@ import VideoStore from "stores/VideoStore";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
 import { Navigation, Link } from "react-router-dom";
-import SubscribeButton from "components/SubscribeButton";
+import SubscribeButton from "components/SubscribeButton/Loadable";
 import anchorme from "anchorme";
 
 import "./VideoDetail.css";
