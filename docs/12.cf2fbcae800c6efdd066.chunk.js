@@ -39,7 +39,7 @@ webpackJsonp([12], {
 			p = d()({
 				loader: function() {
 					return t
-						.e(23)
+						.e(25)
 						.then(t.bind(null, "./app/components/ChannelMissingTester/index.js"));
 				},
 				loading: function() {
@@ -50,7 +50,7 @@ webpackJsonp([12], {
 			h = t("./app/stores/MeStore.js"),
 			g = d()({
 				loader: function() {
-					return t.e(19).then(t.bind(null, "./app/components/SuggestChannels/index.js"));
+					return t.e(21).then(t.bind(null, "./app/components/SuggestChannels/index.js"));
 				},
 				loading: function() {
 					return null;

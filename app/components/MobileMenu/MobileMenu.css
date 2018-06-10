@@ -34,7 +34,7 @@
 }
 
 .mobile-nav > li {
-	display: inline-block;
+	display: inline-block !important;
 	width: 20%;
 	text-align: center;
 	margin-bottom: -5px;

@@ -38,7 +38,7 @@ webpackJsonp([11], {
 			d = o("./app/components/OffsetSocial/index.js"),
 			c = o("./app/components/Logo/index.js"),
 			u = o("./app/components/Contributions/Contributions.css"),
-			p = (o.n(u),
+			h = (o.n(u),
 			(function() {
 				var e =
 					("function" == typeof Symbol && Symbol.for && Symbol.for("react.element")) ||
@@ -64,7 +64,7 @@ webpackJsonp([11], {
 					};
 				};
 			})()),
-			h = (function() {
+			p = (function() {
 				function e(e, t) {
 					for (var o = 0; o < t.length; o++) {
 						var n = t[o];
@@ -78,64 +78,64 @@ webpackJsonp([11], {
 					return o && e(t.prototype, o), n && e(t, n), t;
 				};
 			})(),
-			f = p(
+			v = h(
 				"div",
 				{ className: "container" },
 				void 0,
-				p(d.a, {}),
-				p(c.a, { className: "hidden-xs hidden-sm" }),
-				p(l.a, {}),
-				p(
+				h(d.a, {}),
+				h(c.a, { className: "hidden-xs hidden-sm" }),
+				h(l.a, {}),
+				h(
 					"div",
 					{ className: "row content-row" },
 					void 0,
-					p("div", { className: "col-md-3" }),
-					p(
+					h("div", { className: "col-md-3" }),
+					h(
 						"div",
 						{ className: "col-md-6" },
 						void 0,
-						p("h1", { className: "content-h1" }, void 0, "Contributions"),
-						p(
+						h("h1", { className: "content-h1" }, void 0, "Contributions"),
+						h(
 							"p",
 							{},
 							void 0,
 							"This is the place where we want to thank all of you for your great feedback regarding this site. Some of you have submitted ideas and improvements that made it on the todo list and are already implemented or fixed:"
 						),
-						p(
+						h(
 							"table",
 							{ className: "table" },
 							void 0,
-							p(
+							h(
 								"thead",
 								{},
 								void 0,
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p("th", {}, void 0, "Suggestion"),
-									p("th", { className: "by-col" }, void 0, "By")
+									h("th", {}, void 0, "Suggestion"),
+									h("th", { className: "by-col" }, void 0, "By")
 								)
 							),
-							p(
+							h(
 								"tbody",
 								{},
 								void 0,
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										"Feature: A way to filter by language of the channel"
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -147,16 +147,16 @@ webpackJsonp([11], {
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p("td", {}, void 0, "Feature: Sort channels by total views"),
-									p(
+									h("td", {}, void 0, "Feature: Sort channels by total views"),
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -164,25 +164,25 @@ webpackJsonp([11], {
 												target: "_blank"
 											},
 											void 0,
-											"Brian, SV Delos"
+											"Brian (SV Delos)"
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										"Bug report: Website (scrolling) slows down drastically when loading lots of channels"
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href: "https://www.youtube.com/user/steedharold",
@@ -193,21 +193,21 @@ webpackJsonp([11], {
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										"Feature: Show vessel position that belongs to a channel on a map"
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -219,21 +219,21 @@ webpackJsonp([11], {
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										"Feature: Sort channels by currently popular channels, see what's trending."
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -245,28 +245,28 @@ webpackJsonp([11], {
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										'Improvement: Implementing a subscriber threshold that channels have to reach in order to be listed on the "trending" page.',
-										p("br", {}),
-										p(
+										h("br", {}),
+										h(
 											"i",
 											{},
 											void 0,
 											"(Ed.: The threshold is now the median value of the subscriber distribution of all listed channels.)"
 										)
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -278,21 +278,21 @@ webpackJsonp([11], {
 										)
 									)
 								),
-								p(
+								h(
 									"tr",
 									{},
 									void 0,
-									p(
+									h(
 										"td",
 										{},
 										void 0,
 										'Improvement: Set "Last upload" as default sorting option to facilitate attention to a broader variety of channels.'
 									),
-									p(
+									h(
 										"td",
 										{},
 										void 0,
-										p(
+										h(
 											"a",
 											{
 												href:
@@ -303,14 +303,41 @@ webpackJsonp([11], {
 											"Mount Ocean"
 										)
 									)
+								),
+								h(
+									"tr",
+									{},
+									void 0,
+									h(
+										"td",
+										{},
+										void 0,
+										'Feature: Group channel by their topic, e.g. "family", "couple", "diy"'
+									),
+									h(
+										"td",
+										{},
+										void 0,
+										h(
+											"a",
+											{
+												href:
+													"https://sailing-channels.com/channel/UCNYlvlreZiRRHo_v5Nmrfow",
+												target: "_blank"
+											},
+											void 0,
+											"Sailing Zatara"
+										),
+										", David V."
+									)
 								)
 							)
 						)
 					),
-					p("div", { className: "col-md-3" })
+					h("div", { className: "col-md-3" })
 				)
 			),
-			v = (function(e) {
+			f = (function(e) {
 				function t() {
 					return (
 						n(this, t),
@@ -319,7 +346,7 @@ webpackJsonp([11], {
 				}
 				return (
 					a(t, e),
-					h(t, [
+					p(t, [
 						{
 							key: "componentDidMount",
 							value: function() {
@@ -329,14 +356,14 @@ webpackJsonp([11], {
 						{
 							key: "render",
 							value: function() {
-								return f;
+								return v;
 							}
 						}
 					]),
 					t
 				);
 			})(s.a.Component);
-		t.default = v;
+		t.default = f;
 	},
 	"./node_modules/css-loader/index.js!./app/components/Contributions/Contributions.css": function(
 		e,

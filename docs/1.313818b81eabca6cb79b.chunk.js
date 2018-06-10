@@ -1,7 +1,117 @@
-webpackJsonp([2], {
-	"./app/components/ChannelDetail/ChannelDetail.css": function(e, t, n) {
+webpackJsonp([1, 19], {
+	"./app/actions/VideoActions.js": function(e, t, n) {
+		"use strict";
+		function o(e, t) {
+			if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+		}
+		var a = n("./app/alt.js"),
+			r = n("./node_modules/jquery/dist/jquery.js"),
+			i = n.n(r),
+			s = (function() {
+				function e(e, t) {
+					for (var n = 0; n < t.length; n++) {
+						var o = t[n];
+						(o.enumerable = o.enumerable || !1),
+							(o.configurable = !0),
+							"value" in o && (o.writable = !0),
+							Object.defineProperty(e, o.key, o);
+					}
+				}
+				return function(t, n, o) {
+					return n && e(t.prototype, n), o && e(t, o), t;
+				};
+			})(),
+			c = (function() {
+				function e() {
+					o(this, e),
+						this.generateActions(
+							"getVideosSuccess",
+							"getVideosFail",
+							"getVideoSuccess",
+							"getVideoFail"
+						);
+				}
+				return (
+					s(e, [
+						{
+							key: "getVideos",
+							value: function(e, t, n) {
+								var o = this;
+								i.a
+									.ajax({
+										url:
+											"/api/channel/get/" +
+											e +
+											"/videos?skip=" +
+											t +
+											"&take=" +
+											n,
+										type: "GET",
+										dataType: "json",
+										cache: !0
+									})
+									.done(function(e) {
+										o.actions.getVideosSuccess(e);
+									})
+									.fail(function(e) {
+										o.actions.getVideosFail(e);
+									});
+							}
+						},
+						{
+							key: "getVideo",
+							value: function(e) {
+								var t = this;
+								i.a
+									.ajax({
+										url: "/api/video/get/" + e,
+										type: "GET",
+										dataType: "json",
+										cache: !0
+									})
+									.done(function(e) {
+										t.actions.getVideoSuccess(e);
+									})
+									.fail(function(e) {
+										t.actions.getVideoFail(e);
+									});
+							}
+						}
+					]),
+					e
+				);
+			})();
+		t.a = a.a.createActions(c);
+	},
+	"./app/components/Description/Loadable.js": function(e, t, n) {
+		"use strict";
+		var o = n("./node_modules/react-loadable/lib/index.js"),
+			a = n.n(o);
+		t.a = a()({
+			loader: function() {
+				return n.e(18).then(n.bind(null, "./app/components/Description/index.js"));
+			},
+			loading: function() {
+				return null;
+			}
+		});
+	},
+	"./app/components/SubscribeButton/Loadable.js": function(e, t, n) {
+		"use strict";
+		var o = n("./node_modules/react-loadable/lib/index.js"),
+			a = n.n(o);
+		t.a = a()({
+			loader: function() {
+				return n.e(28).then(n.bind(null, "./app/components/SubscribeButton/index.js"));
+			},
+			loading: function() {
+				return null;
+			}
+		});
+	},
+	"./app/components/VideoDetail/VideoDetail.css": function(e, t, n) {
 		var o = n(
-			"./node_modules/css-loader/index.js!./app/components/ChannelDetail/ChannelDetail.css"
+			"./node_modules/css-loader/index.js!./app/components/VideoDetail/VideoDetail.css"
 		);
 		"string" == typeof o && (o = [[e.i, o, ""]]);
 		var a = {};
@@ -9,7 +119,7 @@ webpackJsonp([2], {
 		n("./node_modules/style-loader/lib/addStyles.js")(o, a);
 		o.locals && (e.exports = o.locals);
 	},
-	"./app/components/ChannelDetail/index.js": function(e, t, n) {
+	"./app/components/VideoDetail/index.js": function(e, t, n) {
 		"use strict";
 		function o(e, t) {
 			if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
@@ -34,47 +144,20 @@ webpackJsonp([2], {
 		Object.defineProperty(t, "__esModule", { value: !0 });
 		var i = n("./node_modules/react/index.js"),
 			s = n.n(i),
-			l = n("./node_modules/react-helmet/lib/Helmet.js"),
-			c = n.n(l),
-			u = n("./node_modules/anchorme/dist-node/index.js"),
-			d = n.n(u),
-			f = n("./node_modules/jquery/dist/jquery.js"),
-			p = n.n(f),
-			m = n("./app/actions/ChannelActions.js"),
-			h = n("./app/stores/ChannelStore.js"),
-			b = n("./app/components/OffsetMenu/index.js"),
-			g = n("./app/components/OffsetSocial/index.js"),
-			y = n("./node_modules/react-loadable/lib/index.js"),
-			v = n.n(y),
-			T = v()({
-				loader: function() {
-					return n.e(17).then(n.bind(null, "./app/components/VideoList/index.js"));
-				},
-				loading: function() {
-					return null;
-				}
-			}),
-			x = n("./app/components/Logo/index.js"),
-			E = n("./app/components/HistoryChart/Loadable.js"),
-			_ = n("./app/components/SubscribeButton/Loadable.js"),
-			A = n("./app/components/PositionMap/Loadable.js"),
-			w = v()({
-				loader: function() {
-					return n.e(20).then(n.bind(null, "./app/components/FlagButton/index.js"));
-				},
-				loading: function() {
-					return null;
-				}
-			}),
-			j = v()({
-				loader: function() {
-					return n.e(24).then(n.bind(null, "./app/components/Tags/index.js"));
-				},
-				loading: function() {
-					return null;
-				}
-			}),
-			k = (n("./app/components/ChannelDetail/ChannelDetail.css"),
+			c = n("./node_modules/react-helmet/lib/Helmet.js"),
+			l = n.n(c),
+			u = n("./app/components/OffsetMenu/index.js"),
+			d = n("./app/components/VideoList/index.js"),
+			f = n("./app/actions/VideoActions.js"),
+			p = n("./app/stores/VideoStore.js"),
+			m = n("./app/components/OffsetSocial/index.js"),
+			h = n("./app/components/Logo/index.js"),
+			b = n("./node_modules/react-router-dom/index.js"),
+			g = (n.n(b), n("./app/components/SubscribeButton/Loadable.js")),
+			v = n("./node_modules/anchorme/dist-node/index.js"),
+			y = n.n(v),
+			T = n("./app/components/VideoDetail/VideoDetail.css"),
+			x = (n.n(T),
 			(function() {
 				var e =
 					("function" == typeof Symbol && Symbol.for && Symbol.for("react.element")) ||
@@ -87,8 +170,8 @@ webpackJsonp([2], {
 					else n || (n = r || {});
 					if (1 === i) n.children = a;
 					else if (i > 1) {
-						for (var l = Array(i), c = 0; c < i; c++) l[c] = arguments[c + 3];
-						n.children = l;
+						for (var c = Array(i), l = 0; l < i; l++) c[l] = arguments[l + 3];
+						n.children = c;
 					}
 					return {
 						$$typeof: e,
@@ -100,7 +183,7 @@ webpackJsonp([2], {
 					};
 				};
 			})()),
-			S = (function() {
+			E = (function() {
 				function e(e, t) {
 					for (var n = 0; n < t.length; n++) {
 						var o = t[n];
@@ -114,77 +197,47 @@ webpackJsonp([2], {
 					return n && e(t.prototype, n), o && e(t, o), t;
 				};
 			})(),
-			O = k(g.a, {}),
-			P = k(x.a, { className: "hidden-xs hidden-sm" }),
-			M = k(b.a, {}),
-			C = k("div", { className: "col-md-1" }),
-			R = k("p", {}, void 0, " "),
-			N = k(
-				"p",
-				{},
-				void 0,
-				k("b", {}, void 0, "Latest position:"),
-				" ",
-				k("sup", {}, void 0, "(beta)")
-			),
-			L = k("p", {}, void 0, " "),
-			I = k("p", {}, void 0, k("b", {}, void 0, "Latest video:")),
-			G = k("p", {}, void 0, " "),
-			H = k("p", {}, void 0, k("b", {}, void 0, "All videos:")),
-			q = k("p", {}, void 0, k("b", {}, void 0, "Subscribers in last 7 days:")),
-			z = k("p", {}, void 0, " "),
-			U = k(
-				"p",
-				{ className: "text-warning" },
-				void 0,
-				k(
-					"b",
-					{},
-					void 0,
-					"Subscriber info hidden by channel",
-					" ",
-					k("i", { className: "fa fa-frown-o" })
-				)
-			),
-			D = k("b", {}, void 0, "Subscribers:"),
-			B = k("b", {}, void 0, "Videos:"),
-			F = k("b", {}, void 0, "Views:"),
-			Y = k("b", {}, void 0, "Last upload:"),
-			$ = k("b", {}, void 0, "Founded:"),
-			V = k("p", {}, void 0, " "),
-			W = k("p", {}, void 0, " "),
-			K = k("i", { className: "fa fa-external-link fa-fw" }),
-			X = k("p", {}, void 0, " "),
-			J = k("li", {}, void 0, k("b", {}, void 0, "Links:")),
-			Q = k("div", { className: "col-md-1" }),
-			Z = k("p", {}, void 0, " "),
-			ee = (function(e) {
+			_ = x(m.a, {}),
+			w = x(h.a, { className: "hidden-xs hidden-sm" }),
+			k = x(u.a, {}),
+			A = x("div", { className: "col-md-1" }),
+			j = x("p", {}, void 0, " "),
+			S = x("p", {}, void 0, x("b", {}, void 0, "Other videos:")),
+			O = x("b", {}, void 0, "Views:"),
+			P = x("b", {}, void 0, "Likes:"),
+			N = x("i", { className: "fa fa-thumbs-up fa-fw" }),
+			M = x("i", { className: "fa fa-thumbs-down fa-fw" }),
+			R = x("b", {}, void 0, "Uploaded:"),
+			C = x("p", {}, void 0, " "),
+			L = x("b", {}, void 0, "Channel:"),
+			I = x("div", { className: "col-md-1" }),
+			G = x("p", {}, void 0, " "),
+			q = (function(e) {
 				function t(e) {
 					o(this, t);
 					var n = a(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
-					return (n.state = h.a.getState()), (n.onChange = n.onChange.bind(n)), n;
+					return (n.state = p.a.getState()), (n.onChange = n.onChange.bind(n)), n;
 				}
 				return (
 					r(t, e),
-					S(t, [
+					E(t, [
 						{
 							key: "componentDidMount",
 							value: function() {
-								h.a.listen(this.onChange),
-									m.a.getChannel(this.props.match.params.id);
+								p.a.listen(this.onChange), f.a.getVideo(this.props.match.params.id);
 							}
 						},
 						{
 							key: "componentWillReceiveProps",
 							value: function(e) {
 								e.params.id !== this.props.match.params.id &&
-									m.a.getChannel(e.params.id);
+									f.a.getVideo(e.params.id);
 							}
 						},
 						{
 							key: "componentWillUnmount",
 							value: function() {
-								h.a.unlisten(this.onChange);
+								p.a.unlisten(this.onChange);
 							}
 						},
 						{
@@ -217,244 +270,450 @@ webpackJsonp([2], {
 						{
 							key: "render",
 							value: function() {
-								if (!this.state.channel) return null;
-								var e = [];
-								if (
-									"customLinks" in this.state.channel &&
-									null !== this.state.channel.customLinks &&
-									this.state.channel.customLinks.length > 0
-								)
-									for (var t in this.state.channel.customLinks)
-										e.push(
-											k(
-												"li",
-												{},
-												"customlink_" + t,
-												k(
-													"a",
-													{
-														target: "_blank",
-														href: this.state.channel.customLinks[t].url
-													},
-													void 0,
-													k("img", {
-														src: this.state.channel.customLinks[t].icon
-													}),
-													" ",
-													this.state.channel.customLinks[t].title
-												)
-											)
-										);
-								return k(
-									"div",
-									{ className: "container" },
-									void 0,
-									k(c.a, {
-										title: this.state.channel.title + " | Sailing Channels"
-									}),
-									O,
-									P,
-									M,
-									k(
-										"div",
-										{ className: "row" },
-										void 0,
-										C,
-										k(
+								return this.state.video
+									? x(
 											"div",
-											{ className: "col-md-10" },
+											{ className: "container" },
 											void 0,
-											k(
+											x(l.a, { title: this.state.video.title }),
+											_,
+											w,
+											k,
+											x(
 												"div",
 												{ className: "row" },
 												void 0,
-												k(
+												A,
+												x(
 													"div",
-													{ className: "col-md-12" },
+													{ className: "col-md-10" },
 													void 0,
-													k(
-														"center",
+													x(
+														"div",
+														{ className: "row" },
+														void 0,
+														x(
+															"div",
+															{ className: "col-md-12" },
+															void 0,
+															x(
+																"center",
+																{},
+																void 0,
+																x(
+																	"h1",
+																	{
+																		className:
+																			"video-detail-title"
+																	},
+																	void 0,
+																	this.state.video.title
+																)
+															)
+														)
+													),
+													x(
+														"div",
+														{ className: "row" },
+														void 0,
+														x(
+															"div",
+															{ className: "col-md-2 col-sm-2" },
+															void 0,
+															x("img", {
+																src: this.state.video.channel
+																	.thumbnail,
+																className: "channel-thumb"
+															})
+														),
+														x(
+															"div",
+															{ className: "col-md-7 col-sm-7" },
+															void 0,
+															x("iframe", {
+																width: "100%",
+																height: "315",
+																src:
+																	"https://www.youtube.com/embed/" +
+																	this.state.video._id +
+																	"?origin=https://sailing-channels.com",
+																frameBorder: "0",
+																allowFullScreen: !0
+															}),
+															x("p", {
+																className: "channel-description",
+																dangerouslySetInnerHTML: {
+																	__html: y()(
+																		this.state.video.description.replace(
+																			"\n",
+																			"<br />"
+																		),
+																		{ target: "_blank" }
+																	)
+																}
+															}),
+															j,
+															S,
+															x(d.default, {
+																channel: this.state.video.channel
+															})
+														),
+														x(
+															"div",
+															{ className: "col-md-3 col-sm-3" },
+															void 0,
+															x(
+																"p",
+																{},
+																void 0,
+																O,
+																" ",
+																(
+																	this.state.video.views || 0
+																).toLocaleString()
+															),
+															x(
+																"p",
+																{},
+																void 0,
+																P,
+																" ",
+																N,
+																" ",
+																(
+																	this.state.video.likes || 0
+																).toLocaleString(),
+																" ",
+																M,
+																" ",
+																(
+																	this.state.video.dislikes || 0
+																).toLocaleString()
+															),
+															x(
+																"p",
+																{},
+																void 0,
+																R,
+																" ",
+																this.formatDate(
+																	this.state.video.publishedAt
+																)
+															),
+															C,
+															x(
+																"p",
+																{},
+																void 0,
+																L,
+																" ",
+																x(
+																	b.Link,
+																	{
+																		to:
+																			"/channel/" +
+																			this.state.video.channel
+																				._id
+																	},
+																	void 0,
+																	this.state.video.channel.title
+																)
+															),
+															x(g.a, {
+																channel: this.state.video.channel
+															})
+														)
+													)
+												),
+												I
+											),
+											G
+									  )
+									: null;
+							}
+						}
+					]),
+					t
+				);
+			})(s.a.Component);
+		t.default = q;
+	},
+	"./app/components/VideoList/index.js": function(e, t, n) {
+		"use strict";
+		function o(e, t) {
+			if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+		}
+		function a(e, t) {
+			if (!e)
+				throw new ReferenceError(
+					"this hasn't been initialised - super() hasn't been called"
+				);
+			return !t || ("object" != typeof t && "function" != typeof t) ? e : t;
+		}
+		function r(e, t) {
+			if ("function" != typeof t && null !== t)
+				throw new TypeError(
+					"Super expression must either be null or a function, not " + typeof t
+				);
+			(e.prototype = Object.create(t && t.prototype, {
+				constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 }
+			})),
+				t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : (e.__proto__ = t));
+		}
+		Object.defineProperty(t, "__esModule", { value: !0 });
+		var i = n("./node_modules/react/index.js"),
+			s = n.n(i),
+			c = (n("./app/components/VideoListItem/Loadable.js"),
+			n("./app/actions/VideoActions.js")),
+			l = n("./app/stores/VideoStore.js"),
+			u = n("./app/components/Description/Loadable.js"),
+			d = n("./node_modules/react-router-dom/index.js"),
+			f = (n.n(d), n("./node_modules/react-lazyload/lib/index.js")),
+			p = n.n(f),
+			m = (function() {
+				var e =
+					("function" == typeof Symbol && Symbol.for && Symbol.for("react.element")) ||
+					60103;
+				return function(t, n, o, a) {
+					var r = t && t.defaultProps,
+						i = arguments.length - 3;
+					if ((n || 0 === i || (n = {}), n && r))
+						for (var s in r) void 0 === n[s] && (n[s] = r[s]);
+					else n || (n = r || {});
+					if (1 === i) n.children = a;
+					else if (i > 1) {
+						for (var c = Array(i), l = 0; l < i; l++) c[l] = arguments[l + 3];
+						n.children = c;
+					}
+					return {
+						$$typeof: e,
+						type: t,
+						key: void 0 === o ? null : "" + o,
+						ref: null,
+						props: n,
+						_owner: null
+					};
+				};
+			})(),
+			h = (function() {
+				function e(e, t) {
+					for (var n = 0; n < t.length; n++) {
+						var o = t[n];
+						(o.enumerable = o.enumerable || !1),
+							(o.configurable = !0),
+							"value" in o && (o.writable = !0),
+							Object.defineProperty(e, o.key, o);
+					}
+				}
+				return function(t, n, o) {
+					return n && e(t.prototype, n), o && e(t, o), t;
+				};
+			})(),
+			b = m("i", { className: "fa fa-eye" }),
+			g = m("i", { className: "fa fa-thumbs-up" }),
+			v = m("i", { className: "fa fa-thumbs-down" }),
+			y = m("i", { className: "fa fa-arrow-left" }),
+			T = m("i", { className: "fa fa-arrow-right" }),
+			x = (function(e) {
+				function t(e) {
+					o(this, t);
+					var n = a(this, (t.__proto__ || Object.getPrototypeOf(t)).call(this, e));
+					return (n.state = l.a.getState()), (n.onChange = n.onChange.bind(n)), n;
+				}
+				return (
+					r(t, e),
+					h(t, [
+						{
+							key: "componentDidMount",
+							value: function() {
+								l.a.listen(this.onChange),
+									c.a.getVideos(
+										this.props.channel._id,
+										this.state.skip,
+										this.state.take
+									);
+							}
+						},
+						{
+							key: "componentWillReceiveProps",
+							value: function(e) {
+								if (e.channel._id !== this.props.channel._id) {
+									var t = { videos: [], skip: 0, take: this.state.take };
+									this.setState(t), c.a.getVideos(e.channel._id, t.skip, t.take);
+								}
+							}
+						},
+						{
+							key: "componentWillUnmount",
+							value: function() {
+								l.a.unlisten(this.onChange);
+							}
+						},
+						{
+							key: "onChange",
+							value: function(e) {
+								this.setState(e);
+							}
+						},
+						{
+							key: "formatDate",
+							value: function(e) {
+								var t = [
+										"Jan",
+										"Feb",
+										"Mar",
+										"Apr",
+										"May",
+										"Jun",
+										"Jul",
+										"Aug",
+										"Sep",
+										"Oct",
+										"Nov",
+										"Dec"
+									],
+									n = new Date(1e3 * e);
+								return t[n.getMonth()] + " " + n.getDate() + ", " + n.getFullYear();
+							}
+						},
+						{
+							key: "next",
+							value: function() {
+								var e = {
+									videos: [],
+									skip: this.state.skip + this.state.take,
+									take: this.state.take
+								};
+								this.setState(e),
+									c.a.getVideos(this.props.channel._id, e.skip, e.take);
+							}
+						},
+						{
+							key: "prev",
+							value: function() {
+								var e = {
+									videos: [],
+									skip: this.state.skip - this.state.take,
+									take: this.state.take
+								};
+								this.setState(e),
+									c.a.getVideos(this.props.channel._id, e.skip, e.take);
+							}
+						},
+						{
+							key: "render",
+							value: function() {
+								var e = this;
+								return m(
+									"div",
+									{},
+									void 0,
+									this.state.videos.map(function(t) {
+										return m(
+											"div",
+											{ className: "row channel-row" },
+											t._id,
+											m(
+												"div",
+												{ className: "col-md-3 col-xs-3" },
+												void 0,
+												m(
+													"center",
+													{},
+													void 0,
+													m(
+														p.a,
 														{},
 														void 0,
-														k(
-															"h1",
-															{},
-															void 0,
-															this.state.channel.title
-														)
+														m("img", {
+															src:
+																"https://img.youtube.com/vi/" +
+																t._id +
+																"/default.jpg",
+															className: "channel-thumb"
+														})
 													)
 												)
 											),
-											k(
+											m(
 												"div",
-												{ className: "row" },
+												{ className: "col-md-9 col-xs-9" },
 												void 0,
-												k(
-													"div",
-													{ className: "col-md-2 col-sm-2" },
+												m(
+													"h3",
+													{},
 													void 0,
-													k("img", {
-														src: this.state.channel.thumbnail,
-														className: "channel-thumb"
-													}),
-													k(j, { id: this.state.channel.id })
+													m(
+														d.Link,
+														{ to: "/video/" + t._id },
+														void 0,
+														t.title
+													)
 												),
-												k(
-													"div",
-													{ className: "col-md-7 col-sm-7" },
+												m(
+													"p",
+													{},
 													void 0,
-													k("p", {
-														className: "channel-description",
-														dangerouslySetInnerHTML: {
-															__html: d()(
-																this.state.channel.description.replace(
-																	"\n",
-																	"<br />"
-																),
-																{ target: "_blank" }
-															)
-														}
-													}),
-													R,
-													this.state.channel.position
-														? k(
-																"div",
-																{},
-																void 0,
-																N,
-																k(A.a, {
-																	channel: this.state.channel.id
-																}),
-																L
-														  )
-														: null,
-													I,
-													k("iframe", {
-														width: "100%",
-														height: "315",
-														src:
-															"https://www.youtube.com/embed/" +
-															this.state.channel.videos[0]._id +
-															"?origin=https://sailing-channels.com",
-														frameBorder: "0",
-														allowFullScreen: !0
-													}),
-													G,
-													H,
-													k(T, { channel: this.state.channel })
+													e.formatDate(t.publishedAt),
+													" ·",
+													" ",
+													b,
+													" ",
+													t.views,
+													" ·",
+													" ",
+													g,
+													" ",
+													t.likes,
+													" ·",
+													" ",
+													v,
+													" ",
+													t.dislikes
 												),
-												k(
-													"div",
-													{ className: "col-md-3 col-sm-3" },
-													void 0,
-													q,
-													k(E.a, {
-														name: "subscribers",
-														data: this.state.channel.subHist
-													}),
-													z,
-													!0 === this.state.channel.subscribersHidden
-														? U
-														: null,
-													!1 === this.state.channel.subscribersHidden
-														? k(
-																"p",
-																{},
-																void 0,
-																D,
-																" ",
-																this.state.channel.subscribers.toLocaleString()
-														  )
-														: null,
-													!1 === this.state.channel.subscribersHidden
-														? k(
-																"p",
-																{},
-																void 0,
-																B,
-																" ",
-																this.state.channel.videoCount
-														  )
-														: null,
-													k(
-														"p",
-														{},
-														void 0,
-														F,
-														" ",
-														this.state.channel.views.toLocaleString()
-													),
-													this.state.channel.lastUploadAt
-														? k(
-																"p",
-																{},
-																void 0,
-																Y,
-																" ",
-																p.a.timeago(
-																	new Date(
-																		1e3 *
-																			this.state.channel
-																				.lastUploadAt
-																	)
-																)
-														  )
-														: "",
-													k(
-														"p",
-														{},
-														void 0,
-														$,
-														" ",
-														this.formatDate(
-															this.state.channel.publishedAt
-														)
-													),
-													V,
-													k(_.a, { channel: this.state.channel }),
-													W,
-													k(
-														"p",
-														{},
-														void 0,
-														k(
-															"a",
-															{
-																target: "_blank",
-																href:
-																	"https://youtube.com/channel/" +
-																	this.state.channel.id
-															},
-															void 0,
-															K,
-															" Open YouTube channel"
-														)
-													),
-													k(
-														"p",
-														{},
-														void 0,
-														k(w, { channel: this.state.channel })
-													),
-													X,
-													e.length > 0
-														? k(
-																"ul",
-																{
-																	className:
-																		"hidden-sm hidden-xs list-unstyled websites-list"
-																},
-																void 0,
-																J,
-																e
-														  )
-														: null
-												)
+												m(u.a, { text: t.description, video: !0 })
 											)
+										);
+									}),
+									m(
+										"div",
+										{ className: "row" },
+										void 0,
+										m(
+											"div",
+											{ className: "col-md-6 col-xs-6 text-left" },
+											void 0,
+											this.state.skip > 0
+												? m(
+														"a",
+														{
+															className: "btn btn-raised",
+															onClick: this.prev.bind(this)
+														},
+														void 0,
+														y,
+														" Previous"
+												  )
+												: null
 										),
-										Q
-									),
-									Z
+										m(
+											"div",
+											{ className: "col-md-6 col-xs-6 text-right" },
+											void 0,
+											!1 === this.state.fin
+												? m(
+														"a",
+														{
+															className: "btn btn-raised",
+															onClick: this.next.bind(this)
+														},
+														void 0,
+														"Next ",
+														T
+												  )
+												: null
+										)
+									)
 								);
 							}
 						}
@@ -462,46 +721,90 @@ webpackJsonp([2], {
 					t
 				);
 			})(s.a.Component);
-		t.default = ee;
+		t.default = x;
 	},
-	"./app/components/HistoryChart/Loadable.js": function(e, t, n) {
+	"./app/components/VideoListItem/Loadable.js": function(e, t, n) {
 		"use strict";
 		var o = n("./node_modules/react-loadable/lib/index.js"),
 			a = n.n(o);
 		t.a = a()({
 			loader: function() {
-				return n.e(15).then(n.bind(null, "./app/components/HistoryChart/index.js"));
+				return n.e(23).then(n.bind(null, "./app/components/VideoListItem/index.js"));
 			},
 			loading: function() {
 				return null;
 			}
 		});
 	},
-	"./app/components/PositionMap/Loadable.js": function(e, t, n) {
+	"./app/stores/VideoStore.js": function(e, t, n) {
 		"use strict";
-		var o = n("./node_modules/react-loadable/lib/index.js"),
-			a = n.n(o);
-		t.a = a()({
-			loader: function() {
-				return n.e(18).then(n.bind(null, "./app/components/PositionMap/index.js"));
-			},
-			loading: function() {
-				return null;
-			}
-		});
-	},
-	"./app/components/SubscribeButton/Loadable.js": function(e, t, n) {
-		"use strict";
-		var o = n("./node_modules/react-loadable/lib/index.js"),
-			a = n.n(o);
-		t.a = a()({
-			loader: function() {
-				return n.e(26).then(n.bind(null, "./app/components/SubscribeButton/index.js"));
-			},
-			loading: function() {
-				return null;
-			}
-		});
+		function o(e, t) {
+			if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+		}
+		var a = n("./app/alt.js"),
+			r = n("./app/actions/VideoActions.js"),
+			i = (function() {
+				function e(e, t) {
+					for (var n = 0; n < t.length; n++) {
+						var o = t[n];
+						(o.enumerable = o.enumerable || !1),
+							(o.configurable = !0),
+							"value" in o && (o.writable = !0),
+							Object.defineProperty(e, o.key, o);
+					}
+				}
+				return function(t, n, o) {
+					return n && e(t.prototype, n), o && e(t, o), t;
+				};
+			})(),
+			s = (function() {
+				function e() {
+					o(this, e),
+						this.bindActions(r.a),
+						(this.videos = []),
+						(this.video = null),
+						(this.skip = 0),
+						(this.take = 5),
+						(this.fin = !1);
+				}
+				return (
+					i(e, [
+						{
+							key: "getVideosSuccess",
+							value: function(e) {
+								(this.videos = e.data),
+									(this.skip = e.skip),
+									(this.take = e.take),
+									(this.fin = e.fin);
+							}
+						},
+						{
+							key: "getVideosFail",
+							value: function(e) {
+								console.error(
+									(e.responseJSON && e.responseJSON.message) ||
+										e.responseText ||
+										e.statusText
+								);
+							}
+						},
+						{
+							key: "getVideoSuccess",
+							value: function(e) {
+								(this.video = e), (this.video.channel.id = this.video.channel._id);
+							}
+						},
+						{
+							key: "getVideoFail",
+							value: function(e) {
+								location.href = "/404";
+							}
+						}
+					]),
+					e
+				);
+			})();
+		t.a = a.a.createStore(s);
 	},
 	"./node_modules/anchorme/dist-node/index.js": function(e, t, n) {
 		"use strict";
@@ -511,19 +814,19 @@ webpackJsonp([2], {
 			r = n("./node_modules/anchorme/dist-node/tests/ip.js"),
 			i = n("./node_modules/anchorme/dist-node/tests/url.js"),
 			s = n("./node_modules/anchorme/dist-node/transform/transform.js"),
-			l = n("./node_modules/anchorme/dist-node/tests/hasprotocol.js"),
-			c = function(e, t) {
+			c = n("./node_modules/anchorme/dist-node/tests/hasprotocol.js"),
+			l = function(e, t) {
 				return (t = o.defaultOptions(t)), s.default(e, t);
 			};
-		(c.validate = {
+		(l.validate = {
 			ip: r.default,
 			url: function(e) {
-				var t = l.default(e) || "";
+				var t = c.default(e) || "";
 				return (e = e.substr(t.length)), (e = encodeURI(e)), i.default(e);
 			},
 			email: a.default
 		}),
-			(t.default = c);
+			(t.default = l);
 	},
 	"./node_modules/anchorme/dist-node/lists.js": function(e, t, n) {
 		"use strict";
@@ -2169,8 +2472,8 @@ webpackJsonp([2], {
 			if (isNaN(i) || i > 255 || i < 0) return !1;
 			var s = Number((t[3].match(/^\d+/) || [])[0]);
 			if (isNaN(s) || s > 255 || s < 0) return !1;
-			var l = (t[3].match(/(^\d+)(:)(\d+)/) || [])[3];
-			return !(l && !a.isPort(l));
+			var c = (t[3].match(/(^\d+)(:)(\d+)/) || [])[3];
+			return !(c && !a.isPort(c));
 		}
 		Object.defineProperty(t, "__esModule", { value: !0 });
 		var a = n("./node_modules/anchorme/dist-node/util.js"),
@@ -2197,19 +2500,19 @@ webpackJsonp([2], {
 		"use strict";
 		function o(e, t) {
 			return e.map(function(n, o) {
-				var c = encodeURI(n);
-				if (c.indexOf(".") < 1 && !r.default(c)) return n;
+				var l = encodeURI(n);
+				if (l.indexOf(".") < 1 && !r.default(l)) return n;
 				var u = null,
-					d = r.default(c) || "";
+					d = r.default(l) || "";
 				return (
-					d && (c = c.substr(d.length)),
+					d && (l = l.substr(d.length)),
 					t.files &&
 						"file:///" === d &&
-						c.split(/\/|\\/).length - 1 &&
-						(u = { reason: "file", protocol: d, raw: n, encoded: c }),
+						l.split(/\/|\\/).length - 1 &&
+						(u = { reason: "file", protocol: d, raw: n, encoded: l }),
 					!u &&
 						t.urls &&
-						l.default(c) &&
+						c.default(l) &&
 						(u = {
 							reason: "url",
 							protocol:
@@ -2218,15 +2521,15 @@ webpackJsonp([2], {
 									? t.defaultProtocol(n)
 									: t.defaultProtocol),
 							raw: n,
-							encoded: c
+							encoded: l
 						}),
 					!u &&
 						t.emails &&
-						a.default(c) &&
-						(u = { reason: "email", protocol: "mailto:", raw: n, encoded: c }),
+						a.default(l) &&
+						(u = { reason: "email", protocol: "mailto:", raw: n, encoded: l }),
 					!u &&
 						t.ips &&
-						s.default(c) &&
+						s.default(l) &&
 						(u = {
 							reason: "ip",
 							protocol:
@@ -2235,7 +2538,7 @@ webpackJsonp([2], {
 									? t.defaultProtocol(n)
 									: t.defaultProtocol),
 							raw: n,
-							encoded: c
+							encoded: l
 						}),
 					u && (("'" !== e[o - 1] && '"' !== e[o - 1]) || !~i.htmlAttrs.indexOf(e[o - 2]))
 						? u
@@ -2248,7 +2551,7 @@ webpackJsonp([2], {
 			r = n("./node_modules/anchorme/dist-node/tests/hasprotocol.js"),
 			i = n("./node_modules/anchorme/dist-node/lists.js"),
 			s = n("./node_modules/anchorme/dist-node/tests/ip.js"),
-			l = n("./node_modules/anchorme/dist-node/tests/url.js");
+			c = n("./node_modules/anchorme/dist-node/tests/url.js");
 		t.default = o;
 	},
 	"./node_modules/anchorme/dist-node/transform/transform.js": function(e, t, n) {
@@ -2257,9 +2560,9 @@ webpackJsonp([2], {
 			var n = s.separate(e),
 				o = i.default(n, t);
 			if (t.exclude)
-				for (var l = 0; l < o.length; l++) {
-					var c = o[l];
-					"object" == typeof c && t.exclude(c) && (o[l] = c.raw);
+				for (var c = 0; c < o.length; c++) {
+					var l = o[c];
+					"object" == typeof l && t.exclude(l) && (o[c] = l.raw);
 				}
 			if (t.list) {
 				for (var u = [], d = 0; d < o.length; d++) {
@@ -2345,17 +2648,13 @@ webpackJsonp([2], {
 			(t.defaultOptions = o),
 			(t.isPort = a);
 	},
-	"./node_modules/css-loader/index.js!./app/components/ChannelDetail/ChannelDetail.css": function(
+	"./node_modules/css-loader/index.js!./app/components/VideoDetail/VideoDetail.css": function(
 		e,
 		t,
 		n
 	) {
 		(t = e.exports = n("./node_modules/css-loader/lib/css-base.js")(void 0)),
-			t.push([
-				e.i,
-				".websites-list li:first-child{margin-bottom:10px}.websites-list li{margin-bottom:5px}",
-				""
-			]);
+			t.push([e.i, ".video-detail-title{max-width:600px}", ""]);
 	},
 	"./node_modules/deep-equal/index.js": function(e, t, n) {
 		function o(e) {
@@ -2373,7 +2672,7 @@ webpackJsonp([2], {
 			var r, u;
 			if (o(e) || o(t)) return !1;
 			if (e.prototype !== t.prototype) return !1;
-			if (l(e)) return !!l(t) && ((e = i.call(e)), (t = i.call(t)), c(e, t, n));
+			if (c(e)) return !!c(t) && ((e = i.call(e)), (t = i.call(t)), l(e, t, n));
 			if (a(e)) {
 				if (!a(t)) return !1;
 				if (e.length !== t.length) return !1;
@@ -2388,13 +2687,13 @@ webpackJsonp([2], {
 			}
 			if (d.length != f.length) return !1;
 			for (d.sort(), f.sort(), r = d.length - 1; r >= 0; r--) if (d[r] != f[r]) return !1;
-			for (r = d.length - 1; r >= 0; r--) if (((u = d[r]), !c(e[u], t[u], n))) return !1;
+			for (r = d.length - 1; r >= 0; r--) if (((u = d[r]), !l(e[u], t[u], n))) return !1;
 			return typeof e == typeof t;
 		}
 		var i = Array.prototype.slice,
 			s = n("./node_modules/deep-equal/lib/keys.js"),
-			l = n("./node_modules/deep-equal/lib/is_arguments.js"),
-			c = (e.exports = function(e, t, n) {
+			c = n("./node_modules/deep-equal/lib/is_arguments.js"),
+			l = (e.exports = function(e, t, n) {
 				return (
 					n || (n = {}),
 					e === t ||
@@ -2493,7 +2792,7 @@ webpackJsonp([2], {
 				t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : (e.__proto__ = t));
 		}
 		(t.__esModule = !0), (t.Helmet = void 0);
-		var l =
+		var c =
 				Object.assign ||
 				function(e) {
 					for (var t = 1; t < arguments.length; t++) {
@@ -2503,7 +2802,7 @@ webpackJsonp([2], {
 					}
 					return e;
 				},
-			c = (function() {
+			l = (function() {
 				function e(e, t) {
 					for (var n = 0; n < t.length; n++) {
 						var o = t[n];
@@ -2525,12 +2824,12 @@ webpackJsonp([2], {
 			h = o(m),
 			b = n("./node_modules/deep-equal/index.js"),
 			g = o(b),
-			y = n("./node_modules/react-helmet/lib/HelmetUtils.js"),
-			v = n("./node_modules/react-helmet/lib/HelmetConstants.js"),
+			v = n("./node_modules/react-helmet/lib/HelmetUtils.js"),
+			y = n("./node_modules/react-helmet/lib/HelmetConstants.js"),
 			T = function() {
 				return null;
 			},
-			x = (0, h.default)(y.reducePropsToState, y.handleClientStateChange, y.mapStateOnServer)(
+			x = (0, h.default)(v.reducePropsToState, v.handleClientStateChange, v.mapStateOnServer)(
 				T
 			),
 			E = (function(e) {
@@ -2548,10 +2847,10 @@ webpackJsonp([2], {
 							(n.prototype.mapNestedChildrenToProps = function(e, t) {
 								if (!t) return null;
 								switch (e.type) {
-									case v.TAG_NAMES.SCRIPT:
-									case v.TAG_NAMES.NOSCRIPT:
+									case y.TAG_NAMES.SCRIPT:
+									case y.TAG_NAMES.NOSCRIPT:
 										return { innerHTML: t };
-									case v.TAG_NAMES.STYLE:
+									case y.TAG_NAMES.STYLE:
 										return { cssText: t };
 								}
 								throw new Error(
@@ -2566,12 +2865,12 @@ webpackJsonp([2], {
 									o = e.arrayTypeChildren,
 									a = e.newChildProps,
 									r = e.nestedChildren;
-								return l(
+								return c(
 									{},
 									o,
 									((t = {}),
 									(t[n.type] = [].concat(o[n.type] || [], [
-										l({}, a, this.mapNestedChildrenToProps(n, r))
+										c({}, a, this.mapNestedChildrenToProps(n, r))
 									])),
 									t)
 								);
@@ -2584,28 +2883,28 @@ webpackJsonp([2], {
 									r = e.newChildProps,
 									i = e.nestedChildren;
 								switch (o.type) {
-									case v.TAG_NAMES.TITLE:
-										return l(
+									case y.TAG_NAMES.TITLE:
+										return c(
 											{},
 											a,
 											((t = {}),
 											(t[o.type] = i),
-											(t.titleAttributes = l({}, r)),
+											(t.titleAttributes = c({}, r)),
 											t)
 										);
-									case v.TAG_NAMES.BODY:
-										return l({}, a, { bodyAttributes: l({}, r) });
-									case v.TAG_NAMES.HTML:
-										return l({}, a, { htmlAttributes: l({}, r) });
+									case y.TAG_NAMES.BODY:
+										return c({}, a, { bodyAttributes: c({}, r) });
+									case y.TAG_NAMES.HTML:
+										return c({}, a, { htmlAttributes: c({}, r) });
 								}
-								return l({}, a, ((n = {}), (n[o.type] = l({}, r)), n));
+								return c({}, a, ((n = {}), (n[o.type] = c({}, r)), n));
 							}),
 							(n.prototype.mapArrayTypeChildrenToProps = function(e, t) {
-								var n = l({}, t);
+								var n = c({}, t);
 								return (
 									Object.keys(e).forEach(function(t) {
 										var o;
-										n = l({}, n, ((o = {}), (o[t] = e[t]), o));
+										n = c({}, n, ((o = {}), (o[t] = e[t]), o));
 									}),
 									n
 								);
@@ -2622,17 +2921,17 @@ webpackJsonp([2], {
 											var r = e.props,
 												i = r.children,
 												s = a(r, ["children"]),
-												l = (0, y.convertReactPropstoHtmlAttributes)(s);
+												c = (0, v.convertReactPropstoHtmlAttributes)(s);
 											switch ((n.warnOnInvalidChildren(e, i), e.type)) {
-												case v.TAG_NAMES.LINK:
-												case v.TAG_NAMES.META:
-												case v.TAG_NAMES.NOSCRIPT:
-												case v.TAG_NAMES.SCRIPT:
-												case v.TAG_NAMES.STYLE:
+												case y.TAG_NAMES.LINK:
+												case y.TAG_NAMES.META:
+												case y.TAG_NAMES.NOSCRIPT:
+												case y.TAG_NAMES.SCRIPT:
+												case y.TAG_NAMES.STYLE:
 													o = n.flattenArrayTypeChildren({
 														child: e,
 														arrayTypeChildren: o,
-														newChildProps: l,
+														newChildProps: c,
 														nestedChildren: i
 													});
 													break;
@@ -2640,7 +2939,7 @@ webpackJsonp([2], {
 													t = n.mapObjectTypeChildren({
 														child: e,
 														newProps: t,
-														newChildProps: l,
+														newChildProps: c,
 														nestedChildren: i
 													});
 											}
@@ -2653,13 +2952,13 @@ webpackJsonp([2], {
 								var t = this.props,
 									n = t.children,
 									o = a(t, ["children"]),
-									r = l({}, o);
+									r = c({}, o);
 								return (
 									n && (r = this.mapChildrenToProps(n, r)),
 									d.default.createElement(e, r)
 								);
 							}),
-							c(n, null, [
+							l(n, null, [
 								{
 									key: "canUseDOM",
 									set: function(t) {
@@ -2697,7 +2996,7 @@ webpackJsonp([2], {
 						var t = e.rewind();
 						return (
 							t ||
-								(t = (0, y.mapStateOnServer)({
+								(t = (0, v.mapStateOnServer)({
 									baseTag: [],
 									bodyAttributes: {},
 									encodeSpecialCharacters: !0,
@@ -2807,8 +3106,8 @@ webpackJsonp([2], {
 					},
 				i = n("./node_modules/react/index.js"),
 				s = o(i),
-				l = n("./node_modules/object-assign/index.js"),
-				c = o(l),
+				c = n("./node_modules/object-assign/index.js"),
+				l = o(c),
 				u = n("./node_modules/react-helmet/lib/HelmetConstants.js"),
 				d = function(e) {
 					return !1 ===
@@ -2891,13 +3190,13 @@ webpackJsonp([2], {
 							n.filter(function(e) {
 								for (var n = void 0, r = Object.keys(e), i = 0; i < r.length; i++) {
 									var s = r[i],
-										l = s.toLowerCase();
-									-1 === t.indexOf(l) ||
+										c = s.toLowerCase();
+									-1 === t.indexOf(c) ||
 										(n === u.TAG_PROPERTIES.REL &&
 											"canonical" === e[n].toLowerCase()) ||
-										(l === u.TAG_PROPERTIES.REL &&
-											"stylesheet" === e[l].toLowerCase()) ||
-										(n = l),
+										(c === u.TAG_PROPERTIES.REL &&
+											"stylesheet" === e[c].toLowerCase()) ||
+										(n = c),
 										-1 === t.indexOf(s) ||
 											(s !== u.TAG_PROPERTIES.INNER_HTML &&
 												s !== u.TAG_PROPERTIES.CSS_TEXT &&
@@ -2905,11 +3204,11 @@ webpackJsonp([2], {
 											(n = s);
 								}
 								if (!n || !e[n]) return !1;
-								var c = e[n].toLowerCase();
+								var l = e[n].toLowerCase();
 								return (
 									o[n] || (o[n] = {}),
 									a[n] || (a[n] = {}),
-									!o[n][c] && ((a[n][c] = !0), !0)
+									!o[n][l] && ((a[n][l] = !0), !0)
 								);
 							})
 								.reverse()
@@ -2918,8 +3217,8 @@ webpackJsonp([2], {
 								});
 							for (var r = Object.keys(a), i = 0; i < r.length; i++) {
 								var s = r[i],
-									l = (0, c.default)({}, o[s], a[s]);
-								o[s] = l;
+									c = (0, l.default)({}, o[s], a[s]);
+								o[s] = c;
 							}
 							return e;
 						}, [])
@@ -2932,7 +3231,7 @@ webpackJsonp([2], {
 					}
 					return null;
 				},
-				y = function(e) {
+				v = function(e) {
 					return {
 						baseTag: h([u.TAG_PROPERTIES.HREF], e),
 						bodyAttributes: m(u.ATTRIBUTE_NAMES.BODY, e),
@@ -2967,14 +3266,14 @@ webpackJsonp([2], {
 						titleAttributes: m(u.ATTRIBUTE_NAMES.TITLE, e)
 					};
 				},
-				v = (function() {
+				y = (function() {
 					var e = Date.now();
 					return function(t) {
 						var n = Date.now();
 						n - e > 16
 							? ((e = n), t(n))
 							: setTimeout(function() {
-									v(t);
+									y(t);
 							  }, 0);
 					};
 				})(),
@@ -2986,8 +3285,8 @@ webpackJsonp([2], {
 						? window.requestAnimationFrame ||
 						  window.webkitRequestAnimationFrame ||
 						  window.mozRequestAnimationFrame ||
-						  v
-						: e.requestAnimationFrame || v,
+						  y
+						: e.requestAnimationFrame || y,
 				E =
 					"undefined" != typeof window
 						? window.cancelAnimationFrame ||
@@ -2998,26 +3297,26 @@ webpackJsonp([2], {
 				_ = function(e) {
 					return console && "function" == typeof console.warn && console.warn(e);
 				},
-				A = null,
-				w = function(e) {
-					A && E(A),
+				w = null,
+				k = function(e) {
+					w && E(w),
 						e.defer
-							? (A = x(function() {
-									j(e, function() {
-										A = null;
+							? (w = x(function() {
+									A(e, function() {
+										w = null;
 									});
 							  }))
-							: (j(e), (A = null));
+							: (A(e), (w = null));
 				},
-				j = function(e, t) {
+				A = function(e, t) {
 					var n = e.baseTag,
 						o = e.bodyAttributes,
 						a = e.htmlAttributes,
 						r = e.linkTags,
 						i = e.metaTags,
 						s = e.noscriptTags,
-						l = e.onChangeClientState,
-						c = e.scriptTags,
+						c = e.onChangeClientState,
+						l = e.scriptTags,
 						d = e.styleTags,
 						f = e.title,
 						p = e.titleAttributes;
@@ -3027,7 +3326,7 @@ webpackJsonp([2], {
 							linkTags: P(u.TAG_NAMES.LINK, r),
 							metaTags: P(u.TAG_NAMES.META, i),
 							noscriptTags: P(u.TAG_NAMES.NOSCRIPT, s),
-							scriptTags: P(u.TAG_NAMES.SCRIPT, c),
+							scriptTags: P(u.TAG_NAMES.SCRIPT, l),
 							styleTags: P(u.TAG_NAMES.STYLE, d)
 						},
 						h = {},
@@ -3039,13 +3338,13 @@ webpackJsonp([2], {
 						n.length && (h[e] = n), o.length && (b[e] = m[e].oldTags);
 					}),
 						t && t(),
-						l(e, h, b);
+						c(e, h, b);
 				},
-				k = function(e) {
+				j = function(e) {
 					return Array.isArray(e) ? e.join("") : e;
 				},
 				S = function(e, t) {
-					void 0 !== e && document.title !== e && (document.title = k(e)),
+					void 0 !== e && document.title !== e && (document.title = j(e)),
 						O(u.TAG_NAMES.TITLE, t);
 				},
 				O = function(e, t) {
@@ -3060,11 +3359,11 @@ webpackJsonp([2], {
 							s < i.length;
 							s++
 						) {
-							var l = i[s],
-								c = t[l] || "";
-							n.getAttribute(l) !== c && n.setAttribute(l, c),
-								-1 === a.indexOf(l) && a.push(l);
-							var d = r.indexOf(l);
+							var c = i[s],
+								l = t[c] || "";
+							n.getAttribute(c) !== l && n.setAttribute(c, l),
+								-1 === a.indexOf(c) && a.push(c);
+							var d = r.indexOf(c);
 							-1 !== d && r.splice(d, 1);
 						}
 						for (var f = r.length - 1; f >= 0; f--) n.removeAttribute(r[f]);
@@ -3113,15 +3412,15 @@ webpackJsonp([2], {
 						{ oldTags: a, newTags: r }
 					);
 				},
-				M = function(e) {
+				N = function(e) {
 					return Object.keys(e).reduce(function(t, n) {
 						var o = void 0 !== e[n] ? n + '="' + e[n] + '"' : "" + n;
 						return t ? t + " " + o : o;
 					}, "");
 				},
-				C = function(e, t, n, o) {
-					var a = M(n),
-						r = k(t);
+				M = function(e, t, n, o) {
+					var a = N(n),
+						r = j(t);
 					return a
 						? "<" +
 								e +
@@ -3171,7 +3470,7 @@ webpackJsonp([2], {
 						);
 					}, "");
 				},
-				N = function(e) {
+				C = function(e) {
 					var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
 					return Object.keys(e).reduce(function(t, n) {
 						return (t[u.REACT_TAG_MAP[n] || n] = e[n]), t;
@@ -3186,7 +3485,7 @@ webpackJsonp([2], {
 				I = function(e, t, n) {
 					var o,
 						a = ((o = { key: t }), (o[u.HELMET_ATTRIBUTE] = !0), o),
-						r = N(n, a);
+						r = C(n, a);
 					return [s.default.createElement(u.TAG_NAMES.TITLE, r, t)];
 				},
 				G = function(e, t) {
@@ -3208,7 +3507,7 @@ webpackJsonp([2], {
 						);
 					});
 				},
-				H = function(e, t, n) {
+				q = function(e, t, n) {
 					switch (e) {
 						case u.TAG_NAMES.TITLE:
 							return {
@@ -3216,17 +3515,17 @@ webpackJsonp([2], {
 									return I(0, t.title, t.titleAttributes);
 								},
 								toString: function() {
-									return C(e, t.title, t.titleAttributes, n);
+									return M(e, t.title, t.titleAttributes, n);
 								}
 							};
 						case u.ATTRIBUTE_NAMES.BODY:
 						case u.ATTRIBUTE_NAMES.HTML:
 							return {
 								toComponent: function() {
-									return N(t);
+									return C(t);
 								},
 								toString: function() {
-									return M(t);
+									return N(t);
 								}
 							};
 						default:
@@ -3240,7 +3539,7 @@ webpackJsonp([2], {
 							};
 					}
 				},
-				q = function(e) {
+				H = function(e) {
 					var t = e.baseTag,
 						n = e.bodyAttributes,
 						o = e.encode,
@@ -3248,27 +3547,27 @@ webpackJsonp([2], {
 						r = e.linkTags,
 						i = e.metaTags,
 						s = e.noscriptTags,
-						l = e.scriptTags,
-						c = e.styleTags,
+						c = e.scriptTags,
+						l = e.styleTags,
 						d = e.title,
 						f = void 0 === d ? "" : d,
 						p = e.titleAttributes;
 					return {
-						base: H(u.TAG_NAMES.BASE, t, o),
-						bodyAttributes: H(u.ATTRIBUTE_NAMES.BODY, n, o),
-						htmlAttributes: H(u.ATTRIBUTE_NAMES.HTML, a, o),
-						link: H(u.TAG_NAMES.LINK, r, o),
-						meta: H(u.TAG_NAMES.META, i, o),
-						noscript: H(u.TAG_NAMES.NOSCRIPT, s, o),
-						script: H(u.TAG_NAMES.SCRIPT, l, o),
-						style: H(u.TAG_NAMES.STYLE, c, o),
-						title: H(u.TAG_NAMES.TITLE, { title: f, titleAttributes: p }, o)
+						base: q(u.TAG_NAMES.BASE, t, o),
+						bodyAttributes: q(u.ATTRIBUTE_NAMES.BODY, n, o),
+						htmlAttributes: q(u.ATTRIBUTE_NAMES.HTML, a, o),
+						link: q(u.TAG_NAMES.LINK, r, o),
+						meta: q(u.TAG_NAMES.META, i, o),
+						noscript: q(u.TAG_NAMES.NOSCRIPT, s, o),
+						script: q(u.TAG_NAMES.SCRIPT, c, o),
+						style: q(u.TAG_NAMES.STYLE, l, o),
+						title: q(u.TAG_NAMES.TITLE, { title: f, titleAttributes: p }, o)
 					};
 				};
 			(t.convertReactPropstoHtmlAttributes = L),
-				(t.handleClientStateChange = w),
-				(t.mapStateOnServer = q),
-				(t.reducePropsToState = y),
+				(t.handleClientStateChange = k),
+				(t.mapStateOnServer = H),
+				(t.reducePropsToState = v),
 				(t.requestAnimationFrame = x),
 				(t.warn = _);
 		}.call(t, n("./node_modules/webpack/buildin/global.js")));
@@ -3352,16 +3651,16 @@ webpackJsonp([2], {
 								p.splice(e, 1), f();
 							}),
 							(t.prototype.render = function() {
-								return c.createElement(s, this.props);
+								return l.createElement(s, this.props);
 							}),
 							t
 						);
-					})(l.Component);
+					})(c.Component);
 				return (h.displayName = "SideEffect(" + o(s) + ")"), (h.canUseDOM = u.canUseDOM), h;
 			};
 		}
-		var l = n("./node_modules/react/index.js"),
-			c = o(l),
+		var c = n("./node_modules/react/index.js"),
+			l = o(c),
 			u = o(n("./node_modules/exenv/index.js")),
 			d = o(n("./node_modules/shallowequal/index.js"));
 		e.exports = s;
@@ -3375,12 +3674,12 @@ webpackJsonp([2], {
 			var r = Object.keys(e),
 				i = Object.keys(t);
 			if (r.length !== i.length) return !1;
-			for (var s = Object.prototype.hasOwnProperty.bind(t), l = 0; l < r.length; l++) {
-				var c = r[l];
-				if (!s(c)) return !1;
-				var u = e[c],
-					d = t[c];
-				if (!1 === (a = n ? n.call(o, u, d, c) : void 0) || (void 0 === a && u !== d))
+			for (var s = Object.prototype.hasOwnProperty.bind(t), c = 0; c < r.length; c++) {
+				var l = r[c];
+				if (!s(l)) return !1;
+				var u = e[l],
+					d = t[l];
+				if (!1 === (a = n ? n.call(o, u, d, l) : void 0) || (void 0 === a && u !== d))
 					return !1;
 			}
 			return !0;

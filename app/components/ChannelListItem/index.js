@@ -40,7 +40,11 @@ class ChannelListItem extends React.Component {
 				<div className="col-md-2 col-sm-2 col-xs-3">
 					<center>
 						<LazyLoad once>
-							<img src={this.props.channel.thumbnail} className="channel-thumb" />
+							<img
+								src={this.props.channel.thumbnail}
+								alt={this.props.channel.title}
+								className="channel-thumb"
+							/>
 						</LazyLoad>
 					</center>
 				</div>

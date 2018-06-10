@@ -122,6 +122,7 @@ class SocialOffset extends React.Component {
 											className="grey support-img"
 											height="50"
 											width="50"
+											alt="Patreon"
 											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>
@@ -136,6 +137,7 @@ class SocialOffset extends React.Component {
 											className="grey support-img"
 											height="50"
 											width="50"
+											alt="Paypal"
 											onMouseOver={this.revealGrey.bind(this)}
 											onMouseOut={this.addGrey.bind(this)}
 										/>

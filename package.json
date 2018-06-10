@@ -10,7 +10,6 @@
 		"start": "cross-env NODE_ENV=development node server",
 		"build": "npm run build:clean && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
 		"build:clean": "rimraf ./docs",
-		"precommit": "pretty-quick --staged",
 		"start:production": "npm run build && npm run start:prod",
 		"start:prod": "cross-env NODE_ENV=production node server"
 	},
@@ -125,7 +124,6 @@
 		"file-loader": "0.11.1",
 		"html-loader": "0.4.5",
 		"html-webpack-plugin": "2.29.0",
-		"husky": "^0.14.3",
 		"image-webpack-loader": "2.0.0",
 		"imports-loader": "0.7.1",
 		"node-plop": "0.7.0",
@@ -133,7 +131,6 @@
 		"offline-plugin": "4.8.1",
 		"plop": "1.8.0",
 		"prettier": "^1.12.1",
-		"pretty-quick": "^1.6.0",
 		"react-test-renderer": "15.6.1",
 		"rimraf": "2.6.1",
 		"shelljs": "^0.7.8",

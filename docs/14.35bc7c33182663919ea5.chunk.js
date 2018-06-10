@@ -1,17 +1,17 @@
-webpackJsonp([5], {
+webpackJsonp([14], {
 	"./app/components/SupportUs/index.js": function(e, t, o) {
 		"use strict";
 		function n(e, t) {
 			if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
 		}
-		function a(e, t) {
+		function i(e, t) {
 			if (!e)
 				throw new ReferenceError(
 					"this hasn't been initialised - super() hasn't been called"
 				);
 			return !t || ("object" != typeof t && "function" != typeof t) ? e : t;
 		}
-		function i(e, t) {
+		function a(e, t) {
 			if ("function" != typeof t && null !== t)
 				throw new TypeError(
 					"Super expression must either be null or a function, not " + typeof t
@@ -23,26 +23,26 @@ webpackJsonp([5], {
 		}
 		Object.defineProperty(t, "__esModule", { value: !0 });
 		var r = o("./node_modules/react/index.js"),
-			p = o.n(r),
-			s = o("./app/components/OffsetMenu/index.js"),
-			c = o("./app/components/OffsetSocial/index.js"),
-			l = o("./app/components/Logo/index.js"),
+			s = o.n(r),
+			p = o("./app/components/OffsetMenu/index.js"),
+			l = o("./app/components/OffsetSocial/index.js"),
+			c = o("./app/components/Logo/index.js"),
 			u = o("./node_modules/react-lazyload/lib/index.js"),
 			d = o.n(u),
 			f = (function() {
 				var e =
 					("function" == typeof Symbol && Symbol.for && Symbol.for("react.element")) ||
 					60103;
-				return function(t, o, n, a) {
-					var i = t && t.defaultProps,
+				return function(t, o, n, i) {
+					var a = t && t.defaultProps,
 						r = arguments.length - 3;
-					if ((o || 0 === r || (o = {}), o && i))
-						for (var p in i) void 0 === o[p] && (o[p] = i[p]);
-					else o || (o = i || {});
-					if (1 === r) o.children = a;
+					if ((o || 0 === r || (o = {}), o && a))
+						for (var s in a) void 0 === o[s] && (o[s] = a[s]);
+					else o || (o = a || {});
+					if (1 === r) o.children = i;
 					else if (r > 1) {
-						for (var s = Array(r), c = 0; c < r; c++) s[c] = arguments[c + 3];
-						o.children = s;
+						for (var p = Array(r), l = 0; l < r; l++) p[l] = arguments[l + 3];
+						o.children = p;
 					}
 					return {
 						$$typeof: e,
@@ -68,12 +68,12 @@ webpackJsonp([5], {
 					return o && e(t.prototype, o), n && e(t, n), t;
 				};
 			})(),
-			b = f(c.a, {}),
-			h = f(l.a, { className: "hidden-xs hidden-sm" }),
-			v = f(s.a, {}),
-			g = f("div", { className: "col-md-3" }),
+			h = f(l.a, {}),
+			v = f(c.a, { className: "hidden-xs hidden-sm" }),
+			b = f(p.a, {}),
+			w = f("div", { className: "col-md-3" }),
 			y = f("h1", { className: "content-h1" }, void 0, "Support Us"),
-			w = f(
+			g = f(
 				"p",
 				{},
 				void 0,
@@ -88,23 +88,23 @@ webpackJsonp([5], {
 				" ",
 				"created this website in their sparetime for you."
 			),
-			j = f(
+			_ = f(
 				"p",
 				{},
 				void 0,
 				"If you like it, and want to give something back, feel free to support us with a tip via the following platforms. It means a lot to us!"
 			),
-			_ = f("p", {}, void 0, "- Kristy & Thomas"),
-			x = f("div", { className: "col-md-3" }),
-			O = (function(e) {
+			j = f("p", {}, void 0, "- Kristy & Thomas"),
+			O = f("div", { className: "col-md-3" }),
+			k = (function(e) {
 				function t() {
 					return (
 						n(this, t),
-						a(this, (t.__proto__ || Object.getPrototypeOf(t)).apply(this, arguments))
+						i(this, (t.__proto__ || Object.getPrototypeOf(t)).apply(this, arguments))
 					);
 				}
 				return (
-					i(t, e),
+					a(t, e),
 					m(t, [
 						{
 							key: "componentDidMount",
@@ -119,14 +119,14 @@ webpackJsonp([5], {
 									"div",
 									{ className: "container" },
 									void 0,
-									b,
 									h,
 									v,
+									b,
 									f(
 										"div",
 										{ className: "row content-row" },
 										void 0,
-										g,
+										w,
 										f(
 											"div",
 											{ className: "col-md-6" },
@@ -147,9 +147,9 @@ webpackJsonp([5], {
 													})
 												)
 											),
-											w,
-											j,
+											g,
 											_,
+											j,
 											f(
 												"div",
 												{
@@ -197,7 +197,7 @@ webpackJsonp([5], {
 												)
 											)
 										),
-										x
+										O
 									)
 								);
 							}
@@ -205,14 +205,8 @@ webpackJsonp([5], {
 					]),
 					t
 				);
-			})(p.a.PureComponent);
-		t.default = O;
-	},
-	"./app/images/patreon.jpg": function(e, t, o) {
-		e.exports = o.p + "c28786718cde9f7fa6b0c00b03bccacf.jpg";
-	},
-	"./app/images/paypal.png": function(e, t, o) {
-		e.exports = o.p + "993dcdc9accc3ba091b9cc34a4aea2b2.png";
+			})(s.a.PureComponent);
+		t.default = k;
 	},
 	"./app/images/twoaboardtuuli.jpg": function(e, t, o) {
 		e.exports = o.p + "066e6bc09552583108f5b742c2618022.jpg";

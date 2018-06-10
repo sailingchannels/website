@@ -39,6 +39,7 @@ class VideoListItem extends React.Component {
 									this.props.video._id +
 									"/default.jpg"
 								}
+								alt={this.props.video.title}
 								className="channel-thumb"
 							/>
 						</LazyLoad>

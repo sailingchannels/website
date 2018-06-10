@@ -12,7 +12,7 @@ class Logo extends React.Component {
 
 		return (
 			<div className={classes}>
-				<Link to="/">
+				<Link to="/" title="Sailing-Channels">
 					<div className="turnaround">
 						<div className="front" />
 						<div className="back" />

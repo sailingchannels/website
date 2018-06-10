@@ -89,6 +89,7 @@ class MobileMenu extends Component {
 							<Link
 								to={"/by-subscribers"}
 								className={this.state.route === "by-subscribers" ? "active" : null}
+								title="Most subscribers"
 							>
 								<i className="fa fa-users" />
 							</Link>
@@ -97,6 +98,7 @@ class MobileMenu extends Component {
 							<Link
 								to={"/by-views"}
 								className={this.state.route === "by-views" ? "active" : null}
+								title="Most views"
 							>
 								<i className="fa fa-eye" />
 							</Link>
@@ -109,6 +111,7 @@ class MobileMenu extends Component {
 										? "active"
 										: null
 								}
+								title="Latest uploads"
 							>
 								<i className="fa fa-clock-o" />
 							</Link>
@@ -117,6 +120,7 @@ class MobileMenu extends Component {
 							<Link
 								to={"/by-founded"}
 								className={this.state.route === "by-founded" ? "active" : null}
+								title="Newest channel"
 							>
 								<i className="fa fa-graduation-cap" />
 							</Link>
@@ -125,6 +129,7 @@ class MobileMenu extends Component {
 							<Link
 								to={"/by-trending"}
 								className={this.state.route === "by-trending" ? "active" : null}
+								title="Trending"
 							>
 								<i className="fa fa-line-chart" />
 							</Link>

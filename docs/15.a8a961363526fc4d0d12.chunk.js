@@ -1,4 +1,4 @@
-webpackJsonp([13], {
+webpackJsonp([15], {
 	"./app/components/PrivacyPolicy/index.js": function(e, t, o) {
 		"use strict";
 		function i(e, t) {
