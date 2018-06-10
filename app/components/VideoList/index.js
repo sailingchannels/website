@@ -3,7 +3,7 @@ import VideoListItem from "components/VideoListItem";
 import VideoActions from "actions/VideoActions";
 import VideoStore from "stores/VideoStore";
 import Description from "components/Description";
-import { Navigation, Link } from "react-router";
+import { Navigation, Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 
 class VideoList extends React.Component {

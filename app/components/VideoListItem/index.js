@@ -1,6 +1,6 @@
 import React from "react";
 import Description from "components/Description";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 
 class VideoListItem extends React.Component {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import HTTP from "helpers/http";
 import SuggestChannelsList from "components/SuggestChannelsList";
 

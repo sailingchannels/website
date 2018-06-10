@@ -6,7 +6,7 @@ import Logo from "components/Logo";
 import BannerDialog from "components/BannerDialog";
 import SignInDialog from "components/SignInDialog";
 import cookie from "react-cookie";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import $ from "jquery";
 
 class SearchResult extends React.Component {
@@ -62,7 +62,7 @@ class SearchResult extends React.Component {
 			);
 		}
 
-		var query = this.props.params.query;
+		var query = this.props.match.params.query;
 
 		return (
 			<div className="container">

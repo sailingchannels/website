@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "components/Footer";
 import cookie from "react-cookie";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import $ from "jquery";
 

@@ -5996,7 +5996,7 @@
 						{
 							key: "render",
 							value: function() {
-								var e = this.props.params.sortBy || "upload",
+								var e = this.props.match.params.sortBy || "upload",
 									t = null;
 								return (
 									!0 === this.state.showScrollUp &&
@@ -6475,7 +6475,7 @@
 										void 0,
 										Fu
 									));
-								var t = this.props.params.query;
+								var t = this.props.match.params.query;
 								return Su(
 									"div",
 									{ className: "container" },
@@ -7372,13 +7372,14 @@
 						{
 							key: "componentDidMount",
 							value: function() {
-								$s.listen(this.onChange), ws.getChannel(this.props.params.id);
+								$s.listen(this.onChange), ws.getChannel(this.props.match.params.id);
 							}
 						},
 						{
 							key: "componentWillReceiveProps",
 							value: function(e) {
-								e.params.id !== this.props.params.id && ws.getChannel(e.params.id);
+								e.params.id !== this.props.match.params.id &&
+									ws.getChannel(e.params.id);
 							}
 						},
 						{
@@ -7727,13 +7728,14 @@
 						{
 							key: "componentDidMount",
 							value: function() {
-								Yu.listen(this.onChange), Hu.getVideo(this.props.params.id);
+								Yu.listen(this.onChange), Hu.getVideo(this.props.match.params.id);
 							}
 						},
 						{
 							key: "componentWillReceiveProps",
 							value: function(e) {
-								e.params.id !== this.props.params.id && Hu.getVideo(e.params.id);
+								e.params.id !== this.props.match.params.id &&
+									Hu.getVideo(e.params.id);
 							}
 						},
 						{
@@ -48611,7 +48613,7 @@
 		l(c.prototype, i.Mixin, { _instantiateReactComponent: r }), (e.exports = r);
 	},
 	"./node_modules/react/lib/isEventSupported.js": function(e, t, n) {
-		"use strict"
+		"use strict";
 		/**
 		 * Checks if an event is supported in the current execution environment.
 		 *
@@ -48625,7 +48627,7 @@
 		 * @return {boolean} True if the event is supported.
 		 * @internal
 		 * @license Modernizr 3.0.0pre (Custom Build) | MIT
-		 */;
+		 */
 		function o(e, t) {
 			if (!i.canUseDOM || (t && !("addEventListener" in document))) return !1;
 			var n = "on" + e,

@@ -1,6 +1,6 @@
 import React from "react";
 import Description from "components/Description";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import SubscribeButton from "components/SubscribeButton";
 import LazyLoad from "react-lazyload";
 import anchorme from "anchorme";

@@ -28,12 +28,12 @@ class ChannelDetail extends React.Component {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		ChannelStore.listen(this.onChange);
-		ChannelActions.getChannel(this.props.params.id);
+		ChannelActions.getChannel(this.props.match.params.id);
 	}
 
 	// COMPONENT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.params.id !== this.props.params.id) {
+		if (nextProps.params.id !== this.props.match.params.id) {
 			ChannelActions.getChannel(nextProps.params.id);
 		}
 	}

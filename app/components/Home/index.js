@@ -7,7 +7,7 @@ import Logo from "components/Logo";
 import BannerDialog from "components/BannerDialog";
 import SignInDialog from "components/SignInDialog";
 import cookie from "react-cookie";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import $ from "jquery";
 
 class Home extends React.Component {
@@ -48,7 +48,7 @@ class Home extends React.Component {
 
 	// RENDER
 	render() {
-		var sortBy = this.props.params.sortBy || "upload";
+		const sortBy = this.props.match.params.sortBy || "upload";
 		var scrollUp = null;
 
 		if (this.state.showScrollUp === true) {

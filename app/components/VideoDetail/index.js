@@ -6,7 +6,7 @@ import VideoActions from "actions/VideoActions";
 import VideoStore from "stores/VideoStore";
 import OffsetSocial from "components/OffsetSocial";
 import Logo from "components/Logo";
-import { Navigation, Link } from "react-router";
+import { Navigation, Link } from "react-router-dom";
 import SubscribeButton from "components/SubscribeButton";
 import anchorme from "anchorme";
 
@@ -23,12 +23,12 @@ class VideoDetail extends React.Component {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		VideoStore.listen(this.onChange);
-		VideoActions.getVideo(this.props.params.id);
+		VideoActions.getVideo(this.props.match.params.id);
 	}
 
 	// COMPONENT WILL RECEIVE PROPS
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.params.id !== this.props.params.id) {
+		if (nextProps.params.id !== this.props.match.params.id) {
 			VideoActions.getVideo(nextProps.params.id);
 		}
 	}

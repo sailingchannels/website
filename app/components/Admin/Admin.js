@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import cookie from "react-cookie";
 import MeActions from "../../actions/MeActions";
 import MeStore from "../../stores/MeStore";

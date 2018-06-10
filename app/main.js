@@ -1,8 +1,8 @@
 import React from "react";
-import Router from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
-import createBrowserHistory from "history/lib/createBrowserHistory";
-import routes from "./routes";
+import OwnBrowserHistory from "helpers/ownBrowserHistory";
+import App from "components/App";
 
 // Load CSS
 import "font-awesome/css/font-awesome.min.css";
@@ -26,10 +26,14 @@ import "!file-loader?name=[name].[ext]!./images/twoaboardtuuli.jpg";
 import "!file-loader?name=[name].[ext]!./manifest.json";
 
 const MOUNT_NODE = document.getElementById("app");
-let history = createBrowserHistory();
 
 const render = (messages) => {
-	ReactDOM.render(<Router history={history}>{routes}</Router>, MOUNT_NODE);
+	ReactDOM.render(
+		<OwnBrowserHistory>
+			<App />
+		</OwnBrowserHistory>,
+		MOUNT_NODE
+	);
 };
 
 if (module.hot) {

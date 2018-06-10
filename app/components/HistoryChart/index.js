@@ -22,8 +22,6 @@ class HistoryChart extends React.Component {
 
 	// LOAD CHART
 	loadChart(props) {
-		console.log(props);
-
 		// filter out values and dates for labels
 		var values = props.data.map((item) => {
 			return item[props.name];
