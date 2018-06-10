@@ -1,32 +1,57 @@
 import React from "react";
-import { Link } from "react-router";
-
-import LazyLoad from "react-lazyload";
+import { Modal } from "react-bootstrap";
+import LazyLoad, { forceCheck } from "react-lazyload";
+import Cookies from "js-cookie";
 
 class BannerDialog extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			show: false
+		};
+	}
+
+	componentDidMount() {
+		window.setTimeout(() => {
+			if (this.state.show === false && !Cookies.get("banner-dialog")) {
+				// open the dialog
+				this.setState({
+					show: true
+				});
+
+				window.setTimeout(() => {
+					forceCheck();
+				}, 1000);
+
+				Cookies.set("banner-dialog", "shown", { expires: 3 });
+			}
+		}, 45000);
+	}
+
+	handleClose() {
+		this.setState({ show: false });
+	}
+
+	handleShow() {
+		this.setState({ show: true });
+	}
+
 	// RENDER
 	render() {
 		return (
-			<div id="banner-dialog" className="modal fade">
+			<Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
 				<div className="modal-dialog">
 					<div className="modal-content">
-						<div className="modal-header">
-							<button
-								type="button"
-								className="close"
-								data-dismiss="modal"
-								aria-hidden="true"
-							>
-								×
-							</button>
-							<h3 className="modal-title">Thanks for stopping by!</h3>
-						</div>
-						<div className="modal-body">
+						<Modal.Header closeButton>
+							<Modal.Title>Thanks for stopping by!</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
 							<LazyLoad>
 								<p>
 									<img
 										id="banner-img"
-										src="/img/twoaboardtuuli.jpg"
+										src={require("images/twoaboardtuuli.jpg")}
 										width="100%"
 									/>
 								</p>
@@ -68,10 +93,10 @@ class BannerDialog extends React.Component {
 									</a>
 								</div>
 							</div>
-						</div>
+						</Modal.Body>
 					</div>
 				</div>
-			</div>
+			</Modal>
 		);
 	}
 }

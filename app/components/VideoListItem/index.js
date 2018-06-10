@@ -1,6 +1,7 @@
 import React from "react";
 import Description from "components/Description";
 import { Link } from "react-router";
+import LazyLoad from "react-lazyload";
 
 class VideoListItem extends React.Component {
 	// FORMAT DATE
@@ -31,15 +32,16 @@ class VideoListItem extends React.Component {
 			<div className="row channel-row">
 				<div className="col-md-2 col-xs-2">
 					<center>
-						<img
-							src="https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png"
-							data-src={
-								"https://img.youtube.com/vi/" +
-								this.props.video._id +
-								"/default.jpg"
-							}
-							className="channel-thumb"
-						/>
+						<LazyLoad once>
+							<img
+								src={
+									"https://img.youtube.com/vi/" +
+									this.props.video._id +
+									"/default.jpg"
+								}
+								className="channel-thumb"
+							/>
+						</LazyLoad>
 					</center>
 				</div>
 				<div className="col-md-7 col-xs-10">

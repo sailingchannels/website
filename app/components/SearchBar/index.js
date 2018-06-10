@@ -68,12 +68,12 @@ class SearchBar extends React.Component {
 					<div className="row">
 						<div className="col-lg-1 col-md-1 col-sm-0" />
 						<div className="col-lg-10 col-md-10 col-sm-12">
-							<div className="form-group label-floating is-empty">
-								<label className="control-label">Search for ...</label>
+							<div className="form-group is-empty">
 								<input
 									className="form-control"
 									type="text"
 									id="search-bar"
+									placeholder="Search for ..."
 									onKeyUp={this.keyUp.bind(this)}
 								/>
 								<span className="material-input" />

@@ -71,7 +71,7 @@ class HistoryChart extends React.Component {
 				data={this.state.data}
 				options={{ scales: { xAxes: [{ display: false }], yAxes: [{ display: false }] } }}
 				legend={{ display: false }}
-				height={100}
+				height={130}
 			/>
 		);
 	}

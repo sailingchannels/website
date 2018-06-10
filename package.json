@@ -82,6 +82,7 @@
 		"parse-youtube-user": "0.0.2",
 		"prop-types": "^15.6.1",
 		"react": "^0.14.7",
+		"react-bootstrap": "^0.32.1",
 		"react-chartjs-2": "^2.7.2",
 		"react-cookie": "^0.4.5",
 		"react-dom": "^0.14.8",
