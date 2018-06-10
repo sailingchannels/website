@@ -54,7 +54,7 @@ class Contributions extends React.Component {
 											href="https://sailing-channels.com/channel/UCvLc83k5o11EIF1lEo0VmuQ"
 											target="_blank"
 										>
-											Brian, SV Delos
+											Brian (SV Delos)
 										</a>
 									</td>
 								</tr>
@@ -131,6 +131,20 @@ class Contributions extends React.Component {
 										>
 											Mount Ocean
 										</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Feature: Group channel by their topic, e.g. "family",
+										"couple", "diy"
+									</td>
+									<td>
+										<a
+											href="https://sailing-channels.com/channel/UCNYlvlreZiRRHo_v5Nmrfow"
+											target="_blank"
+										>
+											Sailing Zatara
+										</a>, David V.
 									</td>
 								</tr>
 							</tbody>

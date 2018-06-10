@@ -16,6 +16,8 @@ import Login from "components/Login/Loadable";
 import Me from "components/Me/Loadable";
 import SupportUs from "components/SupportUs/Loadable";
 import Suggest from "components/Suggest/Loadable";
+import Topics from "components/Topics/Loadable";
+import Topic from "components/Topic/Loadable";
 
 // admin
 import Admin from "components/Admin/Admin";
@@ -43,6 +45,8 @@ class App extends React.Component {
 					<Route path="/signin" component={Login} />
 					<Route path="/support" component={SupportUs} />
 					<Route path="/me" component={Me} />
+					<Route path="/topics" component={Topics} />
+					<Route path="/topic/:id" component={Topic} />
 					<Route path="/admin" component={Admin}>
 						<Route path="/dashboard" component={AdminDashboard} />
 						<Route path="/additional" component={AdminAdditional} />

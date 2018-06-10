@@ -1,0 +1,17 @@
+.topics-row {
+	padding: 0 15px;
+}
+
+.photo-credits {
+	float: right;
+	display: block;
+	color: #c0c0c0;
+}
+
+a > .panel {
+	color: black !important;
+}
+
+a > .panel > *:hover {
+	text-decoration: none;
+}

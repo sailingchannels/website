@@ -45,12 +45,15 @@ class OffsetMenu extends React.Component {
 							<Link to="/">Home</Link>
 						</li>
 						<li>
+							<Link to="/topics">
+								<span className="label label-success">New</span> Explore by topics
+							</Link>
+						</li>
+						<li>
 							<Link to="/how-it-works">How does this work?</Link>
 						</li>
 						<li>
-							<Link to="/suggest">
-								<span className="label label-success">New</span> Suggest a channel
-							</Link>
+							<Link to="/suggest">Suggest a channel</Link>
 						</li>
 						<li>
 							<Link to="/contributions">Contributions</Link>

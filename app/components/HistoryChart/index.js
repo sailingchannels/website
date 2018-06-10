@@ -50,7 +50,6 @@ class HistoryChart extends React.Component {
 					pointHighlightFill: "#fff",
 					pointHighlightStroke: "rgba(151,187,205,1)",
 					pointBorderWidth: 2,
-					lineTension: 10,
 					data: values
 				}
 			]
