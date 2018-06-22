@@ -8,6 +8,7 @@ import MeStore from "stores/MeStore";
 import SuggestChannels from "components/SuggestChannels/Loadable";
 import { Link } from "react-router-dom";
 import cookie from "react-cookie";
+import $ from "jquery";
 
 import "./Suggest.css";
 
@@ -34,6 +35,12 @@ class Suggest extends Component {
 					MeActions.getSubscriptions();
 			}
 		);
+
+		// stats
+		$.get("/api/stats", function(data) {
+			$("#statChannels").html(data.channels);
+			$("#statVideos").html(data.videos);
+		});
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -66,6 +73,10 @@ class Suggest extends Component {
 						{this.state.me ? (
 							<div>
 								<p>
+									There are currently <span id="statChannels" /> channels and{" "}
+									<span id="statVideos" /> videos listed in this site.
+								</p>
+								<p>
 									Know of any sailing channels that are not listed here? Well,
 									that's brilliant! You can use the form below to check and
 									suggest a channel for the list:
@@ -77,6 +88,10 @@ class Suggest extends Component {
 							</div>
 						) : (
 							<div>
+								<p>
+									There are currently <span id="statChannels" /> channels and{" "}
+									<span id="statVideos" /> videos listed in this site.
+								</p>
 								<p>
 									Know of any sailing channels that are not listed here? Well,
 									that's brilliant! Send an email with the link to the channel to{" "}

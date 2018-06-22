@@ -1,6 +1,8 @@
 const async = require("async");
 const textCutter = require("../utils/textcutter");
 
+const SUB_THRESHOLD = 4500;
+
 module.exports = {
 	// GET BY CHANNEL
 	getAll: async (req, res) => {
@@ -19,39 +21,37 @@ module.exports = {
 							value: { $gte: 15 }
 						});
 
-						// find the latest video
-						const latestVideos = await global.videos
-							.find({
-								channel: { $in: taggedChannelIds }
-							})
-							.sort({
-								publishedAt: -1
-							})
-							.project({
-								_id: true,
-								channel: true
-							})
-							.limit(1)
-							.toArray();
-
-						// pick a random video of the latest 49
-						const latestVideo = latestVideos[0];
-
-						// fetch some more infos about this channel
-						const latestVideoChannel = await global.channels.findOne(
+						// find the channel that uploaded last and has > SUB_THRESHOLD subs
+						const latestUploadChannel = await global.channels.findOne(
 							{
-								_id: latestVideo.channel
+								_id: { $in: taggedChannelIds },
+								subscribers: { $gt: SUB_THRESHOLD }
 							},
 							{
+								sort: [["lastUploadAt", -1]],
 								fields: {
+									_id: true,
 									title: true
+								}
+							}
+						);
+
+						// find the latest video
+						const latestVideo = await global.videos.findOne(
+							{
+								channel: latestUploadChannel._id
+							},
+							{
+								sort: [["publishedAt", -1]],
+								fields: {
+									_id: true
 								}
 							}
 						);
 
 						topic["latestVideo"] = {
 							_id: latestVideo._id,
-							title: latestVideoChannel.title
+							title: latestUploadChannel.title
 						};
 
 						return done(null, topic);
@@ -87,7 +87,10 @@ module.exports = {
 
 			// retrieve more information about the found
 			const channelInfos = await global.channels
-				.find({ _id: { $in: taggedChannelIds } })
+				.find({
+					_id: { $in: taggedChannelIds },
+					subscribers: { $gt: SUB_THRESHOLD }
+				})
 				.project({
 					title: true,
 					description: true,

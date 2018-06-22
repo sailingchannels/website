@@ -6,69 +6,6 @@ const parseYouTubeUser = require("parse-youtube-user");
 const request = require("request");
 
 module.exports = {
-	// FILL HEAD
-	fillHead: function(renderProps, callback) {
-		// extract head information
-		var head = {
-			title: "Sailing Channels",
-			description:
-				"A compiled list of YouTube channels that are related to sailing or living aboard a sailboat.",
-			banner:
-				"https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/banner.png",
-			type: "website",
-			url: "https://sailing-channels.com"
-		};
-
-		// VIDEO
-		if (renderProps.location.pathname.indexOf("/video/") === 0) {
-			global.videos
-				.find({
-					_id: renderProps.params.id
-				})
-				.project({
-					title: true,
-					description: true
-				})
-				.limit(1)
-				.next(function(err, video) {
-					if (err || !video) return callback(head);
-
-					head.title = video.title;
-					head.description = video.description;
-					head.banner = "https://img.youtube.com/vi/" + video._id + "/hqdefault.jpg";
-					head.type = "article";
-					head.url = "https://sailing-channels.com/video/" + video._id;
-
-					return callback(head);
-				});
-		} else if (renderProps.location.pathname.indexOf("/channel/") === 0) {
-			// CHANNEL
-			global.channels
-				.find({
-					_id: renderProps.params.id
-				})
-				.project({
-					title: true,
-					description: true,
-					thumbnail: true
-				})
-				.limit(1)
-				.next(function(err, channel) {
-					if (err || !channel) return callback(head);
-
-					head.title = channel.title;
-					head.description = channel.description;
-					head.banner = channel.thumbnail;
-					head.type = "profile";
-					head.url = "https://sailing-channels.com/channel/" + renderProps.params.id;
-
-					return callback(head);
-				});
-		} else {
-			return callback(head);
-		}
-	},
-
 	// LANGUAGES
 	languages: function(req, res) {
 		// check if languages are in cache
