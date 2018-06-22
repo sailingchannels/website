@@ -71,8 +71,8 @@ class Topics extends React.Component {
 						<center>
 							<p style={{ marginBottom: "40px" }}>
 								Explore sailing channels by their topics. Channels are automatically
-								grouped into topics by their video tags.<br />If you wish to suggest
-								an additional topic to list here, please{" "}
+								grouped into topics by their most popular video tags.<br />If you
+								wish to suggest an additional topic to list here, please{" "}
 								<a
 									title="E-Mail"
 									href="mailto:ahxoy@sailing-chaxnnels.com?subject=Topic suggestions"
@@ -96,7 +96,10 @@ class Topics extends React.Component {
 											className="col-md-5"
 											key={"result_" + chunkIdx + "_" + resultIdx}
 										>
-											<Link to={"/topic/" + result._id}>
+											<Link
+												className="topics-link"
+												to={"/topic/" + result._id}
+											>
 												<div className="panel panel-default">
 													<img
 														src={
@@ -114,13 +117,6 @@ class Topics extends React.Component {
 														<h2>{result.title}</h2>
 
 														<p>{result.description}</p>
-
-														{/*<center>
-														<button className="btn btn-default">
-															<i className="fa fa-arrow-right" /> view
-															channels
-														</button>
-													</center>*/}
 													</div>
 												</div>
 											</Link>

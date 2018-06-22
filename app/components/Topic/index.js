@@ -8,7 +8,7 @@ import Logo from "components/Logo";
 import Infinite from "react-infinite";
 import ChannelListItem from "components/ChannelListItem/Loadable";
 
-class Topic extends React.Component {
+class Topic extends React.PureComponent {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
@@ -19,9 +19,15 @@ class Topic extends React.Component {
 	// COMPONENT DID MOUNT
 	componentDidMount() {
 		TopicStore.listen(this.onChange);
-
 		TopicActions.resetChannels();
 		TopicActions.getTopic(this.props.match.params.id, this.state.skip, this.state.take);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.match.params.id !== this.props.match.params.id) {
+			TopicActions.resetChannels();
+			TopicActions.getTopic(this.props.match.params.id, this.state.skip, this.state.take);
+		}
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -38,11 +44,13 @@ class Topic extends React.Component {
 	loadMore() {
 		if (this.state.loading === false) {
 			// load more data
-			TopicActions.getTopic(
-				this.props.match.params.id,
-				this.state.skip + this.state.take,
-				this.state.take
-			);
+			window.setTimeout(() => {
+				TopicActions.getTopic(
+					this.props.match.params.id,
+					this.state.skip + this.state.take,
+					this.state.take
+				);
+			}, 0);
 		}
 	}
 

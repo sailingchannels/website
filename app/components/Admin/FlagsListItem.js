@@ -1,22 +1,14 @@
 import React from "react";
-import AdminStore from "../../stores/AdminStore";
-import AdminActions from "../../actions/AdminActions";
 import ChannelInfo from "./ChannelInfo";
-import moment from "moment";
+import dayjs from "dayjs";
 
 class BlacklistItem extends React.Component {
 	addBlacklisted() {
-		this.props.parent.addBlacklisted(
-			this.props.data._id.channel,
-			this.props.data._id.user
-		);
+		this.props.parent.addBlacklisted(this.props.data._id.channel, this.props.data._id.user);
 	}
 
 	ignoreFlags() {
-		this.props.parent.ignoreFlags(
-			this.props.data._id.channel,
-			this.props.data._id.user
-		);
+		this.props.parent.ignoreFlags(this.props.data._id.channel, this.props.data._id.user);
 	}
 
 	// RENDER
@@ -24,16 +16,10 @@ class BlacklistItem extends React.Component {
 		return (
 			<tr>
 				<td>
-					<button
-						className="btn btn-danger"
-						onClick={this.addBlacklisted.bind(this)}
-					>
+					<button className="btn btn-danger" onClick={this.addBlacklisted.bind(this)}>
 						Blacklist
 					</button>
-					<button
-						className="btn btn-default"
-						onClick={this.ignoreFlags.bind(this)}
-					>
+					<button className="btn btn-default" onClick={this.ignoreFlags.bind(this)}>
 						Ignore
 					</button>
 				</td>
@@ -43,7 +29,7 @@ class BlacklistItem extends React.Component {
 				<td>
 					<ChannelInfo id={this.props.data._id.user} />
 				</td>
-				<td>{moment(this.props.data.when).format("lll")}</td>
+				<td>{dayjs(this.props.data.when).format("lll")}</td>
 			</tr>
 		);
 	}

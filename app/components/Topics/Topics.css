@@ -2,6 +2,16 @@
 	padding: 0 15px;
 }
 
+@media (min-width: 990px) {
+	.topics-row {
+		margin-bottom: 50px;
+	}
+}
+
+.topics-row h2 {
+	text-align: left;
+}
+
 .photo-credits {
 	float: right;
 	display: block;
@@ -12,6 +22,6 @@ a > .panel {
 	color: black !important;
 }
 
-a > .panel > *:hover {
+.topics-link:hover {
 	text-decoration: none;
 }

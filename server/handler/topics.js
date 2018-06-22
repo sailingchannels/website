@@ -1,7 +1,7 @@
 const async = require("async");
 const textCutter = require("../utils/textcutter");
 
-const SUB_THRESHOLD = 4500;
+const SUB_THRESHOLD = 3000;
 
 module.exports = {
 	// GET BY CHANNEL
@@ -61,7 +61,6 @@ module.exports = {
 				},
 				(err, results) => {
 					if (err) return res.status(500).send(err);
-
 					return res.send(results);
 				}
 			);
