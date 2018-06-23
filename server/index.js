@@ -11,6 +11,7 @@ const minify = require("html-minifier").minify;
 const cache = require("apicache").middleware;
 const setup = require("./middlewares/frontendMiddleware");
 const setGlobals = require("./globals");
+const package = require("../package.json");
 
 const argv = require("./argv");
 const port = require("./port");
@@ -172,7 +173,7 @@ const cache60 = cache("60 minutes", onlyStatus200);
 
 	// In production we need to pass these values in instead of relying on webpack
 	setup(app, {
-		outputPath: resolve(process.cwd(), "docs"),
+		outputPath: resolve(process.cwd(), "docs/" + package.version),
 		publicPath: "/"
 	});
 

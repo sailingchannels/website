@@ -1,7 +1,7 @@
 {
 	"name": "Sailing-Channels",
 	"description": "Discovering YouTube sailing channels by using a network analysis on recursive channel subscriptions",
-	"version": "1.14.2",
+	"version": "1.15.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thomasbrueggemann/sailing-channels.git"
@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "cross-env NODE_ENV=development node server",
 		"build": "npm run build:clean && cross-env NODE_ENV=production webpack --config webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
-		"build:clean": "rimraf ./docs",
+		"build:clean": "node internal/clean",
 		"start:production": "npm run build && npm run start:prod",
 		"start:prod": "cross-env NODE_ENV=production node server"
 	},

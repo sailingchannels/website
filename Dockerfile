@@ -1,19 +1,18 @@
-FROM ubuntu:16.04
-MAINTAINER Thomas Brüggemann <mail@thomasbrueggemann.com>
-LABEL Description="sailing-channels.com Website" Vendor="Sailing Channels" Version="1.14.2"
+FROM node:10
 
-# INSTALL DEPENDENCIES
-RUN apt-get update -y && apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get install -y nodejs
-
-# DOWNLOAD CODE
-COPY ./ /srv
+# Create app directory
 WORKDIR /srv
 
-EXPOSE 8999
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
 RUN npm install
-ENV PORT=8999
-ENV TAG=1.14.2
-ENTRYPOINT exec npm start
+
+# Bundle app source
+COPY . .
+
+EXPOSE 3000
+RUN npm run build
+CMD [ "npm", "run", "start:prod" ]
