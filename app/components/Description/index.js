@@ -1,7 +1,7 @@
 import React from "react";
 import anchorme from "anchorme";
 
-class Description extends React.Component {
+class Description extends React.PureComponent {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
@@ -44,7 +44,11 @@ class Description extends React.Component {
 		var moreOrLess;
 		if (descriptionTxt.length !== this.props.text.length || this.state.more === true) {
 			moreOrLess = (
-				<a href="javascript:void(0);" title={"Show " + moreOrLessTxt} onClick={this.toggleMore.bind(this)}>
+				<a
+					href="javascript:void(0);"
+					title={"Show " + moreOrLessTxt}
+					onClick={this.toggleMore.bind(this)}
+				>
 					[{moreOrLessTxt}]
 				</a>
 			);

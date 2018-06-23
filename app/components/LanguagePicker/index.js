@@ -6,7 +6,7 @@ import $ from "jquery";
 
 import "./LanguagePicker.css";
 
-class LanguagePicker extends React.Component {
+class LanguagePicker extends React.PureComponent {
 	// CONSTRUCTOR
 	constructor(props) {
 		super(props);
