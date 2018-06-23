@@ -84,6 +84,8 @@ class SocialOffset extends React.Component {
 						title="Sailing Channels on Facebook"
 						href="https://www.fb.com/sailingchannels"
 						target="_blank"
+						rel="noopener"
+						title="Go to sailing-channels Facebook page"
 						className="social social-fb"
 					>
 						<i className="fa fa-facebook-square fa-3x" />
@@ -93,13 +95,15 @@ class SocialOffset extends React.Component {
 						title="Sailing Channels on Twitter"
 						href="https://twitter.com/sailchannels"
 						target="_blank"
+						rel="noopener"
+						title="Go to sailing-channels Twitter page"
 						className="social social-tw"
 					>
 						<i className="fa fa-twitter-square fa-3x" />
 					</a>
 					<br />
 					<a
-						title="E-Mail"
+						title="Send an email to sailing-channels.com"
 						href="mailto:ahxoy@sailing-chaxnnels.com?subject=Ahoy sailor!"
 						onMouseOver={this.replaceX.bind(this)}
 						className="social social-em"
@@ -115,7 +119,12 @@ class SocialOffset extends React.Component {
 								SUPPORT<br />sailing-channels.com:
 							</p>
 							<div>
-								<a href="https://www.patreon.com/sailingchannels" target="_blank">
+								<a
+									href="https://www.patreon.com/sailingchannels"
+									target="_blank"
+									title="Go to sailing-channels Patreon page"
+									rel="noopener"
+								>
 									<LazyLoad height="50">
 										<img
 											src={require("images/patreon.jpg")}
@@ -130,7 +139,12 @@ class SocialOffset extends React.Component {
 								</a>
 							</div>
 							<div style={{ marginTop: "10px" }}>
-								<a href="https://www.paypal.me/sailingchannels" target="_blank">
+								<a
+									href="https://www.paypal.me/sailingchannels"
+									target="_blank"
+									title="Go to sailing-channels PayPal page"
+									rel="noopener"
+								>
 									<LazyLoad height="50">
 										<img
 											src={require("images/paypal.png")}

@@ -38,7 +38,7 @@ class Login extends React.Component {
 						</p>
 
 						<center style={{ marginTop: "30px", marginBottom: "30px" }}>
-							<a href="/oauth2callback" className="btn btn-danger btn-lg btn-raised">
+							<a href="/oauth2callback" title="Sign in" className="btn btn-danger btn-lg btn-raised">
 								Sign In with <i className="fa fa-youtube" /> YouTube
 							</a>
 						</center>

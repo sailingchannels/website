@@ -106,6 +106,7 @@ class VideoList extends React.Component {
 									<img
 										src={"https://img.youtube.com/vi/" + v._id + "/default.jpg"}
 										className="channel-thumb"
+										alt="Thumbnail"
 									/>
 								</LazyLoad>
 							</center>
@@ -128,14 +129,14 @@ class VideoList extends React.Component {
 				<div className="row">
 					<div className="col-md-6 col-xs-6 text-left">
 						{this.state.skip > 0 ? (
-							<a className="btn btn-raised" onClick={this.prev.bind(this)}>
+							<a className="btn btn-raised" title="Previous" onClick={this.prev.bind(this)}>
 								<i className="fa fa-arrow-left" /> Previous
 							</a>
 						) : null}
 					</div>
 					<div className="col-md-6 col-xs-6 text-right">
 						{this.state.fin === false ? (
-							<a className="btn btn-raised" onClick={this.next.bind(this)}>
+							<a className="btn btn-raised" title="Next" onClick={this.next.bind(this)}>
 								Next <i className="fa fa-arrow-right" />
 							</a>
 						) : null}

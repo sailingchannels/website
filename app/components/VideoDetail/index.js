@@ -91,6 +91,7 @@ class VideoDetail extends React.Component {
 								<img
 									src={this.state.video.channel.thumbnail}
 									className="channel-thumb"
+									alt="Thumbnail"
 								/>
 							</div>
 							<div className="col-md-7 col-sm-7">

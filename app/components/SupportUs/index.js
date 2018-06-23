@@ -25,6 +25,7 @@ class Contributions extends React.PureComponent {
 							<p>
 								<img
 									id="banner-img"
+									alt="Two aboard Tuuli Crew"
 									src={require("images/twoaboardtuuli.jpg")}
 									width="100%"
 								/>
@@ -32,8 +33,8 @@ class Contributions extends React.PureComponent {
 						</LazyLoad>
 						<p>
 							The{" "}
-							<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank">
-								<b>Two aboard Tuuli crew</b>
+							<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" title="Go to Two aboard Tuuli's channel" target="_blank">
+								<b>Two aboard Tuuli Crew</b>
 							</a>{" "}
 							created this website in their sparetime for you.
 						</p>
@@ -45,20 +46,32 @@ class Contributions extends React.PureComponent {
 
 						<div id="support-links" className="row support-row">
 							<div className="col-md-6 text-center">
-								<a href="https://www.patreon.com/sailingchannels" target="_blank">
+								<a
+									href="https://www.patreon.com/sailingchannels"
+									target="_blank"
+									title="Go to sailing-channels Patreon page"
+									rel="noopener"
+								>
 									<img
 										src={require("images/patreon.jpg")}
 										height="150"
 										width="150"
+										alt="Patreon"
 									/>
 								</a>
 							</div>
 							<div className="col-md-6 text-center">
-								<a href="https://www.paypal.me/sailingchannels" target="_blank">
+								<a
+									href="https://www.paypal.me/sailingchannels"
+									target="_blank"
+									rel="noopener"
+									title="Go to sailing-channels PayPal page"
+								>
 									<img
 										src={require("images/paypal.png")}
 										height="150"
 										width="150"
+										alt="Paypal"
 									/>
 								</a>
 							</div>

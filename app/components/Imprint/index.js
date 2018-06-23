@@ -105,6 +105,8 @@ class Imprint extends React.PureComponent {
 								<a
 									href="https://tools.google.com/dlpage/gaoptout?hl=en"
 									target="_blank"
+									title="Go to google.com"
+									rel="noopener"
 								>
 									https://tools.google.com/dlpage/gaoptout?hl=en
 								</a>

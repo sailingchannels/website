@@ -22,7 +22,12 @@ class ChannelInfo extends React.Component {
 	render() {
 		if (!this.state.title) {
 			return (
-				<a target="_blank" href={"https://youtube.com/channel/" + this.props.id}>
+				<a
+					target="_blank"
+					rel="noopener"
+					title="Open YouTube channel"
+					href={"https://youtube.com/channel/" + this.props.id}
+				>
 					{this.props.id}
 				</a>
 			);
@@ -30,6 +35,8 @@ class ChannelInfo extends React.Component {
 			return (
 				<a
 					target="_blank"
+					rel="noopener"
+					title="Open YouTube channel"
 					href={"https://youtube.com/channel/" + this.props.id}
 					title={this.state.description}
 				>

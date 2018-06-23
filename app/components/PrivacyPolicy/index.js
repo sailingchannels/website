@@ -129,11 +129,13 @@ class PrivacyPolicy extends React.PureComponent {
 							<a
 								href="http://www.google.com/intl/en/policies/privacy/"
 								target="_blank"
+								title="Go to google.com and learn about privacy"
+								rel="noopener"
 							>
 								Privacy Policy
 							</a>{" "}
 							–{" "}
-							<a href="http://tools.google.com/dlpage/gaoptout?hl=en" target="_blank">
+							<a href="http://tools.google.com/dlpage/gaoptout?hl=en" title="Go to google.com and learn about opting out of privacy related data collection" target="_blank">
 								Opt Out
 							</a>
 						</p>
@@ -160,6 +162,8 @@ class PrivacyPolicy extends React.PureComponent {
 							<a
 								href="http://www.google.it/intl/en/policies/privacy/"
 								target="_blank"
+								rel="noopener"
+								title="Go to google.com and learn about privacy"
 							>
 								Privacy Policy
 							</a>

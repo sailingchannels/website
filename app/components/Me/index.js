@@ -93,7 +93,7 @@ class Me extends React.Component {
 					<div className="col-md-3" />
 					<div className="col-md-6">
 						<h1 className="content-h1">
-							<img src={this.state.me.user.thumbnail} width="50" />{" "}
+							<img src={this.state.me.user.thumbnail} alt="Thumbnail" width="50" />{" "}
 							{this.state.me.user.title}
 						</h1>
 						{isChannelListed ? (
@@ -360,7 +360,7 @@ class Me extends React.Component {
 									</button>
 								)
 							) : null}
-							&nbsp;<a href="/logout" className="btn btn-default btn-raised">
+							&nbsp;<a href="/logout" title="Sign out" className="btn btn-default btn-raised">
 								<i className="fa fa-power-off" /> Sign Out
 							</a>
 						</center>

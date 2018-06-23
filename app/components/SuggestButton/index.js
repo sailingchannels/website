@@ -46,7 +46,7 @@ class SuggestButton extends React.PureComponent {
 			);
 		} else if (this.state.status == "suggested") {
 			return (
-				<a className="btn btn-default">
+				<a className="btn btn-default" title="Done">
 					<i className="fa fa-check" /> Done
 				</a>
 			);

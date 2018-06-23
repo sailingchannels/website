@@ -99,6 +99,7 @@ class Suggest extends Component {
 										href="mailto:ahoyx@sailingx-channels.com"
 										onMouseOver={this.replaceX.bind(this)}
 										className="reverse"
+										title="Send an email to sailing-channels"
 									>
 										moc.slennahc-gnilias@yoha
 									</a>
@@ -107,6 +108,7 @@ class Suggest extends Component {
 									<a
 										href="/oauth2callback"
 										className="btn btn-raised btn-sm btn-danger yt-login"
+										title="Sign in"
 									>
 										Sign In with <i className="fa fa-youtube" /> YouTube
 									</a>
@@ -125,6 +127,7 @@ class Suggest extends Component {
 										<img
 											className="feature-backdrop"
 											width="80%"
+											alt="Suggestion Feature"
 											src="https://cdn.rawgit.com/sailingchannels/website/9783a9b7/public/img/features/suggest.png"
 										/>
 									</Link>

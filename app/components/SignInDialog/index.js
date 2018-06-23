@@ -30,6 +30,7 @@ class SignInDialog extends React.PureComponent {
 								<a
 									href="/signin"
 									className="btn btn-raised btn-sm btn-danger yt-login"
+									title="Sign in"
 								>
 									Sign In with <i className="fa fa-youtube" /> YouTube
 								</a>

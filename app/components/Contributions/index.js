@@ -42,6 +42,8 @@ class Contributions extends React.Component {
 										<a
 											href="https://www.youtube.com/channel/UCUMEKlaxhujH5r6sAVViTGw"
 											target="_blank"
+											title="Go to Norman Boyes YouTube channel"
+											rel="noopener"
 										>
 											Norman Boyes
 										</a>
@@ -50,10 +52,7 @@ class Contributions extends React.Component {
 								<tr>
 									<td>Feature: Sort channels by total views</td>
 									<td>
-										<a
-											href="https://sailing-channels.com/channel/UCvLc83k5o11EIF1lEo0VmuQ"
-											target="_blank"
-										>
+										<a href="/channel/UCvLc83k5o11EIF1lEo0VmuQ" title="Go to Delos channel" target="_blank">
 											Brian (SV Delos)
 										</a>
 									</td>
@@ -67,6 +66,8 @@ class Contributions extends React.Component {
 										<a
 											href="https://www.youtube.com/user/steedharold"
 											target="_blank"
+											title="Go to Harold Steed's YouTube channel"
+											rel="noopener"
 										>
 											Harold Steed
 										</a>
@@ -78,10 +79,7 @@ class Contributions extends React.Component {
 										map
 									</td>
 									<td>
-										<a
-											href="https://sailing-channels.com/channel/UCpfax0gLoUZMqw-ROxX77Yw"
-											target="_blank"
-										>
+										<a href="/channel/UCpfax0gLoUZMqw-ROxX77Yw" title="Go to Drake Paragon's channel" target="_blank">
 											Drake Paragon
 										</a>
 									</td>
@@ -92,10 +90,7 @@ class Contributions extends React.Component {
 										what's trending.
 									</td>
 									<td>
-										<a
-											href="https://www.sailing-channels.com/channel/UC6ZRBkwBQBrEOQQKwGi85gQ"
-											target="_blank"
-										>
+										<a href="/channel/UC6ZRBkwBQBrEOQQKwGi85gQ" title="Go to Kismet Adventure's channel" target="_blank">
 											Kismet Adventures
 										</a>
 									</td>
@@ -111,10 +106,7 @@ class Contributions extends React.Component {
 										</i>
 									</td>
 									<td>
-										<a
-											href="https://sailing-channels.com/channel/UC8dsJQ_9CEwRmur_HFSXezA"
-											target="_blank"
-										>
+										<a href="/channel/UC8dsJQ_9CEwRmur_HFSXezA" title="Go to The Corsair's channel" target="_blank">
 											The Corsair
 										</a>
 									</td>
@@ -125,10 +117,7 @@ class Contributions extends React.Component {
 										facilitate attention to a broader variety of channels.
 									</td>
 									<td>
-										<a
-											href="https://sailing-channels.com/channel/UCu08YiFDAiIxl4xJDveTdJw"
-											target="_blank"
-										>
+										<a href="/channel/UCu08YiFDAiIxl4xJDveTdJw" title="Go to Mount Ocean's channel" target="_blank">
 											Mount Ocean
 										</a>
 									</td>
@@ -139,10 +128,7 @@ class Contributions extends React.Component {
 										"couple", "diy"
 									</td>
 									<td>
-										<a
-											href="https://sailing-channels.com/channel/UCNYlvlreZiRRHo_v5Nmrfow"
-											target="_blank"
-										>
+										<a href="/channel/UCNYlvlreZiRRHo_v5Nmrfow" title="Go to Sailing Zatara's channel" target="_blank">
 											Sailing Zatara
 										</a>, David V.
 									</td>

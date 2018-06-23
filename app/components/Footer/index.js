@@ -10,7 +10,7 @@ class App extends React.Component {
 				<center>
 					<Link to="/imprint">Imprint</Link>&nbsp;|&nbsp;
 					<Link to="/privacy">Privacy Policy</Link>&nbsp;|&nbsp;
-					<a href="https://github.com/sailingchannels" target="_blank">
+					<a href="https://github.com/sailingchannels" title="Go to github.com" target="_blank" rel="noopener">
 						Code on GitHub
 					</a>
 				</center>

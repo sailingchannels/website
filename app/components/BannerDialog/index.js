@@ -51,6 +51,7 @@ class BannerDialog extends React.Component {
 								<p>
 									<img
 										id="banner-img"
+										alt="Two aboard Tuuli Crew"
 										src={require("images/twoaboardtuuli.jpg")}
 										width="100%"
 									/>
@@ -58,7 +59,7 @@ class BannerDialog extends React.Component {
 							</LazyLoad>
 							<p>
 								The{" "}
-								<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" target="_blank">
+								<a href="/channel/UCZbZeC2OfdVMwm9AR_zu0_g" title="Go to Two aboard Tuuli chanel" target="_blank">
 									<b>Two aboard Tuuli crew</b>
 								</a>{" "}
 								created this website in their sparetime for you.
@@ -75,20 +76,29 @@ class BannerDialog extends React.Component {
 									<a
 										href="https://www.patreon.com/sailingchannels"
 										target="_blank"
+										rel="noopener"
+										title="Go to sailing-channels Patreon page"
 									>
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
 											height="120"
 											width="120"
+											alt="Patreon"
 										/>
 									</a>
 								</div>
 								<div className="col-md-6 text-center">
-									<a href="https://www.paypal.me/sailingchannels" target="_blank">
+									<a
+										href="https://www.paypal.me/sailingchannels"
+										target="_blank"
+										rel="noopener"
+										title="Go to sailing-channels Paypal page"
+									>
 										<img
 											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
 											height="120"
 											width="120"
+											alt="Paypal"
 										/>
 									</a>
 								</div>

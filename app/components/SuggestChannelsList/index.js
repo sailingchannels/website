@@ -18,7 +18,11 @@ class SuggestChannelsList extends Component {
 							<div className="col-md-2 col-sm-2 col-xs-3">
 								<center>
 									<LazyLoad once>
-										<img src={c.data.thumbnail} className="channel-thumb" />
+										<img
+											src={c.data.thumbnail}
+											alt="Thumbnail"
+											className="channel-thumb"
+										/>
 									</LazyLoad>
 								</center>
 							</div>
@@ -27,6 +31,8 @@ class SuggestChannelsList extends Component {
 									<a
 										href={"https://youtube.com/channel/" + c._id}
 										target="_blank"
+										rel="noopener"
+										title={c.data.title}
 									>
 										{c.data.title}
 									</a>

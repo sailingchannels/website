@@ -72,6 +72,7 @@ class Home extends React.Component {
 					<center>
 						<a
 							href="/oauth2callback"
+							title="Sign in"
 							className="btn btn-raised btn-sm btn-danger yt-login"
 						>
 							Sign In with <i className="fa fa-youtube" /> YouTube

@@ -74,7 +74,7 @@ class Topics extends React.Component {
 								grouped into topics by their most popular video tags.<br />If you
 								wish to suggest an additional topic to list here, please{" "}
 								<a
-									title="E-Mail"
+									title="Send an email to sailing-channels"
 									href="mailto:ahxoy@sailing-chaxnnels.com?subject=Topic suggestions"
 									onMouseOver={this.replaceX.bind(this)}
 								>
@@ -108,6 +108,7 @@ class Topics extends React.Component {
 															"/mqdefault.jpg"
 														}
 														width="100%"
+														alt="Thumbnail"
 													/>
 													<div className="panel-body">
 														<small className="photo-credits">

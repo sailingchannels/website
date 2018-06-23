@@ -51,7 +51,7 @@ class FlagButton extends React.Component {
 			);
 		} else {
 			return (
-				<a href="javascript:void();" onClick={this.flag.bind(this)}>
+				<a href="javascript:void();" title="Flag as not sailing-related" onClick={this.flag.bind(this)}>
 					<i className="fa fa-flag fa-fw" /> Flag as not sailing-related
 				</a>
 			);

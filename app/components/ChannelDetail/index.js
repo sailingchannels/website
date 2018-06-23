@@ -86,8 +86,16 @@ class ChannelDetail extends React.Component {
 			for (var l in this.state.channel.customLinks) {
 				customLinks.push(
 					<li key={"customlink_" + l}>
-						<a target="_blank" href={this.state.channel.customLinks[l].url}>
-							<img src={this.state.channel.customLinks[l].icon} />{" "}
+						<a
+							target="_blank"
+							rel="noopener"
+							title="Open linked website"
+							href={this.state.channel.customLinks[l].url}
+						>
+							<img
+								alt={this.state.channel.customLinks[l].title}
+								src={this.state.channel.customLinks[l].icon}
+							/>{" "}
 							{this.state.channel.customLinks[l].title}
 						</a>
 					</li>
@@ -113,7 +121,11 @@ class ChannelDetail extends React.Component {
 						</div>
 						<div className="row">
 							<div className="col-md-2 col-sm-2">
-								<img src={this.state.channel.thumbnail} className="channel-thumb" />
+								<img
+									alt="Thumbnail"
+									src={this.state.channel.thumbnail}
+									className="channel-thumb"
+								/>
 
 								<Tags id={this.state.channel.id} />
 							</div>
@@ -208,6 +220,8 @@ class ChannelDetail extends React.Component {
 								<p>
 									<a
 										target="_blank"
+										rel="noopener"
+										title="Go to YouTube channel"
 										href={
 											"https://youtube.com/channel/" + this.state.channel.id
 										}
