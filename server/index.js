@@ -61,7 +61,7 @@ const cache60 = cache("60 minutes", onlyStatus200);
 	);
 	app.use(function(req, res, next) {
 		// add tag to response
-		res.set("X-Version", global.tag);
+		res.set("X-Version", package.version);
 		next();
 	});
 
