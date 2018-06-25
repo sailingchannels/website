@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment as _ } from "react";
 import Footer from "components/Footer";
 import MobileMenu from "components/MobileMenu";
 
@@ -30,7 +30,7 @@ import AdminSuggestions from "components/Admin/Suggestions";
 class App extends React.Component {
 	render() {
 		return (
-			<div>
+			<_>
 				<MobileMenu />
 				<Switch>
 					<Route path="/by-:sortBy" component={Home} />
@@ -58,7 +58,7 @@ class App extends React.Component {
 					<Route component={Home} />
 				</Switch>
 				<Footer />
-			</div>
+			</_>
 		);
 	}
 }

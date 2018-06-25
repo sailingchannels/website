@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./index";
+import "./Footer.css";
 
 class App extends React.PureComponent {
 	render() {

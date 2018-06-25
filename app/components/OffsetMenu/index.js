@@ -62,6 +62,9 @@ class OffsetMenu extends React.Component {
 							<Link to="/support">Support us</Link>
 						</li>
 						<li>
+							<Link to="/privacy">Privacy Policy</Link>
+						</li>
+						<li>
 							<div className="little-space">Channel language</div>
 							<LanguagePicker />
 						</li>
