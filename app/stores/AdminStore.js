@@ -46,7 +46,7 @@ class AdminStore {
 
 	deleteAdditionalSuccess(result) {
 		this.additional = this.additional.filter(function(item) {
-			return item._id != result._id;
+			return item._id !== result._id;
 		});
 		this.loading = false;
 	}
@@ -58,7 +58,7 @@ class AdminStore {
 	// DELETE BLACKLISTED SUCCESS
 	deleteBlacklistedSuccess(result) {
 		this.blacklisted = this.blacklisted.filter(function(item) {
-			return item._id != result._id;
+			return item._id !== result._id;
 		});
 		this.loading = false;
 	}
@@ -88,10 +88,7 @@ class AdminStore {
 
 	deleteFlagsSuccess(result) {
 		this.flags = this.flags.filter(function(item) {
-			return (
-				item._id.channel != result._id.channel &&
-				item._id.user != result._id.user
-			);
+			return item._id.channel !== result._id.channel && item._id.user !== result._id.user;
 		});
 		this.loading = false;
 	}
@@ -113,10 +110,7 @@ class AdminStore {
 
 	deleteSuggestionsSuccess(result) {
 		this.suggestions = this.suggestions.filter(function(item) {
-			return (
-				item._id.channel != result._id.channel &&
-				item._id.user != result._id.user
-			);
+			return item._id.channel !== result._id.channel && item._id.user !== result._id.user;
 		});
 		this.loading = false;
 	}

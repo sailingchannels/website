@@ -29,7 +29,7 @@ class SuggestionsListItem extends React.Component {
 				<td>
 					<ChannelInfo id={this.props.data._id.user} />
 				</td>
-				<td>{dayjs(this.props.data.when).format("lll")}</td>
+				<td>{dayjs(this.props.data.when).format("YYYY-MM-DD  HH:mm")}</td>
 			</tr>
 		);
 	}

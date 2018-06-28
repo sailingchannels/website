@@ -47,13 +47,15 @@ class App extends React.Component {
 					<Route path="/me" component={Me} />
 					<Route path="/topics" component={Topics} />
 					<Route path="/topic/:id" component={Topic} />
-					<Route path="/admin" component={Admin}>
-						<Route path="/dashboard" component={AdminDashboard} />
-						<Route path="/additional" component={AdminAdditional} />
-						<Route path="/blacklist" component={AdminBlacklist} />
-						<Route path="/flags" component={AdminFlags} />
-						<Route path="/suggestions" component={AdminSuggestions} />
-						<Route component={AdminDashboard} />
+					<Route path="/admin">
+						<Admin>
+							<Route path="/admin/dashboard" component={AdminDashboard} />
+							<Route path="/admin/additional" component={AdminAdditional} />
+							<Route path="/admin/blacklist" component={AdminBlacklist} />
+							<Route path="/admin/flags" component={AdminFlags} />
+							<Route path="/admin/suggestions" component={AdminSuggestions} />
+							<Route exact path="/admin/" component={AdminDashboard} />
+						</Admin>
 					</Route>
 					<Route component={Home} />
 				</Switch>
