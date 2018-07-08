@@ -1,7 +1,7 @@
 {
 	"name": "Sailing-Channels",
 	"description": "Discovering YouTube sailing channels by using a network analysis on recursive channel subscriptions",
-	"version": "1.15.7",
+	"version": "1.15.8",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thomasbrueggemann/sailing-channels.git"
@@ -53,7 +53,7 @@
 		}
 	},
 	"dependencies": {
-		"ais": "^2.0.0",
+		"ais": "^2.0.1",
 		"alt": "^0.17.4",
 		"anchorme": "^1.1.2",
 		"apicache": "^0.7.2",
