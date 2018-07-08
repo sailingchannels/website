@@ -58,6 +58,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet.label@0.2.4/dist/leaflet.label.js"></script>
 	<script src="https://unpkg.com/leaflet.boatmarker/leaflet.boatmarker.min.js"></script>
 	<script async defer src="https://api.windyty.com/v2.1/boot.js"></script>
 
@@ -262,7 +263,7 @@
 						marker.setSpeed(spd);
 					}
 
-					map.setView(data.position, 9);
+					map.setView(data.position, 7);
 
 					var trailnumber = 100;
 					if (
