@@ -80,7 +80,7 @@ class BannerDialog extends React.Component {
 										title="Go to sailing-channels Patreon page"
 									>
 										<img
-											src="https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg"
+											src="https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/patreon.jpg"
 											height="120"
 											width="120"
 											alt="Patreon"
@@ -95,7 +95,7 @@ class BannerDialog extends React.Component {
 										title="Go to sailing-channels Paypal page"
 									>
 										<img
-											src="https://rawgit.com/sailingchannels/website/master/public/img/paypal.png"
+											src="https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/paypal.png"
 											height="120"
 											width="120"
 											alt="Paypal"
