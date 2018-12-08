@@ -128,7 +128,7 @@ class Suggest extends Component {
 											className="feature-backdrop"
 											width="80%"
 											alt="Suggestion Feature"
-											src="https://cdn.rawgit.com/sailingchannels/website/9783a9b7/public/img/features/suggest.png"
+											src="https://cdn.jsdelivr.net/gh/sailingchannels/website@9783a9b7/public/img/features/suggest.png"
 										/>
 									</Link>
 								</center>
