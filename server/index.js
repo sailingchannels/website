@@ -159,7 +159,7 @@ const cache60 = cache("60 minutes", onlyStatus200);
 	});
 
 	var mongodbURL = "sailing-channels";
-	var mongodbHost = "mongo";
+	var mongodbHost = process.env.MONGODB || "ecs.sailing-channels.com";
 	if (tag === "dev") {
 		//mongodbURL += "-dev";
 		mongodbHost = "localhost";
