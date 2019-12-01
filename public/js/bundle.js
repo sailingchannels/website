@@ -2092,7 +2092,7 @@ var BannerDialog = (function (_React$Component) {
 											target: "_blank"
 										},
 										_react2["default"].createElement("img", {
-											src: "https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg",
+											src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/patreon.jpg",
 											height: "120",
 											width: "120"
 										})
@@ -2105,7 +2105,7 @@ var BannerDialog = (function (_React$Component) {
 										"a",
 										{ href: "https://www.paypal.me/sailingchannels", target: "_blank" },
 										_react2["default"].createElement("img", {
-											src: "https://rawgit.com/sailingchannels/website/master/public/img/paypal.png",
+											src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/paypal.png",
 											height: "120",
 											width: "120"
 										})
@@ -5594,7 +5594,7 @@ var SocialOffset = (function (_React$Component) {
 									_reactLazyload2["default"],
 									{ height: "50" },
 									_react2["default"].createElement("img", {
-										src: "https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg",
+										src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/patreon.jpg",
 										className: "grey support-img",
 										height: "50",
 										width: "50",
@@ -5614,7 +5614,7 @@ var SocialOffset = (function (_React$Component) {
 									_reactLazyload2["default"],
 									{ height: "50" },
 									_react2["default"].createElement("img", {
-										src: "https://rawgit.com/sailingchannels/website/master/public/img/paypal.png",
+										src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/paypal.png",
 										className: "grey support-img",
 										height: "50",
 										width: "50",
@@ -7452,7 +7452,7 @@ var Suggest = (function (_Component) {
 									_react2["default"].createElement("img", {
 										className: "feature-backdrop",
 										width: "80%",
-										src: "https://cdn.rawgit.com/sailingchannels/website/9783a9b7/public/img/features/suggest.png"
+										src: "https://cdn.jsdelivr.net/gh/sailingchannels/website@9783a9b7/public/img/features/suggest.png"
 									})
 								)
 							)
@@ -7929,7 +7929,7 @@ var Contributions = (function (_React$Component) {
 									"a",
 									{ href: "https://www.patreon.com/sailingchannels", target: "_blank" },
 									_react2["default"].createElement("img", {
-										src: "https://rawgit.com/sailingchannels/website/master/public/img/patreon.jpg",
+										src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/patreon.jpg",
 										height: "150",
 										width: "150"
 									})
@@ -7942,7 +7942,7 @@ var Contributions = (function (_React$Component) {
 									"a",
 									{ href: "https://www.paypal.me/sailingchannels", target: "_blank" },
 									_react2["default"].createElement("img", {
-										src: "https://rawgit.com/sailingchannels/website/master/public/img/paypal.png",
+										src: "https://cdn.jsdelivr.net/gh/sailingchannels/website/public/img/paypal.png",
 										height: "150",
 										width: "150"
 									})
@@ -8394,7 +8394,7 @@ var VideoList = (function (_React$Component) {
 								"center",
 								null,
 								_react2["default"].createElement("img", {
-									src: "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png",
+									src: "https://cdn.jsdelivr.net/gh/thomasbrueggemann/sailing-channels/public/img/spacer.png",
 									"data-src": "https://img.youtube.com/vi/" + v._id + "/default.jpg",
 									className: "channel-thumb"
 								})
@@ -8539,7 +8539,7 @@ var VideoListItem = (function (_React$Component) {
 						"center",
 						null,
 						_react2["default"].createElement("img", {
-							src: "https://cdn.rawgit.com/thomasbrueggemann/sailing-channels/master/public/img/spacer.png",
+							src: "https://cdn.jsdelivr.net/gh/thomasbrueggemann/sailing-channels/public/img/spacer.png",
 							"data-src": "https://img.youtube.com/vi/" + this.props.video._id + "/default.jpg",
 							className: "channel-thumb"
 						})
