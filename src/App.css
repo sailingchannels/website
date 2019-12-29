@@ -1,0 +1,79 @@
+.channels-hero > .hero-body {
+	padding-top: 0px;
+	padding-left: 0px;
+}
+
+.nav-menu-margin {
+	margin-bottom: 30px;
+}
+
+.detail-image {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.channel-details h3 {
+	margin-top: 25px;
+}
+
+.subscribe-icon {
+	margin-right: 5px;
+}
+
+.subscribe-button {
+	margin: 45px 0;
+}
+
+.pagination {
+	margin-top: 25px;
+}
+
+.top-spacer {
+	margin-top: 30px !important;
+}
+
+.top-spacer-2x {
+	margin-top: 60px !important;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+.greyscale {
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+	opacity: 0.4;
+	margin-top: 30px;
+}
+
+.list-columns {
+	border-bottom: 1px solid #ededed;
+}
+
+ul.is-unstyled {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.is-inline li {
+	display: inline;
+	margin-right: 8px;
+}
+
+.is-centered {
+	display: block;
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+	.main-section {
+		padding-top: 0px !important;
+	}
+
+	.navbar-brand {
+		padding-left: 10px !important;
+	}
+}
