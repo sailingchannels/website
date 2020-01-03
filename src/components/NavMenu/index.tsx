@@ -39,7 +39,7 @@ export default function NavMenu() {
 					<input
 						type="search"
 						className="input is-rounded nav-menu-margin"
-						placeholder="Search for channels..."
+						placeholder="Search..."
 						onKeyUp={searchKeyUp}
 					/>
 

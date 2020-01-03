@@ -7,13 +7,14 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
+import { DataService } from "./ServiceUrls";
 
 import "bulma/css/bulma.css";
 
 (async () => {
 	// graphql setup
 	const link = new BatchHttpLink({
-		uri: "http://localhost:5000/api/graphql",
+		uri: `${DataService()}/api/graphql`,
 		batchInterval: 250,
 		credentials: "include"
 	});

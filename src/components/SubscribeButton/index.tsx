@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import GlobalContext, { GlobalActions } from "../../contexts/GlobalContext";
-import IdentityServiceUrl from "../../IdentityServiceUrl";
+import { IdentityService } from "../../ServiceUrls";
 import useAxios from "axios-hooks";
+import { setSignInOpen } from "../../Common";
 
 interface SubscribeButtonProps {
 	channelId: string;
@@ -22,7 +23,7 @@ function SubscribeButton(props: SubscribeButtonProps) {
 		SubscriptionResponse
 	>(
 		{
-			url: `${IdentityServiceUrl()}/api/channel/subscribe`,
+			url: `${IdentityService()}/api/channel/subscribe`,
 			method: "POST",
 			data: {
 				channel: props.channelId
@@ -54,7 +55,7 @@ function SubscribeButton(props: SubscribeButtonProps) {
 		SubscriptionResponse
 	>(
 		{
-			url: `${IdentityServiceUrl()}/api/channel/unsubscribe`,
+			url: `${IdentityService()}/api/channel/unsubscribe`,
 			method: "POST",
 			data: {
 				channel: props.channelId
@@ -114,7 +115,12 @@ function SubscribeButton(props: SubscribeButtonProps) {
 				className={subscribeClassName}
 				disabled={loadingSubscribe}
 				onClick={() => {
-					executeSubscribe();
+					// are we logged in?
+					if (globalContext.state.loggedIn) {
+						executeSubscribe();
+					} else {
+						setSignInOpen(globalContext, true);
+					}
 				}}
 			>
 				<i className="fab fa-youtube icon-spacer" /> Subscribe

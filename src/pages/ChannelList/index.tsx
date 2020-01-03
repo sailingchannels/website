@@ -21,7 +21,8 @@ interface ChannelListResult {
 }
 
 export default function ChannelList(props: any) {
-	const sortBy: string = capitalize(props.match.params.sortBy || "upload");
+	const sortByRaw: string = props.match.params.sortBy || "upload";
+	const sortBy: string = capitalize(sortByRaw);
 
 	//#region Hooks
 
@@ -52,7 +53,9 @@ export default function ChannelList(props: any) {
 			<section className="hero channels-hero">
 				<div className="hero-body">
 					<h1 className="title">Sailing Channels</h1>
-					<h2 className="subtitle">sorted by {sortBy}</h2>
+					<h2 className="subtitle">
+						sorted by <strong>{sortByRaw}</strong>
+					</h2>
 				</div>
 			</section>
 

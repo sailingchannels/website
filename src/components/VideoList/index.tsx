@@ -44,7 +44,10 @@ function VideoList(props: VideoListProps) {
 								</a>
 								<br />
 								<small>
-									<ul className="is-unstyled is-inline">
+									<ul
+										className="is-unstyled is-inline"
+										style={{ marginLeft: "0px!important" }}
+									>
 										<li>
 											<em>{moment.unix(video.publishedAt).format("ll")}</em>
 										</li>
