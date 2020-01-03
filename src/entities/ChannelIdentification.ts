@@ -1,3 +1,5 @@
+import ChannelIdentificationStatus from "./ChannelIdentificationStatus";
+
 export default class ChannelIdentification {
 	channelID: string;
 	channel: {
@@ -7,4 +9,9 @@ export default class ChannelIdentification {
 	};
 	isSailingChannel: boolean;
 	source: string;
+	status: string;
+
+	public GetStatus(): ChannelIdentificationStatus {
+		return ChannelIdentificationStatus[status];
+	}
 }

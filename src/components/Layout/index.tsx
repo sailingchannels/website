@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Switch, Route, HashRouter } from "react-router-dom";
+import { Switch, Route, HashRouter, Link } from "react-router-dom";
 import useAxios, { configure } from "axios-hooks";
 import Axios from "axios";
 import IdentityServiceUrl from "../../IdentityServiceUrl";
@@ -88,13 +88,13 @@ export default function Layout() {
 			<footer className="footer">
 				<div className="content has-text-centered">
 					<p>
-						<a className="has-text-grey-light" href="/imprint">
+						<Link className="has-text-grey-light" to="/imprint">
 							Imprint
-						</a>{" "}
+						</Link>{" "}
 						&middot;{" "}
-						<a className="has-text-grey-light" href="/privacy">
+						<Link className="has-text-grey-light" to="/privacy">
 							Privacy Policy
-						</a>{" "}
+						</Link>{" "}
 						&middot;{" "}
 						<a className="has-text-grey-light" href="https://github.com/sailingchannels">
 							<i className="fas fa-code" /> on GitHub

@@ -15,17 +15,19 @@ function Imprint(props) {
 
 			<p>Responsible for this site:</p>
 
-			<p>
+			<p className="top-spacer">
 				<span className="reverse">nnameggürB samohT</span>
 				<br />
 				<span className="reverse">21 grubnenorC</span>
 				<br />
 				<span className="reverse">nehcrikslegnE 66715</span>
 				<br />
+				<span className="reverse">ynamreG</span>
+				<br />
 				<span className="reverse">moc.slennahc-gnilias@yoha</span>
 				<br />
 			</p>
-			<h3>Legal disclaimer</h3>
+			<h3 className="is-size-3 top-spacer">Legal disclaimer</h3>
 			<p>
 				The contents of these pages are generated automatically based on the YouTube channel title,
 				description and videos of the individual channels listed. The creator of this website has no
@@ -35,14 +37,14 @@ function Imprint(props) {
 				third-party websites are beyond my control, I cannot accept liability for them. ResponsibiIity
 				for the contents of the linked pages is always held by the provider or operator of the pages.
 			</p>
-			<h3>Data protection</h3>
+			<h3 className="is-size-3 top-spacer">Data protection</h3>
 			<p>
 				In general, when visiting the website of “Sailing Channels”, no personal data are saved. No
 				data will be passed on to third parties without your consent. We point out that in regard to
 				unsecured data transmission in the internet (e.g. via email), security cannot be guaranteed.
 				Such data could possibIy be accessed by third parties.
 			</p>
-			<h3>Google Analytics</h3>
+			<h3 className="is-size-3 top-spacer">Google Analytics</h3>
 			<p>
 				This website uses Google Analytics, a web analytics service provided by Google, Inc.
 				(»Google«). Google Analytics uses cookies, which are text files placed on your computer, to
@@ -59,7 +61,9 @@ function Imprint(props) {
 				with any other data held by Google. By using this website, you consent to the processing of
 				data about you by Google in the manner and for the purposes set out above.
 			</p>
-			<h4>How to prevent being tracked by Google Analytics on sailing-channels.com</h4>
+			<h4 className="is-size-4 top-spacer">
+				How to prevent being tracked by Google Analytics on sailing-channels.com
+			</h4>
 
 			<ul>
 				<li>

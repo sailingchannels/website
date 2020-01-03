@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useLazyQuery } from "@apollo/react-hooks";
 import ChannelIdentification from "../../entities/ChannelIdentification";
 import GlobalContext from "../../contexts/GlobalContext";
-import { IDENTIFY_CHANNELS_QUERY, CHANNEL_SUGGESTIONS_QUERY } from "./gql";
+import { CHANNEL_SUGGESTIONS_QUERY } from "./gql";
 import LoadingIndicator from "../../components/LoadingIndicator";
 import SuggestChannelSubscriptions from "../../components/SuggestChannelSubscriptions";
+import ChannelIdentificationResult from "../../components/ChannelIdentification";
 
 interface YouTubeDetailsQueryResult {
 	channelSuggestions: ChannelIdentification[];
@@ -17,7 +18,7 @@ function SuggestChannel(props) {
 
 	const globalContext = useContext(GlobalContext.Context);
 
-	// load channels via graphql
+	// load suggestions via graphql, if user is logged in
 	const { loading, error, data } = useQuery<YouTubeDetailsQueryResult>(CHANNEL_SUGGESTIONS_QUERY, {
 		fetchPolicy: "cache-and-network",
 		variables: {
@@ -49,9 +50,7 @@ function SuggestChannel(props) {
 				form below to check and suggest a channel for the list:
 			</p>
 
-			<p className="top-spacer">
-				<input className="input" type="text" placeholder="https://youtube.com/channel/..." />
-			</p>
+			<ChannelIdentificationResult />
 
 			{loading && !data ? <LoadingIndicator /> : null}
 

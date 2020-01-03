@@ -76,6 +76,12 @@ ul.is-inline li {
 	text-align: center;
 }
 
+.reverse {
+	unicode-bidi: bidi-override;
+	direction: rtl;
+	text-align: left;
+}
+
 @media (max-width: 768px) {
 	.main-section {
 		padding-top: 0px !important;

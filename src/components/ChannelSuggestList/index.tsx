@@ -17,7 +17,7 @@ function ChannelSuggestList(props: ChannelSuggestListProps) {
 							<img src={channel.channel.thumbnail} />
 						</div>
 						<div className="column has-text-justified">
-							<a href="" target="_blank">
+							<a href={"https://youtube.com/channel/" + channel.channelID} target="_blank">
 								{channel.channel.title}
 							</a>
 							<p>{channel.channel.description}</p>

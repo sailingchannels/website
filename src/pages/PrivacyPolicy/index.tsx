@@ -11,13 +11,12 @@ function PrivacyPolicy(props) {
 
 			<Hero title="Privacy Policy" />
 
-			<h3>Data Controller and Owner</h3>
+			<h3 className="is-size-3 top-spacer">Data Controller and Owner</h3>
 			<p>
-				Sailing Channels,
-				<span className="reverse">moc.slennahc-gnilias@yoha</span>
+				Sailing Channels, <span className="reverse">moc.slennahc-gnilias@yoha</span>
 			</p>
 
-			<h3>Types of Data collected</h3>
+			<h3 className="is-size-3 top-spacer">Types of Data collected</h3>
 			<p>
 				Among the types of Personal Data that this Application collects, by itself or through third
 				parties, there are: Cookie and Usage data. Other Personal Data collected may be described in
@@ -33,9 +32,9 @@ function PrivacyPolicy(props) {
 				Owner.
 			</p>
 
-			<h3>Mode and place of processing the Data</h3>
+			<h3 className="is-size-3 top-spacer">Mode and place of processing the Data</h3>
 
-			<h4>Methods of processing</h4>
+			<h4 className="is-size-4 top-spacer">Methods of processing</h4>
 			<p>
 				The Data Controller processes the Data of Users in a proper manner and shall take appropriate
 				security measures to prevent unauthorized access, disclosure, modification, or unauthorized
@@ -49,37 +48,37 @@ function PrivacyPolicy(props) {
 				parties may be requested from the Data Controller at any time.
 			</p>
 
-			<h4>Place</h4>
+			<h4 className="is-size-4 top-spacer">Place</h4>
 			<p>
 				The Data is processed at the Data Controller's operating offices and in any other places where
 				the parties involved with the processing are located. For further information, please contact
 				the Data Controller.
 			</p>
 
-			<h4>Retention time</h4>
+			<h4 className="is-size-4 top-spacer">Retention time</h4>
 			<p>
 				The Data is kept for the time necessary to provide the service requested by the User, or
 				stated by the purposes outlined in this document, and the User can always request that the
 				Data Controller suspend or remove the data.
 			</p>
 
-			<h3>The use of the collected Data</h3>
+			<h3 className="is-size-3 top-spacer">The use of the collected Data</h3>
 			<p>
 				The Data concerning the User is collected to allow the Owner to provide its services, as well
 				as for the following purposes: Analytics and Displaying content from external platforms. The
 				Personal Data used for each purpose is outlined in the specific sections of this document.
 			</p>
 
-			<h3>Detailed information on the processing of Personal Data</h3>
+			<h3 className="is-size-3 top-spacer">Detailed information on the processing of Personal Data</h3>
 			<p>Personal Data is collected for the following purposes and using the following services:</p>
 
-			<h4>Analytics</h4>
+			<h4 className="is-size-4 top-spacer">Analytics</h4>
 			<p>
 				The services contained in this section enable the Owner to monitor and analyze web traffic and
 				can be used to keep track of User behavior.
 			</p>
 
-			<h5>Google Analytics (Google Inc.)</h5>
+			<h5 className="is-size-5 top-spacer">Google Analytics (Google Inc.)</h5>
 			<p>
 				Google Analytics is a web analysis service provided by Google Inc. (“Google”). Google utilizes
 				the Data collected to track and examine the use of this Application, to prepare reports on its
@@ -104,7 +103,7 @@ function PrivacyPolicy(props) {
 				</a>
 			</p>
 
-			<h4>Displaying content from external platforms</h4>
+			<h4 className="is-size-4 top-spacer">Displaying content from external platforms</h4>
 			<p>
 				These services allow you to view content hosted on external platforms directly from the pages
 				of this Application and interact with them. If a service of this kind is installed, it may
@@ -112,7 +111,7 @@ function PrivacyPolicy(props) {
 				do not use it.
 			</p>
 
-			<h5>Youtube video widget (Google Inc.)</h5>
+			<h5 className="is-size-5 top-spacer">Youtube video widget (Google Inc.)</h5>
 			<p>
 				Youtube is a video content visualization service provided by Google Inc. that allows this
 				Application to incorporate content of this kind on its pages. Personal Data collected: Cookie
@@ -127,36 +126,38 @@ function PrivacyPolicy(props) {
 				</a>
 			</p>
 
-			<h3>Additional information about Data collection and processing</h3>
+			<h3 className="is-size-3 top-spacer">
+				Additional information about Data collection and processing
+			</h3>
 
-			<h4>Legal action</h4>
+			<h4 className="is-size-4 top-spacer">Legal action</h4>
 			<p>
 				The User's Personal Data may be used for legal purposes by the Data Controller, in Court or in
 				the stages leading to possible legal action arising from improper use of this Application or
 				the related services. The User declares to be aware that the Data Controller may be required
 				to reveal personal data upon request of public authorities.
 			</p>
-			<h4>Additional information about User's Personal Data</h4>
+			<h4 className="is-size-4 top-spacer">Additional information about User's Personal Data</h4>
 			<p>
 				In addition to the information contained in this privacy policy, this Application may provide
 				the User with additional and contextual information concerning particular services or the
 				collection and processing of Personal Data upon request.
 			</p>
-			<h4>System Logs and Maintenance</h4>
+			<h4 className="is-size-4 top-spacer">System Logs and Maintenance</h4>
 			<p>
 				For operation and maintenance purposes, this Application and any third party services may
 				collect files that record interaction with this Application (System Logs) or use for this
 				purpose other Personal Data (such as IP Address).
 			</p>
 
-			<h4>Information not contained in this policy</h4>
+			<h4 className="is-size-4 top-spacer">Information not contained in this policy</h4>
 			<p>
 				More details concerning the collection or processing of Personal Data may be requested from
 				the Data Controller at any time. Please see the contact information at the beginning of this
 				document.
 			</p>
 
-			<h4>The rights of Users</h4>
+			<h4 className="is-size-4 top-spacer">The rights of Users</h4>
 			<p>
 				Users have the right, at any time, to know whether their Personal Data has been stored and can
 				consult the Data Controller to learn about their contents and origin, to verify their accuracy
@@ -168,7 +169,7 @@ function PrivacyPolicy(props) {
 				honor the “Do Not Track” requests, please read their privacy policies.
 			</p>
 
-			<h4>Changes to this privacy policy</h4>
+			<h4 className="is-size-4 top-spacer">Changes to this privacy policy</h4>
 			<p>
 				The Data Controller reserves the right to make changes to this privacy policy at any time by
 				giving notice to its Users on this page. It is strongly recommended to check this page often,
@@ -178,16 +179,16 @@ function PrivacyPolicy(props) {
 				privacy policy applies to all Personal Data the Data Controller has about Users.
 			</p>
 			<hr />
-			<h3>Definitions and legal references</h3>
+			<h3 className="is-size-3 top-spacer">Definitions and legal references</h3>
 
-			<h4>Personal Data (or Data)</h4>
+			<h4 className="is-size-4 top-spacer">Personal Data (or Data)</h4>
 			<p>
 				Any information regarding a natural person, a legal person, an institution or an association,
 				which is, or can be, identified, even indirectly, by reference to any other information,
 				including a personal identification number.
 			</p>
 
-			<h4>Usage Data</h4>
+			<h4 className="is-size-4 top-spacer">Usage Data</h4>
 			<p>
 				Information collected automatically from this Application (or third party services employed in
 				this Application), which can include: the IP addresses or domain names of the computers
@@ -201,23 +202,23 @@ function PrivacyPolicy(props) {
 				other parameters about the device operating system and/or the User's IT environment.
 			</p>
 
-			<h4>User</h4>
+			<h4 className="is-size-4 top-spacer">User</h4>
 			<p>
 				The individual using this Application, which must coincide with or be authorized by the Data
 				Subject, to whom the Personal Data refers.
 			</p>
 
-			<h4>Data Subject</h4>
+			<h4 className="is-size-4 top-spacer">Data Subject</h4>
 			<p>The legal or natural person to whom the Personal Data refers.</p>
 
-			<h4>Data Processor (or Data Supervisor)</h4>
+			<h4 className="is-size-4 top-spacer">Data Processor (or Data Supervisor)</h4>
 			<p>
 				The natural person, legal person, public administration or any other body, association or
 				organization authorized by the Data Controller to process the Personal Data in compliance with
 				this privacy policy.
 			</p>
 
-			<h4>Data Controller (or Owner)</h4>
+			<h4 className="is-size-4 top-spacer">Data Controller (or Owner)</h4>
 
 			<p>
 				The natural person, legal person, public administration or any other body, association or
@@ -227,13 +228,13 @@ function PrivacyPolicy(props) {
 				Controller, unless otherwise specified, is the Owner of this Application.
 			</p>
 
-			<h4>This Application</h4>
+			<h4 className="is-size-4 top-spacer">This Application</h4>
 			<p>The hardware or software tool by which the Personal Data of the User is collected.</p>
 
-			<h4>Cookie</h4>
+			<h4 className="is-size-4 top-spacer">Cookie</h4>
 			<p>Small piece of data stored in the User's device.</p>
 			<hr />
-			<h3>Legal information</h3>
+			<h3 className="is-size-3 top-spacer">Legal information</h3>
 			<p>
 				Notice to European Users: this privacy statement has been prepared in fulfillment of the
 				obligations under Art. 10 of EC Directive n. 95/46/EC, and under the provisions of Directive
