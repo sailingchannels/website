@@ -6,7 +6,7 @@ function PrivacyPolicy(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Privacy Policy | Sailing-Channels</title>
+				<title>Privacy Policy | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Privacy Policy" />

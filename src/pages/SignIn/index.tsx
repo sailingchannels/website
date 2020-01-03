@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "../../components/Hero";
-import Identity from "../../Identity";
+import IdentityServiceUrl from "../../IdentityServiceUrl";
 
 function SignIn(props) {
 	return (
@@ -18,7 +18,7 @@ function SignIn(props) {
 			</p>
 
 			<div className="top-spacer is-centered">
-				<a href={Identity() + "/oauth2"} className="button is-large is-danger">
+				<a href={IdentityServiceUrl() + "/oauth2"} className="button is-large is-danger">
 					Sign In with <i className="fab fa-youtube" style={{ margin: "0 10px" }}></i> YouTube
 				</a>
 			</div>

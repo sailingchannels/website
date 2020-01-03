@@ -17,7 +17,7 @@
 	margin-top: 25px;
 }
 
-.subscribe-icon {
+.icon-spacer {
 	margin-right: 5px;
 }
 
@@ -35,6 +35,14 @@
 
 .top-spacer-2x {
 	margin-top: 60px !important;
+}
+
+.bottom-spacer {
+	margin-bottom: 30px !important;
+}
+
+.bottom-spacer-2x {
+	margin-bottom: 60px !important;
 }
 
 footer a:hover {

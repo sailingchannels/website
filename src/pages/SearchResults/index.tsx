@@ -45,7 +45,7 @@ function SearchResults(props: any) {
 	return (
 		<>
 			<Helmet>
-				<title>Contributions | Sailing-Channels</title>
+				<title>Contributions | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Search results" subtitle={`for "${props.match.params.query}"`} />

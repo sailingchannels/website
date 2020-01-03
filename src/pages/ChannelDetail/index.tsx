@@ -11,6 +11,8 @@ import { CHANNEL_DETAIL_QUERY } from "./gql";
 import LoadingIndicator from "../../components/LoadingIndicator";
 import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
+import FlagButton from "../../components/FlagButton";
+import SubscriberHistoryChart from "../../components/SubscriberHistoryChart";
 
 function ChannelDetail(props: any) {
 	//#region Hooks
@@ -34,7 +36,7 @@ function ChannelDetail(props: any) {
 	return (
 		<>
 			<Helmet>
-				<title>{channel.title} | Sailing-Channels</title>
+				<title>{channel.title} | Sailing Channels</title>
 			</Helmet>
 
 			<Hero
@@ -63,6 +65,8 @@ function ChannelDetail(props: any) {
 						<VideoList channelId={channel.iD} currentPage={props.match.params.currentPage} />
 					</div>
 					<div className="column">
+						<SubscriberHistoryChart channelId={channel.iD} />
+
 						<ChannelInfos channel={channel} />
 
 						<div className="subscribe-button">
@@ -75,9 +79,7 @@ function ChannelDetail(props: any) {
 							</a>
 						</p>
 						<p>
-							<a href="">
-								<i className="fas fa-flag" /> Flag as not sailing related
-							</a>
+							<FlagButton channelId={channel.iD}></FlagButton>
 						</p>
 
 						<CustomLinks links={channel.customLinks} />

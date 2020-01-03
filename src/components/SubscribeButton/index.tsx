@@ -1,8 +1,15 @@
-import React, { useContext } from "react";
-import GlobalContext from "../../contexts/GlobalContext";
+import React, { useContext, useEffect } from "react";
+import GlobalContext, { GlobalActions } from "../../contexts/GlobalContext";
+import IdentityServiceUrl from "../../IdentityServiceUrl";
+import useAxios from "axios-hooks";
 
 interface SubscribeButtonProps {
 	channelId: string;
+}
+
+interface SubscriptionResponse {
+	success: boolean;
+	error?: any;
 }
 
 function SubscribeButton(props: SubscribeButtonProps) {
@@ -10,19 +17,107 @@ function SubscribeButton(props: SubscribeButtonProps) {
 
 	const globalContext = useContext(GlobalContext.Context);
 
+	// hook to send POST request to SUBSCRIBE to a channel
+	const [{ data: dataSubscribe, loading: loadingSubscribe }, executeSubscribe] = useAxios<
+		SubscriptionResponse
+	>(
+		{
+			url: `${IdentityServiceUrl()}/api/channel/subscribe`,
+			method: "POST",
+			data: {
+				channel: props.channelId
+			}
+		},
+		{
+			manual: true,
+			useCache: false
+		}
+	);
+
+	useEffect(() => {
+		// we successfully unsubscribed
+		if (dataSubscribe && dataSubscribe.success === true) {
+			// remove the channel ID from global context
+			let subscribedTo = globalContext.state.subscriptions;
+			subscribedTo.push(props.channelId);
+
+			globalContext.dispatch({
+				...globalContext.state,
+				type: GlobalActions.SET_SUBSCRIPTIONS,
+				subscriptions: subscribedTo
+			});
+		}
+	}, [dataSubscribe]);
+
+	// hook to send POST request to UNSUBSCRIBE from a channel
+	const [{ data: dataUnsubscribe, loading: loadingUnsubscribe }, executeUnsubscribe] = useAxios<
+		SubscriptionResponse
+	>(
+		{
+			url: `${IdentityServiceUrl()}/api/channel/unsubscribe`,
+			method: "POST",
+			data: {
+				channel: props.channelId
+			}
+		},
+		{
+			manual: true,
+			useCache: false
+		}
+	);
+
+	useEffect(() => {
+		// we successfully unsubscribed
+		if (dataUnsubscribe && dataUnsubscribe.success === true) {
+			// remove the channel ID from global context
+			const subscribedTo = globalContext.state.subscriptions.filter((subscription: string) => {
+				return subscription !== props.channelId;
+			});
+
+			globalContext.dispatch({
+				...globalContext.state,
+				type: GlobalActions.SET_SUBSCRIPTIONS,
+				subscriptions: subscribedTo
+			});
+		}
+	}, [dataUnsubscribe]);
+
 	//#endregion
 
 	const isSubscribedTo = globalContext.state.subscriptions.indexOf(props.channelId) >= 0;
+
 	if (isSubscribedTo) {
+		let unsubscribeClassName = "button is-light";
+		if (loadingUnsubscribe) {
+			unsubscribeClassName += " is-loading";
+		}
+
 		return (
-			<button className="button is-light">
-				<i className="fab fa-youtube subscribe-icon" /> Unsubscribe
+			<button
+				className={unsubscribeClassName}
+				disabled={loadingUnsubscribe}
+				onClick={() => {
+					executeUnsubscribe();
+				}}
+			>
+				<i className="fab fa-youtube icon-spacer" /> Unsubscribe
 			</button>
 		);
 	} else {
+		let subscribeClassName = "button is-danger";
+		if (loadingSubscribe) {
+			subscribeClassName += " is-loading";
+		}
+
 		return (
-			<button className="button is-danger">
-				<i className="fab fa-youtube subscribe-icon" /> Subscribe
+			<button
+				className={subscribeClassName}
+				disabled={loadingSubscribe}
+				onClick={() => {
+					executeSubscribe();
+				}}
+			>
+				<i className="fab fa-youtube icon-spacer" /> Subscribe
 			</button>
 		);
 	}

@@ -9,7 +9,6 @@ import TopicOverview from "../../entities/TopicOverview";
 import { v4 as uuid } from "uuid";
 import { TOPIC_DETAIL_QUERY } from "../TopicDetail/gql";
 import { Helmet } from "react-helmet";
-import Hero from "../../components/Hero";
 
 function Topics(props) {
 	//#region Hooks
@@ -47,7 +46,7 @@ function Topics(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Topics | Sailing-Channels</title>
+				<title>Topics | Sailing Channels</title>
 			</Helmet>
 
 			<section className="hero channels-hero">
@@ -87,9 +86,7 @@ function Topics(props) {
 								<div className="card-image">
 									<Link to={`/topics/${topic.iD}`} className="image">
 										<img
-											src={`https://img.youtube.com/vi/${
-												topicOverview.latestVideoID
-											}/maxresdefault.jpg`}
+											src={`https://img.youtube.com/vi/${topicOverview.latestVideoID}/maxresdefault.jpg`}
 											alt={topic.title}
 										/>
 									</Link>

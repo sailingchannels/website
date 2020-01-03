@@ -17,7 +17,7 @@ function TopicDetail(props: any) {
 
 	//#region Hooks
 
-	const [visibleTab, setVisibleTab] = useState(VisibleTab.Videos);
+	const [visibleTab, setVisibleTab] = useState(VisibleTab.Channels);
 
 	// load main menu items via graphql
 	const { loading, error, data } = useQuery(TOPIC_DETAIL_QUERY, {
@@ -50,7 +50,7 @@ function TopicDetail(props: any) {
 	return (
 		<>
 			<Helmet>
-				<title>Topic: {topic.title} | Sailing-Channels</title>
+				<title>Topic: {topic.title} | Sailing Channels</title>
 			</Helmet>
 
 			<nav className="breadcrumb" aria-label="breadcrumbs">
@@ -66,7 +66,7 @@ function TopicDetail(props: any) {
 
 			<Hero title={topic.title} subtitle={topic.description} />
 
-			<ChannelsVideosTabs visibleTab={visibleTab} setVisibleTab={setVisibleTab} />
+			{/*ChannelsVideosTabs visibleTab={visibleTab} setVisibleTab={setVisibleTab} />*/}
 
 			{results}
 		</>

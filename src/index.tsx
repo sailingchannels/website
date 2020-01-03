@@ -12,7 +12,11 @@ import "bulma/css/bulma.css";
 
 (async () => {
 	// graphql setup
-	const link = new BatchHttpLink({ uri: "http://localhost:5003/api/graphql", batchInterval: 250 });
+	const link = new BatchHttpLink({
+		uri: "http://localhost:5000/api/graphql",
+		batchInterval: 250,
+		credentials: "include"
+	});
 	const cache = new InMemoryCache();
 
 	// await before instantiating ApolloClient, else queries might run before the cache is persisted

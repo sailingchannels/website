@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { Switch, Route, HashRouter } from "react-router-dom";
 import useAxios, { configure } from "axios-hooks";
-import LRU from "lru-cache";
 import Axios from "axios";
-import Identity from "../../Identity";
+import IdentityServiceUrl from "../../IdentityServiceUrl";
 
 // pages
 import ChannelList from "../../pages/ChannelList";
@@ -22,17 +21,22 @@ import SignIn from "../../pages/SignIn";
 import NavMenuMobile from "../NavMenuMobile";
 import NavMenu from "../NavMenu";
 import GlobalContext, { GlobalActions } from "../../contexts/GlobalContext";
+import SuggestChannel from "../../pages/SuggestChannel";
 
 // configure axios hook
 const axios = Axios.create({ withCredentials: true });
-const cache = new LRU({ max: 10 });
-configure({ axios, cache });
+configure({ axios });
 
 export default function Layout() {
 	//#region Hooks
 
 	// fetch global subscription data
-	const [{ data, loading, error }, refetch] = useAxios<string[]>(`${Identity()}/api/me/subscriptions`);
+	const [{ data, loading, error }, refetch] = useAxios<string[]>(
+		`${IdentityServiceUrl()}/api/me/subscriptions`,
+		{
+			useCache: false
+		}
+	);
 
 	// hook to access the global context
 	const globalContext = useContext(GlobalContext.Context);
@@ -74,6 +78,7 @@ export default function Layout() {
 								<Route exact path="/imprint" component={Imprint} />
 								<Route exact path="/privacy" component={PrivacyPolicy} />
 								<Route exact path="/signin" component={SignIn} />
+								<Route exact path="/suggest" component={SuggestChannel} />
 							</Switch>
 						</div>
 					</div>

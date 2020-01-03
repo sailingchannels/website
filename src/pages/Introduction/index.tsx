@@ -6,7 +6,7 @@ function Introduction(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Introduction | Sailing-Channels</title>
+				<title>Introduction | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Introduction" subtitle="How does this page work?" />

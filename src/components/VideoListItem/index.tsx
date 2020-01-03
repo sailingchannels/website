@@ -52,7 +52,7 @@ function VideoListItem(props: VideoListItemProps) {
 						className="button is-light"
 						target="_blank"
 					>
-						<i className="fab fa-youtube subscribe-icon" /> Watch video
+						<i className="fab fa-youtube icon-spacer" /> Watch video
 					</a>
 				</div>
 			</div>

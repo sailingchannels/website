@@ -8,7 +8,7 @@ function SupportUs(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Support us | Sailing-Channels</title>
+				<title>Support us | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Support us" />

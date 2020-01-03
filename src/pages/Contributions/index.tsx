@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
 
@@ -6,7 +7,7 @@ function Contributions(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Contributions | Sailing-Channels</title>
+				<title>Contributions | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Contributions" />
@@ -41,13 +42,9 @@ function Contributions(props) {
 					<tr>
 						<td>Feature: Sort channels by total views</td>
 						<td>
-							<a
-								href="/channel/UCvLc83k5o11EIF1lEo0VmuQ"
-								title="Go to Delos channel"
-								target="_blank"
-							>
+							<Link to="/channel/UCvLc83k5o11EIF1lEo0VmuQ" title="Go to Delos channel">
 								Brian (SV Delos)
-							</a>
+							</Link>
 						</td>
 					</tr>
 					<tr>
@@ -69,44 +66,39 @@ function Contributions(props) {
 					<tr>
 						<td>Feature: Show vessel position that belongs to a channel on a map</td>
 						<td>
-							<a
-								href="/channel/UCpfax0gLoUZMqw-ROxX77Yw"
+							<Link
+								to="/channel/UCpfax0gLoUZMqw-ROxX77Yw"
 								title="Go to Drake Paragon's channel"
-								target="_blank"
 							>
 								Drake Paragon
-							</a>
+							</Link>
 						</td>
 					</tr>
 					<tr>
 						<td>Feature: Sort channels by currently popular channels, see what's trending.</td>
 						<td>
-							<a
-								href="/channel/UC6ZRBkwBQBrEOQQKwGi85gQ"
+							<Link
+								to="/channel/UC6ZRBkwBQBrEOQQKwGi85gQ"
 								title="Go to Kismet Adventure's channel"
-								target="_blank"
 							>
 								Kismet Adventures
-							</a>
+							</Link>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							Improvement: Implementing a subscriber threshold that channels have to reach in
-							order to be listed on the "trending" page.<br />
+							order to be listed on the "trending" page.
+							<br />
 							<i>
 								(Ed.: The threshold is now the median value of the subscriber distribution of
 								all listed channels.)
 							</i>
 						</td>
 						<td>
-							<a
-								href="/channel/UC8dsJQ_9CEwRmur_HFSXezA"
-								title="Go to The Corsair's channel"
-								target="_blank"
-							>
+							<Link to="/channel/UC8dsJQ_9CEwRmur_HFSXezA" title="Go to The Corsair's channel">
 								The Corsair
-							</a>
+							</Link>
 						</td>
 					</tr>
 					<tr>
@@ -115,25 +107,21 @@ function Contributions(props) {
 							to a broader variety of channels.
 						</td>
 						<td>
-							<a
-								href="/channel/UCu08YiFDAiIxl4xJDveTdJw"
-								title="Go to Mount Ocean's channel"
-								target="_blank"
-							>
+							<Link to="/channel/UCu08YiFDAiIxl4xJDveTdJw" title="Go to Mount Ocean's channel">
 								Mount Ocean
-							</a>
+							</Link>
 						</td>
 					</tr>
 					<tr>
 						<td>Feature: Group channel by their topic, e.g. "family", "couple", "diy"</td>
 						<td>
-							<a
-								href="/channel/UCNYlvlreZiRRHo_v5Nmrfow"
+							<Link
+								to="/channel/UCNYlvlreZiRRHo_v5Nmrfow"
 								title="Go to Sailing Zatara's channel"
-								target="_blank"
 							>
 								Sailing Zatara
-							</a>, David V.
+							</Link>
+							, David V.
 						</td>
 					</tr>
 				</tbody>

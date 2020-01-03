@@ -6,7 +6,7 @@ function Imprint(props) {
 	return (
 		<>
 			<Helmet>
-				<title>Imprint | Sailing-Channels</title>
+				<title>Imprint | Sailing Channels</title>
 			</Helmet>
 
 			<Hero title="Imprint" />

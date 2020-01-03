@@ -7,6 +7,7 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import { LANGUAGE_SETTING_KEY, DEFAULT_LANGUAGE } from "../../Constants";
 import { useLocalStorage } from "@rehooks/local-storage";
 import { Helmet } from "react-helmet";
+import { v4 as uuid } from "uuid";
 
 const capitalize = (s) => {
 	if (typeof s !== "string") return "";
@@ -25,12 +26,11 @@ export default function ChannelList(props: any) {
 	//#region Hooks
 
 	const [loadingMore, setLoadingMore] = useState<boolean>(false);
-
 	const [selectedLanguage] = useLocalStorage<string>(LANGUAGE_SETTING_KEY);
 
 	// load channels via graphql
 	const { loading, error, data, fetchMore, client } = useQuery<ChannelListResult>(CHANNELS_QUERY, {
-		fetchPolicy: "cache-first",
+		fetchPolicy: "network-only",
 		variables: {
 			sortBy: sortBy,
 			skip: 0,
@@ -57,13 +57,13 @@ export default function ChannelList(props: any) {
 			</section>
 
 			{data.channels.map((channel: Channel) => {
-				return <ChannelListItem key={channel.iD} channel={channel} client={client} />;
+				return <ChannelListItem key={uuid()} channel={channel} client={client} />;
 			})}
 
 			<nav className="level" style={{ marginTop: "25px" }}>
 				<div className="level-item has-text-centered">
 					<button
-						className={"button is-rounded " + (loadingMore ? "is-loading" : null)}
+						className={"button is-medium is-rounded " + (loadingMore ? "is-loading" : null)}
 						disabled={loadingMore}
 						onClick={() => {
 							setLoadingMore(true);
@@ -83,7 +83,7 @@ export default function ChannelList(props: any) {
 							});
 						}}
 					>
-						Load more channels
+						<i className="fas fa-arrow-circle-down icon-spacer"></i> Load more channels
 					</button>
 				</div>
 			</nav>
