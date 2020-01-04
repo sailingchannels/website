@@ -9,7 +9,7 @@ function CustomLinks(props: CustomLinksProps) {
 	if (props.links && props.links.length > 0) {
 		return (
 			<>
-				<h3>
+				<h3 className="top-spacer">
 					<strong>Links:</strong>
 				</h3>
 				<ul>

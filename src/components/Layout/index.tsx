@@ -120,7 +120,11 @@ export default function Layout() {
 							Privacy Policy
 						</Link>{" "}
 						&middot;{" "}
-						<a className="has-text-grey-light" href="https://github.com/sailingchannels">
+						<a
+							className="has-text-grey-light"
+							target="_blank"
+							href="https://github.com/sailingchannels"
+						>
 							<i className="fas fa-code" /> on GitHub
 						</a>
 					</p>
