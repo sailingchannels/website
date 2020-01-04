@@ -3,6 +3,7 @@ import { Switch, Route, HashRouter, Link } from "react-router-dom";
 import useAxios, { configure } from "axios-hooks";
 import Axios from "axios";
 import { IdentityService } from "../../ServiceUrls";
+import pckg from "../../../package.json";
 
 // pages
 import ChannelList from "../../pages/ChannelList";
@@ -122,6 +123,9 @@ export default function Layout() {
 						<a className="has-text-grey-light" href="https://github.com/sailingchannels">
 							<i className="fas fa-code" /> on GitHub
 						</a>
+					</p>
+					<p className="has-text-grey-light">
+						<small>v{pckg.version} &middot; made with ❤ in Germany</small>
 					</p>
 					<p>
 						<img width="80" className="greyscale" src={require("../../static/img/logo.svg")} />
