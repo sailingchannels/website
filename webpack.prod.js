@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const dev = process.env.NODE_ENV !== "production";
 
@@ -65,7 +66,13 @@ module.exports = require("./webpack.base")({
 		new MiniCssExtractPlugin({
 			filename: dev ? "[name].css" : "[name].[hash].css",
 			chunkFilename: dev ? "[id].css" : "[id].[hash].css"
-		})
+		}),
+
+		new CopyPlugin([
+			{ from: "src/manifest.json" },
+			{ from: "src/static/css/*", to: "./css/[name].[ext]", toType: "template" },
+			{ from: "src/static/img/*", to: "./img/[name].[ext]", toType: "template" }
+		])
 	],
 
 	performance: {

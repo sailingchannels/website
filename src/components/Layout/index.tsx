@@ -73,8 +73,6 @@ export default function Layout() {
 
 	//#endregion
 
-	const loggedIn: boolean = false;
-
 	return (
 		<HashRouter>
 			<NavMenuMobile />
