@@ -90,6 +90,10 @@ ul.is-inline li {
 	margin-top: 10px;
 }
 
+.channel-list-item-subscribe {
+	margin-top: 10px;
+}
+
 @media (max-width: 768px) {
 	.main-section {
 		padding-top: 0px !important;
@@ -97,5 +101,13 @@ ul.is-inline li {
 
 	.navbar-brand {
 		padding-left: 10px !important;
+	}
+
+	.channel-list-item-title {
+		font-size: 1.5em;
+	}
+
+	.channel-list-item-description {
+		margin-top: 10px;
 	}
 }

@@ -105,7 +105,7 @@ function SubscribeButton(props: SubscribeButtonProps) {
 			</button>
 		);
 	} else {
-		let subscribeClassName = "button is-danger";
+		let subscribeClassName = "button is-danger is-fullwidth";
 		if (loadingSubscribe) {
 			subscribeClassName += " is-loading";
 		}

@@ -16,32 +16,43 @@ export default function ChannelListItem(props: ChannelListItemProps) {
 
 	return (
 		<div className="columns list-columns">
-			<div className="column is-narrow">
-				<p className="image is-128x128">
-					<img className="is-rounded" src={channel.thumbnail} />
-				</p>
-			</div>
-			<div className="column">
-				<Link
-					to={`/channel/${channel.iD}`}
-					onMouseOver={() => {
-						if (props.client) {
-							props.client.query({
-								query: CHANNEL_DETAIL_QUERY,
-								variables: {
-									id: channel.iD
+			<div className="column is-three-quarters">
+				<div className="columns">
+					<div className="column is-narrow is-hidden-mobile">
+						<p className="image is-128x128">
+							<img className="is-rounded" src={channel.thumbnail} />
+						</p>
+					</div>
+					<div className="column">
+						<Link
+							className="channel-list-item-title"
+							to={`/channel/${channel.iD}`}
+							onMouseOver={() => {
+								if (props.client) {
+									props.client.query({
+										query: CHANNEL_DETAIL_QUERY,
+										variables: {
+											id: channel.iD
+										}
+									});
 								}
-							});
-						}
-					}}
-				>
-					<strong>{channel.title}</strong>
-				</Link>
-				<p className="has-text-justified">{channel.description}</p>
+							}}
+						>
+							<strong>{channel.title}</strong>
+						</Link>
+						<p className="has-text-justified channel-list-item-description">
+							<p className="image is-64x64 detail-image is-hidden-tablet">
+								<img src={channel.thumbnail} className="is-rounded" />
+							</p>
+							{channel.description}
+						</p>
+					</div>
+				</div>
 			</div>
-			<div className="column is-3">
+
+			<div className="column is-one-quarter">
 				<ChannelInfos channel={channel} />
-				<div style={{ marginTop: "10px" }}>
+				<div className="channel-list-item-subscribe">
 					<SubscribeButton channelId={channel.iD} />
 				</div>
 			</div>

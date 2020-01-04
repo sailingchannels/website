@@ -44,47 +44,45 @@ function ChannelDetail(props: any) {
 				subtitle={`${channel.videoCount} videos · ${channel.subscribers} subscribers`}
 			/>
 
-			<div className="container is-fluid channel-details">
-				<div className="columns">
-					<div className="column is-three-quarters">
-						<p className="image is-128x128 detail-image">
-							<img src={channel.thumbnail} className="is-rounded" />
-						</p>
-						<p className="has-text-justified">{channel.description}</p>
+			<div className="columns">
+				<div className="column is-three-quarters">
+					<p className="image is-128x128 detail-image">
+						<img src={channel.thumbnail} className="is-rounded" />
+					</p>
+					<p className="has-text-justified">{channel.description}</p>
 
-						<h3>
-							<strong>Latest video:</strong>
-						</h3>
+					<h3>
+						<strong>Latest video:</strong>
+					</h3>
 
-						<LatestVideo channelId={channel.iD} />
+					<LatestVideo channelId={channel.iD} />
 
-						<h3>
-							<strong>All videos:</strong>
-						</h3>
+					<h3>
+						<strong>All videos:</strong>
+					</h3>
 
-						<VideoList channelId={channel.iD} currentPage={props.match.params.currentPage} />
+					<VideoList channelId={channel.iD} currentPage={props.match.params.currentPage} />
+				</div>
+				<div className="column is-one-quarter">
+					<SubscriberHistoryChart channelId={channel.iD} />
+
+					<ChannelInfos channel={channel} />
+
+					<div className="subscribe-button">
+						<SubscribeButton channelId={channel.iD} />
 					</div>
-					<div className="column">
-						<SubscriberHistoryChart channelId={channel.iD} />
 
-						<ChannelInfos channel={channel} />
+					<p>
+						<a href={"https://youtube.com/channel/" + channel.iD} target="_blank">
+							<i className="fas fa-external-link-alt" /> Open YouTube channel
+						</a>
+					</p>
+					<p>
+						<FlagButton channelId={channel.iD}></FlagButton>
+					</p>
 
-						<div className="subscribe-button">
-							<SubscribeButton channelId={channel.iD} />
-						</div>
-
-						<p>
-							<a href={"https://youtube.com/channel/" + channel.iD} target="_blank">
-								<i className="fas fa-external-link-alt" /> Open YouTube channel
-							</a>
-						</p>
-						<p>
-							<FlagButton channelId={channel.iD}></FlagButton>
-						</p>
-
-						<CustomLinks links={channel.customLinks} />
-						<Tags tags={channel.keywords} />
-					</div>
+					<CustomLinks links={channel.customLinks} />
+					<Tags tags={channel.keywords} />
 				</div>
 			</div>
 		</>
