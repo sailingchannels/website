@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, Route, BrowserRouter, Link } from "react-router-dom";
+import { Switch, Route, HashRouter, Link } from "react-router-dom";
 import useAxios, { configure } from "axios-hooks";
 import Axios from "axios";
 import { IdentityService } from "../../ServiceUrls";
@@ -76,7 +76,7 @@ export default function Layout() {
 	const loggedIn: boolean = false;
 
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<NavMenuMobile />
 
 			<SignInModal />
@@ -130,6 +130,6 @@ export default function Layout() {
 					</p>
 				</div>
 			</footer>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
