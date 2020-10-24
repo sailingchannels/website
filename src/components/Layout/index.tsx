@@ -78,18 +78,6 @@ export default function Layout() {
 		<HashRouter>
 			<NavMenuMobile />
 
-			<article className="message is-warning">
-				<div className="message-body">
-					📣 As you may have noticed, the website has stopped updating weeks ago. This is due to
-					some unexpected behaviour of the YouTube data interface that has yet to be resolved. I've
-					been trying to get the page back up and running and am certain that we'll be back very
-					soon. Sparetime to devote to this project is scarce, but there is so much enthusiasm in
-					the online sailing community, it would be a shame to discontinue this project. Please be
-					patient and check back here every once in a while. In the meantime: don't forget to wash
-					your hands for 20 seconds at least and stay out of trouble! 😷 <p>- Thomas</p>
-				</div>
-			</article>
-
 			<SignInModal />
 
 			<UserMenu />
@@ -141,7 +129,7 @@ export default function Layout() {
 						</a>
 					</p>
 					<p className="has-text-grey-light">
-						<small>v{pckg.version} &middot; made with ❤ in Germany</small>
+						<small>v{pckg.version} &middot; made with ❤ in 🇩🇪 &amp; 🇸🇪</small>
 					</p>
 					<p>
 						<img width="80" className="greyscale" src={require("../../static/img/logo.svg")} />
