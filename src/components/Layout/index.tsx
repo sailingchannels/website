@@ -129,7 +129,7 @@ export default function Layout() {
 						</a>
 					</p>
 					<p className="has-text-grey-light">
-						<small>v{pckg.version} &middot; made with ❤ in 🇩🇪 &amp; 🇸🇪</small>
+						<small>v{pckg.version} &middot; made with ❤ in Germany &amp; Sweden</small>
 					</p>
 					<p>
 						<img width="80" className="greyscale" src={require("../../static/img/logo.svg")} />
