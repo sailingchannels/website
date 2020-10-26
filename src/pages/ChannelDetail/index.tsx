@@ -2,7 +2,6 @@ import React from "react";
 import Channel from "../../entities/Channel";
 import ChannelInfos from "../../components/ChannelInfos";
 import SubscribeButton from "../../components/SubscribeButton";
-import LatestVideo from "../../components/LatestVideo";
 import VideoList from "../../components/VideoList";
 import CustomLinks from "../../components/CustomLinks";
 import Tags from "../../components/Tags";
