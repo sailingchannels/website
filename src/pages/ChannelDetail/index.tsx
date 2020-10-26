@@ -52,12 +52,6 @@ function ChannelDetail(props: any) {
 					<p className="has-text-justified">{channel.description}</p>
 
 					<h3 className="top-spacer">
-						<strong>Latest video:</strong>
-					</h3>
-
-					<LatestVideo channelId={channel.iD} />
-
-					<h3 className="top-spacer">
 						<strong>All videos:</strong>
 					</h3>
 
