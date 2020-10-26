@@ -3,7 +3,6 @@ import Channel from "../../entities/Channel";
 import ChannelInfos from "../../components/ChannelInfos";
 import SubscribeButton from "../../components/SubscribeButton";
 import VideoList from "../../components/VideoList";
-import CustomLinks from "../../components/CustomLinks";
 import Tags from "../../components/Tags";
 import { useQuery } from "@apollo/react-hooks";
 import { CHANNEL_DETAIL_QUERY } from "./gql";
@@ -74,7 +73,6 @@ function ChannelDetail(props: any) {
 						<FlagButton channelId={channel.iD}></FlagButton>
 					</p>
 
-					<CustomLinks links={channel.customLinks} />
 					<Tags tags={channel.keywords} />
 				</div>
 			</div>
