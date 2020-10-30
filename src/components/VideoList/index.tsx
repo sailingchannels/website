@@ -71,7 +71,9 @@ function VideoList(props: VideoListProps) {
 										</li>
 									</ul>
 								</small>
-								<p className="has-text-justified">{video.description}</p>
+								<p className="has-text-justified">
+									{video.description.substring(0, Math.min(300, video.description.length))} […]
+								</p>
 							</div>
 						</div>
 					</div>
