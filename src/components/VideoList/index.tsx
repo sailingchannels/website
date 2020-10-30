@@ -45,8 +45,7 @@ function VideoList(props: VideoListProps) {
 								<br />
 								<small>
 									<ul
-										className="is-unstyled is-inline"
-										style={{ marginLeft: "0px!important" }}
+										className="is-unstyled is-inline channel-detail-stats"
 									>
 										<li>
 											<em>{moment.unix(video.publishedAt).format("ll")}</em>

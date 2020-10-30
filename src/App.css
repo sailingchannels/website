@@ -111,3 +111,7 @@ ul.is-inline li {
 		margin-top: 10px;
 	}
 }
+
+.channel-detail-stats {
+	margin-left: 0px !important;
+}
