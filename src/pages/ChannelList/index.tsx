@@ -66,7 +66,7 @@ export default function ChannelList(props: any) {
 			<nav className="level" style={{ marginTop: "25px" }}>
 				<div className="level-item has-text-centered">
 					<button
-						className={"button is-medium is-rounded " + (loadingMore ? "is-loading" : null)}
+						className={"button is-rounded " + (loadingMore ? "is-loading" : null)}
 						disabled={loadingMore}
 						onClick={() => {
 							setLoadingMore(true);
