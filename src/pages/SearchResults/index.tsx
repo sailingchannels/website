@@ -12,9 +12,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
 
 function SearchResults(props: any) {
-	//#region Hooks
-
-	const [visibleTab, setVisibleTab] = useState(VisibleTab.Videos);
+	const [visibleTab, setVisibleTab] = useState(VisibleTab.Channels);
 
 	// load main menu items via graphql
 	const { loading, error, data } = useQuery(SEARCH_RESULTS_QUERY, {
@@ -25,8 +23,6 @@ function SearchResults(props: any) {
 	});
 
 	if (loading || !data) return <LoadingIndicator />;
-
-	//#endregion
 
 	let results = null;
 

@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
 import FlagButton from "../../components/FlagButton";
 import SubscriberHistoryChart from "../../components/SubscriberHistoryChart";
+import UploadPrediction from "../../components/UploadPrediction";
 
 function ChannelDetail(props: any) {
 	//#region Hooks
@@ -44,11 +45,12 @@ function ChannelDetail(props: any) {
 
 			<div className="columns">
 				<div className="column is-three-quarters">
-					<p className="image is-128x128 detail-image">
-						<img src={channel.thumbnail} className="is-rounded" />
-					</p>
-					<p className="has-text-justified">{channel.description}</p>
-
+					<div>
+						<p className="image is-128x128 detail-image">
+							<img src={channel.thumbnail} className="is-rounded" />
+						</p>
+						<p className="has-text-justified">{channel.description}</p>
+					</div>
 					<h3 className="top-spacer">
 						<strong>All videos:</strong>
 					</h3>
@@ -59,6 +61,8 @@ function ChannelDetail(props: any) {
 					<SubscriberHistoryChart channelId={channel.iD} />
 
 					<ChannelInfos channel={channel} />
+
+					<UploadPrediction channelId={channel.iD} />
 
 					<div className="subscribe-button">
 						<SubscribeButton channelId={channel.iD} />

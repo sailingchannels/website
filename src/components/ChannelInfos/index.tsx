@@ -12,7 +12,7 @@ function ChannelInfos(props: ChannelInfosProps) {
 	const intl = new Intl.NumberFormat();
 
 	return (
-		<>
+		<div className="bottom-spacer">
 			<p>
 				<b>Subscribers:</b> {intl.format(channel.subscribers)}
 			</p>
@@ -28,7 +28,7 @@ function ChannelInfos(props: ChannelInfosProps) {
 			<p>
 				<b>Founded:</b> {moment.unix(channel.publishedAt).format("ll")}
 			</p>
-		</>
+		</div>
 	);
 }
 

@@ -44,12 +44,6 @@
 		"react-router-dom": "5.1.2",
 		"uuid": "^3.3.3"
 	},
-	"prettier": {
-		"printWidth": 110,
-		"useTabs": true,
-		"tabWidth": 4,
-		"arrowParens": "always"
-	},
 	"devDependencies": {
 		"@types/react": "16.9.5",
 		"@types/react-chartjs-2": "^2.5.7",
