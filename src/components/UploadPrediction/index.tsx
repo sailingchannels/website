@@ -3,6 +3,8 @@ import { UPLOAD_PREDICTION_QUERY } from "./gql";
 import { useQuery } from "@apollo/react-hooks";
 import moment from "moment";
 
+const MIN_GRADIENT: number = 0.5;
+
 interface UploadPredictionProp {
 	channelId: string;
 }
@@ -68,7 +70,8 @@ function UploadPrediction(props: UploadPredictionProp) {
 		fetchPolicy: "cache-and-network",
 		variables: {
 			channelId: props.channelId,
-			filterBelowAverage: true
+			filterBelowAverage: true,
+			minGradient: MIN_GRADIENT
 		}
 	});
 
