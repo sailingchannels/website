@@ -15,7 +15,7 @@ import "bulma/css/bulma.css";
 	// graphql setup
 	const link = new BatchHttpLink({
 		uri: `${DataService()}/api/graphql`,
-		batchInterval: 250,
+		batchInterval: 500,
 		credentials: "include"
 	});
 	const cache = new InMemoryCache();
