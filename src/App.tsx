@@ -4,9 +4,6 @@ import GlobalContext from "./contexts/GlobalContext";
 
 import "./App.css";
 
-/**
- * The main application view
- */
 export default function App() {
 	return (
 		<GlobalContext.ContextProvider>

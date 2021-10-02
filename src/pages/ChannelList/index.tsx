@@ -29,7 +29,7 @@ export default function ChannelList(props: any) {
 	const [selectedLanguage] = useLocalStorage<string>(LANGUAGE_SETTING_KEY);
 
 	const { loading, error, data, fetchMore, client } = useQuery<ChannelListResult>(CHANNELS_QUERY, {
-		fetchPolicy: "cache-and-network",
+		fetchPolicy: "network-only",
 		variables: {
 			sortBy: sortBy,
 			skip: 0,
