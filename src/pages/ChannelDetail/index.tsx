@@ -43,15 +43,13 @@ function ChannelDetail(props: any) {
 
 			<div className="columns">
 				<div className="column is-three-quarters">
-					<div>
+					<div style={{ marginBottom: "25px" }}>
 						<p className="image is-128x128 detail-image">
 							<img src={channel.thumbnail} className="is-rounded" />
 						</p>
 						<p className="has-text-justified">{channel.description}</p>
 					</div>
-					<h3 className="top-spacer">
-						<strong>All videos:</strong>
-					</h3>
+					<hr />
 
 					<VideoList channelId={channel.iD} currentPage={props.match.params.currentPage} />
 				</div>
