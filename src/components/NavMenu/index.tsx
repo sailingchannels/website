@@ -54,6 +54,11 @@ export default function NavMenu() {
 											to={item.href}
 											activeClassName="is-active"
 										>
+											{item.icon ? (
+												<>
+													<i className={item.icon + " menu-icon"} />
+												</>
+											) : null}
 											{item.title}
 										</NavLink>
 									</li>

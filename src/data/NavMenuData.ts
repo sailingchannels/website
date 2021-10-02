@@ -5,24 +5,34 @@ var channelSection: MainMenuSection = {
 	items: [
 		{
 			title: "Subscribers",
-			href: "/by-subscribers"
+			href: "/by-subscribers",
+			icon: "fas fa-users"
 		},
 		{
 			title: "Views",
-			href: "/by-views"
+			href: "/by-views",
+			icon: "fas fa-eye"
 		},
 		{
 			title: "Last Upload",
 			href: "/by-upload",
-			isDefault: true
+			isDefault: true,
+			icon: "fas fa-cloud-upload-alt"
 		},
 		{
 			title: "Founded",
-			href: "/by-founded"
+			href: "/by-founded",
+			icon: "fas fa-plus-circle"
 		},
 		{
 			title: "Trending",
-			href: "/by-trending"
+			href: "/by-trending",
+			icon: "fas fa-chart-line"
+		},
+		{
+			title: "Topics",
+			href: "/topics",
+			icon: "fas fa-tags"
 		}
 	]
 };
@@ -30,10 +40,6 @@ var channelSection: MainMenuSection = {
 var menuSection: MainMenuSection = {
 	title: "Menu",
 	items: [
-		{
-			title: "Explore by topics",
-			href: "/topics"
-		},
 		{
 			title: "Introduction",
 			href: "/how-it-works"
