@@ -1,6 +1,7 @@
 import React from "react";
 import Video from "../../entities/Video";
 import { Link } from "react-router-dom";
+import { format } from "d3-format";
 
 interface VideoListItemProps {
 	video: Video;
@@ -29,18 +30,18 @@ function VideoListItem(props: VideoListItemProps) {
 					<b>Channel:</b> <Link to={`/channel/${video.iD}`}>{video.channel.title}</Link>
 				</p>
 				<p>
-					<b>Views:</b> {video.views}
+					<b>Views:</b> {format(".2s")(video.views)}
 				</p>
 				<p>
 					<b>Likes:</b>
 					<span className="icon is-small">
 						<i className="fas fa-thumbs-up" />
 					</span>{" "}
-					{video.likes}
+					{format(".2s")(video.likes)}
 					<span style={{ marginLeft: "10px" }} className="icon is-small">
 						<i className="fas fa-thumbs-down" />
 					</span>{" "}
-					{video.dislikes}
+					{format(".2s")(video.dislikes)}
 				</p>
 				<p>
 					<b>Uploaded:</b> {video.publishedAt}

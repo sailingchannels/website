@@ -33,6 +33,7 @@
 		"axios": "^0.19.0",
 		"axios-hooks": "^1.9.0",
 		"chart.js": "^2.9.4",
+		"d3-format": "^3.0.1",
 		"graphql": "14.5.8",
 		"graphql-tag": "2.10.1",
 		"moment": "^2.24.0",
@@ -46,6 +47,7 @@
 		"uuid": "^3.3.3"
 	},
 	"devDependencies": {
+		"@types/d3-format": "^3.0.1",
 		"@types/react": "16.9.5",
 		"@types/react-chartjs-2": "^2.5.7",
 		"@types/react-dom": "16.8.4",

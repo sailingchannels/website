@@ -7,6 +7,7 @@ import Paging from "../Paging";
 import moment from "moment";
 import { VIDEOS_PER_PAGE } from "../../Constants";
 import DescriptionText from "../DescriptionText";
+import { format } from "d3-format";
 
 interface VideoListProps {
 	channelId: string;
@@ -53,19 +54,19 @@ function VideoList(props: VideoListProps) {
 											<span className="icon is-small">
 												<i className="far fa-eye" />
 											</span>{" "}
-											{video.views}
+											{format(".2s")(video.views)}
 										</li>
 										<li>
 											<span className="icon is-small">
 												<i className="fas fa-thumbs-up" />
 											</span>{" "}
-											{video.likes}
+											{format(".2s")(video.likes)}
 										</li>
 										<li>
 											<span className="icon is-small">
 												<i className="fas fa-thumbs-down" />
 											</span>{" "}
-											{video.dislikes}
+											{format(".2s")(video.dislikes)}
 										</li>
 									</ul>
 								</small>

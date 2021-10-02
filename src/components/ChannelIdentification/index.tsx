@@ -55,13 +55,11 @@ function ChannelIdentificationResult(props) {
 
 				case ChannelIdentificationStatus.AlreadySuggested:
 					result = (
-						<>
-							<p className="is-centered top-spacer">
-								Thanks! Somebody already suggested this channel.
-								<br />
-								It is currently under review and might be added to the list very soon!
-							</p>
-						</>
+						<p className="is-centered top-spacer">
+							Thanks! Somebody already suggested this channel.
+							<br />
+							It is currently under review and might be added to the list very soon!
+						</p>
 					);
 					break;
 

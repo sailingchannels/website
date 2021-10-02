@@ -1,6 +1,7 @@
 import React from "react";
 import Channel from "../../entities/Channel";
 import moment from "moment";
+import { format } from "d3-format";
 
 interface ChannelInfosProps {
 	channel: Channel;
@@ -9,21 +10,20 @@ interface ChannelInfosProps {
 function ChannelInfos(props: ChannelInfosProps) {
 	const { channel } = props;
 
-	const intl = new Intl.NumberFormat();
-
 	return (
 		<div className="bottom-spacer">
 			<p>
-				<b>Subscribers:</b> {intl.format(channel.subscribers)}
+				<b>Subscribers:</b> {format(".2s")(channel.subscribers)}
 			</p>
 			<p>
-				<b>Views:</b> {intl.format(channel.views)}
+				<b>Views:</b> {format(".2s")(channel.views)}
 			</p>
 			<p>
-				<b>Videos:</b> {intl.format(channel.videoCount)}
+				<b>Videos:</b> {format(".2s")(channel.videoCount)}
 			</p>
 			<p>
-				<b>Last upload:</b> {moment.unix(channel.lastUploadAt).fromNow()}
+				<b>Last upload:</b>{" "}
+				{channel.lastUploadAt > 0 ? moment.unix(channel.lastUploadAt).fromNow() : "never"}
 			</p>
 			<p>
 				<b>Founded:</b> {moment.unix(channel.publishedAt).format("ll")}
