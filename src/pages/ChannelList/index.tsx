@@ -56,7 +56,7 @@ export default function ChannelList(props: any) {
 			</section>
 
 			{data.channels.map((channel: Channel) => {
-				return <ChannelListItem key={uuid()} channel={channel} client={client} />;
+				return <ChannelListItem key={uuid()} channel={channel} client={client} sortBy={sortByRaw} />;
 			})}
 
 			<nav className="level" style={{ marginTop: "25px" }}>

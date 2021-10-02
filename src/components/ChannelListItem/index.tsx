@@ -9,10 +9,11 @@ import { CHANNEL_DETAIL_QUERY } from "../../pages/ChannelDetail/gql";
 interface ChannelListItemProps {
 	channel: Channel;
 	client?: ApolloClient<any>;
+	sortBy?: string;
 }
 
 export default function ChannelListItem(props: ChannelListItemProps) {
-	const { channel } = props;
+	const { channel, sortBy } = props;
 
 	return (
 		<div className="columns list-columns">
@@ -51,7 +52,7 @@ export default function ChannelListItem(props: ChannelListItemProps) {
 			</div>
 
 			<div className="column is-one-quarter">
-				<ChannelInfos channel={channel} />
+				<ChannelInfos channel={channel} highlightInfo={sortBy} />
 				<div className="channel-list-item-subscribe">
 					<SubscribeButton channelId={channel.iD} />
 				</div>

@@ -5,29 +5,41 @@ import { formatSI } from "../../Common";
 
 interface ChannelInfosProps {
 	channel: Channel;
+	highlightInfo?: string;
 }
 
 function ChannelInfos(props: ChannelInfosProps) {
 	const { channel } = props;
 
+	const hightlightable = (infoName: string, title: string, value: number | string): JSX.Element => {
+		const info = (
+			<>
+				<b>{title}:</b> {value}
+			</>
+		);
+
+		if (infoName == props.highlightInfo) {
+			return <mark>{info}</mark>;
+		}
+
+		return info;
+	};
+
 	return (
 		<div className="bottom-spacer">
-			<p>
-				<b>Subscribers:</b> {formatSI(channel.subscribers)}
-			</p>
-			<p>
-				<b>Views:</b> {formatSI(channel.views)}
-			</p>
+			<p>{hightlightable("subscribers", "Subscribers", formatSI(channel.subscribers))}</p>
+			<p>{hightlightable("views", "Views", formatSI(channel.views))}</p>
 			<p>
 				<b>Videos:</b> {formatSI(channel.videoCount)}
 			</p>
 			<p>
-				<b>Last upload:</b>{" "}
-				{channel.lastUploadAt > 0 ? moment.unix(channel.lastUploadAt).fromNow() : "never"}
+				{hightlightable(
+					"upload",
+					"Last upload",
+					channel.lastUploadAt > 0 ? moment.unix(channel.lastUploadAt).fromNow() : "never"
+				)}
 			</p>
-			<p>
-				<b>Founded:</b> {moment.unix(channel.publishedAt).format("ll")}
-			</p>
+			<p>{hightlightable("founded", "Founded", moment.unix(channel.publishedAt).format("ll"))}</p>
 		</div>
 	);
 }
