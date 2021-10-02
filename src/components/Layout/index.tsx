@@ -24,6 +24,7 @@ import GlobalContext, { GlobalActions } from "../../contexts/GlobalContext";
 import SuggestChannel from "../../pages/SuggestChannel";
 import UserMenu from "../UserMenu";
 import SignInModal from "../SignInModal";
+import ScrollToTop from "../ScrollToTop";
 
 const axios = Axios.create({ withCredentials: true });
 configure({ axios });
@@ -68,12 +69,10 @@ export default function Layout() {
 
 	return (
 		<HashRouter>
+			<ScrollToTop />
 			<NavMenuMobile />
-
 			<SignInModal />
-
 			<UserMenu />
-
 			<section className="section main-section">
 				<div className="container">
 					<div className="columns">
@@ -100,7 +99,6 @@ export default function Layout() {
 					</div>
 				</div>
 			</section>
-
 			<footer className="footer">
 				<div className="content has-text-centered">
 					<p>
