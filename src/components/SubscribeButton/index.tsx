@@ -3,6 +3,7 @@ import GlobalContext, { GlobalActions } from "../../contexts/GlobalContext";
 import { IdentityService } from "../../ServiceUrls";
 import useAxios from "axios-hooks";
 import { setSignInOpen } from "../../Common";
+import classNames from "classnames";
 
 interface SubscribeButtonProps {
 	channelId: string;
@@ -81,10 +82,11 @@ function SubscribeButton(props: SubscribeButtonProps) {
 	const isSubscribedTo = globalContext.state.subscriptions.indexOf(props.channelId) >= 0;
 
 	if (isSubscribedTo) {
-		let unsubscribeClassName = "button is-light";
-		if (loadingUnsubscribe) {
-			unsubscribeClassName += " is-loading";
-		}
+		let unsubscribeClassName = classNames({
+			button: true,
+			"is-light": true,
+			"is-loading": loadingUnsubscribe
+		});
 
 		return (
 			<button
@@ -98,10 +100,12 @@ function SubscribeButton(props: SubscribeButtonProps) {
 			</button>
 		);
 	} else {
-		let subscribeClassName = "button is-danger is-fullwidth";
-		if (loadingSubscribe) {
-			subscribeClassName += " is-loading";
-		}
+		let subscribeClassName = classNames({
+			button: true,
+			"is-danger": true,
+			"is-fullwidth": true,
+			"is-loading": loadingSubscribe
+		});
 
 		return (
 			<button

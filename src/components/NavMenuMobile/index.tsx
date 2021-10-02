@@ -5,6 +5,7 @@ import MainMenuSection from "../../entities/MainMenuSection";
 import MainMenuItem from "../../entities/MainMenuItem";
 import GlobalContext from "../../contexts/GlobalContext";
 import { logout, setSignInOpen } from "../../Common";
+import classNames from "classnames";
 
 export default function NavMenuMobile() {
 	const [open, setOpen] = useState(false);
@@ -24,12 +25,10 @@ export default function NavMenuMobile() {
 									{section.items.map((item: MainMenuItem) => {
 										return (
 											<NavLink
-												className={
-													"navbar-item " +
-													(item.isDefault && location.pathname === "/"
-														? "is-active"
-														: null)
-												}
+												className={classNames({
+													"navbar-item": true,
+													"is-active": item.isDefault && location.pathname === "/"
+												})}
 												key={item.href}
 												activeClassName="is-active"
 												to={item.href}

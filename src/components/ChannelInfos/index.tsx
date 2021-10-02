@@ -26,7 +26,7 @@ function ChannelInfos(props: ChannelInfosProps) {
 	};
 
 	return (
-		<div className="bottom-spacer">
+		<div>
 			<p>{hightlightable("subscribers", "Subscribers", formatSI(channel.subscribers))}</p>
 			<p>{hightlightable("views", "Views", formatSI(channel.views))}</p>
 			<p>

@@ -47,16 +47,14 @@ export default function NavMenu() {
 									<li key={item.href}>
 										<NavLink
 											className={
-												item.isDefault && location.pathname === "/"
-													? "is-active"
-													: null
+												item.isDefault && location.pathname === "/" ? "is-active" : ""
 											}
 											to={item.href}
 											activeClassName="is-active"
 										>
 											{item.icon ? (
 												<>
-													<i className={item.icon + " menu-icon"} />
+													<i className={item.icon + " fa-fw menu-icon"} />
 												</>
 											) : null}
 											{item.title}

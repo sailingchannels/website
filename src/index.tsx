@@ -10,6 +10,7 @@ import { persistCache } from "apollo-cache-persist";
 import { DataService } from "./ServiceUrls";
 
 import "bulma/css/bulma.css";
+import "animate.css";
 
 (async () => {
 	// graphql setup

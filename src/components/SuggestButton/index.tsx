@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { SUGGEST_CHANNEL_MUTATION } from "./gql";
+import classNames from "classnames";
 
 interface SuggestButtonProps {
 	channelId: string;
@@ -24,7 +25,14 @@ function SuggestButton(props: SuggestButtonProps) {
 				setSuggested(true);
 			}}
 		>
-			<i className={"fas icon-spacer " + (suggested ? "fa-check" : "fa-plus")}></i>{" "}
+			<i
+				className={classNames({
+					fas: true,
+					"icon-spacer": true,
+					"fa-check": suggested,
+					"fa-plus": !suggested
+				})}
+			></i>{" "}
 			{suggested ? "Thanks!" : "Suggest"}
 		</button>
 	);

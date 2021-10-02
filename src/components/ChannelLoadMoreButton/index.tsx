@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
+import classnames from "classnames";
 
 interface ChannelLoadMoreButtonProps {
 	isLoading: boolean;
@@ -7,19 +8,36 @@ interface ChannelLoadMoreButtonProps {
 }
 
 export default function ChannelLoadMoreButton(props: ChannelLoadMoreButtonProps) {
+	const { isLoading, loadingAction } = props;
+	const [bounce, setBounce] = useState(false);
+
 	const onChange = (isVisible: boolean) => {
 		if (isVisible && !props.isLoading) {
-			props.loadingAction();
+			setTimeout(() => {
+				props.loadingAction();
+			}, 700);
+
+			setBounce(true);
 		}
 	};
 
+	useEffect(() => {
+		if (isLoading === false) {
+			setBounce(false);
+		}
+	}, [isLoading]);
+
+	const buttonClass = classnames({
+		button: true,
+		"is-medium": true,
+		"is-rounded": true,
+		"is-loading": isLoading,
+		"animate__animated animate__rubberBand": bounce
+	});
+
 	return (
 		<VisibilitySensor onChange={onChange}>
-			<button
-				className={"button is-rounded " + (props.isLoading ? "is-loading" : null)}
-				disabled={props.isLoading}
-				onClick={props.loadingAction}
-			>
+			<button className={buttonClass} disabled={isLoading} onClick={loadingAction}>
 				<i className="fas fa-arrow-circle-down icon-spacer"></i> Load more channels
 			</button>
 		</VisibilitySensor>

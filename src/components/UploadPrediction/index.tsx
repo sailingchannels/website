@@ -65,9 +65,8 @@ function ConvertWeekdayHourToLocal(prediction: PublishPrediction): Weekstamp {
 }
 
 function UploadPrediction(props: UploadPredictionProp) {
-	// load main menu items via graphql
 	const { loading, error, data } = useQuery<PublishPredictionResult>(UPLOAD_PREDICTION_QUERY, {
-		fetchPolicy: "cache-and-network",
+		fetchPolicy: "cache-first",
 		variables: {
 			channelId: props.channelId,
 			filterBelowAverage: true,
@@ -81,16 +80,14 @@ function UploadPrediction(props: UploadPredictionProp) {
 	if (noPredictionAvailable) return null;
 
 	const prediction: PublishPrediction = data.channelPublishPrediction[0];
-	console.log(prediction);
 
 	const weekstamp = ConvertWeekdayHourToLocal(prediction);
-	console.log(weekstamp);
 
 	return (
-		<p>
+		<div className="top-spacer">
 			<i className="far fa-calendar-alt icon-spacer text-success" /> <b>Usually uploads:</b> <br />
 			{weekstamp.weekday} {weekstamp.timeOfDay.toLowerCase()}, around {weekstamp.hourOfTheDay}
-		</p>
+		</div>
 	);
 }
 
