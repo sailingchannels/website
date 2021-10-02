@@ -8,6 +8,7 @@ import { LANGUAGE_SETTING_KEY, DEFAULT_LANGUAGE } from "../../Constants";
 import { useLocalStorage } from "@rehooks/local-storage";
 import { Helmet } from "react-helmet";
 import { v4 as uuid } from "uuid";
+import ChannelLoadMoreButton from "../../components/ChannelLoadMoreButton";
 
 const capitalize = (s) => {
 	if (typeof s !== "string") return "";
@@ -65,10 +66,9 @@ export default function ChannelList(props: any) {
 
 			<nav className="level" style={{ marginTop: "25px" }}>
 				<div className="level-item has-text-centered">
-					<button
-						className={"button is-rounded " + (loadingMore ? "is-loading" : null)}
-						disabled={loadingMore}
-						onClick={() => {
+					<ChannelLoadMoreButton
+						isLoading={loadingMore}
+						loadingAction={() => {
 							setLoadingMore(true);
 							fetchMore({
 								variables: {
@@ -85,9 +85,7 @@ export default function ChannelList(props: any) {
 								}
 							});
 						}}
-					>
-						<i className="fas fa-arrow-circle-down icon-spacer"></i> Load more channels
-					</button>
+					></ChannelLoadMoreButton>
 				</div>
 			</nav>
 		</>
