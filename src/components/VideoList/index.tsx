@@ -5,9 +5,9 @@ import Video from "../../entities/Video";
 import LoadingIndicator from "../LoadingIndicator";
 import Paging from "../Paging";
 import moment from "moment";
-import { VIDEOS_PER_PAGE } from "../../Constants";
+import { SI_FORMAT, VIDEOS_PER_PAGE } from "../../Constants";
 import DescriptionText from "../DescriptionText";
-import { format } from "d3-format";
+import { formatSI } from "../../Common";
 
 interface VideoListProps {
 	channelId: string;
@@ -54,19 +54,19 @@ function VideoList(props: VideoListProps) {
 											<span className="icon is-small">
 												<i className="far fa-eye" />
 											</span>{" "}
-											{format(".2s")(video.views)}
+											{formatSI(video.views)}
 										</li>
 										<li>
 											<span className="icon is-small">
 												<i className="fas fa-thumbs-up" />
 											</span>{" "}
-											{format(".2s")(video.likes)}
+											{formatSI(video.likes)}
 										</li>
 										<li>
 											<span className="icon is-small">
 												<i className="fas fa-thumbs-down" />
 											</span>{" "}
-											{format(".2s")(video.dislikes)}
+											{formatSI(video.dislikes)}
 										</li>
 									</ul>
 								</small>

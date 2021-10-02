@@ -12,7 +12,7 @@ import Hero from "../../components/Hero";
 import FlagButton from "../../components/FlagButton";
 import SubscriberHistoryChart from "../../components/SubscriberHistoryChart";
 import UploadPrediction from "../../components/UploadPrediction";
-import { format } from "d3-format";
+import { formatSI } from "../../Common";
 
 function ChannelDetail(props: any) {
 	const { loading, error, data } = useQuery(CHANNEL_DETAIL_QUERY, {
@@ -36,7 +36,7 @@ function ChannelDetail(props: any) {
 
 			<Hero
 				title={channel.title}
-				subtitle={`${format(".2s")(channel.videoCount)} videos · ${format(".2s")(
+				subtitle={`${formatSI(channel.videoCount)} videos · ${formatSI(
 					channel.subscribers
 				)} subscribers`}
 			/>

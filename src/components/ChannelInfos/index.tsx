@@ -1,7 +1,7 @@
 import React from "react";
 import Channel from "../../entities/Channel";
 import moment from "moment";
-import { format } from "d3-format";
+import { formatSI } from "../../Common";
 
 interface ChannelInfosProps {
 	channel: Channel;
@@ -13,13 +13,13 @@ function ChannelInfos(props: ChannelInfosProps) {
 	return (
 		<div className="bottom-spacer">
 			<p>
-				<b>Subscribers:</b> {format(".2s")(channel.subscribers)}
+				<b>Subscribers:</b> {formatSI(channel.subscribers)}
 			</p>
 			<p>
-				<b>Views:</b> {format(".2s")(channel.views)}
+				<b>Views:</b> {formatSI(channel.views)}
 			</p>
 			<p>
-				<b>Videos:</b> {format(".2s")(channel.videoCount)}
+				<b>Videos:</b> {formatSI(channel.videoCount)}
 			</p>
 			<p>
 				<b>Last upload:</b>{" "}
