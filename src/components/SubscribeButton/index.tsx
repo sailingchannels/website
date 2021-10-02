@@ -14,26 +14,22 @@ interface SubscriptionResponse {
 }
 
 function SubscribeButton(props: SubscribeButtonProps) {
-	//#region Hooks
-
 	const globalContext = useContext(GlobalContext.Context);
 
-	// hook to send POST request to SUBSCRIBE to a channel
-	const [{ data: dataSubscribe, loading: loadingSubscribe }, executeSubscribe] = useAxios<
-		SubscriptionResponse
-	>(
-		{
-			url: `${IdentityService()}/api/channel/subscribe`,
-			method: "POST",
-			data: {
-				channel: props.channelId
+	const [{ data: dataSubscribe, loading: loadingSubscribe }, executeSubscribe] =
+		useAxios<SubscriptionResponse>(
+			{
+				url: `${IdentityService()}/api/channel/subscribe`,
+				method: "POST",
+				data: {
+					channel: props.channelId
+				}
+			},
+			{
+				manual: true,
+				useCache: false
 			}
-		},
-		{
-			manual: true,
-			useCache: false
-		}
-	);
+		);
 
 	useEffect(() => {
 		// we successfully unsubscribed
@@ -51,21 +47,20 @@ function SubscribeButton(props: SubscribeButtonProps) {
 	}, [dataSubscribe]);
 
 	// hook to send POST request to UNSUBSCRIBE from a channel
-	const [{ data: dataUnsubscribe, loading: loadingUnsubscribe }, executeUnsubscribe] = useAxios<
-		SubscriptionResponse
-	>(
-		{
-			url: `${IdentityService()}/api/channel/unsubscribe`,
-			method: "POST",
-			data: {
-				channel: props.channelId
+	const [{ data: dataUnsubscribe, loading: loadingUnsubscribe }, executeUnsubscribe] =
+		useAxios<SubscriptionResponse>(
+			{
+				url: `${IdentityService()}/api/channel/unsubscribe`,
+				method: "POST",
+				data: {
+					channel: props.channelId
+				}
+			},
+			{
+				manual: true,
+				useCache: false
 			}
-		},
-		{
-			manual: true,
-			useCache: false
-		}
-	);
+		);
 
 	useEffect(() => {
 		// we successfully unsubscribed
@@ -82,8 +77,6 @@ function SubscribeButton(props: SubscribeButtonProps) {
 			});
 		}
 	}, [dataUnsubscribe]);
-
-	//#endregion
 
 	const isSubscribedTo = globalContext.state.subscriptions.indexOf(props.channelId) >= 0;
 

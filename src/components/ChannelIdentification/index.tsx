@@ -12,8 +12,6 @@ interface IdentifyChannelsQueryResult {
 }
 
 function ChannelIdentificationResult(props) {
-	//#region Hooks
-
 	const [getIdentified, { loading, error, data }] = useLazyQuery<IdentifyChannelsQueryResult>(
 		IDENTIFY_CHANNELS_QUERY,
 		{
@@ -21,14 +19,6 @@ function ChannelIdentificationResult(props) {
 		}
 	);
 
-	//#endregion
-
-	//#region Functions
-
-	/**
-	 * Triggered whenever a identify input keyup event happens
-	 * @param e KeyUp event
-	 */
 	function identifyKeyUp(e) {
 		getIdentified({
 			variables: {
@@ -36,8 +26,6 @@ function ChannelIdentificationResult(props) {
 			}
 		});
 	}
-
-	//#endregion
 
 	let result = null;
 

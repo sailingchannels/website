@@ -11,8 +11,6 @@ import { TOPIC_DETAIL_QUERY } from "../TopicDetail/gql";
 import { Helmet } from "react-helmet";
 
 function Topics(props) {
-	//#region Hooks
-
 	const [selectedLanguage] = useLocalStorage<string>(LANGUAGE_SETTING_KEY);
 
 	// load main menu items via graphql
@@ -23,23 +21,12 @@ function Topics(props) {
 		}
 	});
 
-	//#endregion
-
-	//#region Functions
-
-	/**
-	 * Chunk an array [,,,,] into n-tuple arrays, e.g. [[,,],[,,]]
-	 * @param {Array} a The array to chunk
-	 * @param {Number} n Amount of chunks
-	 */
 	function chunk(a: any[], n: number) {
 		if (!a.length) {
 			return [];
 		}
 		return [a.slice(0, n)].concat(chunk(a.slice(n), n));
 	}
-
-	//#endregion
 
 	if (loading || !data) return <LoadingIndicator />;
 

@@ -7,12 +7,8 @@ interface SuggestButtonProps {
 }
 
 function SuggestButton(props: SuggestButtonProps) {
-	//#region Hooks
-
 	const [suggested, setSuggested] = useState<boolean>(false);
 	const [suggestChannel] = useMutation<boolean>(SUGGEST_CHANNEL_MUTATION);
-
-	//#endregion
 
 	return (
 		<button

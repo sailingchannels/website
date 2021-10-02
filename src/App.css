@@ -99,6 +99,11 @@ ul.is-inline li {
 		padding-top: 0px !important;
 	}
 
+	.navbar {
+		background-color: #fafafa !important;
+		box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+	}
+
 	.navbar-brand {
 		padding-left: 10px !important;
 	}

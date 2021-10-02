@@ -25,25 +25,19 @@ import SuggestChannel from "../../pages/SuggestChannel";
 import UserMenu from "../UserMenu";
 import SignInModal from "../SignInModal";
 
-// configure axios hook
 const axios = Axios.create({ withCredentials: true });
 configure({ axios });
 
 export default function Layout() {
-	//#region Hooks
-
-	// fetch global subscription data
 	const [{ data, loading, error }] = useAxios<string[]>(`${IdentityService()}/api/me/subscriptions`, {
 		useCache: false
 	});
 
-	// hook to access the global context
 	const globalContext = useContext(GlobalContext.Context);
 
 	useEffect(() => {
 		// subscription data is successfully loaded
 		if (!loading && data && !error && globalContext.state.subscriptions.length === 0) {
-			// store in global context
 			globalContext.dispatch({
 				...globalContext.state,
 				type: GlobalActions.SET_SUBSCRIPTIONS,
@@ -71,8 +65,6 @@ export default function Layout() {
 			});
 		}
 	}, [error, data]);
-
-	//#endregion
 
 	return (
 		<HashRouter>

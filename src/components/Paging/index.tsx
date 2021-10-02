@@ -9,11 +9,8 @@ interface PagingProps {
 }
 
 function Paging(props: PagingProps) {
-	//#region Hooks
-
 	const currentPage: number = parseInt(props.currentPage);
 
-	// load main menu items via graphql
 	const { loading, error, data } = useQuery(VIDEO_COUNT_QUERY, {
 		fetchPolicy: "network-only",
 		variables: {
@@ -23,9 +20,6 @@ function Paging(props: PagingProps) {
 
 	if (loading || !data) return null;
 
-	//#endregion
-
-	// PREV BUTTON
 	let prevButton = (
 		<button className="pagination-previous" disabled={true}>
 			Previous
@@ -44,7 +38,6 @@ function Paging(props: PagingProps) {
 		);
 	}
 
-	// NEXT BUTTON
 	let nextButton = (
 		<button className="pagination-next" disabled>
 			Next

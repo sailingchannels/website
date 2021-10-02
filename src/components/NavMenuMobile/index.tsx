@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from "react";
-import { NavLink, useLocation, Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import mainMenuData from "../../data/NavMenuData";
 import MainMenuSection from "../../entities/MainMenuSection";
 import MainMenuItem from "../../entities/MainMenuItem";
@@ -7,15 +7,10 @@ import GlobalContext from "../../contexts/GlobalContext";
 import { logout, setSignInOpen } from "../../Common";
 
 export default function NavMenuMobile() {
-	//#region Hooks
-
 	const [open, setOpen] = useState(false);
 	const location = useLocation();
 
-	// hook to access the global context
 	const globalContext = useContext(GlobalContext.Context);
-
-	//#endregion
 
 	const openMenu = (
 		<div className="navbar-menu is-active">

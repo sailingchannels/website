@@ -6,6 +6,7 @@ import LoadingIndicator from "../LoadingIndicator";
 import Paging from "../Paging";
 import moment from "moment";
 import { VIDEOS_PER_PAGE } from "../../Constants";
+import DescriptionText from "../DescriptionText";
 
 interface VideoListProps {
 	channelId: string;
@@ -44,9 +45,7 @@ function VideoList(props: VideoListProps) {
 								</a>
 								<br />
 								<small>
-									<ul
-										className="is-unstyled is-inline channel-detail-stats"
-									>
+									<ul className="is-unstyled is-inline channel-detail-stats">
 										<li>
 											<em>{moment.unix(video.publishedAt).format("ll")}</em>
 										</li>
@@ -71,7 +70,7 @@ function VideoList(props: VideoListProps) {
 									</ul>
 								</small>
 								<p className="has-text-justified">
-									{video.description.substring(0, Math.min(300, video.description.length))} […]
+									<DescriptionText text={video.description} />
 								</p>
 							</div>
 						</div>

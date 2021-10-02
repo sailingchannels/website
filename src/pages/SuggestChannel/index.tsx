@@ -14,11 +14,8 @@ interface YouTubeDetailsQueryResult {
 }
 
 function SuggestChannel(props) {
-	//#region Hooks
-
 	const globalContext = useContext(GlobalContext.Context);
 
-	// load suggestions via graphql, if user is logged in
 	const { loading, error, data } = useQuery<YouTubeDetailsQueryResult>(CHANNEL_SUGGESTIONS_QUERY, {
 		fetchPolicy: "cache-and-network",
 		variables: {
@@ -27,8 +24,6 @@ function SuggestChannel(props) {
 		},
 		skip: globalContext.state.subscriptions?.length === 0
 	});
-
-	//#endregion
 
 	return (
 		<>

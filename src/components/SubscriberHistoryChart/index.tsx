@@ -14,9 +14,6 @@ interface SubscribersResult {
 }
 
 function SubscriberHistoryChart(props: SubscriberHistoryChartProps) {
-	//#region Hooks
-
-	// load subscriber historical data via graphql
 	const { loading, error, data } = useQuery<SubscribersResult>(SUBSCRIBER_HISTORY_QUERY, {
 		fetchPolicy: "cache-first",
 		variables: {
@@ -24,8 +21,6 @@ function SubscriberHistoryChart(props: SubscriberHistoryChartProps) {
 			days: props.days
 		}
 	});
-
-	//#endregion
 
 	if (loading || !data) return null;
 

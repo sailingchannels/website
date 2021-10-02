@@ -25,14 +25,11 @@ export default function ChannelList(props: any) {
 	const sortByRaw: string = props.match.params.sortBy || "upload";
 	const sortBy: string = capitalize(sortByRaw);
 
-	//#region Hooks
-
 	const [loadingMore, setLoadingMore] = useState<boolean>(false);
 	const [selectedLanguage] = useLocalStorage<string>(LANGUAGE_SETTING_KEY);
 
-	// load channels via graphql
 	const { loading, error, data, fetchMore, client } = useQuery<ChannelListResult>(CHANNELS_QUERY, {
-		fetchPolicy: "network-only",
+		fetchPolicy: "cache-and-network",
 		variables: {
 			sortBy: sortBy,
 			skip: 0,
@@ -40,8 +37,6 @@ export default function ChannelList(props: any) {
 			language: selectedLanguage || DEFAULT_LANGUAGE
 		}
 	});
-
-	//#endregion
 
 	if (loading || !data) return <LoadingIndicator />;
 

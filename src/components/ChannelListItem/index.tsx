@@ -40,12 +40,12 @@ export default function ChannelListItem(props: ChannelListItemProps) {
 						>
 							<strong>{channel.title}</strong>
 						</Link>
-						<p className="has-text-justified channel-list-item-description">
-							<p className="image is-64x64 detail-image is-hidden-tablet">
+						<div className="has-text-justified channel-list-item-description">
+							<div className="image is-64x64 detail-image is-hidden-tablet">
 								<img src={channel.thumbnail} className="is-rounded" />
-							</p>
+							</div>
 							{channel.description}
-						</p>
+						</div>
 					</div>
 				</div>
 			</div>

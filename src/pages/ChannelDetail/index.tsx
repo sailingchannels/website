@@ -14,9 +14,6 @@ import SubscriberHistoryChart from "../../components/SubscriberHistoryChart";
 import UploadPrediction from "../../components/UploadPrediction";
 
 function ChannelDetail(props: any) {
-	//#region Hooks
-
-	// load main menu items via graphql
 	const { loading, error, data } = useQuery(CHANNEL_DETAIL_QUERY, {
 		fetchPolicy: "cache-first",
 		variables: {
@@ -25,8 +22,6 @@ function ChannelDetail(props: any) {
 	});
 
 	if (error) console.error(error);
-
-	//#endregion
 
 	if (loading && !data) return <LoadingIndicator />;
 

@@ -3,12 +3,7 @@ import GlobalContext from "../../contexts/GlobalContext";
 import { logout, setSignInOpen } from "../../Common";
 
 function UserMenu(props) {
-	//#region Hooks
-
-	// hook to access the global context
 	const globalContext = useContext(GlobalContext.Context);
-
-	//#endregion
 
 	return (
 		<div className="container is-hidden-mobile">

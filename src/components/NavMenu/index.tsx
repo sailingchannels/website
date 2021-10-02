@@ -5,19 +5,9 @@ import mainMenuData from "../../data/NavMenuData";
 import MainMenuSection from "../../entities/MainMenuSection";
 
 export default function NavMenu() {
-	//#region Hooks
-
 	let history = useHistory();
 	const location = useLocation();
 
-	//#endregion
-
-	//#region Functions
-
-	/**
-	 * Triggered whenever a search input keyup event happens
-	 * @param e KeyUp event
-	 */
 	function searchKeyUp(e) {
 		// enter pressed
 		if (e.keyCode === 13) {
@@ -25,8 +15,6 @@ export default function NavMenu() {
 			history.push(`/search/${query}`);
 		}
 	}
-
-	//#endregion
 
 	return (
 		<aside className="menu is-hidden-mobile">

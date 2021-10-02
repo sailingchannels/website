@@ -9,11 +9,8 @@ interface FlagButtonProps {
 }
 
 function FlagButton(props: FlagButtonProps) {
-	//#region Hooks
-
 	const globalContext = useContext(GlobalContext.Context);
 
-	// check if flag was set
 	const { data, refetch } = useQuery(FLAG_EXISTS_QUERY, {
 		fetchPolicy: "cache-and-network",
 		variables: {
@@ -23,8 +20,6 @@ function FlagButton(props: FlagButtonProps) {
 	});
 
 	const [flagChannel] = useMutation(FLAG_CHANNEL_MUTATION);
-
-	//#endregion
 
 	const flagged = data && data.flagExists;
 	if (flagged) {

@@ -15,19 +15,14 @@ import Hero from "../../components/Hero";
 function TopicDetail(props: any) {
 	const topicId: string = props.match.params.id;
 
-	//#region Hooks
-
 	const [visibleTab, setVisibleTab] = useState(VisibleTab.Channels);
 
-	// load main menu items via graphql
 	const { loading, error, data } = useQuery(TOPIC_DETAIL_QUERY, {
 		fetchPolicy: "cache-and-network",
 		variables: {
 			topicId
 		}
 	});
-
-	//#endregion
 
 	if (loading || !data) return <LoadingIndicator />;
 
