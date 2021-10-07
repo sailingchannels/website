@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 'Checkout source code'
-        uses: 'actions/checkout@v2'
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-      - name: 'Automated Version Bump'
+      - name: Automated Version Bump 🏷
         id: version-bump
-        uses: 'phips28/gh-action-bump-version@master'
+        uses: phips28/gh-action-bump-version@master
         with:
-          commit-message: 'CI: bumps version to {{version}} [skip ci]'
+          commit-message: '🤖 CI: bumps version to {{version}} [skip ci]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'Output Step'
+      - name: Output Step 📣
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
@@ -34,7 +34,7 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      - name: Install and Build 🔧
         run: |
           npm install
           npm run build
@@ -42,5 +42,6 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          branch: master # The branch the action should deploy to.
-          folder: docs # The folder the action should deploy.
+          branch: master
+          folder: docs
+          target-folder: docs
