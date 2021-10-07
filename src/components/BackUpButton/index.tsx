@@ -2,23 +2,26 @@ import React, { useEffect, useState } from "react";
 
 const BackUpButton = () => {
 	const [isVisisble, setIsVisible] = useState(false);
+	const [scrollTop, setScrollTop] = useState(0);
 
 	useEffect(() => {
 		const onScroll = (e) => {
-			const scrollTop = e.target.documentElement.scrollTop;
-
-			if (scrollTop > screen.height && !isVisisble) {
-				setIsVisible(true);
-			}
-
-			if (scrollTop <= screen.height && isVisisble) {
-				setIsVisible(false);
-			}
+			setScrollTop(e.target.documentElement.scrollTop);
 		};
 		window.addEventListener("scroll", onScroll);
 
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
+
+	useEffect(() => {
+		if (scrollTop > screen.availHeight && !isVisisble) {
+			setIsVisible(true);
+		}
+
+		if (scrollTop <= screen.availHeight && isVisisble) {
+			setIsVisible(false);
+		}
+	}, [scrollTop, isVisisble]);
 
 	if (!isVisisble) return null;
 
