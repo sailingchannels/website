@@ -25,6 +25,7 @@ import SuggestChannel from "../../pages/SuggestChannel";
 import UserMenu from "../UserMenu";
 import SignInModal from "../SignInModal";
 import ScrollToTop from "../ScrollToTop";
+import SponsorModal from "../SponsorModal";
 
 const axios = Axios.create({ withCredentials: true });
 configure({ axios });
@@ -69,6 +70,7 @@ export default function Layout() {
 
 	return (
 		<HashRouter>
+			<SponsorModal />
 			<ScrollToTop />
 			<NavMenuMobile />
 			<SignInModal />

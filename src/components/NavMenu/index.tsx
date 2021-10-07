@@ -73,6 +73,27 @@ export default function NavMenu() {
 					<LanguageSelect />
 				</li>
 			</ul>
+
+			<p className="menu-label">Support sailing-channels.com</p>
+
+			<div>
+				<a
+					href="https://www.patreon.com/bePatron?u=2839847"
+					target="_blank"
+					className="button is-danger is-rounded"
+				>
+					<i className="fab fa-patreon fa-fw"></i> Patreon
+				</a>
+			</div>
+			<div style={{ marginTop: "5px" }}>
+				<a
+					href="https://paypal.me/sailingchannels"
+					target="_blank"
+					className="button is-info is-rounded"
+				>
+					<i className="fab fa-paypal fa-fw"></i> PayPal
+				</a>
+			</div>
 		</aside>
 	);
 }
