@@ -45,3 +45,4 @@ jobs:
           branch: master
           folder: docs
           target-folder: docs
+          commit-message: '🤖 CI: deploy website to github pages [skip ci]'
