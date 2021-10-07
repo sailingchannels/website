@@ -79,6 +79,13 @@ footer a:hover {
 	border-bottom: 1px solid #ededed;
 }
 
+.back-up {
+	top: 40px;
+	left: 40px;
+	position: fixed !important;
+	color: grey !important;
+}
+
 ul.is-unstyled {
 	list-style: none;
 	margin: 0;

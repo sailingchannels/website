@@ -64,7 +64,7 @@ const SponsorModal = () => {
 								target="_blank"
 								className="button is-info is-rounded is-medium"
 							>
-								<i className="fab fa-paypal fa-fw"></i> PayPal donation
+								<i className="fab fa-paypal fa-fw"></i>PayPal donation
 							</a>
 						</div>
 					</nav>

@@ -26,6 +26,7 @@ import UserMenu from "../UserMenu";
 import SignInModal from "../SignInModal";
 import ScrollToTop from "../ScrollToTop";
 import SponsorModal from "../SponsorModal";
+import BackUpButton from "../BackUpButton";
 
 const axios = Axios.create({ withCredentials: true });
 configure({ axios });
@@ -128,6 +129,7 @@ export default function Layout() {
 					</p>
 				</div>
 			</footer>
+			<BackUpButton />
 		</HashRouter>
 	);
 }
