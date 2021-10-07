@@ -1,6 +1,6 @@
 {
 	"name": "sailing-channels-website",
-	"version": "2.3.4",
+	"version": "2.3.7",
 	"description": "Sailing Channels Website",
 	"main": "index.js",
 	"scripts": {
@@ -37,7 +37,7 @@
 		"classnames": "^2.3.1",
 		"d3-format": "^3.0.1",
 		"graphql": "14.5.8",
-		"graphql-tag": "2.10.1",
+		"graphql-tag": "2.12.5",
 		"moment": "^2.24.0",
 		"prop-types": "15.7.2",
 		"react": "16.12.0",
