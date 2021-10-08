@@ -5,9 +5,10 @@ import Video from "../../entities/Video";
 import LoadingIndicator from "../LoadingIndicator";
 import Paging from "../Paging";
 import moment from "moment";
-import { SI_FORMAT, VIDEOS_PER_PAGE } from "../../Constants";
+import { VIDEOS_PER_PAGE } from "../../Constants";
 import DescriptionText from "../DescriptionText";
 import { formatSI } from "../../Common";
+import { decode } from "html-entities";
 
 interface VideoListProps {
 	channelId: string;
@@ -42,7 +43,7 @@ function VideoList(props: VideoListProps) {
 						<div className="media-content">
 							<div className="content">
 								<a href={`https://www.youtube.com/watch?v=${video.iD}`} target="_blank">
-									<strong>{video.title}</strong>
+									<strong>{decode(video.title)}</strong>
 								</a>
 								<br />
 								<small>

@@ -3,6 +3,8 @@ import Video from "../../entities/Video";
 import { Link } from "react-router-dom";
 import { formatSI } from "../../Common";
 import DescriptionText from "../DescriptionText";
+import moment from "moment";
+import { decode } from "html-entities";
 
 interface VideoListItemProps {
 	video: Video;
@@ -21,7 +23,7 @@ function VideoListItem(props: VideoListItemProps) {
 			<div className="column">
 				<p>
 					<a href={`https://www.youtube.com/watch?v=${video.iD}`} target="_blank">
-						<strong>{video.title}</strong>
+						<strong>{decode(video.title)}</strong>
 					</a>
 					<p className="has-text-justified">
 						<DescriptionText text={video.description} />
@@ -47,7 +49,7 @@ function VideoListItem(props: VideoListItemProps) {
 					{formatSI(video.dislikes)}
 				</p>
 				<p>
-					<b>Uploaded:</b> {video.publishedAt}
+					<b>Uploaded:</b> {moment.unix(video.publishedAt).format("ll")}
 				</p>
 
 				<div style={{ marginTop: "10px" }}>
