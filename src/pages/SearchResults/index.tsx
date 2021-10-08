@@ -14,11 +14,10 @@ import Hero from "../../components/Hero";
 function SearchResults(props: any) {
 	const [visibleTab, setVisibleTab] = useState(VisibleTab.Channels);
 
-	// load main menu items via graphql
 	const { loading, error, data } = useQuery(SEARCH_RESULTS_QUERY, {
 		fetchPolicy: "network-only",
 		variables: {
-			query: props.match.params.query
+			query: encodeURIComponent(props.match.params.query)
 		}
 	});
 
@@ -27,12 +26,10 @@ function SearchResults(props: any) {
 	let results = null;
 
 	if (visibleTab == VisibleTab.Videos) {
-		// add videos to renderable search results
 		results = data.searchResults.videos.map((video: Video) => {
 			return <VideoListItem key={video.iD} video={video} />;
 		});
 	} else {
-		// add channels to renderable search results
 		results = data.searchResults.channels.map((channel: Channel) => {
 			return <ChannelListItem key={channel.iD} channel={channel} />;
 		});
@@ -43,11 +40,8 @@ function SearchResults(props: any) {
 			<Helmet>
 				<title>Contributions | Sailing Channels</title>
 			</Helmet>
-
 			<Hero title="Search results" subtitle={`for "${props.match.params.query}"`} />
-
 			<ChannelsVideosTabs visibleTab={visibleTab} setVisibleTab={setVisibleTab} />
-
 			{results}
 		</>
 	);
