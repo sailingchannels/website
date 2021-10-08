@@ -30,7 +30,7 @@ function VideoListItem(props: VideoListItemProps) {
 			</div>
 			<div className="column is-3">
 				<p>
-					<b>Channel:</b> <Link to={`/channel/${video.iD}`}>{video.channel.title}</Link>
+					<b>Channel:</b> <Link to={`/channel/${video.channel.iD}`}>{video.channel.title}</Link>
 				</p>
 				<p>
 					<b>Views:</b> {formatSI(video.views)}

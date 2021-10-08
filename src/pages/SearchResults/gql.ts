@@ -23,6 +23,7 @@ export const SEARCH_RESULTS_QUERY = gql`
 				views
 				publishedAt
 				channel {
+					iD
 					title
 				}
 			}
