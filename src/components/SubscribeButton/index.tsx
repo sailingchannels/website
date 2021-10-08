@@ -4,6 +4,7 @@ import { IdentityService } from "../../ServiceUrls";
 import useAxios from "axios-hooks";
 import { setSignInOpen } from "../../Common";
 import classNames from "classnames";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 interface SubscribeButtonProps {
 	channelId: string;
@@ -16,6 +17,7 @@ interface SubscriptionResponse {
 
 function SubscribeButton(props: SubscribeButtonProps) {
 	const globalContext = useContext(GlobalContext.Context);
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	const [{ data: dataSubscribe, loading: loadingSubscribe }, executeSubscribe] =
 		useAxios<SubscriptionResponse>(
@@ -114,8 +116,10 @@ function SubscribeButton(props: SubscribeButtonProps) {
 				onClick={() => {
 					// are we logged in?
 					if (globalContext.state.loggedIn) {
+						trackGAEvent("User", "Subscribe Channel", "LoggedIn");
 						executeSubscribe();
 					} else {
+						trackGAEvent("User", "Subscribe Channel", "LoggedOut");
 						setSignInOpen(globalContext, true);
 					}
 				}}
