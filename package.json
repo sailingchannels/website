@@ -61,7 +61,7 @@
 		"bloomer": "^0.6.5",
 		"bulma": "^0.7.5",
 		"copy-webpack-plugin": "^5.0.3",
-		"copyfiles": "^2.1.1",
+		"copyfiles": "^2.4.1",
 		"cross-env": "5.2.0",
 		"css-loader": "^2.1.0",
 		"exports-loader": "^0.7.0",
