@@ -2,6 +2,7 @@ import React from "react";
 import Video from "../../entities/Video";
 import { Link } from "react-router-dom";
 import { formatSI } from "../../Common";
+import DescriptionText from "../DescriptionText";
 
 interface VideoListItemProps {
 	video: Video;
@@ -22,7 +23,9 @@ function VideoListItem(props: VideoListItemProps) {
 					<a href={`https://www.youtube.com/watch?v=${video.iD}`} target="_blank">
 						<strong>{video.title}</strong>
 					</a>
-					<p className="has-text-justified">{video.description}</p>
+					<p className="has-text-justified">
+						<DescriptionText text={video.description} />
+					</p>
 				</p>
 			</div>
 			<div className="column is-3">

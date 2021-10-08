@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../../components/Hero";
 
 function SearchResults(props: any) {
-	const [visibleTab, setVisibleTab] = useState(VisibleTab.Channels);
+	const [visibleTab, setVisibleTab] = useState(VisibleTab.Videos);
 
 	const { loading, error, data } = useQuery(SEARCH_RESULTS_QUERY, {
 		fetchPolicy: "network-only",

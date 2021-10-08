@@ -5,6 +5,7 @@ import ChannelInfos from "../ChannelInfos";
 import SubscribeButton from "../SubscribeButton";
 import ApolloClient from "apollo-client";
 import { CHANNEL_DETAIL_QUERY } from "../../pages/ChannelDetail/gql";
+import DescriptionText from "../DescriptionText";
 
 interface ChannelListItemProps {
 	channel: Channel;
@@ -51,7 +52,8 @@ export default function ChannelListItem(props: ChannelListItemProps) {
 									<img src={channel.thumbnail} className="is-rounded" />
 								</Link>
 							</div>
-							{channel.description}
+
+							<DescriptionText text={channel.description} />
 						</div>
 					</div>
 				</div>

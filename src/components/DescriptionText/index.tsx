@@ -7,12 +7,14 @@ interface DescriptionTextProps {
 const DESCRIPTION_MAX_LENGTH = 300;
 
 export default function DescriptionText(props: DescriptionTextProps) {
-	if (!props.text) return null;
+	const { text } = props;
 
-	const length = props.text.length;
+	if (!text) return null;
+
+	const length = text.length;
 	if (length > DESCRIPTION_MAX_LENGTH) {
-		return <span>{props.text.substring(0, Math.min(DESCRIPTION_MAX_LENGTH, length))} […]</span>;
+		return <span>{text.substring(0, Math.min(DESCRIPTION_MAX_LENGTH, length))} […]</span>;
 	} else {
-		return <span>{props.text}</span>;
+		return <span>{text}</span>;
 	}
 }
