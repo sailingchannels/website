@@ -70,7 +70,7 @@ function VideoList(props: VideoListProps) {
 										</li>
 									</ul>
 								</small>
-								<p className="has-text-justified">
+								<p className="has-text-justified is-hidden-mobile">
 									<DescriptionText text={video.description} />
 								</p>
 							</div>
