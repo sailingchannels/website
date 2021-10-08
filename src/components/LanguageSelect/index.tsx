@@ -4,6 +4,7 @@ import { LANGUAGES_QUERY } from "./gql";
 import Language from "../../entities/Language";
 import { useLocalStorage, writeStorage } from "@rehooks/local-storage";
 import { LANGUAGE_SETTING_KEY, DEFAULT_LANGUAGE } from "../../Constants";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 export default function LanguageSelect() {
 	const { loading, error, data } = useQuery(LANGUAGES_QUERY, {
@@ -11,9 +12,11 @@ export default function LanguageSelect() {
 	});
 
 	const [selectedLanguage] = useLocalStorage<string>(LANGUAGE_SETTING_KEY);
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	function changeLanguage(event) {
 		writeStorage<string>(LANGUAGE_SETTING_KEY, event.target.value);
+		trackGAEvent("User", "Change Language", event.target.value);
 	}
 
 	if (loading || !data) return null;
