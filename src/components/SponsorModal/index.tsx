@@ -17,7 +17,9 @@ const SponsorModal = () => {
 		writeStorage<number>(SPONSOR_MODAL_ACTIVATION_COUNTER_KEY, updatedSponsorModalActivationCounter);
 
 		if (updatedSponsorModalActivationCounter == 2) {
-			setIsActive(true);
+			window.setTimeout(() => {
+				setIsActive(true);
+			}, 2345);
 		}
 	}, []);
 
