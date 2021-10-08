@@ -27,6 +27,7 @@ import SignInModal from "../SignInModal";
 import ScrollToTop from "../ScrollToTop";
 import SponsorModal from "../SponsorModal";
 import BackUpButton from "../BackUpButton";
+import GoogleAnalyticsPageViewTracker from "../GoogleAnalyticsPageViewTracker";
 
 const axios = Axios.create({ withCredentials: true });
 configure({ axios });
@@ -71,6 +72,7 @@ export default function Layout() {
 
 	return (
 		<HashRouter>
+			<GoogleAnalyticsPageViewTracker />
 			<SponsorModal />
 			<ScrollToTop />
 			<NavMenuMobile />

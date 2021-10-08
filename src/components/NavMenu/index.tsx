@@ -3,10 +3,12 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import LanguageSelect from "../LanguageSelect";
 import mainMenuData from "../../data/NavMenuData";
 import MainMenuSection from "../../entities/MainMenuSection";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 export default function NavMenu() {
 	let history = useHistory();
 	const location = useLocation();
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	function searchKeyUp(e) {
 		// enter pressed
@@ -81,6 +83,9 @@ export default function NavMenu() {
 					href="https://www.patreon.com/bePatron?u=2839847"
 					target="_blank"
 					className="button is-danger is-rounded"
+					onClick={() => {
+						trackGAEvent("User", "Click Patreon", "NavBar");
+					}}
 				>
 					<i className="fab fa-patreon fa-fw"></i> Patreon
 				</a>
@@ -90,6 +95,9 @@ export default function NavMenu() {
 					href="https://paypal.me/sailingchannels"
 					target="_blank"
 					className="button is-info is-rounded"
+					onClick={() => {
+						trackGAEvent("User", "Click PayPal", "NavBar");
+					}}
 				>
 					<i className="fab fa-paypal fa-fw"></i> PayPal
 				</a>

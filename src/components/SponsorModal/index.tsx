@@ -5,10 +5,12 @@ import {
 	SPONSOR_MODEL_ACTIVATION_COUNTER_THRESHOLD
 } from "../../Constants";
 import classNames from "classnames";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 const SponsorModal = () => {
 	const [isActive, setIsActive] = useState(false);
 	const [sponsorModalActivationCounter] = useLocalStorage<number>(SPONSOR_MODAL_ACTIVATION_COUNTER_KEY);
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	useEffect(() => {
 		const updatedSponsorModalActivationCounter =
@@ -56,6 +58,9 @@ const SponsorModal = () => {
 								href="https://www.patreon.com/bePatron?u=2839847"
 								target="_blank"
 								className="button is-danger is-rounded is-medium"
+								onClick={() => {
+									trackGAEvent("User", "Click Patreon", "SponsorModal");
+								}}
 							>
 								<i className="fab fa-patreon fa-fw"></i> Become a patron
 							</a>
@@ -65,6 +70,9 @@ const SponsorModal = () => {
 								href="https://paypal.me/sailingchannels"
 								target="_blank"
 								className="button is-info is-rounded is-medium"
+								onClick={() => {
+									trackGAEvent("User", "Click PayPal", "SponsorModal");
+								}}
 							>
 								<i className="fab fa-paypal fa-fw"></i>PayPal donation
 							</a>
