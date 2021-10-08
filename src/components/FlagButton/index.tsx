@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { FLAG_EXISTS_QUERY, FLAG_CHANNEL_MUTATION } from "./gql";
 import GlobalContext from "../../contexts/GlobalContext";
 import { setSignInOpen } from "../../Common";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 interface FlagButtonProps {
 	channelId: string;
@@ -10,6 +11,7 @@ interface FlagButtonProps {
 
 function FlagButton(props: FlagButtonProps) {
 	const globalContext = useContext(GlobalContext.Context);
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	const { data, refetch } = useQuery(FLAG_EXISTS_QUERY, {
 		fetchPolicy: "cache-and-network",
@@ -41,10 +43,13 @@ function FlagButton(props: FlagButtonProps) {
 						}
 					});
 
+					trackGAEvent("User", "Flag channel", "LoggedIn");
+
 					// fetch flagging data again
 					await refetch();
 				} else {
 					setSignInOpen(globalContext, true);
+					trackGAEvent("User", "Flag channel", "LoggedOut");
 				}
 			}}
 		>

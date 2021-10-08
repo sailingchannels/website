@@ -13,6 +13,7 @@ import FlagButton from "../../components/FlagButton";
 import SubscriberHistoryChart from "../../components/SubscriberHistoryChart";
 import UploadPrediction from "../../components/UploadPrediction";
 import { formatSI } from "../../Common";
+import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 function ChannelDetail(props: any) {
 	const { loading, error, data } = useQuery(CHANNEL_DETAIL_QUERY, {
@@ -21,6 +22,8 @@ function ChannelDetail(props: any) {
 			id: props.match.params.id
 		}
 	});
+
+	const trackGAEvent = useGoogleAnalyticsEvent();
 
 	if (error) console.error(error);
 
@@ -65,7 +68,13 @@ function ChannelDetail(props: any) {
 					</div>
 
 					<p>
-						<a href={"https://youtube.com/channel/" + channel.iD} target="_blank">
+						<a
+							href={"https://youtube.com/channel/" + channel.iD}
+							target="_blank"
+							onClick={() => {
+								trackGAEvent("User", "Open YouTube channel", "Channel Detail " + channel.iD);
+							}}
+						>
 							<i className="fas fa-external-link-alt" /> Open YouTube channel
 						</a>
 					</p>
