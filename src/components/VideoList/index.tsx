@@ -57,18 +57,6 @@ function VideoList(props: VideoListProps) {
 											</span>{" "}
 											{formatSI(video.views)}
 										</li>
-										<li>
-											<span className="icon is-small">
-												<i className="fas fa-thumbs-up" />
-											</span>{" "}
-											{formatSI(video.likes)}
-										</li>
-										<li>
-											<span className="icon is-small">
-												<i className="fas fa-thumbs-down" />
-											</span>{" "}
-											{formatSI(video.dislikes)}
-										</li>
 									</ul>
 								</small>
 								<p className="has-text-justified is-hidden-mobile">
