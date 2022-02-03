@@ -51,12 +51,8 @@ function VideoList(props: VideoListProps) {
 										<li>
 											<em>{moment.unix(video.publishedAt).format("ll")}</em>
 										</li>
-										<li>
-											<span className="icon is-small">
-												<i className="far fa-eye" />
-											</span>{" "}
-											{formatSI(video.views)}
-										</li>
+										<li>&middot;</li>
+										<li>{formatSI(video.views)} views</li>
 									</ul>
 								</small>
 								<p className="has-text-justified is-hidden-mobile">
