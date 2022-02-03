@@ -23,8 +23,6 @@ export const TOPIC_DETAIL_QUERY = gql`
 				iD
 				title
 				description
-				likes
-				dislikes
 				views
 				publishedAt
 				channel {

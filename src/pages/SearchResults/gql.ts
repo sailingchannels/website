@@ -18,8 +18,6 @@ export const SEARCH_RESULTS_QUERY = gql`
 				iD
 				title
 				description
-				likes
-				dislikes
 				views
 				publishedAt
 				channel {

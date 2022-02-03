@@ -6,8 +6,6 @@ export const VIDEOS_QUERY = gql`
 			iD
 			title
 			description
-			likes
-			dislikes
 			views
 			publishedAt
 		}

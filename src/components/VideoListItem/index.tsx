@@ -38,17 +38,6 @@ function VideoListItem(props: VideoListItemProps) {
 					<b>Views:</b> {formatSI(video.views)}
 				</p>
 				<p>
-					<b>Likes:</b>
-					<span className="icon is-small">
-						<i className="fas fa-thumbs-up" />
-					</span>{" "}
-					{formatSI(video.likes)}
-					<span style={{ marginLeft: "10px" }} className="icon is-small">
-						<i className="fas fa-thumbs-down" />
-					</span>{" "}
-					{formatSI(video.dislikes)}
-				</p>
-				<p>
 					<b>Uploaded:</b> {moment.unix(video.publishedAt).format("ll")}
 				</p>
 
