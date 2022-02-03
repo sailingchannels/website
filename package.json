@@ -1,6 +1,6 @@
 {
 	"name": "sailing-channels-website",
-	"version": "2.4.3",
+	"version": "2.4.4",
 	"description": "Sailing Channels Website",
 	"main": "index.js",
 	"scripts": {
