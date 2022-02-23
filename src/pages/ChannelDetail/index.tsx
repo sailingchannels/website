@@ -17,7 +17,7 @@ import useGoogleAnalyticsEvent from "../../hooks/useGoogleAnalyticsEvent";
 
 function ChannelDetail(props: any) {
 	const { loading, error, data } = useQuery(CHANNEL_DETAIL_QUERY, {
-		fetchPolicy: "cache-first",
+		fetchPolicy: "cache-and-network",
 		variables: {
 			id: props.match.params.id
 		}

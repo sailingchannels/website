@@ -15,7 +15,7 @@ interface SubscribersResult {
 
 function SubscriberHistoryChart(props: SubscriberHistoryChartProps) {
 	const { loading, error, data } = useQuery<SubscribersResult>(SUBSCRIBER_HISTORY_QUERY, {
-		fetchPolicy: "cache-first",
+		fetchPolicy: "cache-and-network",
 		variables: {
 			channelId: props.channelId,
 			days: props.days

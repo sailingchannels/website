@@ -66,7 +66,7 @@ function ConvertWeekdayHourToLocal(prediction: PublishPrediction): Weekstamp {
 
 function UploadPrediction(props: UploadPredictionProp) {
 	const { loading, error, data } = useQuery<PublishPredictionResult>(UPLOAD_PREDICTION_QUERY, {
-		fetchPolicy: "cache-first",
+		fetchPolicy: "cache-and-network",
 		variables: {
 			channelId: props.channelId,
 			filterBelowAverage: true,

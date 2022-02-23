@@ -15,7 +15,7 @@ function Topics(props) {
 
 	// load main menu items via graphql
 	const { loading, error, data, client } = useQuery(TOPICS_QUERY, {
-		fetchPolicy: "cache-first",
+		fetchPolicy: "cache-and-network",
 		variables: {
 			language: selectedLanguage || DEFAULT_LANGUAGE
 		}

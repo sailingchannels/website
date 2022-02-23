@@ -15,7 +15,7 @@ function ChannelIdentificationResult(props) {
 	const [getIdentified, { loading, error, data }] = useLazyQuery<IdentifyChannelsQueryResult>(
 		IDENTIFY_CHANNELS_QUERY,
 		{
-			fetchPolicy: "cache-first"
+			fetchPolicy: "cache-and-network"
 		}
 	);
 
