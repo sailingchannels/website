@@ -23,7 +23,7 @@
 		"@babel/polyfill": "7.4.4",
 		"@babel/runtime": "7.5.4",
 		"@rehooks/local-storage": "^2.1.1",
-		"@types/node": "12.6.2",
+		"@types/node": "18.14.6",
 		"@wufe/mapper": "0.5.0",
 		"animate.css": "^4.1.1",
 		"apollo-cache-inmemory": "1.6.3",
